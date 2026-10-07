@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>VA Home Loan Calculator</title>
+  <meta name="description" content="Estimate a VA purchase loan's funding fee, monthly principal and interest, and an initial payment comparison with a conventional loan carrying PMI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#11161c;--surface:#181f27;--surface-2:#202a34;--ink:#f5f5f5;--muted:#b7c0c9;
+      --line:#34404b;--line-strong:#596570;--orange:#f7931a;--orange-ink:#181108;
+      --orange-soft:#392917;--blue:#82acd5;--blue-soft:#192d40;--green:#39ff14;--green-soft:#17371d;
+      --red:#ff747b;--red-soft:#402027;--shadow:0 24px 70px rgba(0,0,0,.28);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#0b0e14;--surface:#121820;--surface-2:#1a232d;--ink:#f5f5f5;--muted:#acb7c1;
+      --line:#2c3742;--line-strong:#4a5864;--orange:#f7931a;--orange-ink:#1a1106;
+      --orange-soft:#362513;--blue:#78a6d2;--blue-soft:#172b3d;--green:#39ff14;--green-soft:#133119;
+      --red:#ff747b;--red-soft:#3b1c22;--shadow:0 24px 70px rgba(0,0,0,.4);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;overflow-x:hidden;background:var(--bg);color:var(--ink);font:16px/1.5 "IBM Plex Sans",sans-serif;-webkit-font-smoothing:antialiased}button,input,select{font:inherit;color:inherit}button,a{-webkit-tap-highlight-color:transparent}.page{width:min(1200px,100%);margin:0 auto;padding:0 clamp(14px,4vw,46px) max(52px,env(safe-area-inset-bottom))}
+    .home-nav{position:sticky;top:0;z-index:20;padding:max(10px,env(safe-area-inset-top)) 0 9px;background:var(--bg)}.home-link{display:inline-flex;align-items:center;min-height:34px;color:var(--muted);font-size:.76rem;font-weight:700;text-decoration:none}.home-link:hover{color:var(--orange)}
+    .intro{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(260px,.68fr);gap:clamp(24px,6vw,76px);align-items:end;padding:4px 0 clamp(24px,4vw,40px);border-bottom:1px solid var(--line)}.kicker{margin:0 0 11px;color:var(--orange);font:600 .72rem "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase}.intro h1{margin:0;max-width:790px;font-size:clamp(2.45rem,6.2vw,5.8rem);line-height:.92;letter-spacing:-.06em}.intro h1 span{color:var(--orange)}.intro-copy{margin:0;max-width:40ch;color:var(--muted);font-size:clamp(1rem,1.6vw,1.17rem)}
+    .rate-note{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;margin:22px 0 0;padding:16px 18px;background:var(--blue-soft);border-top:3px solid var(--blue)}.rate-year{display:grid;place-items:center;min-width:58px;height:30px;background:var(--blue);color:#fff;font:600 .72rem "IBM Plex Mono",monospace}.rate-note p{margin:0;font-size:.8rem}.rate-note strong{color:var(--ink)}
+    .workbench{display:grid;grid-template-columns:minmax(320px,420px) minmax(0,1fr);margin-top:22px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}.inputs{padding:clamp(20px,2.8vw,31px);border-right:1px solid var(--line)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:21px}.section-head h2{margin:0;font-size:1rem;letter-spacing:-.015em}.step{color:var(--orange);font:600 .68rem "IBM Plex Mono",monospace;letter-spacing:.06em}.field{margin-bottom:16px}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}label,.label{display:block;margin-bottom:7px;color:var(--muted);font-size:.77rem;font-weight:700}.control{display:flex;align-items:center;min-height:49px;background:var(--bg);border:1px solid var(--line-strong);transition:border-color .15s,box-shadow .15s}.control:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px color-mix(in srgb,var(--orange) 18%,transparent)}.control input,.control select{width:100%;min-width:0;border:0;outline:0;background:transparent;padding:11px;font:600 .96rem "IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}.control select{font-family:"IBM Plex Sans",sans-serif;cursor:pointer}.affix{padding-left:13px;color:var(--muted);font:600 .83rem "IBM Plex Mono",monospace}.affix.end{padding:0 13px 0 0}.micro{display:block;margin-top:5px;color:var(--muted);font-size:.68rem;line-height:1.42}.check{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;margin:4px 0 17px;padding:14px;background:var(--orange-soft);cursor:pointer}.check input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--orange)}.check strong{display:block;font-size:.77rem}.check small{display:block;margin-top:3px;color:var(--muted);font-size:.67rem;line-height:1.4}.divider{margin:23px 0 17px;border:0;border-top:1px solid var(--line)}.compare-label{margin:0 0 13px;color:var(--ink);font-size:.82rem}.calculate{width:100%;min-height:50px;border:0;margin-top:8px;padding:13px 17px;background:var(--orange);color:var(--orange-ink);font-weight:700;cursor:pointer;box-shadow:0 5px 0 color-mix(in srgb,var(--orange) 56%,#000);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 2px 0 color-mix(in srgb,var(--orange) 56%,#000)}.privacy{margin:14px 0 0;color:var(--muted);font-size:.66rem}
+    .results{min-width:0;padding:clamp(19px,3vw,34px);background:linear-gradient(135deg,color-mix(in srgb,var(--surface-2) 62%,transparent),transparent 58%)}.empty{min-height:690px;display:grid;place-items:center;text-align:center}.empty-mark{width:150px;height:120px;margin:0 auto 23px;position:relative}.empty-mark svg{width:100%;height:100%;color:var(--blue)}.empty-mark::after{content:"VA";position:absolute;right:-8px;bottom:-7px;padding:7px 10px;background:var(--orange);color:var(--orange-ink);font:600 .67rem "IBM Plex Mono",monospace;letter-spacing:.06em}.empty h2{margin:0 0 8px;font-size:1.6rem;letter-spacing:-.035em}.empty p{margin:0 auto;max-width:44ch;color:var(--muted);font-size:.89rem}.hidden{display:none!important}.error{margin:0;padding:13px 14px;background:var(--red-soft);color:var(--red);border:1px solid color-mix(in srgb,var(--red) 38%,transparent);font-size:.82rem;font-weight:700}
+    .result-lead{position:relative;overflow:hidden;padding:clamp(23px,4vw,37px);background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-lead{background:#f3f5f6;color:#0b0e14}}.result-lead::after{content:"";position:absolute;width:164px;height:164px;right:-66px;bottom:-84px;border:22px solid var(--orange);border-radius:50%}.eyebrow{position:relative;z-index:1;margin:0 0 8px;font:600 .67rem "IBM Plex Mono",monospace;letter-spacing:.08em;opacity:.63}.big-number{position:relative;z-index:1;margin:0;font:600 clamp(3rem,7vw,5.7rem)/.92 "IBM Plex Mono",monospace;letter-spacing:-.075em}.lead-note{position:relative;z-index:1;margin:11px 0 0;font-weight:700}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1px;background:var(--line)}.metric{min-width:0;padding:18px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.64rem;font-weight:700}.metric strong{display:block;margin-top:5px;font:600 clamp(1.08rem,2.25vw,1.42rem) "IBM Plex Mono",monospace;letter-spacing:-.03em;overflow-wrap:anywhere}.metric small{display:block;margin-top:5px;color:var(--muted);font-size:.63rem}.metric.fee strong{color:var(--orange)}
+    .comparison{margin-top:15px;border:1px solid var(--line);background:var(--surface)}.comparison-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding:19px 20px 15px}.comparison-head h2{margin:0;font-size:1rem}.comparison-head p{margin:4px 0 0;color:var(--muted);font-size:.68rem}.loan-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}.loan-card{padding:20px;background:var(--surface-2)}.loan-card.va{background:var(--blue-soft)}.loan-card h3{margin:0 0 14px;font-size:.88rem}.loan-card strong{display:block;font:600 clamp(1.65rem,4vw,2.45rem) "IBM Plex Mono",monospace;letter-spacing:-.045em}.loan-card ul{list-style:none;margin:13px 0 0;padding:0;color:var(--muted);font-size:.72rem}.loan-card li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid color-mix(in srgb,var(--line) 78%,transparent)}.loan-card li b{color:var(--ink);font-family:"IBM Plex Mono",monospace}.difference{margin:0;padding:15px 20px;background:var(--green-soft);color:var(--ink);font-size:.78rem;font-weight:700}.difference.negative{background:var(--orange-soft)}
+    .explain{margin-top:14px;border:1px solid var(--line);background:var(--blue-soft)}.explain-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;border:0;background:transparent;padding:15px 17px;cursor:pointer;text-align:left;font-weight:700}.explain-toggle:hover{background:color-mix(in srgb,var(--blue) 9%,transparent)}.explain-toggle svg{width:18px;flex:0 0 auto;color:var(--blue);transition:transform .18s}.explain-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}.explain-copy{margin:0;padding:0 17px 18px;color:var(--muted);font-size:.84rem;line-height:1.68}.explain-copy strong{color:var(--ink)}.explain-copy[hidden]{display:none}
+    .share{margin-top:14px;padding:18px 20px;background:var(--surface);border:1px solid var(--line)}.share-head{display:flex;align-items:center;justify-content:space-between;gap:18px}.share h2{margin:0;font-size:1rem}.actions{display:flex;gap:8px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 12px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;font-size:.7rem;font-weight:700}.action.email{background:var(--orange);border-color:var(--orange);color:var(--orange-ink)}.notice{min-height:18px;margin:8px 0 0;color:var(--muted);font-size:.7rem}.source-row{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:24px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.source-row p{margin:0}.source-row a{color:var(--blue);font-weight:700}.disclaimer{margin:14px 0 0;padding:15px 17px;background:var(--orange-soft);color:var(--ink);font-size:.75rem;font-weight:600}.disclaimer strong{color:var(--orange)}
+    .calculate:focus-visible,.action:focus-visible,.explain-toggle:focus-visible,.home-link:focus-visible,.check:focus-within{outline:3px solid color-mix(in srgb,var(--orange) 46%,transparent);outline-offset:3px}
+    @media(max-width:880px){.intro{grid-template-columns:1fr;gap:14px}.intro-copy{max-width:55ch}.workbench{grid-template-columns:1fr}.inputs{border-right:0;border-bottom:1px solid var(--line)}.empty{min-height:410px}}
+    @media(max-width:560px){.page{padding-left:12px;padding-right:12px}.intro h1{font-size:clamp(2.4rem,12vw,3.85rem)}.field-row,.metrics,.loan-grid{grid-template-columns:1fr}.results{padding:12px}.result-lead{padding:20px}.big-number{font-size:clamp(2.65rem,14vw,4rem)}.share-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.action{flex:1}.source-row{align-items:flex-start;flex-direction:column;gap:6px}.rate-note{padding:14px}.comparison-head{align-items:flex-start;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <nav class="home-nav" aria-label="Honed Money"><a class="home-link" href="/money/">← Honed Money</a></nav>
+
+  <header class="intro">
+    <div><p class="kicker">Honed Money · Military &amp; first responders</p><h1>See the VA loan <span>in full.</span></h1></div>
+    <p class="intro-copy">Estimate the funding fee, financed loan balance, and monthly principal and interest—then compare the opening payment with a conventional loan carrying PMI.</p>
+  </header>
+
+  <aside class="rate-note" aria-label="VA funding fee rate date">
+    <span class="rate-year">2026</span>
+    <p><strong>Current VA purchase funding-fee schedule:</strong> this calculator uses the official rates effective April 7, 2023. The same purchase rates apply to Veterans, active-duty service members, and National Guard and Reserve members.</p>
+  </aside>
+
+  <section class="workbench" aria-label="VA home loan calculator">
+    <form class="inputs" id="loanForm" novalidate>
+      <div class="section-head"><h2>Purchase details</h2><span class="step">YOUR ESTIMATE</span></div>
+      <div class="field">
+        <label for="price">Home price</label>
+        <div class="control"><span class="affix">$</span><input id="price" type="number" min="1" step="100" inputmode="decimal" placeholder="350,000" autocomplete="off" /></div>
+      </div>
+      <div class="field">
+        <label for="downPayment">Down payment</label>
+        <div class="control"><span class="affix">$</span><input id="downPayment" type="number" min="0" step="100" inputmode="decimal" placeholder="0" autocomplete="off" /></div>
+        <small class="micro" id="downPaymentHint">The funding-fee tier is based on the down payment as a share of the home price.</small>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="rate">Interest rate</label>
+          <div class="control"><input id="rate" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="6.25" autocomplete="off" /><span class="affix end">%</span></div>
+        </div>
+        <div class="field">
+          <label for="term">Loan term</label>
+          <div class="control"><select id="term"><option value="360">30 years</option><option value="240">20 years</option><option value="180">15 years</option><option value="120">10 years</option></select></div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="serviceType">Service type</label>
+        <div class="control"><select id="serviceType"><option value="Veteran">Veteran</option><option value="Active-duty service member">Active-duty service member</option><option value="National Guard or Reserve member">National Guard or Reserve member</option><option value="Eligible surviving spouse">Eligible surviving spouse</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="benefitUse">VA loan benefit use</label>
+          <div class="control"><select id="benefitUse"><option value="first">First use</option><option value="subsequent">After first use</option></select></div>
+        </div>
+        <div class="field">
+          <label for="feeHandling">Funding fee</label>
+          <div class="control"><select id="feeHandling"><option value="finance">Finance into loan</option><option value="cash">Pay at closing</option></select></div>
+        </div>
+      </div>
+      <label class="check" for="feeExempt">
+        <input id="feeExempt" type="checkbox" />
+        <span><strong>I qualify for a VA funding-fee exemption</strong><small>This includes borrowers receiving VA compensation for a service-connected disability. VA recognizes other exemption paths; confirm your status on your Certificate of Eligibility.</small></span>
+      </label>
+
+      <hr class="divider" />
+      <h3 class="compare-label">Conventional-loan comparison</h3>
+      <div class="field">
+        <label for="pmiRate">Estimated annual PMI rate</label>
+        <div class="control"><input id="pmiRate" type="number" min="0" max="10" step="0.01" inputmode="decimal" value="0.50" autocomplete="off" /><span class="affix end">%</span></div>
+        <small class="micro">Adjust this planning assumption to a lender quote. PMI is set to $0 automatically at 20% down.</small>
+      </div>
+      <button class="calculate" type="submit">Calculate VA loan</button>
+      <p class="privacy">Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div>
+          <div class="empty-mark" aria-hidden="true"><svg viewBox="0 0 160 130" fill="none"><path d="M18 65 80 15l62 50v50H18V65Z" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/><path d="M61 115V78h38v37M42 59h20M99 59h20" stroke="currentColor" stroke-width="7" stroke-linecap="square"/></svg></div>
+          <h2>The fee changes the balance.</h2>
+          <p>A lower down payment can preserve cash, while financing the VA funding fee can add a little to each monthly payment. Put both in view.</p>
+        </div>
+      </div>
+
+      <div id="resultState" class="hidden" aria-live="polite">
+        <div class="error hidden" id="errorBox"></div>
+        <div id="validResults" class="hidden">
+          <section class="result-lead" id="resultLead">
+            <p class="eyebrow">ESTIMATED VA MONTHLY PRINCIPAL + INTEREST</p>
+            <p class="big-number" id="vaPayment">—</p>
+            <p class="lead-note" id="leadNote">—</p>
+          </section>
+          <div class="metrics">
+            <article class="metric fee"><span>VA FUNDING FEE</span><strong id="fundingFee">—</strong><small id="feeRateLabel">—</small></article>
+            <article class="metric"><span>VA LOAN BALANCE</span><strong id="vaBalance">—</strong><small id="balanceNote">—</small></article>
+            <article class="metric"><span>DOWN PAYMENT</span><strong id="downPct">—</strong><small id="downAmount">—</small></article>
+          </div>
+
+          <section class="comparison" aria-label="VA and conventional initial monthly payment comparison">
+            <div class="comparison-head"><div><h2>Opening monthly comparison</h2><p>Same rate, term, price, and down payment</p></div><span class="step">P&amp;I + ESTIMATED PMI</span></div>
+            <div class="loan-grid">
+              <article class="loan-card va">
+                <h3>VA loan</h3><strong id="vaTotalMonthly">—</strong>
+                <ul><li><span>Principal + interest</span><b id="vaPI">—</b></li><li><span>Monthly mortgage insurance</span><b>$0</b></li></ul>
+              </article>
+              <article class="loan-card">
+                <h3>Conventional estimate</h3><strong id="convTotalMonthly">—</strong>
+                <ul><li><span>Principal + interest</span><b id="convPI">—</b></li><li><span>Estimated PMI</span><b id="monthlyPMI">—</b></li></ul>
+              </article>
+            </div>
+            <p class="difference" id="differenceLine">—</p>
+          </section>
+
+          <section class="explain" aria-label="Plain-English results explanation">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy"><span>Explain these results</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="explain-copy" id="explainCopy" hidden></div>
+          </section>
+
+          <section class="share">
+            <div class="share-head"><h2>Take the estimate with you</h2><div class="actions"><button class="action" id="copyButton" type="button">Copy results</button><a class="action email" id="emailButton" href="mailto:">Email my results</a></div></div>
+            <p class="notice" id="copyNotice" role="status"></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="source-row"><p>VA purchase funding-fee rates checked October 7, 2026. Rates used: 2.15% / 3.30% below 5% down, 1.50% at 5%–9.99%, and 1.25% at 10% or more; qualifying exemptions use 0%.</p><a href="https://www.va.gov/housing-assistance/home-loans/funding-fee-and-closing-costs/" target="_blank" rel="noopener noreferrer">Read the official VA guidance ↗</a></div>
+  <p class="disclaimer"><strong>Estimate only — not lending advice.</strong> This tool models a VA-backed purchase loan and an illustrative conventional loan. It excludes property taxes, homeowners insurance, HOA dues, closing costs, discount points, lender fees, eligibility and entitlement limits, and possible rate differences. PMI pricing and cancellation rules vary. Confirm your funding-fee exemption and loan details with VA and a lender.</p>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var form=document.getElementById("loanForm"),currentText="",lastResult=null;
+  function el(id){return document.getElementById(id)}
+  function rawNumber(id){var raw=el(id).value.trim();return raw===""?NaN:Number(raw)}
+  function money(n){return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",minimumFractionDigits:2,maximumFractionDigits:2}).format(n)}
+  function money0(n){return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(n)}
+  function pct(n,digits){return new Intl.NumberFormat("en-US",{style:"percent",minimumFractionDigits:digits,maximumFractionDigits:digits}).format(n)}
+  function payment(principal,annualRate,months){var r=annualRate/12;if(principal<=0)return 0;if(r===0)return principal/months;var p=Math.pow(1+r,months);return principal*r*p/(p-1)}
+  function fundingRate(downShare,use,exempt){if(exempt)return 0;if(downShare>=.10)return .0125;if(downShare>=.05)return .015;return use==="first"?.0215:.033}
+  function values(){
+    return{price:rawNumber("price"),down:rawNumber("downPayment"),rate:rawNumber("rate")/100,months:Number(el("term").value),service:el("serviceType").value,use:el("benefitUse").value,feeHandling:el("feeHandling").value,exempt:el("feeExempt").checked,pmiRate:rawNumber("pmiRate")/100};
+  }
+  function validate(x){
+    if(!Number.isFinite(x.price)||x.price<=0)return"Enter a home price greater than $0.";
+    if(x.price>100000000)return"Enter a home price of $100 million or less.";
+    if(!Number.isFinite(x.down)||x.down<0)return"Enter a down payment of $0 or more.";
+    if(x.down>=x.price)return"The down payment must be less than the home price.";
+    if(!Number.isFinite(x.rate)||x.rate<0||x.rate>1)return"Enter an interest rate from 0% to 100%.";
+    if(!Number.isFinite(x.pmiRate)||x.pmiRate<0||x.pmiRate>.10)return"Enter an estimated PMI rate from 0% to 10%.";
+    return"";
+  }
+  function showError(message){el("emptyState").classList.add("hidden");el("resultState").classList.remove("hidden");el("validResults").classList.add("hidden");el("errorBox").textContent=message;el("errorBox").classList.remove("hidden");currentText="";lastResult=null}
+  function setText(id,text){el(id).textContent=text}
+  function calculate(event){
+    event.preventDefault();el("copyNotice").textContent="";var x=values(),error=validate(x);if(error){showError(error);return}
+    var base=x.price-x.down,downShare=x.down/x.price,feeRate=fundingRate(downShare,x.use,x.exempt),fee=base*feeRate;
+    var financedFee=x.feeHandling==="finance"?fee:0,vaPrincipal=base+financedFee,vaPI=payment(vaPrincipal,x.rate,x.months),convPI=payment(base,x.rate,x.months);
+    var pmi=downShare<.20?base*x.pmiRate/12:0,convTotal=convPI+pmi,difference=convTotal-vaPI;
+    var r={x:x,base:base,downShare:downShare,feeRate:feeRate,fee:fee,financedFee:financedFee,vaPrincipal:vaPrincipal,vaPI:vaPI,convPI:convPI,pmi:pmi,convTotal:convTotal,difference:difference};lastResult=r;render(r);
+  }
+  function render(r){
+    el("emptyState").classList.add("hidden");el("resultState").classList.remove("hidden");el("errorBox").classList.add("hidden");el("validResults").classList.remove("hidden");
+    setText("vaPayment",money(r.vaPI));setText("leadNote",(r.x.months/12)+"-year term at "+pct(r.x.rate,2));setText("fundingFee",money0(r.fee));
+    setText("feeRateLabel",r.x.exempt?"Exempt · 0% rate":pct(r.feeRate,2)+" of base loan");setText("vaBalance",money0(r.vaPrincipal));
+    setText("balanceNote",r.fee===0?"No funding fee added":r.x.feeHandling==="finance"?"Funding fee included":"Funding fee paid at closing");setText("downPct",pct(r.downShare,1));setText("downAmount",money0(r.x.down));
+    setText("vaTotalMonthly",money(r.vaPI));setText("vaPI",money(r.vaPI));setText("convTotalMonthly",money(r.convTotal));setText("convPI",money(r.convPI));setText("monthlyPMI",money(r.pmi));
+    var diff=el("differenceLine");diff.classList.toggle("negative",r.difference<0);
+    if(Math.abs(r.difference)<.005){diff.textContent="The estimated opening monthly payments are the same under these assumptions.";}
+    else if(r.difference>0){diff.textContent="Estimated VA opening payment advantage: "+money(r.difference)+" per month (about "+money(r.difference*12)+" in the first year).";}
+    else{diff.textContent="Estimated VA opening payment is "+money(Math.abs(r.difference))+" higher per month because of the financed funding fee and the entered PMI assumption.";}
+    el("explainCopy").innerHTML=explanation(r);el("explainCopy").hidden=true;el("explainToggle").setAttribute("aria-expanded","false");
+    currentText=summary(r);el("emailButton").href="mailto:?subject="+encodeURIComponent("My VA home loan estimate")+"&body="+encodeURIComponent(currentText);
+    if(window.matchMedia("(max-width: 880px)").matches){requestAnimationFrame(function(){el("resultLead").scrollIntoView({behavior:"smooth",block:"start"})})}
+  }
+  function explanation(r){
+    var feeSentence=r.x.exempt?"Because you marked the funding-fee exemption, this estimate applies a <strong>0% fee</strong>. Confirm that status on your Certificate of Eligibility.":"With "+pct(r.downShare,1)+" down and "+(r.x.use==="first"?"first":"subsequent")+" use, the official purchase-loan tier is <strong>"+pct(r.feeRate,2)+"</strong>. Applied to the "+money0(r.base)+" base loan, that creates a <strong>"+money0(r.fee)+" funding fee</strong>.";
+    var handling=r.fee===0?"":" You chose to "+(r.x.feeHandling==="finance"?"finance it, so the estimated VA loan balance rises to <strong>"+money0(r.vaPrincipal)+"</strong>.":"pay it at closing, so it does not increase the monthly payment.");
+    var pmiText=r.pmi>0?"The conventional comparison adds <strong>"+money(r.pmi)+" per month</strong> of estimated PMI using the "+pct(r.x.pmiRate,2)+" assumption you entered. PMI can later end under lender and legal rules, so the payment difference is an opening comparison—not lifetime savings.":"At "+pct(r.downShare,1)+" down, this comparison adds no PMI to the conventional loan.";
+    var outcome=Math.abs(r.difference)<.005?"The two opening monthly estimates are equal.":r.difference>0?"The VA estimate starts <strong>"+money(r.difference)+" lower per month</strong>.":"The VA estimate starts <strong>"+money(Math.abs(r.difference))+" higher per month</strong>, mainly because the financed fee outweighs the entered PMI estimate.";
+    return feeSentence+handling+" The estimated VA principal-and-interest payment is <strong>"+money(r.vaPI)+" per month</strong>. "+pmiText+" "+outcome+" Taxes, insurance, HOA dues, closing costs, lender fees, entitlement, and any difference between VA and conventional interest rates are outside this estimate.";
+  }
+  function summary(r){
+    var differenceLine=Math.abs(r.difference)<.005?"Opening monthly difference: $0.00":r.difference>0?"Estimated VA opening payment advantage: "+money(r.difference)+" per month":"Estimated VA opening payment is higher by: "+money(Math.abs(r.difference))+" per month";
+    return[
+      "VA Home Loan Calculator results","",
+      "Service type: "+r.x.service,
+      "VA benefit use: "+(r.x.use==="first"?"First use":"After first use"),
+      "Home price: "+money(r.x.price),
+      "Down payment: "+money(r.x.down)+" ("+pct(r.downShare,1)+")",
+      "Interest rate: "+pct(r.x.rate,2),
+      "Term: "+(r.x.months/12)+" years","",
+      "Funding-fee status: "+(r.x.exempt?"Exempt":"Not marked exempt"),
+      "VA funding-fee rate: "+pct(r.feeRate,2),
+      "VA funding fee: "+money(r.fee),
+      "Fee handling: "+(r.fee===0?"No fee":r.x.feeHandling==="finance"?"Financed into loan":"Paid at closing"),
+      "Estimated VA loan balance: "+money(r.vaPrincipal),
+      "Estimated VA monthly principal + interest: "+money(r.vaPI),"",
+      "Conventional principal + interest: "+money(r.convPI),
+      "Estimated monthly PMI: "+money(r.pmi)+" ("+pct(r.x.pmiRate,2)+" annual assumption)",
+      "Estimated conventional opening monthly total: "+money(r.convTotal),
+      differenceLine,"",
+      "Estimate only — not lending advice. Excludes taxes, insurance, HOA dues, closing costs, lender fees, eligibility and entitlement limits, and rate differences. Confirm details with VA and a lender."
+    ].join("\n");
+  }
+  function fallbackCopy(text){var area=document.createElement("textarea");area.value=text;area.setAttribute("readonly","");area.style.position="fixed";area.style.opacity="0";document.body.appendChild(area);area.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){ok=false}area.remove();return ok}
+  function copyResults(){if(!currentText)return;function finish(ok){el("copyNotice").textContent=ok?"Results copied.":"Copy failed. Select the results and copy them manually."}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(currentText).then(function(){finish(true)}).catch(function(){finish(fallbackCopy(currentText))})}else finish(fallbackCopy(currentText))}
+  function toggleExplain(){var open=el("explainToggle").getAttribute("aria-expanded")==="true";el("explainToggle").setAttribute("aria-expanded",String(!open));el("explainCopy").hidden=open}
+  function updateDownHint(){var price=rawNumber("price"),down=rawNumber("downPayment");if(Number.isFinite(price)&&price>0&&Number.isFinite(down)&&down>=0){el("downPaymentHint").textContent="That is "+pct(down/price,1)+" of the home price; fee tiers change at 5% and 10%."}else{el("downPaymentHint").textContent="The funding-fee tier is based on the down payment as a share of the home price."}}
+  form.addEventListener("submit",calculate);el("copyButton").addEventListener("click",copyResults);el("explainToggle").addEventListener("click",toggleExplain);el("price").addEventListener("input",updateDownHint);el("downPayment").addEventListener("input",updateDownHint);
+})();
+</script>
+</body>
+</html>

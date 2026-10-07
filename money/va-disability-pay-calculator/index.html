@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>VA Disability Pay Calculator</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f4f6f8;
+      --surface: #ffffff;
+      --surface-2: #e9edf1;
+      --text: #10141b;
+      --muted: #4c5665;
+      --line: #cbd2db;
+      --accent: #247c0f;
+      --accent-text: #ffffff;
+      --orange: #d96b00;
+      --blue: #326b9f;
+      --shadow: 0 18px 50px rgba(15, 24, 36, .10);
+      --focus: #8ab9ee;
+    }
+    :root {
+      --bg: #0b0e14;
+      --surface: #131821;
+      --surface-2: #1a202a;
+      --text: #f5f5f5;
+      --muted: #aeb8c5;
+      --line: #303947;
+      --accent: #39ff14;
+      --accent-text: #071006;
+      --orange: #f7931a;
+      --blue: #6490c4;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .32);
+      --focus: #8ab9ee;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #0b0e14;
+        --surface: #131821;
+        --surface-2: #1a202a;
+        --text: #f5f5f5;
+        --muted: #aeb8c5;
+        --line: #303947;
+        --accent: #39ff14;
+        --accent-text: #071006;
+        --orange: #f7931a;
+        --blue: #6490c4;
+        --shadow: 0 24px 70px rgba(0, 0, 0, .32);
+        --focus: #8ab9ee;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, transparent 0 49.85%, color-mix(in srgb, var(--line) 22%, transparent) 49.85% 50.15%, transparent 50.15%) top center / min(100% - 32px, 1180px) 100% no-repeat,
+        var(--bg);
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      line-height: 1.55;
+    }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 20px 0 64px; }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 7px 0;
+    }
+    .home-link:hover { color: var(--text); }
+    .home-link:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible, .source-link:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 55%, transparent);
+      outline-offset: 3px;
+    }
+    .intro {
+      padding: clamp(34px, 7vw, 76px) 0 clamp(28px, 5vw, 52px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(230px, .75fr);
+      align-items: end;
+      gap: 48px;
+    }
+    .rate-stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: "IBM Plex Mono", monospace;
+      color: var(--accent);
+      font-size: .77rem;
+      font-weight: 600;
+      letter-spacing: .025em;
+      margin-bottom: 18px;
+    }
+    .rate-stamp::before { content: ""; width: 25px; height: 2px; background: currentColor; }
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(2.35rem, 6vw, 5.15rem);
+      line-height: .99;
+      letter-spacing: -.055em;
+      font-weight: 800;
+    }
+    .intro-copy { margin: 0; color: var(--muted); font-size: 1.04rem; max-width: 360px; }
+    .intro-copy strong { color: var(--text); }
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      min-height: 560px;
+    }
+    .form-panel { padding: clamp(24px, 4vw, 46px); border-right: 1px solid var(--line); }
+    .panel-label {
+      margin: 0 0 26px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .77rem;
+      color: var(--orange);
+      font-weight: 600;
+    }
+    .field { margin-bottom: 24px; }
+    .field label, .field legend { display: block; font-weight: 700; margin: 0 0 9px; }
+    .field small { display: block; color: var(--muted); font-size: .79rem; margin-top: 7px; }
+    select, input[type="number"] {
+      width: 100%;
+      color: var(--text);
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 13px 14px;
+      min-height: 50px;
+    }
+    select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 19px) 21px, calc(100% - 14px) 21px; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 42px; }
+    fieldset { padding: 0; border: 0; margin: 0; }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .toggle-row span { font-weight: 650; }
+    .toggle { position: relative; width: 30px; height: 30px; flex: 0 0 auto; display: grid; place-items: center; }
+    .toggle input { width: 24px; height: 24px; margin: 0; accent-color: var(--accent); cursor: pointer; }
+    .toggle i { display: none; }
+    .grid-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid-fields .field { margin-bottom: 10px; }
+    .submit {
+      width: 100%;
+      border: 0;
+      border-radius: 4px;
+      padding: 14px 18px;
+      background: var(--accent);
+      color: var(--accent-text);
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 14px;
+    }
+    .submit:hover { filter: brightness(.94); }
+    .result-panel {
+      padding: clamp(24px, 4vw, 46px);
+      background: linear-gradient(145deg, color-mix(in srgb, var(--surface-2) 42%, transparent), transparent 58%);
+      display: flex;
+      flex-direction: column;
+    }
+    .empty-state { margin: auto; max-width: 390px; color: var(--muted); text-align: center; }
+    .empty-mark {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      margin: 0 auto 22px;
+      display: grid;
+      place-items: center;
+      font-family: "IBM Plex Mono", monospace;
+      color: var(--orange);
+      font-size: 1.45rem;
+    }
+    .empty-state h2 { margin: 0 0 8px; color: var(--text); font-size: 1.4rem; }
+    .results[hidden], .empty-state[hidden], #aaRow[hidden] { display: none; }
+    .result-kicker { font-family: "IBM Plex Mono", monospace; color: var(--muted); font-size: .76rem; margin-bottom: 6px; }
+    .amount { font-size: clamp(3rem, 7vw, 5.25rem); line-height: 1; font-weight: 800; letter-spacing: -.055em; margin: 0; color: var(--accent); }
+    .amount-period { color: var(--muted); font-weight: 600; margin: 6px 0 28px; }
+    .annual-row { display: flex; justify-content: space-between; gap: 22px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .annual-row span { color: var(--muted); }
+    .annual-row strong { font-family: "IBM Plex Mono", monospace; }
+    .breakdown { margin: 22px 0 8px; }
+    .breakdown h3 { font-size: .9rem; margin: 0 0 12px; }
+    .line-item { display: flex; justify-content: space-between; gap: 22px; color: var(--muted); font-size: .88rem; padding: 5px 0; }
+    .line-item strong { color: var(--text); font-family: "IBM Plex Mono", monospace; }
+    .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 24px 0 0; }
+    .action {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 4px;
+      padding: 11px 12px;
+      font-weight: 750;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+    .action:hover { border-color: var(--accent); }
+    details { margin-top: 18px; border-top: 1px solid var(--line); }
+    summary { cursor: pointer; list-style: none; padding: 17px 24px 0 0; font-weight: 750; position: relative; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; position: absolute; right: 2px; top: 15px; color: var(--accent); font-family: "IBM Plex Mono", monospace; font-size: 1.15rem; }
+    details[open] summary::after { content: "−"; }
+    .explanation { color: var(--muted); font-size: .91rem; }
+    .explanation strong { color: var(--text); }
+    .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 42px; padding: 42px 0 0; }
+    .note { border-top: 2px solid var(--line); padding-top: 18px; }
+    .note h2 { font-size: 1rem; margin: 0 0 8px; }
+    .note p { color: var(--muted); font-size: .88rem; margin: 0; }
+    .source-link { text-underline-offset: 3px; text-decoration-color: var(--orange); }
+    .footer { color: var(--muted); font-size: .76rem; margin-top: 38px; max-width: 850px; }
+    .toast { min-height: 22px; text-align: center; color: var(--accent); font-size: .78rem; font-weight: 700; margin-top: 8px; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 24px, 600px); padding-top: 12px; }
+      .intro { grid-template-columns: 1fr; gap: 18px; padding: 28px 0 32px; }
+      .intro-copy { max-width: 520px; }
+      .calculator { grid-template-columns: 1fr; }
+      .form-panel { border-right: 0; border-bottom: 1px solid var(--line); }
+      .result-panel { min-height: 410px; }
+      .notes { grid-template-columns: 1fr; gap: 24px; }
+    }
+    @media (max-width: 420px) {
+      .grid-fields { grid-template-columns: 1fr; gap: 0; }
+      .action-row { grid-template-columns: 1fr; }
+      .amount { font-size: 3.15rem; }
+      .annual-row { align-items: flex-start; flex-direction: column; gap: 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <header class="intro">
+      <div>
+        <div class="rate-stamp">2026 VA RATES · EFFECTIVE DEC 1, 2025</div>
+        <h1>Estimate your VA disability pay.</h1>
+      </div>
+      <p class="intro-copy"><strong>One clear monthly estimate.</strong> Choose your combined rating and tell us about eligible dependents. We’ll apply the official 2026 VA compensation table.</p>
+    </header>
+
+    <main>
+      <section class="calculator" aria-label="VA disability pay calculator">
+        <form class="form-panel" id="calculatorForm">
+          <p class="panel-label">YOUR DETAILS</p>
+
+          <div class="field">
+            <label for="rating">Combined disability rating</label>
+            <select id="rating" required>
+              <option value="">Choose a rating</option>
+              <option value="10">10%</option>
+              <option value="20">20%</option>
+              <option value="30">30%</option>
+              <option value="40">40%</option>
+              <option value="50">50%</option>
+              <option value="60">60%</option>
+              <option value="70">70%</option>
+              <option value="80">80%</option>
+              <option value="90">90%</option>
+              <option value="100">100%</option>
+            </select>
+            <small>Use your VA-assigned combined rating—not a total of individual ratings.</small>
+          </div>
+
+          <fieldset class="field">
+            <legend>Dependent household</legend>
+            <div class="toggle-row">
+              <span>Dependent spouse</span>
+              <label class="toggle"><input id="spouse" type="checkbox" aria-label="Dependent spouse"><i aria-hidden="true"></i></label>
+            </div>
+            <div class="toggle-row" id="aaRow" hidden>
+              <span>Spouse receives Aid and Attendance</span>
+              <label class="toggle"><input id="aidAttendance" type="checkbox" aria-label="Spouse receives Aid and Attendance"><i aria-hidden="true"></i></label>
+            </div>
+          </fieldset>
+
+          <div class="grid-fields">
+            <div class="field">
+              <label for="parents">Dependent parents</label>
+              <select id="parents">
+                <option value="0">None</option>
+                <option value="1">1 parent</option>
+                <option value="2">2 parents</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="childrenUnder18">Children under 18</label>
+              <input id="childrenUnder18" type="number" value="0" min="0" max="10" step="1" inputmode="numeric">
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label for="schoolChildren">Children 18–23 in a qualifying school program</label>
+              <input id="schoolChildren" type="number" value="0" min="0" max="10" step="1" inputmode="numeric">
+            </div>
+          </div>
+
+          <button class="submit" type="submit">Calculate payment</button>
+        </form>
+
+        <div class="result-panel" aria-live="polite">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-mark" aria-hidden="true">$</div>
+            <h2>Your estimate will appear here</h2>
+            <p>Select your rating and dependents, then calculate. Rates for 10% and 20% are the same with or without dependents.</p>
+          </div>
+
+          <div class="results" id="results" hidden>
+            <div class="result-kicker" id="resultLabel">ESTIMATED MONTHLY COMPENSATION</div>
+            <p class="amount" id="monthlyAmount">$0.00</p>
+            <p class="amount-period">per month · generally tax-free</p>
+            <div class="annual-row">
+              <span>12-month equivalent</span>
+              <strong id="annualAmount">$0.00</strong>
+            </div>
+            <div class="breakdown">
+              <h3>How this estimate is built</h3>
+              <div id="breakdownLines"></div>
+            </div>
+            <div class="action-row">
+              <a class="action" id="emailButton" href="mailto:?subject=VA%20disability%20pay%20estimate">Email my results</a>
+              <button class="action" id="copyButton" type="button">Copy results</button>
+            </div>
+            <div class="toast" id="toast" role="status"></div>
+            <details>
+              <summary>Explain these results</summary>
+              <div class="explanation" id="explanation"></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="notes" aria-label="Important calculator notes">
+        <div class="note">
+          <h2>What’s included</h2>
+          <p>Basic VA disability compensation for ratings from 10% to 100%, plus eligible spouse, parent, child, school-child, and spouse Aid and Attendance additions reflected in the 2026 table.</p>
+        </div>
+        <div class="note">
+          <h2>What’s not included</h2>
+          <p>Special Monthly Compensation, unemployability, apportionment, offsets, or unique award details. Your VA decision letter controls your actual payment.</p>
+        </div>
+      </section>
+
+      <p class="footer">Rates are a fixed snapshot of the official <a class="source-link" href="https://www.va.gov/disability/compensation-rates/veteran-rates/" target="_blank" rel="noopener noreferrer">U.S. Department of Veterans Affairs 2026 compensation tables</a>, effective December 1, 2025 and checked October 7, 2026. This calculator is for informational purposes only and is not affiliated with or endorsed by the VA. It does not determine eligibility or guarantee benefits.</p>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var ratings = [30, 40, 50, 60, 70, 80, 90, 100];
+      var rates = {
+        noChild: {
+          "0-0": [552.47, 795.84, 1132.90, 1435.02, 1808.45, 2102.15, 2362.30, 3938.58],
+          "1-0": [617.47, 882.84, 1241.90, 1566.02, 1961.45, 2277.15, 2559.30, 4158.17],
+          "0-1": [604.47, 865.84, 1220.90, 1540.02, 1931.45, 2242.15, 2520.30, 4114.82],
+          "0-2": [656.47, 935.84, 1308.90, 1645.02, 2054.45, 2382.15, 2678.30, 4291.06],
+          "1-1": [669.47, 952.84, 1329.90, 1671.02, 2084.45, 2417.15, 2717.30, 4334.41],
+          "1-2": [721.47, 1022.84, 1417.90, 1776.02, 2207.45, 2557.15, 2875.30, 4510.65]
+        },
+        withChild: {
+          "0-0": [596.47, 853.84, 1205.90, 1523.02, 1910.45, 2219.15, 2494.30, 4085.43],
+          "1-0": [666.47, 947.84, 1322.90, 1663.02, 2074.45, 2406.15, 2704.30, 4318.99],
+          "0-1": [648.47, 923.84, 1293.90, 1628.02, 2033.45, 2359.15, 2652.30, 4261.67],
+          "0-2": [700.47, 993.84, 1381.90, 1733.02, 2156.45, 2499.15, 2810.30, 4437.91],
+          "1-1": [718.47, 1017.84, 1410.90, 1768.02, 2197.45, 2546.15, 2862.30, 4495.23],
+          "1-2": [770.47, 1087.84, 1498.90, 1873.02, 2320.45, 2686.15, 3020.30, 4671.47]
+        },
+        additionalMinor: [32, 43, 54, 65, 76, 87, 98, 109.11],
+        schoolChild: [105, 140, 176, 211, 246, 281, 317, 352.45],
+        aidAttendance: [61, 81, 101, 121, 141, 161, 181, 201.41]
+      };
+
+      var form = document.getElementById("calculatorForm");
+      var ratingInput = document.getElementById("rating");
+      var spouseInput = document.getElementById("spouse");
+      var aidInput = document.getElementById("aidAttendance");
+      var parentsInput = document.getElementById("parents");
+      var minorInput = document.getElementById("childrenUnder18");
+      var schoolInput = document.getElementById("schoolChildren");
+      var aaRow = document.getElementById("aaRow");
+      var results = document.getElementById("results");
+      var emptyState = document.getElementById("emptyState");
+      var monthlyAmount = document.getElementById("monthlyAmount");
+      var annualAmount = document.getElementById("annualAmount");
+      var breakdownLines = document.getElementById("breakdownLines");
+      var explanation = document.getElementById("explanation");
+      var toast = document.getElementById("toast");
+      var latest = null;
+
+      function money(value) {
+        return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format(value);
+      }
+
+      function clampCount(input) {
+        var value = Math.floor(Number(input.value));
+        if (!Number.isFinite(value)) value = 0;
+        value = Math.max(0, Math.min(10, value));
+        input.value = String(value);
+        return value;
+      }
+
+      function dependentPhrase(spouse, parents, minors, students) {
+        var parts = [];
+        if (spouse) parts.push("a spouse");
+        if (parents) parts.push(parents + " dependent parent" + (parents === 1 ? "" : "s"));
+        if (minors) parts.push(minors + " child" + (minors === 1 ? "" : "ren") + " under 18");
+        if (students) parts.push(students + " school-age dependent" + (students === 1 ? "" : "s"));
+        return parts.length ? parts.join(", ") : "no dependents";
+      }
+
+      function addLine(label, value) {
+        var row = document.createElement("div");
+        row.className = "line-item";
+        var left = document.createElement("span");
+        var right = document.createElement("strong");
+        left.textContent = label;
+        right.textContent = money(value);
+        row.appendChild(left);
+        row.appendChild(right);
+        breakdownLines.appendChild(row);
+      }
+
+      spouseInput.addEventListener("change", function () {
+        aaRow.hidden = !spouseInput.checked;
+        if (!spouseInput.checked) aidInput.checked = false;
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (!ratingInput.value) {
+          ratingInput.focus();
+          return;
+        }
+
+        var rating = Number(ratingInput.value);
+        var spouse = spouseInput.checked;
+        var parents = Number(parentsInput.value);
+        var minors = clampCount(minorInput);
+        var students = clampCount(schoolInput);
+        var aid = spouse && aidInput.checked;
+        var total = 0;
+        var base = 0;
+        var minorAdd = 0;
+        var studentAdd = 0;
+        var aidAdd = 0;
+        var baseLabel = "Basic rate";
+
+        breakdownLines.innerHTML = "";
+
+        if (rating === 10 || rating === 20) {
+          base = rating === 10 ? 180.42 : 356.66;
+          total = base;
+          baseLabel = rating + "% rate (dependents do not change this rate)";
+        } else {
+          var idx = ratings.indexOf(rating);
+          var key = (spouse ? "1" : "0") + "-" + parents;
+          if (minors > 0) {
+            base = rates.withChild[key][idx];
+            minorAdd = Math.max(0, minors - 1) * rates.additionalMinor[idx];
+          } else {
+            base = rates.noChild[key][idx];
+          }
+          studentAdd = students * rates.schoolChild[idx];
+          aidAdd = aid ? rates.aidAttendance[idx] : 0;
+          total = base + minorAdd + studentAdd + aidAdd;
+          baseLabel = "Basic rate for selected household";
+        }
+
+        total = Math.round(total * 100) / 100;
+        var annual = Math.round(total * 12 * 100) / 100;
+        addLine(baseLabel, base);
+        if (minorAdd > 0) addLine("Additional children under 18", minorAdd);
+        if (studentAdd > 0) addLine("Qualifying school-age dependents", studentAdd);
+        if (aidAdd > 0) addLine("Spouse Aid and Attendance addition", aidAdd);
+
+        monthlyAmount.textContent = money(total);
+        annualAmount.textContent = money(annual);
+        var household = dependentPhrase(spouse, parents, minors, students);
+        var dependencyNote = rating < 30 && (spouse || parents || minors || students || aid)
+          ? " At 10% and 20%, the VA rate does not increase for dependents."
+          : "";
+        explanation.innerHTML = "<p>Your <strong>" + rating + "% combined rating</strong> and household with <strong>" + household + "</strong> produce an estimated payment of <strong>" + money(total) + " per month</strong> under the 2026 VA table." + dependencyNote + " The 12-month figure simply multiplies that monthly estimate by 12.</p><p>VA disability compensation is generally tax-free. This is an estimate—not an eligibility decision—and special compensation or offsets may change an actual award.</p>";
+
+        latest = {
+          rating: rating,
+          household: household,
+          monthly: total,
+          annual: annual,
+          text: "VA Disability Pay Estimate (2026 rates)\nCombined rating: " + rating + "%\nHousehold: " + household + "\nEstimated monthly compensation: " + money(total) + "\n12-month equivalent: " + money(annual) + "\n\nRates effective December 1, 2025. Informational estimate only; actual VA awards may differ."
+        };
+        document.getElementById("emailButton").href = "mailto:?subject=" + encodeURIComponent("My VA disability pay estimate") + "&body=" + encodeURIComponent(latest.text);
+
+        emptyState.hidden = true;
+        results.hidden = false;
+        toast.textContent = "";
+        if (window.matchMedia("(max-width: 760px)").matches) {
+          results.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(area);
+        return ok;
+      }
+
+      document.getElementById("copyButton").addEventListener("click", function () {
+        if (!latest) return;
+        var done = function (ok) {
+          toast.textContent = ok ? "Results copied." : "Couldn’t copy automatically. Select and copy the figures above.";
+          window.setTimeout(function () { toast.textContent = ""; }, 3200);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latest.text).then(function () { done(true); }).catch(function () { done(fallbackCopy(latest.text)); });
+        } else {
+          done(fallbackCopy(latest.text));
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

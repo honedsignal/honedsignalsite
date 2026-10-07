@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>PPM Move Profit Estimator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      color-scheme: light dark;
+      --bg: #0b0e14;
+      --surface: #141923;
+      --surface-2: #1d2430;
+      --ink: #f5f5f5;
+      --muted: #c0c6cf;
+      --line: #343d4b;
+      --orange: #f7931a;
+      --orange-ink: #0b0e14;
+      --green: #39ff14;
+      --green-soft: #112b13;
+      --red: #ff6670;
+      --red-soft: #32171b;
+      --focus: #78b8ff;
+      --shadow: 0 22px 55px rgba(0, 0, 0, .36);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #07090d;
+        --surface: #10141c;
+        --surface-2: #191f29;
+        --ink: #f5f5f5;
+        --muted: #bac1cb;
+        --line: #303846;
+        --orange: #f7931a;
+        --orange-ink: #0b0e14;
+        --green: #39ff14;
+        --green-soft: #112b13;
+        --red: #ff6670;
+        --red-soft: #32171b;
+        --focus: #78b8ff;
+        --shadow: 0 22px 55px rgba(0, 0, 0, .44);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { min-width: 0; background: var(--bg); }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Public Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+
+    .page {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) clamp(18px, 4vw, 54px) max(44px, env(safe-area-inset-bottom));
+    }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .home-link:hover { color: var(--orange); }
+    .home-link:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    header {
+      position: relative;
+      padding: 40px 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 116px;
+      height: 4px;
+      background: var(--orange);
+    }
+    .category {
+      margin: 0 0 10px;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(2.2rem, 6vw, 4.7rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 800;
+    }
+    .intro {
+      max-width: 720px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: clamp(22px, 5vw, 58px);
+      align-items: start;
+      padding: 42px 0;
+    }
+
+    .panel {
+      min-width: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .form-panel { padding: clamp(22px, 4vw, 34px); }
+    .panel-title {
+      margin: 0 0 6px;
+      font-size: 1.28rem;
+      letter-spacing: -.02em;
+    }
+    .panel-lede { margin: 0 0 26px; color: var(--muted); font-size: .94rem; }
+
+    .field { margin-top: 20px; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 700;
+      font-size: .93rem;
+    }
+    .input-wrap { position: relative; }
+    .currency {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      translate: 0 -50%;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+      pointer-events: none;
+    }
+    input[type="number"] {
+      width: 100%;
+      min-height: 52px;
+      padding: 11px 14px 11px 34px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+    }
+    input[type="number"]:hover { border-color: var(--muted); }
+    input[type="number"]::placeholder { color: var(--muted); opacity: .72; }
+    .helper { margin: 7px 0 0; color: var(--muted); font-size: .8rem; }
+
+    .cost-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 29px 0 4px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .cost-heading h2 { margin: 0; font-size: 1rem; }
+    .cost-heading span { color: var(--muted); font-size: .78rem; }
+
+    .calc-button {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 28px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .calc-button:hover { filter: brightness(1.07); }
+    .error {
+      min-height: 24px;
+      margin: 10px 0 0;
+      color: var(--red);
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    .results-panel {
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .empty-state {
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+      padding: 44px;
+      text-align: center;
+    }
+    .route-mark {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 18px;
+      border: 2px solid var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--orange);
+    }
+    .route-mark svg { width: 35px; height: 35px; }
+    .empty-state h2 { margin: 0 0 7px; font-size: 1.35rem; }
+    .empty-state p { max-width: 350px; margin: 0; color: var(--muted); }
+
+    .results { display: none; }
+    .results.is-visible { display: block; }
+    .results-top { padding: clamp(24px, 5vw, 40px); }
+    .results-kicker {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .profit-value {
+      margin: 0;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.25rem, 7vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -.06em;
+      font-weight: 600;
+      color: var(--green);
+      overflow-wrap: anywhere;
+    }
+    .profit-value.negative { color: var(--red); }
+    .result-label { margin: 8px 0 0; color: var(--muted); font-size: .95rem; }
+
+    .math-strip {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 21px clamp(24px, 5vw, 40px);
+      background: var(--surface-2);
+      border-block: 1px solid var(--line);
+    }
+    .metric span { display: block; color: var(--muted); font-size: .72rem; }
+    .metric strong {
+      display: block;
+      margin-top: 3px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .95rem;
+    }
+    .operator { color: var(--orange); font-weight: 800; }
+
+    .notice {
+      margin: 0;
+      padding: 22px clamp(24px, 5vw, 40px);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .notice strong { color: var(--ink); }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 20px clamp(24px, 5vw, 40px);
+    }
+    .action-button {
+      min-height: 48px;
+      padding: 10px 13px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .action-button:hover { border-color: var(--orange); color: var(--orange); }
+    .copy-status {
+      grid-column: 1 / -1;
+      min-height: 20px;
+      margin: -1px 0 0;
+      color: var(--green);
+      text-align: center;
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    details { border-top: 1px solid var(--line); }
+    summary {
+      padding: 20px clamp(24px, 5vw, 40px);
+      font-weight: 800;
+      cursor: pointer;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--orange); font-size: 1.2rem; }
+    details[open] summary::after { content: "−"; }
+    .explanation {
+      padding: 0 clamp(24px, 5vw, 40px) 28px;
+      color: var(--muted);
+    }
+    .explanation p { margin: 0 0 12px; }
+    .explanation p:last-child { margin-bottom: 0; }
+    .explanation strong { color: var(--ink); }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      padding-top: 12px;
+    }
+    .info-block {
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+    .info-block h2 { margin: 0 0 8px; font-size: 1rem; }
+    .info-block p { margin: 0; color: var(--muted); font-size: .9rem; }
+
+    footer {
+      margin-top: 42px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    @media (max-width: 800px) {
+      header { padding-top: 30px; }
+      .calculator { grid-template-columns: 1fr; padding-top: 30px; }
+      .results-panel { order: 2; }
+    }
+
+    @media (max-width: 520px) {
+      .page { padding-inline: 16px; }
+      h1 { font-size: clamp(2.15rem, 13vw, 3.4rem); }
+      .form-panel { padding: 20px 18px; }
+      .empty-state { min-height: 280px; padding: 32px 20px; }
+      .math-strip { grid-template-columns: 1fr; gap: 7px; }
+      .operator { display: none; }
+      .metric { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+      .metric strong { text-align: right; }
+      .actions { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <header>
+      <p class="category">Military move planning</p>
+      <h1>PPM Move Profit Estimator</h1>
+      <p class="intro">Estimate how much may remain from your government-authorized Personally Procured Move payout after your expected moving expenses.</p>
+    </header>
+
+    <section class="calculator" aria-label="PPM profit calculator">
+      <form class="panel form-panel" id="ppmForm" novalidate>
+        <h2 class="panel-title">Your move estimate</h2>
+        <p class="panel-lede">Use the estimated incentive payment from your official counseling paperwork—not a weight-based guess.</p>
+
+        <div class="field">
+          <label for="payout">Estimated government payout</label>
+          <div class="input-wrap">
+            <span class="currency">$</span>
+            <input id="payout" name="payout" type="number" min="0" step="0.01" inputmode="decimal" placeholder="8,500" autocomplete="off" required />
+          </div>
+          <p class="helper">The estimated PPM incentive payment shown on your paperwork.</p>
+        </div>
+
+        <div class="cost-heading">
+          <h2>Expected out-of-pocket costs</h2>
+          <span>Enter 0 if none</span>
+        </div>
+
+        <div class="field">
+          <label for="truck">Truck rental or moving company</label>
+          <div class="input-wrap"><span class="currency">$</span><input id="truck" name="truck" type="number" min="0" step="0.01" inputmode="decimal" placeholder="3,200" autocomplete="off" /></div>
+        </div>
+
+        <div class="field">
+          <label for="packing">Packing supplies</label>
+          <div class="input-wrap"><span class="currency">$</span><input id="packing" name="packing" type="number" min="0" step="0.01" inputmode="decimal" placeholder="450" autocomplete="off" /></div>
+        </div>
+
+        <div class="field">
+          <label for="fuel">Fuel and tolls</label>
+          <div class="input-wrap"><span class="currency">$</span><input id="fuel" name="fuel" type="number" min="0" step="0.01" inputmode="decimal" placeholder="700" autocomplete="off" /></div>
+        </div>
+
+        <div class="field">
+          <label for="lodging">Lodging</label>
+          <div class="input-wrap"><span class="currency">$</span><input id="lodging" name="lodging" type="number" min="0" step="0.01" inputmode="decimal" placeholder="500" autocomplete="off" /></div>
+        </div>
+
+        <button class="calc-button" type="submit">Estimate my PPM profit</button>
+        <p class="error" id="error" role="alert" aria-live="polite"></p>
+      </form>
+
+      <section class="panel results-panel" aria-live="polite" aria-label="Estimated results">
+        <div class="empty-state" id="emptyState">
+          <div>
+            <div class="route-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h10a4 4 0 0 0 0-8H8"/><path d="m8 6-3 3 3 3"/><circle cx="5" cy="17" r="2"/></svg>
+            </div>
+            <h2>Your estimate will appear here</h2>
+            <p>Enter the payout from your paperwork and the costs you expect to pay.</p>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <div class="results-top">
+            <p class="results-kicker" id="resultKicker">Estimated profit kept</p>
+            <p class="profit-value" id="profitValue">$0</p>
+            <p class="result-label" id="resultLabel">before taxes</p>
+          </div>
+
+          <div class="math-strip" aria-label="Calculation breakdown">
+            <div class="metric"><span>Est. payout</span><strong id="payoutResult">$0</strong></div>
+            <span class="operator" aria-hidden="true">−</span>
+            <div class="metric"><span>Est. costs</span><strong id="costResult">$0</strong></div>
+            <span class="operator" aria-hidden="true">=</span>
+            <div class="metric"><span>Remaining</span><strong id="remainingResult">$0</strong></div>
+          </div>
+
+          <p class="notice"><strong>Important:</strong> PPM profit is taxable income. Your actual payment and reimbursable expenses are determined by your transportation office and official counseling paperwork.</p>
+
+          <div class="actions">
+            <a class="action-button" id="emailButton" href="mailto:" role="button">Email my results</a>
+            <button class="action-button" type="button" id="copyButton">Copy results</button>
+            <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+          </div>
+
+          <details id="explanationDetails">
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+        </div>
+      </section>
+    </section>
+
+    <section class="info-grid" aria-label="Calculation notes">
+      <div class="info-block">
+        <h2>What this estimate includes</h2>
+        <p>The calculator subtracts truck or mover costs, packing supplies, fuel and tolls, and lodging from the payout you enter.</p>
+      </div>
+      <div class="info-block">
+        <h2>What to confirm</h2>
+        <p>Keep receipts and follow your service branch’s transportation office instructions. Travel allowances, advance payments, and eligible reimbursements may be handled separately.</p>
+      </div>
+    </section>
+
+    <footer>For informational and planning purposes only. This estimate is not official reimbursement, tax, or financial advice.</footer>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("ppmForm");
+      var error = document.getElementById("error");
+      var emptyState = document.getElementById("emptyState");
+      var results = document.getElementById("results");
+      var copyStatus = document.getElementById("copyStatus");
+      var lastSummary = "";
+
+      function money(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(value);
+      }
+
+      function readAmount(id) {
+        var raw = document.getElementById(id).value.trim();
+        return raw === "" ? 0 : Number(raw);
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        copyStatus.textContent = "";
+
+        var payout = readAmount("payout");
+        var truck = readAmount("truck");
+        var packing = readAmount("packing");
+        var fuel = readAmount("fuel");
+        var lodging = readAmount("lodging");
+        var values = [payout, truck, packing, fuel, lodging];
+
+        if (!Number.isFinite(payout) || payout <= 0) {
+          error.textContent = "Enter an estimated government payout greater than $0.";
+          document.getElementById("payout").focus();
+          return;
+        }
+        if (values.some(function (value) { return !Number.isFinite(value) || value < 0; })) {
+          error.textContent = "Use zero or a positive amount for every cost.";
+          return;
+        }
+
+        error.textContent = "";
+        var totalCosts = truck + packing + fuel + lodging;
+        var profit = payout - totalCosts;
+        var isLoss = profit < 0;
+        var share = payout > 0 ? (profit / payout) * 100 : 0;
+
+        var profitEl = document.getElementById("profitValue");
+        profitEl.textContent = money(profit);
+        profitEl.classList.toggle("negative", isLoss);
+        document.getElementById("resultKicker").textContent = isLoss ? "Estimated amount over payout" : "Estimated profit kept";
+        document.getElementById("resultLabel").textContent = isLoss ? "your expected costs exceed the estimated payout" : "before taxes";
+        document.getElementById("payoutResult").textContent = money(payout);
+        document.getElementById("costResult").textContent = money(totalCosts);
+        document.getElementById("remainingResult").textContent = money(profit);
+
+        var explanation = document.getElementById("explanation");
+        if (isLoss) {
+          explanation.innerHTML = "<p>Your expected costs of <strong>" + money(totalCosts) + "</strong> are <strong>" + money(Math.abs(profit)) + "</strong> more than the estimated payout of <strong>" + money(payout) + "</strong>. Based on these inputs, you would not keep a profit.</p><p>Before making a decision, review the estimate with your transportation office and make sure all expected costs are included. The official payment—not this estimate—controls the final amount.</p>";
+        } else {
+          explanation.innerHTML = "<p>From an estimated payout of <strong>" + money(payout) + "</strong>, you expect to spend <strong>" + money(totalCosts) + "</strong>. That leaves an estimated <strong>" + money(profit) + "</strong>, or <strong>" + share.toFixed(1) + "%</strong> of the payout, before taxes.</p><p>This is planning math, not an official payment calculation. PPM profit is taxable income, and your actual payment follows the authorized weight, documentation, and terms in your counseling paperwork.</p>";
+        }
+
+        lastSummary = [
+          "PPM Move Profit Estimate",
+          "Estimated government payout: " + money(payout),
+          "Truck rental or moving company: " + money(truck),
+          "Packing supplies: " + money(packing),
+          "Fuel and tolls: " + money(fuel),
+          "Lodging: " + money(lodging),
+          "Total expected costs: " + money(totalCosts),
+          (isLoss ? "Estimated amount over payout: " : "Estimated profit kept before taxes: ") + money(isLoss ? Math.abs(profit) : profit),
+          "",
+          "PPM profit is taxable income. Actual payment and reimbursable expenses follow official transportation-office counseling paperwork.",
+          "For informational and planning purposes only."
+        ].join("\n");
+
+        emptyState.style.display = "none";
+        results.classList.add("is-visible");
+      });
+
+      document.getElementById("emailButton").addEventListener("click", function (event) {
+        if (!lastSummary) {
+          event.preventDefault();
+          return;
+        }
+        var subject = encodeURIComponent("My PPM move profit estimate");
+        var body = encodeURIComponent(lastSummary);
+        this.setAttribute("href", "mailto:?subject=" + subject + "&body=" + body);
+      });
+
+      document.getElementById("copyButton").addEventListener("click", function () {
+        if (!lastSummary) return;
+        copyText(lastSummary);
+      });
+
+      function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () {
+            copyStatus.textContent = "Results copied.";
+          }).catch(function () { fallbackCopy(text); });
+        } else {
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(area);
+        copyStatus.textContent = ok ? "Results copied." : "Copy unavailable. Select the results and copy them manually.";
+      }
+    }());
+  </script>
+</body>
+</html>
