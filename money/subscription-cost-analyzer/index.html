@@ -70,10 +70,32 @@
     button, input, select { font: inherit; }
     button { color: inherit; }
     button, input, select { -webkit-tap-highlight-color: transparent; }
+    .money-home {
+      position: fixed;
+      z-index: 10;
+      top: max(10px, env(safe-area-inset-top));
+      left: max(14px, env(safe-area-inset-left));
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      padding: 6px 10px;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .money-home:hover { border-color: var(--orange); color: var(--orange); }
+    .money-home:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 28%, transparent);
+      outline-offset: 2px;
+    }
     .page {
       width: min(1240px, 100%);
       margin: 0 auto;
-      padding: clamp(24px, 4vw, 52px) clamp(16px, 3.6vw, 46px) 68px;
+      padding: clamp(62px, 7vw, 78px) clamp(16px, 3.6vw, 46px) 68px;
     }
     .intro {
       display: grid;
@@ -483,6 +505,7 @@
   </style>
 </head>
 <body>
+  <a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
   <main class="page">
     <section class="intro" aria-labelledby="page-title">
       <h1 id="page-title">Find the quiet leaks in your <span>budget.</span></h1>

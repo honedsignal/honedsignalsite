@@ -66,6 +66,28 @@
     button, input, select { font: inherit; }
     button { color: inherit; }
     button, input, select { -webkit-tap-highlight-color: transparent; }
+    .money-home-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+    .money-home {
+      display: block;
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      padding: 10px clamp(16px, 3.6vw, 46px);
+      color: var(--accent);
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .money-home:hover { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
+    .money-home:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 28%, transparent);
+      outline-offset: -3px;
+    }
     .page {
       width: min(1240px, 100%);
       margin: 0 auto;
@@ -468,6 +490,9 @@
   </style>
 </head>
 <body>
+  <nav class="money-home-wrap" aria-label="Honed Money navigation">
+    <a class="money-home" href="/money/">← Honed Money</a>
+  </nav>
   <main class="page">
     <header class="intro">
       <h1>Turn shares into an <span>income plan.</span></h1>

@@ -47,6 +47,7 @@
     body {
       margin: 0;
       min-width: 320px;
+      padding-top: calc(44px + env(safe-area-inset-top));
       background: var(--bg);
       color: var(--text);
       font-family: "DM Sans", sans-serif;
@@ -55,6 +56,28 @@
     button, input, select { font: inherit; }
     button, a { -webkit-tap-highlight-color: transparent; }
     a { color: var(--blue); }
+    .hub-bar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      min-height: calc(44px + env(safe-area-inset-top));
+      padding-top: env(safe-area-inset-top);
+      display: flex;
+      align-items: center;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+    .hub-bar-inner { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
+    .hub-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .hub-link:hover { color: var(--text); }
     .wrap { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
     .intro {
       padding: clamp(34px, 7vw, 72px) 0 28px;
@@ -206,7 +229,8 @@
       *, *::before, *::after { transition: none !important; }
     }
     @media print {
-      body { background: #fff; color: #000; }
+      body { padding-top: 0; background: #fff; color: #000; }
+      .hub-bar { display: none; }
       .panel { box-shadow: none; }
       .actions, .explain-toggle { display: none; }
       .explain-copy { display: block; }
@@ -214,6 +238,12 @@
   </style>
 </head>
 <body>
+  <nav class="hub-bar" aria-label="Honed Money">
+    <div class="hub-bar-inner">
+      <a class="hub-link" href="/money/">← Honed Money</a>
+    </div>
+  </nav>
+
   <main>
     <section class="intro wrap" aria-labelledby="page-title">
       <div>

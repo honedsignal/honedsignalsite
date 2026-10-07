@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <title>Personal finances | Honed Money</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f5f5f5;
+      --paper: #0b0e14;
+      --surface: #131821;
+      --surface-hover: #171e29;
+      --muted: #aab3c1;
+      --line: #2a3341;
+      --orange: #f7931a;
+      --orange-ink: #ffc77f;
+      --blue: #6490c4;
+      --neon: #39ff14;
+      --shadow: 0 18px 48px rgba(0, 0, 0, .28);
+      --button-ink: #0b0e14;
+      --focus: #86b7ef;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: dark;
+        --paper: #0b0e14;
+        --surface: #151a23;
+        --surface-hover: #1a212c;
+        --line: #303947;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: max(22px, env(safe-area-inset-top)) 0 max(32px, env(safe-area-inset-bottom));
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 42px;
+      padding: 8px 0;
+      color: var(--muted);
+      font-weight: 700;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+
+    .back-link .arrow {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      font-size: 18px;
+      line-height: 1;
+      transition: border-color .18s ease, transform .18s ease, background .18s ease;
+    }
+
+    .back-link:hover { color: var(--ink); text-decoration: underline; }
+    .back-link:hover .arrow { border-color: var(--orange); background: color-mix(in srgb, var(--orange) 11%, transparent); transform: translateX(-2px); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      padding: 72px 0 38px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 800;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.55;
+    }
+
+    .tool-count {
+      display: grid;
+      min-width: 112px;
+      padding: 18px 20px;
+      border-top: 3px solid var(--orange);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .tool-count strong {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 34px;
+      line-height: 1;
+      color: var(--orange);
+    }
+
+    .tool-count span {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      padding: 34px 0 64px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      min-height: 288px;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease, transform .2s ease;
+    }
+
+    .card:hover {
+      border-color: color-mix(in srgb, var(--orange) 55%, var(--line));
+      background: var(--surface-hover);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .index {
+      font-family: "IBM Plex Mono", monospace;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      color: var(--accent, var(--orange));
+      flex: 0 0 auto;
+    }
+
+    .icon svg { width: 100%; height: 100%; }
+
+    h2 {
+      max-width: 290px;
+      margin: 24px 0 0;
+      font-size: 22px;
+      line-height: 1.15;
+      letter-spacing: -.025em;
+    }
+
+    .card p {
+      margin: 12px 0 24px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .open-tool {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: 100%;
+      min-height: 48px;
+      margin-top: auto;
+      padding: 11px 14px 11px 16px;
+      border-radius: 8px;
+      background: var(--orange);
+      color: var(--button-ink);
+      font-weight: 800;
+      text-decoration: none;
+      transition: filter .18s ease;
+    }
+
+    .open-tool span:last-child { font-size: 19px; transition: transform .18s ease; }
+    .open-tool:hover { filter: brightness(1.07); }
+    .open-tool:hover span:last-child { transform: translateX(3px); }
+
+    a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 26px 0 8px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer a { font-weight: 800; color: var(--ink); text-underline-offset: 4px; }
+
+    @media (max-width: 860px) {
+      .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero { padding-top: 52px; }
+    }
+
+    @media (max-width: 620px) {
+      .page { width: min(100% - 28px, 520px); padding-top: max(14px, env(safe-area-inset-top)); }
+      .hero { grid-template-columns: 1fr; gap: 26px; padding: 40px 0 28px; }
+      .hero p { margin-top: 18px; }
+      .tool-count { grid-template-columns: auto 1fr; align-items: baseline; gap: 10px; width: fit-content; min-width: 0; padding: 13px 16px; }
+      .tool-count span { margin: 0; }
+      .tools { grid-template-columns: 1fr; gap: 14px; padding: 24px 0 48px; }
+      .card { min-height: 258px; padding: 22px; }
+      h2 { margin-top: 18px; }
+      .footer { align-items: flex-start; flex-direction: column; gap: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/" aria-label="Back to Honed Money">
+      <span class="arrow" aria-hidden="true">←</span>
+      <span>Honed Money</span>
+    </a>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">Personal finances</h1>
+        <p>Nine practical tools for understanding income, debt, taxes, investing, and the choices in between.</p>
+      </div>
+      <div class="tool-count" aria-label="9 personal finance tools">
+        <strong>09</strong>
+        <span>tools</span>
+      </div>
+    </section>
+
+    <section class="tools" aria-label="Personal finance tools">
+      <article class="card" style="--accent: var(--neon)">
+        <div class="card-top"><span class="index">01 / INCOME</span><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M12 49h40M16 42V29m11 13V21m11 21V13m11 29V25" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="m13 23 12-8 10 5 15-11" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h2>Dividend Calculator</h2>
+        <p>See what your dividends pay you.</p>
+        <a class="open-tool" href="/money/dividend-calculator/"><span>Open tool</span><span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="card" style="--accent: var(--blue)">
+        <div class="card-top"><span class="index">02 / SPENDING</span><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><rect x="10" y="14" width="44" height="36" rx="5" stroke="currentColor" stroke-width="3"/><path d="M10 25h44M21 36h11M21 43h20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="47" cy="19.5" r="1.8" fill="currentColor"/></svg></span></div>
+        <h2>Subscription Cost Analyzer</h2>
+        <p>Find out what subscriptions really cost.</p>
+        <a class="open-tool" href="/money/subscription-cost-analyzer/"><span>Open tool</span><span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="card" style="--accent: var(--orange)">
+        <div class="card-top"><span class="index">03 / DEBT</span><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M18 10h28v44H18z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M25 22h14M25 31h14M25 40h7" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="m39 42 4 4 8-10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h2>Credit Card Payoff Analyzer</h2>
+        <p>Plan your way out of credit card debt.</p>
+        <a class="open-tool" href="/money/credit-card-payoff-analyzer/"><span>Open tool</span><span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="card" style="--accent: var(--neon)">
+        <div class="card-top"><span class="index">04 / SAVINGS</span><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M11 31 32 12l21 19v21H11V31Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M25 52V38h14v14M24 28h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div>
+        <h2>Emergency Fund Calculator</h2>
+        <p>How much safety net do you need?</p>
+        <a class="open-tool" href="/money/emergency-fund-calculator/"><span>Open tool</span><span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="card" style="--accent: var(--blue)">
+        <div class="card-top"><span class="index">05 / HOUSING</span><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="m8 31 19-17 19 17v22H8V31Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M46 26h10v27H46M20 53V39h14v14" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg></span></div>
+        <h2>Rent vs. Buy Calculator</h2>
+        <p>Should you rent or buy?</p>
+        <a class="open-tool" href="/money/rent-vs-buy-calculator/"><span>Open tool</span><span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="card" style="--accent: var(--orange)">
+        <div class="card-top"><span class="index">06 / PAYCHECK</span><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><rect x="9" y="15" width="46" height="34" rx="4" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="8" stroke="currentColor" stroke-width="3"/><path d="M15 25a7 7 0 0 0 7-4M49 39a7 7 0 0 0-7 4" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div>
+        <h2>Take-Home Pay Calculator</h2>
+        <p>What your paycheck really becomes.</p>
+        <a class="open-tool" href="/money/take-home-pay-calculator/"><span>Open tool</span><span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="card" style="--accent: var(--neon)">
+        <div class="card-top"><span class="index">07 / INVESTING</span><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M12 49h42M17 45V31h9v14M31 45V23h9v22M45 45V14h9v31" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="m11 21 12-8 10 4 15-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h2>Capital Gains Tax Calculator</h2>
+        <p>Estimate tax on investment sales.</p>
+        <a class="open-tool" href="/money/capital-gains-tax-calculator/"><span>Open tool</span><span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="card" style="--accent: var(--blue)">
+        <div class="card-top"><span class="index">08 / TAXES</span><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M18 9h24l8 8v38H18V9Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M42 9v9h8M25 29h18M25 38h18M25 47h10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span></div>
+        <h2>Tax Refund Estimator</h2>
+        <p>Will you owe or get a refund?</p>
+        <a class="open-tool" href="/money/tax-refund-estimator/"><span>Open tool</span><span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="card" style="--accent: var(--orange)">
+        <div class="card-top"><span class="index">09 / FILING</span><span class="icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M13 17h38v34H13z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M13 26h38M23 11v12M41 11v12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="m22 38 6 6 14-14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h2>Tax Filing Resources</h2>
+        <p>Free and low-cost ways to file.</p>
+        <a class="open-tool" href="/money/tax-filing-resources/"><span>Open tool</span><span aria-hidden="true">→</span></a>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <span>Choose a tool and work through the numbers at your own pace.</span>
+      <a href="/money/">Back to Honed Money</a>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="data:," />
+  <title>Business finances · Honed Money</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600&display=swap');
+
+    :root {
+      color-scheme: light dark;
+      --bg: #0b0e14;
+      --surface: #131822;
+      --surface-hover: #181f2b;
+      --text: #f5f5f5;
+      --muted: #b7bdc8;
+      --line: #2b3442;
+      --blue: #79a9df;
+      --orange: #f7931a;
+      --green: #39ff14;
+      --button: #f5f5f5;
+      --button-text: #0b0e14;
+      --focus: #79a9df;
+      --shadow: 0 22px 60px rgba(0, 0, 0, .34);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #0e1219;
+        --surface: #171c26;
+        --surface-hover: #1b2230;
+        --text: #ffffff;
+        --muted: #c2c7d0;
+        --line: #303948;
+        --blue: #83b5eb;
+        --orange: #ffa12e;
+        --green: #4dff2f;
+        --button: #ffffff;
+        --button-text: #0b0e14;
+        --focus: #83b5eb;
+        --shadow: 0 22px 60px rgba(0, 0, 0, .38);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--bg); }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      background:
+        linear-gradient(90deg, transparent calc(100% - 1px), color-mix(in srgb, var(--line) 38%, transparent) calc(100% - 1px)) 0 0 / 72px 72px,
+        var(--bg);
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(56px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 4px;
+      color: var(--muted);
+      font-size: .94rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+
+    .back::before {
+      content: "←";
+      color: var(--orange);
+      font-size: 1.2rem;
+      transition: transform .18s ease;
+    }
+
+    .back:hover { color: var(--text); text-decoration: underline; }
+    .back:hover::before { transform: translateX(-3px); }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 350px);
+      align-items: end;
+      gap: 28px;
+      margin: clamp(42px, 8vw, 92px) 0 clamp(32px, 6vw, 58px);
+    }
+
+    .intro h1 {
+      max-width: 760px;
+      margin: 0;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(2.75rem, 7.5vw, 6.2rem);
+      line-height: .94;
+      letter-spacing: -.055em;
+      text-wrap: balance;
+    }
+
+    .intro h1 span { color: var(--orange); }
+
+    .intro p {
+      margin: 0 0 .45rem;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.65;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .tool {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 340px;
+      padding: 26px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      transition: background .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .tool::after {
+      content: "";
+      position: absolute;
+      right: -52px;
+      top: -52px;
+      width: 150px;
+      height: 150px;
+      border: 1px solid color-mix(in srgb, var(--accent) 52%, transparent);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .tool:hover {
+      background: var(--surface-hover);
+      border-color: color-mix(in srgb, var(--accent) 58%, var(--line));
+      transform: translateY(-3px);
+    }
+
+    .tool:nth-child(1) { --accent: var(--green); }
+    .tool:nth-child(2) { --accent: var(--blue); }
+    .tool:nth-child(3) { --accent: var(--orange); }
+
+    .number {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+
+    .number::after {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .tool h2 {
+      max-width: 13ch;
+      margin: 48px 0 14px;
+      font-size: clamp(1.45rem, 2.6vw, 2rem);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+
+    .tool p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: .98rem;
+      line-height: 1.55;
+    }
+
+    .open {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: 100%;
+      min-height: 48px;
+      margin-top: auto;
+      padding: 12px 15px;
+      border-radius: 5px;
+      background: var(--button);
+      color: var(--button-text);
+      font-size: .9rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .open::after {
+      content: "↗";
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    .open:focus-visible,
+    .back:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .footnote {
+      margin: 34px 0 0;
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 780px) {
+      body { background-size: 54px 54px; }
+
+      .page { padding-inline: 16px; }
+
+      .intro {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 18px;
+        margin-top: 40px;
+      }
+
+      .intro h1 { max-width: 8ch; }
+      .intro p { max-width: 34rem; }
+
+      .grid { grid-template-columns: 1fr; }
+
+      .tool {
+        min-height: 0;
+        padding: 22px;
+      }
+
+      .tool h2 {
+        margin-top: 36px;
+        max-width: 18ch;
+      }
+
+      .open { margin-top: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="/money/" aria-label="Back to the Honed Money front page">Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Business finances<span>.</span></h1>
+      <p>Clear calculators for independent work, pricing, and the numbers behind a healthy business.</p>
+    </section>
+
+    <section class="grid" aria-label="Business finance tools">
+      <article class="tool">
+        <div class="number" aria-hidden="true">01</div>
+        <h2>Self-Employment Tax Estimator</h2>
+        <p>Estimate SE tax and quarterly payments.</p>
+        <a class="open" href="/money/self-employment-tax-estimator/">Open tool</a>
+      </article>
+
+      <article class="tool">
+        <div class="number" aria-hidden="true">02</div>
+        <h2>Freelance Rate Calculator</h2>
+        <p>What hourly rate should you charge?</p>
+        <a class="open" href="/money/freelance-rate-calculator/">Open tool</a>
+      </article>
+
+      <article class="tool">
+        <div class="number" aria-hidden="true">03</div>
+        <h2>Profit Margin Calculator</h2>
+        <p>Margin vs. markup, finally clear.</p>
+        <a class="open" href="/money/profit-margin-calculator/">Open tool</a>
+      </article>
+    </section>
+
+    <p class="footnote">Choose a tool to run the numbers. You can return to Honed Money from the link at the top of this page.</p>
+  </main>
+</body>
+</html>
