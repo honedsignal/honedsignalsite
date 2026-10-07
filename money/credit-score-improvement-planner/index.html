@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Credit Score Improvement Planner | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0e14;
+      --surface: #141922;
+      --surface-2: #1c2330;
+      --text: #f5f5f5;
+      --muted: #b8c0cb;
+      --line: #343e4c;
+      --blue: #73a3da;
+      --blue-soft: #17283d;
+      --orange: #f7931a;
+      --orange-ink: #0b0e14;
+      --green: #39ff14;
+      --green-soft: #17301d;
+      --red: #e5484d;
+      --shadow: 0 22px 55px rgba(0,0,0,.32);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #0e1118;
+        --surface: #171c25;
+        --surface-2: #202734;
+        --text: #f7f7f7;
+        --muted: #bdc5d0;
+        --line: #3b4655;
+        --blue: #7aace3;
+        --blue-soft: #1a2c42;
+        --orange: #f7931a;
+        --orange-ink: #0b0e14;
+        --green: #39ff14;
+        --green-soft: #18331e;
+        --red: #f05a61;
+        --shadow: 0 22px 55px rgba(0,0,0,.32);
+      }
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "IBM Plex Sans", sans-serif;
+      line-height: 1.5;
+    }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 20px 0 64px; }
+    .back {
+      display: inline-block;
+      margin-bottom: 44px;
+      color: var(--muted);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .back:hover, .back:focus-visible { color: var(--text); border-color: currentColor; }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(250px, .6fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(2.35rem, 6vw, 5rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    .lede { margin: 0 0 5px; color: var(--muted); font-size: 1.03rem; }
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(280px, .7fr) minmax(0, 1.3fr);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .form-pane { padding: 30px; border-right: 1px solid var(--line); }
+    .form-pane h2, .empty h2 { margin: 0 0 8px; font-size: 1.35rem; letter-spacing: -.02em; }
+    .form-pane > p { margin: 0 0 28px; color: var(--muted); }
+    .field { margin-bottom: 22px; }
+    label { display: block; margin-bottom: 8px; font-weight: 600; }
+    .hint { display: block; margin-top: 7px; color: var(--muted); font-size: .84rem; }
+    input[type="number"] {
+      width: 100%;
+      min-height: 54px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      outline: none;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1.08rem;
+    }
+    input::placeholder { color: var(--muted); opacity: .68; }
+    input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) 22%, transparent); }
+    .primary {
+      width: 100%;
+      min-height: 52px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary:hover { filter: brightness(1.05); }
+    .primary:focus-visible, .action:focus-visible, summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .error {
+      display: none;
+      margin: 14px 0 0;
+      color: var(--red);
+      font-weight: 600;
+      font-size: .92rem;
+    }
+    .error.show { display: block; }
+    .output-pane { min-height: 490px; padding: 30px; }
+    .empty { height: 100%; min-height: 430px; display: grid; place-content: center; text-align: center; }
+    .empty-mark {
+      width: 92px;
+      height: 46px;
+      margin: 0 auto 22px;
+      position: relative;
+      overflow: hidden;
+      border: 9px solid var(--line);
+      border-bottom: 0;
+      border-radius: 92px 92px 0 0;
+    }
+    .empty-mark::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 39px;
+      left: 35px;
+      bottom: -6px;
+      background: var(--orange);
+      transform-origin: bottom center;
+      transform: rotate(42deg);
+      border-radius: 4px;
+    }
+    .empty p { max-width: 380px; margin: 0; color: var(--muted); }
+    #results[hidden] { display: none; }
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); }
+    .metric { padding: 18px; min-width: 0; }
+    .metric + .metric { border-left: 1px solid var(--line); }
+    .metric-label { display: block; margin-bottom: 5px; color: var(--muted); font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    .metric-value { display: block; font-family: "IBM Plex Mono", monospace; font-size: clamp(1.3rem, 4vw, 2rem); font-weight: 600; line-height: 1.15; overflow-wrap: anywhere; }
+    .metric-value.green { color: var(--green); }
+    .reality {
+      margin: 18px 0 24px;
+      padding: 15px 16px;
+      background: var(--blue-soft);
+      color: var(--text);
+      font-size: .92rem;
+    }
+    .section-head { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; margin: 0 0 14px; }
+    .section-head h2 { margin: 0; font-size: 1.25rem; }
+    .section-head span { color: var(--muted); font-size: .84rem; }
+    .plan { display: grid; gap: 8px; }
+    .month {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .month:first-child { border-top: 0; }
+    .month-num { color: var(--orange); font-family: "IBM Plex Mono", monospace; font-size: .8rem; font-weight: 600; }
+    .month h3 { margin: 0 0 4px; font-size: 1rem; }
+    .month p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
+    .action {
+      min-height: 48px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .action.email { background: var(--orange); border-color: var(--orange); color: var(--orange-ink); }
+    .action:hover { border-color: var(--orange); }
+    .status { grid-column: 1 / -1; min-height: 1.3em; margin: 0; color: var(--green); font-size: .86rem; text-align: center; }
+    details { margin-top: 10px; border-top: 1px solid var(--line); }
+    summary { padding: 18px 0; cursor: pointer; font-weight: 700; }
+    .explain { padding: 0 0 6px; color: var(--muted); font-size: .94rem; }
+    .explain p { margin: 0 0 12px; }
+    .explain strong { color: var(--text); }
+    .disclaimer { max-width: 880px; margin: 24px auto 0; color: var(--muted); font-size: .79rem; text-align: center; }
+    @media (max-width: 800px) {
+      .shell { width: min(100% - 28px, 680px); padding-top: 14px; }
+      .back { margin-bottom: 32px; }
+      .intro { grid-template-columns: 1fr; gap: 20px; align-items: start; }
+      .lede { max-width: 560px; }
+      .calculator { grid-template-columns: 1fr; }
+      .form-pane { border-right: 0; border-bottom: 1px solid var(--line); }
+      .output-pane { min-height: auto; }
+      .empty { min-height: 270px; }
+    }
+    @media (max-width: 520px) {
+      .shell { width: min(100% - 22px, 480px); padding-bottom: 42px; }
+      .form-pane, .output-pane { padding: 22px 18px; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .metric + .metric { border-left: 0; border-top: 1px solid var(--line); }
+      .metric { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; }
+      .metric-label { margin: 0; }
+      .metric-value { text-align: right; }
+      .month { grid-template-columns: 58px 1fr; gap: 10px; }
+      .actions { grid-template-columns: 1fr; }
+      .status { grid-column: 1; }
+      .section-head { display: block; }
+      .section-head span { display: block; margin-top: 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="TOOL 03. Free credit score improvement planner from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/credit-score-improvement-planner/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Credit Score Improvement Planner","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/credit-score-improvement-planner/","description":"TOOL 03. Free credit score improvement planner from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <main class="shell">
+    <a class="back" href="/money/">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Credit planning</p>
+        <h1 id="page-title">Build a steadier path to your target score.</h1>
+      </div>
+      <p class="lede">Enter where you are and where you want to go. You’ll get a practical month-by-month plan built around the habits that usually matter most.</p>
+    </section>
+
+    <section class="calculator" aria-label="Credit score improvement planner">
+      <form class="form-pane" id="planner" novalidate>
+        <h2>Your starting point</h2>
+        <p>Use a score from the same source for both your starting point and future check-ins.</p>
+
+        <div class="field">
+          <label for="current-score">Current credit score</label>
+          <input id="current-score" name="current-score" type="number" min="300" max="850" step="1" inputmode="numeric" placeholder="Example: 625" autocomplete="off" />
+          <span class="hint">Enter a number from 300 to 850.</span>
+        </div>
+
+        <div class="field">
+          <label for="target-score">Target credit score</label>
+          <input id="target-score" name="target-score" type="number" min="300" max="850" step="1" inputmode="numeric" placeholder="Example: 700" autocomplete="off" />
+          <span class="hint">Your target must be above your current score.</span>
+        </div>
+
+        <button class="primary" type="submit">Build my plan</button>
+        <p class="error" id="error" role="alert"></p>
+      </form>
+
+      <div class="output-pane" aria-live="polite">
+        <div class="empty" id="empty-state">
+          <div class="empty-mark" aria-hidden="true"></div>
+          <h2>Your plan starts here</h2>
+          <p>Scores do not improve on a fixed schedule. This planner gives you a realistic range and a sequence of actions—not a guaranteed prediction.</p>
+        </div>
+
+        <div id="results" hidden>
+          <div class="summary-grid">
+            <div class="metric">
+              <span class="metric-label">Starting score</span>
+              <span class="metric-value" id="current-output">—</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Target score</span>
+              <span class="metric-value green" id="target-output">—</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Planning range</span>
+              <span class="metric-value" id="range-output">—</span>
+            </div>
+          </div>
+
+          <p class="reality" id="reality-check"></p>
+
+          <div class="section-head">
+            <h2>Month-by-month plan</h2>
+            <span id="plan-caption"></span>
+          </div>
+          <div class="plan" id="plan-list"></div>
+
+          <div class="actions">
+            <button class="action email" id="email-results" type="button">Email my results</button>
+            <button class="action" id="copy-results" type="button">Copy results</button>
+            <p class="status" id="copy-status" role="status"></p>
+          </div>
+
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explain">
+              <p><strong>The timeline is a planning range, not a score forecast.</strong> Credit scoring formulas consider several parts of your credit history, and lenders may use different scores. The same action can affect two people differently.</p>
+              <p><strong>Payment history comes first.</strong> Pay every bill on time. Automatic minimum payments can protect you from a missed due date; you can still pay extra before the statement closes.</p>
+              <p><strong>Utilization means how much of your card limits you are using.</strong> Under 30% is a useful first checkpoint, while under 10% can be stronger. Both the total across your cards and each individual card can matter.</p>
+              <p><strong>Time helps.</strong> Accurate negative items generally cannot be removed just because they hurt. Avoid opening several accounts at once, keep older no-fee accounts open when practical, and check your reports for genuine errors.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <p class="disclaimer">For informational purposes only. This tool does not provide financial, legal, or credit-repair advice, and it cannot guarantee any score change or approval decision.</p>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('planner');
+      var currentInput = document.getElementById('current-score');
+      var targetInput = document.getElementById('target-score');
+      var error = document.getElementById('error');
+      var empty = document.getElementById('empty-state');
+      var results = document.getElementById('results');
+      var planList = document.getElementById('plan-list');
+      var status = document.getElementById('copy-status');
+      var lastText = '';
+
+      function band(score) {
+        if (score < 580) return 'below 580';
+        if (score < 670) return '580–669';
+        if (score < 740) return '670–739';
+        if (score < 800) return '740–799';
+        return '800+';
+      }
+
+      function estimateMonths(current, target) {
+        var gap = target - current;
+        var months;
+        if (gap <= 20) months = 3;
+        else if (gap <= 40) months = 5;
+        else if (gap <= 60) months = 8;
+        else if (gap <= 100) months = 12;
+        else if (gap <= 150) months = 18;
+        else months = 24;
+        if (target >= 800) months = Math.max(months, 12);
+        else if (target >= 760) months = Math.max(months, 9);
+        if (current < 580 && target >= 670) months = Math.max(months, 12);
+        return months;
+      }
+
+      function planItem(month, total) {
+        var utilization = month === 1 ? 'below 30%' : month === 2 ? 'below 20%' : 'between 1% and 9%';
+        var items = [
+          ['Set the baseline', 'Pull your credit reports, note every due date, and turn on automatic minimum payments. If you use cards, aim to have reported balances ' + utilization + ' of limits.'],
+          ['Stabilize the routine', 'Keep every payment on time. Pay card balances before statement dates when possible, and work toward reported use ' + utilization + '.'],
+          ['Lower reported balances', 'Keep on-time payments going and target ' + utilization + ' utilization on each card and overall. Avoid new applications unless you truly need credit.'],
+          ['Check for corrections', 'Review any disputes you filed for genuine report errors. Keep balances low and do not skip a payment while waiting for an update.'],
+          ['Protect your progress', 'Continue paying on time. Consider a credit-limit increase only if it will not trigger a hard inquiry or tempt extra spending.'],
+          ['Review all three reports', 'Check whether corrected information has posted. Keep reported card use low and put extra cash toward the highest-utilization card.'],
+          ['Reduce the next balance', 'Maintain automatic minimums and make an extra payment before the next statement closes. Keep every card under 30%, then push toward 10%.'],
+          ['Preserve account age', 'Keep older no-fee accounts open when practical, use them lightly, and pay them on time. Avoid opening several accounts close together.'],
+          ['Run a clean check-in', 'Compare a score from the same source you used at the start. Focus on the trend, not a single small move, and keep utilization under 10%.'],
+          ['Stay consistent', 'Repeat the payment and low-balance routine. Accurate negative history may need time to age; do not pay anyone who promises a guaranteed deletion.'],
+          ['Prepare the next review', 'Check upcoming statement dates, keep cash available for minimums, and avoid large reported balances before you review again.'],
+          ['Complete a yearly review', 'Pull fresh reports, confirm every account is accurate, and compare your score with the same scoring source. Keep the habits that are working.']
+        ];
+        if (month <= 12) return { title: items[month - 1][0], text: items[month - 1][1] };
+        var cycle = (month - 13) % 3;
+        if (month === total) return { title: 'Review the full plan', text: 'Check all three reports, compare your score with the same source, and reassess the target. Continue on-time payments and keep reported card use between 1% and 9%.' };
+        if (cycle === 0) return { title: 'Quarterly report check', text: 'Review reports for genuine changes or errors. Keep every payment on time and reported card use between 1% and 9%.' };
+        if (cycle === 1) return { title: 'Balance-reduction month', text: 'Direct extra money to the card using the largest share of its limit, while protecting every minimum payment.' };
+        return { title: 'Consistency month', text: 'Avoid unnecessary applications, preserve older accounts when practical, and repeat the same low-balance payment routine.' };
+      }
+
+      function buildPlainText(current, target, lower, upper, months, steps) {
+        var lines = [
+          'CREDIT SCORE IMPROVEMENT PLAN',
+          '',
+          'Current score: ' + current + ' (' + band(current) + ')',
+          'Target score: ' + target + ' (' + band(target) + ')',
+          'Planning range: ' + lower + '–' + upper + ' months',
+          '',
+          'This is a planning range, not a guaranteed score forecast.',
+          ''
+        ];
+        steps.forEach(function (step, index) {
+          lines.push('Month ' + (index + 1) + ': ' + step.title);
+          lines.push(step.text);
+          lines.push('');
+        });
+        lines.push('For informational purposes only. No score change or approval is guaranteed.');
+        return lines.join('\n');
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        status.textContent = '';
+        var current = Number(currentInput.value);
+        var target = Number(targetInput.value);
+
+        if (!currentInput.value || !targetInput.value) {
+          error.textContent = 'Enter both your current score and your target score.';
+          error.classList.add('show');
+          return;
+        }
+        if (!Number.isInteger(current) || !Number.isInteger(target) || current < 300 || current > 850 || target < 300 || target > 850) {
+          error.textContent = 'Use whole numbers from 300 to 850.';
+          error.classList.add('show');
+          return;
+        }
+        if (target <= current) {
+          error.textContent = 'Choose a target that is higher than your current score.';
+          error.classList.add('show');
+          return;
+        }
+
+        error.classList.remove('show');
+        var months = estimateMonths(current, target);
+        var lower = Math.max(2, Math.ceil(months * 0.75));
+        var upper = Math.min(36, Math.ceil(months * 1.35));
+        var steps = [];
+        for (var i = 1; i <= months; i += 1) steps.push(planItem(i, months));
+
+        document.getElementById('current-output').textContent = current;
+        document.getElementById('target-output').textContent = target;
+        document.getElementById('range-output').textContent = lower + '–' + upper + ' mo.';
+        document.getElementById('reality-check').textContent = 'You are aiming for a ' + (target - current) + '-point change, moving from the ' + band(current) + ' range toward ' + band(target) + '. A clean report, on-time payments, low card balances, and time are the practical levers—but no timeline or result is guaranteed.';
+        document.getElementById('plan-caption').textContent = months + ' action checkpoints';
+
+        planList.innerHTML = '';
+        steps.forEach(function (step, index) {
+          var row = document.createElement('article');
+          row.className = 'month';
+          var num = document.createElement('div');
+          num.className = 'month-num';
+          num.textContent = 'MONTH ' + (index + 1);
+          var body = document.createElement('div');
+          var heading = document.createElement('h3');
+          heading.textContent = step.title;
+          var text = document.createElement('p');
+          text.textContent = step.text;
+          body.appendChild(heading);
+          body.appendChild(text);
+          row.appendChild(num);
+          row.appendChild(body);
+          planList.appendChild(row);
+        });
+
+        lastText = buildPlainText(current, target, lower, upper, months, steps);
+        empty.hidden = true;
+        results.hidden = false;
+        if (window.matchMedia('(max-width: 800px)').matches) {
+          results.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        }
+      });
+
+      document.getElementById('email-results').addEventListener('click', function () {
+        if (!lastText) return;
+        var subject = encodeURIComponent('My credit score improvement plan');
+        var body = encodeURIComponent(lastText);
+        var emailLink = document.createElement('a');
+        emailLink.href = 'mailto:?subject=' + subject + '&body=' + body;
+        emailLink.style.display = 'none';
+        document.body.appendChild(emailLink);
+        emailLink.click();
+        document.body.removeChild(emailLink);
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        var worked = false;
+        try { worked = document.execCommand('copy'); } catch (e) { worked = false; }
+        document.body.removeChild(area);
+        return worked;
+      }
+
+      document.getElementById('copy-results').addEventListener('click', function () {
+        if (!lastText) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastText).then(function () {
+            status.textContent = 'Results copied.';
+          }).catch(function () {
+            status.textContent = fallbackCopy(lastText) ? 'Results copied.' : 'Copy failed. Select and copy the plan manually.';
+          });
+        } else {
+          status.textContent = fallbackCopy(lastText) ? 'Results copied.' : 'Copy failed. Select and copy the plan manually.';
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

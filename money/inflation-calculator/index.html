@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Inflation Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #f4f7f8;
+      --muted: #b3bec7;
+      --paper: #10161e;
+      --surface: #18222d;
+      --surface-2: #212d38;
+      --line: #34424e;
+      --line-strong: #566674;
+      --blue: #74a7d7;
+      --blue-strong: #9bc6ed;
+      --orange: #f7931a;
+      --orange-ink: #0b0e14;
+      --neon: #55e83b;
+      --neon-soft: rgba(85,232,59,.09);
+      --danger: #ff7b80;
+      --focus: #93c4ef;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .28);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f5f7f8;
+        --muted: #aeb7c0;
+        --paper: #0b0e14;
+        --surface: #121821;
+        --surface-2: #1a222c;
+        --line: #2b3641;
+        --line-strong: #46525f;
+        --blue: #6490c4;
+        --blue-strong: #8cb7e7;
+        --orange: #f7931a;
+        --orange-ink: #0b0e14;
+        --neon: #39ff14;
+        --neon-soft: rgba(57,255,20,.08);
+        --danger: #ff747a;
+        --focus: #8ab9e8;
+        --shadow: 0 24px 70px rgba(0,0,0,.38);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, input, a { -webkit-tap-highlight-color: transparent; }
+    .money-home {
+      display: block;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 12px clamp(18px, 4vw, 48px) 0;
+      color: var(--blue);
+      font-size: .84rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .money-home:hover { color: var(--blue-strong); text-decoration: underline; text-underline-offset: 3px; }
+    .money-home:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 32%, transparent);
+      outline-offset: 3px;
+    }
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: clamp(28px, 4.5vw, 56px) clamp(18px, 4vw, 48px) 64px;
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(270px, .65fr);
+      gap: 42px;
+      align-items: end;
+      padding: 8px 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(2.55rem, 7vw, 5.75rem);
+      line-height: .93;
+      letter-spacing: -.06em;
+      font-weight: 700;
+    }
+    h1 span { color: var(--orange); }
+    .intro p {
+      margin: 0 0 4px;
+      max-width: 38ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.7vw, 1.18rem);
+    }
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .inputs {
+      padding: clamp(22px, 3vw, 30px);
+      border-right: 1px solid var(--line);
+    }
+    .section-heading {
+      margin: 0 0 23px;
+      font-size: .82rem;
+      line-height: 1;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .field { margin-bottom: 19px; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 600;
+    }
+    .control { position: relative; display: flex; align-items: center; }
+    .prefix, .suffix {
+      position: absolute;
+      z-index: 1;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .9rem;
+      pointer-events: none;
+    }
+    .prefix { left: 13px; }
+    .suffix { right: 13px; }
+    input {
+      width: 100%;
+      min-height: 49px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 11px 13px;
+      outline: none;
+      font-variant-numeric: tabular-nums;
+    }
+    input.has-prefix { padding-left: 30px; }
+    input.has-suffix { padding-right: 39px; }
+    input::placeholder { color: color-mix(in srgb, var(--muted) 68%, transparent); opacity: 1; }
+    input:focus { border-color: var(--focus); }
+    input[aria-invalid="true"] { border-color: var(--danger); }
+    .hint { margin: 6px 0 0; color: var(--muted); font-size: .76rem; }
+    .error { min-height: 20px; margin: 10px 0 0; color: var(--danger); font-size: .8rem; }
+    .calculate {
+      width: 100%;
+      min-height: 50px;
+      margin-top: 2px;
+      border: 0;
+      border-radius: 3px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .calculate:hover { background: var(--blue-strong); }
+
+    .results {
+      min-width: 0;
+      min-height: 520px;
+      padding: clamp(24px, 4vw, 42px);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--surface-2) 42%, transparent) 0 1px, transparent 1px 18px),
+        var(--surface);
+      background-size: 18px 18px;
+    }
+    .empty-state {
+      display: grid;
+      min-height: 435px;
+      place-content: center;
+      text-align: center;
+      color: var(--muted);
+    }
+    .coin-mark {
+      position: relative;
+      width: 92px;
+      height: 76px;
+      margin: 0 auto 22px;
+    }
+    .coin-mark i {
+      position: absolute;
+      left: 50%;
+      width: 62px;
+      height: 22px;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      background: var(--surface);
+      transform: translateX(-50%);
+    }
+    .coin-mark i:nth-child(1) { bottom: 0; }
+    .coin-mark i:nth-child(2) { bottom: 17px; }
+    .coin-mark i:nth-child(3) { bottom: 34px; }
+    .coin-mark::after {
+      content: "%";
+      position: absolute;
+      top: -7px;
+      right: 0;
+      color: var(--neon);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    .empty-state strong { display: block; color: var(--ink); font-size: 1.05rem; }
+    .empty-state p { margin: 6px auto 0; max-width: 33ch; }
+    .empty-state[hidden], .result-content[hidden] { display: none; }
+    .result-kicker {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .headline-result {
+      margin: 0;
+      color: var(--neon);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.2rem, 6vw, 4.75rem);
+      line-height: 1;
+      letter-spacing: -.045em;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+    .headline-copy {
+      margin: 13px 0 0;
+      max-width: 59ch;
+      color: var(--muted);
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      margin: 30px 0 24px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+    .metric {
+      min-width: 0;
+      padding: 20px;
+      background: var(--surface);
+    }
+    .metric span { display: block; margin-bottom: 7px; color: var(--muted); font-size: .78rem; }
+    .metric strong {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 15px 0 18px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .time-stop:last-child { text-align: right; }
+    .time-stop span { display: block; color: var(--muted); font-size: .75rem; }
+    .time-stop strong { display: block; margin-top: 3px; font-family: "IBM Plex Mono", monospace; }
+    .timeline-line {
+      display: flex;
+      align-items: center;
+      width: clamp(54px, 11vw, 130px);
+      color: var(--orange);
+    }
+    .timeline-line::before { content: ""; width: 100%; height: 2px; background: currentColor; }
+    .timeline-line::after { content: "›"; margin-left: -2px; font-size: 1.45rem; line-height: .7; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .action {
+      min-height: 45px;
+      padding: 10px 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .action:hover { border-color: var(--blue); color: var(--blue-strong); }
+    .action.email {
+      border-color: var(--orange);
+      background: var(--orange);
+      color: var(--orange-ink);
+    }
+    .action.email:hover { filter: brightness(.94); color: var(--orange-ink); }
+    .copy-status { flex-basis: 100%; min-height: 20px; color: var(--neon); font-size: .8rem; }
+    details {
+      margin-top: 8px;
+      border-top: 1px solid var(--line);
+    }
+    summary {
+      padding: 18px 0 8px;
+      color: var(--blue);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    details p { margin: 8px 0 0; color: var(--muted); }
+    details p strong { color: var(--ink); }
+    .formula-note {
+      padding: 13px 15px;
+      border-left: 3px solid var(--orange);
+      background: var(--surface-2);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .82rem;
+      color: var(--ink);
+    }
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    @media (max-width: 780px) {
+      .intro { grid-template-columns: 1fr; gap: 17px; }
+      .intro p { max-width: 48ch; }
+      .workbench { grid-template-columns: 1fr; }
+      .inputs { border-right: 0; border-bottom: 1px solid var(--line); }
+      .results { min-height: 430px; }
+      .empty-state { min-height: 320px; }
+    }
+    @media (max-width: 480px) {
+      .page { padding-left: 15px; padding-right: 15px; }
+      .money-home { padding-left: 15px; padding-right: 15px; }
+      .inputs, .results { padding: 22px 18px; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; gap: 5px; align-items: start; }
+      .timeline-line { width: 2px; height: 32px; margin-left: 8px; flex-direction: column; }
+      .timeline-line::before { width: 2px; height: 100%; }
+      .timeline-line::after { margin: -7px 0 0; transform: rotate(90deg); }
+      .time-stop:last-child { text-align: left; }
+      .actions { display: grid; grid-template-columns: 1fr; }
+      .action { width: 100%; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="What will it cost later?. Free inflation calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/inflation-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Inflation Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/inflation-calculator/","description":"What will it cost later?. Free inflation calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <a class="money-home" href="/money/">← Honed Money</a>
+
+  <main class="page">
+    <header class="intro">
+      <h1>Inflation changes the <span>price.</span></h1>
+      <p>See how the same amount compares across time when prices rise at a steady yearly rate.</p>
+    </header>
+
+    <section class="workbench" aria-label="Inflation calculator">
+      <form class="inputs" id="calculator" novalidate>
+        <h2 class="section-heading">Your numbers</h2>
+
+        <div class="field">
+          <label for="amount">Amount</label>
+          <div class="control">
+            <span class="prefix" aria-hidden="true">$</span>
+            <input class="has-prefix" id="amount" name="amount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="10,000" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="rate">Average inflation rate</label>
+          <div class="control">
+            <input class="has-suffix" id="rate" name="rate" type="number" inputmode="decimal" min="0" max="100" step="0.1" placeholder="3.0" autocomplete="off" />
+            <span class="suffix" aria-hidden="true">%</span>
+          </div>
+          <p class="hint">Use one yearly rate for the whole period.</p>
+        </div>
+
+        <div class="field">
+          <label for="years">Number of years</label>
+          <div class="control">
+            <input class="has-suffix" id="years" name="years" type="number" inputmode="numeric" min="1" max="200" step="1" placeholder="10" autocomplete="off" />
+            <span class="suffix" aria-hidden="true">years</span>
+          </div>
+        </div>
+
+        <button class="calculate" type="submit">Calculate</button>
+        <p class="error" id="error" role="alert" aria-live="polite"></p>
+      </form>
+
+      <div class="results" id="results" aria-live="polite">
+        <div class="empty-state" id="emptyState">
+          <div class="coin-mark" aria-hidden="true"><i></i><i></i><i></i></div>
+          <strong>Your time comparison appears here</strong>
+          <p>Enter an amount, rate, and number of years to compare its buying power.</p>
+        </div>
+
+        <div class="result-content" id="resultContent" hidden>
+          <p class="result-kicker">Future equivalent</p>
+          <p class="headline-result" id="futureEquivalent">$0</p>
+          <p class="headline-copy" id="futureSentence"></p>
+
+          <div class="metric-grid">
+            <div class="metric">
+              <span>Buying power of your amount after inflation</span>
+              <strong id="futureBuyingPower">$0</strong>
+            </div>
+            <div class="metric">
+              <span>Total price increase</span>
+              <strong id="totalIncrease">0%</strong>
+            </div>
+          </div>
+
+          <div class="timeline" aria-label="Amount over time">
+            <div class="time-stop">
+              <span id="startLabel">Today</span>
+              <strong id="startAmount">$0</strong>
+            </div>
+            <div class="timeline-line" aria-hidden="true"></div>
+            <div class="time-stop">
+              <span id="endLabel">In 0 years</span>
+              <strong id="endAmount">$0</strong>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="action email" id="emailResults" href="mailto:">Email my results</a>
+            <button class="action" id="copyResults" type="button">Copy results</button>
+            <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
+          </div>
+
+          <details id="explanation">
+            <summary>Explain these results</summary>
+            <p id="explainMain"></p>
+            <p id="explainPast"></p>
+            <p><strong>Why the numbers differ:</strong> “Future equivalent” tells you how many future dollars would match today’s buying power. “Future buying power” tells you what an unchanged cash amount would feel like in today’s dollars.</p>
+            <p class="formula-note" id="formulaNote"></p>
+            <p>This is a simple estimate. Real inflation changes from year to year, and prices do not all rise at the same pace.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <footer>For informational purposes only. Results are estimates, not financial advice.</footer>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("calculator");
+      var amountInput = document.getElementById("amount");
+      var rateInput = document.getElementById("rate");
+      var yearsInput = document.getElementById("years");
+      var error = document.getElementById("error");
+      var emptyState = document.getElementById("emptyState");
+      var resultContent = document.getElementById("resultContent");
+      var emailResults = document.getElementById("emailResults");
+      var copyResults = document.getElementById("copyResults");
+      var copyStatus = document.getElementById("copyStatus");
+      var resultText = "";
+
+      function currency(value) {
+        var digits = Math.abs(value) < 1000000 ? 2 : 0;
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: digits,
+          maximumFractionDigits: digits
+        }).format(value);
+      }
+
+      function percent(value) {
+        return new Intl.NumberFormat("en-US", {
+          maximumFractionDigits: 2,
+          minimumFractionDigits: value < 10 ? 1 : 0
+        }).format(value) + "%";
+      }
+
+      function markValidity(input, invalid) {
+        input.setAttribute("aria-invalid", invalid ? "true" : "false");
+      }
+
+      function validate(amount, rate, years) {
+        markValidity(amountInput, false);
+        markValidity(rateInput, false);
+        markValidity(yearsInput, false);
+
+        if (!Number.isFinite(amount) || amount <= 0) {
+          markValidity(amountInput, true);
+          return "Enter an amount greater than zero.";
+        }
+        if (!Number.isFinite(rate) || rate < 0 || rate > 100) {
+          markValidity(rateInput, true);
+          return "Enter an inflation rate from 0% to 100%.";
+        }
+        if (!Number.isFinite(years) || years < 1 || years > 200 || Math.floor(years) !== years) {
+          markValidity(yearsInput, true);
+          return "Enter a whole number of years from 1 to 200.";
+        }
+        return "";
+      }
+
+      function calculate(event) {
+        event.preventDefault();
+        copyStatus.textContent = "";
+
+        var amount = Number(amountInput.value);
+        var rate = Number(rateInput.value);
+        var years = Number(yearsInput.value);
+        var problem = validate(amount, rate, years);
+
+        if (problem) {
+          error.textContent = problem;
+          emptyState.hidden = false;
+          resultContent.hidden = true;
+          return;
+        }
+
+        var factor = Math.pow(1 + rate / 100, years);
+        var futureEquivalent = amount * factor;
+        var futureBuyingPower = amount / factor;
+        var totalIncrease = (factor - 1) * 100;
+        var yearWord = years === 1 ? "year" : "years";
+
+        document.getElementById("futureEquivalent").textContent = currency(futureEquivalent);
+        document.getElementById("futureBuyingPower").textContent = currency(futureBuyingPower);
+        document.getElementById("totalIncrease").textContent = percent(totalIncrease);
+        document.getElementById("startAmount").textContent = currency(amount);
+        document.getElementById("endAmount").textContent = currency(futureEquivalent);
+        document.getElementById("endLabel").textContent = "In " + years + " " + yearWord;
+        document.getElementById("futureSentence").textContent = currency(futureEquivalent) + " in " + years + " " + yearWord + " would have about the same buying power as " + currency(amount) + " today.";
+        document.getElementById("explainMain").textContent = "At an average inflation rate of " + percent(rate) + " a year, something that costs " + currency(amount) + " today could cost about " + currency(futureEquivalent) + " in " + years + " " + yearWord + ".";
+        document.getElementById("explainPast").textContent = "Looking backward works the same way: " + currency(amount) + " from " + years + " " + yearWord + " ago would equal about " + currency(futureEquivalent) + " today if inflation had averaged the same rate.";
+        document.getElementById("formulaNote").textContent = currency(amount) + " × (1 + " + rate.toFixed(2) + "% )^" + years + " = " + currency(futureEquivalent);
+
+        resultText = [
+          "Inflation calculator results",
+          "Amount: " + currency(amount),
+          "Average inflation rate: " + percent(rate) + " per year",
+          "Time: " + years + " " + yearWord,
+          "",
+          "Future equivalent: " + currency(futureEquivalent),
+          "Buying power of the unchanged amount: " + currency(futureBuyingPower) + " in today's dollars",
+          "Total price increase: " + percent(totalIncrease),
+          "",
+          currency(amount) + " from " + years + " " + yearWord + " ago would equal about " + currency(futureEquivalent) + " today at the same steady rate.",
+          "",
+          "This is a simple estimate for informational purposes only."
+        ].join("\n");
+
+        emailResults.href = "mailto:?subject=" + encodeURIComponent("My inflation calculator results") + "&body=" + encodeURIComponent(resultText);
+        error.textContent = "";
+        emptyState.hidden = true;
+        resultContent.hidden = false;
+      }
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var copied = false;
+        try { copied = document.execCommand("copy"); } catch (e) { copied = false; }
+        document.body.removeChild(area);
+        return copied;
+      }
+
+      function showCopySuccess() {
+        copyStatus.textContent = "Results copied.";
+        copyResults.textContent = "Copied";
+        window.setTimeout(function () { copyResults.textContent = "Copy results"; }, 1800);
+      }
+
+      copyResults.addEventListener("click", function () {
+        if (!resultText) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(resultText).then(showCopySuccess).catch(function () {
+            if (fallbackCopy(resultText)) showCopySuccess();
+            else copyStatus.textContent = "Copy was blocked. Select the results above to copy them.";
+          });
+        } else if (fallbackCopy(resultText)) {
+          showCopySuccess();
+        } else {
+          copyStatus.textContent = "Copy was blocked. Select the results above to copy them.";
+        }
+      });
+
+      [amountInput, rateInput, yearsInput].forEach(function (input) {
+        input.addEventListener("input", function () {
+          markValidity(input, false);
+          if (error.textContent) error.textContent = "";
+        });
+      });
+
+      form.addEventListener("submit", calculate);
+    }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#111722" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet" />
+  <title>Credit Money Calculators | Honed Money</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #111722;
+      --surface: #1b2431;
+      --surface-raised: #222d3b;
+      --ink: #f5f5f5;
+      --muted: #b8c3d1;
+      --line: #394555;
+      --blue: #76a5d7;
+      --blue-ink: #08101a;
+      --orange: #f7931a;
+      --orange-soft: #312417;
+      --focus: #9dcbff;
+      --shadow: 0 18px 38px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0e14;
+        --surface: #141922;
+        --surface-raised: #1a212c;
+        --ink: #f5f5f5;
+        --muted: #aeb9c7;
+        --line: #313a48;
+        --blue: #79a8db;
+        --blue-ink: #08101a;
+        --orange: #f7931a;
+        --orange-soft: #2a2015;
+        --focus: #92c5ff;
+        --shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { min-height: 100%; }
+
+    body {
+      min-height: 100%;
+      margin: 0;
+      background:
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), color-mix(in srgb, var(--line) 26%, transparent) calc(100% - 1px)) 0 0 / 32px 32px,
+        linear-gradient(180deg, transparent 0, transparent calc(100% - 1px), color-mix(in srgb, var(--line) 26%, transparent) calc(100% - 1px)) 0 0 / 32px 32px,
+        var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: max(22px, env(safe-area-inset-top)) 0 max(56px, env(safe-area-inset-bottom));
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      margin-left: -10px;
+      padding: 0 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+
+    .back-link:hover { color: var(--ink); text-decoration: underline; }
+
+    .back-link:focus-visible,
+    .tool-link:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 390px);
+      gap: clamp(36px, 7vw, 92px);
+      align-items: end;
+      padding: clamp(46px, 8vw, 90px) 0 clamp(40px, 6vw, 68px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      max-width: 670px;
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+      font-weight: 700;
+    }
+
+    .period { color: var(--orange); }
+
+    .intro-copy {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: clamp(1.04rem, 1.6vw, 1.25rem);
+      line-height: 1.58;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      padding-top: 24px;
+    }
+
+    .tool-card {
+      position: relative;
+      display: flex;
+      min-height: 310px;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .tool-card::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 7px;
+      background: var(--blue);
+    }
+
+    .tool-card:nth-child(2)::before { background: var(--orange); }
+
+    .tool-card:nth-child(3)::before {
+      background: repeating-linear-gradient(90deg, var(--blue) 0 18px, var(--orange) 18px 27px);
+    }
+
+    .card-inner {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 27px 26px 25px;
+    }
+
+    .tool-number {
+      margin: 0 0 42px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    h2 {
+      max-width: 13ch;
+      margin: 0;
+      font-size: clamp(1.65rem, 2.7vw, 2.1rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+    }
+
+    .description {
+      margin: 15px 0 28px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .tool-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      min-height: 50px;
+      margin-top: auto;
+      padding: 0 17px;
+      background: var(--ink);
+      color: var(--bg);
+      border: 1px solid var(--ink);
+      font-size: 0.94rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+    }
+
+    .tool-link::after {
+      content: "→";
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 1.15rem;
+    }
+
+    .tool-link:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #0b0e14;
+    }
+
+    @media (max-width: 820px) {
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .intro-copy { max-width: 38rem; }
+
+      .tools { grid-template-columns: 1fr; }
+
+      .tool-card { min-height: 0; }
+
+      .tool-number { margin-bottom: 28px; }
+    }
+
+    @media (max-width: 480px) {
+      .page { width: min(100% - 28px, 1120px); }
+      .intro { padding: 40px 0 38px; }
+      h1 { font-size: clamp(3.1rem, 17vw, 4.5rem); }
+      .card-inner { padding: 23px 21px 21px; }
+      .tool-card { box-shadow: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="Free credit calculators from Honed Money — plain-English answers to real money questions, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/credit/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage",
+"name":"Credit Money Calculators | Honed Money","url":"https://honedsignal.com/money/credit/",
+"description":"Free credit calculators from Honed Money — plain-English answers to real money questions, no signup needed."}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/" target="_top" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Credit tools<span class="period">.</span></h1>
+      <p class="intro-copy">See what shapes a credit score, measure utilization, and turn the next steps into a practical plan.</p>
+    </section>
+
+    <section class="tools" aria-label="Credit calculators and planners">
+      <article class="tool-card">
+        <div class="card-inner">
+          <p class="tool-number">TOOL 01</p>
+          <h2>Credit Score Simulator</h2>
+          <p class="description">What moves your score?</p>
+          <a class="tool-link" href="/money/credit-score-simulator/" target="_top">Open tool</a>
+        </div>
+      </article>
+
+      <article class="tool-card">
+        <div class="card-inner">
+          <p class="tool-number">TOOL 02</p>
+          <h2>Credit Utilization Calculator</h2>
+          <p class="description">The 30% rule, measured.</p>
+          <a class="tool-link" href="/money/credit-utilization-calculator/" target="_top">Open tool</a>
+        </div>
+      </article>
+
+      <article class="tool-card">
+        <div class="card-inner">
+          <p class="tool-number">TOOL 03</p>
+          <h2>Score Improvement Planner</h2>
+          <p class="description">Your path to a better score.</p>
+          <a class="tool-link" href="/money/credit-score-improvement-planner/" target="_top">Open tool</a>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

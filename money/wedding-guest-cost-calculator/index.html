@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Wedding Guest Cost Calculator</title>
+  <title>Wedding Guest Cost Calculator | Honed Money</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
@@ -27,18 +27,18 @@
 
     @media (prefers-color-scheme: light) {
       :root {
-        --bg: #f4f6f8;
-        --surface: #ffffff;
-        --surface-2: #eef1f5;
-        --text: #0b0e14;
-        --muted: #536072;
-        --line: #d8dee7;
-        --blue: #315f95;
-        --orange: #e97800;
-        --orange-ink: #ffffff;
-        --green: #168a08;
-        --danger: #bd252c;
-        --shadow: 0 22px 60px rgba(30,44,65,.10);
+        --bg: #0b0e14;
+        --surface: #131821;
+        --surface-2: #191f2a;
+        --text: #f5f5f5;
+        --muted: #aeb7c5;
+        --line: #2b3442;
+        --blue: #78a4d6;
+        --orange: #f7931a;
+        --orange-ink: #171007;
+        --green: #39ff14;
+        --danger: #ff7478;
+        --shadow: 0 22px 70px rgba(0,0,0,.28);
       }
     }
 
@@ -71,7 +71,7 @@
       margin-bottom: 42px;
     }
     .back-link:hover, .back-link:focus-visible { color: var(--orange); }
-    .back-link:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+    .back-link:focus-visible, .action-link:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
       outline: 3px solid color-mix(in srgb, var(--blue) 60%, transparent);
       outline-offset: 3px;
     }
@@ -187,7 +187,7 @@
       cursor: pointer;
     }
     .primary { flex: 1; background: var(--blue); color: #07111d; }
-    @media (prefers-color-scheme: light) { .primary { color: #fff; } }
+
     .secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
     button:hover { filter: brightness(1.07); }
     button:active { transform: translateY(1px); }
@@ -235,6 +235,17 @@
     .breakdown-row:first-child .bar { background: var(--orange); }
     .result-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .email { background: var(--orange); color: var(--orange-ink); }
+    .action-link {
+      min-height: 48px;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-decoration: none;
+    }
     .copy { background: transparent; color: var(--text); border: 1px solid var(--line); }
     .copy-status { min-height: 20px; margin: 9px 0 0; color: var(--green); font-size: .8rem; text-align: center; }
     details { margin-top: 14px; border-top: 1px solid var(--line); }
@@ -276,6 +287,22 @@
       .total-block, .result-body, .empty-state { padding-left: 22px; padding-right: 22px; }
     }
   </style>
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="What attending really costs. Free wedding guest cost calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/wedding-guest-cost-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Wedding Guest Cost Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/wedding-guest-cost-calculator/","description":"What attending really costs. Free wedding guest cost calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
 </head>
 <body>
   <main class="shell">
@@ -349,7 +376,7 @@
             <p class="summary" id="summaryText"></p>
             <div class="breakdown" id="breakdown"></div>
             <div class="result-actions">
-              <button class="email" id="emailButton" type="button">Email my results</button>
+              <a class="email action-link" id="emailButton" href="mailto:?subject=My%20wedding%20guest%20cost%20estimate">Email my results</a>
               <button class="copy" id="copyButton" type="button">Copy results</button>
             </div>
             <p class="copy-status" id="copyStatus" role="status"></p>

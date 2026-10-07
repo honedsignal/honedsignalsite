@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>GPA Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #10141b;
+      --surface: #191f29;
+      --surface-2: #242b36;
+      --ink: #f5f5f5;
+      --muted: #b4bdc9;
+      --line: #353e4b;
+      --line-strong: #505c6b;
+      --blue: #75a2d2;
+      --orange: #f7931a;
+      --orange-ink: #171006;
+      --green: #39ff14;
+      --green-soft: #16301a;
+      --danger: #ff7379;
+      --shadow: 0 22px 60px rgba(0, 0, 0, .34);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0e14;
+        --surface: #151922;
+        --surface-2: #1d222c;
+        --ink: #f5f5f5;
+        --muted: #aeb6c3;
+        --line: #303744;
+        --line-strong: #4a5565;
+        --blue: #6490c4;
+        --orange: #f7931a;
+        --orange-ink: #171006;
+        --green: #39ff14;
+        --green-soft: #132a18;
+        --danger: #ff7379;
+        --shadow: 0 22px 60px rgba(0, 0, 0, .42);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+    .shell {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 18px 0 56px;
+    }
+    .home-link {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .home-link:hover { color: var(--orange); }
+    .home-link:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--orange) 42%, transparent);
+      outline-offset: 2px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 430px);
+      gap: 28px;
+      align-items: end;
+      padding: 28px 0 30px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.35rem, 7vw, 5.4rem);
+      line-height: .94;
+      letter-spacing: -.06em;
+      font-weight: 700;
+    }
+    h1 span { color: var(--green); }
+    .lede {
+      max-width: 40ch;
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.9vw, 1.15rem);
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr);
+      align-items: start;
+      gap: 22px;
+      padding-top: 24px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .form-panel { padding: 28px; border-radius: 8px 30px 8px 8px; }
+    .results-panel { min-height: 570px; padding: 28px; border-radius: 30px 8px 8px 8px; }
+    .panel-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    h2, h3 { margin: 0; letter-spacing: -.025em; }
+    h2 { font-size: 1.35rem; }
+    h3 { font-size: 1.05rem; }
+    .panel-note, .section-note { margin: 5px 0 0; color: var(--muted); font-size: .9rem; }
+    .mono-label {
+      margin: 4px 0 0;
+      color: var(--blue);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .74rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .course-table { border-top: 1px solid var(--line); }
+    .course-head, .course-row {
+      display: grid;
+      grid-template-columns: minmax(84px, .74fr) minmax(125px, 1.1fr) minmax(120px, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+    .course-head {
+      padding: 12px 0 8px;
+      color: var(--muted);
+      font-size: .77rem;
+      font-weight: 700;
+    }
+    .course-row {
+      padding: 9px 0;
+      border-top: 1px solid var(--line);
+    }
+    .course-row:first-of-type { border-top: 0; }
+    .course-name { font-weight: 700; font-size: .9rem; }
+    .control { position: relative; }
+    input, select {
+      width: 100%;
+      min-width: 0;
+      height: 48px;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      background: var(--surface-2);
+      color: var(--ink);
+      outline: none;
+    }
+    input {
+      padding: 0 46px 0 13px;
+      font-family: "IBM Plex Mono", monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    select { padding: 0 36px 0 13px; cursor: pointer; }
+    input::placeholder { color: var(--muted); opacity: .72; }
+    input:focus, select:focus { border-color: var(--orange); }
+    input[aria-invalid="true"], select[aria-invalid="true"] { border-color: var(--danger); }
+    .suffix {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: .73rem;
+      pointer-events: none;
+    }
+
+    .cumulative {
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .optional-tag {
+      display: inline-block;
+      margin-left: 8px;
+      color: var(--muted);
+      font-size: .74rem;
+      font-weight: 600;
+      vertical-align: 2px;
+    }
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    label { display: block; margin-bottom: 7px; font-size: .82rem; font-weight: 700; }
+    .error {
+      display: none;
+      margin: 16px 0 0;
+      padding: 11px 13px;
+      border: 1px solid var(--danger);
+      border-radius: 7px;
+      color: var(--danger);
+      font-size: .86rem;
+    }
+    .error.show { display: block; }
+    .button-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 24px; }
+    button, .action-link {
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 0 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--ink);
+      background: var(--surface-2);
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    button:hover, .action-link:hover { filter: brightness(1.06); }
+    .primary { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .quiet { background: transparent; }
+
+    .empty {
+      min-height: 500px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-inner { max-width: 315px; }
+    .empty-mark {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 18px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--orange);
+      background: var(--surface-2);
+    }
+    .empty p { margin: 0; }
+    .empty strong { display: block; margin-bottom: 6px; color: var(--ink); }
+    .results { display: none; }
+    .results.active { display: block; }
+    .result-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: start;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .big-number {
+      margin: 8px 0 0;
+      color: var(--green);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(3rem, 8vw, 5rem);
+      line-height: .95;
+      letter-spacing: -.075em;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .status-dot {
+      width: 11px;
+      height: 11px;
+      margin-top: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px var(--green-soft);
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      margin-top: 20px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+    .stat { padding: 16px; background: var(--surface-2); }
+    .stat.full { grid-column: 1 / -1; }
+    .stat span { display: block; color: var(--muted); font-size: .75rem; font-weight: 700; }
+    .stat strong {
+      display: block;
+      margin-top: 5px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.2rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .plain-summary {
+      margin: 18px 0 0;
+      padding: 15px 16px;
+      border-radius: 7px;
+      background: var(--green-soft);
+      color: var(--ink);
+      font-size: .93rem;
+    }
+    .share-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .email-button { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .copy-state { min-height: 22px; margin: 7px 0 0; color: var(--green); font-size: .78rem; text-align: right; }
+    details { margin-top: 12px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    summary { padding: 15px 0; cursor: pointer; font-weight: 800; }
+    .explanation { padding: 0 0 16px; color: var(--muted); font-size: .9rem; }
+    .explanation p { margin: 0 0 10px; }
+    .explanation p:last-child { margin-bottom: 0; }
+    .formula {
+      padding: 11px 12px;
+      border-radius: 6px;
+      background: var(--surface-2);
+      color: var(--ink);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .78rem;
+      overflow-wrap: anywhere;
+    }
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+    .scale span { padding: 7px 5px; background: var(--surface-2); color: var(--ink); text-align: center; font-size: .72rem; }
+    .disclaimer { margin: 18px 0 0; color: var(--muted); font-size: .75rem; }
+
+    @media (max-width: 860px) {
+      .intro { grid-template-columns: 1fr; gap: 14px; }
+      .workspace { grid-template-columns: 1fr; }
+      .results-panel { min-height: 430px; border-radius: 8px 24px 8px 8px; }
+      .empty { min-height: 360px; }
+    }
+    @media (max-width: 590px) {
+      .shell { width: min(100% - 28px, 1160px); padding-top: 10px; }
+      .intro { padding: 20px 0 24px; }
+      h1 { font-size: clamp(2.55rem, 15vw, 4.2rem); }
+      .form-panel, .results-panel { padding: 20px; box-shadow: none; }
+      .panel-head { display: block; }
+      .mono-label { margin-top: 8px; }
+      .course-head { display: none; }
+      .course-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 14px 0;
+      }
+      .course-name { grid-column: 1; }
+      .course-row .control::before {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-size: .72rem;
+        font-weight: 700;
+      }
+      .course-row .credits-control::before { content: "Credit hours"; }
+      .course-row .grade-control::before { content: "Letter grade"; }
+      .course-row .suffix { top: calc(50% + 12px); }
+      .field-grid, .share-actions { grid-template-columns: 1fr; }
+      .button-row { grid-template-columns: 1fr; }
+      .button-row .quiet { order: 2; }
+      .result-top { grid-template-columns: 1fr auto; }
+      .scale { grid-template-columns: repeat(3, 1fr); }
+      .copy-state { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="TOOL 03. Free gpa calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/gpa-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"GPA Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/gpa-calculator/","description":"TOOL 03. Free gpa calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <main class="shell">
+    <a class="home-link" href="/money/">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">GPA<br><span>calculator.</span></h1>
+      </div>
+      <p class="lede">Turn this semester’s letter grades and credit hours into a GPA, then see how the term could change your cumulative GPA.</p>
+    </section>
+
+    <section class="workspace" aria-label="GPA calculator">
+      <form class="panel form-panel" id="gpaForm" novalidate>
+        <div class="panel-head">
+          <div>
+            <h2>This semester</h2>
+            <p class="panel-note">Enter at least one complete course. Leave unused rows blank.</p>
+          </div>
+          <p class="mono-label">4.0 scale</p>
+        </div>
+
+        <div class="course-table">
+          <div class="course-head" aria-hidden="true">
+            <span>Course</span><span>Credit hours</span><span>Letter grade</span>
+          </div>
+          <div id="courseRows"></div>
+        </div>
+
+        <section class="cumulative" aria-labelledby="cumulative-title">
+          <h3 id="cumulative-title">Add to cumulative GPA <span class="optional-tag">Optional</span></h3>
+          <p class="section-note">Use your GPA and completed credits from before this semester.</p>
+          <div class="field-grid">
+            <div>
+              <label for="currentGpa">Current cumulative GPA</label>
+              <div class="control">
+                <input id="currentGpa" type="number" min="0" max="4" step="0.01" inputmode="decimal" placeholder="e.g., 3.25" autocomplete="off" />
+              </div>
+            </div>
+            <div>
+              <label for="completedCredits">Completed credit hours</label>
+              <div class="control">
+                <input id="completedCredits" type="number" min="0.01" max="1000" step="0.01" inputmode="decimal" placeholder="e.g., 45" autocomplete="off" />
+                <span class="suffix">hrs</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="error" id="errorBox" role="alert"></div>
+        <div class="button-row">
+          <button class="primary" type="submit">Calculate GPA</button>
+          <button class="quiet" id="resetButton" type="button">Clear</button>
+        </div>
+      </form>
+
+      <section class="panel results-panel" aria-live="polite" aria-label="GPA results">
+        <div class="empty" id="emptyState">
+          <div class="empty-inner">
+            <div class="empty-mark" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5Z"/><path d="M7 10.5V15c2.7 2.1 7.3 2.1 10 0v-4.5"/><path d="M21 9v6"/>
+              </svg>
+            </div>
+            <strong>Your result will appear here</strong>
+            <p>Add your courses, choose each grade, and calculate when you’re ready.</p>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <div class="result-top">
+            <div>
+              <p class="mono-label">Semester GPA</p>
+              <p class="big-number" id="semesterGpa">—</p>
+            </div>
+            <span class="status-dot" aria-hidden="true"></span>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><span>Semester credits</span><strong id="semesterCredits">—</strong></div>
+            <div class="stat"><span>Quality points</span><strong id="qualityPoints">—</strong></div>
+            <div class="stat full" id="cumulativeStat" hidden><span>New cumulative GPA</span><strong id="newCumulativeGpa">—</strong></div>
+          </div>
+
+          <p class="plain-summary" id="plainSummary"></p>
+
+          <div class="share-actions">
+            <a class="action-link email-button" id="emailButton" href="#">Email my results</a>
+            <button type="button" id="copyButton">Copy results</button>
+          </div>
+          <p class="copy-state" id="copyState" role="status"></p>
+
+          <details id="explanation">
+            <summary>Explain these results</summary>
+            <div class="explanation">
+              <p>Your semester GPA is a weighted average. A course with more credit hours has more influence than a course with fewer hours.</p>
+              <p class="formula">Semester GPA = total quality points ÷ total semester credits</p>
+              <p id="cumulativeExplanation">If you add your current GPA and completed credits, the calculator combines your earlier quality points with this semester’s quality points.</p>
+              <div class="scale" aria-label="Letter grade point values">
+                <span>A+ / A = 4.0</span><span>A− = 3.7</span><span>B+ = 3.3</span><span>B = 3.0</span>
+                <span>B− = 2.7</span><span>C+ = 2.3</span><span>C = 2.0</span><span>C− = 1.7</span>
+                <span>D+ = 1.3</span><span>D = 1.0</span><span>D− = 0.7</span><span>F = 0.0</span>
+              </div>
+            </div>
+          </details>
+
+          <p class="disclaimer">For informational purposes only. Schools may use different grade-point scales, rounding rules, or treatment of repeated and pass/fail courses.</p>
+        </div>
+      </section>
+    </section>
+    <p class="disclaimer">For informational purposes only. Confirm your school’s grade-point scale, rounding rules, and treatment of repeated or pass/fail courses.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var gradePoints = {
+        "A+": 4.0, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.7,
+        "D+": 1.3, "D": 1.0, "D-": 0.7,
+        "F": 0.0
+      };
+      var grades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"];
+      var courseRows = document.getElementById("courseRows");
+      var form = document.getElementById("gpaForm");
+      var errorBox = document.getElementById("errorBox");
+      var emptyState = document.getElementById("emptyState");
+      var results = document.getElementById("results");
+      var copyState = document.getElementById("copyState");
+      var lastResultText = "";
+
+      function buildRows() {
+        var html = "";
+        for (var i = 1; i <= 6; i += 1) {
+          var options = '<option value="">Select grade</option>';
+          for (var j = 0; j < grades.length; j += 1) {
+            options += '<option value="' + grades[j] + '">' + grades[j] + ' · ' + gradePoints[grades[j]].toFixed(1) + '</option>';
+          }
+          html += '<div class="course-row">' +
+            '<span class="course-name">Course ' + i + '</span>' +
+            '<div class="control credits-control"><input class="credit-input" aria-label="Course ' + i + ' credit hours" type="number" min="0.01" max="30" step="0.01" inputmode="decimal" placeholder="e.g., 3" autocomplete="off"><span class="suffix">hrs</span></div>' +
+            '<div class="control grade-control"><select class="grade-input" aria-label="Course ' + i + ' letter grade">' + options + '</select></div>' +
+          '</div>';
+        }
+        courseRows.innerHTML = html;
+      }
+
+      function numberText(value) {
+        return value.toFixed(2).replace(/\.00$/, "").replace(/(\.\d)0$/, "$1");
+      }
+
+      function markInvalid(element, isInvalid) {
+        element.setAttribute("aria-invalid", isInvalid ? "true" : "false");
+      }
+
+      function showError(message) {
+        errorBox.textContent = message;
+        errorBox.classList.add("show");
+      }
+
+      function clearError() {
+        errorBox.textContent = "";
+        errorBox.classList.remove("show");
+        var controls = form.querySelectorAll("input, select");
+        for (var i = 0; i < controls.length; i += 1) markInvalid(controls[i], false);
+      }
+
+      function collectCourses() {
+        var creditInputs = form.querySelectorAll(".credit-input");
+        var gradeInputs = form.querySelectorAll(".grade-input");
+        var courses = [];
+        var invalidMessage = "";
+        for (var i = 0; i < creditInputs.length; i += 1) {
+          var creditRaw = creditInputs[i].value.trim();
+          var grade = gradeInputs[i].value;
+          var hasCredit = creditRaw !== "";
+          var hasGrade = grade !== "";
+          if (!hasCredit && !hasGrade) continue;
+          if (!hasCredit || !hasGrade) {
+            markInvalid(hasCredit ? gradeInputs[i] : creditInputs[i], true);
+            invalidMessage = "Complete both fields for Course " + (i + 1) + ", or leave both blank.";
+            break;
+          }
+          var credits = Number(creditRaw);
+          if (!Number.isFinite(credits) || credits <= 0 || credits > 30) {
+            markInvalid(creditInputs[i], true);
+            invalidMessage = "Enter credit hours greater than 0 and no more than 30 for Course " + (i + 1) + ".";
+            break;
+          }
+          courses.push({ number: i + 1, credits: credits, grade: grade, points: gradePoints[grade] });
+        }
+        return { courses: courses, error: invalidMessage };
+      }
+
+      function getCumulative() {
+        var gpaInput = document.getElementById("currentGpa");
+        var creditsInput = document.getElementById("completedCredits");
+        var gpaRaw = gpaInput.value.trim();
+        var creditsRaw = creditsInput.value.trim();
+        if (gpaRaw === "" && creditsRaw === "") return { included: false };
+        if (gpaRaw === "" || creditsRaw === "") {
+          markInvalid(gpaRaw === "" ? gpaInput : creditsInput, true);
+          return { error: "Enter both your current cumulative GPA and completed credit hours, or leave both blank." };
+        }
+        var gpa = Number(gpaRaw);
+        var credits = Number(creditsRaw);
+        if (!Number.isFinite(gpa) || gpa < 0 || gpa > 4) {
+          markInvalid(gpaInput, true);
+          return { error: "Current cumulative GPA must be between 0.00 and 4.00." };
+        }
+        if (!Number.isFinite(credits) || credits <= 0 || credits > 1000) {
+          markInvalid(creditsInput, true);
+          return { error: "Completed credit hours must be greater than 0 and no more than 1,000." };
+        }
+        return { included: true, gpa: gpa, credits: credits };
+      }
+
+      function formatCourseList(courses) {
+        var parts = [];
+        for (var i = 0; i < courses.length; i += 1) {
+          parts.push("Course " + courses[i].number + ": " + numberText(courses[i].credits) + " credits, grade " + courses[i].grade);
+        }
+        return parts.join("\n");
+      }
+
+      function renderResult(courses, cumulative) {
+        var totalCredits = 0;
+        var qualityPoints = 0;
+        for (var i = 0; i < courses.length; i += 1) {
+          totalCredits += courses[i].credits;
+          qualityPoints += courses[i].credits * courses[i].points;
+        }
+        var semesterGpa = qualityPoints / totalCredits;
+        var combinedGpa = null;
+        if (cumulative.included) {
+          combinedGpa = ((cumulative.gpa * cumulative.credits) + qualityPoints) / (cumulative.credits + totalCredits);
+        }
+
+        document.getElementById("semesterGpa").textContent = semesterGpa.toFixed(2);
+        document.getElementById("semesterCredits").textContent = numberText(totalCredits);
+        document.getElementById("qualityPoints").textContent = numberText(qualityPoints);
+
+        var cumulativeStat = document.getElementById("cumulativeStat");
+        var summary = "Across " + courses.length + (courses.length === 1 ? " course" : " courses") + ", you entered " + numberText(totalCredits) + " credit hours. Your semester GPA is " + semesterGpa.toFixed(2) + ".";
+        if (combinedGpa !== null) {
+          cumulativeStat.hidden = false;
+          document.getElementById("newCumulativeGpa").textContent = combinedGpa.toFixed(2);
+          summary += " If these grades are added to your earlier record, your estimated cumulative GPA becomes " + combinedGpa.toFixed(2) + ".";
+        } else {
+          cumulativeStat.hidden = true;
+        }
+        document.getElementById("plainSummary").textContent = summary;
+
+        lastResultText = "GPA Calculator Results\n\n" +
+          formatCourseList(courses) + "\n\n" +
+          "Semester credits: " + numberText(totalCredits) + "\n" +
+          "Quality points: " + numberText(qualityPoints) + "\n" +
+          "Semester GPA: " + semesterGpa.toFixed(2);
+        if (combinedGpa !== null) {
+          lastResultText += "\nCurrent cumulative GPA: " + cumulative.gpa.toFixed(2) +
+            "\nPreviously completed credits: " + numberText(cumulative.credits) +
+            "\nEstimated new cumulative GPA: " + combinedGpa.toFixed(2);
+        }
+        lastResultText += "\n\nFor informational purposes only. Schools may use different grade-point scales and rounding rules.";
+
+        document.getElementById("emailButton").href = "mailto:?subject=" + encodeURIComponent("My GPA calculator results") + "&body=" + encodeURIComponent(lastResultText);
+        copyState.textContent = "";
+        document.getElementById("explanation").open = false;
+        emptyState.style.display = "none";
+        results.classList.add("active");
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        clearError();
+        var courseResult = collectCourses();
+        if (courseResult.error) {
+          showError(courseResult.error);
+          return;
+        }
+        if (courseResult.courses.length === 0) {
+          showError("Enter credit hours and a letter grade for at least one course.");
+          return;
+        }
+        var cumulative = getCumulative();
+        if (cumulative.error) {
+          showError(cumulative.error);
+          return;
+        }
+        renderResult(courseResult.courses, cumulative);
+        if (window.innerWidth < 861) {
+          document.querySelector(".results-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      document.getElementById("resetButton").addEventListener("click", function () {
+        form.reset();
+        clearError();
+        lastResultText = "";
+        results.classList.remove("active");
+        emptyState.style.display = "grid";
+        copyState.textContent = "";
+        document.getElementById("cumulativeStat").hidden = true;
+        document.getElementById("explanation").open = false;
+        var firstCredit = form.querySelector(".credit-input");
+        if (firstCredit) firstCredit.focus();
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(area);
+        return ok;
+      }
+
+      document.getElementById("copyButton").addEventListener("click", function () {
+        if (!lastResultText) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastResultText).then(function () {
+            copyState.textContent = "Results copied.";
+          }).catch(function () {
+            copyState.textContent = fallbackCopy(lastResultText) ? "Results copied." : "Copy failed. Select and copy the results manually.";
+          });
+        } else {
+          copyState.textContent = fallbackCopy(lastResultText) ? "Results copied." : "Copy failed. Select and copy the results manually.";
+        }
+      });
+
+      buildRows();
+    }());
+  </script>
+</body>
+</html>

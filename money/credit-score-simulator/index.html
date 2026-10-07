@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <title>Credit Score Simulator | Honed Money</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #f5f5f5;
+      --muted: #aab4c1;
+      --paper: #0b0e14;
+      --surface: #121720;
+      --surface-2: #1a212c;
+      --line: #303a48;
+      --blue: #6490c4;
+      --blue-soft: #17283a;
+      --orange: #f7931a;
+      --orange-ink: #171006;
+      --green: #39ff14;
+      --green-soft: #152b18;
+      --red: #e5484d;
+      --focus: #79ade4;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .35);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #ffffff;
+        --muted: #b5bfcc;
+        --paper: #070a0f;
+        --surface: #10151d;
+        --surface-2: #171e28;
+        --line: #2b3543;
+        --blue: #73a0d2;
+        --blue-soft: #142638;
+        --orange: #ff9c22;
+        --orange-ink: #171006;
+        --green: #48ff25;
+        --green-soft: #122a16;
+        --red: #ef555a;
+        --focus: #8bb8e8;
+        --shadow: 0 24px 70px rgba(0, 0, 0, .5);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Archivo", system-ui, sans-serif;
+      line-height: 1.5;
+    }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .back {
+      display: inline-block;
+      margin: 22px 0 0;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .back:hover { color: var(--orange); }
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 54px;
+      align-items: end;
+      padding: 56px 0 42px;
+      border-bottom: 1px solid var(--line);
+    }
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--orange);
+      font: 600 .78rem/1.2 "IBM Plex Mono", monospace;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(2.65rem, 7vw, 5.4rem);
+      line-height: .94;
+      letter-spacing: -.065em;
+      font-weight: 800;
+    }
+    .lede {
+      max-width: 690px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+    }
+    .score-scale { padding-bottom: 4px; }
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font: 500 .72rem "IBM Plex Mono", monospace;
+    }
+    .scale-bar {
+      height: 12px;
+      display: grid;
+      grid-template-columns: 2fr 1.8fr 2.2fr 1.6fr 1.5fr;
+      gap: 3px;
+    }
+    .scale-bar i { display: block; }
+    .scale-bar i:nth-child(1) { background: var(--red); }
+    .scale-bar i:nth-child(2) { background: var(--orange); }
+    .scale-bar i:nth-child(3) { background: #d2b21f; }
+    .scale-bar i:nth-child(4) { background: #70b532; }
+    .scale-bar i:nth-child(5) { background: var(--green); }
+    .scale-note { margin: 10px 0 0; color: var(--muted); font-size: .78rem; }
+
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, .82fr);
+      gap: 34px;
+      padding: 42px 0 72px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .form-panel { padding: clamp(24px, 4vw, 42px); }
+    .panel-head { margin-bottom: 28px; }
+    h2 { margin: 0; font-size: 1.42rem; letter-spacing: -.025em; }
+    .panel-head p { margin: 8px 0 0; color: var(--muted); font-size: .92rem; }
+    .field { margin-top: 22px; }
+    .field label {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: baseline;
+      margin-bottom: 9px;
+      font-weight: 700;
+    }
+    .field label small { color: var(--muted); font-weight: 400; }
+    .input-wrap { position: relative; }
+    input[type="number"] {
+      width: 100%;
+      min-height: 54px;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      background: var(--surface-2);
+      color: var(--ink);
+      padding: 0 58px 0 16px;
+      font: 600 1.05rem "IBM Plex Mono", monospace;
+    }
+    input::placeholder { color: var(--muted); opacity: .68; font-weight: 500; }
+    input:focus { border-color: var(--focus); background: var(--surface); outline: none; }
+    .unit {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font: 600 .79rem "IBM Plex Mono", monospace;
+      pointer-events: none;
+    }
+    .action-rule {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: center;
+      margin: 30px 0 4px;
+      color: var(--muted);
+      font: 600 .74rem "IBM Plex Mono", monospace;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+    .action-rule::after { content: ""; height: 1px; background: var(--line); }
+    .error {
+      display: none;
+      margin: 20px 0 0;
+      padding: 12px 14px;
+      border: 1px solid var(--red);
+      color: var(--ink);
+      background: color-mix(in srgb, var(--red) 10%, var(--surface));
+      font-size: .9rem;
+    }
+    .error.show { display: block; }
+    .form-actions { display: flex; gap: 10px; margin-top: 24px; }
+    button {
+      border: 0;
+      border-radius: 0;
+      cursor: pointer;
+      min-height: 49px;
+      padding: 0 18px;
+      font-weight: 800;
+    }
+    .primary { background: var(--green); color: #071006; flex: 1; }
+    .secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+    button:hover { filter: brightness(.94); }
+    button:active { transform: translateY(1px); }
+
+    .result-panel {
+      min-height: 500px;
+      position: sticky;
+      top: 20px;
+      padding: clamp(24px, 4vw, 38px);
+      overflow: hidden;
+    }
+    .empty-state { min-height: 420px; display: grid; align-content: center; }
+    .empty-mark {
+      width: 70px;
+      height: 35px;
+      border: 8px solid var(--line);
+      border-bottom: 0;
+      border-radius: 70px 70px 0 0;
+      position: relative;
+      margin-bottom: 26px;
+    }
+    .empty-mark::after {
+      content: "";
+      width: 4px;
+      height: 28px;
+      background: var(--orange);
+      position: absolute;
+      left: 25px;
+      bottom: -4px;
+      transform: rotate(28deg);
+      transform-origin: bottom;
+    }
+    .empty-state p { max-width: 330px; color: var(--muted); margin: 10px 0 0; }
+    .results { display: none; }
+    .results.show { display: block; }
+    .result-label {
+      color: var(--muted);
+      font: 600 .75rem "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .range {
+      margin: 9px 0 4px;
+      color: var(--green);
+      font: 600 clamp(2.4rem, 7vw, 4.9rem)/.95 "IBM Plex Mono", monospace;
+      letter-spacing: -.07em;
+    }
+    .range-caption { margin: 0 0 25px; color: var(--muted); }
+    .meter { height: 9px; background: var(--surface-2); position: relative; margin-bottom: 30px; }
+    .meter-fill { height: 100%; width: 0; background: var(--green); transition: width .45s ease; }
+    .impact-list { border-top: 1px solid var(--line); }
+    .impact {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .impact strong { display: block; }
+    .impact p { margin: 3px 0 0; color: var(--muted); font-size: .83rem; }
+    .points { color: var(--green); font: 600 .94rem "IBM Plex Mono", monospace; white-space: nowrap; }
+    .result-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 22px 0 16px; }
+    .email { background: var(--orange); color: var(--orange-ink); display: grid; place-items: center; min-height: 49px; padding: 0 18px; font-weight: 800; text-decoration: none; }
+    .copy { background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); }
+    .status { min-height: 21px; margin: -4px 0 8px; color: var(--green); font-size: .82rem; text-align: center; }
+    details { border-top: 1px solid var(--line); padding-top: 16px; }
+    summary { cursor: pointer; font-weight: 800; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--orange); font: 600 1.1rem "IBM Plex Mono", monospace; }
+    details[open] summary::after { content: "−"; }
+    .explain { color: var(--muted); font-size: .88rem; }
+    .explain p { margin: 14px 0 0; }
+    .explain strong { color: var(--ink); }
+
+    .factors {
+      padding: 62px 0 78px;
+      border-top: 1px solid var(--line);
+    }
+    .section-title { display: grid; grid-template-columns: .7fr 1.3fr; gap: 34px; margin-bottom: 34px; }
+    .section-title p { margin: 0; color: var(--muted); max-width: 650px; }
+    .factor-grid { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); }
+    .factor { padding: 24px 20px 24px 0; border-bottom: 1px solid var(--line); }
+    .factor + .factor { padding-left: 20px; border-left: 1px solid var(--line); }
+    .factor b { display: block; color: var(--orange); font: 600 1.45rem "IBM Plex Mono", monospace; }
+    .factor h3 { margin: 7px 0 6px; font-size: .97rem; }
+    .factor p { margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.5; }
+    .disclaimer {
+      padding: 26px 0 38px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .75rem;
+    }
+
+    @media (max-width: 820px) {
+      .intro { grid-template-columns: 1fr; gap: 32px; }
+      .score-scale { max-width: 420px; }
+      .workbench { grid-template-columns: 1fr; }
+      .result-panel { position: static; min-height: 0; }
+      .empty-state { min-height: 250px; }
+      .factor-grid { grid-template-columns: 1fr 1fr; }
+      .factor:nth-child(odd) { padding-left: 0; border-left: 0; }
+      .factor:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--line); }
+      .factor:last-child { grid-column: 1 / -1; border-left: 0; padding-left: 0; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 28px, 1120px); }
+      .back { margin-top: 16px; }
+      .intro { padding: 38px 0 30px; }
+      h1 { font-size: clamp(2.55rem, 14vw, 4rem); }
+      .workbench { padding-top: 24px; gap: 18px; }
+      .form-panel, .result-panel { margin-inline: -2px; padding: 22px 18px; }
+      .field label { display: block; }
+      .field label small { display: block; margin-top: 2px; }
+      .form-actions, .result-actions { grid-template-columns: 1fr; flex-direction: column; }
+      .result-actions { display: grid; }
+      .section-title { grid-template-columns: 1fr; gap: 10px; }
+      .factor-grid { grid-template-columns: 1fr; }
+      .factor, .factor + .factor, .factor:nth-child(even), .factor:last-child { grid-column: auto; padding: 20px 0; border-left: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .meter-fill { transition: none; }
+    }
+  </style>
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="TOOL 01. Free credit score simulator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/credit-score-simulator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Credit Score Simulator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/credit-score-simulator/","description":"TOOL 01. Free credit score simulator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <div class="shell">
+    <a class="back" href="/money/">← Honed Money</a>
+
+    <header class="intro">
+      <div>
+        <p class="kicker">Credit Score Simulator</p>
+        <h1>See what your next move could change.</h1>
+        <p class="lede">Estimate a possible score range after lowering card balances and building a streak of on-time payments. This is a planning estimate—not a lender’s score.</p>
+      </div>
+      <div class="score-scale" aria-label="Credit score scale from 300 to 850">
+        <div class="scale-labels"><span>300</span><span>850</span></div>
+        <div class="scale-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <p class="scale-note">Scores generally run from 300 to 850.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="workbench" aria-label="Credit score simulation">
+        <form class="panel form-panel" id="scoreForm" novalidate>
+          <div class="panel-head">
+            <h2>Build your scenario</h2>
+            <p>Use the score and utilization shown by your current credit service.</p>
+          </div>
+
+          <div class="field">
+            <label for="currentScore">Current score <small>300–850</small></label>
+            <div class="input-wrap">
+              <input id="currentScore" name="currentScore" type="number" min="300" max="850" step="1" inputmode="numeric" placeholder="e.g. 675" autocomplete="off" />
+              <span class="unit">points</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="currentUtil">Current card utilization <small>Balances ÷ total limits</small></label>
+            <div class="input-wrap">
+              <input id="currentUtil" name="currentUtil" type="number" min="0" max="100" step="0.1" inputmode="decimal" placeholder="e.g. 48" autocomplete="off" />
+              <span class="unit">%</span>
+            </div>
+          </div>
+
+          <div class="action-rule">Planned actions</div>
+
+          <div class="field">
+            <label for="targetUtil">Utilization after paydown <small>Must be at or below current</small></label>
+            <div class="input-wrap">
+              <input id="targetUtil" name="targetUtil" type="number" min="0" max="100" step="0.1" inputmode="decimal" placeholder="e.g. 25" autocomplete="off" />
+              <span class="unit">%</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="onTimeMonths">New on-time payment streak <small>0–60 months</small></label>
+            <div class="input-wrap">
+              <input id="onTimeMonths" name="onTimeMonths" type="number" min="0" max="60" step="1" inputmode="numeric" placeholder="e.g. 12" autocomplete="off" />
+              <span class="unit">months</span>
+            </div>
+          </div>
+
+          <div class="error" id="formError" role="alert"></div>
+          <div class="form-actions">
+            <button class="primary" type="submit">Simulate impact</button>
+            <button class="secondary" type="reset">Clear</button>
+          </div>
+        </form>
+
+        <aside class="panel result-panel" aria-live="polite">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-mark" aria-hidden="true"></div>
+            <h2>Your estimate will appear here.</h2>
+            <p>Enter your current picture and at least one change. No result is calculated until you choose “Simulate impact.”</p>
+          </div>
+
+          <div class="results" id="results">
+            <span class="result-label">Potential score range</span>
+            <div class="range" id="scoreRange">—</div>
+            <p class="range-caption" id="rangeCaption"></p>
+            <div class="meter" aria-hidden="true"><div class="meter-fill" id="meterFill"></div></div>
+
+            <div class="impact-list">
+              <div class="impact">
+                <div><strong>Lower utilization</strong><p id="utilSummary"></p></div>
+                <span class="points" id="utilImpact"></span>
+              </div>
+              <div class="impact">
+                <div><strong>On-time payments</strong><p id="paymentSummary"></p></div>
+                <span class="points" id="paymentImpact"></span>
+              </div>
+            </div>
+
+            <div class="result-actions">
+              <a class="email" id="emailButton" href="mailto:?subject=My%20credit%20score%20scenario">Email my results</a>
+              <button class="copy" id="copyButton" type="button">Copy results</button>
+            </div>
+            <p class="status" id="copyStatus" role="status"></p>
+
+            <details>
+              <summary>Explain these results</summary>
+              <div class="explain" id="explanation"></div>
+            </details>
+          </div>
+        </aside>
+      </section>
+
+      <section class="factors" aria-labelledby="factorsTitle">
+        <div class="section-title">
+          <h2 id="factorsTitle">The five score factors</h2>
+          <p>The percentages below are a common FICO framework. Your exact score can differ because lenders use different models and credit bureaus may hold different information.</p>
+        </div>
+        <div class="factor-grid">
+          <article class="factor"><b>35%</b><h3>Payment history</h3><p>Whether accounts are paid on time. Missed payments can matter for years.</p></article>
+          <article class="factor"><b>30%</b><h3>Amounts owed</h3><p>How much available revolving credit you use. Lower is generally better.</p></article>
+          <article class="factor"><b>15%</b><h3>Credit age</h3><p>How long your accounts have been open, including the average account age.</p></article>
+          <article class="factor"><b>10%</b><h3>New credit</h3><p>Recent applications and newly opened accounts can temporarily weigh on a score.</p></article>
+          <article class="factor"><b>10%</b><h3>Credit mix</h3><p>Experience handling different account types can help, but never borrow just for variety.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="disclaimer">For informational and educational purposes only. This simulator uses broad ranges, does not access your credit report, and cannot predict the score a lender will use. Results are not financial, credit, or lending advice.</footer>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("scoreForm");
+      var errorBox = document.getElementById("formError");
+      var emptyState = document.getElementById("emptyState");
+      var results = document.getElementById("results");
+      var copyStatus = document.getElementById("copyStatus");
+      var lastReport = "";
+
+      function num(id) {
+        var raw = document.getElementById(id).value.trim();
+        return raw === "" ? null : Number(raw);
+      }
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+      }
+
+      function utilizationImpact(current, target) {
+        var reduction = current - target;
+        if (reduction <= 0) return { low: 0, high: 0 };
+        var low = Math.round(reduction * 0.18);
+        var high = Math.round(reduction * 0.42);
+        var thresholds = [90, 70, 50, 30, 10];
+        var bonuses = [[1, 4], [2, 6], [2, 7], [4, 12], [3, 8]];
+        thresholds.forEach(function (threshold, index) {
+          if (current > threshold && target <= threshold) {
+            low += bonuses[index][0];
+            high += bonuses[index][1];
+          }
+        });
+        return { low: clamp(low, 1, 28), high: clamp(Math.max(high, low + 3), 4, 55) };
+      }
+
+      function paymentImpact(months, score) {
+        if (months <= 0) return { low: 0, high: 0 };
+        var base;
+        if (months <= 2) base = [0, 4];
+        else if (months <= 5) base = [2, 9];
+        else if (months <= 11) base = [4, 17];
+        else if (months <= 23) base = [8, 29];
+        else if (months <= 35) base = [12, 40];
+        else base = [15, 48];
+        var multiplier = score < 580 ? 1.12 : score >= 740 ? .7 : score >= 670 ? .88 : 1;
+        return {
+          low: Math.round(base[0] * multiplier),
+          high: Math.max(2, Math.round(base[1] * multiplier))
+        };
+      }
+
+      function band(score) {
+        if (score < 580) return "below the commonly used fair range";
+        if (score < 670) return "in the commonly used fair range";
+        if (score < 740) return "in the commonly used good range";
+        if (score < 800) return "in the commonly used very good range";
+        return "in the commonly used exceptional range";
+      }
+
+      function validate(score, current, target, months) {
+        if ([score, current, target, months].some(function (value) { return value === null || !Number.isFinite(value); })) {
+          return "Fill in all four fields. Enter 0 months if you only want to test a balance paydown.";
+        }
+        if (!Number.isInteger(score) || score < 300 || score > 850) return "Enter a current score from 300 to 850.";
+        if (current < 0 || current > 100) return "Enter current utilization from 0% to 100%.";
+        if (target < 0 || target > 100) return "Enter after-paydown utilization from 0% to 100%.";
+        if (target > current) return "After-paydown utilization cannot be higher than current utilization.";
+        if (!Number.isInteger(months) || months < 0 || months > 60) return "Enter a whole number of on-time months from 0 to 60.";
+        if (target === current && months === 0) return "Change utilization or add at least one month to create a scenario.";
+        return "";
+      }
+
+      function makeReport(data) {
+        return [
+          "Credit Score Simulator — Honed Money",
+          "",
+          "Current score: " + data.score,
+          "Current utilization: " + data.current + "%",
+          "Planned utilization: " + data.target + "%",
+          "Planned on-time streak: " + data.months + " months",
+          "",
+          "Potential score range: " + data.lowScore + "–" + data.highScore,
+          "Utilization impact estimate: +" + data.util.low + " to +" + data.util.high + " points",
+          "On-time payment impact estimate: +" + data.pay.low + " to +" + data.pay.high + " points",
+          "",
+          "This is an educational estimate, not a lender score or guarantee. Different scoring models and credit reports can produce different results."
+        ].join("\n");
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        copyStatus.textContent = "";
+        var score = num("currentScore");
+        var current = num("currentUtil");
+        var target = num("targetUtil");
+        var months = num("onTimeMonths");
+        var message = validate(score, current, target, months);
+        if (message) {
+          errorBox.textContent = message;
+          errorBox.classList.add("show");
+          results.classList.remove("show");
+          emptyState.style.display = "grid";
+          return;
+        }
+
+        errorBox.classList.remove("show");
+        var util = utilizationImpact(current, target);
+        var pay = paymentImpact(months, score);
+        var combinedLow = Math.round((util.low + pay.low) * .78);
+        var combinedHigh = Math.round((util.high + pay.high) * .9);
+        if (combinedHigh < combinedLow) combinedHigh = combinedLow;
+        var lowScore = clamp(score + combinedLow, 300, 850);
+        var highScore = clamp(score + combinedHigh, lowScore, 850);
+
+        document.getElementById("scoreRange").textContent = lowScore + "–" + highScore;
+        document.getElementById("rangeCaption").textContent = "A possible landing range, " + band(Math.round((lowScore + highScore) / 2)) + ".";
+        document.getElementById("meterFill").style.width = clamp(((highScore - 300) / 550) * 100, 0, 100) + "%";
+        document.getElementById("utilImpact").textContent = "+" + util.low + "–" + util.high;
+        document.getElementById("paymentImpact").textContent = "+" + pay.low + "–" + pay.high;
+        document.getElementById("utilSummary").textContent = target < current ? "From " + current + "% to " + target + "% utilization." : "No utilization change in this scenario.";
+        document.getElementById("paymentSummary").textContent = months > 0 ? months + " months of added positive history." : "No new payment history in this scenario.";
+        document.getElementById("explanation").innerHTML =
+          "<p><strong>Why it is a range:</strong> Scores do not move by a fixed number of points. The result depends on what else is in your reports, when card issuers report balances, and which scoring model a lender uses.</p>" +
+          "<p><strong>Balance paydown:</strong> The estimate gives extra weight when your utilization moves below commonly watched levels such as 50%, 30%, and 10%. Paying in full and on time remains the goal; carrying interest does not help your score.</p>" +
+          "<p><strong>On-time streak:</strong> Positive payments usually help gradually. If your report includes missed payments, collections, new accounts, or errors, the outcome may fall outside this range.</p>" +
+          "<p><strong>What is not simulated:</strong> Account age, new applications, closed accounts, credit mix, and changes to derogatory marks.</p>";
+
+        lastReport = makeReport({ score: score, current: current, target: target, months: months, lowScore: lowScore, highScore: highScore, util: util, pay: pay });
+        document.getElementById("emailButton").href = "mailto:?subject=" + encodeURIComponent("My credit score scenario") + "&body=" + encodeURIComponent(lastReport);
+        emptyState.style.display = "none";
+        results.classList.add("show");
+      });
+
+      form.addEventListener("reset", function () {
+        window.setTimeout(function () {
+          errorBox.classList.remove("show");
+          results.classList.remove("show");
+          emptyState.style.display = "grid";
+          copyStatus.textContent = "";
+          lastReport = "";
+        }, 0);
+      });
+
+      document.getElementById("copyButton").addEventListener("click", function () {
+        if (!lastReport) return;
+        function done(ok) {
+          copyStatus.textContent = ok ? "Results copied." : "Could not copy automatically. Select the result text and copy it manually.";
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastReport).then(function () { done(true); }, function () { fallbackCopy(); });
+        } else {
+          fallbackCopy();
+        }
+        function fallbackCopy() {
+          var area = document.createElement("textarea");
+          area.value = lastReport;
+          area.setAttribute("readonly", "");
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          var ok = false;
+          try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+          document.body.removeChild(area);
+          done(ok);
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Tip Calculator | Honed Money</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+    :root {
+      color-scheme: light dark;
+      --bg: #0b0e14;
+      --surface: #141922;
+      --surface-2: #1c2330;
+      --line: #303947;
+      --text: #f5f5f5;
+      --muted: #aeb8c7;
+      --faint: #727f91;
+      --blue: #79a9db;
+      --orange: #f7931a;
+      --orange-ink: #16100a;
+      --green: #39ff14;
+      --danger: #ff8084;
+      --shadow: 0 22px 54px rgba(0, 0, 0, .28);
+      --radius-lg: 20px;
+      --radius-md: 12px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #101620;
+        --surface: #19212c;
+        --surface-2: #222c39;
+        --line: #3b4859;
+        --text: #ffffff;
+        --muted: #c0c9d5;
+        --faint: #8d99a9;
+        --blue: #8bb8e6;
+        --green: #65ff49;
+        --danger: #ff9296;
+        --shadow: 0 18px 44px rgba(0, 0, 0, .24);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, transparent 0 49.88%, rgba(100, 144, 196, .045) 49.88% 50.12%, transparent 50.12%),
+        var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input { font: inherit; }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(1060px, 100%);
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) 24px max(48px, env(safe-area-inset-bottom));
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 42px;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible { color: var(--orange); }
+
+    .back-link:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 65%, transparent);
+      outline-offset: 3px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 36px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      max-width: 720px;
+      font-size: clamp(2.25rem, 6vw, 4.6rem);
+      line-height: .96;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+
+    .intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      max-width: 56ch;
+    }
+
+    .receipt-mark {
+      width: 116px;
+      color: var(--orange);
+      opacity: .88;
+    }
+
+    .receipt-mark svg { display: block; width: 100%; height: auto; }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .form-pane, .result-pane { padding: clamp(24px, 4vw, 44px); }
+    .result-pane { background: var(--surface-2); border-left: 1px solid var(--line); }
+
+    .form-heading,
+    .result-heading {
+      margin: 0 0 24px;
+      font-size: 1rem;
+      letter-spacing: .01em;
+      font-weight: 700;
+    }
+
+    .field { margin-bottom: 22px; }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .hint {
+      color: var(--faint);
+      font-size: .78rem;
+      font-weight: 500;
+    }
+
+    .input-shell { position: relative; }
+
+    .input-shell .prefix,
+    .input-shell .suffix {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    .input-shell .prefix { left: 15px; }
+    .input-shell .suffix { right: 15px; }
+
+    input[type="number"] {
+      width: 100%;
+      min-height: 52px;
+      padding: 13px 44px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      font-weight: 500;
+      -moz-appearance: textfield;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    input::placeholder { color: var(--faint); opacity: .82; }
+    input:hover { border-color: var(--faint); }
+    input:focus { border-color: var(--blue); }
+    input.invalid { border-color: var(--danger); }
+
+    .presets {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 9px;
+    }
+
+    .preset {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: .84rem;
+      font-weight: 700;
+    }
+
+    .preset:hover { color: var(--text); border-color: var(--orange); }
+    .preset.active { color: var(--orange-ink); background: var(--orange); border-color: var(--orange); }
+
+    .error {
+      min-height: 22px;
+      margin: -9px 0 12px;
+      color: var(--danger);
+      font-size: .84rem;
+    }
+
+    .calculate {
+      width: 100%;
+      min-height: 52px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--text);
+      color: var(--bg);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .calculate:hover { filter: brightness(.88); }
+
+    .empty-state {
+      min-height: 320px;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .empty-state .circle {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 18px;
+      border: 1px dashed var(--faint);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.45rem;
+      font-weight: 600;
+    }
+
+    .empty-state p { margin: 0; max-width: 28ch; }
+
+    .results[hidden], .empty-state[hidden] { display: none; }
+
+    .primary-result {
+      padding-bottom: 25px;
+      margin-bottom: 5px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .result-label { color: var(--muted); font-size: .86rem; font-weight: 600; }
+    .result-value {
+      margin-top: 4px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.7rem, 7vw, 5.1rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+      font-weight: 600;
+      color: var(--green);
+      overflow-wrap: anywhere;
+    }
+
+    .primary-result .result-note { margin-top: 10px; color: var(--muted); font-size: .86rem; }
+
+    .result-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 62px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .result-row strong {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.16rem;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .action {
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .email { background: var(--orange); color: var(--orange-ink); border-color: var(--orange); }
+    .copy { background: transparent; color: var(--text); }
+    .action:hover { filter: brightness(.92); }
+
+    .copy-note {
+      min-height: 21px;
+      margin: 8px 0 0;
+      text-align: right;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    details {
+      margin-top: 17px;
+      border-top: 1px solid var(--line);
+      padding-top: 17px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--blue);
+      font-weight: 700;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; font-family: "IBM Plex Mono", monospace; }
+    details[open] summary::after { content: "−"; }
+    .explanation { color: var(--muted); font-size: .93rem; }
+    .explanation p { margin: 12px 0 0; }
+
+    footer {
+      margin: 20px 4px 0;
+      color: var(--faint);
+      font-size: .78rem;
+    }
+
+    @media (max-width: 760px) {
+      .page { padding-inline: 16px; }
+      .back-link { margin-bottom: 30px; }
+      .intro { grid-template-columns: 1fr; gap: 0; }
+      .receipt-mark { display: none; }
+      h1 { font-size: clamp(2.5rem, 13vw, 4.1rem); }
+      .calculator { grid-template-columns: 1fr; }
+      .result-pane { border-left: 0; border-top: 1px solid var(--line); }
+      .empty-state { min-height: 230px; }
+      .result-value { font-size: clamp(2.5rem, 14vw, 4rem); }
+    }
+
+    @media (max-width: 420px) {
+      .form-pane, .result-pane { padding: 22px 18px; }
+      .presets { grid-template-columns: repeat(2, 1fr); }
+      .actions { grid-template-columns: 1fr; }
+      .copy-note { text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+    }
+  </style>
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="Split the bill right. Free tip calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/tip-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Tip Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/tip-calculator/","description":"Split the bill right. Free tip calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <div class="page">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <h1 id="page-title">Split the bill.<br>Keep it simple.</h1>
+          <p>Work out the tip, the full total, and what each person pays.</p>
+        </div>
+        <div class="receipt-mark" aria-hidden="true">
+          <svg viewBox="0 0 120 118" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 5h80v106l-10-7-10 7-10-7-10 7-10-7-10 7-10-7-10 7V5Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M37 31h46M37 49h28M37 67h46" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="79" cy="49" r="3" fill="currentColor"/>
+            <path d="M37 87h22M74 87h9" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="calculator" aria-label="Tip calculator">
+        <form class="form-pane" id="tip-form" novalidate>
+          <h2 class="form-heading">Bill details</h2>
+
+          <div class="field">
+            <label for="bill">Bill amount <span class="hint">before tip</span></label>
+            <div class="input-shell">
+              <span class="prefix" aria-hidden="true">$</span>
+              <input id="bill" name="bill" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="64.80" autocomplete="off" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="tip">Tip percentage <span class="hint">choose or type</span></label>
+            <div class="input-shell">
+              <input id="tip" name="tip" type="number" inputmode="decimal" min="0" max="100" step="0.1" placeholder="20" autocomplete="off" required />
+              <span class="suffix" aria-hidden="true">%</span>
+            </div>
+            <div class="presets" aria-label="Common tip percentages">
+              <button class="preset" type="button" data-tip="15">15%</button>
+              <button class="preset" type="button" data-tip="18">18%</button>
+              <button class="preset" type="button" data-tip="20">20%</button>
+              <button class="preset" type="button" data-tip="25">25%</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="people">Number of people <span class="hint">including you</span></label>
+            <div class="input-shell">
+              <input id="people" name="people" type="number" inputmode="numeric" min="1" max="1000" step="1" placeholder="2" autocomplete="off" required />
+              <span class="suffix" aria-hidden="true">people</span>
+            </div>
+          </div>
+
+          <p class="error" id="error" role="alert" aria-live="polite"></p>
+          <button class="calculate" type="submit">Calculate tip</button>
+        </form>
+
+        <div class="result-pane" aria-live="polite">
+          <div class="empty-state" id="empty-state">
+            <div class="circle">$</div>
+            <p>Enter your bill details to see the split.</p>
+          </div>
+
+          <div class="results" id="results" hidden>
+            <h2 class="result-heading">Your split</h2>
+            <div class="primary-result">
+              <div class="result-label">Each person pays</div>
+              <div class="result-value" id="per-person">$0.00</div>
+              <div class="result-note" id="people-note"></div>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Tip amount</span>
+              <strong id="tip-amount">$0.00</strong>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Total with tip</span>
+              <strong id="total">$0.00</strong>
+            </div>
+
+            <div class="actions">
+              <button class="action email" id="email" type="button">Email my results</button>
+              <button class="action copy" id="copy" type="button">Copy results</button>
+            </div>
+            <p class="copy-note" id="copy-note" aria-live="polite"></p>
+
+            <details>
+              <summary>Explain these results</summary>
+              <div class="explanation" id="explanation"></div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>For informational purposes only.</footer>
+  </div>
+
+  <script>
+    (function () {
+      var form = document.getElementById('tip-form');
+      var billInput = document.getElementById('bill');
+      var tipInput = document.getElementById('tip');
+      var peopleInput = document.getElementById('people');
+      var error = document.getElementById('error');
+      var emptyState = document.getElementById('empty-state');
+      var results = document.getElementById('results');
+      var perPersonEl = document.getElementById('per-person');
+      var tipAmountEl = document.getElementById('tip-amount');
+      var totalEl = document.getElementById('total');
+      var peopleNoteEl = document.getElementById('people-note');
+      var explanationEl = document.getElementById('explanation');
+      var copyNote = document.getElementById('copy-note');
+      var latestText = '';
+      var latestMailBody = '';
+
+      function money(value) {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(value);
+      }
+
+      function clearInvalid() {
+        [billInput, tipInput, peopleInput].forEach(function (input) {
+          input.classList.remove('invalid');
+          input.removeAttribute('aria-invalid');
+        });
+        error.textContent = '';
+      }
+
+      function markInvalid(input, message) {
+        input.classList.add('invalid');
+        input.setAttribute('aria-invalid', 'true');
+        error.textContent = message;
+        input.focus();
+      }
+
+      function validate() {
+        clearInvalid();
+        var bill = Number(billInput.value);
+        var tip = Number(tipInput.value);
+        var people = Number(peopleInput.value);
+
+        if (billInput.value.trim() === '' || !Number.isFinite(bill) || bill <= 0) {
+          markInvalid(billInput, 'Enter a bill amount greater than zero.');
+          return null;
+        }
+        if (tipInput.value.trim() === '' || !Number.isFinite(tip) || tip < 0 || tip > 100) {
+          markInvalid(tipInput, 'Enter a tip from 0% to 100%.');
+          return null;
+        }
+        if (peopleInput.value.trim() === '' || !Number.isInteger(people) || people < 1 || people > 1000) {
+          markInvalid(peopleInput, 'Enter a whole number of people, from 1 to 1,000.');
+          return null;
+        }
+        return { bill: bill, tip: tip, people: people };
+      }
+
+      function calculate(values) {
+        var tipAmount = values.bill * values.tip / 100;
+        var total = values.bill + tipAmount;
+        var perPerson = total / values.people;
+        var billText = money(values.bill);
+        var tipText = money(tipAmount);
+        var totalText = money(total);
+        var shareText = money(perPerson);
+        var peopleWord = values.people === 1 ? 'person' : 'people';
+
+        perPersonEl.textContent = shareText;
+        tipAmountEl.textContent = tipText;
+        totalEl.textContent = totalText;
+        peopleNoteEl.textContent = 'Split between ' + values.people + ' ' + peopleWord;
+        explanationEl.innerHTML =
+          '<p>A ' + values.tip + '% tip on ' + billText + ' is <strong>' + tipText + '</strong>.</p>' +
+          '<p>Adding that tip brings the bill to <strong>' + totalText + '</strong>. Dividing the full amount evenly among ' + values.people + ' ' + peopleWord + ' makes each share <strong>' + shareText + '</strong>.</p>' +
+          '<p>Restaurants may round individual payments by a cent so the separate payments add up exactly.</p>';
+
+        latestText = [
+          'Tip calculator results',
+          'Bill before tip: ' + billText,
+          'Tip: ' + values.tip + '% (' + tipText + ')',
+          'Total with tip: ' + totalText,
+          'Split between: ' + values.people + ' ' + peopleWord,
+          'Each person pays: ' + shareText,
+          '',
+          'For informational purposes only.'
+        ].join('\n');
+        latestMailBody = encodeURIComponent(latestText);
+
+        emptyState.hidden = true;
+        results.hidden = false;
+        copyNote.textContent = '';
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var values = validate();
+        if (!values) return;
+        calculate(values);
+      });
+
+      document.querySelectorAll('.preset').forEach(function (button) {
+        button.addEventListener('click', function () {
+          tipInput.value = button.getAttribute('data-tip');
+          tipInput.dispatchEvent(new Event('input'));
+          tipInput.focus();
+        });
+      });
+
+      tipInput.addEventListener('input', function () {
+        var value = tipInput.value;
+        document.querySelectorAll('.preset').forEach(function (button) {
+          button.classList.toggle('active', button.getAttribute('data-tip') === value);
+        });
+      });
+
+      [billInput, tipInput, peopleInput].forEach(function (input) {
+        input.addEventListener('input', function () {
+          input.classList.remove('invalid');
+          input.removeAttribute('aria-invalid');
+          error.textContent = '';
+        });
+      });
+
+      document.getElementById('email').addEventListener('click', function () {
+        if (!latestMailBody) return;
+        window.location.href = 'mailto:?subject=' + encodeURIComponent('My tip calculation') + '&body=' + latestMailBody;
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        var successful = false;
+        try { successful = document.execCommand('copy'); } catch (e) { successful = false; }
+        document.body.removeChild(area);
+        return successful;
+      }
+
+      document.getElementById('copy').addEventListener('click', function () {
+        if (!latestText) return;
+        copyNote.textContent = fallbackCopy(latestText) ? 'Results copied.' : 'Could not copy. Select and copy the results above.';
+      });
+    }());
+  </script>
+</body>
+</html>

@@ -1,382 +1,54 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="color-scheme" content="light dark" />
-  <link rel="icon" href="data:," />
-  <title>Homeowners Insurance Estimator</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&display=swap');
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Empty inline icon: stops the browser fetching /favicon.ico, which
+         lives outside the artifact's routes and 404s. -->
+    <link rel="icon" href="data:," />
+    <title>Homeowners Insurance Estimator | Honed Money</title>
+    <style>
+      /* Bare reset only — no house style. Author your own look here to your
+         art-direction plan (light and dark palettes, type, layout); replace
+         this whole block. */
+      * { box-sizing: border-box; }
+      body { margin: 0; }
+    </style>
+  
 
-    :root {
-      color-scheme: dark;
-      --ink: #f5f5f5;
-      --paper: #0d1118;
-      --surface: #171c25;
-      --surface-2: #212832;
-      --line: #39434f;
-      --muted: #afb9b4;
-      --blue: #75a4d4;
-      --orange: #f7931a;
-      --orange-ink: #111318;
-      --neon: #39ff14;
-      --red: #ff747b;
-      --shadow: 0 18px 50px rgba(0, 0, 0, .28);
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --paper: #090c11;
-        --surface: #121720;
-        --surface-2: #1b222c;
-        --line: #323d49;
-        --muted: #a9b4af;
-        --shadow: 0 20px 54px rgba(0, 0, 0, .4);
-      }
-    }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px),
-        var(--paper);
-      background-size: 36px 36px;
-      color: var(--ink);
-      font-family: Manrope, sans-serif;
-      line-height: 1.5;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background: color-mix(in srgb, var(--paper) 88%, transparent);
-      z-index: -1;
-    }
-    button, input { font: inherit; }
-    a { color: inherit; }
-    .wrap { width: min(1060px, calc(100% - 36px)); margin: 0 auto; }
-    .back {
-      display: inline-block;
-      margin: 20px 0 28px;
-      color: var(--muted);
-      font-size: .88rem;
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .back:hover, .back:focus-visible { color: var(--orange); text-decoration: underline; }
 
-    .intro { max-width: 760px; margin-bottom: 32px; }
-    .eyebrow {
-      margin: 0 0 10px;
-      color: var(--orange);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: .76rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    h1 {
-      margin: 0;
-      max-width: 760px;
-      font-size: clamp(2.15rem, 5vw, 4rem);
-      line-height: 1.02;
-      letter-spacing: -.05em;
-    }
-    .lede { margin: 18px 0 0; max-width: 650px; color: var(--muted); font-size: 1.05rem; }
 
-    .workspace { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(310px, .95fr); gap: 24px; align-items: start; padding-bottom: 56px; }
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-    }
-    .form-panel { padding: clamp(22px, 4vw, 36px); border-radius: 6px 22px 6px 6px; }
-    .result-panel { padding: clamp(22px, 4vw, 32px); border-radius: 6px 6px 22px 6px; position: sticky; top: 18px; }
-    h2 { margin: 0 0 22px; font-size: 1.35rem; letter-spacing: -.02em; }
-    .field { margin-bottom: 24px; }
-    label { display: block; margin-bottom: 7px; font-weight: 750; }
-    .hint { display: block; margin-top: 7px; color: var(--muted); font-size: .82rem; }
-    .money-input { position: relative; }
-    .money-input span {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-weight: 600;
-    }
-    input {
-      width: 100%;
-      min-height: 52px;
-      padding: 12px 14px 12px 34px;
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 1rem;
-      outline: none;
-    }
-    input::placeholder { color: color-mix(in srgb, var(--muted) 70%, transparent); }
-    input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 24%, transparent); }
-    .error { display: none; margin: -10px 0 18px; color: var(--red); font-size: .86rem; font-weight: 700; }
-    .error.show { display: block; }
 
-    .primary, .action {
-      border: 0;
-      border-radius: 4px;
-      min-height: 48px;
-      padding: 12px 18px;
-      cursor: pointer;
-      font-weight: 800;
-      transition: filter .16s ease, transform .16s ease;
-    }
-    .primary { width: 100%; background: var(--ink); color: var(--paper); }
-    .primary:hover, .action:hover { filter: brightness(1.08); }
-    .primary:active, .action:active { transform: translateY(1px); }
-    .primary:focus-visible, .action:focus-visible, summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
-
-    .empty { min-height: 292px; display: grid; align-content: center; text-align: center; }
-    .empty-mark {
-      width: 58px;
-      height: 58px;
-      margin: 0 auto 18px;
-      border: 2px solid var(--line);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-weight: 600;
-    }
-    .empty p { margin: 0 auto; max-width: 300px; color: var(--muted); font-size: .92rem; }
-    .results[hidden], .empty[hidden] { display: none; }
-    .result-kicker { margin: 0 0 4px; color: var(--neon); font-family: "IBM Plex Mono", monospace; font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
-    .result-title { margin-bottom: 18px; }
-    .coverage-list { border-top: 1px solid var(--line); }
-    .coverage-row { padding: 17px 0; border-bottom: 1px solid var(--line); }
-    .coverage-top { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; }
-    .coverage-name { font-weight: 750; }
-    .coverage-value { font-family: "IBM Plex Mono", monospace; font-size: 1.2rem; font-weight: 600; white-space: nowrap; }
-    .coverage-row p { margin: 6px 0 0; color: var(--muted); font-size: .82rem; }
-    .total-note { margin: 16px 0 0; color: var(--muted); font-size: .78rem; }
-    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
-    .action.email { background: var(--orange); color: var(--orange-ink); text-decoration: none; display: grid; place-items: center; text-align: center; }
-    .action.copy { background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); }
-    .status { min-height: 20px; margin: 8px 0 0; color: var(--neon); font-size: .78rem; text-align: center; }
-
-    details { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 15px; }
-    summary { cursor: pointer; font-weight: 800; color: var(--blue); }
-    .explain { padding: 6px 0 0; }
-    .explain h3 { margin: 15px 0 4px; font-size: .94rem; }
-    .explain p { margin: 0; color: var(--muted); font-size: .84rem; }
-    .method {
-      margin-top: 24px;
-      padding: 17px 18px;
-      background: var(--surface-2);
-      border-radius: 4px;
-      color: var(--muted);
-      font-size: .82rem;
-    }
-    .method strong { color: var(--ink); }
-    footer { padding: 0 0 34px; color: var(--muted); font-size: .75rem; }
-
-    @media (max-width: 760px) {
-      .wrap { width: min(100% - 24px, 560px); }
-      .back { margin: 15px 0 22px; }
-      .intro { margin-bottom: 24px; }
-      h1 { font-size: clamp(2.05rem, 12vw, 3rem); }
-      .workspace { grid-template-columns: 1fr; gap: 16px; padding-bottom: 34px; }
-      .result-panel { position: static; }
-      .actions { grid-template-columns: 1fr; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .primary, .action { transition: none; }
-    }
-  </style>
+<!-- honed-seo-start -->
+<meta name="description" content="Cover your home properly. Free homeowners insurance estimator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/homeowners-insurance-estimator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Homeowners Insurance Estimator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/homeowners-insurance-estimator/","description":"Cover your home properly. Free homeowners insurance estimator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
 </head>
-<body>
-  <div class="wrap">
-    <a class="back" href="/money/">← Honed Money</a>
+  <body>
+    <!--
+      This is a lite (static) web artifact: one self-contained HTML page.
+      Edit this file directly. Keep styles and scripts inline, and drop binary
+      assets (images, fonts, audio) into ./assets/, then reference them with a
+      normal relative path:
 
-    <header class="intro">
-      <p class="eyebrow">Insurance &amp; Protection</p>
-      <h1>Build a homeowners coverage starting point.</h1>
-      <p class="lede">Turn three practical estimates into rounded coverage limits you can discuss with an insurance agent.</p>
-    </header>
+        <img src="assets/photo.png" alt="…" />
 
-    <main class="workspace">
-      <section class="panel form-panel" aria-labelledby="inputs-heading">
-        <h2 id="inputs-heading">What would you need to protect?</h2>
-        <form id="coverage-form" novalidate>
-          <div class="field">
-            <label for="rebuild">Estimated cost to rebuild your home</label>
-            <div class="money-input"><span aria-hidden="true">$</span><input id="rebuild" name="rebuild" type="number" min="1" step="1000" inputmode="decimal" placeholder="350,000" aria-describedby="rebuild-hint" /></div>
-            <small class="hint" id="rebuild-hint">Use construction cost—not the home's market price or land value.</small>
-          </div>
-          <div class="field">
-            <label for="belongings">Estimated value of your belongings</label>
-            <div class="money-input"><span aria-hidden="true">$</span><input id="belongings" name="belongings" type="number" min="1" step="500" inputmode="decimal" placeholder="75,000" aria-describedby="belongings-hint" /></div>
-            <small class="hint" id="belongings-hint">Think furniture, clothes, electronics, appliances, and other possessions.</small>
-          </div>
-          <div class="field">
-            <label for="liability">Liability protection you want</label>
-            <div class="money-input"><span aria-hidden="true">$</span><input id="liability" name="liability" type="number" min="1" step="10000" inputmode="decimal" placeholder="300,000" aria-describedby="liability-hint" /></div>
-            <small class="hint" id="liability-hint">Consider savings, investments, future income, and risks such as a pool or dog.</small>
-          </div>
-          <p class="error" id="form-error" role="alert">Enter a positive amount in all three fields.</p>
-          <button class="primary" type="submit">Estimate my coverage</button>
-        </form>
-        <div class="method"><strong>How the estimate works:</strong> each amount is rounded up to a practical policy limit. Liability has a $300,000 starting floor. Your insurer may recommend different limits after reviewing local building costs and your property.</div>
-      </section>
-
-      <aside class="panel result-panel" aria-live="polite">
-        <div class="empty" id="empty-state">
-          <div class="empty-mark" aria-hidden="true">01</div>
-          <p>Enter your estimates to see three recommended coverage limits.</p>
-        </div>
-
-        <div class="results" id="results" hidden>
-          <p class="result-kicker">Coverage snapshot</p>
-          <h2 class="result-title">Your starting limits</h2>
-          <div class="coverage-list">
-            <div class="coverage-row">
-              <div class="coverage-top"><span class="coverage-name">Dwelling</span><strong class="coverage-value" id="dwelling-result">$0</strong></div>
-              <p>Helps rebuild the structure of your home after a covered loss.</p>
-            </div>
-            <div class="coverage-row">
-              <div class="coverage-top"><span class="coverage-name">Personal property</span><strong class="coverage-value" id="property-result">$0</strong></div>
-              <p>Helps replace belongings damaged or stolen in a covered event.</p>
-            </div>
-            <div class="coverage-row">
-              <div class="coverage-top"><span class="coverage-name">Personal liability</span><strong class="coverage-value" id="liability-result">$0</strong></div>
-              <p>Helps with covered claims if you are legally responsible for injury or property damage.</p>
-            </div>
-          </div>
-          <p class="total-note">These are separate coverage limits, not a single total payout.</p>
-
-          <div class="actions">
-            <a class="action email" id="email-results" href="mailto:?subject=My%20homeowners%20insurance%20coverage%20estimate">Email my results</a>
-            <button class="action copy" id="copy-results" type="button">Copy results</button>
-          </div>
-          <p class="status" id="copy-status" role="status"></p>
-
-          <details>
-            <summary>Explain these results</summary>
-            <div class="explain">
-              <h3>Dwelling coverage</h3>
-              <p>This is based on what rebuilding could cost, rounded up to the next $10,000. It is not based on your mortgage balance or sale price. Ask whether extended replacement coverage can add a cushion if labor and material costs jump.</p>
-              <h3>Personal property coverage</h3>
-              <p>This reflects the belongings value you entered, rounded up to the next $5,000. A room-by-room home inventory can reveal whether this amount is too low. Jewelry, art, and collectibles may need separate limits.</p>
-              <h3>Personal liability coverage</h3>
-              <p>This rounds your requested amount up to the next $100,000, with a $300,000 starting floor. Higher limits may fit households with more assets or added risks. An umbrella policy can provide protection above a home policy's limit.</p>
-              <h3>What is not included</h3>
-              <p>This tool does not estimate deductibles, temporary living expenses, detached structures, flood, earthquake, wind exclusions, or local code upgrades. Review those items separately before choosing a policy.</p>
-            </div>
-          </details>
-        </div>
-      </aside>
+      The build copies ./assets/ verbatim into the served bundle and the page
+      loads each file over HTTP — the asset stays a real, editable file, never
+      base64-inlined, and nothing rewrites this HTML. There is no server,
+      database, or build step to learn.
+    -->
+    <main>
+      <h1>Homeowners Insurance Estimator</h1>
+      <p>Placeholder — replace this page with your build.</p>
     </main>
-
-    <footer>For informational and educational purposes only. This estimate is not insurance advice, a quote, or a guarantee of coverage. Policy terms, exclusions, and limits vary.</footer>
-  </div>
-
-  <script>
-    (function () {
-      var form = document.getElementById('coverage-form');
-      var emptyState = document.getElementById('empty-state');
-      var results = document.getElementById('results');
-      var error = document.getElementById('form-error');
-      var copyStatus = document.getElementById('copy-status');
-      var latestText = '';
-
-      function roundUp(value, increment) {
-        return Math.ceil(value / increment) * increment;
-      }
-
-      function currency(value) {
-        return new Intl.NumberFormat('en-US', {
-          style: 'currency', currency: 'USD', maximumFractionDigits: 0
-        }).format(value);
-      }
-
-      function buildText(dwelling, property, liability) {
-        return [
-          'Homeowners Insurance Coverage Estimate',
-          '',
-          'Dwelling: ' + currency(dwelling),
-          'Personal property: ' + currency(property),
-          'Personal liability: ' + currency(liability),
-          '',
-          'These are separate coverage limits. This estimate is for informational and educational purposes only and is not insurance advice, a quote, or a guarantee of coverage.'
-        ].join('\n');
-      }
-
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        copyStatus.textContent = '';
-        var rebuild = Number(document.getElementById('rebuild').value);
-        var belongings = Number(document.getElementById('belongings').value);
-        var liabilityNeed = Number(document.getElementById('liability').value);
-
-        if (!Number.isFinite(rebuild) || !Number.isFinite(belongings) || !Number.isFinite(liabilityNeed) || rebuild <= 0 || belongings <= 0 || liabilityNeed <= 0) {
-          error.classList.add('show');
-          return;
-        }
-
-        error.classList.remove('show');
-        var dwelling = roundUp(rebuild, 10000);
-        var property = roundUp(belongings, 5000);
-        var liability = Math.max(300000, roundUp(liabilityNeed, 100000));
-
-        document.getElementById('dwelling-result').textContent = currency(dwelling);
-        document.getElementById('property-result').textContent = currency(property);
-        document.getElementById('liability-result').textContent = currency(liability);
-        latestText = buildText(dwelling, property, liability);
-        document.getElementById('email-results').href = 'mailto:?subject=' + encodeURIComponent('My homeowners insurance coverage estimate') + '&body=' + encodeURIComponent(latestText);
-        emptyState.hidden = true;
-        results.hidden = false;
-        if (window.innerWidth <= 760) {
-          results.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-        }
-      });
-
-      document.getElementById('copy-results').addEventListener('click', function () {
-        if (!latestText) return;
-        function done() {
-          copyStatus.textContent = 'Results copied.';
-          window.setTimeout(function () { copyStatus.textContent = ''; }, 2500);
-        }
-        function fallback() {
-          var area = document.createElement('textarea');
-          area.value = latestText;
-          area.setAttribute('readonly', '');
-          area.style.position = 'fixed';
-          area.style.opacity = '0';
-          document.body.appendChild(area);
-          area.select();
-          try {
-            document.execCommand('copy');
-            done();
-          } catch (e) {
-            copyStatus.textContent = 'Copy was blocked. Select the results and copy manually.';
-          }
-          document.body.removeChild(area);
-        }
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(latestText).then(done).catch(fallback);
-        } else {
-          fallback();
-        }
-      });
-    })();
-  </script>
-</body>
+  </body>
 </html>

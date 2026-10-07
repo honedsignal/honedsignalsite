@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0b0e14" />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,700&display=swap" rel="stylesheet" />
+    <title>Budget Money Calculators | Honed Money</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --page: #0b0e14;
+        --surface: #141922;
+        --surface-hover: #181f2a;
+        --ink: #f5f5f5;
+        --muted: #b2bac6;
+        --line: #2a3240;
+        --accent: #f7931a;
+        --accent-strong: #ffa943;
+        --button-text: #0b0e14;
+        --focus: #78a8dc;
+        --shadow: 0 22px 54px rgba(0, 0, 0, 0.28);
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          color-scheme: light;
+          --page: #10141b;
+          --surface: #1a202a;
+          --surface-hover: #202734;
+          --ink: #ffffff;
+          --muted: #c0c7d1;
+          --line: #343d4c;
+          --accent: #f7931a;
+          --accent-strong: #ffad48;
+          --button-text: #0b0e14;
+          --focus: #8bb9ea;
+          --shadow: 0 22px 54px rgba(0, 0, 0, 0.24);
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      html { min-width: 320px; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--page);
+        color: var(--ink);
+        font-family: "DM Sans", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: inherit; }
+
+      .page {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: calc(24px + env(safe-area-inset-top)) 0 calc(72px + env(safe-area-inset-bottom));
+      }
+
+      .back-link {
+        display: inline-block;
+        padding: 7px 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 600;
+        line-height: 1.4;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      .back-link:hover { color: var(--ink); text-decoration: underline; }
+
+      .back-link:focus-visible,
+      .button:focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 4px;
+      }
+
+      .intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 24px;
+        margin: clamp(48px, 9vw, 100px) 0 34px;
+        padding-bottom: 28px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 720px;
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: clamp(3.1rem, 8vw, 6.6rem);
+        font-weight: 700;
+        letter-spacing: -0.065em;
+        line-height: 0.88;
+      }
+
+      .intro p {
+        width: min(100%, 310px);
+        margin: 0 0 4px;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.8vw, 1.16rem);
+        line-height: 1.55;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        position: relative;
+        display: flex;
+        min-height: 310px;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        right: -32px;
+        bottom: -54px;
+        width: 132px;
+        height: 132px;
+        border: 24px solid color-mix(in srgb, var(--accent) 21%, transparent);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .card:hover {
+        background: var(--surface-hover);
+        border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+        transform: translateY(-2px);
+      }
+
+      .number {
+        color: var(--accent-strong);
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      h2 {
+        margin: 28px 0 10px;
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: clamp(1.72rem, 2.6vw, 2.2rem);
+        letter-spacing: -0.035em;
+        line-height: 1.08;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.55;
+      }
+
+      .button {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        width: fit-content;
+        min-width: 150px;
+        min-height: 46px;
+        margin-top: auto;
+        padding: 12px 16px;
+        border-radius: 8px;
+        background: var(--accent);
+        color: var(--button-text);
+        font-size: 0.95rem;
+        font-weight: 700;
+        line-height: 1;
+        text-decoration: none;
+      }
+
+      .button:hover { background: var(--accent-strong); }
+      .arrow { font-size: 1.18rem; line-height: 1; }
+
+      @media (max-width: 800px) {
+        .intro {
+          grid-template-columns: 1fr;
+          align-items: start;
+          margin-top: 42px;
+        }
+
+        .intro p { width: min(100%, 560px); }
+        .grid { grid-template-columns: 1fr; }
+        .card { min-height: 250px; }
+      }
+
+      @media (max-width: 480px) {
+        .page { width: min(100% - 28px, 1120px); padding-top: calc(14px + env(safe-area-inset-top)); }
+        .intro { margin-top: 32px; padding-bottom: 22px; }
+        h1 { font-size: clamp(3rem, 19vw, 4.4rem); }
+        .card { min-height: 236px; padding: 24px; }
+        h2 { margin-top: 22px; }
+        .button { width: 100%; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .card { transition: none; }
+      }
+    </style>
+  
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="Free budget calculators from Honed Money — plain-English answers to real money questions, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/budget/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage",
+"name":"Budget Money Calculators | Honed Money","url":"https://honedsignal.com/money/budget/",
+"description":"Free budget calculators from Honed Money — plain-English answers to real money questions, no signup needed."}
+</script>
+<!-- honed-seo-end -->
+</head>
+  <body>
+    <main class="page">
+      <a class="back-link" href="/money/">← Honed Money</a>
+
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">Budget</h1>
+        <p>Simple plans for the month, the paycheck, and every dollar in between.</p>
+      </section>
+
+      <section class="grid" aria-label="Budget calculators and planners">
+        <article class="card">
+          <span class="number">01</span>
+          <h2>Monthly Budget Planner</h2>
+          <p>Every dollar, assigned.</p>
+          <a class="button" href="/money/monthly-budget-planner/" aria-label="Open Monthly Budget Planner">
+            <span>Open tool</span><span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article class="card">
+          <span class="number">02</span>
+          <h2>50/30/20 Budget Calculator</h2>
+          <p>The classic split.</p>
+          <a class="button" href="/money/50-30-20-budget-calculator/" aria-label="Open 50/30/20 Budget Calculator">
+            <span>Open tool</span><span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article class="card">
+          <span class="number">03</span>
+          <h2>Paycheck Budget Planner</h2>
+          <p>Stretch it to payday.</p>
+          <a class="button" href="/money/paycheck-budget-planner/" aria-label="Open Paycheck Budget Planner">
+            <span>Open tool</span><span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

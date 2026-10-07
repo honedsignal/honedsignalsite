@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Compound Interest Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f3f6f7;
+      --muted: #adb8c1;
+      --paper: #0b0e14;
+      --surface: #121821;
+      --surface-2: #1a222c;
+      --line: #2c3742;
+      --line-strong: #46525d;
+      --blue: #77a6d6;
+      --blue-strong: #9bc2e8;
+      --green: #39ff14;
+      --green-soft: rgba(57, 255, 20, .09);
+      --orange: #f7931a;
+      --orange-ink: #0b0e14;
+      --red: #ff7379;
+      --focus: #82b6e6;
+      --shadow: 0 22px 65px rgba(0, 0, 0, .38);
+      --grid: rgba(243, 246, 247, .08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #080b10;
+        --surface: #10161e;
+        --surface-2: #19212b;
+        --line: #2b3641;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, input, a, summary { -webkit-tap-highlight-color: transparent; }
+    .home-link {
+      display: block;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 12px clamp(16px, 3.5vw, 42px) 4px;
+      color: var(--blue);
+      font-size: .84rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .home-link:hover { color: var(--blue-strong); text-decoration: underline; text-underline-offset: 3px; }
+    .home-link:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 38%, transparent);
+      outline-offset: 3px;
+    }
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: clamp(22px, 4vw, 48px) clamp(16px, 3.5vw, 42px) 68px;
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 40px;
+      align-items: end;
+      padding: 2px 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      max-width: 800px;
+      font-size: clamp(2.45rem, 6vw, 5.8rem);
+      line-height: .94;
+      letter-spacing: -.058em;
+      font-weight: 700;
+    }
+    h1 span { color: var(--green); }
+    .intro p {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      max-width: 40ch;
+    }
+
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
+      margin-top: 34px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .controls {
+      padding: clamp(22px, 3vw, 34px);
+      border-right: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .controls h2, .results h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -.02em;
+    }
+    .section-note { margin: 7px 0 22px; color: var(--muted); font-size: .9rem; }
+    .field { margin-top: 17px; }
+    .field:first-of-type { margin-top: 0; }
+    label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 7px;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    label small { color: var(--muted); font-size: .75rem; font-weight: 500; }
+    .input-wrap { position: relative; }
+    .unit {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .88rem;
+    }
+    .unit.left { left: 14px; }
+    .unit.right { right: 14px; }
+    input {
+      width: 100%;
+      min-height: 49px;
+      border: 1px solid var(--line-strong);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 5px;
+      padding: 11px 42px 11px 14px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+    input.money { padding-left: 31px; }
+    input::placeholder { color: var(--muted); opacity: .68; }
+    input:hover { border-color: var(--blue); }
+    input:focus { border-color: var(--focus); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 18%, transparent); }
+    input[aria-invalid="true"] { border-color: var(--red); }
+    .error {
+      min-height: 1.35em;
+      margin: 14px 0 0;
+      color: var(--red);
+      font-size: .84rem;
+      font-weight: 600;
+    }
+    .primary {
+      width: 100%;
+      min-height: 51px;
+      margin-top: 8px;
+      border: 0;
+      border-radius: 5px;
+      padding: 12px 18px;
+      background: var(--green);
+      color: #071207;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary:hover { filter: brightness(.92); }
+    .method-note {
+      margin: 18px 0 0;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .results {
+      min-width: 0;
+      padding: clamp(22px, 3.5vw, 40px);
+      background: var(--surface);
+    }
+    .empty-state {
+      min-height: 400px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-state-inner { max-width: 31ch; }
+    .empty-mark {
+      display: grid;
+      place-items: end start;
+      width: 112px;
+      height: 82px;
+      margin: 0 auto 22px;
+      border-left: 2px solid var(--line-strong);
+      border-bottom: 2px solid var(--line-strong);
+      background: repeating-linear-gradient(to top, transparent 0 26px, var(--grid) 26px 27px);
+    }
+    .empty-mark svg { width: 102px; height: 68px; overflow: visible; }
+    .empty-state strong { display: block; margin-bottom: 7px; color: var(--ink); font-size: 1.02rem; }
+    .result-content[hidden], .empty-state[hidden] { display: none; }
+
+    .lead-result {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(195px, .8fr);
+      gap: 24px;
+      align-items: end;
+      padding-bottom: 27px;
+      border-bottom: 1px solid var(--line);
+    }
+    .lead-label { margin: 0 0 8px; color: var(--muted); font-size: .84rem; font-weight: 600; }
+    .lead-value {
+      margin: 0;
+      color: var(--green);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.15rem, 5vw, 4.1rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+    .lead-copy { margin: 11px 0 0; color: var(--muted); max-width: 52ch; font-size: .93rem; }
+    .growth-callout {
+      padding: 17px;
+      background: var(--green-soft);
+      border-top: 3px solid var(--green);
+    }
+    .growth-callout strong {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.45rem;
+      letter-spacing: -.035em;
+    }
+    .growth-callout span { display: block; margin-top: 4px; color: var(--muted); font-size: .82rem; }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin: 27px 0;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .metric { min-width: 0; padding: 18px; background: var(--surface); }
+    .metric span { display: block; color: var(--muted); font-size: .78rem; line-height: 1.3; }
+    .metric strong {
+      display: block;
+      margin-top: 7px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(1.05rem, 2.2vw, 1.55rem);
+      letter-spacing: -.04em;
+      overflow-wrap: anywhere;
+    }
+    .metric.contributions strong { color: var(--blue); }
+    .metric.interest strong { color: var(--green); }
+
+    .composition { margin: 0 0 28px; }
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: baseline;
+      margin-bottom: 11px;
+    }
+    .section-heading h3 { margin: 0; font-size: .93rem; }
+    .section-heading span { color: var(--muted); font-size: .75rem; }
+    .stacked-bar {
+      display: flex;
+      width: 100%;
+      height: 24px;
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+    .bar-contributions { background: var(--blue); min-width: 2px; }
+    .bar-interest { background: var(--green); min-width: 0; }
+    .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 10px; color: var(--muted); font-size: .76rem; }
+    .legend span { display: inline-flex; align-items: center; gap: 7px; }
+    .swatch { width: 9px; height: 9px; display: inline-block; }
+    .swatch.contributions { background: var(--blue); }
+    .swatch.interest { background: var(--green); }
+
+    .table-section { margin-top: 26px; }
+    .table-wrap { border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    th, td { padding: 11px 13px; border-bottom: 1px solid var(--line); text-align: right; }
+    th {
+      position: static;
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: .71rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      font-weight: 700;
+    }
+    th:first-child, td:first-child { text-align: left; }
+    tbody tr:last-child td { border-bottom: 0; }
+    td { font-family: "IBM Plex Mono", monospace; font-size: .79rem; }
+    td:last-child { color: var(--green); font-weight: 600; }
+
+    .result-tools {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .tool-button {
+      min-height: 48px;
+      border-radius: 5px;
+      padding: 11px 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .email-button {
+      border: 1px solid var(--orange);
+      background: var(--orange);
+      color: var(--orange-ink);
+    }
+    .email-button:hover { filter: brightness(.94); }
+    .copy-button { border: 1px solid var(--line-strong); background: var(--surface-2); color: var(--ink); }
+    .copy-button:hover { border-color: var(--blue); }
+    .copy-status { min-height: 1.3em; margin: 9px 0 0; color: var(--green); font-size: .8rem; font-weight: 600; text-align: right; }
+
+    details {
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    summary {
+      padding: 17px 2px;
+      cursor: pointer;
+      color: var(--blue);
+      font-weight: 700;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--muted); font-family: "IBM Plex Mono", monospace; }
+    details[open] summary::after { content: "−"; }
+    .explanation { padding: 0 2px 19px; color: var(--muted); font-size: .91rem; }
+    .explanation p { margin: 0 0 11px; }
+    .explanation p:last-child { margin-bottom: 0; }
+    .explanation strong { color: var(--ink); }
+
+    .disclaimer {
+      max-width: 900px;
+      margin: 27px 0 0 auto;
+      color: var(--muted);
+      font-size: .76rem;
+      text-align: right;
+    }
+
+    @media (max-width: 820px) {
+      .intro { grid-template-columns: 1fr; gap: 18px; align-items: start; }
+      .intro p { max-width: 48ch; }
+      .workbench { grid-template-columns: 1fr; }
+      .controls { border-right: 0; border-bottom: 1px solid var(--line); }
+      .empty-state { min-height: 270px; }
+    }
+    @media (max-width: 560px) {
+      .page { padding-top: 18px; padding-bottom: 46px; }
+      h1 { font-size: clamp(2.4rem, 15vw, 4.15rem); }
+      .intro { padding-bottom: 26px; }
+      .workbench { margin-top: 24px; }
+      .controls, .results { padding: 20px; }
+      .lead-result { grid-template-columns: 1fr; align-items: start; }
+      .growth-callout { width: 100%; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .metric { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+      .metric strong { margin-top: 0; text-align: right; }
+      .result-tools { grid-template-columns: 1fr; }
+      .copy-status { text-align: left; }
+      .section-heading { display: block; }
+      .section-heading span { display: block; margin-top: 4px; }
+      .table-wrap { border: 0; }
+      table, thead, tbody, tr, th, td { display: block; }
+      thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      tbody { display: grid; gap: 10px; }
+      tr { padding: 7px 13px; border: 1px solid var(--line); background: var(--paper); }
+      td, td:first-child { display: flex; justify-content: space-between; gap: 14px; padding: 7px 0; border-bottom: 1px solid var(--line); text-align: right; }
+      td::before { content: attr(data-label); color: var(--muted); font-family: "IBM Plex Sans", sans-serif; font-size: .72rem; font-weight: 600; text-align: left; }
+      td:last-child { border-bottom: 0; }
+      .disclaimer { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="Watch compounding do the work. Free compound interest calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/compound-interest-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Compound Interest Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/compound-interest-calculator/","description":"Watch compounding do the work. Free compound interest calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <a class="home-link" href="/money/">← Honed Money</a>
+
+  <main class="page">
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Compound interest <span>calculator</span></h1>
+      <p>See how a starting balance and steady monthly contributions could grow over time. The projection compounds monthly and shows each year.</p>
+    </section>
+
+    <section class="workbench" aria-label="Compound interest calculator">
+      <form class="controls" id="calculator" novalidate>
+        <h2>Your projection</h2>
+        <p class="section-note">Enter the amounts you want to test. All fields are required.</p>
+
+        <div class="field">
+          <label for="starting">Starting amount <small>what you have now</small></label>
+          <div class="input-wrap">
+            <span class="unit left">$</span>
+            <input class="money" id="starting" name="starting" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 5,000" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="monthly">Monthly contribution <small>added at month-end</small></label>
+          <div class="input-wrap">
+            <span class="unit left">$</span>
+            <input class="money" id="monthly" name="monthly" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 250" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="rate">Annual interest rate <small>before inflation or taxes</small></label>
+          <div class="input-wrap">
+            <input id="rate" name="rate" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="e.g. 7" autocomplete="off" />
+            <span class="unit right">%</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="years">Years <small>1 to 60</small></label>
+          <div class="input-wrap">
+            <input id="years" name="years" type="number" inputmode="numeric" min="1" max="60" step="1" placeholder="e.g. 20" autocomplete="off" />
+            <span class="unit right">yrs</span>
+          </div>
+        </div>
+
+        <p class="error" id="form-error" role="alert" aria-live="polite"></p>
+        <button class="primary" type="submit">Calculate growth</button>
+        <p class="method-note">Assumes a fixed rate, monthly compounding, and contributions made at the end of each month.</p>
+      </form>
+
+      <section class="results" aria-labelledby="results-title">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-state-inner">
+            <div class="empty-mark" aria-hidden="true">
+              <svg viewBox="0 0 102 68" role="img">
+                <polyline points="3,61 24,52 42,43 59,46 79,26 99,7" fill="none" stroke="currentColor" stroke-width="3" />
+                <circle cx="99" cy="7" r="4" fill="var(--green)" />
+              </svg>
+            </div>
+            <strong>Your projection will appear here</strong>
+            <span>Add your numbers, then calculate to see the balance, earnings, and annual breakdown.</span>
+          </div>
+        </div>
+
+        <div class="result-content" id="result-content" hidden>
+          <div class="lead-result">
+            <div>
+              <p class="lead-label">Projected balance after <span id="lead-years"></span></p>
+              <p class="lead-value" id="ending-balance">$0</p>
+              <p class="lead-copy" id="lead-copy"></p>
+            </div>
+            <div class="growth-callout">
+              <strong id="interest-share">0%</strong>
+              <span>of the final balance comes from interest</span>
+            </div>
+          </div>
+
+          <div class="metric-grid" aria-label="Projection summary">
+            <div class="metric contributions">
+              <span>Total contributed</span>
+              <strong id="total-contributed">$0</strong>
+            </div>
+            <div class="metric interest">
+              <span>Interest earned</span>
+              <strong id="interest-earned">$0</strong>
+            </div>
+            <div class="metric">
+              <span>Money added monthly</span>
+              <strong id="monthly-added">$0</strong>
+            </div>
+          </div>
+
+          <div class="composition">
+            <div class="section-heading">
+              <h3>Where the final balance comes from</h3>
+              <span id="composition-note"></span>
+            </div>
+            <div class="stacked-bar" role="img" id="composition-bar" aria-label="Final balance split between contributions and interest">
+              <div class="bar-contributions" id="contribution-bar"></div>
+              <div class="bar-interest" id="interest-bar"></div>
+            </div>
+            <div class="legend">
+              <span><i class="swatch contributions"></i> Contributions</span>
+              <span><i class="swatch interest"></i> Interest</span>
+            </div>
+          </div>
+
+          <div class="table-section">
+            <div class="section-heading">
+              <h3>Year-by-year breakdown</h3>
+              <span>Rounded to the nearest dollar</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col">Starting balance</th>
+                    <th scope="col">Added</th>
+                    <th scope="col">Interest</th>
+                    <th scope="col">Ending balance</th>
+                  </tr>
+                </thead>
+                <tbody id="year-rows"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="result-tools">
+            <button class="tool-button email-button" id="email-results" type="button">Email my results</button>
+            <button class="tool-button copy-button" id="copy-results" type="button">Copy results</button>
+          </div>
+          <p class="copy-status" id="copy-status" aria-live="polite"></p>
+
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+        </div>
+      </section>
+    </section>
+
+    <p class="disclaimer">For informational purposes only. This estimate is not a guarantee of future returns and does not include inflation, taxes, fees, or changes in contribution timing or interest rates.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("calculator");
+      var startingInput = document.getElementById("starting");
+      var monthlyInput = document.getElementById("monthly");
+      var rateInput = document.getElementById("rate");
+      var yearsInput = document.getElementById("years");
+      var errorBox = document.getElementById("form-error");
+      var emptyState = document.getElementById("empty-state");
+      var resultContent = document.getElementById("result-content");
+      var copyButton = document.getElementById("copy-results");
+      var emailButton = document.getElementById("email-results");
+      var copyStatus = document.getElementById("copy-status");
+      var latestSummary = "";
+
+      var money = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0
+      });
+
+      function readNumber(input) {
+        if (input.value.trim() === "") return NaN;
+        return Number(input.value);
+      }
+
+      function clearInvalid() {
+        [startingInput, monthlyInput, rateInput, yearsInput].forEach(function (input) {
+          input.removeAttribute("aria-invalid");
+        });
+      }
+
+      function invalidate(input, message) {
+        input.setAttribute("aria-invalid", "true");
+        errorBox.textContent = message;
+        input.focus();
+      }
+
+      function validate(values) {
+        clearInvalid();
+        errorBox.textContent = "";
+
+        if (!Number.isFinite(values.starting) || values.starting < 0) {
+          invalidate(startingInput, "Enter a starting amount of zero or more.");
+          return false;
+        }
+        if (!Number.isFinite(values.monthly) || values.monthly < 0) {
+          invalidate(monthlyInput, "Enter a monthly contribution of zero or more.");
+          return false;
+        }
+        if (values.starting === 0 && values.monthly === 0) {
+          invalidate(monthlyInput, "Enter a starting amount or a monthly contribution above zero.");
+          return false;
+        }
+        if (!Number.isFinite(values.rate) || values.rate < 0 || values.rate > 100) {
+          invalidate(rateInput, "Enter an annual interest rate from 0% to 100%.");
+          return false;
+        }
+        if (!Number.isInteger(values.years) || values.years < 1 || values.years > 60) {
+          invalidate(yearsInput, "Enter a whole number of years from 1 to 60.");
+          return false;
+        }
+        return true;
+      }
+
+      function project(values) {
+        var monthlyRate = values.rate / 100 / 12;
+        var balance = values.starting;
+        var rows = [];
+        var totalInterest = 0;
+
+        for (var year = 1; year <= values.years; year += 1) {
+          var yearStart = balance;
+          var yearInterest = 0;
+          for (var month = 0; month < 12; month += 1) {
+            var interestThisMonth = balance * monthlyRate;
+            balance += interestThisMonth;
+            yearInterest += interestThisMonth;
+            balance += values.monthly;
+          }
+          totalInterest += yearInterest;
+          rows.push({
+            year: year,
+            starting: yearStart,
+            added: values.monthly * 12,
+            interest: yearInterest,
+            ending: balance
+          });
+        }
+
+        return {
+          balance: balance,
+          contributed: values.starting + (values.monthly * values.years * 12),
+          interest: totalInterest,
+          rows: rows
+        };
+      }
+
+      function pluralYears(years) {
+        return years === 1 ? "1 year" : years + " years";
+      }
+
+      function render(values, result) {
+        var share = result.balance > 0 ? (result.interest / result.balance) * 100 : 0;
+        var contributionShare = Math.max(0, Math.min(100, 100 - share));
+        var interestShare = Math.max(0, Math.min(100, share));
+
+        document.getElementById("lead-years").textContent = pluralYears(values.years);
+        document.getElementById("ending-balance").textContent = money.format(result.balance);
+        document.getElementById("total-contributed").textContent = money.format(result.contributed);
+        document.getElementById("interest-earned").textContent = money.format(result.interest);
+        document.getElementById("monthly-added").textContent = money.format(values.monthly);
+        document.getElementById("interest-share").textContent = share.toFixed(1) + "%";
+        document.getElementById("lead-copy").textContent = "That is " + money.format(result.contributed) + " contributed and " + money.format(result.interest) + " earned through compounding.";
+        document.getElementById("composition-note").textContent = contributionShare.toFixed(1) + "% contributed · " + interestShare.toFixed(1) + "% interest";
+        document.getElementById("contribution-bar").style.width = contributionShare + "%";
+        document.getElementById("interest-bar").style.width = interestShare + "%";
+        document.getElementById("composition-bar").setAttribute("aria-label", contributionShare.toFixed(1) + "% contributions and " + interestShare.toFixed(1) + "% interest");
+
+        var rowMarkup = result.rows.map(function (row) {
+          return "<tr>" +
+            "<td data-label=\"Year\">" + row.year + "</td>" +
+            "<td data-label=\"Starting balance\">" + money.format(row.starting) + "</td>" +
+            "<td data-label=\"Added\">" + money.format(row.added) + "</td>" +
+            "<td data-label=\"Interest\">" + money.format(row.interest) + "</td>" +
+            "<td data-label=\"Ending balance\">" + money.format(row.ending) + "</td>" +
+          "</tr>";
+        }).join("");
+        document.getElementById("year-rows").innerHTML = rowMarkup;
+
+        var explanation = document.getElementById("explanation");
+        explanation.innerHTML =
+          "<p><strong>You put in " + money.format(result.contributed) + ".</strong> That includes the " + money.format(values.starting) + " starting amount and " + money.format(values.monthly) + " added at the end of every month.</p>" +
+          "<p><strong>Compounding adds " + money.format(result.interest) + ".</strong> Each month, the " + values.rate.toFixed(2).replace(/\\.00$/, "") + "% annual rate is divided into twelve monthly portions. New interest is then calculated on both your contributions and earlier interest.</p>" +
+          "<p><strong>The later years usually do more work.</strong> As the balance grows, the same percentage applies to a larger amount. Real returns will vary, and inflation, taxes, and fees can reduce what this money is worth or what you keep.</p>";
+
+        latestSummary = [
+          "Compound Interest Projection",
+          "Starting amount: " + money.format(values.starting),
+          "Monthly contribution: " + money.format(values.monthly),
+          "Annual interest rate: " + values.rate.toFixed(2).replace(/\\.00$/, "") + "%",
+          "Time: " + pluralYears(values.years),
+          "",
+          "Projected ending balance: " + money.format(result.balance),
+          "Total contributed: " + money.format(result.contributed),
+          "Interest earned: " + money.format(result.interest),
+          "Interest share of final balance: " + share.toFixed(1) + "%",
+          "",
+          "Assumes monthly compounding and contributions at the end of each month. For informational purposes only; not a guarantee of future returns."
+        ].join("\n");
+
+        copyStatus.textContent = "";
+        emptyState.hidden = true;
+        resultContent.hidden = false;
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var values = {
+          starting: readNumber(startingInput),
+          monthly: readNumber(monthlyInput),
+          rate: readNumber(rateInput),
+          years: readNumber(yearsInput)
+        };
+        if (!validate(values)) return;
+        render(values, project(values));
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var copied = false;
+        try { copied = document.execCommand("copy"); } catch (error) { copied = false; }
+        document.body.removeChild(area);
+        return copied;
+      }
+
+      copyButton.addEventListener("click", function () {
+        if (!latestSummary) return;
+        function success() {
+          copyStatus.textContent = "Results copied.";
+          copyButton.textContent = "Copied";
+          window.setTimeout(function () { copyButton.textContent = "Copy results"; }, 1800);
+        }
+        function fallback() {
+          if (fallbackCopy(latestSummary)) success();
+          else copyStatus.textContent = "Copying was blocked. Select and copy the results instead.";
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latestSummary).then(success).catch(fallback);
+        } else {
+          fallback();
+        }
+      });
+
+      emailButton.addEventListener("click", function () {
+        if (!latestSummary) return;
+        var subject = encodeURIComponent("My compound interest projection");
+        var body = encodeURIComponent(latestSummary);
+        var emailLink = document.createElement("a");
+        emailLink.href = "mailto:?subject=" + subject + "&body=" + body;
+        emailLink.style.display = "none";
+        document.body.appendChild(emailLink);
+        emailLink.click();
+        document.body.removeChild(emailLink);
+      });
+
+      [startingInput, monthlyInput, rateInput, yearsInput].forEach(function (input) {
+        input.addEventListener("input", function () {
+          input.removeAttribute("aria-invalid");
+          errorBox.textContent = "";
+        });
+      });
+    }());
+  </script>
+</body>
+</html>

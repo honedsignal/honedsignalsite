@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <title>Paycheck Budget Planner | Honed Money</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f5f7f8;
+      --muted: #aab3bd;
+      --paper: #10151d;
+      --panel: #19212b;
+      --panel-2: #222c38;
+      --line: #3a4654;
+      --orange: #f7931a;
+      --orange-hover: #ffab43;
+      --orange-ink: #1a1208;
+      --green: #32dc1c;
+      --green-soft: #1b3622;
+      --red: #ff686e;
+      --red-soft: #3a1d22;
+      --blue: #87b2dd;
+      --shadow: 0 20px 54px rgba(0, 0, 0, .28);
+      --focus: #73b8ef;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f5f7f8;
+        --muted: #aab3bd;
+        --paper: #0b0e14;
+        --panel: #141922;
+        --panel-2: #1d2530;
+        --line: #343d48;
+        --orange: #f7931a;
+        --orange-hover: #ffab43;
+        --orange-ink: #1a1208;
+        --green: #39ff14;
+        --green-soft: #17341d;
+        --red: #ff686e;
+        --red-soft: #3a1d22;
+        --blue: #78a6d5;
+        --shadow: 0 20px 60px rgba(0, 0, 0, .32);
+        --focus: #73b8ef;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { min-width: 320px; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      line-height: 1.5;
+    }
+    button, input, select { font: inherit; }
+    button, a, input, select, summary { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .page {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 20px 0 64px;
+    }
+    .back-link {
+      display: inline-block;
+      padding: 5px 0;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--orange); }
+    .intro {
+      max-width: 750px;
+      padding: 48px 0 30px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 670px;
+      margin-bottom: 14px;
+      font-family: Manrope, sans-serif;
+      font-size: clamp(2.25rem, 6vw, 4.7rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+    .lede {
+      max-width: 630px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2.1vw, 1.25rem);
+    }
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+      gap: 24px;
+      align-items: start;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .form-card { padding: clamp(22px, 4vw, 38px); border-radius: 18px 18px 5px 18px; }
+    .results-card {
+      position: sticky;
+      top: 20px;
+      min-height: 480px;
+      border-radius: 5px 18px 18px 18px;
+      overflow: hidden;
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    h2 {
+      margin-bottom: 0;
+      font-family: Manrope, sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: -.025em;
+    }
+    .step {
+      flex: none;
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+    .field { margin-bottom: 22px; }
+    label, .field-label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 650;
+      font-size: .95rem;
+    }
+    .field-help {
+      margin: -2px 0 8px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+    .money-wrap { position: relative; }
+    .money-wrap::before {
+      content: "$";
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      translate: 0 -50%;
+      color: var(--muted);
+      font-weight: 700;
+      pointer-events: none;
+    }
+    input, select {
+      width: 100%;
+      min-height: 49px;
+      padding: 11px 13px;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      outline: none;
+    }
+    .money-wrap input { padding-left: 30px; }
+    input::placeholder { color: var(--muted); opacity: .72; }
+    input:focus, select:focus {
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent);
+    }
+    .bill-list { display: grid; gap: 10px; }
+    .bill-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(115px, .85fr) 40px;
+      gap: 9px;
+      align-items: center;
+    }
+    .bill-row .money-wrap::before { left: 11px; }
+    .bill-row .money-wrap input { padding-left: 26px; }
+    .icon-button {
+      width: 40px;
+      height: 49px;
+      padding: 0;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+    .icon-button:hover { color: var(--red); border-color: var(--red); }
+    .bill-actions { margin: 12px 0 28px; }
+    .text-button {
+      padding: 5px 0;
+      color: var(--blue);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .text-button:hover { text-decoration: underline; }
+    .calculate {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 18px;
+      color: var(--orange-ink);
+      background: var(--orange);
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: Manrope, sans-serif;
+      font-weight: 800;
+    }
+    .calculate:hover { background: var(--orange-hover); }
+    button:focus-visible, a:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+    .error {
+      min-height: 24px;
+      margin: 10px 0 0;
+      color: var(--red);
+      font-size: .9rem;
+      font-weight: 650;
+    }
+    .empty-state {
+      display: grid;
+      place-content: center;
+      min-height: 478px;
+      padding: 44px;
+      text-align: center;
+    }
+    .empty-mark {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 20px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--panel-2);
+      color: var(--orange);
+    }
+    .empty-mark svg { width: 34px; height: 34px; }
+    .empty-state h2 { margin-bottom: 9px; }
+    .empty-state p { max-width: 320px; margin: 0 auto; color: var(--muted); }
+    .results { display: none; }
+    .results.visible { display: block; }
+    .result-hero {
+      padding: 32px 34px 28px;
+      background: var(--green-soft);
+      border-bottom: 1px solid var(--line);
+    }
+    .result-hero.deficit { background: var(--red-soft); }
+    .result-label {
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+    .safe-amount {
+      margin: 0;
+      color: var(--green);
+      font-family: Manrope, sans-serif;
+      font-size: clamp(2.6rem, 8vw, 4.4rem);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+    .deficit .safe-amount { color: var(--red); }
+    .result-sub { margin: 10px 0 0; color: var(--muted); font-size: .94rem; }
+    .result-body { padding: 28px 34px 32px; }
+    .metrics { margin: 0; }
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .metric dt { color: var(--muted); }
+    .metric dd { margin: 0; text-align: right; font-weight: 750; }
+    .split-bar {
+      display: flex;
+      height: 9px;
+      margin: 22px 0 8px;
+      overflow: hidden;
+      background: var(--panel-2);
+      border-radius: 2px;
+    }
+    .bar-bills { background: var(--orange); }
+    .bar-safe { background: var(--green); }
+    .bar-caption { margin: 0 0 22px; color: var(--muted); font-size: .8rem; }
+    .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .action-button {
+      min-height: 46px;
+      padding: 10px 12px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 750;
+    }
+    .email-button {
+      color: var(--orange-ink);
+      background: var(--orange);
+      border: 1px solid var(--orange);
+    }
+    .email-button:hover { background: var(--orange-hover); border-color: var(--orange-hover); }
+    .copy-button { color: var(--ink); background: transparent; border: 1px solid var(--line); }
+    .copy-button:hover { border-color: var(--ink); }
+    .copy-status { min-height: 21px; margin: 8px 0 0; color: var(--green); font-size: .84rem; text-align: right; }
+    details {
+      margin-top: 19px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+    summary { cursor: pointer; font-weight: 750; }
+    details p { margin: 12px 0 0; color: var(--muted); font-size: .92rem; }
+    .bill-summary { margin-top: 17px; }
+    .bill-summary h3 { margin-bottom: 8px; font-size: .92rem; }
+    .bill-summary ul { margin: 0; padding: 0; list-style: none; }
+    .bill-summary li { display: flex; justify-content: space-between; gap: 18px; padding: 6px 0; color: var(--muted); font-size: .88rem; }
+    .bill-summary li span:last-child { flex: none; color: var(--ink); font-weight: 700; }
+    .note {
+      max-width: 790px;
+      margin: 28px auto 0;
+      color: var(--muted);
+      font-size: .82rem;
+      text-align: center;
+    }
+    .noscript { padding: 16px; color: var(--red); background: var(--red-soft); }
+    @media (max-width: 820px) {
+      .page { width: min(100% - 28px, 680px); padding-top: 14px; }
+      .intro { padding: 34px 0 24px; }
+      .workspace { grid-template-columns: 1fr; }
+      .results-card { position: static; min-height: 0; }
+      .empty-state { min-height: 280px; }
+    }
+    @media (max-width: 520px) {
+      .page { width: min(100% - 22px, 480px); padding-bottom: 40px; }
+      .form-card { padding: 21px 17px; border-radius: 14px 14px 4px 14px; }
+      .results-card { border-radius: 4px 14px 14px 14px; }
+      .bill-row { grid-template-columns: minmax(0, 1fr) 40px; }
+      .bill-row .bill-name { grid-column: 1 / -1; }
+      .bill-row .money-wrap { grid-column: 1; }
+      .bill-row .icon-button { grid-column: 2; }
+      .result-hero, .result-body { padding-left: 20px; padding-right: 20px; }
+      .action-grid { grid-template-columns: 1fr; }
+      .metric { gap: 14px; }
+      .empty-state { padding: 34px 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+  </style>
+<!-- honed-seo-start -->
+<meta name="description" content="Stretch it to payday. Free paycheck budget planner from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/paycheck-budget-planner/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Paycheck Budget Planner","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/paycheck-budget-planner/","description":"Stretch it to payday. Free paycheck budget planner from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <noscript><div class="noscript">This planner needs JavaScript to calculate your results.</div></noscript>
+  <main class="page">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <header class="intro">
+      <h1>Make this paycheck last.</h1>
+      <p class="lede">Set aside every bill due before your next payday, then see exactly what is left to spend.</p>
+    </header>
+
+    <div class="workspace">
+      <section class="card form-card" aria-labelledby="plan-title">
+        <div class="section-head">
+          <h2 id="plan-title">Build your plan</h2>
+          <span class="step">1 of 2</span>
+        </div>
+
+        <form id="planner" novalidate>
+          <div class="field">
+            <label for="paycheck">Take-home paycheck</label>
+            <p class="field-help">Use the amount that actually reaches your account.</p>
+            <div class="money-wrap">
+              <input id="paycheck" name="paycheck" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="1,850.00" autocomplete="off" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="frequency">How often are you paid?</label>
+            <select id="frequency" name="frequency" required>
+              <option value="" selected disabled>Select pay frequency</option>
+              <option value="7">Weekly</option>
+              <option value="14">Every two weeks</option>
+              <option value="15.22">Twice a month</option>
+              <option value="30.44">Monthly</option>
+            </select>
+          </div>
+
+          <div class="field" style="margin-bottom:0">
+            <span class="field-label">Bills due before your next paycheck</span>
+            <p class="field-help">Add each bill that has to be paid from this check.</p>
+            <div class="bill-list" id="bill-list">
+              <div class="bill-row">
+                <input class="bill-name" type="text" placeholder="Bill name (for example, rent)" aria-label="Bill name" autocomplete="off">
+                <div class="money-wrap"><input class="bill-amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Amount" aria-label="Bill amount" autocomplete="off"></div>
+                <button class="icon-button remove-bill" type="button" aria-label="Remove this bill">×</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="bill-actions"><button class="text-button" id="add-bill" type="button">+ Add another bill</button></div>
+          <button class="calculate" type="submit">See what’s safe to spend</button>
+          <p class="error" id="error" role="alert" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <aside class="card results-card" aria-live="polite">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+              <path d="M16 10h5v4h-5a2 2 0 0 1 0-4Z"></path>
+              <path d="M7 9h4"></path>
+            </svg>
+          </div>
+          <h2>Your result will appear here</h2>
+          <p>Enter your paycheck and upcoming bills to separate spending money from bill money.</p>
+        </div>
+
+        <div class="results" id="results">
+          <div class="result-hero" id="result-hero">
+            <p class="result-label" id="primary-label">Safe to spend</p>
+            <p class="safe-amount" id="safe-amount">$0.00</p>
+            <p class="result-sub" id="result-sub"></p>
+          </div>
+          <div class="result-body">
+            <dl class="metrics">
+              <div class="metric"><dt>This paycheck</dt><dd id="paycheck-output"></dd></div>
+              <div class="metric"><dt>Hold for bills</dt><dd id="bills-output"></dd></div>
+              <div class="metric"><dt id="pace-label">Safe per day</dt><dd id="pace-output"></dd></div>
+            </dl>
+
+            <div class="split-bar" aria-hidden="true">
+              <div class="bar-bills" id="bar-bills"></div>
+              <div class="bar-safe" id="bar-safe"></div>
+            </div>
+            <p class="bar-caption" id="bar-caption"></p>
+
+            <div class="action-grid">
+              <button class="action-button email-button" id="email-results" type="button">Email my results</button>
+              <button class="action-button copy-button" id="copy-results" type="button">Copy results</button>
+            </div>
+            <p class="copy-status" id="copy-status" aria-live="polite"></p>
+
+            <details>
+              <summary>Explain these results</summary>
+              <p id="explanation"></p>
+            </details>
+
+            <div class="bill-summary" id="bill-summary">
+              <h3>Included bills</h3>
+              <ul id="bill-summary-list"></ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <p class="note">For informational purposes only. This planner is a simple snapshot and does not account for every expense or change in income.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("planner");
+      var billList = document.getElementById("bill-list");
+      var addBillButton = document.getElementById("add-bill");
+      var error = document.getElementById("error");
+      var emptyState = document.getElementById("empty-state");
+      var results = document.getElementById("results");
+      var latestText = "";
+      var latestMailSubject = "My paycheck budget plan";
+
+      function money(value) {
+        return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
+      }
+
+      function cleanName(value, index) {
+        var text = value.trim();
+        return text || "Bill " + (index + 1);
+      }
+
+      function addBillRow() {
+        var row = document.createElement("div");
+        row.className = "bill-row";
+        row.innerHTML = '<input class="bill-name" type="text" placeholder="Bill name" aria-label="Bill name" autocomplete="off">' +
+          '<div class="money-wrap"><input class="bill-amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Amount" aria-label="Bill amount" autocomplete="off"></div>' +
+          '<button class="icon-button remove-bill" type="button" aria-label="Remove this bill">×</button>';
+        billList.appendChild(row);
+        row.querySelector(".bill-name").focus();
+      }
+
+      function removeBillRow(button) {
+        var rows = billList.querySelectorAll(".bill-row");
+        if (rows.length === 1) {
+          rows[0].querySelector(".bill-name").value = "";
+          rows[0].querySelector(".bill-amount").value = "";
+          rows[0].querySelector(".bill-name").focus();
+          return;
+        }
+        button.closest(".bill-row").remove();
+      }
+
+      addBillButton.addEventListener("click", addBillRow);
+      billList.addEventListener("click", function (event) {
+        var button = event.target.closest(".remove-bill");
+        if (button) removeBillRow(button);
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        error.textContent = "";
+        document.getElementById("copy-status").textContent = "";
+
+        var paycheckRaw = document.getElementById("paycheck").value;
+        var frequency = document.getElementById("frequency");
+        var paycheck = Number(paycheckRaw);
+        var days = Number(frequency.value);
+
+        if (paycheckRaw === "" || !Number.isFinite(paycheck) || paycheck <= 0) {
+          error.textContent = "Enter a paycheck amount greater than $0.";
+          document.getElementById("paycheck").focus();
+          return;
+        }
+        if (!frequency.value) {
+          error.textContent = "Choose how often you are paid.";
+          frequency.focus();
+          return;
+        }
+
+        var billRows = Array.prototype.slice.call(billList.querySelectorAll(".bill-row"));
+        var bills = [];
+        var invalid = false;
+        billRows.forEach(function (row, index) {
+          var amountInput = row.querySelector(".bill-amount");
+          var raw = amountInput.value;
+          if (raw === "") return;
+          var amount = Number(raw);
+          if (!Number.isFinite(amount) || amount < 0) {
+            invalid = true;
+            return;
+          }
+          if (amount > 0) bills.push({ name: cleanName(row.querySelector(".bill-name").value, index), amount: amount });
+        });
+        if (invalid) {
+          error.textContent = "Each bill amount must be $0 or more.";
+          return;
+        }
+        if (bills.length === 0) {
+          error.textContent = "Enter at least one bill amount due before your next paycheck.";
+          billRows[0].querySelector(".bill-amount").focus();
+          return;
+        }
+
+        var totalBills = bills.reduce(function (sum, bill) { return sum + bill.amount; }, 0);
+        var remaining = paycheck - totalBills;
+        var safe = Math.max(0, remaining);
+        var shortfall = Math.max(0, -remaining);
+        var perDay = safe / days;
+        var frequencyName = frequency.options[frequency.selectedIndex].text;
+        var resultHero = document.getElementById("result-hero");
+        var isDeficit = shortfall > 0;
+
+        resultHero.classList.toggle("deficit", isDeficit);
+        document.getElementById("primary-label").textContent = isDeficit ? "Amount you are short" : "Safe to spend";
+        document.getElementById("safe-amount").textContent = money(isDeficit ? shortfall : safe);
+        document.getElementById("result-sub").textContent = isDeficit
+          ? "Your listed bills are larger than this paycheck."
+          : "After setting aside every bill you listed.";
+        document.getElementById("paycheck-output").textContent = money(paycheck);
+        document.getElementById("bills-output").textContent = money(totalBills);
+        document.getElementById("pace-label").textContent = isDeficit ? "Safe to spend" : "Approx. safe per day";
+        document.getElementById("pace-output").textContent = isDeficit ? money(0) : money(perDay);
+
+        var billPercent = paycheck > 0 ? Math.min(100, (totalBills / paycheck) * 100) : 0;
+        var safePercent = isDeficit ? 0 : Math.max(0, 100 - billPercent);
+        document.getElementById("bar-bills").style.width = billPercent + "%";
+        document.getElementById("bar-safe").style.width = safePercent + "%";
+        document.getElementById("bar-caption").textContent = isDeficit
+          ? "Bills use more than 100% of this paycheck."
+          : Math.round(billPercent) + "% held for bills • " + Math.round(safePercent) + "% available";
+
+        document.getElementById("explanation").textContent = isDeficit
+          ? "Your bills total " + money(totalBills) + ", which is " + money(shortfall) + " more than this paycheck. There is no money marked safe to spend yet. Review the bill dates, reduce or delay a flexible expense, or plan to cover the gap from another source before spending from this check."
+          : "First, hold back " + money(totalBills) + " so the bills you listed can be paid. That leaves " + money(safe) + " for everything else until your next paycheck. Based on a " + frequencyName.toLowerCase() + " schedule, that is about " + money(perDay) + " per day. The daily figure is a guide, not a requirement.";
+
+        var summaryList = document.getElementById("bill-summary-list");
+        summaryList.innerHTML = "";
+        bills.forEach(function (bill) {
+          var li = document.createElement("li");
+          var name = document.createElement("span");
+          var amount = document.createElement("span");
+          name.textContent = bill.name;
+          amount.textContent = money(bill.amount);
+          li.appendChild(name);
+          li.appendChild(amount);
+          summaryList.appendChild(li);
+        });
+
+        var lines = [
+          "PAYCHECK BUDGET PLAN",
+          "Pay frequency: " + frequencyName,
+          "This paycheck: " + money(paycheck),
+          "Hold for bills: " + money(totalBills),
+          isDeficit ? "Amount short: " + money(shortfall) : "Safe to spend: " + money(safe),
+          isDeficit ? "Safe to spend: " + money(0) : "Approx. safe per day: " + money(perDay),
+          "",
+          "BILLS"
+        ];
+        bills.forEach(function (bill) { lines.push(bill.name + ": " + money(bill.amount)); });
+        lines.push("", "For informational purposes only.");
+        latestText = lines.join("\n");
+
+        emptyState.style.display = "none";
+        results.classList.add("visible");
+        if (window.matchMedia("(max-width: 820px)").matches) {
+          results.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+        }
+      });
+
+      document.getElementById("email-results").addEventListener("click", function () {
+        if (!latestText) return;
+        var mailLink = document.createElement("a");
+        mailLink.href = "mailto:?subject=" + encodeURIComponent(latestMailSubject) + "&body=" + encodeURIComponent(latestText);
+        mailLink.click();
+      });
+
+      document.getElementById("copy-results").addEventListener("click", function () {
+        if (!latestText) return;
+        var status = document.getElementById("copy-status");
+        function copied() {
+          status.textContent = "Results copied.";
+          window.setTimeout(function () { status.textContent = ""; }, 3000);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latestText).then(copied).catch(function () { fallbackCopy(latestText, copied); });
+        } else {
+          fallbackCopy(latestText, copied);
+        }
+      });
+
+      function fallbackCopy(text, done) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        try { document.execCommand("copy"); done(); }
+        catch (e) { document.getElementById("copy-status").textContent = "Select and copy the results manually."; }
+        document.body.removeChild(area);
+      }
+    })();
+  </script>
+</body>
+</html>

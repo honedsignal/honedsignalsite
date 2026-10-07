@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Credit Utilization Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #080b10;
+      --surface: #111720;
+      --surface-2: #1a222d;
+      --ink: #f5f7f9;
+      --muted: #aab5c2;
+      --line: #2d3947;
+      --line-strong: #485667;
+      --blue: #78a9dc;
+      --blue-soft: #172d43;
+      --orange: #f7931a;
+      --orange-ink: #0b0e14;
+      --orange-soft: #3b2914;
+      --green: #39ff14;
+      --green-soft: #17351b;
+      --red: #ff6b71;
+      --red-soft: #3c2024;
+      --shadow: 0 20px 62px rgba(0, 0, 0, .34);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #080b10;
+        --surface: #111720;
+        --surface-2: #1a222d;
+        --ink: #f5f7f9;
+        --muted: #aab5c2;
+        --line: #2d3947;
+        --line-strong: #485667;
+        --blue: #78a9dc;
+        --blue-soft: #172d43;
+        --orange: #f7931a;
+        --orange-ink: #0b0e14;
+        --orange-soft: #3b2914;
+        --green: #39ff14;
+        --green-soft: #17351b;
+        --red: #ff6b71;
+        --red-soft: #3c2024;
+        --shadow: 0 20px 62px rgba(0, 0, 0, .34);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Manrope, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, a, input { -webkit-tap-highlight-color: transparent; }
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) 0 66px;
+    }
+    .money-home {
+      display: inline-block;
+      margin-bottom: 38px;
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .money-home:hover { color: var(--orange); text-decoration: underline; text-underline-offset: 3px; }
+    .money-home:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 38%, transparent);
+      outline-offset: 3px;
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+      gap: 44px;
+      align-items: end;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(2.4rem, 6.2vw, 5.6rem);
+      line-height: .95;
+      letter-spacing: -.058em;
+      font-weight: 800;
+    }
+    h1 span { color: var(--orange); }
+    .intro-copy {
+      margin: 0 0 6px;
+      max-width: 39ch;
+      color: var(--muted);
+      font-size: clamp(.98rem, 1.7vw, 1.12rem);
+    }
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(340px, 455px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      margin-top: 28px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .inputs {
+      position: sticky;
+      top: 18px;
+      padding: 24px;
+      border-radius: 22px 5px 22px 22px;
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 17px;
+    }
+    .section-head h2 { margin: 0; font-size: 1.02rem; letter-spacing: -.02em; }
+    .step { color: var(--orange); font: 500 .69rem "DM Mono", monospace; }
+    .card-list { display: grid; gap: 10px; }
+    .card-entry {
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--bg);
+    }
+    .card-entry-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .card-name {
+      min-width: 0;
+      flex: 1;
+      padding: 4px 2px;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      color: var(--ink);
+      font-weight: 800;
+      outline: 0;
+    }
+    .card-name:focus { border-bottom-color: var(--blue); }
+    .remove {
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.12rem;
+    }
+    .remove:hover { background: var(--red-soft); color: var(--red); }
+    .card-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .field.payment { grid-column: 1 / -1; }
+    label {
+      display: block;
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: .68rem;
+      font-weight: 700;
+    }
+    .optional { font-weight: 500; }
+    .control {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--surface);
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .control:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 20%, transparent);
+    }
+    .affix { padding-left: 10px; color: var(--muted); font: .78rem "DM Mono", monospace; }
+    input[type="number"] {
+      width: 100%;
+      min-width: 0;
+      padding: 10px 8px;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    input::placeholder { color: color-mix(in srgb, var(--muted) 58%, transparent); font-weight: 500; }
+    input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .field-error { min-height: 16px; margin: 5px 1px -2px; color: var(--red); font-size: .66rem; font-weight: 700; }
+    .add-card {
+      width: 100%;
+      margin: 11px 0 16px;
+      padding: 10px;
+      border: 1px dashed var(--blue);
+      border-radius: 9px;
+      background: transparent;
+      color: var(--blue);
+      cursor: pointer;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+    .add-card:hover { background: var(--blue-soft); }
+    .add-card:disabled { opacity: .45; cursor: not-allowed; }
+    .calculate {
+      width: 100%;
+      margin-top: 2px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      box-shadow: 0 7px 0 color-mix(in srgb, var(--orange) 53%, #3a1b00);
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform .1s, box-shadow .1s;
+    }
+    .calculate:active { transform: translateY(4px); box-shadow: 0 3px 0 color-mix(in srgb, var(--orange) 53%, #3a1b00); }
+    .input-note { margin: 15px 2px 0; color: var(--muted); font-size: .72rem; }
+    .results { min-width: 0; }
+    .empty {
+      min-height: 490px;
+      display: grid;
+      place-items: center;
+      padding: 40px;
+      border: 1px dashed var(--line);
+      border-radius: 5px 22px 22px 22px;
+      background: color-mix(in srgb, var(--surface) 72%, transparent);
+      text-align: center;
+    }
+    .empty svg { width: 88px; margin-bottom: 18px; color: var(--blue); }
+    .empty h2 { margin: 0 0 8px; font-size: 1.55rem; letter-spacing: -.035em; }
+    .empty p { max-width: 41ch; margin: 0; color: var(--muted); }
+    .hidden { display: none !important; }
+    .alert {
+      margin-bottom: 10px;
+      padding: 13px 15px;
+      border-radius: 11px;
+      background: var(--red-soft);
+      color: var(--red);
+      font-size: .84rem;
+      font-weight: 700;
+    }
+    .summary {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border-radius: 5px 22px 22px 22px;
+      background: var(--ink);
+      color: var(--bg);
+    }
+    @media (prefers-color-scheme: dark) { .summary { background: #eef3f7; color: #0b0e14; } }
+    .summary:after {
+      content: "";
+      position: absolute;
+      right: -62px;
+      bottom: -77px;
+      width: 158px;
+      height: 158px;
+      border: 23px solid var(--orange);
+      border-radius: 50%;
+    }
+    .eyebrow { margin: 0 0 9px; opacity: .64; font: 500 .68rem "DM Mono", monospace; }
+    .util-number {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font: 500 clamp(3rem, 8.5vw, 6.8rem)/.9 "DM Mono", monospace;
+      letter-spacing: -.08em;
+    }
+    .util-number .arrow { padding: 0 .15em; color: var(--orange); font-size: .45em; vertical-align: .28em; letter-spacing: 0; }
+    .summary-copy { position: relative; z-index: 1; max-width: 58ch; margin: 16px 0 0; opacity: .75; font-size: .86rem; }
+    .metric-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+    .metric { padding: 17px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+    .metric span { display: block; margin-bottom: 7px; color: var(--muted); font-size: .68rem; font-weight: 700; }
+    .metric strong { display: block; font: 500 clamp(1.02rem, 2vw, 1.35rem) "DM Mono", monospace; line-height: 1.08; }
+    .metric em { display: block; margin-top: 7px; color: var(--green); font-size: .67rem; font-style: normal; font-weight: 700; }
+    .meter-card { margin-top: 10px; padding: 22px; border-radius: 18px; }
+    .meter-head, .results-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+    .meter-head h2, .results-head h2 { margin: 0; font-size: 1.08rem; letter-spacing: -.025em; }
+    .meter-head p { margin: 0; color: var(--muted); font-size: .7rem; }
+    .meter { position: relative; height: 15px; margin: 24px 0 31px; border-radius: 999px; background: linear-gradient(90deg, var(--green) 0 10%, var(--blue) 10% 30%, var(--orange) 30% 50%, var(--red) 50% 100%); }
+    .meter:before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: color-mix(in srgb, var(--surface) 26%, transparent); }
+    .marker {
+      position: absolute;
+      top: -9px;
+      width: 3px;
+      height: 33px;
+      transform: translateX(-1px);
+      background: var(--ink);
+      box-shadow: 0 0 0 3px var(--surface);
+    }
+    .marker:after { content: attr(data-label); position: absolute; top: 35px; left: 50%; transform: translateX(-50%); color: var(--muted); font: 500 .62rem "DM Mono", monospace; white-space: nowrap; }
+    .marker.projected { width: 7px; border-radius: 4px; background: var(--orange); }
+    .scale { display: grid; grid-template-columns: 1fr 2fr 2fr 5fr; gap: 0; color: var(--muted); font-size: .63rem; font-weight: 700; }
+    .scale span:not(:first-child) { padding-left: 6px; border-left: 1px solid var(--line); }
+    .card-results { display: grid; gap: 8px; margin-top: 10px; }
+    .card-result {
+      display: grid;
+      grid-template-columns: minmax(120px, 1.15fr) .8fr .8fr 1.1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 15px 17px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: var(--surface);
+    }
+    .card-result h3 { overflow: hidden; margin: 0; font-size: .89rem; text-overflow: ellipsis; white-space: nowrap; }
+    .result-cell small { display: block; margin-bottom: 3px; color: var(--muted); font-size: .61rem; font-weight: 700; }
+    .result-cell strong { display: block; font: 500 .82rem "DM Mono", monospace; }
+    .target-cell { color: var(--muted); font-size: .7rem; line-height: 1.55; }
+    .target-cell b { color: var(--ink); }
+    .actions-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .text-btn {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: .72rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    #emailResults { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .text-btn.copied { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+    .explain-toggle { border-color: var(--blue); color: var(--blue); }
+    .explain-toggle:after { content: "+"; margin-left: 8px; font: 500 1rem "DM Mono", monospace; }
+    .explain-toggle[aria-expanded="true"]:after { content: "−"; }
+    .explanation {
+      margin-top: 9px;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--blue-soft);
+    }
+    .explanation p { max-width: 76ch; margin: 0 0 10px; font-size: .87rem; line-height: 1.68; }
+    .explanation p:last-child { margin-bottom: 0; }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .69rem;
+    }
+    footer p { max-width: 77ch; margin: 0; }
+    footer strong { color: var(--ink); }
+    @media (max-width: 890px) {
+      .page { width: min(700px, calc(100% - 28px)); }
+      .money-home { margin-bottom: 28px; }
+      .intro { grid-template-columns: 1fr; gap: 16px; }
+      .workbench { grid-template-columns: 1fr; }
+      .inputs { position: static; border-radius: 22px; }
+      .summary { border-radius: 22px; }
+    }
+    @media (max-width: 590px) {
+      .page { width: min(100% - 22px, 520px); padding-bottom: 48px; }
+      .money-home { margin-bottom: 24px; }
+      .intro { padding-bottom: 23px; }
+      h1 { font-size: clamp(2.35rem, 13vw, 3.75rem); }
+      .intro-copy { font-size: .94rem; }
+      .inputs, .summary, .meter-card { padding: 19px; }
+      .metric-strip { grid-template-columns: 1fr; }
+      .meter-head { align-items: flex-start; flex-direction: column; gap: 5px; }
+      .card-result { grid-template-columns: 1fr 1fr; gap: 11px; }
+      .card-result h3 { grid-column: 1 / -1; padding-bottom: 7px; border-bottom: 1px solid var(--line); }
+      .target-cell { grid-column: 1 / -1; }
+      .actions-row { display: grid; grid-template-columns: 1fr 1fr; }
+      .text-btn { justify-content: center; }
+      .explain-toggle { grid-column: 1 / -1; }
+      footer { flex-direction: column; gap: 10px; }
+    }
+    @media (max-width: 390px) {
+      .card-fields { grid-template-columns: 1fr; }
+      .field.payment { grid-column: auto; }
+      .util-number { font-size: 2.65rem; }
+      .actions-row { grid-template-columns: 1fr; }
+      .explain-toggle { grid-column: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="TOOL 02. Free credit utilization calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/credit-utilization-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Credit Utilization Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/credit-utilization-calculator/","description":"TOOL 02. Free credit utilization calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <main class="page">
+    <a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+    <header class="intro">
+      <h1>See what your cards are <span>using.</span></h1>
+      <p class="intro-copy">Add balances and credit limits for up to four cards. Compare today’s credit utilization with the result after planned payments.</p>
+    </header>
+
+    <section class="workbench" aria-label="Credit utilization calculator">
+      <form class="panel inputs" id="utilizationForm" novalidate>
+        <div class="section-head"><h2>Add your cards</h2><span class="step">01 / INPUT</span></div>
+        <div class="card-list" id="cardList"></div>
+        <button type="button" class="add-card" id="addCard">+ Add another card</button>
+        <button type="submit" class="calculate">Calculate utilization</button>
+        <p class="input-note">Planned payment is optional. Your entries stay in this tab and are not saved.</p>
+      </form>
+
+      <div class="results">
+        <section class="empty" id="emptyState">
+          <div>
+            <svg viewBox="0 0 104 76" fill="none" aria-hidden="true">
+              <rect x="5" y="7" width="94" height="62" rx="11" stroke="currentColor" stroke-width="4"/>
+              <path d="M5 26h94" stroke="currentColor" stroke-width="4"/>
+              <path d="M18 48h26" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+              <path d="M18 58h16" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+              <circle cx="82" cy="52" r="7" fill="currentColor"/>
+            </svg>
+            <h2>Your full picture goes here.</h2>
+            <p>Enter at least one balance and credit limit. Add a planned payment to preview how the percentage changes.</p>
+          </div>
+        </section>
+
+        <div id="resultState" class="hidden" aria-live="polite">
+          <div class="alert hidden" id="alertBox"></div>
+          <section class="summary" id="summaryCard">
+            <p class="eyebrow">OVERALL CREDIT UTILIZATION</p>
+            <p class="util-number"><span id="currentRate">—</span><span class="arrow">→</span><span id="projectedRate">—</span></p>
+            <p class="summary-copy" id="summaryCopy"></p>
+          </section>
+
+          <div class="metric-strip">
+            <article class="metric"><span>TOTAL BALANCE</span><strong id="balanceMetric">—</strong><em id="balanceAfterMetric"></em></article>
+            <article class="metric"><span>TOTAL CREDIT LIMIT</span><strong id="limitMetric">—</strong><em>across all added cards</em></article>
+            <article class="metric"><span>PLANNED PAYMENTS</span><strong id="paymentMetric">—</strong><em id="pointsMetric"></em></article>
+          </div>
+
+          <section class="panel meter-card">
+            <div class="meter-head"><h2>Where the percentages land</h2><p>Position capped at 100% for display</p></div>
+            <div class="meter" aria-hidden="true">
+              <span class="marker" id="currentMarker" data-label="Now"></span>
+              <span class="marker projected" id="projectedMarker" data-label="After"></span>
+            </div>
+            <div class="scale"><span>Under 10%</span><span>10–29%</span><span>30–49%</span><span>50%+</span></div>
+          </section>
+
+          <section class="card-breakdown">
+            <div class="results-head"><h2>Card-by-card</h2><span class="step">02 / DETAIL</span></div>
+            <div class="card-results" id="cardResults"></div>
+          </section>
+
+          <div class="actions-row">
+            <a class="text-btn" id="emailResults" href="mailto:" aria-label="Email these credit utilization results">Email my results</a>
+            <button type="button" class="text-btn" id="copyResults" aria-live="polite">Copy results</button>
+            <button type="button" class="text-btn explain-toggle" id="explainResults" aria-expanded="false" aria-controls="resultsExplanation">Explain these results</button>
+          </div>
+          <section class="explanation hidden" id="resultsExplanation">
+            <p id="explanationText"></p>
+            <p><strong>Timing matters:</strong> card issuers often report a statement balance to the credit bureaus. A payment may not appear in a credit report immediately, and credit scores also use factors beyond utilization.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p><strong>How it works:</strong> utilization equals balance ÷ credit limit. Overall utilization uses all entered balances divided by all entered limits. Target payment figures show the amount needed to bring each card to 30% or 10% utilization.</p>
+      <p>For informational and educational purposes only. This is not financial advice.</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+      var form = document.getElementById('utilizationForm');
+      var cardList = document.getElementById('cardList');
+      var addButton = document.getElementById('addCard');
+      var emptyState = document.getElementById('emptyState');
+      var resultState = document.getElementById('resultState');
+      var alertBox = document.getElementById('alertBox');
+      var cardResults = document.getElementById('cardResults');
+      var lastResult = null;
+      var cardCounter = 0;
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, function (char) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char];
+        });
+      }
+
+      function money(value) {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+      }
+
+      function percent(value) {
+        if (!isFinite(value)) return '—';
+        if (value >= 1000) return Math.round(value).toLocaleString('en-US') + '%';
+        return value.toFixed(1) + '%';
+      }
+
+      function band(value) {
+        if (value < 10) return 'under 10%';
+        if (value < 30) return 'between 10% and 29%';
+        if (value < 50) return 'between 30% and 49%';
+        return '50% or higher';
+      }
+
+      function targetPayment(balance, limit, target) {
+        return Math.max(0, balance - limit * target);
+      }
+
+      function addCard() {
+        if (cardList.children.length >= 4) return;
+        cardCounter += 1;
+        var index = cardCounter;
+        var entry = document.createElement('div');
+        entry.className = 'card-entry';
+        entry.innerHTML = '<div class="card-entry-head"><input class="card-name" aria-label="Card ' + index + ' name" maxlength="30" value="Card ' + index + '"><button type="button" class="remove" aria-label="Remove Card ' + index + '">×</button></div>' +
+          '<div class="card-fields">' +
+            '<div class="field"><label>Current balance</label><div class="control"><span class="affix">$</span><input class="balance" aria-label="Card ' + index + ' current balance" type="number" min="0" step="0.01" inputmode="decimal" placeholder="1,250"></div><p class="field-error"></p></div>' +
+            '<div class="field"><label>Credit limit</label><div class="control"><span class="affix">$</span><input class="limit" aria-label="Card ' + index + ' credit limit" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="5,000"></div><p class="field-error"></p></div>' +
+            '<div class="field payment"><label>Planned payment <span class="optional">(optional)</span></label><div class="control"><span class="affix">$</span><input class="payment-input" aria-label="Card ' + index + ' planned payment" type="number" min="0" step="0.01" inputmode="decimal" placeholder="250"></div><p class="field-error"></p></div>' +
+          '</div>';
+        entry.querySelector('.remove').addEventListener('click', function () {
+          if (cardList.children.length === 1) {
+            entry.querySelectorAll('input[type="number"]').forEach(function (input) { input.value = ''; });
+            entry.querySelector('.card-name').value = 'Card 1';
+          } else {
+            entry.remove();
+          }
+          updateAddButton();
+        });
+        cardList.appendChild(entry);
+        updateAddButton();
+      }
+
+      function updateAddButton() {
+        var full = cardList.children.length >= 4;
+        addButton.disabled = full;
+        addButton.textContent = full ? 'Maximum of 4 cards added' : '+ Add another card';
+      }
+
+      function clearErrors() {
+        cardList.querySelectorAll('input[type="number"]').forEach(function (input) { input.removeAttribute('aria-invalid'); });
+        cardList.querySelectorAll('.field-error').forEach(function (node) { node.textContent = ''; });
+      }
+
+      function setFieldError(input, message) {
+        input.setAttribute('aria-invalid', 'true');
+        input.closest('.field').querySelector('.field-error').textContent = message;
+      }
+
+      function readCards() {
+        clearErrors();
+        var cards = [];
+        var hasError = false;
+        Array.prototype.forEach.call(cardList.querySelectorAll('.card-entry'), function (entry, idx) {
+          var name = entry.querySelector('.card-name').value.trim() || ('Card ' + (idx + 1));
+          var balanceInput = entry.querySelector('.balance');
+          var limitInput = entry.querySelector('.limit');
+          var paymentInput = entry.querySelector('.payment-input');
+          var balance = Number(balanceInput.value);
+          var limit = Number(limitInput.value);
+          var payment = paymentInput.value.trim() === '' ? 0 : Number(paymentInput.value);
+          if (balanceInput.value.trim() === '' || !isFinite(balance) || balance < 0) { setFieldError(balanceInput, 'Enter a balance of $0 or more.'); hasError = true; }
+          if (limitInput.value.trim() === '' || !isFinite(limit) || limit <= 0) { setFieldError(limitInput, 'Enter a credit limit above $0.'); hasError = true; }
+          if (!isFinite(payment) || payment < 0) { setFieldError(paymentInput, 'Enter a payment of $0 or more.'); hasError = true; }
+          if (isFinite(payment) && isFinite(balance) && payment > balance) { setFieldError(paymentInput, 'Payment cannot be more than the balance.'); hasError = true; }
+          cards.push({ name: name, balance: balance, limit: limit, payment: payment });
+        });
+        return { cards: cards, error: hasError };
+      }
+
+      function showError(message) {
+        emptyState.classList.add('hidden');
+        resultState.classList.remove('hidden');
+        alertBox.textContent = message;
+        alertBox.classList.remove('hidden');
+        resultState.querySelectorAll('.summary,.metric-strip,.meter-card,.card-breakdown,.actions-row,.explanation').forEach(function (node) { node.classList.add('hidden'); });
+      }
+
+      function showResults() {
+        alertBox.classList.add('hidden');
+        resultState.querySelectorAll('.summary,.metric-strip,.meter-card,.card-breakdown,.actions-row').forEach(function (node) { node.classList.remove('hidden'); });
+      }
+
+      function buildSummary(result) {
+        var lines = [
+          'Credit Utilization Calculator results',
+          '',
+          'Overall utilization: ' + percent(result.currentRate),
+          'After planned payments: ' + percent(result.projectedRate),
+          'Total balance: ' + money(result.totalBalance),
+          'Balance after payments: ' + money(result.projectedBalance),
+          'Total credit limit: ' + money(result.totalLimit),
+          'Planned payments: ' + money(result.totalPayment),
+          '',
+          'Card-by-card'
+        ];
+        result.cards.forEach(function (card) {
+          lines.push('- ' + card.name + ': ' + percent(card.currentRate) + ' now → ' + percent(card.projectedRate) + ' after ' + money(card.payment) + ' planned payment; ' + money(targetPayment(card.balance, card.limit, .30)) + ' to reach 30%; ' + money(targetPayment(card.balance, card.limit, .10)) + ' to reach 10%');
+        });
+        lines.push('', 'For informational and educational purposes only. This is not financial advice.');
+        return lines.join('\n');
+      }
+
+      function updateEmail(result) {
+        document.getElementById('emailResults').href = 'mailto:?subject=' + encodeURIComponent('My credit utilization results') + '&body=' + encodeURIComponent(buildSummary(result));
+      }
+
+      function updateExplanation(result) {
+        var reduction = result.currentRate - result.projectedRate;
+        var paymentSentence = result.totalPayment > 0
+          ? 'Your planned payments lower the combined balance by ' + money(result.totalPayment) + ', reducing overall utilization by ' + reduction.toFixed(1) + ' percentage points.'
+          : 'No planned payments were entered, so the “after” percentage is the same as today’s percentage.';
+        var target30 = targetPayment(result.totalBalance, result.totalLimit, .30);
+        var target10 = targetPayment(result.totalBalance, result.totalLimit, .10);
+        document.getElementById('explanationText').textContent = 'Here’s the plain-English version: your cards have ' + money(result.totalBalance) + ' in balances against ' + money(result.totalLimit) + ' in total credit limits. That makes your overall utilization ' + percent(result.currentRate) + '. ' + paymentSentence + ' To bring the combined total to 30%, you would need to pay down ' + money(target30) + '; to reach 10%, you would need to pay down ' + money(target10) + '. Lower utilization is generally better for credit scoring, but there is no single percentage that guarantees a particular score.';
+      }
+
+      function render(result) {
+        lastResult = result;
+        emptyState.classList.add('hidden');
+        resultState.classList.remove('hidden');
+        showResults();
+        document.getElementById('currentRate').textContent = percent(result.currentRate);
+        document.getElementById('projectedRate').textContent = percent(result.projectedRate);
+        var difference = result.currentRate - result.projectedRate;
+        document.getElementById('summaryCopy').textContent = result.totalPayment > 0
+          ? 'Planned payments move your combined rate from ' + band(result.currentRate) + ' to ' + band(result.projectedRate) + ', a drop of ' + difference.toFixed(1) + ' percentage points.'
+          : 'No planned payments were entered. Add one to a card and calculate again to preview the change.';
+        document.getElementById('balanceMetric').textContent = money(result.totalBalance);
+        document.getElementById('balanceAfterMetric').textContent = result.totalPayment > 0 ? money(result.projectedBalance) + ' after payments' : 'no payment change entered';
+        document.getElementById('limitMetric').textContent = money(result.totalLimit);
+        document.getElementById('paymentMetric').textContent = money(result.totalPayment);
+        document.getElementById('pointsMetric').textContent = result.totalPayment > 0 ? difference.toFixed(1) + ' percentage-point drop' : 'enter payments to compare';
+        document.getElementById('currentMarker').style.left = Math.min(100, Math.max(0, result.currentRate)) + '%';
+        document.getElementById('projectedMarker').style.left = Math.min(100, Math.max(0, result.projectedRate)) + '%';
+
+        cardResults.innerHTML = result.cards.map(function (card) {
+          var to30 = targetPayment(card.balance, card.limit, .30);
+          var to10 = targetPayment(card.balance, card.limit, .10);
+          return '<article class="card-result">' +
+            '<h3 title="' + escapeHtml(card.name) + '">' + escapeHtml(card.name) + '</h3>' +
+            '<div class="result-cell"><small>NOW</small><strong>' + percent(card.currentRate) + '</strong></div>' +
+            '<div class="result-cell"><small>AFTER PAYMENT</small><strong>' + percent(card.projectedRate) + '</strong></div>' +
+            '<div class="target-cell"><b>' + money(to30) + '</b> to reach 30%<br><b>' + money(to10) + '</b> to reach 10%</div>' +
+          '</article>';
+        }).join('');
+        updateEmail(result);
+        updateExplanation(result);
+      }
+
+      function calculate(event) {
+        if (event) event.preventDefault();
+        var reading = readCards();
+        if (reading.error) { showError('Check the highlighted fields, then calculate again.'); return; }
+        var cards = reading.cards.map(function (card) {
+          var projectedBalance = Math.max(0, card.balance - card.payment);
+          return {
+            name: card.name,
+            balance: card.balance,
+            limit: card.limit,
+            payment: card.payment,
+            projectedBalance: projectedBalance,
+            currentRate: card.balance / card.limit * 100,
+            projectedRate: projectedBalance / card.limit * 100
+          };
+        });
+        var totalBalance = cards.reduce(function (sum, card) { return sum + card.balance; }, 0);
+        var totalLimit = cards.reduce(function (sum, card) { return sum + card.limit; }, 0);
+        var totalPayment = cards.reduce(function (sum, card) { return sum + card.payment; }, 0);
+        var projectedBalance = totalBalance - totalPayment;
+        render({
+          cards: cards,
+          totalBalance: totalBalance,
+          totalLimit: totalLimit,
+          totalPayment: totalPayment,
+          projectedBalance: projectedBalance,
+          currentRate: totalBalance / totalLimit * 100,
+          projectedRate: projectedBalance / totalLimit * 100
+        });
+      }
+
+      function copyResults() {
+        if (!lastResult) return;
+        var button = document.getElementById('copyResults');
+        var text = buildSummary(lastResult);
+        function confirmCopy() {
+          button.textContent = 'Copied';
+          button.classList.add('copied');
+          window.setTimeout(function () { button.textContent = 'Copy results'; button.classList.remove('copied'); }, 1600);
+        }
+        function fallback() {
+          var area = document.createElement('textarea');
+          area.value = text;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.opacity = '0';
+          document.body.appendChild(area);
+          area.select();
+          var copied = false;
+          try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+          area.remove();
+          if (copied) confirmCopy();
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(confirmCopy).catch(fallback);
+        } else {
+          fallback();
+        }
+      }
+
+      addButton.addEventListener('click', function () {
+        addCard();
+        var newest = cardList.lastElementChild;
+        if (newest) newest.querySelector('.balance').focus();
+      });
+      form.addEventListener('submit', calculate);
+      document.getElementById('copyResults').addEventListener('click', copyResults);
+      document.getElementById('explainResults').addEventListener('click', function () {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!expanded));
+        this.firstChild.nodeValue = expanded ? 'Explain these results' : 'Hide explanation';
+        document.getElementById('resultsExplanation').classList.toggle('hidden', expanded);
+      });
+      addCard();
+    })();
+  </script>
+</body>
+</html>

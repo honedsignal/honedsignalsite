@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Child Support Estimator | Honed Money</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      color-scheme: light dark;
+      --bg: #f3f5f6;
+      --surface: #ffffff;
+      --surface-2: #e9eef1;
+      --ink: #0b0e14;
+      --muted: #53606c;
+      --line: #cbd3d9;
+      --line-strong: #9fabba;
+      --blue: #4778ad;
+      --blue-soft: #deebf7;
+      --orange: #e47700;
+      --orange-hover: #c96600;
+      --orange-ink: #151006;
+      --green: #147b33;
+      --green-soft: #e1f4e6;
+      --red: #bd363d;
+      --red-soft: #fbe3e5;
+      --shadow: 0 22px 60px rgba(11, 14, 20, .09);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0e14;
+        --surface: #131922;
+        --surface-2: #1b2430;
+        --ink: #f5f7f8;
+        --muted: #adb8c3;
+        --line: #2e3947;
+        --line-strong: #495767;
+        --blue: #74a5d8;
+        --blue-soft: #172d43;
+        --orange: #f7931a;
+        --orange-hover: #ffad49;
+        --orange-ink: #171006;
+        --green: #39ff14;
+        --green-soft: #17351b;
+        --red: #ff7a80;
+        --red-soft: #3a2024;
+        --shadow: 0 24px 72px rgba(0, 0, 0, .38);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        linear-gradient(90deg, transparent 0 76%, color-mix(in srgb, var(--blue) 6%, transparent) 76% 76.12%, transparent 76.12%),
+        var(--bg);
+      color: var(--ink);
+      font-family: Manrope, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, input, a, summary { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+
+    .page {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) 0 max(54px, env(safe-area-inset-bottom));
+    }
+
+    .money-home {
+      display: inline-block;
+      margin-bottom: 38px;
+      color: var(--blue);
+      font-size: .8rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .money-home:hover { color: var(--orange); text-decoration: underline; text-underline-offset: 4px; }
+    .money-home:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible, a:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 38%, transparent);
+      outline-offset: 3px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 32px;
+    }
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(2.65rem, 6.2vw, 5.7rem);
+      line-height: .94;
+      letter-spacing: -.058em;
+      font-weight: 800;
+    }
+    h1 span { color: var(--orange); }
+    .intro-copy {
+      margin: 0 0 6px;
+      max-width: 41ch;
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .inputs {
+      position: sticky;
+      top: 18px;
+      padding: 25px;
+      border-radius: 22px 6px 22px 22px;
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .section-head h2 { margin: 0; font-size: 1.02rem; letter-spacing: -.02em; }
+    .step { color: var(--orange); font: 500 .7rem "DM Mono", monospace; }
+    .field { margin-bottom: 16px; }
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 6px;
+      color: var(--ink);
+      font-size: .76rem;
+      font-weight: 800;
+    }
+    label small { color: var(--muted); font-size: .68rem; font-weight: 500; }
+    .control {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
+      background: var(--bg);
+      transition: border-color .16s, box-shadow .16s;
+    }
+    .control:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 20%, transparent);
+    }
+    .control.invalid { border-color: var(--red); }
+    .prefix, .suffix {
+      color: var(--muted);
+      font: 500 .76rem "DM Mono", monospace;
+      white-space: nowrap;
+    }
+    .prefix { padding-left: 12px; }
+    .suffix { padding-right: 11px; }
+    input[type="number"] {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+      padding: 11px;
+      font-family: "DM Mono", monospace;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+    .prefix + input { padding-left: 7px; }
+    input::placeholder { color: color-mix(in srgb, var(--muted) 55%, transparent); font-weight: 400; }
+    input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .field-note { margin: 6px 2px 0; color: var(--muted); font-size: .69rem; line-height: 1.45; }
+    .divider { height: 1px; margin: 21px 0; background: var(--line); }
+    .calculate {
+      width: 100%;
+      margin-top: 4px;
+      border: 0;
+      border-radius: 10px;
+      padding: 14px 18px;
+      cursor: pointer;
+      background: var(--ink);
+      color: var(--bg);
+      font-weight: 800;
+      box-shadow: 0 7px 0 color-mix(in srgb, var(--ink) 35%, #000);
+      transition: transform .1s, box-shadow .1s, opacity .1s;
+    }
+    .calculate:hover { opacity: .9; }
+    .calculate:active { transform: translateY(4px); box-shadow: 0 3px 0 color-mix(in srgb, var(--ink) 35%, #000); }
+    .privacy-note { margin: 16px 2px 0; color: var(--muted); font-size: .7rem; }
+    .error {
+      margin: 0 0 14px;
+      padding: 11px 13px;
+      border-radius: 9px;
+      background: var(--red-soft);
+      color: var(--red);
+      font-size: .79rem;
+      font-weight: 700;
+    }
+    .hidden { display: none !important; }
+
+    .results { min-width: 0; }
+    .empty {
+      min-height: 586px;
+      display: grid;
+      place-items: center;
+      padding: 44px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 6px 22px 22px 22px;
+      background: color-mix(in srgb, var(--surface) 78%, transparent);
+      text-align: center;
+    }
+    .empty-mark {
+      position: relative;
+      width: 154px;
+      height: 92px;
+      margin: 0 auto 25px;
+    }
+    .empty-mark::before, .empty-mark::after {
+      content: "";
+      position: absolute;
+      top: 9px;
+      width: 72px;
+      height: 72px;
+      border: 2px solid var(--blue);
+      border-radius: 50%;
+    }
+    .empty-mark::before { left: 0; background: var(--blue-soft); }
+    .empty-mark::after { right: 0; background: color-mix(in srgb, var(--orange) 16%, var(--surface)); }
+    .empty-mark span {
+      position: absolute;
+      z-index: 1;
+      left: 50%;
+      top: 0;
+      width: 54px;
+      height: 92px;
+      transform: translateX(-50%);
+      border: 2px solid var(--orange);
+      background: var(--surface);
+    }
+    .empty-mark span::before {
+      content: "$";
+      display: grid;
+      place-items: center;
+      height: 100%;
+      color: var(--orange);
+      font: 500 1.55rem "DM Mono", monospace;
+    }
+    .empty h2 { margin: 0 0 9px; font-size: 1.5rem; letter-spacing: -.035em; }
+    .empty p { max-width: 44ch; margin: 0 auto; color: var(--muted); }
+
+    .estimate-card {
+      overflow: hidden;
+      border-radius: 6px 22px 22px 22px;
+    }
+    .estimate-top {
+      padding: clamp(25px, 5vw, 42px);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .eyebrow { margin: 0 0 9px; color: var(--muted); font: 500 .7rem "DM Mono", monospace; }
+    .estimate-range {
+      margin: 0;
+      font: 500 clamp(2.7rem, 7.5vw, 6.3rem)/.92 "DM Mono", monospace;
+      letter-spacing: -.075em;
+      font-variant-numeric: tabular-nums;
+      overflow-wrap: anywhere;
+    }
+    .per-month { margin: 12px 0 0; color: var(--muted); font-size: .8rem; font-weight: 700; }
+    .payer-line {
+      margin: 24px 0 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-size: 1.02rem;
+      font-weight: 800;
+    }
+    .payer-line span { color: var(--orange); }
+
+    .comparison {
+      padding: 24px clamp(22px, 4vw, 34px) 30px;
+      background: var(--blue-soft);
+    }
+    .comparison h2 { margin: 0 0 21px; font-size: 1rem; letter-spacing: -.025em; }
+    .bar-row + .bar-row { margin-top: 20px; }
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 7px;
+      font-size: .74rem;
+      font-weight: 800;
+    }
+    .bar-label span:last-child { color: var(--muted); font-family: "DM Mono", monospace; font-weight: 500; }
+    .split-bar {
+      display: flex;
+      height: 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--surface-2);
+    }
+    .split-a { background: var(--blue); }
+    .split-b { background: var(--orange); }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: .68rem;
+      font-weight: 700;
+    }
+    .legend span::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+    .legend span:last-child::before { background: var(--orange); }
+
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      margin-top: 11px;
+    }
+    .breakdown-card { padding: 22px; border-radius: 14px; }
+    .breakdown-card h2 { margin: 0; font-size: 1rem; letter-spacing: -.025em; }
+    .breakdown-list { margin: 16px 0 0; }
+    .breakdown-list div {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: .76rem;
+    }
+    .breakdown-list div:last-child { border-bottom: 0; }
+    .breakdown-list dt { color: var(--muted); }
+    .breakdown-list dd { margin: 0; font-family: "DM Mono", monospace; font-weight: 500; text-align: right; }
+    .context-card { background: var(--ink); color: var(--bg); border-color: transparent; }
+    @media (prefers-color-scheme: dark) { .context-card { background: #eef3f6; color: #0b0e14; } }
+    .context-number { margin: 20px 0 8px; font: 500 clamp(2rem, 4vw, 3.35rem)/1 "DM Mono", monospace; letter-spacing: -.055em; }
+    .context-card p { margin: 0; max-width: 35ch; opacity: .72; font-size: .78rem; }
+
+    .result-tools {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 11px;
+    }
+    .tool-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 13px;
+      cursor: pointer;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: .74rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    #emailResults { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    #emailResults:hover { background: var(--orange-hover); }
+    .tool-btn:hover { border-color: var(--blue); }
+    .tool-btn.copied { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+    .copy-status { min-width: 5ch; color: var(--green); font-size: .7rem; font-weight: 800; }
+    details {
+      margin-top: 10px;
+      padding: 18px 21px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    summary { cursor: pointer; font-size: .78rem; font-weight: 800; }
+    summary::marker { color: var(--orange); }
+    .explanation { padding-top: 13px; }
+    .explanation p { margin: 0 0 11px; color: var(--muted); font-size: .84rem; line-height: 1.65; }
+    .explanation p:last-child { margin-bottom: 0; }
+    .explanation strong { color: var(--ink); }
+
+    .method-note {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 28px;
+      margin-top: 34px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+    .method-note h2 { margin: 0; font-size: 1.2rem; letter-spacing: -.03em; }
+    .method-note p { margin: 0; color: var(--muted); font-size: .84rem; line-height: 1.65; }
+    .method-note strong { color: var(--ink); }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .68rem;
+    }
+    .footer p { margin: 0; max-width: 78ch; }
+
+    @media (max-width: 880px) {
+      .page { width: min(100% - 28px, 700px); }
+      .money-home { margin-bottom: 32px; }
+      .intro { grid-template-columns: 1fr; gap: 15px; }
+      .intro-copy { max-width: 54ch; }
+      .workbench { grid-template-columns: 1fr; }
+      .inputs { position: static; border-radius: 22px; }
+      .empty, .estimate-card { border-radius: 22px; }
+    }
+    @media (max-width: 560px) {
+      .page { width: min(100% - 22px, 520px); padding-bottom: 44px; }
+      .money-home { margin-bottom: 27px; }
+      h1 { font-size: clamp(2.45rem, 13vw, 4rem); }
+      .intro-copy { font-size: .94rem; }
+      .inputs, .breakdown-card { padding: 19px; }
+      .field-grid, .breakdown, .method-note { grid-template-columns: 1fr; }
+      .estimate-top { padding: 26px 20px; }
+      .estimate-range { font-size: clamp(2.4rem, 15vw, 4.6rem); }
+      .empty { min-height: 350px; padding: 30px 22px; }
+      .result-tools { align-items: stretch; }
+      .tool-btn { flex: 1 1 calc(50% - 8px); }
+      .copy-status { flex-basis: 100%; }
+      .method-note { gap: 10px; }
+      .footer { flex-direction: column; gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="Estimate monthly support. Free child support estimator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/child-support-estimator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Child Support Estimator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/child-support-estimator/","description":"Estimate monthly support. Free child support estimator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <main class="page">
+    <a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <header class="intro">
+      <h1>A planning range for <span>child support.</span></h1>
+      <p class="intro-copy">Compare each parent’s share of income with their share of annual overnights. This gives you a neutral starting point—not a court prediction.</p>
+    </header>
+
+    <section class="workbench" aria-label="Child support estimator">
+      <form class="panel inputs" id="supportForm" novalidate>
+        <div class="section-head"><h2>Income and children</h2><span class="step">01 / INPUT</span></div>
+
+        <div class="field">
+          <label for="incomeA">Parent A gross monthly income <small>required</small></label>
+          <div class="control"><span class="prefix">$</span><input id="incomeA" name="incomeA" type="number" min="0" max="10000000" step="1" inputmode="decimal" placeholder="Example: 6,500" autocomplete="off" /></div>
+          <p class="field-note">Income before taxes and paycheck deductions.</p>
+        </div>
+
+        <div class="field">
+          <label for="incomeB">Parent B gross monthly income <small>required</small></label>
+          <div class="control"><span class="prefix">$</span><input id="incomeB" name="incomeB" type="number" min="0" max="10000000" step="1" inputmode="decimal" placeholder="Example: 4,000" autocomplete="off" /></div>
+        </div>
+
+        <div class="field">
+          <label for="children">Children covered by the order <small>1 to 6+</small></label>
+          <div class="control"><input id="children" name="children" type="number" min="1" max="6" step="1" inputmode="numeric" placeholder="Example: 2" autocomplete="off" /><span class="suffix">children</span></div>
+          <p class="field-note">Enter 6 for six or more children.</p>
+        </div>
+
+        <div class="divider"></div>
+        <div class="section-head"><h2>Annual overnights</h2><span class="step">TOTAL = 365</span></div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="overnightsA">Parent A</label>
+            <div class="control"><input id="overnightsA" name="overnightsA" type="number" min="0" max="365" step="1" inputmode="numeric" placeholder="Example: 104" autocomplete="off" /><span class="suffix">nights</span></div>
+          </div>
+          <div class="field">
+            <label for="overnightsB">Parent B</label>
+            <div class="control"><input id="overnightsB" name="overnightsB" type="number" min="0" max="365" step="1" inputmode="numeric" placeholder="Example: 261" autocomplete="off" /><span class="suffix">nights</span></div>
+          </div>
+        </div>
+        <p class="field-note">Use the expected schedule for a typical non-leap year. The two entries must add up to 365.</p>
+
+        <p class="error hidden" id="errorBox" role="alert" aria-live="polite"></p>
+        <button class="calculate" type="submit">Estimate monthly support</button>
+        <p class="privacy-note">Your entries stay in this tab and are not saved.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <div class="empty-mark" aria-hidden="true"><span></span></div>
+            <h2>Income share meets parenting time.</h2>
+            <p>Enter both incomes, the number of children, and a full year of overnights to see an estimated monthly transfer.</p>
+          </div>
+        </div>
+
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="panel estimate-card" aria-label="Estimated child support range">
+            <div class="estimate-top">
+              <p class="eyebrow">ESTIMATED MONTHLY RANGE</p>
+              <p class="estimate-range" id="rangeOut">—</p>
+              <p class="per-month">per month · rounded to the nearest dollar</p>
+              <p class="payer-line" id="payerLine">—</p>
+            </div>
+            <div class="comparison">
+              <h2>Why the estimate points that way</h2>
+              <div class="bar-row">
+                <div class="bar-label"><span>Share of combined income</span><span id="incomeSharesText">—</span></div>
+                <div class="split-bar" aria-hidden="true"><span class="split-a" id="incomeBarA"></span><span class="split-b" id="incomeBarB"></span></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label"><span>Share of overnights</span><span id="overnightSharesText">—</span></div>
+                <div class="split-bar" aria-hidden="true"><span class="split-a" id="overnightBarA"></span><span class="split-b" id="overnightBarB"></span></div>
+              </div>
+              <div class="legend"><span>Parent A</span><span>Parent B</span></div>
+            </div>
+          </section>
+
+          <div class="breakdown">
+            <section class="panel breakdown-card">
+              <h2>Estimate details</h2>
+              <dl class="breakdown-list">
+                <div><dt>Combined monthly income</dt><dd id="combinedOut">—</dd></div>
+                <div><dt>Estimated child budget</dt><dd id="budgetOut">—</dd></div>
+                <div><dt>Midpoint transfer</dt><dd id="midpointOut">—</dd></div>
+                <div><dt>Range used</dt><dd>±15%</dd></div>
+              </dl>
+            </section>
+            <section class="panel breakdown-card context-card">
+              <h2>Parenting-time balance</h2>
+              <p class="context-number" id="overnightGapOut">—</p>
+              <p id="overnightGapCopy">—</p>
+            </section>
+          </div>
+
+          <div class="result-tools">
+            <a class="tool-btn" id="emailResults" href="mailto:" aria-label="Email these child support estimate results">Email my results</a>
+            <button class="tool-btn" type="button" id="copyResults">Copy results</button>
+            <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
+          </div>
+
+          <details id="explanationDetails">
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanationText"></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="method-note" aria-label="About this estimate">
+      <h2>One model, not your state’s rulebook</h2>
+      <p><strong>This tool uses a simplified income-shares approach.</strong> It estimates a combined child-rearing budget, assigns that budget by each parent’s share of income, then gives credit for each parent’s share of overnights. Actual guidelines vary by state and may add childcare, health insurance, medical costs, other children, existing support orders, taxes, low-income protections, and court-approved adjustments.</p>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Method:</strong> Estimated child budget equals combined gross monthly income multiplied by 17% for one child, 25% for two, 29% for three, 31% for four, 34% for five, or 36% for six or more. The midpoint transfer compares each parent’s income share with parenting-time share; the displayed range is 15% below to 15% above that midpoint.</p>
+      <p>For informational and educational purposes only. Not legal advice. A family-law attorney or your state’s official worksheet can provide a state-specific estimate.</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var form = document.getElementById('supportForm');
+      var emptyState = document.getElementById('emptyState');
+      var resultState = document.getElementById('resultState');
+      var errorBox = document.getElementById('errorBox');
+      var copyButton = document.getElementById('copyResults');
+      var copyStatus = document.getElementById('copyStatus');
+      var emailLink = document.getElementById('emailResults');
+      var current = null;
+      var ids = ['incomeA', 'incomeB', 'children', 'overnightsA', 'overnightsB'];
+      var rates = { 1: .17, 2: .25, 3: .29, 4: .31, 5: .34, 6: .36 };
+
+      function readNumber(id) {
+        var raw = document.getElementById(id).value.trim();
+        return raw === '' ? NaN : Number(raw);
+      }
+
+      function money(value) {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0
+        }).format(Math.round(value));
+      }
+
+      function percent(value) {
+        return new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 1
+        }).format(value * 100) + '%';
+      }
+
+      function childLabel(count) {
+        return count === 1 ? '1 child' : (count === 6 ? '6 or more children' : count + ' children');
+      }
+
+      function clearInvalid() {
+        ids.forEach(function (id) {
+          document.getElementById(id).closest('.control').classList.remove('invalid');
+          document.getElementById(id).removeAttribute('aria-invalid');
+        });
+      }
+
+      function showError(message, id) {
+        clearInvalid();
+        errorBox.textContent = message;
+        errorBox.classList.remove('hidden');
+        emptyState.classList.remove('hidden');
+        resultState.classList.add('hidden');
+        if (id) {
+          var input = document.getElementById(id);
+          input.closest('.control').classList.add('invalid');
+          input.setAttribute('aria-invalid', 'true');
+          input.focus();
+        }
+      }
+
+      function summaryText() {
+        if (!current) return '';
+        var r = current;
+        return [
+          'Child Support Estimator results',
+          '',
+          'Estimated monthly range: ' + money(r.low) + '–' + money(r.high),
+          r.payerSentence,
+          '',
+          'Parent A gross monthly income: ' + money(r.incomeA),
+          'Parent B gross monthly income: ' + money(r.incomeB),
+          'Children covered: ' + childLabel(r.children),
+          'Parent A overnights: ' + r.overnightsA,
+          'Parent B overnights: ' + r.overnightsB,
+          'Combined monthly income: ' + money(r.combined),
+          'Estimated combined child budget: ' + money(r.budget),
+          'Midpoint transfer estimate: ' + money(r.midpoint),
+          '',
+          'Method: simplified income-shares model using combined gross income, number of children, and parenting-time shares. The displayed planning range is 15% below to 15% above the midpoint.',
+          '',
+          'Actual child support orders vary by state and household circumstances. For informational and educational purposes only. Not legal advice.'
+        ].join('\n');
+      }
+
+      function updateEmail() {
+        emailLink.href = 'mailto:?subject=' + encodeURIComponent('My child support estimate') + '&body=' + encodeURIComponent(summaryText());
+      }
+
+      function copyResults() {
+        var text = summaryText();
+        if (!text) return;
+
+        function done() {
+          copyButton.textContent = 'Copied';
+          copyButton.classList.add('copied');
+          copyStatus.textContent = 'Results copied.';
+          window.setTimeout(function () {
+            copyButton.textContent = 'Copy results';
+            copyButton.classList.remove('copied');
+            copyStatus.textContent = '';
+          }, 2200);
+        }
+
+        function fallback() {
+          var area = document.createElement('textarea');
+          area.value = text;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.opacity = '0';
+          document.body.appendChild(area);
+          area.select();
+          var copied = false;
+          try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+          area.remove();
+          if (copied) done();
+          else copyStatus.textContent = 'Copy unavailable. Use Email my results instead.';
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(done).catch(fallback);
+        } else {
+          fallback();
+        }
+      }
+
+      function renderExplanation(r) {
+        var incomeDifference = Math.abs(r.incomeShareA - r.overnightShareA);
+        var payer = r.direction === 'balanced' ? 'Neither parent' : r.payer;
+        var receiver = r.direction === 'balanced' ? 'either parent' : r.receiver;
+        document.getElementById('explanationText').innerHTML =
+          '<p><strong>Step 1 — estimate the shared budget.</strong> The model applies a ' + percent(r.rate) + ' planning rate for ' + childLabel(r.children) + ' to the combined monthly income of ' + money(r.combined) + '. That produces an estimated child budget of ' + money(r.budget) + '.</p>' +
+          '<p><strong>Step 2 — compare responsibility with time.</strong> Parent A earns ' + percent(r.incomeShareA) + ' of combined income and has ' + percent(r.overnightShareA) + ' of overnights. Parent B earns ' + percent(r.incomeShareB) + ' and has ' + percent(r.overnightShareB) + ' of overnights. The gap is ' + percent(incomeDifference) + ' of the estimated child budget.</p>' +
+          '<p><strong>Step 3 — create a planning range.</strong> The midpoint is ' + money(r.midpoint) + ' per month. The displayed range runs 15% below to 15% above that amount because real worksheets can treat the same inputs differently. In this simplified model, ' + payer + ' would pay ' + receiver + '.</p>' +
+          '<p><strong>What is missing:</strong> childcare, health insurance, medical costs, taxes, other children, existing support, special needs, and state-specific adjustments. Those items can materially change an order.</p>';
+      }
+
+      function calculate(event) {
+        event.preventDefault();
+        var incomeA = readNumber('incomeA');
+        var incomeB = readNumber('incomeB');
+        var children = readNumber('children');
+        var overnightsA = readNumber('overnightsA');
+        var overnightsB = readNumber('overnightsB');
+
+        if (!Number.isFinite(incomeA) || incomeA < 0 || incomeA > 10000000) {
+          showError('Enter Parent A’s gross monthly income between $0 and $10 million.', 'incomeA');
+          return;
+        }
+        if (!Number.isFinite(incomeB) || incomeB < 0 || incomeB > 10000000) {
+          showError('Enter Parent B’s gross monthly income between $0 and $10 million.', 'incomeB');
+          return;
+        }
+        if (incomeA + incomeB <= 0) {
+          showError('At least one parent must have monthly income greater than $0.', 'incomeA');
+          return;
+        }
+        if (!Number.isInteger(children) || children < 1 || children > 6) {
+          showError('Enter a whole number from 1 to 6. Use 6 for six or more children.', 'children');
+          return;
+        }
+        if (!Number.isInteger(overnightsA) || overnightsA < 0 || overnightsA > 365) {
+          showError('Enter Parent A’s overnights as a whole number from 0 to 365.', 'overnightsA');
+          return;
+        }
+        if (!Number.isInteger(overnightsB) || overnightsB < 0 || overnightsB > 365) {
+          showError('Enter Parent B’s overnights as a whole number from 0 to 365.', 'overnightsB');
+          return;
+        }
+        if (overnightsA + overnightsB !== 365) {
+          showError('The two overnight entries must add up to 365. They currently add up to ' + (overnightsA + overnightsB) + '.', 'overnightsB');
+          return;
+        }
+
+        clearInvalid();
+        errorBox.classList.add('hidden');
+
+        var combined = incomeA + incomeB;
+        var incomeShareA = incomeA / combined;
+        var incomeShareB = incomeB / combined;
+        var overnightShareA = overnightsA / 365;
+        var overnightShareB = overnightsB / 365;
+        var rate = rates[children];
+        var budget = combined * rate;
+        var signedTransfer = budget * (incomeShareA - overnightShareA);
+        var midpoint = Math.abs(signedTransfer);
+        var low = midpoint * .85;
+        var high = midpoint * 1.15;
+        var direction = Math.abs(signedTransfer) < .5 ? 'balanced' : (signedTransfer > 0 ? 'AtoB' : 'BtoA');
+        var payer = direction === 'AtoB' ? 'Parent A' : 'Parent B';
+        var receiver = direction === 'AtoB' ? 'Parent B' : 'Parent A';
+        var payerSentence = direction === 'balanced'
+          ? 'This simplified model produces little or no monthly transfer.'
+          : payer + ' would likely pay ' + receiver + ' in this simplified model.';
+
+        current = {
+          incomeA: incomeA,
+          incomeB: incomeB,
+          children: children,
+          overnightsA: overnightsA,
+          overnightsB: overnightsB,
+          combined: combined,
+          incomeShareA: incomeShareA,
+          incomeShareB: incomeShareB,
+          overnightShareA: overnightShareA,
+          overnightShareB: overnightShareB,
+          rate: rate,
+          budget: budget,
+          midpoint: midpoint,
+          low: low,
+          high: high,
+          direction: direction,
+          payer: payer,
+          receiver: receiver,
+          payerSentence: payerSentence
+        };
+
+        document.getElementById('rangeOut').textContent = money(low) + '–' + money(high);
+        document.getElementById('payerLine').innerHTML = direction === 'balanced'
+          ? 'The income and overnight shares are nearly balanced.'
+          : '<span>' + payer + '</span> would likely pay ' + receiver + '.';
+        document.getElementById('incomeSharesText').textContent = 'A ' + percent(incomeShareA) + ' · B ' + percent(incomeShareB);
+        document.getElementById('overnightSharesText').textContent = 'A ' + percent(overnightShareA) + ' · B ' + percent(overnightShareB);
+        document.getElementById('incomeBarA').style.width = (incomeShareA * 100) + '%';
+        document.getElementById('incomeBarB').style.width = (incomeShareB * 100) + '%';
+        document.getElementById('overnightBarA').style.width = (overnightShareA * 100) + '%';
+        document.getElementById('overnightBarB').style.width = (overnightShareB * 100) + '%';
+        document.getElementById('combinedOut').textContent = money(combined);
+        document.getElementById('budgetOut').textContent = money(budget);
+        document.getElementById('midpointOut').textContent = money(midpoint);
+
+        var gap = Math.abs(overnightsA - overnightsB);
+        document.getElementById('overnightGapOut').textContent = gap + (gap === 1 ? ' night' : ' nights');
+        document.getElementById('overnightGapCopy').textContent = gap === 0
+          ? 'The entered schedule is evenly divided.'
+          : (overnightsA > overnightsB ? 'Parent A' : 'Parent B') + ' has this many more overnights during the year.';
+
+        renderExplanation(current);
+        updateEmail();
+        document.getElementById('explanationDetails').open = false;
+        emptyState.classList.add('hidden');
+        resultState.classList.remove('hidden');
+        resultState.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      }
+
+      form.addEventListener('submit', calculate);
+      copyButton.addEventListener('click', copyResults);
+      ids.forEach(function (id) {
+        document.getElementById(id).addEventListener('input', function () {
+          this.closest('.control').classList.remove('invalid');
+          this.removeAttribute('aria-invalid');
+          if (!errorBox.classList.contains('hidden')) errorBox.classList.add('hidden');
+        });
+      });
+    }());
+  </script>
+</body>
+</html>

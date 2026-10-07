@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <title>Funeral Cost Estimator | Honed Money</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0b0e14;
+      --surface: #141a23;
+      --surface-2: #1b2330;
+      --surface-3: #222c39;
+      --line: #34404e;
+      --text: #f5f5f5;
+      --muted: #aeb8c4;
+      --faint: #7f8b9b;
+      --blue: #78a9dd;
+      --orange: #f7931a;
+      --orange-ink: #171009;
+      --danger: #ff8b8f;
+      --shadow: 0 22px 58px rgba(0, 0, 0, .3);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #0f131b;
+        --surface: #171e28;
+        --surface-2: #202a37;
+        --surface-3: #283543;
+        --line: #3c4a5a;
+        --text: #f7f7f7;
+        --muted: #b8c2ce;
+        --faint: #8996a7;
+        --blue: #78a9dd;
+        --danger: #ff969a;
+        --shadow: 0 22px 58px rgba(0, 0, 0, .28);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, transparent 0 72%, color-mix(in srgb, var(--blue) 7%, transparent) 72% 72.15%, transparent 72.15%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Archivo", system-ui, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid color-mix(in srgb, var(--blue) 72%, transparent); outline-offset: 3px; }
+
+    .page {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) 0 max(54px, env(safe-area-inset-bottom));
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 42px;
+      color: var(--muted);
+      font-size: .91rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--orange); text-decoration: underline; }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 335px);
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+    h1 {
+      max-width: 760px;
+      margin: 0 0 13px;
+      font-size: clamp(2.45rem, 7vw, 5rem);
+      line-height: .96;
+      letter-spacing: -.055em;
+    }
+    .lede {
+      max-width: 660px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+    }
+    .process-note {
+      border-top: 4px solid var(--orange);
+      padding-top: 16px;
+      color: var(--muted);
+      font-size: .91rem;
+    }
+    .process-note strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(0, .96fr) minmax(0, 1.04fr);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .form-pane, .result-pane { padding: clamp(24px, 4vw, 42px); }
+    .result-pane { min-height: 650px; border-left: 1px solid var(--line); background: var(--surface-2); }
+    .section-title { margin: 0 0 5px; font-size: 1.25rem; letter-spacing: -.02em; }
+    .section-note { margin: 0 0 26px; color: var(--muted); font-size: .9rem; }
+
+    fieldset { min-width: 0; margin: 0 0 26px; padding: 0; border: 0; }
+    legend { margin-bottom: 10px; font-weight: 700; }
+    .choice-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--bg);
+    }
+    .choice { position: relative; }
+    .choice input {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      width: 17px;
+      height: 17px;
+      margin: 0;
+      transform: translateY(-50%);
+      accent-color: var(--orange);
+      cursor: pointer;
+    }
+    .choice label {
+      display: block;
+      margin: 0;
+      padding: 11px 12px 11px 38px;
+      border-radius: 8px;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .choice input:checked + label { background: var(--surface-3); color: var(--text); box-shadow: inset 0 0 0 1px var(--orange); }
+    .choice input:focus-visible + label { outline: 3px solid color-mix(in srgb, var(--blue) 72%, transparent); outline-offset: 3px; }
+
+    .field { margin-bottom: 19px; }
+    .field label { display: block; margin-bottom: 7px; font-size: .94rem; font-weight: 650; }
+    .field label span { display: block; margin-top: 2px; color: var(--faint); font-size: .77rem; font-weight: 500; }
+    .money-input { position: relative; }
+    .money-input::before {
+      content: "$";
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+      pointer-events: none;
+    }
+    input[type="number"] {
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 15px 12px 34px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { margin: 0; -webkit-appearance: none; }
+    input::placeholder { color: var(--faint); opacity: .78; }
+    input:hover { border-color: var(--faint); }
+    input:focus { border-color: var(--blue); }
+    input.invalid { border-color: var(--danger); }
+    .error { min-height: 22px; margin: -5px 0 8px; color: var(--danger); font-size: .84rem; font-weight: 600; }
+
+    .form-actions { display: flex; gap: 10px; margin-top: 8px; }
+    .primary, .secondary, .email, .copy {
+      min-height: 48px;
+      border-radius: 9px;
+      padding: 12px 18px;
+      font-weight: 700;
+    }
+    .primary { flex: 1; border: 0; background: var(--blue); color: #fff; }
+    .primary:hover { filter: brightness(1.09); }
+    .secondary { border: 1px solid var(--line); background: transparent; color: var(--muted); }
+    .secondary:hover { border-color: var(--faint); color: var(--text); }
+
+    .empty-state {
+      min-height: 560px;
+      display: grid;
+      place-content: center;
+      padding: 18px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .empty-mark {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 20px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--orange);
+    }
+    .empty-mark svg { width: 38px; height: 38px; }
+    .empty-state strong { display: block; margin-bottom: 6px; color: var(--text); font-size: 1.04rem; }
+    .empty-state p { max-width: 34ch; margin: 0 auto; }
+
+    .results[hidden] { display: none; }
+    .result-kicker { margin: 0 0 7px; color: var(--muted); font-size: .82rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .total {
+      margin: 0 0 6px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.55rem, 7vw, 4.25rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+    .result-caption { margin: 0 0 26px; color: var(--muted); }
+    .breakdown {
+      margin: 0 0 22px;
+      padding: 0;
+      border-top: 1px solid var(--line);
+      list-style: none;
+    }
+    .breakdown li {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .breakdown span { color: var(--muted); }
+    .breakdown strong { font-family: "IBM Plex Mono", monospace; font-size: .94rem; white-space: nowrap; }
+    .largest-note {
+      margin: 0 0 22px;
+      padding: 13px 15px;
+      border-radius: 9px;
+      background: var(--surface-3);
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    .largest-note strong { color: var(--text); }
+    .share-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+    .email { border: 0; background: var(--orange); color: var(--orange-ink); text-decoration: none; text-align: center; }
+    .email:hover { filter: brightness(1.08); }
+    .copy { border: 1px solid var(--line); background: transparent; color: var(--text); }
+    .copy:hover { border-color: var(--orange); }
+    .copy-status { min-height: 21px; margin: -10px 0 10px; color: var(--muted); font-size: .82rem; text-align: center; }
+
+    details { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    summary { padding: 15px 2px; color: var(--text); font-weight: 700; cursor: pointer; }
+    summary::marker { color: var(--orange); }
+    .explain { padding: 0 2px 15px; color: var(--muted); font-size: .9rem; }
+    .explain p { margin: 0 0 10px; }
+    .explain p:last-child { margin-bottom: 0; }
+    .disclaimer { margin: 22px 0 0; color: var(--faint); font-size: .79rem; }
+
+    @media (max-width: 820px) {
+      .intro { grid-template-columns: 1fr; gap: 22px; }
+      .process-note { max-width: 560px; }
+      .calculator { grid-template-columns: 1fr; }
+      .result-pane { min-height: 0; border-top: 1px solid var(--line); border-left: 0; }
+      .empty-state { min-height: 300px; }
+    }
+    @media (max-width: 520px) {
+      .page { width: min(100% - 28px, 1100px); }
+      .back-link { margin-bottom: 32px; }
+      h1 { font-size: clamp(2.35rem, 14vw, 3.65rem); }
+      .form-pane, .result-pane { padding: 22px 18px; }
+      .form-actions, .share-actions { grid-template-columns: 1fr; flex-direction: column; }
+      .share-actions { display: grid; }
+      .primary, .secondary { width: 100%; }
+      .total { font-size: clamp(2.4rem, 14vw, 3.65rem); }
+      .breakdown li { align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="Plan the final expenses. Free funeral cost estimator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/funeral-cost-estimator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Funeral Cost Estimator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/funeral-cost-estimator/","description":"Plan the final expenses. Free funeral cost estimator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">Funeral cost estimator</h1>
+        <p class="lede">Add the costs you expect for a burial or cremation. Get one clear total and an item-by-item summary you can compare with provider quotes.</p>
+      </div>
+      <aside class="process-note" aria-label="Planning note">
+        <strong>Build from real quotes</strong>
+        Enter the numbers a funeral home, cemetery, crematory, or other provider gives you. Leave anything that does not apply at $0.
+      </aside>
+    </section>
+
+    <section class="calculator" aria-label="Funeral cost calculator">
+      <form class="form-pane" id="cost-form" novalidate>
+        <h2 class="section-title">Enter expected costs</h2>
+        <p class="section-note">Whole-dollar estimates are fine. Every amount can be changed.</p>
+
+        <fieldset>
+          <legend>Arrangement type</legend>
+          <div class="choice-group">
+            <div class="choice">
+              <input type="radio" id="burial" name="arrangement" value="Burial" checked />
+              <label for="burial">Burial</label>
+            </div>
+            <div class="choice">
+              <input type="radio" id="cremation" name="arrangement" value="Cremation" />
+              <label for="cremation">Cremation</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="service">Funeral or memorial service <span>Staff, facilities, ceremony, or gathering</span></label>
+          <div class="money-input"><input id="service" name="service" type="number" min="0" step="1" inputmode="decimal" placeholder="e.g. 2,500" /></div>
+        </div>
+
+        <div class="field">
+          <label for="container"><span id="container-label-main">Casket</span><span id="container-hint">Casket or outer burial container</span></label>
+          <div class="money-input"><input id="container" name="container" type="number" min="0" step="1" inputmode="decimal" placeholder="e.g. 2,000" /></div>
+        </div>
+
+        <div class="field">
+          <label for="disposition"><span id="disposition-label-main">Cemetery and burial fees</span><span id="disposition-hint">Plot, opening and closing, marker, or related fees</span></label>
+          <div class="money-input"><input id="disposition" name="disposition" type="number" min="0" step="1" inputmode="decimal" placeholder="e.g. 3,000" /></div>
+        </div>
+
+        <div class="field">
+          <label for="care">Preparation and care <span>Embalming, washing, dressing, or other care</span></label>
+          <div class="money-input"><input id="care" name="care" type="number" min="0" step="1" inputmode="decimal" placeholder="e.g. 900" /></div>
+        </div>
+
+        <div class="field">
+          <label for="transport">Transportation <span>Transfer, hearse, limousine, or mileage</span></label>
+          <div class="money-input"><input id="transport" name="transport" type="number" min="0" step="1" inputmode="decimal" placeholder="e.g. 700" /></div>
+        </div>
+
+        <div class="field">
+          <label for="tributes">Flowers, notices, and printed items <span>Flowers, obituary, programs, cards, or keepsakes</span></label>
+          <div class="money-input"><input id="tributes" name="tributes" type="number" min="0" step="1" inputmode="decimal" placeholder="e.g. 500" /></div>
+        </div>
+
+        <div class="field">
+          <label for="other">Other costs <span>Clergy, reception, permits, travel, or anything else</span></label>
+          <div class="money-input"><input id="other" name="other" type="number" min="0" step="1" inputmode="decimal" placeholder="e.g. 600" /></div>
+        </div>
+
+        <p class="error" id="form-error" role="alert" aria-live="polite"></p>
+        <div class="form-actions">
+          <button class="primary" type="submit">Estimate total</button>
+          <button class="secondary" type="reset">Clear</button>
+        </div>
+      </form>
+
+      <section class="result-pane" aria-labelledby="results-title">
+        <div class="empty-state" id="empty-state">
+          <div>
+            <div class="empty-mark" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M13 8h22v32l-5-3-6 3-6-3-5 3V8Z" stroke="currentColor" stroke-width="2"/><path d="M18 17h12M18 24h12M18 31h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <strong>Your estimate will appear here</strong>
+            <p>Choose an arrangement, enter the costs you know, then select “Estimate total.”</p>
+          </div>
+        </div>
+
+        <div class="results" id="results" hidden>
+          <p class="result-kicker" id="result-type">Burial estimate</p>
+          <h2 class="total" id="results-title">$0</h2>
+          <p class="result-caption">Estimated total based on the amounts you entered.</p>
+          <ul class="breakdown" id="breakdown"></ul>
+          <p class="largest-note" id="largest-note"></p>
+          <div class="share-actions">
+            <a class="email" id="email-results" href="#">Email my results</a>
+            <button class="copy" id="copy-results" type="button">Copy results</button>
+          </div>
+          <p class="copy-status" id="copy-status" aria-live="polite"></p>
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explain">
+              <p><strong>This total is a planning estimate, not a provider quote.</strong> It simply adds the amounts you entered. A $0 line means no amount was entered for that item.</p>
+              <p>Ask providers for an itemized price list so you can compare the same services. Some charges may come from separate businesses, such as the cemetery, crematory, florist, newspaper, clergy, or reception venue.</p>
+              <p>Before agreeing to anything, check whether a prepaid plan, insurance policy, veterans benefit, membership benefit, or family burial plot may cover part of the cost.</p>
+            </div>
+          </details>
+          <p class="disclaimer">For informational and planning purposes only. Actual prices, required services, benefits, taxes, and fees vary by provider and location.</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('cost-form');
+      var emptyState = document.getElementById('empty-state');
+      var results = document.getElementById('results');
+      var totalEl = document.getElementById('results-title');
+      var typeEl = document.getElementById('result-type');
+      var breakdownEl = document.getElementById('breakdown');
+      var largestEl = document.getElementById('largest-note');
+      var errorEl = document.getElementById('form-error');
+      var emailEl = document.getElementById('email-results');
+      var copyButton = document.getElementById('copy-results');
+      var copyStatus = document.getElementById('copy-status');
+      var currentSummary = '';
+
+      var inputs = [
+        document.getElementById('service'),
+        document.getElementById('container'),
+        document.getElementById('disposition'),
+        document.getElementById('care'),
+        document.getElementById('transport'),
+        document.getElementById('tributes'),
+        document.getElementById('other')
+      ];
+
+      var money = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      });
+
+      function arrangement() {
+        return document.querySelector('input[name="arrangement"]:checked').value;
+      }
+
+      function updateLabels() {
+        var isBurial = arrangement() === 'Burial';
+        document.getElementById('container-label-main').textContent = isBurial ? 'Casket' : 'Urn or container';
+        document.getElementById('container-hint').textContent = isBurial ? 'Casket or outer burial container' : 'Urn, keepsake urn, or temporary container';
+        document.getElementById('disposition-label-main').textContent = isBurial ? 'Cemetery and burial fees' : 'Cremation fee';
+        document.getElementById('disposition-hint').textContent = isBurial ? 'Plot, opening and closing, marker, or related fees' : 'Crematory charge and required permits';
+      }
+
+      function labelsFor(type) {
+        return [
+          'Funeral or memorial service',
+          type === 'Burial' ? 'Casket' : 'Urn or container',
+          type === 'Burial' ? 'Cemetery and burial fees' : 'Cremation fee',
+          'Preparation and care',
+          'Transportation',
+          'Flowers, notices, and printed items',
+          'Other costs'
+        ];
+      }
+
+      function clearValidation() {
+        inputs.forEach(function (input) { input.classList.remove('invalid'); input.removeAttribute('aria-invalid'); });
+        errorEl.textContent = '';
+      }
+
+      function buildSummary(type, total, labels, values) {
+        var lines = [
+          'Funeral cost estimate',
+          'Arrangement: ' + type,
+          'Estimated total: ' + money.format(total),
+          '',
+          'Itemized costs:'
+        ];
+        labels.forEach(function (label, index) { lines.push(label + ': ' + money.format(values[index])); });
+        lines.push('', 'This estimate is for informational and planning purposes only. Actual prices, required services, benefits, taxes, and fees vary.');
+        return lines.join('\n');
+      }
+
+      function calculate(event) {
+        event.preventDefault();
+        clearValidation();
+        copyStatus.textContent = '';
+
+        var hasInvalid = false;
+        var hasEntry = false;
+        var values = inputs.map(function (input) {
+          if (input.value.trim() !== '') hasEntry = true;
+          var value = input.value.trim() === '' ? 0 : Number(input.value);
+          if (!Number.isFinite(value) || value < 0) {
+            input.classList.add('invalid');
+            input.setAttribute('aria-invalid', 'true');
+            hasInvalid = true;
+          }
+          return value;
+        });
+
+        if (hasInvalid) {
+          errorEl.textContent = 'Use zero or a positive amount for each cost.';
+          return;
+        }
+        if (!hasEntry) {
+          errorEl.textContent = 'Enter at least one cost to create an estimate.';
+          inputs[0].focus();
+          return;
+        }
+
+        var type = arrangement();
+        var labels = labelsFor(type);
+        var total = values.reduce(function (sum, value) { return sum + value; }, 0);
+        var largestIndex = 0;
+        values.forEach(function (value, index) { if (value > values[largestIndex]) largestIndex = index; });
+
+        typeEl.textContent = type + ' estimate';
+        totalEl.textContent = money.format(total);
+        breakdownEl.innerHTML = '';
+        labels.forEach(function (label, index) {
+          var item = document.createElement('li');
+          var labelSpan = document.createElement('span');
+          var valueStrong = document.createElement('strong');
+          labelSpan.textContent = label;
+          valueStrong.textContent = money.format(values[index]);
+          item.appendChild(labelSpan);
+          item.appendChild(valueStrong);
+          breakdownEl.appendChild(item);
+        });
+
+        if (total > 0) {
+          largestEl.innerHTML = '<strong>Largest entered cost:</strong> ' + labels[largestIndex] + ' at ' + money.format(values[largestIndex]) + '.';
+        } else {
+          largestEl.innerHTML = '<strong>Total entered:</strong> All listed costs are currently $0.';
+        }
+
+        currentSummary = buildSummary(type, total, labels, values);
+        emailEl.href = 'mailto:?subject=' + encodeURIComponent('My ' + type.toLowerCase() + ' cost estimate') + '&body=' + encodeURIComponent(currentSummary);
+        emptyState.hidden = true;
+        results.hidden = false;
+        if (window.matchMedia('(max-width: 820px)').matches) results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function copyFallback(text) {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        var copied = document.execCommand('copy');
+        document.body.removeChild(area);
+        return copied;
+      }
+
+      function copyResults() {
+        if (!currentSummary) return;
+        var onSuccess = function () {
+          copyStatus.textContent = 'Results copied.';
+          copyButton.textContent = 'Copied';
+          setTimeout(function () { copyButton.textContent = 'Copy results'; }, 1800);
+        };
+        var onFailure = function () {
+          copyStatus.textContent = 'Could not copy automatically. Select and copy the results manually.';
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(currentSummary).then(onSuccess).catch(function () {
+            copyFallback(currentSummary) ? onSuccess() : onFailure();
+          });
+        } else {
+          copyFallback(currentSummary) ? onSuccess() : onFailure();
+        }
+      }
+
+      document.querySelectorAll('input[name="arrangement"]').forEach(function (radio) {
+        radio.addEventListener('change', updateLabels);
+      });
+      inputs.forEach(function (input) {
+        input.addEventListener('input', function () {
+          input.classList.remove('invalid');
+          input.removeAttribute('aria-invalid');
+          errorEl.textContent = '';
+        });
+      });
+      form.addEventListener('submit', calculate);
+      form.addEventListener('reset', function () {
+        window.setTimeout(function () {
+          updateLabels();
+          clearValidation();
+          currentSummary = '';
+          results.hidden = true;
+          emptyState.hidden = false;
+          copyStatus.textContent = '';
+          copyButton.textContent = 'Copy results';
+        }, 0);
+      });
+      copyButton.addEventListener('click', copyResults);
+      updateLabels();
+    })();
+  </script>
+</body>
+</html>
