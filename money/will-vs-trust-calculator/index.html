@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Will vs. Trust Cost Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090c11;
+      --surface: #11161d;
+      --surface-2: #191f27;
+      --ink: #f3f5f2;
+      --muted: #aeb7c0;
+      --line: #303843;
+      --orange: #f7931a;
+      --orange-ink: #140d04;
+      --green: #39ff14;
+      --green-soft: #102a20;
+      --danger: #ff767d;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .35);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: dark;
+        --bg: #0d1117;
+        --surface: #151b23;
+        --surface-2: #1d2530;
+        --ink: #ffffff;
+        --muted: #b6bec7;
+        --line: #35404c;
+        --orange: #f7931a;
+        --orange-ink: #140d04;
+        --green: #39ff14;
+        --green-soft: #12311f;
+        --danger: #ff7e84;
+        --shadow: 0 24px 70px rgba(0, 0, 0, .32);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        linear-gradient(90deg, transparent 0, transparent calc(50% - 1px), color-mix(in srgb, var(--line) 28%, transparent) calc(50% - 1px), color-mix(in srgb, var(--line) 28%, transparent) 50%, transparent 50%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.5;
+    }
+
+    button, input { font: inherit; }
+    a { color: inherit; }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 20px 0 54px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 42px;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .back-link:hover, .back-link:focus-visible { color: var(--orange); }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, .55fr);
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-family: "Newsreader", serif;
+      font-size: clamp(2.65rem, 6vw, 5.2rem);
+      font-weight: 650;
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    .intro-note {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 34rem;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .form-panel, .result-panel { padding: clamp(24px, 4.2vw, 50px); }
+    .form-panel { border-right: 1px solid var(--line); }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 28px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .section-label::before {
+      content: "";
+      width: 32px;
+      height: 3px;
+      background: var(--orange);
+    }
+
+    .field { margin-bottom: 22px; }
+    label {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-size: .95rem;
+    }
+    label span {
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 500;
+      align-self: end;
+    }
+
+    .money-input { position: relative; }
+    .money-input::before {
+      content: "$";
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-weight: 700;
+      pointer-events: none;
+    }
+    input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      background: var(--bg);
+      color: var(--ink);
+      padding: 14px 16px 14px 34px;
+      font-size: 1.05rem;
+      font-variant-numeric: tabular-nums;
+      outline: none;
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+    input::placeholder { color: color-mix(in srgb, var(--muted) 62%, transparent); }
+    input:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) 20%, transparent);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    button {
+      min-height: 48px;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: filter .15s ease, background-color .15s ease, border-color .15s ease;
+    }
+    button:hover { filter: brightness(.94); }
+    button:focus-visible, summary:focus-visible, a:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--orange) 50%, transparent);
+      outline-offset: 3px;
+    }
+    .calculate {
+      flex: 1;
+      background: var(--ink);
+      color: var(--surface);
+    }
+    .reset {
+      background: transparent;
+      color: var(--muted);
+      border-color: var(--line);
+    }
+    .error {
+      min-height: 22px;
+      margin: 12px 0 0;
+      color: var(--danger);
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    .result-panel {
+      min-height: 585px;
+      display: flex;
+      flex-direction: column;
+      background: color-mix(in srgb, var(--surface) 92%, var(--orange));
+    }
+    .empty-state {
+      flex: 1;
+      display: grid;
+      place-content: center;
+      gap: 18px;
+      max-width: 430px;
+      margin: auto;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-mark {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--orange);
+      font-family: "Newsreader", serif;
+      font-size: 2.2rem;
+    }
+    .empty-state p { margin: 0; }
+
+    .results[hidden], .empty-state[hidden] { display: none; }
+    .results { width: 100%; }
+
+    .verdict {
+      margin: 0 0 26px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .verdict small {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .verdict strong {
+      display: block;
+      font-family: "Newsreader", serif;
+      font-size: clamp(2rem, 4.2vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -.025em;
+    }
+    .verdict p { margin: 10px 0 0; color: var(--muted); }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-bottom: 16px;
+    }
+    .cost-card { background: var(--surface); padding: 20px; }
+    .cost-card.winner { background: var(--green-soft); }
+    .cost-card h2 {
+      margin: 0 0 12px;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .cost-card .amount {
+      display: block;
+      margin-bottom: 7px;
+      font-family: "Newsreader", serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+      font-weight: 650;
+      line-height: 1;
+    }
+    .cost-card p { margin: 0; color: var(--muted); font-size: .8rem; }
+
+    .estate-context {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 11px 0 18px;
+      color: var(--muted);
+      font-size: .84rem;
+    }
+    .estate-context strong { color: var(--ink); }
+
+    .result-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 6px 0 18px;
+    }
+    .email {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 16px;
+      border-radius: 2px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .copy {
+      color: var(--ink);
+      background: transparent;
+      border-color: var(--line);
+    }
+    .status {
+      min-height: 20px;
+      margin: -8px 0 8px;
+      color: var(--green);
+      text-align: center;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    details {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    summary {
+      cursor: pointer;
+      padding: 16px 2px;
+      font-weight: 800;
+    }
+    .explanation { padding: 0 2px 18px; color: var(--muted); }
+    .explanation p { margin: 0 0 12px; }
+    .explanation p:last-child { margin-bottom: 0; }
+    .explanation strong { color: var(--ink); }
+
+    .disclaimer {
+      max-width: 820px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: .78rem;
+    }
+
+    @media (max-width: 820px) {
+      body { background: var(--bg); }
+      .page { width: min(100% - 28px, 680px); padding-top: 16px; }
+      .back-link { margin-bottom: 30px; }
+      .intro { grid-template-columns: 1fr; gap: 18px; margin-bottom: 28px; }
+      h1 { font-size: clamp(2.55rem, 12vw, 4.2rem); }
+      .workspace { grid-template-columns: 1fr; }
+      .form-panel { border-right: 0; border-bottom: 1px solid var(--line); }
+      .result-panel { min-height: 390px; }
+    }
+
+    @media (max-width: 480px) {
+      .page { width: calc(100% - 20px); padding-bottom: 34px; }
+      .form-panel, .result-panel { padding: 24px 18px; }
+      label { display: block; }
+      label span { display: block; margin-top: 2px; }
+      .form-actions, .result-actions { grid-template-columns: 1fr; flex-direction: column; }
+      .comparison { grid-template-columns: 1fr; }
+      .estate-context { display: block; }
+      .estate-context span { display: block; margin-bottom: 3px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Compare the cost of a will and a living trust.</h1>
+      <p class="intro-note">Enter your own estimates to see the upfront cost of each path—and the possible probate cost that can come later with a will.</p>
+    </section>
+
+    <section class="workspace" aria-label="Will and trust cost comparison">
+      <form class="form-panel" id="calculator" novalidate>
+        <p class="section-label">Your estimates</p>
+
+        <div class="field">
+          <label for="estate">Estate value <span>Property and assets covered</span></label>
+          <div class="money-input">
+            <input id="estate" name="estate" type="number" inputmode="decimal" min="1" step="1000" placeholder="e.g. 500,000" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="willCost">Will preparation cost <span>Attorney or service fee</span></label>
+          <div class="money-input">
+            <input id="willCost" name="willCost" type="number" inputmode="decimal" min="0" step="50" placeholder="e.g. 750" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="trustCost">Living trust setup cost <span>Creation and funding estimate</span></label>
+          <div class="money-input">
+            <input id="trustCost" name="trustCost" type="number" inputmode="decimal" min="0" step="50" placeholder="e.g. 3,000" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="probateCost">Estimated probate cost <span>Court, attorney and related costs</span></label>
+          <div class="money-input">
+            <input id="probateCost" name="probateCost" type="number" inputmode="decimal" min="0" step="100" placeholder="e.g. 12,000" required />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="calculate" type="submit">Compare costs</button>
+          <button class="reset" type="reset">Clear</button>
+        </div>
+        <p class="error" id="error" role="alert" aria-live="polite"></p>
+      </form>
+
+      <section class="result-panel" aria-live="polite">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-mark" aria-hidden="true">$</div>
+          <p>Your side-by-side estimate will appear here after you enter all four amounts.</p>
+        </div>
+
+        <div class="results" id="results" hidden>
+          <p class="section-label">Cost comparison</p>
+          <div class="verdict">
+            <small id="verdictLabel">Estimated lower-cost option</small>
+            <strong id="verdictText"></strong>
+            <p id="verdictDetail"></p>
+          </div>
+
+          <div class="comparison">
+            <article class="cost-card" id="willCard">
+              <h2>Will + probate</h2>
+              <span class="amount" id="willTotal"></span>
+              <p id="willBreakdown"></p>
+            </article>
+            <article class="cost-card" id="trustCard">
+              <h2>Living trust</h2>
+              <span class="amount" id="trustTotal"></span>
+              <p>Estimated trust setup cost</p>
+            </article>
+          </div>
+
+          <div class="estate-context">
+            <span>Estate value: <strong id="estateValue"></strong></span>
+            <span>Difference: <strong id="difference"></strong></span>
+          </div>
+
+          <div class="result-actions">
+            <a class="email" id="emailResults" href="mailto:">Email my results</a>
+            <button class="copy" id="copyResults" type="button">Copy results</button>
+          </div>
+          <p class="status" id="copyStatus" role="status" aria-live="polite"></p>
+
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+        </div>
+      </section>
+    </section>
+
+    <p class="disclaimer">For informational purposes only. This calculator provides a simple cost comparison based on your entries and is not legal advice. Estate-planning laws and costs vary by state and situation; consider speaking with a qualified attorney.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("calculator");
+      var emptyState = document.getElementById("emptyState");
+      var results = document.getElementById("results");
+      var error = document.getElementById("error");
+      var copyStatus = document.getElementById("copyStatus");
+      var latestSummary = "";
+
+      function money(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: value % 1 === 0 ? 0 : 2
+        }).format(value);
+      }
+
+      function numberFrom(id) {
+        return Number(document.getElementById(id).value);
+      }
+
+      function showError(message) {
+        error.textContent = message;
+      }
+
+      function updateCardState(willTotal, trustTotal) {
+        var willCard = document.getElementById("willCard");
+        var trustCard = document.getElementById("trustCard");
+        willCard.classList.remove("winner");
+        trustCard.classList.remove("winner");
+        if (willTotal < trustTotal) willCard.classList.add("winner");
+        if (trustTotal < willTotal) trustCard.classList.add("winner");
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        copyStatus.textContent = "";
+
+        var fields = ["estate", "willCost", "trustCost", "probateCost"];
+        var hasBlank = fields.some(function (id) {
+          return document.getElementById(id).value.trim() === "";
+        });
+
+        if (hasBlank) {
+          showError("Enter an amount in every field to compare the two options.");
+          results.hidden = true;
+          emptyState.hidden = false;
+          return;
+        }
+
+        var estate = numberFrom("estate");
+        var willCost = numberFrom("willCost");
+        var trustCost = numberFrom("trustCost");
+        var probateCost = numberFrom("probateCost");
+
+        if (!Number.isFinite(estate) || estate <= 0 || [willCost, trustCost, probateCost].some(function (value) { return !Number.isFinite(value) || value < 0; })) {
+          showError("Use an estate value above $0 and costs of $0 or more.");
+          results.hidden = true;
+          emptyState.hidden = false;
+          return;
+        }
+
+        showError("");
+        var willTotal = willCost + probateCost;
+        var difference = Math.abs(willTotal - trustCost);
+        var winner;
+        var detail;
+
+        if (willTotal < trustCost) {
+          winner = "Will + probate";
+          detail = "This path is " + money(difference) + " less using your estimates.";
+        } else if (trustCost < willTotal) {
+          winner = "Living trust";
+          detail = "This path is " + money(difference) + " less using your estimates.";
+        } else {
+          winner = "The estimated costs are equal";
+          detail = "Both paths total " + money(willTotal) + " using your estimates.";
+        }
+
+        document.getElementById("verdictLabel").textContent = willTotal === trustCost ? "Estimated comparison" : "Estimated lower-cost option";
+        document.getElementById("verdictText").textContent = winner;
+        document.getElementById("verdictDetail").textContent = detail;
+        document.getElementById("willTotal").textContent = money(willTotal);
+        document.getElementById("trustTotal").textContent = money(trustCost);
+        document.getElementById("willBreakdown").textContent = money(willCost) + " will + " + money(probateCost) + " probate";
+        document.getElementById("estateValue").textContent = money(estate);
+        document.getElementById("difference").textContent = money(difference);
+        updateCardState(willTotal, trustCost);
+
+        var explanation = document.getElementById("explanation");
+        explanation.innerHTML = "<p><strong>What this comparison counts:</strong> the will path adds your will-preparation estimate to your estimated probate cost. The living-trust path uses your trust setup estimate.</p>" +
+          "<p>A living trust generally avoids probate only for assets that are properly moved into the trust. Some assets may transfer another way, and either plan can involve other costs not included here.</p>" +
+          "<p>The lower estimate is not automatically the better estate plan. Privacy, control, family needs, property in multiple states and local law can matter more than the price difference.</p>";
+
+        latestSummary = "Will vs. Trust Cost Comparison\n" +
+          "Estate value: " + money(estate) + "\n" +
+          "Will preparation: " + money(willCost) + "\n" +
+          "Estimated probate: " + money(probateCost) + "\n" +
+          "Will + probate total: " + money(willTotal) + "\n" +
+          "Living trust setup total: " + money(trustCost) + "\n" +
+          "Difference: " + money(difference) + "\n" +
+          (willTotal === trustCost ? "Estimated costs are equal." : "Estimated lower-cost option: " + winner + ".") + "\n\n" +
+          "For informational purposes only. Not legal advice.";
+
+        document.getElementById("emailResults").href = "mailto:?subject=" + encodeURIComponent("My will vs. trust cost comparison") + "&body=" + encodeURIComponent(latestSummary);
+        emptyState.hidden = true;
+        results.hidden = false;
+      });
+
+      form.addEventListener("reset", function () {
+        window.setTimeout(function () {
+          results.hidden = true;
+          emptyState.hidden = false;
+          error.textContent = "";
+          copyStatus.textContent = "";
+          latestSummary = "";
+        }, 0);
+      });
+
+      document.getElementById("copyResults").addEventListener("click", function () {
+        if (!latestSummary) return;
+
+        function success() {
+          copyStatus.textContent = "Results copied.";
+          window.setTimeout(function () { copyStatus.textContent = ""; }, 2400);
+        }
+
+        function fallbackCopy() {
+          var textarea = document.createElement("textarea");
+          textarea.value = latestSummary;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            if (document.execCommand("copy")) success();
+            else copyStatus.textContent = "Select and copy the results manually.";
+          } catch (err) {
+            copyStatus.textContent = "Select and copy the results manually.";
+          }
+          document.body.removeChild(textarea);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(latestSummary).then(success).catch(fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Vacation Budget Calculator</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #f5f5f5;
+      --muted: #adb5c1;
+      --paper: #0b0e14;
+      --panel: #141a23;
+      --field: #0e131b;
+      --line: #2b3340;
+      --line-strong: #596473;
+      --orange: #f7931a;
+      --orange-ink: #0b0e14;
+      --orange-soft: #32220e;
+      --blue: #7eadd8;
+      --green: #71d184;
+      --error: #ff858a;
+      --focus: #88b7e3;
+      --shadow: 0 18px 54px rgba(0, 0, 0, .34);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --ink: #f7f8fa;
+        --muted: #bac2cd;
+        --paper: #10161f;
+        --panel: #19212c;
+        --field: #111821;
+        --line: #313b49;
+        --line-strong: #657080;
+        --orange: #f7931a;
+        --orange-ink: #0b0e14;
+        --orange-soft: #3a2914;
+        --blue: #8cb9e3;
+        --green: #7dde91;
+        --error: #ff9095;
+        --focus: #8cb9e3;
+        --shadow: 0 18px 52px rgba(0, 0, 0, .3);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 17px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .page {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: max(20px, env(safe-area-inset-top)) 0 max(52px, env(safe-area-inset-bottom));
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 650;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+    .back-link:hover { color: var(--orange); text-decoration: underline; }
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 48%, transparent);
+      outline-offset: 3px;
+    }
+
+    .intro { max-width: 720px; margin-bottom: 30px; }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.35rem, 6vw, 4.5rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+      font-weight: 700;
+    }
+    .intro p {
+      margin: 0;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: clamp(1.04rem, 2vw, 1.22rem);
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(350px, .96fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .input-panel, .results-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .input-panel { padding: clamp(22px, 4vw, 38px); border-radius: 10px 10px 3px 10px; }
+    .results-panel { padding: clamp(22px, 4vw, 34px); border-radius: 3px 10px 10px 10px; min-height: 430px; }
+    .section-heading {
+      margin: 0 0 20px;
+      font-size: 1.25rem;
+      line-height: 1.2;
+      letter-spacing: -.015em;
+    }
+    .subhead {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0 16px;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+    .subhead::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 16px; }
+    .field.full { grid-column: 1 / -1; }
+    label { display: block; margin-bottom: 7px; font-size: .98rem; font-weight: 650; }
+    .field-note { color: var(--muted); font-size: .8rem; font-weight: 400; margin-left: 4px; }
+    .input-wrap { position: relative; }
+    .prefix {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      pointer-events: none;
+    }
+    input {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid var(--line-strong);
+      border-radius: 5px;
+      background: var(--field);
+      color: var(--ink);
+      padding: 11px 14px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+    input.money { padding-left: 31px; }
+    input::placeholder { color: var(--muted); opacity: .64; }
+    input:hover { border-color: var(--ink); }
+    input:focus { border-color: var(--focus); outline: 0; box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 20%, transparent); }
+    input[aria-invalid="true"] { border-color: var(--error); }
+
+    .error { min-height: 24px; margin: 14px 0 0; color: var(--error); font-size: .92rem; font-weight: 650; }
+    .calculate-btn {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 6px;
+      border: 0;
+      border-radius: 5px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 750;
+      cursor: pointer;
+      box-shadow: 0 5px 0 color-mix(in srgb, var(--orange) 67%, #000);
+    }
+    .calculate-btn:hover { filter: brightness(1.05); }
+    .calculate-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 color-mix(in srgb, var(--orange) 67%, #000); }
+
+    .empty-state {
+      min-height: 370px;
+      display: grid;
+      place-content: center;
+      padding: 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-state svg { width: 52px; height: 52px; margin: 0 auto 16px; color: var(--orange); }
+    .empty-state strong { display: block; margin-bottom: 4px; color: var(--ink); font-size: 1.08rem; }
+    .empty-state p { max-width: 32ch; margin: 0; }
+    .results { display: none; }
+    .results.visible { display: block; }
+
+    .primary-result { padding-bottom: 22px; margin-bottom: 20px; border-bottom: 1px solid var(--line); }
+    .result-label { color: var(--muted); font-size: .88rem; font-weight: 700; }
+    .total {
+      display: block;
+      margin-top: 2px;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.35rem, 7vw, 3.75rem);
+      line-height: 1.08;
+      letter-spacing: -.055em;
+      font-variant-numeric: tabular-nums;
+      overflow-wrap: anywhere;
+    }
+    .trip-line { margin: 8px 0 0; color: var(--muted); }
+    .breakdown-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 24px; }
+    .stat { min-width: 0; padding: 12px 10px; background: var(--field); border: 1px solid var(--line); border-radius: 5px; }
+    .stat span { display: block; color: var(--muted); font-size: .75rem; font-weight: 650; line-height: 1.2; }
+    .stat strong { display: block; margin-top: 5px; font-family: "IBM Plex Mono", monospace; font-size: .95rem; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+
+    .cost-list { display: grid; gap: 10px; margin: 0 0 24px; }
+    .cost-row { display: grid; grid-template-columns: minmax(86px, .85fr) minmax(80px, 1.4fr) auto; align-items: center; gap: 10px; }
+    .cost-name { font-size: .9rem; }
+    .cost-bar { height: 7px; overflow: hidden; background: var(--line); border-radius: 99px; }
+    .cost-fill { display: block; height: 100%; width: 0; background: var(--blue); border-radius: inherit; }
+    .cost-value { min-width: 82px; text-align: right; font-family: "IBM Plex Mono", monospace; font-size: .82rem; font-variant-numeric: tabular-nums; }
+
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .action-btn {
+      min-height: 47px;
+      border-radius: 5px;
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      color: var(--ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .action-btn:hover { border-color: var(--ink); background: var(--field); }
+    .action-btn.email { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .action-btn.email:hover { filter: brightness(1.05); }
+    .status { min-height: 22px; margin: 9px 0 0; color: var(--green); text-align: center; font-size: .87rem; font-weight: 650; }
+
+    details { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 16px; }
+    summary { color: var(--blue); font-weight: 700; cursor: pointer; }
+    details p { margin: 12px 0 0; color: var(--muted); font-size: .94rem; }
+    .disclaimer { max-width: 76ch; margin: 22px 0 0; color: var(--muted); font-size: .82rem; }
+
+    @media (max-width: 820px) {
+      .calculator { grid-template-columns: 1fr; }
+      .results-panel { min-height: 360px; }
+      .empty-state { min-height: 300px; }
+    }
+    @media (max-width: 520px) {
+      .page { width: min(100% - 24px, 1100px); padding-top: max(14px, env(safe-area-inset-top)); }
+      .back-link { margin-bottom: 22px; }
+      .intro { margin-bottom: 24px; }
+      h1 { font-size: clamp(2.2rem, 13vw, 3.2rem); }
+      .input-panel, .results-panel { padding: 20px 16px; border-radius: 7px; }
+      .field-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .breakdown-grid { grid-template-columns: 1fr; }
+      .stat { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+      .stat strong { margin-top: 0; text-align: right; }
+      .actions { grid-template-columns: 1fr; }
+      .cost-row { grid-template-columns: 80px minmax(60px, 1fr) auto; gap: 8px; }
+      .cost-value { min-width: 72px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Vacation Budget Calculator</h1>
+      <p>Add up the big parts of your trip, then see the total cost per day and per traveler.</p>
+    </section>
+
+    <div class="calculator">
+      <form class="input-panel" id="budget-form" novalidate>
+        <h2 class="section-heading">Plan your trip</h2>
+        <div class="field-grid">
+          <div class="field">
+            <label for="days">Trip length <span class="field-note">days</span></label>
+            <input id="days" name="days" type="number" min="1" step="1" inputmode="numeric" placeholder="7" required />
+          </div>
+          <div class="field">
+            <label for="people">Travelers <span class="field-note">people</span></label>
+            <input id="people" name="people" type="number" min="1" step="1" inputmode="numeric" placeholder="2" required />
+          </div>
+        </div>
+
+        <div class="subhead">Trip budget</div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="travel">Travel</label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="money" id="travel" name="travel" type="number" min="0" step="0.01" inputmode="decimal" placeholder="600" required /></div>
+          </div>
+          <div class="field">
+            <label for="lodging">Lodging</label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="money" id="lodging" name="lodging" type="number" min="0" step="0.01" inputmode="decimal" placeholder="900" required /></div>
+          </div>
+          <div class="field">
+            <label for="food">Food</label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="money" id="food" name="food" type="number" min="0" step="0.01" inputmode="decimal" placeholder="450" required /></div>
+          </div>
+          <div class="field">
+            <label for="activities">Activities</label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="money" id="activities" name="activities" type="number" min="0" step="0.01" inputmode="decimal" placeholder="300" required /></div>
+          </div>
+          <div class="field full">
+            <label for="shopping">Shopping</label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="money" id="shopping" name="shopping" type="number" min="0" step="0.01" inputmode="decimal" placeholder="200" required /></div>
+          </div>
+        </div>
+        <p class="error" id="form-error" role="alert" aria-live="polite"></p>
+        <button class="calculate-btn" type="submit">Calculate vacation budget</button>
+      </form>
+
+      <section class="results-panel" aria-labelledby="results-heading">
+        <div class="empty-state" id="empty-state">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <rect x="9" y="21" width="46" height="31" rx="4" stroke="currentColor" stroke-width="3"/>
+            <path d="M24 21v-5a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v5M9 34h46M18 29v10M46 29v10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <strong>Your trip total will appear here</strong>
+          <p>Enter the trip details and each budget amount to see the breakdown.</p>
+        </div>
+
+        <div class="results" id="results" aria-live="polite">
+          <h2 class="section-heading" id="results-heading">Your vacation budget</h2>
+          <div class="primary-result">
+            <span class="result-label">ESTIMATED TRIP TOTAL</span>
+            <strong class="total" id="total">$0</strong>
+            <p class="trip-line" id="trip-line"></p>
+          </div>
+
+          <div class="breakdown-grid" aria-label="Trip cost breakdown">
+            <div class="stat"><span>Per day</span><strong id="per-day">$0</strong></div>
+            <div class="stat"><span>Per person</span><strong id="per-person">$0</strong></div>
+            <div class="stat"><span>Per person / day</span><strong id="per-person-day">$0</strong></div>
+          </div>
+
+          <div class="cost-list" id="cost-list" aria-label="Budget categories"></div>
+
+          <div class="actions">
+            <button type="button" class="action-btn email" id="email-btn">Email my results</button>
+            <button type="button" class="action-btn" id="copy-btn">Copy results</button>
+          </div>
+          <p class="status" id="action-status" aria-live="polite"></p>
+
+          <details id="explanation">
+            <summary>Explain these results</summary>
+            <p id="explanation-text"></p>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <p class="disclaimer">For informational purposes only. These figures are estimates based on the amounts you enter; actual trip costs may vary.</p>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('budget-form');
+      var error = document.getElementById('form-error');
+      var emptyState = document.getElementById('empty-state');
+      var results = document.getElementById('results');
+      var status = document.getElementById('action-status');
+      var copyBtn = document.getElementById('copy-btn');
+      var emailBtn = document.getElementById('email-btn');
+      var lastSummary = '';
+      var categories = [
+        { id: 'travel', label: 'Travel' },
+        { id: 'lodging', label: 'Lodging' },
+        { id: 'food', label: 'Food' },
+        { id: 'activities', label: 'Activities' },
+        { id: 'shopping', label: 'Shopping' }
+      ];
+      var currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      function money(value) { return currency.format(value); }
+      function readNumber(id) { return Number(document.getElementById(id).value); }
+      function clearInvalid() {
+        var inputs = form.querySelectorAll('input');
+        for (var i = 0; i < inputs.length; i++) inputs[i].removeAttribute('aria-invalid');
+      }
+      function markInvalid(ids) {
+        for (var i = 0; i < ids.length; i++) document.getElementById(ids[i]).setAttribute('aria-invalid', 'true');
+      }
+      function plural(value, singular, pluralWord) { return value === 1 ? singular : pluralWord; }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        clearInvalid();
+        status.textContent = '';
+
+        var days = readNumber('days');
+        var people = readNumber('people');
+        var bad = [];
+        if (!Number.isInteger(days) || days < 1) bad.push('days');
+        if (!Number.isInteger(people) || people < 1) bad.push('people');
+
+        var amounts = [];
+        var total = 0;
+        for (var i = 0; i < categories.length; i++) {
+          var value = readNumber(categories[i].id);
+          if (!Number.isFinite(value) || value < 0) bad.push(categories[i].id);
+          amounts.push({ label: categories[i].label, value: value });
+          if (Number.isFinite(value) && value >= 0) total += value;
+        }
+
+        if (bad.length) {
+          markInvalid(bad);
+          error.textContent = 'Enter whole numbers of at least 1 for days and travelers, and a budget of $0 or more for every category.';
+          document.getElementById(bad[0]).focus();
+          return;
+        }
+        if (total <= 0) {
+          markInvalid(categories.map(function (item) { return item.id; }));
+          error.textContent = 'Enter at least one trip cost greater than $0.';
+          document.getElementById('travel').focus();
+          return;
+        }
+
+        error.textContent = '';
+        var perDay = total / days;
+        var perPerson = total / people;
+        var perPersonDay = total / days / people;
+
+        document.getElementById('total').textContent = money(total);
+        document.getElementById('trip-line').textContent = days + ' ' + plural(days, 'day', 'days') + ' · ' + people + ' ' + plural(people, 'traveler', 'travelers');
+        document.getElementById('per-day').textContent = money(perDay);
+        document.getElementById('per-person').textContent = money(perPerson);
+        document.getElementById('per-person-day').textContent = money(perPersonDay);
+
+        var largest = amounts[0];
+        var list = document.getElementById('cost-list');
+        list.innerHTML = '';
+        for (var j = 0; j < amounts.length; j++) {
+          if (amounts[j].value > largest.value) largest = amounts[j];
+          var percent = total ? (amounts[j].value / total) * 100 : 0;
+          var row = document.createElement('div');
+          row.className = 'cost-row';
+          row.innerHTML = '<span class="cost-name"></span><span class="cost-bar" aria-hidden="true"><span class="cost-fill"></span></span><span class="cost-value"></span>';
+          row.querySelector('.cost-name').textContent = amounts[j].label;
+          row.querySelector('.cost-fill').style.width = percent + '%';
+          row.querySelector('.cost-value').textContent = money(amounts[j].value);
+          row.setAttribute('aria-label', amounts[j].label + ': ' + money(amounts[j].value) + ', ' + percent.toFixed(0) + ' percent of total');
+          list.appendChild(row);
+        }
+
+        var largestPercent = Math.round((largest.value / total) * 100);
+        document.getElementById('explanation-text').textContent = 'Your full trip budget is ' + money(total) + '. Spread across ' + days + ' ' + plural(days, 'day', 'days') + ', that is about ' + money(perDay) + ' per day. Split evenly among ' + people + ' ' + plural(people, 'traveler', 'travelers') + ', it is about ' + money(perPerson) + ' each for the whole trip, or ' + money(perPersonDay) + ' each per day. ' + largest.label + ' is the largest category at about ' + largestPercent + '% of the total. This is a planning estimate, so consider leaving extra room for price changes and unexpected costs.';
+
+        lastSummary = [
+          'Vacation Budget Results',
+          '',
+          'Trip length: ' + days + ' ' + plural(days, 'day', 'days'),
+          'Travelers: ' + people,
+          '',
+          'Estimated trip total: ' + money(total),
+          'Per day: ' + money(perDay),
+          'Per person: ' + money(perPerson),
+          'Per person per day: ' + money(perPersonDay),
+          '',
+          'Budget categories:',
+          amounts.map(function (item) { return '- ' + item.label + ': ' + money(item.value); }).join('\n'),
+          '',
+          'For informational purposes only. Actual trip costs may vary.'
+        ].join('\n');
+
+        emptyState.style.display = 'none';
+        results.classList.add('visible');
+        results.focus;
+        if (window.matchMedia('(max-width: 820px)').matches) {
+          results.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        }
+      });
+
+      copyBtn.addEventListener('click', function () {
+        if (!lastSummary) return;
+        status.textContent = '';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastSummary).then(function () {
+            status.textContent = 'Results copied.';
+          }).catch(function () { fallbackCopy(); });
+        } else {
+          fallbackCopy();
+        }
+      });
+
+      function fallbackCopy() {
+        var box = document.createElement('textarea');
+        box.value = lastSummary;
+        box.setAttribute('readonly', '');
+        box.style.position = 'fixed';
+        box.style.left = '-9999px';
+        document.body.appendChild(box);
+        box.select();
+        var copied = false;
+        try { copied = document.execCommand('copy'); } catch (e) { copied = false; }
+        document.body.removeChild(box);
+        status.textContent = copied ? 'Results copied.' : 'Copy was unavailable. Select your results and copy them manually.';
+      }
+
+      emailBtn.addEventListener('click', function () {
+        if (!lastSummary) return;
+        var mailLink = document.createElement('a');
+        mailLink.href = 'mailto:?subject=' + encodeURIComponent('My vacation budget results') + '&body=' + encodeURIComponent(lastSummary);
+        mailLink.style.display = 'none';
+        document.body.appendChild(mailLink);
+        mailLink.click();
+        document.body.removeChild(mailLink);
+      });
+    })();
+  </script>
+</body>
+</html>

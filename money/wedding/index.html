@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Wedding money tools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #0b0e14;
+        --surface: #141923;
+        --surface-hover: #191f2b;
+        --ink: #f5f5f5;
+        --muted: #b8bec9;
+        --rule: #2a313d;
+        --accent: #f7931a;
+        --accent-ink: #160d02;
+        --ring: #9aa4b3;
+        --focus: #39ff14;
+        --shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #10141b;
+          --surface: #191f29;
+          --surface-hover: #1e2632;
+          --ink: #f5f5f5;
+          --muted: #c1c7d0;
+          --rule: #303946;
+          --accent: #f7931a;
+          --accent-ink: #160d02;
+          --ring: #a8b0bb;
+          --focus: #39ff14;
+          --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      html { min-width: 0; }
+
+      body {
+        margin: 0;
+        min-width: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "IBM Plex Sans", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: inherit; }
+
+      .page {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: max(24px, env(safe-area-inset-top)) 0 max(64px, env(safe-area-inset-bottom));
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        margin-left: -8px;
+        padding: 0 8px;
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      .back-link:hover { color: var(--ink); text-decoration: underline; }
+
+      .back-link:focus-visible,
+      .tool-link:focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+      }
+
+      .intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 48px;
+        padding: 74px 0 45px;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .eyebrow {
+        margin: 0 0 16px;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 720px;
+        margin: 0;
+        font-family: "Newsreader", serif;
+        font-size: clamp(3rem, 7vw, 5.75rem);
+        font-weight: 650;
+        letter-spacing: -0.045em;
+        line-height: 0.93;
+      }
+
+      .lede {
+        max-width: 610px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.18rem);
+        line-height: 1.65;
+      }
+
+      .rings {
+        position: relative;
+        width: 132px;
+        height: 92px;
+        flex: 0 0 auto;
+        opacity: 0.96;
+      }
+
+      .rings::before,
+      .rings::after {
+        content: "";
+        position: absolute;
+        top: 13px;
+        width: 64px;
+        height: 64px;
+        border: 5px solid var(--ring);
+        border-radius: 50%;
+      }
+
+      .rings::before { left: 6px; transform: rotate(-14deg); }
+      .rings::after { right: 6px; border-color: var(--accent); transform: rotate(14deg); }
+
+      .tools {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        padding-top: 28px;
+      }
+
+      .tool-card {
+        display: flex;
+        min-width: 0;
+        min-height: 290px;
+        flex-direction: column;
+        padding: 28px;
+        overflow: hidden;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        border-top: 3px solid var(--rule);
+        transition: background-color 160ms ease, border-color 160ms ease;
+      }
+
+      .tool-card:hover {
+        background: var(--surface-hover);
+        border-top-color: var(--accent);
+      }
+
+      .tool-number {
+        color: var(--accent);
+        font-family: "Newsreader", serif;
+        font-size: 1.05rem;
+        font-variant-numeric: tabular-nums;
+      }
+
+      h2 {
+        margin: 30px 0 12px;
+        font-family: "Newsreader", serif;
+        font-size: clamp(1.7rem, 3vw, 2.2rem);
+        font-weight: 650;
+        letter-spacing: -0.025em;
+        line-height: 1.05;
+      }
+
+      .tool-card p {
+        margin: 0 0 28px;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.55;
+      }
+
+      .tool-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        width: 100%;
+        min-height: 48px;
+        margin-top: auto;
+        padding: 12px 15px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-size: 0.95rem;
+        font-weight: 600;
+        line-height: 1;
+        text-decoration: none;
+      }
+
+      .tool-link::after {
+        content: "→";
+        font-size: 1.18rem;
+        transition: transform 160ms ease;
+      }
+
+      .tool-link:hover::after { transform: translateX(3px); }
+
+      @media (max-width: 780px) {
+        .page { width: min(100% - 28px, 620px); }
+
+        .intro {
+          grid-template-columns: 1fr;
+          gap: 30px;
+          padding: 54px 0 34px;
+        }
+
+        .rings { width: 108px; height: 74px; }
+        .rings::before, .rings::after { width: 53px; height: 53px; border-width: 4px; }
+
+        .tools { grid-template-columns: 1fr; gap: 14px; }
+        .tool-card { min-height: 238px; padding: 24px; }
+        h2 { margin-top: 24px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { scroll-behavior: auto !important; transition: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <a class="back-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Wedding calculators</p>
+          <h1 id="page-title">Plan the day. Know the cost.</h1>
+          <p class="lede">Build the celebration, price the guest list, and make room for the honeymoon—with the numbers out in the open.</p>
+        </div>
+        <div class="rings" aria-hidden="true"></div>
+      </section>
+
+      <section class="tools" aria-label="Wedding money tools">
+        <article class="tool-card">
+          <span class="tool-number">01</span>
+          <h2>Wedding Budget Calculator</h2>
+          <p>The whole big day, itemized.</p>
+          <a class="tool-link" href="/money/wedding-budget-calculator/">Open tool</a>
+        </article>
+
+        <article class="tool-card">
+          <span class="tool-number">02</span>
+          <h2>Wedding Guest Cost</h2>
+          <p>What attending really costs.</p>
+          <a class="tool-link" href="/money/wedding-guest-cost-calculator/">Open tool</a>
+        </article>
+
+        <article class="tool-card">
+          <span class="tool-number">03</span>
+          <h2>Honeymoon Budget</h2>
+          <p>Price the getaway.</p>
+          <a class="tool-link" href="/money/honeymoon-budget-calculator/">Open tool</a>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

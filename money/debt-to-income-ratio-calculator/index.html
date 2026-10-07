@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Debt-to-Income Ratio Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root {
+      color-scheme: light dark;
+      --bg: #f4f6f7;
+      --surface: #ffffff;
+      --surface-2: #e8edf0;
+      --ink: #0b0e14;
+      --muted: #505b68;
+      --line: #cbd3da;
+      --line-strong: #a9b4be;
+      --blue: #4778ad;
+      --blue-soft: #dce9f5;
+      --orange: #e47700;
+      --orange-ink: #181108;
+      --orange-soft: #fff0df;
+      --green: #167b34;
+      --green-soft: #e1f4e6;
+      --red: #c43a41;
+      --red-soft: #fbe4e5;
+      --shadow: 0 22px 60px rgba(11, 14, 20, .09);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #080b10;
+        --surface: #111720;
+        --surface-2: #1a232d;
+        --ink: #f5f7f9;
+        --muted: #aab6c2;
+        --line: #2d3947;
+        --line-strong: #465666;
+        --blue: #79a9dc;
+        --blue-soft: #172e44;
+        --orange: #f7931a;
+        --orange-ink: #0b0e14;
+        --orange-soft: #382817;
+        --green: #39ff14;
+        --green-soft: #17351b;
+        --red: #ff696f;
+        --red-soft: #3b2024;
+        --shadow: 0 24px 70px rgba(0, 0, 0, .36);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        linear-gradient(90deg, transparent 0 71%, color-mix(in srgb, var(--blue) 6%, transparent) 71% 71.15%, transparent 71.15%),
+        var(--bg);
+      color: var(--ink);
+      font-family: Manrope, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, input, a { -webkit-tap-highlight-color: transparent; }
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) 0 64px;
+    }
+    .money-home {
+      display: inline-block;
+      margin-bottom: 42px;
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .money-home:hover { color: var(--orange); text-decoration: underline; text-underline-offset: 4px; }
+    .money-home:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 34%, transparent);
+      outline-offset: 3px;
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(2.65rem, 6.6vw, 6rem);
+      line-height: .94;
+      letter-spacing: -.058em;
+      font-weight: 800;
+    }
+    h1 span { color: var(--orange); }
+    .intro-copy {
+      margin: 0 0 6px;
+      max-width: 40ch;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .inputs {
+      position: sticky;
+      top: 18px;
+      padding: 25px;
+      border-radius: 22px 6px 22px 22px;
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 21px;
+    }
+    .section-head h2 { margin: 0; font-size: 1.02rem; letter-spacing: -.02em; }
+    .step { color: var(--orange); font: 500 .7rem "DM Mono", monospace; }
+    .field { margin-bottom: 16px; }
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 6px;
+      color: var(--ink);
+      font-size: .76rem;
+      font-weight: 800;
+    }
+    label small { color: var(--muted); font-size: .68rem; font-weight: 500; }
+    .control {
+      display: flex;
+      align-items: center;
+      min-height: 47px;
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
+      background: var(--bg);
+      transition: border-color .16s, box-shadow .16s;
+    }
+    .control:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 20%, transparent);
+    }
+    .prefix {
+      padding-left: 12px;
+      color: var(--muted);
+      font: 500 .78rem "DM Mono", monospace;
+    }
+    input[type="number"] {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+      padding: 11px 11px 11px 7px;
+      font-family: "DM Mono", monospace;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+    input::placeholder { color: color-mix(in srgb, var(--muted) 55%, transparent); font-weight: 400; }
+    input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .field-note { margin: 6px 2px 0; color: var(--muted); font-size: .69rem; line-height: 1.45; }
+    .divider { height: 1px; margin: 21px 0; background: var(--line); }
+    .calculate {
+      width: 100%;
+      margin-top: 4px;
+      border: 0;
+      border-radius: 10px;
+      padding: 14px 18px;
+      cursor: pointer;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 800;
+      box-shadow: 0 7px 0 color-mix(in srgb, var(--orange) 50%, #442000);
+      transition: transform .1s, box-shadow .1s;
+    }
+    .calculate:active { transform: translateY(4px); box-shadow: 0 3px 0 color-mix(in srgb, var(--orange) 50%, #442000); }
+    .privacy-note { margin: 16px 2px 0; color: var(--muted); font-size: .7rem; }
+    .error {
+      margin: 0 0 12px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: var(--red-soft);
+      color: var(--red);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+    .results { min-width: 0; }
+    .empty {
+      min-height: 536px;
+      display: grid;
+      place-items: center;
+      padding: 42px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 6px 22px 22px 22px;
+      background: color-mix(in srgb, var(--surface) 76%, transparent);
+      text-align: center;
+    }
+    .empty svg { width: 104px; color: var(--blue); margin-bottom: 22px; }
+    .empty h2 { margin: 0 0 8px; font-size: 1.55rem; letter-spacing: -.035em; }
+    .empty p { max-width: 43ch; margin: 0 auto; color: var(--muted); }
+    .hidden { display: none !important; }
+    .scoreboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 6px 22px 22px 22px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .score {
+      min-width: 0;
+      padding: 28px;
+      background: var(--surface);
+    }
+    .score + .score { border-left: 1px solid var(--line); background: var(--blue-soft); }
+    .eyebrow { margin: 0 0 8px; color: var(--muted); font: 500 .7rem "DM Mono", monospace; }
+    .ratio {
+      margin: 0;
+      font: 500 clamp(3.2rem, 8vw, 6.6rem)/.9 "DM Mono", monospace;
+      letter-spacing: -.075em;
+      font-variant-numeric: tabular-nums;
+    }
+    .score-status { margin: 12px 0 0; font-size: .8rem; font-weight: 800; }
+    .status-good { color: var(--green); }
+    .status-watch { color: var(--orange); }
+    .status-high { color: var(--red); }
+    .score p:last-child { margin-bottom: 0; }
+    .meter-panel {
+      margin-top: 11px;
+      padding: 24px;
+      border-radius: 22px;
+    }
+    .meter-panel h2, .breakdown h2 { margin: 0; font-size: 1.03rem; letter-spacing: -.025em; }
+    .meter-row { margin-top: 22px; }
+    .meter-label { display: flex; justify-content: space-between; gap: 18px; margin-bottom: 8px; font-size: .75rem; font-weight: 800; }
+    .meter-label span:last-child { color: var(--muted); font-family: "DM Mono", monospace; font-weight: 500; }
+    .meter-track {
+      position: relative;
+      height: 13px;
+      overflow: visible;
+      border-radius: 999px;
+      background: var(--surface-2);
+    }
+    .meter-fill { width: 0; height: 100%; border-radius: inherit; background: var(--blue); transition: width .45s ease; }
+    .meter-fill.back { background: var(--orange); }
+    .marker {
+      position: absolute;
+      top: -5px;
+      bottom: -5px;
+      width: 2px;
+      background: var(--ink);
+      opacity: .7;
+    }
+    .marker::after {
+      content: attr(data-label);
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      color: var(--muted);
+      font: 400 .63rem "DM Mono", monospace;
+    }
+    .meter-caption { margin: 29px 0 0; color: var(--muted); font-size: .72rem; }
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 11px;
+      margin-top: 11px;
+    }
+    .breakdown-card { padding: 22px; border-radius: 13px; }
+    .breakdown-list { margin: 17px 0 0; }
+    .breakdown-list div {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: .77rem;
+    }
+    .breakdown-list div:last-child { border-bottom: 0; }
+    .breakdown-list dt { color: var(--muted); }
+    .breakdown-list dd { margin: 0; font-family: "DM Mono", monospace; font-weight: 500; }
+    .room-card { background: var(--ink); color: var(--bg); border-color: transparent; }
+    @media (prefers-color-scheme: dark) { .room-card { background: #edf3f7; color: #0b0e14; } }
+    .room-number { margin: 22px 0 8px; font: 500 clamp(2rem, 4vw, 3.4rem)/1 "DM Mono", monospace; letter-spacing: -.05em; overflow-wrap: anywhere; }
+    .room-card p { margin: 0; max-width: 34ch; opacity: .73; font-size: .78rem; }
+    .result-tools {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 11px;
+    }
+    .tool-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 12px;
+      cursor: pointer;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: .73rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    #emailResults { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .tool-btn:hover { border-color: var(--blue); }
+    .tool-btn.copied { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+    .explain-toggle::after { content: "+"; margin-left: 9px; font: 500 1rem "DM Mono", monospace; }
+    .explain-toggle[aria-expanded="true"]::after { content: "−"; }
+    .copy-status { min-width: 5ch; color: var(--green); font-size: .7rem; font-weight: 800; }
+    .explanation {
+      margin-top: 9px;
+      padding: 19px 21px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--orange-soft);
+    }
+    .explanation h2 { margin: 0 0 9px; font-size: .98rem; }
+    .explanation p { margin: 0; color: var(--ink); font-size: .86rem; line-height: 1.65; }
+    .lender-note {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .lender-note h2 { margin: 0; font-size: 1.18rem; letter-spacing: -.03em; }
+    .lender-note p { margin: 0; color: var(--muted); font-size: .84rem; }
+    .lender-note strong { color: var(--ink); }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .68rem;
+    }
+    .footer p { margin: 0; max-width: 78ch; }
+    .footer a { color: var(--blue); }
+    @media (max-width: 880px) {
+      .page { width: min(100% - 28px, 700px); }
+      .money-home { margin-bottom: 34px; }
+      .intro { grid-template-columns: 1fr; gap: 16px; }
+      .intro-copy { max-width: 50ch; }
+      .workbench { grid-template-columns: 1fr; }
+      .inputs { position: static; border-radius: 22px; }
+      .empty, .scoreboard { border-radius: 22px; }
+    }
+    @media (max-width: 560px) {
+      .page { width: min(100% - 22px, 520px); padding-bottom: 48px; }
+      .money-home { margin-bottom: 28px; }
+      h1 { font-size: clamp(2.45rem, 13.5vw, 4rem); }
+      .intro-copy { font-size: .94rem; }
+      .inputs, .meter-panel, .breakdown-card { padding: 19px; }
+      .field-grid, .scoreboard, .breakdown, .lender-note { grid-template-columns: 1fr; }
+      .score { padding: 22px 19px; }
+      .score + .score { border-left: 0; border-top: 1px solid var(--line); }
+      .ratio { font-size: clamp(3.25rem, 21vw, 5rem); }
+      .empty { min-height: 340px; padding: 28px 22px; }
+      .result-tools { align-items: stretch; }
+      .tool-btn { flex: 1 1 calc(50% - 8px); }
+      .explain-toggle { flex-basis: 100%; }
+      .lender-note { gap: 10px; }
+      .footer { flex-direction: column; gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <header class="intro">
+      <h1>How much income is already <span>spoken for?</span></h1>
+      <p class="intro-copy">Turn your monthly income and required payments into the two ratios mortgage lenders often review: housing-only and total debt.</p>
+    </header>
+
+    <section class="workbench" aria-label="Debt-to-income ratio calculator">
+      <form class="panel inputs" id="dtiForm" novalidate>
+        <div class="section-head"><h2>Monthly numbers</h2><span class="step">01 / INPUT</span></div>
+
+        <div class="field">
+          <label for="income">Gross monthly income <small>required</small></label>
+          <div class="control"><span class="prefix">$</span><input id="income" name="income" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="7,500" autocomplete="off" /></div>
+          <p class="field-note">Income before taxes, benefits, or other paycheck deductions.</p>
+        </div>
+
+        <div class="field">
+          <label for="housing">Monthly housing payment <small>required</small></label>
+          <div class="control"><span class="prefix">$</span><input id="housing" name="housing" type="number" min="0" step="0.01" inputmode="decimal" placeholder="2,100" autocomplete="off" /></div>
+          <p class="field-note">Use rent, or mortgage principal and interest plus property tax, insurance, and HOA dues. Enter 0 if none.</p>
+        </div>
+
+        <div class="divider"></div>
+        <div class="section-head"><h2>Other required debt</h2><span class="step">OPTIONAL</span></div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="car">Car payments</label>
+            <div class="control"><span class="prefix">$</span><input id="car" name="car" type="number" min="0" step="0.01" inputmode="decimal" placeholder="480" autocomplete="off" /></div>
+          </div>
+          <div class="field">
+            <label for="cards">Card minimums</label>
+            <div class="control"><span class="prefix">$</span><input id="cards" name="cards" type="number" min="0" step="0.01" inputmode="decimal" placeholder="225" autocomplete="off" /></div>
+          </div>
+          <div class="field">
+            <label for="student">Student loans</label>
+            <div class="control"><span class="prefix">$</span><input id="student" name="student" type="number" min="0" step="0.01" inputmode="decimal" placeholder="310" autocomplete="off" /></div>
+          </div>
+          <div class="field">
+            <label for="other">Other debt</label>
+            <div class="control"><span class="prefix">$</span><input id="other" name="other" type="number" min="0" step="0.01" inputmode="decimal" placeholder="150" autocomplete="off" /></div>
+          </div>
+        </div>
+        <p class="field-note">Enter required monthly payments, not account balances. Leave an optional field blank if it does not apply.</p>
+        <button class="calculate" type="submit">Calculate my DTI</button>
+        <p class="privacy-note">Your entries stay in this tab and are not saved.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <svg viewBox="0 0 120 92" fill="none" aria-hidden="true">
+              <path d="M14 69V19c0-4.4 3.6-8 8-8h76c4.4 0 8 3.6 8 8v50" stroke="currentColor" stroke-width="4"/>
+              <path d="M8 69h104v12H8z" stroke="currentColor" stroke-width="4"/>
+              <path d="M31 55l17-17 13 13 26-27" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M77 24h10v10" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h2>Two ratios, one clearer picture.</h2>
+            <p>Enter your gross income, housing cost, and required debt payments to see how much of each month is committed.</p>
+          </div>
+        </div>
+
+        <div id="resultState" class="hidden" aria-live="polite">
+          <p class="error hidden" id="errorBox"></p>
+
+          <section class="scoreboard" id="scoreboard" aria-label="Your debt-to-income ratios">
+            <article class="score">
+              <p class="eyebrow">FRONT-END · HOUSING ONLY</p>
+              <p class="ratio" id="frontRatio">—</p>
+              <p class="score-status" id="frontStatus">—</p>
+            </article>
+            <article class="score">
+              <p class="eyebrow">BACK-END · ALL LISTED DEBT</p>
+              <p class="ratio" id="backRatio">—</p>
+              <p class="score-status" id="backStatus">—</p>
+            </article>
+          </section>
+
+          <section class="panel meter-panel" id="meterPanel">
+            <h2>Your ratios against traditional guideposts</h2>
+            <div class="meter-row">
+              <div class="meter-label"><span>Housing share</span><span id="frontMeterValue">—</span></div>
+              <div class="meter-track" aria-hidden="true"><div class="meter-fill" id="frontMeter"></div><i class="marker" style="left:46.67%" data-label="28% guidepost"></i></div>
+            </div>
+            <div class="meter-row">
+              <div class="meter-label"><span>Total debt share</span><span id="backMeterValue">—</span></div>
+              <div class="meter-track" aria-hidden="true"><div class="meter-fill back" id="backMeter"></div><i class="marker" style="left:60%" data-label="36% guidepost"></i></div>
+            </div>
+            <p class="meter-caption">Scale runs from 0% to 60%. The 28/36 markers are a long-used screening rule of thumb, not universal approval limits.</p>
+          </section>
+
+          <div class="breakdown" id="breakdown">
+            <section class="panel breakdown-card">
+              <h2>Monthly breakdown</h2>
+              <dl class="breakdown-list">
+                <div><dt>Gross income</dt><dd id="incomeOut">—</dd></div>
+                <div><dt>Housing</dt><dd id="housingOut">—</dd></div>
+                <div><dt>Other listed debt</dt><dd id="otherOut">—</dd></div>
+                <div><dt>Total listed debt</dt><dd id="totalOut">—</dd></div>
+                <div><dt>Gross income after listed debt</dt><dd id="remainingOut">—</dd></div>
+              </dl>
+            </section>
+            <section class="panel breakdown-card room-card">
+              <h2>Room to the 36% guidepost</h2>
+              <p class="room-number" id="roomOut">—</p>
+              <p id="roomCopy">—</p>
+            </section>
+          </div>
+
+          <div class="result-tools" id="resultTools">
+            <a class="tool-btn" id="emailResults" href="mailto:" aria-label="Email these debt-to-income results">Email my results</a>
+            <button class="tool-btn" type="button" id="copyResults">Copy results</button>
+            <button class="tool-btn explain-toggle" type="button" id="explainResults" aria-expanded="false" aria-controls="resultsExplanation">Explain these results</button>
+            <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
+          </div>
+          <section class="explanation hidden" id="resultsExplanation">
+            <h2>Plain-English explanation</h2>
+            <p id="explanationText"></p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="lender-note" aria-label="How lenders use debt-to-income ratios">
+      <h2>What lenders look for</h2>
+      <p><strong>DTI is one part of the decision.</strong> A lender may also weigh your credit history, the stability of your income, your down payment, cash reserves, and the rules for the loan you want. Different lenders and loan products set different limits, so this result estimates the math—not whether you will be approved.</p>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Method:</strong> Front-end DTI = housing ÷ gross monthly income. Back-end DTI = housing plus other listed monthly debt ÷ gross monthly income. The 28/36 comparison is a traditional rule of thumb; it is not a legal limit.</p>
+      <p>For informational and educational purposes only. Sources: <a href="https://consumerfinance.gov:443/ask-cfpb/what-is-a-debt-to-income-ratio-en-1791/" target="_blank" rel="noopener noreferrer">CFPB definition</a> · <a href="https://www.bankrate.com/mortgages/what-is-the-28-36-rule/" target="_blank" rel="noopener noreferrer">28/36 overview</a></p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var form = document.getElementById('dtiForm');
+      var emptyState = document.getElementById('emptyState');
+      var resultState = document.getElementById('resultState');
+      var errorBox = document.getElementById('errorBox');
+      var resultSections = ['scoreboard', 'meterPanel', 'breakdown', 'resultTools'];
+      var current = null;
+
+      function valueOf(id, optional) {
+        var raw = document.getElementById(id).value.trim();
+        if (raw === '' && optional) return 0;
+        return raw === '' ? NaN : Number(raw);
+      }
+
+      function money(value) {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0
+        }).format(value);
+      }
+
+      function percent(value) {
+        return new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 1
+        }).format(value) + '%';
+      }
+
+      function statusFor(value, guidepost, kind) {
+        if (value <= guidepost) {
+          return { text: 'At or below the traditional ' + guidepost + '% guidepost', className: 'status-good' };
+        }
+        if (value <= guidepost + 8) {
+          return { text: 'Above the traditional ' + guidepost + '% guidepost', className: 'status-watch' };
+        }
+        return { text: kind === 'front' ? 'Housing takes a high share of gross income' : 'Debt takes a high share of gross income', className: 'status-high' };
+      }
+
+      function applyStatus(id, status) {
+        var el = document.getElementById(id);
+        el.textContent = status.text;
+        el.className = 'score-status ' + status.className;
+      }
+
+      function showError(message) {
+        emptyState.classList.add('hidden');
+        resultState.classList.remove('hidden');
+        errorBox.textContent = message;
+        errorBox.classList.remove('hidden');
+        resultSections.forEach(function (id) { document.getElementById(id).classList.add('hidden'); });
+        document.getElementById('resultsExplanation').classList.add('hidden');
+      }
+
+      function showResults() {
+        errorBox.classList.add('hidden');
+        resultSections.forEach(function (id) { document.getElementById(id).classList.remove('hidden'); });
+      }
+
+      function buildSummary() {
+        if (!current) return '';
+        var r = current;
+        return [
+          'Debt-to-Income Ratio Calculator results',
+          '',
+          'Front-end DTI (housing only): ' + percent(r.front),
+          'Back-end DTI (all listed debt): ' + percent(r.back),
+          '',
+          'Gross monthly income: ' + money(r.income),
+          'Monthly housing payment: ' + money(r.housing),
+          'Monthly car payments: ' + money(r.car),
+          'Monthly credit card minimums: ' + money(r.cards),
+          'Monthly student loan payments: ' + money(r.student),
+          'Other monthly debt: ' + money(r.other),
+          'Total listed monthly debt: ' + money(r.total),
+          'Gross income after listed debt: ' + money(r.remaining),
+          '',
+          'Traditional reference points: 28% housing / 36% total debt. These are guideposts, not universal approval limits. Different lenders and loan products use different standards.',
+          '',
+          'For informational and educational purposes only.'
+        ].join('\n');
+      }
+
+      function updateEmail() {
+        var href = 'mailto:?subject=' + encodeURIComponent('My debt-to-income ratio results') + '&body=' + encodeURIComponent(buildSummary());
+        document.getElementById('emailResults').setAttribute('href', href);
+      }
+
+      function copyResults() {
+        var text = buildSummary();
+        var button = document.getElementById('copyResults');
+        var status = document.getElementById('copyStatus');
+        if (!text) return;
+
+        function done() {
+          button.textContent = 'Copied';
+          button.classList.add('copied');
+          status.textContent = 'Copied';
+          window.setTimeout(function () {
+            button.textContent = 'Copy results';
+            button.classList.remove('copied');
+            status.textContent = '';
+          }, 1800);
+        }
+
+        function fallback() {
+          var area = document.createElement('textarea');
+          area.value = text;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.opacity = '0';
+          document.body.appendChild(area);
+          area.select();
+          var copied = false;
+          try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+          area.remove();
+          if (copied) done();
+          else status.textContent = 'Copy unavailable';
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(fallback);
+        } else {
+          fallback();
+        }
+      }
+
+      function renderExplanation() {
+        if (!current) return;
+        var r = current;
+        var roomSentence;
+        if (r.room >= 0) {
+          roomSentence = 'Your listed debts are ' + money(r.room) + ' per month below the traditional 36% total-debt guidepost.';
+        } else {
+          roomSentence = 'Your listed debts are ' + money(Math.abs(r.room)) + ' per month above the traditional 36% total-debt guidepost.';
+        }
+        document.getElementById('explanationText').textContent =
+          'Your housing payment uses ' + percent(r.front) + ' of your income before taxes. When your car, card, student loan, and other listed payments are added, ' + percent(r.back) + ' of gross income is committed to debt. That leaves ' + money(r.remaining) + ' of gross monthly income before taxes and normal living costs such as food, utilities, transportation, and savings. ' + roomSentence + ' A lower ratio generally gives a budget more breathing room, but a lender will use its own rules and review more than this one number.';
+      }
+
+      function calculate(event) {
+        event.preventDefault();
+        var income = valueOf('income', false);
+        var housing = valueOf('housing', false);
+        var car = valueOf('car', true);
+        var cards = valueOf('cards', true);
+        var student = valueOf('student', true);
+        var other = valueOf('other', true);
+        var values = [housing, car, cards, student, other];
+
+        if (!Number.isFinite(income) || income <= 0) {
+          showError('Enter a gross monthly income greater than $0.');
+          return;
+        }
+        if (!Number.isFinite(housing) || housing < 0) {
+          showError('Enter your monthly housing payment. Use $0 if you have no housing payment.');
+          return;
+        }
+        if (values.some(function (value) { return !Number.isFinite(value) || value < 0; })) {
+          showError('Debt payments cannot be negative. Correct the highlighted monthly amounts and try again.');
+          return;
+        }
+
+        var otherDebt = car + cards + student + other;
+        var total = housing + otherDebt;
+        var front = housing / income * 100;
+        var back = total / income * 100;
+        var remaining = income - total;
+        var room = income * .36 - total;
+
+        current = {
+          income: income,
+          housing: housing,
+          car: car,
+          cards: cards,
+          student: student,
+          other: other,
+          otherDebt: otherDebt,
+          total: total,
+          front: front,
+          back: back,
+          remaining: remaining,
+          room: room
+        };
+
+        emptyState.classList.add('hidden');
+        resultState.classList.remove('hidden');
+        showResults();
+
+        document.getElementById('frontRatio').textContent = percent(front);
+        document.getElementById('backRatio').textContent = percent(back);
+        applyStatus('frontStatus', statusFor(front, 28, 'front'));
+        applyStatus('backStatus', statusFor(back, 36, 'back'));
+        document.getElementById('frontMeterValue').textContent = percent(front);
+        document.getElementById('backMeterValue').textContent = percent(back);
+        document.getElementById('frontMeter').style.width = Math.min(front / 60 * 100, 100) + '%';
+        document.getElementById('backMeter').style.width = Math.min(back / 60 * 100, 100) + '%';
+        document.getElementById('incomeOut').textContent = money(income);
+        document.getElementById('housingOut').textContent = money(housing);
+        document.getElementById('otherOut').textContent = money(otherDebt);
+        document.getElementById('totalOut').textContent = money(total);
+        document.getElementById('remainingOut').textContent = money(remaining);
+        document.getElementById('roomOut').textContent = room >= 0 ? money(room) : '−' + money(Math.abs(room));
+        document.getElementById('roomCopy').textContent = room >= 0
+          ? 'This is how much additional monthly debt would bring the back-end ratio to 36%. It is not a borrowing recommendation.'
+          : 'Your listed monthly debt is above the amount represented by the 36% guidepost.';
+
+        renderExplanation();
+        updateEmail();
+
+        var explainButton = document.getElementById('explainResults');
+        explainButton.setAttribute('aria-expanded', 'false');
+        explainButton.firstChild.nodeValue = 'Explain these results';
+        document.getElementById('resultsExplanation').classList.add('hidden');
+      }
+
+      form.addEventListener('submit', calculate);
+      document.getElementById('copyResults').addEventListener('click', copyResults);
+      document.getElementById('explainResults').addEventListener('click', function () {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!expanded));
+        this.firstChild.nodeValue = expanded ? 'Explain these results' : 'Hide explanation';
+        document.getElementById('resultsExplanation').classList.toggle('hidden', expanded);
+      });
+    })();
+  </script>
+</body>
+</html>

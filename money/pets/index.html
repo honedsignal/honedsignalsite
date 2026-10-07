@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0B0E14" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F5F5F5" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="data:," />
+    <title>Pet Money Tools</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap');
+
+      :root {
+        color-scheme: light dark;
+        --bg: #0f141c;
+        --surface: #181f29;
+        --surface-hover: #1d2632;
+        --text: #f5f5f5;
+        --muted: #bdc6d3;
+        --line: #343e4d;
+        --accent: #f7931a;
+        --accent-hover: #ffad45;
+        --accent-text: #0b0e14;
+        --blue: #77a6d8;
+        --green: #76e663;
+        --shadow: 0 18px 46px rgba(0, 0, 0, 0.28);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #090c11;
+          --surface: #121821;
+          --surface-hover: #18212c;
+          --text: #f7f8fa;
+          --muted: #bec7d3;
+          --line: #303a48;
+          --accent: #f7931a;
+          --accent-hover: #ffad45;
+          --accent-text: #0b0e14;
+          --blue: #79a6d8;
+          --green: #76e663;
+          --shadow: 0 22px 54px rgba(0, 0, 0, 0.30);
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      html { min-width: 320px; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 90% 12%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 28rem),
+          var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: inherit; }
+
+      main {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 28px 0 72px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        color: var(--muted);
+        font-size: 0.94rem;
+        font-weight: 600;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      .back-link:hover { color: var(--text); text-decoration: underline; }
+      .back-link:focus-visible,
+      .tool-link:focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--accent) 80%, white);
+        outline-offset: 4px;
+      }
+
+      .intro {
+        max-width: 730px;
+        padding: clamp(46px, 9vw, 102px) 0 clamp(36px, 6vw, 66px);
+      }
+
+      .category {
+        margin: 0 0 16px;
+        color: var(--accent);
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 720px;
+        margin: 0;
+        font-family: "Newsreader", Georgia, serif;
+        font-size: clamp(3.05rem, 7vw, 6rem);
+        font-weight: 700;
+        letter-spacing: -0.045em;
+        line-height: 0.92;
+      }
+
+      .intro p:last-child {
+        max-width: 590px;
+        margin: 25px 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.18rem);
+        line-height: 1.65;
+      }
+
+      .tools {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .tool-card {
+        display: flex;
+        min-height: 364px;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+      }
+
+      .tool-card:hover {
+        border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+        background: var(--surface-hover);
+        transform: translateY(-3px);
+      }
+
+      .visual {
+        position: relative;
+        display: grid;
+        height: 156px;
+        place-items: center;
+        overflow: hidden;
+        border-bottom: 1px solid var(--line);
+        background: color-mix(in srgb, var(--blue) 10%, var(--surface));
+      }
+
+      .tool-card:nth-child(2) .visual {
+        background: color-mix(in srgb, var(--green) 10%, var(--surface));
+      }
+
+      .tool-card:nth-child(3) .visual {
+        background: color-mix(in srgb, var(--accent) 11%, var(--surface));
+      }
+
+      .visual::after {
+        content: "";
+        position: absolute;
+        width: 76px;
+        height: 76px;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        opacity: 0.08;
+        transform: translate(48px, -38px) scale(2.1);
+      }
+
+      .visual svg {
+        width: 94px;
+        height: 94px;
+        color: var(--text);
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.7;
+        fill: none;
+      }
+
+      .card-body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 26px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1.34rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+
+      .description {
+        margin: 11px 0 30px;
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.55;
+      }
+
+      .tool-link {
+        display: inline-flex;
+        width: fit-content;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        margin-top: auto;
+        padding: 0 18px;
+        border-radius: 9px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-size: 0.92rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background-color 160ms ease;
+      }
+
+      .tool-link:hover { background: var(--accent-hover); }
+      .arrow { font-size: 1.08em; transition: transform 160ms ease; }
+      .tool-link:hover .arrow { transform: translateX(3px); }
+
+      @media (max-width: 820px) {
+        .tools { grid-template-columns: 1fr; }
+        .tool-card { min-height: 0; }
+        .visual { height: 142px; }
+      }
+
+      @media (max-width: 520px) {
+        main {
+          width: min(100% - 28px, 1120px);
+          padding-top: 16px;
+          padding-bottom: 40px;
+        }
+
+        .intro { padding: 36px 0 34px; }
+        h1 { font-size: clamp(2.72rem, 16vw, 4rem); }
+        .intro p:last-child { margin-top: 19px; }
+        .tools { gap: 14px; }
+        .tool-card { border-radius: 14px; }
+        .card-body { padding: 22px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+      <header class="intro">
+        <p class="category">Pets</p>
+        <h1>Plan for every paw.</h1>
+        <p>See what pet ownership can cost over time and weigh whether insurance belongs in your budget.</p>
+      </header>
+
+      <section class="tools" aria-label="Pet money calculators">
+        <article class="tool-card">
+          <div class="visual" aria-hidden="true">
+            <svg viewBox="0 0 100 100" role="img">
+              <path d="M34 35c-7-14-17-17-21-12-4 5 2 23 12 28" />
+              <path d="M66 35c7-14 17-17 21-12 4 5-2 23-12 28" />
+              <path d="M26 45c3-15 12-23 24-23s21 8 24 23v13c0 16-10 28-24 28S26 74 26 58Z" />
+              <path d="M41 53h.1M59 53h.1" />
+              <path d="M45 65c3 3 7 3 10 0" />
+              <path d="M47 60h6l-3 4Z" />
+            </svg>
+          </div>
+          <div class="card-body">
+            <h2>Dog Ownership Cost</h2>
+            <p class="description">The lifetime price of a dog.</p>
+            <a class="tool-link" href="/money/dog-ownership-cost-calculator/">Open tool <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <div class="visual" aria-hidden="true">
+            <svg viewBox="0 0 100 100" role="img">
+              <path d="M27 40 21 18l22 13a36 36 0 0 1 14 0l22-13-6 22c5 6 7 13 7 22 0 16-13 25-30 25S20 78 20 62c0-9 2-16 7-22Z" />
+              <path d="M36 55h.1M64 55h.1" />
+              <path d="m46 65 4 3 4-3" />
+              <path d="M50 68v7M50 73c-3 0-5 1-7 3M50 73c3 0 5 1 7 3" />
+              <path d="M31 67 12 63M31 73 13 77M69 67l19-4M69 73l18 4" />
+            </svg>
+          </div>
+          <div class="card-body">
+            <h2>Cat Ownership Cost</h2>
+            <p class="description">The lifetime price of a cat.</p>
+            <a class="tool-link" href="/money/cat-ownership-cost-calculator/">Open tool <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <div class="visual" aria-hidden="true">
+            <svg viewBox="0 0 100 100" role="img">
+              <path d="M50 13 78 24v23c0 19-11 33-28 41-17-8-28-22-28-41V24Z" />
+              <path d="M50 36c-5-8-18-4-18 6 0 11 18 22 18 22s18-11 18-22c0-10-13-14-18-6Z" />
+            </svg>
+          </div>
+          <div class="card-body">
+            <h2>Pet Insurance Calculator</h2>
+            <p class="description">Worth the premium?</p>
+            <a class="tool-link" href="/money/pet-insurance-calculator/">Open tool <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

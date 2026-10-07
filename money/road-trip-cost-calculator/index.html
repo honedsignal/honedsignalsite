@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Road Trip Cost Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+    :root {
+      color-scheme: light dark;
+      --ink: #131820;
+      --muted: #5b6573;
+      --paper: #f5f5f5;
+      --surface: #ffffff;
+      --surface-2: #e9edf0;
+      --line: #cbd1d7;
+      --blue: #456f9f;
+      --orange: #e77700;
+      --orange-ink: #17120b;
+      --green: #168238;
+      --red: #c5393f;
+      --focus: #0b72cf;
+      --shadow: 0 18px 50px rgba(28, 35, 43, .10);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f5f5f5;
+        --muted: #abb4bf;
+        --paper: #0b0e14;
+        --surface: #131922;
+        --surface-2: #1b2430;
+        --line: #303b49;
+        --blue: #6490c4;
+        --orange: #f7931a;
+        --orange-ink: #17120b;
+        --green: #39ff14;
+        --red: #e5484d;
+        --focus: #82baff;
+        --shadow: 0 22px 64px rgba(0, 0, 0, .34);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { min-width: 0; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "DM Sans", system-ui, sans-serif;
+      line-height: 1.5;
+    }
+    button, input, summary { font: inherit; }
+    a { color: inherit; }
+    [hidden] { display: none !important; }
+
+    .page {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) 0 max(48px, env(safe-area-inset-bottom));
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 34px;
+    }
+    .back-link:hover { color: var(--orange); }
+    .back-link:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .intro {
+      max-width: 730px;
+      margin-bottom: 28px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.25rem, 6vw, 4.3rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 700;
+      max-width: 720px;
+    }
+    .lede {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      max-width: 620px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(330px, .95fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .form-panel { padding: clamp(22px, 4vw, 38px); }
+    .section-heading {
+      margin: 0 0 7px;
+      font-size: 1.15rem;
+      letter-spacing: -.02em;
+    }
+    .section-note {
+      margin: 0 0 25px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 16px;
+    }
+    .field { min-width: 0; }
+    .field.wide { grid-column: 1 / -1; }
+    label {
+      display: block;
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+    .input-wrap { position: relative; }
+    .unit {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 600;
+      pointer-events: none;
+    }
+    .unit.left { left: 14px; }
+    .unit.right { right: 14px; }
+    input {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 12px 14px;
+      font-size: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+    input.has-left { padding-left: 31px; }
+    input.has-right { padding-right: 67px; }
+    input::placeholder { color: var(--muted); opacity: .66; }
+    input:hover { border-color: var(--muted); }
+    input[aria-invalid="true"] { border-color: var(--red); }
+    .hint {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .error {
+      margin: 18px 0 0;
+      padding: 11px 13px;
+      background: color-mix(in srgb, var(--red) 12%, transparent);
+      color: var(--ink);
+      border-radius: 6px;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+
+    .calculate {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 24px;
+      border: 0;
+      border-radius: 7px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .calculate:hover { filter: brightness(1.06); }
+    .calculate:active { transform: translateY(1px); }
+
+    .result-shell {
+      min-height: 560px;
+      background: var(--surface-2);
+      padding: clamp(22px, 4vw, 36px);
+      border-top: 5px solid var(--orange);
+    }
+    .empty-state {
+      min-height: 490px;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      color: var(--muted);
+    }
+    .road-mark {
+      width: 74px;
+      height: 5px;
+      margin: 0 auto 20px;
+      background: repeating-linear-gradient(90deg, var(--orange) 0 18px, transparent 18px 28px);
+    }
+    .empty-state p { max-width: 290px; margin: 0; }
+
+    .results-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 23px;
+      border-bottom: 1px solid var(--line);
+    }
+    .results-label {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+    .total {
+      margin: 0;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: clamp(2.3rem, 7vw, 4.2rem);
+      letter-spacing: -.06em;
+      line-height: 1;
+    }
+    .per-person {
+      margin: 0 0 3px;
+      text-align: right;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .per-person strong {
+      display: block;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 1.35rem;
+      color: var(--ink);
+    }
+
+    .breakdown {
+      list-style: none;
+      padding: 6px 0;
+      margin: 0;
+    }
+    .breakdown li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .breakdown span { color: var(--muted); }
+    .breakdown strong {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: .95rem;
+      white-space: nowrap;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .action {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      border-radius: 7px;
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .email {
+      background: var(--orange);
+      color: var(--orange-ink);
+      border-color: var(--orange);
+    }
+    .copy { background: var(--surface); color: var(--ink); }
+    .action:hover { filter: brightness(1.06); }
+    .status {
+      min-height: 21px;
+      margin: 9px 0 0;
+      color: var(--green);
+      text-align: center;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    details {
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--blue);
+    }
+    details p {
+      color: var(--muted);
+      font-size: .9rem;
+      margin: 12px 0 0;
+    }
+
+    .disclaimer {
+      margin: 22px auto 0;
+      max-width: 780px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    @media (max-width: 800px) {
+      .page { width: min(100% - 24px, 650px); }
+      .back-link { margin-bottom: 26px; }
+      .workspace { grid-template-columns: 1fr; }
+      .result-shell { min-height: 0; }
+      .empty-state { min-height: 260px; }
+    }
+
+    @media (max-width: 500px) {
+      h1 { font-size: clamp(2.25rem, 12vw, 3.25rem); }
+      .fields { grid-template-columns: 1fr; }
+      .field.wide { grid-column: auto; }
+      .form-panel, .result-shell { padding: 21px 18px; }
+      .results-head { align-items: start; flex-direction: column; }
+      .per-person { text-align: left; }
+      .actions { grid-template-columns: 1fr; }
+      .breakdown li { gap: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <header class="intro">
+      <h1>What will the drive cost?</h1>
+      <p class="lede">Add the miles, your vehicle’s fuel use, tolls, and overnight stays. See the trip total and each traveler’s share.</p>
+    </header>
+
+    <div class="workspace">
+      <section class="panel form-panel" aria-labelledby="trip-details-heading">
+        <h2 class="section-heading" id="trip-details-heading">Trip details</h2>
+        <p class="section-note">Use the full distance for the trip, including the drive home.</p>
+
+        <form id="trip-form" novalidate>
+          <div class="fields">
+            <div class="field wide">
+              <label for="distance">Total trip distance</label>
+              <div class="input-wrap">
+                <input id="distance" name="distance" class="has-right" type="number" min="0.1" step="0.1" inputmode="decimal" placeholder="650" required />
+                <span class="unit right">miles</span>
+              </div>
+              <p class="hint">Include all planned driving.</p>
+            </div>
+
+            <div class="field">
+              <label for="mpg">Vehicle fuel economy</label>
+              <div class="input-wrap">
+                <input id="mpg" name="mpg" class="has-right" type="number" min="0.1" step="0.1" inputmode="decimal" placeholder="28" required />
+                <span class="unit right">MPG</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="fuel-price">Fuel price</label>
+              <div class="input-wrap">
+                <span class="unit left">$</span>
+                <input id="fuel-price" name="fuelPrice" class="has-left has-right" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="3.25" required />
+                <span class="unit right">/ gal</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="tolls">Tolls</label>
+              <div class="input-wrap">
+                <span class="unit left">$</span>
+                <input id="tolls" name="tolls" class="has-left" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="nights">Lodging nights</label>
+              <input id="nights" name="nights" type="number" min="0" step="1" inputmode="numeric" placeholder="2" required />
+            </div>
+
+            <div class="field">
+              <label for="nightly-rate">Lodging cost per night</label>
+              <div class="input-wrap">
+                <span class="unit left">$</span>
+                <input id="nightly-rate" name="nightlyRate" class="has-left" type="number" min="0" step="0.01" inputmode="decimal" placeholder="145" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="travelers">Travelers splitting the cost</label>
+              <input id="travelers" name="travelers" type="number" min="1" step="1" inputmode="numeric" placeholder="2" required />
+            </div>
+          </div>
+
+          <p id="form-error" class="error" role="alert" hidden></p>
+          <button class="calculate" type="submit">Calculate trip cost</button>
+        </form>
+      </section>
+
+      <section class="panel result-shell" aria-live="polite" aria-labelledby="result-heading">
+        <div id="empty-state" class="empty-state">
+          <div>
+            <div class="road-mark" aria-hidden="true"></div>
+            <p>Enter your trip details to see a complete estimate.</p>
+          </div>
+        </div>
+
+        <div id="results" hidden>
+          <div class="results-head">
+            <div>
+              <p class="results-label">Estimated trip total</p>
+              <h2 class="total" id="result-heading">$0.00</h2>
+            </div>
+            <p class="per-person">Per traveler<strong id="per-person">$0.00</strong></p>
+          </div>
+
+          <ul class="breakdown" aria-label="Cost breakdown">
+            <li><span>Fuel</span><strong id="fuel-cost">$0.00</strong></li>
+            <li><span>Tolls</span><strong id="toll-cost">$0.00</strong></li>
+            <li><span>Lodging</span><strong id="lodging-cost">$0.00</strong></li>
+            <li><span>Fuel needed</span><strong id="gallons">0 gallons</strong></li>
+            <li><span>Cost per mile</span><strong id="cost-per-mile">$0.00</strong></li>
+          </ul>
+
+          <div class="actions">
+            <a id="email-results" class="action email" href="mailto:">Email my results</a>
+            <button id="copy-results" class="action copy" type="button">Copy results</button>
+          </div>
+          <p id="copy-status" class="status" role="status"></p>
+
+          <details>
+            <summary>Explain these results</summary>
+            <p id="explanation"></p>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <p class="disclaimer">For informational purposes only. Actual costs may vary with route changes, traffic, fuel prices, taxes, parking, meals, and other travel expenses.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("trip-form");
+      var errorBox = document.getElementById("form-error");
+      var emptyState = document.getElementById("empty-state");
+      var results = document.getElementById("results");
+      var copyButton = document.getElementById("copy-results");
+      var copyStatus = document.getElementById("copy-status");
+      var emailLink = document.getElementById("email-results");
+      var resultText = "";
+
+      var money = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+      function valueOf(id) {
+        return Number(document.getElementById(id).value);
+      }
+
+      function markInvalid(ids) {
+        var allInputs = form.querySelectorAll("input");
+        allInputs.forEach(function (input) {
+          input.removeAttribute("aria-invalid");
+        });
+        ids.forEach(function (id) {
+          document.getElementById(id).setAttribute("aria-invalid", "true");
+        });
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        copyStatus.textContent = "";
+
+        var distance = valueOf("distance");
+        var mpg = valueOf("mpg");
+        var fuelPrice = valueOf("fuel-price");
+        var tolls = valueOf("tolls");
+        var nights = valueOf("nights");
+        var nightlyRate = valueOf("nightly-rate");
+        var travelers = valueOf("travelers");
+        var invalid = [];
+
+        if (!(distance > 0)) invalid.push("distance");
+        if (!(mpg > 0)) invalid.push("mpg");
+        if (!(fuelPrice > 0)) invalid.push("fuel-price");
+        if (!(tolls >= 0) || document.getElementById("tolls").value === "") invalid.push("tolls");
+        if (!(nights >= 0) || !Number.isInteger(nights) || document.getElementById("nights").value === "") invalid.push("nights");
+        if (!(nightlyRate >= 0) || document.getElementById("nightly-rate").value === "") invalid.push("nightly-rate");
+        if (!(travelers >= 1) || !Number.isInteger(travelers)) invalid.push("travelers");
+
+        if (invalid.length) {
+          markInvalid(invalid);
+          errorBox.textContent = "Check the highlighted fields. Use positive numbers, whole numbers for nights and travelers, and enter 0 where a cost does not apply.";
+          errorBox.hidden = false;
+          results.hidden = true;
+          emptyState.hidden = false;
+          document.getElementById(invalid[0]).focus();
+          return;
+        }
+
+        markInvalid([]);
+        errorBox.hidden = true;
+
+        var gallons = distance / mpg;
+        var fuelCost = gallons * fuelPrice;
+        var lodgingCost = nights * nightlyRate;
+        var total = fuelCost + tolls + lodgingCost;
+        var perPerson = total / travelers;
+        var perMile = total / distance;
+
+        document.getElementById("result-heading").textContent = money.format(total);
+        document.getElementById("per-person").textContent = money.format(perPerson);
+        document.getElementById("fuel-cost").textContent = money.format(fuelCost);
+        document.getElementById("toll-cost").textContent = money.format(tolls);
+        document.getElementById("lodging-cost").textContent = money.format(lodgingCost);
+        document.getElementById("gallons").textContent = gallons.toFixed(1) + " gallons";
+        document.getElementById("cost-per-mile").textContent = money.format(perMile);
+
+        var lodgingSentence = nights === 0
+          ? "You entered no overnight stays, so lodging adds nothing to this estimate."
+          : "Lodging is " + nights + (nights === 1 ? " night" : " nights") + " at " + money.format(nightlyRate) + " per night.";
+        var splitSentence = travelers === 1
+          ? "Because one traveler is paying, the per-traveler amount matches the total."
+          : "Split evenly among " + travelers + " travelers, each person’s share is " + money.format(perPerson) + ".";
+
+        document.getElementById("explanation").textContent =
+          "Fuel is estimated by dividing " + distance.toLocaleString("en-US") + " miles by " + mpg.toLocaleString("en-US") +
+          " MPG, then multiplying the resulting " + gallons.toFixed(1) + " gallons by " + money.format(fuelPrice) +
+          " per gallon. " + lodgingSentence + " Tolls are added once. " + splitSentence +
+          " Meals, parking, maintenance, and unplanned detours are not included.";
+
+        resultText = [
+          "Road Trip Cost Estimate",
+          "Estimated total: " + money.format(total),
+          "Per traveler (" + travelers + "): " + money.format(perPerson),
+          "",
+          "Breakdown",
+          "Fuel: " + money.format(fuelCost) + " (" + gallons.toFixed(1) + " gallons)",
+          "Tolls: " + money.format(tolls),
+          "Lodging: " + money.format(lodgingCost),
+          "Cost per mile: " + money.format(perMile),
+          "",
+          "Inputs: " + distance.toLocaleString("en-US") + " miles, " + mpg.toLocaleString("en-US") + " MPG, " + money.format(fuelPrice) + "/gallon, " + nights + " lodging night" + (nights === 1 ? "" : "s") + ".",
+          "",
+          "For informational purposes only. Actual costs may vary."
+        ].join("\n");
+
+        emailLink.href = "mailto:?subject=" + encodeURIComponent("My road trip cost estimate") + "&body=" + encodeURIComponent(resultText);
+        emptyState.hidden = true;
+        results.hidden = false;
+
+        if (window.matchMedia("(max-width: 800px)").matches) {
+          results.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var copied = false;
+        try { copied = document.execCommand("copy"); } catch (error) { copied = false; }
+        document.body.removeChild(area);
+        return copied;
+      }
+
+      copyButton.addEventListener("click", function () {
+        if (!resultText) return;
+
+        function success() {
+          copyStatus.textContent = "Results copied.";
+          copyButton.textContent = "Copied";
+          window.setTimeout(function () { copyButton.textContent = "Copy results"; }, 1800);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(resultText).then(success).catch(function () {
+            copyStatus.textContent = fallbackCopy(resultText) ? "Results copied." : "Copy unavailable. Select the results above to copy them.";
+          });
+        } else {
+          copyStatus.textContent = fallbackCopy(resultText) ? "Results copied." : "Copy unavailable. Select the results above to copy them.";
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Points and Miles Value Calculator</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f5f5f5;
+      --muted: #b5bdc9;
+      --paper: #0d1118;
+      --panel: #161c25;
+      --panel-2: #202936;
+      --line: #374250;
+      --line-strong: #718095;
+      --orange: #f7931a;
+      --orange-ink: #171006;
+      --green: #62d47e;
+      --red: #ff7c82;
+      --focus: #75aef2;
+      --shadow: 0 22px 60px rgba(0, 0, 0, .34);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #0b0e14;
+        --panel: #141922;
+        --panel-2: #1d2430;
+        --line: #343e4c;
+        --line-strong: #687486;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Public Sans", sans-serif;
+      line-height: 1.55;
+    }
+    button, input { font: inherit; }
+    a { color: inherit; }
+
+    .page {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 24px 0 72px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 42px;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--orange); }
+    .back-link:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(220px, .65fr);
+      gap: 44px;
+      align-items: end;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 34px;
+    }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.35rem, 5.8vw, 4.7rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 800;
+    }
+    .dek {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.65;
+    }
+    .accent-line {
+      width: 72px;
+      height: 6px;
+      margin-top: 24px;
+      background: var(--orange);
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+      gap: 24px;
+      margin-top: 30px;
+      align-items: start;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .form-card { padding: 30px; }
+    .card-heading {
+      margin: 0 0 6px;
+      font-size: 1.35rem;
+      letter-spacing: -.02em;
+    }
+    .card-note {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+    .field { margin-top: 22px; }
+    .field:first-of-type { margin-top: 0; }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .input-shell { position: relative; }
+    .prefix, .suffix {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-weight: 700;
+      pointer-events: none;
+    }
+    .prefix { left: 16px; }
+    .suffix { right: 16px; font-size: .86rem; }
+    input {
+      width: 100%;
+      min-height: 54px;
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 12px 16px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    input.has-prefix { padding-left: 34px; }
+    input.has-suffix { padding-right: 68px; }
+    input::placeholder { color: var(--muted); opacity: .72; font-weight: 500; }
+    input[aria-invalid="true"] { border-color: var(--red); box-shadow: 0 0 0 1px var(--red); }
+    .hint {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+    .error {
+      min-height: 1.4em;
+      margin: 12px 0 0;
+      color: var(--red);
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .calculate {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .calculate { background: #f5f5f5; color: #11151b; }
+    .calculate:hover { opacity: .86; }
+
+    .empty-state {
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+      padding: 44px;
+      text-align: center;
+    }
+    .empty-glyph {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 22px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .empty-state h2 { margin: 0 0 8px; font-size: 1.25rem; }
+    .empty-state p { max-width: 380px; margin: 0; color: var(--muted); }
+
+    .results { display: none; }
+    .results.show { display: block; }
+    .result-top { padding: 32px; border-bottom: 1px solid var(--line); }
+    .result-label {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .result-number {
+      margin: 0;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -.07em;
+    }
+    .result-number span { font-size: .36em; letter-spacing: -.02em; }
+    .verdict {
+      margin: 22px 0 0;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+    .verdict.good { color: var(--green); }
+    .verdict.caution { color: var(--red); }
+    .verdict.neutral { color: var(--ink); }
+    .reason { margin: 7px 0 0; color: var(--muted); }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+    .metric { padding: 22px 24px; border-right: 1px solid var(--line); }
+    .metric:last-child { border-right: 0; }
+    .metric dt { margin: 0 0 5px; color: var(--muted); font-size: .78rem; font-weight: 700; }
+    .metric dd { margin: 0; font-family: "IBM Plex Mono", monospace; font-size: 1.05rem; font-weight: 600; }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 24px;
+    }
+    .action-btn {
+      min-height: 50px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+      background: var(--panel-2);
+      color: var(--ink);
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .action-btn:hover { border-color: var(--ink); }
+    .action-btn.email {
+      background: var(--orange);
+      color: var(--orange-ink);
+      border-color: var(--orange);
+    }
+    .status {
+      grid-column: 1 / -1;
+      min-height: 1.25em;
+      margin: 0;
+      text-align: center;
+      color: var(--green);
+      font-size: .84rem;
+      font-weight: 700;
+    }
+
+    details { margin: 0 24px 26px; border-top: 1px solid var(--line); }
+    summary {
+      cursor: pointer;
+      padding: 20px 0 6px;
+      font-weight: 800;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--orange); font-size: 1.25rem; }
+    details[open] summary::after { content: "−"; }
+    .explanation { color: var(--muted); font-size: .93rem; }
+    .explanation p { margin: 10px 0; }
+    .explanation strong { color: var(--ink); }
+
+    .disclaimer {
+      max-width: 760px;
+      margin: 28px 0 0 auto;
+      color: var(--muted);
+      font-size: .78rem;
+      text-align: right;
+    }
+
+    @media (max-width: 780px) {
+      .page { width: min(100% - 28px, 620px); padding-top: 18px; }
+      .back-link { margin-bottom: 30px; }
+      .intro { grid-template-columns: 1fr; gap: 22px; }
+      h1 { font-size: clamp(2.25rem, 12vw, 3.7rem); }
+      .workspace { grid-template-columns: 1fr; }
+      .form-card { padding: 24px 20px; }
+      .empty-state { min-height: 280px; padding: 36px 24px; }
+      .result-top { padding: 26px 22px; }
+      .metrics { grid-template-columns: 1fr; }
+      .metric { border-right: 0; border-bottom: 1px solid var(--line); padding: 16px 22px; }
+      .metric:last-child { border-bottom: 0; }
+      .actions { grid-template-columns: 1fr; padding: 22px; }
+      .status { grid-column: 1; }
+      details { margin-inline: 22px; }
+      .disclaimer { text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .results.show { animation: reveal .22s ease-out; }
+      @keyframes reveal { from { opacity: 0; } to { opacity: 1; } }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">What are your points really worth?</h1>
+        <div class="accent-line" aria-hidden="true"></div>
+      </div>
+      <p class="dek">Compare the cash and points prices for the same trip. See the value of each point and whether this redemption deserves a yes.</p>
+    </section>
+
+    <div class="workspace">
+      <form class="card form-card" id="calculator" novalidate>
+        <h2 class="card-heading">Trip details</h2>
+        <p class="card-note">Use prices for the exact same flight, hotel stay, or other booking.</p>
+
+        <div class="field">
+          <label for="balance">Your points balance</label>
+          <div class="input-shell">
+            <input id="balance" name="balance" class="has-suffix" type="number" min="0" step="1" inputmode="numeric" placeholder="e.g. 80,000" aria-describedby="balance-hint" />
+            <span class="suffix" aria-hidden="true">points</span>
+          </div>
+          <span class="hint" id="balance-hint">How many points or miles you have now</span>
+        </div>
+
+        <div class="field">
+          <label for="cashPrice">Cash price of the trip</label>
+          <div class="input-shell">
+            <span class="prefix" aria-hidden="true">$</span>
+            <input id="cashPrice" name="cashPrice" class="has-prefix" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="e.g. 625" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="pointsPrice">Points price of the same trip</label>
+          <div class="input-shell">
+            <input id="pointsPrice" name="pointsPrice" class="has-suffix" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 50,000" />
+            <span class="suffix" aria-hidden="true">points</span>
+          </div>
+        </div>
+
+        <p class="error" id="error" role="alert" aria-live="polite"></p>
+        <button class="calculate" type="submit">Calculate value</button>
+      </form>
+
+      <section class="card output-card" aria-live="polite" aria-label="Calculation results">
+        <div class="empty-state" id="emptyState">
+          <div>
+            <div class="empty-glyph" aria-hidden="true">¢ / pt</div>
+            <h2>Your comparison will appear here</h2>
+            <p>Enter all three numbers to see what one point buys on this trip.</p>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <div class="result-top">
+            <p class="result-label">Value per point</p>
+            <p class="result-number"><strong id="cpp">0.00</strong><span>¢</span></p>
+            <p class="verdict" id="verdict"></p>
+            <p class="reason" id="reason"></p>
+          </div>
+
+          <dl class="metrics">
+            <div class="metric">
+              <dt>Cash kept in your pocket</dt>
+              <dd id="cashSaved">$0</dd>
+            </div>
+            <div class="metric">
+              <dt>Points after booking</dt>
+              <dd id="pointsLeft">0</dd>
+            </div>
+            <div class="metric">
+              <dt>Balance status</dt>
+              <dd id="balanceStatus">—</dd>
+            </div>
+          </dl>
+
+          <div class="actions">
+            <a class="action-btn email" id="emailButton" href="mailto:" role="button">Email my results</a>
+            <button class="action-btn" id="copyButton" type="button">Copy results</button>
+            <p class="status" id="status" role="status" aria-live="polite"></p>
+          </div>
+
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <p class="disclaimer">For informational purposes only. Point values, fees, award availability, cancellation rules, and cash alternatives can change the better choice.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("calculator");
+      var balanceInput = document.getElementById("balance");
+      var cashInput = document.getElementById("cashPrice");
+      var pointsInput = document.getElementById("pointsPrice");
+      var error = document.getElementById("error");
+      var emptyState = document.getElementById("emptyState");
+      var results = document.getElementById("results");
+      var copyButton = document.getElementById("copyButton");
+      var emailButton = document.getElementById("emailButton");
+      var status = document.getElementById("status");
+      var resultText = "";
+
+      function dollars(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: value % 1 === 0 ? 0 : 2
+        }).format(value);
+      }
+
+      function number(value) {
+        return new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(value);
+      }
+
+      function clearValidation() {
+        error.textContent = "";
+        [balanceInput, cashInput, pointsInput].forEach(function (input) {
+          input.removeAttribute("aria-invalid");
+        });
+      }
+
+      function setError(message, input) {
+        error.textContent = message;
+        input.setAttribute("aria-invalid", "true");
+        input.focus();
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        clearValidation();
+        status.textContent = "";
+
+        var balance = Number(balanceInput.value);
+        var cashPrice = Number(cashInput.value);
+        var pointsPrice = Number(pointsInput.value);
+
+        if (balanceInput.value.trim() === "" || !Number.isFinite(balance) || balance < 0) {
+          setError("Enter a valid points balance of zero or more.", balanceInput);
+          return;
+        }
+        if (cashInput.value.trim() === "" || !Number.isFinite(cashPrice) || cashPrice <= 0) {
+          setError("Enter a cash price greater than zero.", cashInput);
+          return;
+        }
+        if (pointsInput.value.trim() === "" || !Number.isFinite(pointsPrice) || pointsPrice <= 0) {
+          setError("Enter a points price greater than zero.", pointsInput);
+          return;
+        }
+
+        var cpp = (cashPrice / pointsPrice) * 100;
+        var enough = balance >= pointsPrice;
+        var remaining = Math.max(0, balance - pointsPrice);
+        var shortBy = Math.max(0, pointsPrice - balance);
+        var verdict;
+        var reason;
+        var verdictClass;
+
+        if (!enough) {
+          verdict = "Not enough points yet";
+          reason = "You are " + number(shortBy) + " points short of this booking.";
+          verdictClass = "neutral";
+        } else if (cpp >= 1) {
+          verdict = "Redeeming beats the 1¢ rule of thumb";
+          reason = "This redemption gives you at least one cent of trip value for every point used.";
+          verdictClass = "good";
+        } else {
+          verdict = "Paying cash may be the better value";
+          reason = "This redemption gives you less than one cent of trip value for each point.";
+          verdictClass = "caution";
+        }
+
+        document.getElementById("cpp").textContent = cpp.toFixed(2);
+        document.getElementById("cashSaved").textContent = enough ? dollars(cashPrice) : "—";
+        document.getElementById("pointsLeft").textContent = enough ? number(remaining) : "—";
+        document.getElementById("balanceStatus").textContent = enough ? "Enough" : number(shortBy) + " short";
+
+        var verdictNode = document.getElementById("verdict");
+        verdictNode.textContent = verdict;
+        verdictNode.className = "verdict " + verdictClass;
+        document.getElementById("reason").textContent = reason;
+
+        var explanation = document.getElementById("explanation");
+        explanation.innerHTML =
+          "<p><strong>How the value was found:</strong> " + dollars(cashPrice) + " divided by " + number(pointsPrice) + " points equals " + cpp.toFixed(2) + " cents per point.</p>" +
+          "<p><strong>How to read it:</strong> One cent per point is a simple starting point, not a universal rule. If your program usually gives you more than that, compare this trip with the better redemptions you normally find.</p>" +
+          (enough
+            ? "<p>You have enough points. After the booking, you would have <strong>" + number(remaining) + " points</strong> left.</p>"
+            : "<p>You do not have enough points for this booking. You would need <strong>" + number(shortBy) + " more points</strong>.</p>") +
+          "<p>Also check taxes, booking fees, cancellation terms, points earned on a cash booking, and whether paying cash would strain your budget.</p>";
+
+        resultText =
+          "Points and Miles Value Calculator\n\n" +
+          "Cash price: " + dollars(cashPrice) + "\n" +
+          "Points price: " + number(pointsPrice) + " points\n" +
+          "My balance: " + number(balance) + " points\n\n" +
+          "Value: " + cpp.toFixed(2) + " cents per point\n" +
+          "Result: " + verdict + "\n" +
+          reason + (enough ? "\nPoints after booking: " + number(remaining) : "") +
+          "\n\nFor informational purposes only.";
+
+        emptyState.style.display = "none";
+        results.classList.add("show");
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var successful = false;
+        try { successful = document.execCommand("copy"); } catch (e) { successful = false; }
+        document.body.removeChild(area);
+        return successful;
+      }
+
+      copyButton.addEventListener("click", function () {
+        if (!resultText) return;
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(resultText).then(function () {
+            status.textContent = "Results copied.";
+          }).catch(function () {
+            status.textContent = fallbackCopy(resultText) ? "Results copied." : "Copy failed. Select and copy the results manually.";
+          });
+        } else {
+          status.textContent = fallbackCopy(resultText) ? "Results copied." : "Copy failed. Select and copy the results manually.";
+        }
+      });
+
+      emailButton.addEventListener("click", function (event) {
+        if (!resultText) {
+          event.preventDefault();
+          return;
+        }
+        var subject = encodeURIComponent("My points and miles value result");
+        var body = encodeURIComponent(resultText);
+        emailButton.setAttribute("href", "mailto:?subject=" + subject + "&body=" + body);
+        status.textContent = "Opening your email app…";
+      });
+    }());
+  </script>
+</body>
+</html>

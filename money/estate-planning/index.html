@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Estate Planning — Honed Money</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap');
+
+      :root {
+        color-scheme: dark;
+        --bg: #10141b;
+        --panel: #191f29;
+        --panel-hover: #1d2530;
+        --text: #f5f5f5;
+        --muted: #b8bec7;
+        --line: #343c48;
+        --accent: #f7931a;
+        --accent-strong: #ffb65d;
+        --blue: #79a5d7;
+        --button: #f7931a;
+        --button-text: #171008;
+        --shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0e14;
+          --panel: #131821;
+          --panel-hover: #171d27;
+          --text: #f5f5f5;
+          --muted: #aeb5bf;
+          --line: #2b323d;
+          --accent: #f7931a;
+          --accent-strong: #ffc06f;
+          --blue: #6490c4;
+          --button: #f7931a;
+          --button-text: #171008;
+          --shadow: 0 22px 50px rgba(0, 0, 0, 0.3);
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      html { min-width: 320px; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0 0 auto;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent) 0 29%, var(--blue) 29% 72%, var(--text) 72% 100%);
+        pointer-events: none;
+      }
+
+      a { color: inherit; }
+
+      .page {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 30px 0 58px;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin: 0 0 58px;
+        color: var(--muted);
+        font-size: 0.92rem;
+        font-weight: 600;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      .back-link:hover,
+      .back-link:focus-visible {
+        color: var(--accent-strong);
+        text-decoration: underline;
+      }
+
+      .intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 0.55fr);
+        gap: 48px;
+        align-items: end;
+        padding-bottom: 34px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      h1 {
+        max-width: 760px;
+        margin: 0;
+        font-family: "Newsreader", Georgia, serif;
+        font-size: clamp(3rem, 7vw, 6.6rem);
+        font-weight: 600;
+        line-height: 0.88;
+        letter-spacing: -0.055em;
+      }
+
+      .intro-copy {
+        margin: 0 0 6px;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.7vw, 1.16rem);
+        line-height: 1.6;
+      }
+
+      .tools {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        padding-top: 22px;
+      }
+
+      .tool-card {
+        position: relative;
+        display: flex;
+        min-height: 274px;
+        flex-direction: column;
+        padding: 28px;
+        overflow: hidden;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+      }
+
+      .tool-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 76px;
+        height: 6px;
+        background: var(--accent);
+      }
+
+      .tool-card:nth-child(even)::after { background: var(--blue); }
+
+      .tool-card:hover {
+        background: var(--panel-hover);
+        border-color: color-mix(in srgb, var(--line) 40%, var(--accent));
+        transform: translateY(-2px);
+      }
+
+      .card-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: flex-start;
+      }
+
+      .number {
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+
+      .icon {
+        width: 38px;
+        height: 38px;
+        color: var(--accent);
+      }
+
+      .tool-card:nth-child(even) .icon { color: var(--blue); }
+
+      h2 {
+        margin: 34px 0 8px;
+        font-family: "Newsreader", Georgia, serif;
+        font-size: clamp(1.7rem, 3vw, 2.35rem);
+        font-weight: 600;
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+      }
+
+      .description {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      .open-tool {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        align-self: flex-start;
+        gap: 10px;
+        min-height: 46px;
+        margin-top: auto;
+        padding: 0 18px;
+        background: var(--button);
+        color: var(--button-text);
+        border: 1px solid var(--button);
+        border-radius: 6px;
+        font-size: 0.91rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: filter 160ms ease, transform 160ms ease;
+      }
+
+      .open-tool:hover { filter: brightness(1.08); }
+      .open-tool:active { transform: translateY(1px); }
+
+      .open-tool:focus-visible,
+      .back-link:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 4px;
+      }
+
+      .open-tool svg { width: 16px; height: 16px; }
+
+      @media (max-width: 720px) {
+        .page {
+          width: min(100% - 28px, 620px);
+          padding-top: 26px;
+        }
+
+        .back-link { margin-bottom: 46px; }
+
+        .intro {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          padding-bottom: 26px;
+        }
+
+        h1 { font-size: clamp(3.35rem, 17vw, 5.25rem); }
+
+        .intro-copy {
+          max-width: 34rem;
+          margin: 0;
+        }
+
+        .tools { grid-template-columns: 1fr; }
+
+        .tool-card {
+          min-height: 244px;
+          padding: 24px;
+          box-shadow: none;
+        }
+
+        h2 { margin-top: 28px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <a class="back-link" href="/money/">← Honed Money</a>
+
+      <header class="intro">
+        <h1>Estate<br />planning</h1>
+        <p class="intro-copy">Make the big decisions clearer—compare options, estimate costs, and understand what may pass to the people you choose.</p>
+      </header>
+
+      <section class="tools" aria-label="Estate planning calculators">
+        <article class="tool-card">
+          <div class="card-top">
+            <span class="number">01</span>
+            <svg class="icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5h17l8 8v30H12z" />
+              <path d="M29 5v9h8M18 22h13M18 28h13M18 34h8" />
+            </svg>
+          </div>
+          <h2>Will vs. Trust</h2>
+          <p class="description">Which costs less overall?</p>
+          <a class="open-tool" href="/money/will-vs-trust-calculator/">Open tool
+            <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M11 5l5 5-5 5" /></svg>
+          </a>
+        </article>
+
+        <article class="tool-card">
+          <div class="card-top">
+            <span class="number">02</span>
+            <svg class="icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M24 6v36M32.5 13.5C30.2 11.8 27.4 11 24 11c-5.4 0-9 2.6-9 6.5S18.5 23 24 24c5.5 1 9 2.5 9 6.5S29.4 37 24 37c-4.2 0-7.5-1.2-10-3.5" />
+            </svg>
+          </div>
+          <h2>Estate Tax Estimator</h2>
+          <p class="description">Will the IRS take a cut?</p>
+          <a class="open-tool" href="/money/estate-tax-estimator/">Open tool
+            <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M11 5l5 5-5 5" /></svg>
+          </a>
+        </article>
+
+        <article class="tool-card">
+          <div class="card-top">
+            <span class="number">03</span>
+            <svg class="icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="24" cy="10" r="5" />
+              <circle cx="11" cy="35" r="5" />
+              <circle cx="37" cy="35" r="5" />
+              <path d="M21.5 14.5 13.5 30M26.5 14.5l8 15.5M16 35h16" />
+            </svg>
+          </div>
+          <h2>Inheritance Split</h2>
+          <p class="description">Divide it fairly.</p>
+          <a class="open-tool" href="/money/inheritance-split-calculator/">Open tool
+            <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M11 5l5 5-5 5" /></svg>
+          </a>
+        </article>
+
+        <article class="tool-card">
+          <div class="card-top">
+            <span class="number">04</span>
+            <svg class="icon" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 19 24 7l17 12M10 19h28M13 19v20M21 19v20M29 19v20M37 19v20M8 40h32" />
+            </svg>
+          </div>
+          <h2>Probate Cost Estimator</h2>
+          <p class="description">What probate really costs.</p>
+          <a class="open-tool" href="/money/probate-cost-estimator/">Open tool
+            <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M11 5l5 5-5 5" /></svg>
+          </a>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

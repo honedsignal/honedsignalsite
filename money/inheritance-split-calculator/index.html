@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Inheritance Split Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Franklin:wght@700;800&display=swap');
+
+    :root {
+      color-scheme: dark;
+      --ink: #f5f5f5;
+      --ink-soft: #bac3cd;
+      --paper: #111721;
+      --panel: #1a2230;
+      --panel-2: #222c3a;
+      --line: #3b4656;
+      --orange: #f7931a;
+      --orange-hover: #ffab43;
+      --orange-ink: #111317;
+      --blue: #82b4df;
+      --blue-soft: #1d3448;
+      --green: #65d99e;
+      --green-soft: #173426;
+      --red: #ff858e;
+      --red-soft: #3a1c22;
+      --focus: #9bcdf2;
+      --shadow: 0 20px 60px rgba(0, 0, 0, .28);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #0b0e14;
+        --panel: #141922;
+        --panel-2: #1c232d;
+        --line: #343d49;
+        --ink-soft: #adb5bf;
+        --shadow: 0 22px 70px rgba(0, 0, 0, .38);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    button, input { font: inherit; }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(100% - 32px, 1040px);
+      margin: 0 auto;
+      padding: 18px 0 64px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin: 0 0 28px;
+      color: var(--ink-soft);
+      font-size: .91rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .back-link:hover { color: var(--orange); }
+    .back-link:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      align-items: end;
+      gap: 48px;
+      margin-bottom: 30px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 720px;
+      margin-bottom: 12px;
+      font-family: "Libre Franklin", sans-serif;
+      font-size: clamp(2.15rem, 6vw, 4.25rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .lede {
+      max-width: 660px;
+      margin-bottom: 0;
+      color: var(--ink-soft);
+      font-size: clamp(1rem, 2vw, 1.17rem);
+    }
+
+    .intro-note {
+      border-top: 3px solid var(--orange);
+      padding-top: 12px;
+      color: var(--ink-soft);
+      font-size: .88rem;
+      font-weight: 600;
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(310px, .75fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      min-width: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .form-card { padding: clamp(22px, 4vw, 38px); }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-family: "Libre Franklin", sans-serif;
+      font-size: 1.22rem;
+      letter-spacing: -.02em;
+    }
+
+    .step {
+      color: var(--orange);
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    .field { margin-bottom: 26px; }
+
+    .money-wrap { position: relative; }
+    .money-wrap span {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ink-soft);
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    input {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-2);
+      color: var(--ink);
+      padding: 13px 14px;
+      transition: border-color .15s ease, background .15s ease;
+    }
+
+    input::placeholder { color: var(--ink-soft); opacity: .72; }
+    input:hover { border-color: var(--ink-soft); }
+    .money-wrap input { padding-left: 31px; }
+
+    .heirs-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 126px 38px;
+      gap: 10px;
+      margin-bottom: 8px;
+      color: var(--ink-soft);
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .heir-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 126px 38px;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .share-wrap { position: relative; }
+    .share-wrap input { padding-right: 32px; }
+    .share-wrap span {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ink-soft);
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    .remove-btn {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--ink-soft);
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover { background: var(--panel-2); color: var(--red); }
+    .remove-btn[hidden] { visibility: hidden; display: block; }
+
+    .heir-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .add-btn {
+      border: 0;
+      padding: 7px 0;
+      background: transparent;
+      color: var(--blue);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .add-btn:hover { text-decoration: underline; }
+    .add-btn:disabled { color: var(--ink-soft); cursor: default; text-decoration: none; opacity: .65; }
+
+    .total-chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--panel-2);
+      color: var(--ink-soft);
+      font-size: .83rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .total-chip.good { background: var(--green-soft); color: var(--green); }
+
+    .error {
+      display: none;
+      margin: 20px 0 0;
+      border-radius: 7px;
+      background: var(--red-soft);
+      color: var(--red);
+      padding: 11px 13px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .error.show { display: block; }
+
+    .calculate-btn {
+      width: 100%;
+      margin-top: 24px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 14px 18px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .calculate-btn:hover { opacity: .86; }
+
+    .results-card {
+      position: sticky;
+      top: 16px;
+      overflow: hidden;
+    }
+
+    .empty-state {
+      min-height: 410px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      padding: 40px 28px;
+      text-align: center;
+    }
+
+    .pie-mark {
+      width: 88px;
+      height: 88px;
+      margin-bottom: 22px;
+      border-radius: 50%;
+      background: conic-gradient(var(--orange) 0 25%, var(--blue) 25% 68%, var(--line) 68% 100%);
+      box-shadow: inset 0 0 0 12px var(--panel);
+    }
+
+    .empty-state h2 { margin-bottom: 9px; }
+    .empty-state p { max-width: 260px; margin-bottom: 0; color: var(--ink-soft); font-size: .93rem; }
+
+    .results { display: none; }
+    .results.show { display: block; }
+
+    .results-top {
+      padding: 28px 28px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .results-top .eyebrow {
+      margin-bottom: 6px;
+      color: var(--ink-soft);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .estate-total {
+      margin: 0;
+      font-family: "Libre Franklin", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.55rem);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+    }
+
+    .allocation-list { padding: 8px 28px; }
+
+    .allocation {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .allocation:last-child { border-bottom: 0; }
+    .allocation-name { min-width: 0; font-weight: 800; overflow-wrap: anywhere; }
+    .allocation-share { display: block; margin-top: 2px; color: var(--ink-soft); font-size: .82rem; font-weight: 600; }
+    .allocation-amount { font-weight: 800; text-align: right; }
+
+    .result-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 20px 28px;
+      background: var(--panel-2);
+    }
+
+    .action-btn {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--panel);
+      color: var(--ink);
+      padding: 11px 12px;
+      font-size: .88rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .action-btn:hover { border-color: var(--ink-soft); }
+    .email-btn { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .email-btn:hover { border-color: var(--orange-hover); background: var(--orange-hover); }
+
+    .copy-status {
+      grid-column: 1 / -1;
+      min-height: 18px;
+      margin: -2px 0 -5px;
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    details { border-top: 1px solid var(--line); }
+    summary {
+      padding: 18px 28px;
+      cursor: pointer;
+      font-weight: 800;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--orange); font-size: 1.25rem; line-height: 1; }
+    details[open] summary::after { content: "−"; }
+    .explanation { padding: 0 28px 24px; color: var(--ink-soft); font-size: .91rem; }
+    .explanation p:last-child { margin-bottom: 0; }
+
+    footer {
+      max-width: 730px;
+      margin: 28px 0 0;
+      color: var(--ink-soft);
+      font-size: .78rem;
+    }
+
+    @media (max-width: 780px) {
+      .shell { width: min(100% - 24px, 620px); padding-top: 14px; }
+      .back-link { margin-bottom: 24px; }
+      .intro { grid-template-columns: 1fr; gap: 20px; }
+      .intro-note { max-width: 360px; }
+      .calculator { grid-template-columns: 1fr; }
+      .results-card { position: static; }
+      .empty-state { min-height: 290px; }
+    }
+
+    @media (max-width: 470px) {
+      .form-card { padding: 22px 16px; }
+      .heirs-head { grid-template-columns: minmax(0, 1fr) 100px 34px; gap: 7px; }
+      .heir-row { grid-template-columns: minmax(0, 1fr) 100px 34px; gap: 7px; }
+      input { padding: 12px 11px; }
+      .remove-btn { width: 34px; }
+      .heir-tools { align-items: flex-start; }
+      .results-top, .allocation-list { padding-left: 20px; padding-right: 20px; }
+      .result-actions { grid-template-columns: 1fr; padding: 18px 20px; }
+      .copy-status { grid-column: 1; }
+      summary { padding: 17px 20px; }
+      .explanation { padding: 0 20px 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+
+    @media print {
+      .back-link, .form-card, .result-actions { display: none !important; }
+      .intro { display: block; }
+      .intro-note { margin-top: 14px; }
+      .calculator { display: block; }
+      .results-card { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">Inheritance Split Calculator</h1>
+        <p class="lede">Turn percentage shares into clear dollar amounts for up to five heirs. The shares must add up to exactly 100%.</p>
+      </div>
+      <p class="intro-note">A planning estimate—not a will, trust, or instruction to an executor.</p>
+    </section>
+
+    <section class="calculator" aria-label="Inheritance split calculator">
+      <form class="card form-card" id="split-form" novalidate>
+        <div class="section-heading">
+          <h2>Estate value</h2>
+          <span class="step">Step 1</span>
+        </div>
+        <div class="field">
+          <label for="estate-value">Total amount to divide</label>
+          <div class="money-wrap">
+            <span aria-hidden="true">$</span>
+            <input id="estate-value" name="estate-value" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="For example, 500,000" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <h2>Heirs and shares</h2>
+          <span class="step">Step 2</span>
+        </div>
+
+        <div class="heirs-head" aria-hidden="true">
+          <span>Name</span><span>Share</span><span></span>
+        </div>
+        <div id="heirs-list"></div>
+
+        <div class="heir-tools">
+          <button class="add-btn" id="add-heir" type="button">+ Add another heir</button>
+          <span class="total-chip" id="share-total" aria-live="polite">Total: 0%</span>
+        </div>
+
+        <p class="error" id="error-message" role="alert"></p>
+        <button class="calculate-btn" type="submit">Calculate each share</button>
+      </form>
+
+      <aside class="card results-card" aria-live="polite">
+        <div class="empty-state" id="empty-state">
+          <div class="pie-mark" aria-hidden="true"></div>
+          <h2>Your split will appear here</h2>
+          <p>Enter the estate value and shares, then calculate to see each amount.</p>
+        </div>
+
+        <div class="results" id="results">
+          <div class="results-top">
+            <p class="eyebrow">Total amount divided</p>
+            <p class="estate-total" id="result-total"></p>
+          </div>
+          <div class="allocation-list" id="allocation-list"></div>
+          <div class="result-actions">
+            <button class="action-btn email-btn" id="email-results" type="button">Email my results</button>
+            <button class="action-btn" id="copy-results" type="button">Copy results</button>
+            <p class="copy-status" id="copy-status" aria-live="polite"></p>
+          </div>
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      <p>For informational and educational purposes only. This calculator does not provide legal, tax, or financial advice. Estate laws, taxes, debts, account titles, beneficiary forms, and the wording of a will or trust can change what heirs actually receive. Consider reviewing your plan with a qualified estate attorney or tax professional.</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var MAX_HEIRS = 5;
+      var heirsList = document.getElementById("heirs-list");
+      var addButton = document.getElementById("add-heir");
+      var shareTotal = document.getElementById("share-total");
+      var form = document.getElementById("split-form");
+      var errorMessage = document.getElementById("error-message");
+      var emptyState = document.getElementById("empty-state");
+      var results = document.getElementById("results");
+      var allocationList = document.getElementById("allocation-list");
+      var resultTotal = document.getElementById("result-total");
+      var explanation = document.getElementById("explanation");
+      var copyStatus = document.getElementById("copy-status");
+      var currentSummary = "";
+      var nextHeirId = 1;
+
+      function addHeirRow() {
+        if (heirsList.children.length >= MAX_HEIRS) return;
+
+        var id = nextHeirId++;
+        var row = document.createElement("div");
+        row.className = "heir-row";
+        row.dataset.heirId = String(id);
+        row.innerHTML =
+          '<input class="heir-name" type="text" maxlength="60" placeholder="Heir name" aria-label="Heir name" autocomplete="off" />' +
+          '<div class="share-wrap"><input class="heir-share" type="number" inputmode="decimal" min="0.01" max="100" step="0.01" placeholder="50" aria-label="Percentage share" autocomplete="off" /><span aria-hidden="true">%</span></div>' +
+          '<button class="remove-btn" type="button" aria-label="Remove heir">×</button>';
+
+        row.querySelector(".remove-btn").addEventListener("click", function () {
+          row.remove();
+          refreshRows();
+          updateShareTotal();
+          hideResults();
+        });
+        row.querySelector(".heir-share").addEventListener("input", function () {
+          updateShareTotal();
+          hideError();
+          hideResults();
+        });
+        row.querySelector(".heir-name").addEventListener("input", function () {
+          hideError();
+          hideResults();
+        });
+
+        heirsList.appendChild(row);
+        refreshRows();
+      }
+
+      function refreshRows() {
+        var rows = heirsList.querySelectorAll(".heir-row");
+        rows.forEach(function (row) {
+          row.querySelector(".remove-btn").hidden = rows.length <= 1;
+        });
+        addButton.disabled = rows.length >= MAX_HEIRS;
+        addButton.textContent = rows.length >= MAX_HEIRS ? "Maximum of 5 heirs" : "+ Add another heir";
+      }
+
+      function getShareTotal() {
+        var total = 0;
+        heirsList.querySelectorAll(".heir-share").forEach(function (input) {
+          var value = Number(input.value);
+          if (Number.isFinite(value)) total += value;
+        });
+        return total;
+      }
+
+      function tidyNumber(number) {
+        return Number(number.toFixed(2)).toLocaleString("en-US", { maximumFractionDigits: 2 });
+      }
+
+      function updateShareTotal() {
+        var total = getShareTotal();
+        shareTotal.textContent = "Total: " + tidyNumber(total) + "%";
+        shareTotal.classList.toggle("good", Math.abs(total - 100) < 0.005);
+      }
+
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add("show");
+      }
+
+      function hideError() {
+        errorMessage.textContent = "";
+        errorMessage.classList.remove("show");
+      }
+
+      function hideResults() {
+        results.classList.remove("show");
+        emptyState.style.display = "grid";
+        currentSummary = "";
+        copyStatus.textContent = "";
+      }
+
+      function currency(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(value);
+      }
+
+      function textEscape(value) {
+        return value.replace(/[&<>"']/g, function (character) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character];
+        });
+      }
+
+      function collectAndValidate() {
+        var estateInput = document.getElementById("estate-value");
+        var estate = Number(estateInput.value);
+        if (estateInput.value.trim() === "" || !Number.isFinite(estate) || estate <= 0) {
+          estateInput.focus();
+          showError("Enter an estate value greater than $0.");
+          return null;
+        }
+
+        var heirs = [];
+        var rows = heirsList.querySelectorAll(".heir-row");
+        for (var index = 0; index < rows.length; index++) {
+          var nameInput = rows[index].querySelector(".heir-name");
+          var shareInput = rows[index].querySelector(".heir-share");
+          var name = nameInput.value.trim();
+          var share = Number(shareInput.value);
+
+          if (!name) {
+            nameInput.focus();
+            showError("Enter a name for every heir listed.");
+            return null;
+          }
+          if (shareInput.value.trim() === "" || !Number.isFinite(share) || share <= 0 || share > 100) {
+            shareInput.focus();
+            showError("Enter a share greater than 0% and no more than 100% for every heir.");
+            return null;
+          }
+          heirs.push({ name: name, share: share, amount: estate * share / 100 });
+        }
+
+        var total = heirs.reduce(function (sum, heir) { return sum + heir.share; }, 0);
+        if (Math.abs(total - 100) >= 0.005) {
+          showError("The shares add up to " + tidyNumber(total) + "%. Adjust them so the total is exactly 100%.");
+          return null;
+        }
+
+        return { estate: estate, heirs: heirs };
+      }
+
+      function renderResults(data) {
+        hideError();
+        resultTotal.textContent = currency(data.estate);
+        allocationList.innerHTML = data.heirs.map(function (heir) {
+          return '<div class="allocation"><div><span class="allocation-name">' + textEscape(heir.name) + '</span><span class="allocation-share">' + tidyNumber(heir.share) + '% of the estate</span></div><span class="allocation-amount">' + currency(heir.amount) + '</span></div>';
+        }).join("");
+
+        explanation.innerHTML =
+          "<p>The calculator multiplies the total estate value by each heir’s percentage. For example, a 25% share receives one quarter of the amount entered.</p>" +
+          "<p>These amounts assume the full value you entered is available to divide. In real estate administration, debts, taxes, fees, jointly owned property, trusts, and accounts with named beneficiaries may be handled before—or outside—the split in a will.</p>";
+
+        currentSummary = "Inheritance split estimate\n" +
+          "Total amount: " + currency(data.estate) + "\n\n" +
+          data.heirs.map(function (heir) {
+            return heir.name + ": " + tidyNumber(heir.share) + "% — " + currency(heir.amount);
+          }).join("\n") +
+          "\n\nFor informational purposes only. Not legal, tax, or financial advice.";
+
+        emptyState.style.display = "none";
+        results.classList.add("show");
+        copyStatus.textContent = "";
+      }
+
+      function fallbackCopy(text) {
+        var textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        var copied = false;
+        try { copied = document.execCommand("copy"); } catch (error) { copied = false; }
+        textarea.remove();
+        return copied;
+      }
+
+      addButton.addEventListener("click", function () {
+        addHeirRow();
+        updateShareTotal();
+        var names = heirsList.querySelectorAll(".heir-name");
+        names[names.length - 1].focus();
+      });
+
+      document.getElementById("estate-value").addEventListener("input", function () {
+        hideError();
+        hideResults();
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var data = collectAndValidate();
+        if (!data) {
+          hideResults();
+          return;
+        }
+        renderResults(data);
+        if (window.matchMedia("(max-width: 780px)").matches) {
+          document.querySelector(".results-card").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      document.getElementById("email-results").addEventListener("click", function () {
+        if (!currentSummary) return;
+        var subject = encodeURIComponent("My inheritance split estimate");
+        var body = encodeURIComponent(currentSummary);
+        var mailLink = document.createElement("a");
+        mailLink.href = "mailto:?subject=" + subject + "&body=" + body;
+        mailLink.click();
+      });
+
+      document.getElementById("copy-results").addEventListener("click", function () {
+        if (!currentSummary) return;
+        function success() {
+          copyStatus.textContent = "Results copied.";
+          window.setTimeout(function () { copyStatus.textContent = ""; }, 2600);
+        }
+        function failure() {
+          copyStatus.textContent = "Copy was blocked. Select the results above to copy them manually.";
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(currentSummary).then(success).catch(function () {
+            fallbackCopy(currentSummary) ? success() : failure();
+          });
+        } else {
+          fallbackCopy(currentSummary) ? success() : failure();
+        }
+      });
+
+      addHeirRow();
+      addHeirRow();
+      updateShareTotal();
+    })();
+  </script>
+</body>
+</html>

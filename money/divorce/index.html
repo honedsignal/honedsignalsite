@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0B0E14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&amp;family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&amp;display=swap" rel="stylesheet" />
+  <title>Divorce Calculators — Honed Money</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --ink: #f5f5f5;
+      --muted: #aeb5bf;
+      --page: #0b0e14;
+      --surface: #131821;
+      --surface-hover: #171e28;
+      --line: #2b3340;
+      --line-strong: #485464;
+      --orange: #f7931a;
+      --orange-deep: #d67400;
+      --button-text: #171009;
+      --focus: #39ff14;
+      --measure: 1160px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        /* Honed Signal is deliberately dark in either system theme; the
+           lighter variant lifts the charcoal surfaces without losing it. */
+        --ink: #ffffff;
+        --muted: #bdc4cd;
+        --page: #10151c;
+        --surface: #191f28;
+        --surface-hover: #202833;
+        --line: #333e4c;
+        --line-strong: #526071;
+        --orange: #f7931a;
+        --orange-deep: #dd7d08;
+        --button-text: #171009;
+        --focus: #39ff14;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { min-height: 100%; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: "Libre Franklin", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(100% - 40px, var(--measure));
+      margin-inline: auto;
+      padding: max(24px, env(safe-area-inset-top)) 0 max(44px, env(safe-area-inset-bottom));
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+
+    .back-link:hover { color: var(--ink); text-decoration: underline; }
+
+    .back-link:focus-visible,
+    .tool-link:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+      gap: clamp(28px, 5vw, 72px);
+      align-items: end;
+      padding: clamp(54px, 9vw, 104px) 0 clamp(40px, 6vw, 72px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(3rem, 7vw, 6.8rem);
+      font-weight: 600;
+      letter-spacing: -0.055em;
+      line-height: 0.93;
+    }
+
+    .intro-copy {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+      line-height: 1.7;
+    }
+
+    .intro-copy strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .tools {
+      padding: clamp(34px, 5vw, 58px) 0 0;
+    }
+
+    .section-label {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid var(--line-strong);
+    }
+
+    .tool-card {
+      min-width: 0;
+      padding: clamp(24px, 3vw, 36px);
+      border-bottom: 1px solid var(--line-strong);
+      border-right: 1px solid var(--line-strong);
+      background: var(--surface);
+      transition: background-color 160ms ease;
+    }
+
+    .tool-card:first-child { border-left: 1px solid var(--line-strong); }
+    .tool-card:hover { background: var(--surface-hover); }
+
+    .card-number {
+      display: block;
+      margin-bottom: 42px;
+      color: var(--orange);
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 0.98rem;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.25rem, 2.1vw, 1.7rem);
+      line-height: 1.16;
+      letter-spacing: -0.025em;
+    }
+
+    .description {
+      min-height: 3.1em;
+      margin: 14px 0 28px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .tool-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 0 18px;
+      background: var(--orange);
+      color: var(--button-text);
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: background-color 160ms ease;
+    }
+
+    .tool-link:hover { background: var(--orange-deep); }
+    .tool-link .arrow { font-size: 1.1em; line-height: 1; }
+
+    .note {
+      max-width: 760px;
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 780px) {
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding-top: 44px;
+      }
+
+      h1 { font-size: clamp(3.2rem, 15vw, 5.3rem); }
+      .intro-copy { max-width: 34rem; }
+
+      .tool-grid { grid-template-columns: 1fr; }
+      .tool-card { border-left: 1px solid var(--line-strong); }
+      .card-number { margin-bottom: 28px; }
+      .description { min-height: 0; }
+    }
+
+    @media (max-width: 440px) {
+      .page { width: min(100% - 28px, var(--measure)); }
+      .intro { padding: 38px 0 36px; }
+      h1 { font-size: clamp(3rem, 16vw, 4.4rem); }
+      .tool-card { padding: 24px 22px; }
+      .tool-link { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/" aria-label="Back to Honed Money">
+      <span aria-hidden="true">←</span>
+      <span>Honed Money</span>
+    </a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Divorce calculators</h1>
+      <p class="intro-copy"><strong>Clear numbers for a complicated transition.</strong> Explore assets, legal costs, and possible support payments before your next conversation.</p>
+    </section>
+
+    <section class="tools" aria-labelledby="tools-heading">
+      <p class="section-label" id="tools-heading">Choose a calculator</p>
+      <div class="tool-grid">
+        <article class="tool-card">
+          <span class="card-number" aria-hidden="true">01</span>
+          <h2>Asset Split Calculator</h2>
+          <p class="description">Who gets what.</p>
+          <a class="tool-link" href="/money/divorce-asset-split-calculator/">
+            <span>Open tool</span><span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article class="tool-card">
+          <span class="card-number" aria-hidden="true">02</span>
+          <h2>Divorce Cost Estimator</h2>
+          <p class="description">Contested vs. uncontested.</p>
+          <a class="tool-link" href="/money/divorce-cost-estimator/">
+            <span>Open tool</span><span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article class="tool-card">
+          <span class="card-number" aria-hidden="true">03</span>
+          <h2>Alimony Estimator</h2>
+          <p class="description">A rough monthly range.</p>
+          <a class="tool-link" href="/money/alimony-estimator/">
+            <span>Open tool</span><span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+      </div>
+      <p class="note">These calculators provide estimates for planning and education. Laws and outcomes vary by jurisdiction and circumstances; consult a qualified attorney for advice about your situation.</p>
+    </section>
+  </main>
+</body>
+</html>

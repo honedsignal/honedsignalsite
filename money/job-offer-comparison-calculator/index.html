@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <title>Job Offer Comparison Calculator</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #f5f5f5;
+      --muted: #aeb6c4;
+      --faint: #7e8797;
+      --page: #0b0e14;
+      --panel: #131821;
+      --panel-2: #191f2a;
+      --line: #303846;
+      --line-strong: #475264;
+      --blue: #79a8db;
+      --orange: #f7931a;
+      --orange-ink: #16100a;
+      --green: #66df55;
+      --green-soft: #132919;
+      --red: #ff777b;
+      --focus: #92bce9;
+      --shadow: 0 20px 60px rgba(0, 0, 0, .28);
+      --radius-lg: 20px;
+      --radius-md: 12px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --ink: #f7f8fa;
+        --muted: #b7c0cd;
+        --faint: #8994a4;
+        --page: #10151e;
+        --panel: #18202b;
+        --panel-2: #202936;
+        --line: #364252;
+        --line-strong: #526073;
+        --blue: #83b4e8;
+        --orange: #f7931a;
+        --orange-ink: #16100a;
+        --green: #72e263;
+        --green-soft: #17301d;
+        --red: #ff8589;
+        --focus: #9bc8f4;
+        --shadow: 0 18px 50px rgba(0, 0, 0, .24);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--page);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) 0 max(60px, env(safe-area-inset-bottom));
+    }
+    .back-link {
+      display: inline-block;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back-link:hover { color: var(--orange); }
+    .back-link:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(270px, 360px);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 760px;
+      margin-bottom: 16px;
+      font-family: "Source Serif 4", serif;
+      font-size: clamp(2.35rem, 6vw, 4.7rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+    .lede {
+      max-width: 680px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 2vw, 1.18rem);
+    }
+    .method-note {
+      margin: 0;
+      padding: 18px 20px;
+      border-top: 2px solid var(--orange);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .89rem;
+    }
+    .method-note strong { color: var(--ink); }
+
+    .calculator-shell {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .offer {
+      padding: clamp(24px, 4vw, 42px);
+    }
+    .offer + .offer { border-left: 1px solid var(--line); }
+    .offer-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .offer-letter {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--panel-2);
+      color: var(--orange);
+      font-weight: 700;
+    }
+    .offer h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      line-height: 1.2;
+    }
+    .field { margin-bottom: 20px; }
+    .field:last-child { margin-bottom: 0; }
+    label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 7px;
+      color: var(--ink);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .unit {
+      color: var(--faint);
+      font-size: .78rem;
+      font-weight: 500;
+    }
+    .input-wrap { position: relative; }
+    .prefix, .suffix {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--faint);
+      pointer-events: none;
+    }
+    .prefix { left: 15px; }
+    .suffix { right: 15px; }
+    input {
+      width: 100%;
+      height: 50px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--page);
+      color: var(--ink);
+      padding: 0 15px;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    input.with-prefix { padding-left: 31px; }
+    input.with-suffix { padding-right: 42px; }
+    input::placeholder { color: var(--faint); opacity: .72; }
+    input:hover { border-color: var(--blue); }
+    input:focus {
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent);
+      outline: none;
+    }
+    input:user-invalid { border-color: var(--red); }
+    .helper {
+      display: block;
+      margin-top: 6px;
+      color: var(--faint);
+      font-size: .78rem;
+      line-height: 1.35;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 22px clamp(24px, 4vw, 42px);
+      border-top: 1px solid var(--line);
+      background: var(--panel-2);
+    }
+    .primary,
+    .secondary,
+    .text-button {
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .primary {
+      min-height: 50px;
+      padding: 0 24px;
+      background: var(--orange);
+      color: var(--orange-ink);
+    }
+    .primary:hover { filter: brightness(1.08); }
+    .text-button {
+      min-height: 44px;
+      padding: 0 8px;
+      background: transparent;
+      color: var(--muted);
+    }
+    .text-button:hover { color: var(--ink); }
+    .form-error {
+      flex: 1;
+      margin: 0;
+      color: var(--red);
+      font-size: .86rem;
+      font-weight: 600;
+      text-align: right;
+    }
+    .form-error:empty { display: none; }
+
+    .results {
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .results[hidden] { display: none; }
+    .verdict {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      padding: clamp(26px, 5vw, 50px);
+      background: var(--green-soft);
+      border-bottom: 1px solid var(--line);
+    }
+    .result-label {
+      margin-bottom: 9px;
+      color: var(--green);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .verdict h2 {
+      margin-bottom: 10px;
+      font-family: "Source Serif 4", serif;
+      font-size: clamp(2rem, 5vw, 3.7rem);
+      line-height: 1;
+      letter-spacing: -.035em;
+    }
+    .verdict p { margin: 0; color: var(--muted); }
+    .difference {
+      text-align: right;
+      white-space: nowrap;
+    }
+    .difference strong {
+      display: block;
+      color: var(--green);
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1;
+    }
+    .difference span { color: var(--muted); font-size: .83rem; }
+
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .breakdown {
+      padding: clamp(24px, 4vw, 40px);
+    }
+    .breakdown + .breakdown { border-left: 1px solid var(--line); }
+    .breakdown.winner { box-shadow: inset 0 4px 0 var(--green); }
+    .breakdown h3 {
+      margin-bottom: 4px;
+      font-size: 1.12rem;
+    }
+    .package-value {
+      margin-bottom: 22px;
+      color: var(--ink);
+      font-family: "Source Serif 4", serif;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .package-value small {
+      color: var(--muted);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: .78rem;
+      font-weight: 500;
+    }
+    .rows { margin: 0; }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .row dt { color: var(--muted); }
+    .row dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+    .row.negative dd { color: var(--red); }
+    .row.total { border-bottom: 0; color: var(--ink); }
+    .row.total dt, .row.total dd { color: var(--ink); font-weight: 700; }
+
+    .plain-english {
+      padding: 26px clamp(24px, 4vw, 40px);
+      border-top: 1px solid var(--line);
+      background: var(--panel-2);
+    }
+    .plain-english > p { max-width: 780px; margin: 0; color: var(--muted); }
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 22px clamp(24px, 4vw, 40px);
+      border-top: 1px solid var(--line);
+    }
+    .secondary {
+      display: inline-flex;
+      min-height: 46px;
+      padding: 0 18px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line-strong);
+      background: var(--panel-2);
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .secondary:hover { border-color: var(--blue); }
+    .email-button {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--orange-ink);
+    }
+    .email-button:hover { filter: brightness(1.08); border-color: var(--orange); }
+    .copy-status { min-height: 1.2em; color: var(--green); font-size: .84rem; }
+
+    details.explainer {
+      border-top: 1px solid var(--line);
+      padding: 0 clamp(24px, 4vw, 40px);
+    }
+    details summary {
+      padding: 22px 0;
+      cursor: pointer;
+      color: var(--ink);
+      font-weight: 700;
+      list-style: none;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: "+";
+      float: right;
+      color: var(--orange);
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+    details[open] summary::after { content: "−"; }
+    .explainer-body {
+      max-width: 780px;
+      padding-bottom: 28px;
+      color: var(--muted);
+    }
+    .explainer-body p:last-child { margin-bottom: 0; }
+
+    .fine-print {
+      max-width: 850px;
+      margin: 24px auto 0;
+      color: var(--faint);
+      font-size: .78rem;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .page { width: min(100% - 22px, 650px); }
+      .back-link { margin-bottom: 28px; }
+      .intro { grid-template-columns: 1fr; gap: 24px; }
+      h1 { font-size: clamp(2.55rem, 13vw, 4rem); }
+      .offer-grid, .breakdown-grid { grid-template-columns: 1fr; }
+      .offer + .offer, .breakdown + .breakdown {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+      .verdict { grid-template-columns: 1fr; align-items: start; }
+      .difference { text-align: left; }
+      .form-footer { align-items: stretch; flex-direction: column; }
+      .form-footer .primary { width: 100%; }
+      .text-button { align-self: center; }
+      .form-error { text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">Compare the full value of two job offers.</h1>
+        <p class="lede">Salary matters, but so do the match, health costs, bonus, and paid time off. Put both offers on the same annual footing.</p>
+      </div>
+      <p class="method-note"><strong>One clear estimate.</strong> The calculator values paid time off using each offer’s salary and a 260-workday year.</p>
+    </section>
+
+    <form id="offer-form" class="calculator-shell" novalidate>
+      <div class="offer-grid">
+        <section class="offer" aria-labelledby="offer-a-title">
+          <div class="offer-head">
+            <span class="offer-letter" aria-hidden="true">A</span>
+            <h2 id="offer-a-title">Offer A</h2>
+          </div>
+
+          <div class="field">
+            <label for="a-name">Company or role <span class="unit">optional</span></label>
+            <input id="a-name" type="text" autocomplete="organization" placeholder="e.g., Design lead" maxlength="60" />
+          </div>
+          <div class="field">
+            <label for="a-salary">Base salary <span class="unit">per year</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="a-salary" name="a-salary" type="number" inputmode="decimal" min="1" step="1" placeholder="85,000" required /></div>
+          </div>
+          <div class="field">
+            <label for="a-bonus">Expected bonus <span class="unit">per year</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="a-bonus" name="a-bonus" type="number" inputmode="decimal" min="0" step="100" placeholder="5,000 or 0" required /></div>
+          </div>
+          <div class="field">
+            <label for="a-match">401(k) match <span class="unit">% of salary</span></label>
+            <div class="input-wrap"><input class="with-suffix" id="a-match" name="a-match" type="number" inputmode="decimal" min="0" max="100" step="0.1" placeholder="4 or 0" required /><span class="suffix">%</span></div>
+            <small class="helper">Use the maximum match you can receive.</small>
+          </div>
+          <div class="field">
+            <label for="a-health">Your health premium <span class="unit">per month</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="a-health" name="a-health" type="number" inputmode="decimal" min="0" step="1" placeholder="240 or 0" required /></div>
+          </div>
+          <div class="field">
+            <label for="a-pto">Paid time off <span class="unit">days per year</span></label>
+            <input id="a-pto" name="a-pto" type="number" inputmode="decimal" min="0" max="365" step="0.5" placeholder="15 or 0" required />
+          </div>
+        </section>
+
+        <section class="offer" aria-labelledby="offer-b-title">
+          <div class="offer-head">
+            <span class="offer-letter" aria-hidden="true">B</span>
+            <h2 id="offer-b-title">Offer B</h2>
+          </div>
+
+          <div class="field">
+            <label for="b-name">Company or role <span class="unit">optional</span></label>
+            <input id="b-name" type="text" autocomplete="organization" placeholder="e.g., Product manager" maxlength="60" />
+          </div>
+          <div class="field">
+            <label for="b-salary">Base salary <span class="unit">per year</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b-salary" name="b-salary" type="number" inputmode="decimal" min="1" step="1" placeholder="92,000" required /></div>
+          </div>
+          <div class="field">
+            <label for="b-bonus">Expected bonus <span class="unit">per year</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b-bonus" name="b-bonus" type="number" inputmode="decimal" min="0" step="100" placeholder="3,000 or 0" required /></div>
+          </div>
+          <div class="field">
+            <label for="b-match">401(k) match <span class="unit">% of salary</span></label>
+            <div class="input-wrap"><input class="with-suffix" id="b-match" name="b-match" type="number" inputmode="decimal" min="0" max="100" step="0.1" placeholder="6 or 0" required /><span class="suffix">%</span></div>
+            <small class="helper">Use the maximum match you can receive.</small>
+          </div>
+          <div class="field">
+            <label for="b-health">Your health premium <span class="unit">per month</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="b-health" name="b-health" type="number" inputmode="decimal" min="0" step="1" placeholder="350 or 0" required /></div>
+          </div>
+          <div class="field">
+            <label for="b-pto">Paid time off <span class="unit">days per year</span></label>
+            <input id="b-pto" name="b-pto" type="number" inputmode="decimal" min="0" max="365" step="0.5" placeholder="20 or 0" required />
+          </div>
+        </section>
+      </div>
+
+      <div class="form-footer">
+        <button class="primary" type="submit">Compare offers</button>
+        <button class="text-button" id="reset-button" type="button">Clear all</button>
+        <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <section id="results" class="results" aria-labelledby="result-heading" aria-live="polite" hidden>
+      <div class="verdict">
+        <div>
+          <p class="result-label">Estimated winner</p>
+          <h2 id="result-heading" tabindex="-1"></h2>
+          <p id="result-subtitle"></p>
+        </div>
+        <div class="difference">
+          <strong id="difference-value"></strong>
+          <span id="difference-note"></span>
+        </div>
+      </div>
+
+      <div class="breakdown-grid">
+        <article class="breakdown" id="breakdown-a">
+          <h3 id="result-a-name">Offer A</h3>
+          <p class="package-value"><span id="a-total"></span> <small>estimated annual value</small></p>
+          <dl class="rows" id="a-rows"></dl>
+        </article>
+        <article class="breakdown" id="breakdown-b">
+          <h3 id="result-b-name">Offer B</h3>
+          <p class="package-value"><span id="b-total"></span> <small>estimated annual value</small></p>
+          <dl class="rows" id="b-rows"></dl>
+        </article>
+      </div>
+
+      <div class="plain-english"><p id="plain-summary"></p></div>
+
+      <div class="result-actions">
+        <a class="secondary email-button action-link" id="email-button" href="mailto:">Email my results</a>
+        <button class="secondary" id="copy-button" type="button">Copy results</button>
+        <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+      </div>
+
+      <details class="explainer">
+        <summary>Explain these results</summary>
+        <div class="explainer-body">
+          <p><strong>Estimated annual value</strong> adds base salary, expected bonus, the employer’s 401(k) match, and a dollar estimate for paid time off. It then subtracts your yearly health insurance premium.</p>
+          <p>The 401(k) estimate assumes you contribute enough to receive the full match. Paid time off is valued at salary ÷ 260 workdays × PTO days; it represents the value of paid time, not extra cash in your paycheck.</p>
+          <p>This is a first-pass comparison. Taxes, vesting schedules, deductibles, equity, commute costs, overtime, pension benefits, and quality of life can change the real winner.</p>
+        </div>
+      </details>
+    </section>
+
+    <p class="fine-print">For informational purposes only. This estimate does not constitute financial, tax, legal, or career advice.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("offer-form");
+      var results = document.getElementById("results");
+      var error = document.getElementById("form-error");
+      var copyStatus = document.getElementById("copy-status");
+      var latestSummary = "";
+
+      function value(id) {
+        return Number(document.getElementById(id).value);
+      }
+
+      function cleanName(id, fallback) {
+        var raw = document.getElementById(id).value.trim();
+        return raw || fallback;
+      }
+
+      function money(amount) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0
+        }).format(amount);
+      }
+
+      function offer(prefix, fallback) {
+        var salary = value(prefix + "-salary");
+        var bonus = value(prefix + "-bonus");
+        var matchRate = value(prefix + "-match");
+        var monthlyHealth = value(prefix + "-health");
+        var ptoDays = value(prefix + "-pto");
+        var matchValue = salary * matchRate / 100;
+        var healthAnnual = monthlyHealth * 12;
+        var ptoValue = salary / 260 * ptoDays;
+        return {
+          name: cleanName(prefix + "-name", fallback),
+          salary: salary,
+          bonus: bonus,
+          matchRate: matchRate,
+          matchValue: matchValue,
+          monthlyHealth: monthlyHealth,
+          healthAnnual: healthAnnual,
+          ptoDays: ptoDays,
+          ptoValue: ptoValue,
+          total: salary + bonus + matchValue + ptoValue - healthAnnual
+        };
+      }
+
+      function row(label, amount, className) {
+        return '<div class="row' + (className ? ' ' + className : '') + '"><dt>' + label + '</dt><dd>' + money(amount) + '</dd></div>';
+      }
+
+      function rows(o) {
+        return row("Base salary", o.salary) +
+          row("Expected bonus", o.bonus) +
+          row("401(k) match (" + o.matchRate.toLocaleString("en-US", { maximumFractionDigits: 1 }) + "%)", o.matchValue) +
+          row("PTO value (" + o.ptoDays.toLocaleString("en-US", { maximumFractionDigits: 1 }) + " days)", o.ptoValue) +
+          row("Health premiums", -o.healthAnnual, "negative") +
+          row("Estimated package", o.total, "total");
+      }
+
+      function makeSummary(a, b, winner, difference, tie) {
+        var lines = [
+          "Job Offer Comparison",
+          "",
+          a.name + ": " + money(a.total) + " estimated annual value",
+          "  Base salary: " + money(a.salary),
+          "  Expected bonus: " + money(a.bonus),
+          "  401(k) match: " + money(a.matchValue) + " (" + a.matchRate + "%)",
+          "  PTO value: " + money(a.ptoValue) + " (" + a.ptoDays + " days)",
+          "  Health premiums: -" + money(a.healthAnnual),
+          "",
+          b.name + ": " + money(b.total) + " estimated annual value",
+          "  Base salary: " + money(b.salary),
+          "  Expected bonus: " + money(b.bonus),
+          "  401(k) match: " + money(b.matchValue) + " (" + b.matchRate + "%)",
+          "  PTO value: " + money(b.ptoValue) + " (" + b.ptoDays + " days)",
+          "  Health premiums: -" + money(b.healthAnnual),
+          "",
+          tie ? "Result: The offers are effectively tied." : "Result: " + winner.name + " leads by " + money(difference) + " per year.",
+          "",
+          "PTO is valued using a 260-workday year. The 401(k) estimate assumes the full match is earned.",
+          "For informational purposes only."
+        ];
+        return lines.join("\n");
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        error.textContent = "";
+        copyStatus.textContent = "";
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          error.textContent = "Complete every number field. Enter 0 when an offer has no bonus, match, premium, or PTO.";
+          results.hidden = true;
+          return;
+        }
+
+        var a = offer("a", "Offer A");
+        var b = offer("b", "Offer B");
+        var rawDifference = Math.abs(a.total - b.total);
+        var tie = rawDifference < 1;
+        var winner = a.total >= b.total ? a : b;
+        var loser = winner === a ? b : a;
+        var monthlyDifference = rawDifference / 12;
+
+        document.getElementById("result-a-name").textContent = a.name;
+        document.getElementById("result-b-name").textContent = b.name;
+        document.getElementById("a-total").textContent = money(a.total);
+        document.getElementById("b-total").textContent = money(b.total);
+        document.getElementById("a-rows").innerHTML = rows(a);
+        document.getElementById("b-rows").innerHTML = rows(b);
+
+        var cardA = document.getElementById("breakdown-a");
+        var cardB = document.getElementById("breakdown-b");
+        cardA.classList.toggle("winner", !tie && winner === a);
+        cardB.classList.toggle("winner", !tie && winner === b);
+
+        if (tie) {
+          document.getElementById("result-heading").textContent = "It’s essentially a tie.";
+          document.getElementById("result-subtitle").textContent = "The estimated annual values are within $1 of each other.";
+          document.getElementById("difference-value").textContent = money(0);
+          document.getElementById("difference-note").textContent = "estimated difference";
+          document.getElementById("plain-summary").textContent = "On the numbers entered, neither package has a meaningful financial lead. The decision may come down to the role, commute, health plan details, flexibility, or growth potential.";
+        } else {
+          document.getElementById("result-heading").textContent = winner.name + " comes out ahead.";
+          document.getElementById("result-subtitle").textContent = "Based on the pay and benefits entered, this offer has the higher estimated annual value.";
+          document.getElementById("difference-value").textContent = money(rawDifference);
+          document.getElementById("difference-note").textContent = "more per year · about " + money(monthlyDifference) + " per month";
+          document.getElementById("plain-summary").textContent = winner.name + " leads " + loser.name + " by about " + money(rawDifference) + " a year in this comparison. That is roughly " + money(monthlyDifference) + " a month in package value—not necessarily take-home pay.";
+        }
+
+        latestSummary = makeSummary(a, b, winner, rawDifference, tie);
+        document.getElementById("email-button").href = "mailto:?subject=" + encodeURIComponent("My job offer comparison") + "&body=" + encodeURIComponent(latestSummary);
+        results.hidden = false;
+        requestAnimationFrame(function () {
+          results.scrollIntoView({ behavior: "smooth", block: "start" });
+          document.getElementById("result-heading").focus({ preventScroll: true });
+        });
+      });
+
+      document.getElementById("reset-button").addEventListener("click", function () {
+        form.reset();
+        results.hidden = true;
+        error.textContent = "";
+        copyStatus.textContent = "";
+        latestSummary = "";
+        document.getElementById("a-salary").focus();
+      });
+
+      document.getElementById("copy-button").addEventListener("click", function () {
+        if (!latestSummary) return;
+
+        function success() {
+          copyStatus.textContent = "Results copied.";
+          window.setTimeout(function () { copyStatus.textContent = ""; }, 3000);
+        }
+
+        function fallbackCopy() {
+          var area = document.createElement("textarea");
+          area.value = latestSummary;
+          area.setAttribute("readonly", "");
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          try {
+            if (document.execCommand("copy")) success();
+            else copyStatus.textContent = "Select and copy the results manually.";
+          } catch (err) {
+            copyStatus.textContent = "Select and copy the results manually.";
+          }
+          document.body.removeChild(area);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latestSummary).then(success).catch(fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

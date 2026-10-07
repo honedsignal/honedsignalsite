@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Wedding Budget Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap');
+
+    :root {
+      color-scheme: dark;
+      --bg: #111722;
+      --panel: #1a2230;
+      --panel-2: #242e3d;
+      --ink: #f5f5f5;
+      --muted: #b4bdc9;
+      --line: #394659;
+      --orange: #f7931a;
+      --orange-ink: #141008;
+      --green: #54d86e;
+      --blue: #80addc;
+      --field: #111923;
+      --focus: rgba(247, 147, 26, .24);
+      --shadow: 0 24px 60px rgba(0, 0, 0, .24);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #0b0e14;
+        --panel: #151a22;
+        --panel-2: #1d2430;
+        --ink: #f5f5f5;
+        --muted: #adb6c3;
+        --line: #303a48;
+        --orange: #f7931a;
+        --orange-ink: #141008;
+        --green: #39ff14;
+        --blue: #74a4d7;
+        --field: #10151c;
+        --focus: rgba(247, 147, 26, .22);
+        --shadow: 0 26px 70px rgba(0, 0, 0, .32);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.5;
+    }
+    button, input { font: inherit; }
+    button, summary, a { -webkit-tap-highlight-color: transparent; }
+
+    .page {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 22px 0 52px;
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover, .back:focus-visible { color: var(--orange); }
+
+    .intro {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+    .intro h1 {
+      font-family: "Newsreader", serif;
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: .93;
+      letter-spacing: -.045em;
+      margin: 0 0 18px;
+      max-width: 720px;
+    }
+    .intro h1 span { color: var(--orange); }
+    .intro p {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+      max-width: 650px;
+      margin: 0;
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(350px, .95fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .form-panel, .results-panel {
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .form-panel { padding: clamp(22px, 4vw, 38px); border-top: 5px solid var(--orange); }
+    .results-panel { padding: clamp(22px, 4vw, 38px); }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-family: "Newsreader", serif;
+      font-size: 2rem;
+      line-height: 1.05;
+      margin: 0;
+    }
+    .section-head small { color: var(--muted); }
+
+    .fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 16px;
+    }
+    .field.wide { grid-column: 1 / -1; }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 7px;
+      font-size: .94rem;
+    }
+    .hint {
+      display: block;
+      color: var(--muted);
+      font-weight: 400;
+      font-size: .79rem;
+      margin-top: 2px;
+    }
+    .input-wrap { position: relative; }
+    .prefix {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+    input[type="number"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--field);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 13px 13px 13px 31px;
+      min-height: 50px;
+      outline: none;
+      appearance: textfield;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { appearance: none; margin: 0; }
+    input[type="number"]::placeholder { color: color-mix(in srgb, var(--muted) 70%, transparent); }
+    input[type="number"]:focus { border-color: var(--orange); box-shadow: 0 0 0 4px var(--focus); }
+    input[aria-invalid="true"] { border-color: #d94d4d; }
+    .no-prefix input { padding-left: 13px; }
+
+    .calculate {
+      width: 100%;
+      border: 0;
+      background: var(--orange);
+      color: var(--orange-ink);
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin-top: 24px;
+      min-height: 52px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .calculate:hover { filter: brightness(1.06); }
+    .calculate:focus-visible, .action:focus-visible, summary:focus-visible, .back:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+    .error {
+      min-height: 24px;
+      margin: 10px 0 0;
+      color: #df5b5b;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    .empty-state {
+      min-height: 350px;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      color: var(--muted);
+      padding: 30px;
+    }
+    .empty-rings {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 22px;
+      height: 72px;
+    }
+    .ring {
+      width: 72px;
+      height: 72px;
+      border: 7px solid var(--line);
+      border-radius: 50%;
+    }
+    .ring + .ring { margin-left: -19px; border-color: var(--orange); }
+    .empty-state strong { color: var(--ink); display: block; font-size: 1.08rem; margin-bottom: 6px; }
+
+    .results { display: none; }
+    .results.active { display: block; }
+    .total-label { color: var(--muted); font-weight: 700; margin: 18px 0 4px; }
+    .total {
+      font-family: "Newsreader", serif;
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      line-height: 1;
+      letter-spacing: -.04em;
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+    .per-guest {
+      color: var(--muted);
+      margin: 8px 0 26px;
+    }
+    .per-guest strong { color: var(--ink); }
+
+    .breakdown {
+      margin: 0 0 26px;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .breakdown li {
+      display: grid;
+      grid-template-columns: minmax(95px, 1fr) minmax(80px, 1.35fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: .9rem;
+    }
+    .bar-track { background: var(--panel-2); height: 7px; overflow: hidden; border-radius: 99px; }
+    .bar-fill { height: 100%; background: var(--orange); border-radius: inherit; min-width: 0; }
+    .amount { font-variant-numeric: tabular-nums; font-weight: 700; text-align: right; }
+
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .action {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 12px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .email { background: var(--orange); color: var(--orange-ink); border: 1px solid var(--orange); }
+    .copy { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+    .action:hover { filter: brightness(1.06); }
+    .copy-status { min-height: 22px; margin: 8px 0 0; color: var(--green); font-size: .82rem; font-weight: 700; text-align: right; }
+
+    details {
+      margin-top: 17px;
+      background: var(--panel-2);
+      border-radius: 8px;
+    }
+    summary {
+      cursor: pointer;
+      padding: 15px 16px;
+      font-weight: 800;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--orange); font-size: 1.25rem; line-height: 1; }
+    details[open] summary::after { content: "–"; }
+    .explanation { padding: 0 16px 16px; color: var(--muted); }
+    .explanation p { margin: 0 0 10px; }
+    .explanation p:last-child { margin-bottom: 0; }
+
+    footer {
+      color: var(--muted);
+      font-size: .78rem;
+      max-width: 720px;
+      margin-top: 26px;
+    }
+
+    @media (max-width: 820px) {
+      .page { width: min(100% - 28px, 680px); padding-top: 16px; }
+      .back { margin-bottom: 30px; }
+      .calculator { grid-template-columns: 1fr; }
+      .empty-state { min-height: 260px; }
+    }
+
+    @media (max-width: 520px) {
+      .page { width: min(100% - 20px, 680px); }
+      .intro h1 { font-size: clamp(2.65rem, 15vw, 4rem); }
+      .fields { grid-template-columns: 1fr; }
+      .field.wide { grid-column: auto; }
+      .form-panel, .results-panel { padding: 22px 18px; }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .breakdown li { grid-template-columns: 1fr auto; gap: 8px; }
+      .bar-track { grid-column: 1 / -1; grid-row: 2; }
+      .amount { grid-column: 2; grid-row: 1; }
+      .actions { grid-template-columns: 1fr; }
+      .copy-status { text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="/money/">← Honed Money</a>
+
+    <header class="intro">
+      <h1>Build the budget before the <span>big day.</span></h1>
+      <p>Add your major wedding costs to see the full estimate, a category-by-category breakdown, and what the celebration costs per guest.</p>
+    </header>
+
+    <div class="calculator">
+      <form class="form-panel" id="budgetForm" novalidate>
+        <div class="section-head">
+          <h2>Your estimates</h2>
+          <small>Enter 0 if a category does not apply.</small>
+        </div>
+
+        <div class="fields">
+          <div class="field">
+            <label for="venue">Venue <span class="hint">Rental, ceremony, site fees</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input id="venue" name="venue" type="number" min="0" step="100" inputmode="decimal" placeholder="5,000" required /></div>
+          </div>
+
+          <div class="field">
+            <label for="guests">Guest count <span class="hint">People you expect to attend</span></label>
+            <div class="input-wrap no-prefix"><input id="guests" name="guests" type="number" min="1" step="1" inputmode="numeric" placeholder="120" required /></div>
+          </div>
+
+          <div class="field wide">
+            <label for="catering">Catering per guest <span class="hint">Food, drinks, service, and rentals per person</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input id="catering" name="catering" type="number" min="0" step="1" inputmode="decimal" placeholder="85" required /></div>
+          </div>
+
+          <div class="field">
+            <label for="attire">Attire <span class="hint">Outfits, tailoring, accessories</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input id="attire" name="attire" type="number" min="0" step="50" inputmode="decimal" placeholder="2,500" required /></div>
+          </div>
+
+          <div class="field">
+            <label for="photo">Photo &amp; video <span class="hint">Coverage and finished media</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input id="photo" name="photo" type="number" min="0" step="100" inputmode="decimal" placeholder="4,000" required /></div>
+          </div>
+
+          <div class="field">
+            <label for="music">Music <span class="hint">DJ, band, or ceremony sound</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input id="music" name="music" type="number" min="0" step="100" inputmode="decimal" placeholder="1,800" required /></div>
+          </div>
+
+          <div class="field">
+            <label for="flowers">Flowers &amp; décor <span class="hint">Bouquets, centerpieces, signs</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input id="flowers" name="flowers" type="number" min="0" step="100" inputmode="decimal" placeholder="3,000" required /></div>
+          </div>
+
+          <div class="field wide">
+            <label for="other">Other costs <span class="hint">Invitations, cake, officiant, transport, tips, and anything else</span></label>
+            <div class="input-wrap"><span class="prefix">$</span><input id="other" name="other" type="number" min="0" step="100" inputmode="decimal" placeholder="4,500" required /></div>
+          </div>
+        </div>
+
+        <button class="calculate" type="submit">Calculate wedding budget</button>
+        <p class="error" id="formError" role="alert" aria-live="polite"></p>
+      </form>
+
+      <section class="results-panel" aria-live="polite">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-rings" aria-hidden="true"><span class="ring"></span><span class="ring"></span></div>
+          <strong>Your estimate will appear here</strong>
+          <span>Fill in every field, then calculate.</span>
+        </div>
+
+        <div class="results" id="results">
+          <h2>Your wedding estimate</h2>
+          <p class="total-label">Estimated total</p>
+          <p class="total" id="total">$0</p>
+          <p class="per-guest"><strong id="perGuest">$0</strong> per guest</p>
+
+          <ul class="breakdown" id="breakdown" aria-label="Budget breakdown"></ul>
+
+          <div class="actions">
+            <a class="action email" id="emailResults" href="mailto:">Email my results</a>
+            <button class="action copy" id="copyResults" type="button">Copy results</button>
+          </div>
+          <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <footer>For informational purposes only. This estimate is based entirely on the amounts you enter and is not a quote from any vendor.</footer>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('budgetForm');
+      var fields = ['venue', 'guests', 'catering', 'attire', 'photo', 'music', 'flowers', 'other'];
+      var error = document.getElementById('formError');
+      var emptyState = document.getElementById('emptyState');
+      var results = document.getElementById('results');
+      var totalEl = document.getElementById('total');
+      var perGuestEl = document.getElementById('perGuest');
+      var breakdownEl = document.getElementById('breakdown');
+      var emailEl = document.getElementById('emailResults');
+      var copyButton = document.getElementById('copyResults');
+      var copyStatus = document.getElementById('copyStatus');
+      var explanation = document.getElementById('explanation');
+      var latestText = '';
+
+      function money(value) {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          maximumFractionDigits: value % 1 === 0 ? 0 : 2
+        }).format(value);
+      }
+
+      function clearInvalid() {
+        fields.forEach(function (id) {
+          document.getElementById(id).removeAttribute('aria-invalid');
+        });
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        clearInvalid();
+        copyStatus.textContent = '';
+
+        var values = {};
+        var invalid = [];
+        fields.forEach(function (id) {
+          var input = document.getElementById(id);
+          var raw = input.value.trim();
+          var number = Number(raw);
+          var isGuest = id === 'guests';
+          var bad = raw === '' || !Number.isFinite(number) || number < (isGuest ? 1 : 0) || (isGuest && !Number.isInteger(number));
+          if (bad) {
+            input.setAttribute('aria-invalid', 'true');
+            invalid.push(input);
+          } else {
+            values[id] = number;
+          }
+        });
+
+        if (invalid.length) {
+          error.textContent = 'Please fill in every field with a valid amount. Guest count must be a whole number of at least 1.';
+          invalid[0].focus();
+          return;
+        }
+
+        error.textContent = '';
+        var cateringTotal = values.catering * values.guests;
+        var categories = [
+          { label: 'Venue', value: values.venue },
+          { label: 'Catering', value: cateringTotal },
+          { label: 'Attire', value: values.attire },
+          { label: 'Photo & video', value: values.photo },
+          { label: 'Music', value: values.music },
+          { label: 'Flowers & décor', value: values.flowers },
+          { label: 'Other costs', value: values.other }
+        ];
+        var total = categories.reduce(function (sum, item) { return sum + item.value; }, 0);
+        var perGuest = total / values.guests;
+        var largest = categories.reduce(function (a, b) { return b.value > a.value ? b : a; });
+        var largestShare = total > 0 ? Math.round((largest.value / total) * 100) : 0;
+
+        totalEl.textContent = money(total);
+        perGuestEl.textContent = money(perGuest);
+        breakdownEl.innerHTML = '';
+
+        categories.forEach(function (item) {
+          var share = total > 0 ? (item.value / total) * 100 : 0;
+          var li = document.createElement('li');
+          var label = document.createElement('span');
+          var track = document.createElement('span');
+          var fill = document.createElement('span');
+          var amount = document.createElement('span');
+          label.textContent = item.label;
+          track.className = 'bar-track';
+          fill.className = 'bar-fill';
+          fill.style.width = share + '%';
+          track.appendChild(fill);
+          amount.className = 'amount';
+          amount.textContent = money(item.value);
+          li.appendChild(label);
+          li.appendChild(track);
+          li.appendChild(amount);
+          breakdownEl.appendChild(li);
+        });
+
+        explanation.innerHTML = '';
+        var p1 = document.createElement('p');
+        p1.textContent = 'At the amounts you entered, the wedding comes to ' + money(total) + ', or ' + money(perGuest) + ' for each of ' + values.guests + ' guests.';
+        var p2 = document.createElement('p');
+        if (total === 0) {
+          p2.textContent = 'Every category is currently $0. Add realistic quotes as you receive them to make this estimate useful.';
+        } else {
+          p2.textContent = largest.label + ' is the largest category at ' + money(largest.value) + ', about ' + largestShare + '% of the total. If you need to lower the budget, reviewing the largest categories usually makes the biggest difference.';
+        }
+        var p3 = document.createElement('p');
+        p3.textContent = 'This is a planning estimate, not a final invoice. Taxes, service charges, gratuities, overtime, and last-minute changes may raise the actual cost, so check whether your “other costs” amount leaves enough room.';
+        explanation.appendChild(p1);
+        explanation.appendChild(p2);
+        explanation.appendChild(p3);
+
+        var lines = [
+          'Wedding Budget Estimate',
+          '',
+          'Guest count: ' + values.guests,
+          'Venue: ' + money(values.venue),
+          'Catering: ' + money(cateringTotal) + ' (' + money(values.catering) + ' per guest)',
+          'Attire: ' + money(values.attire),
+          'Photo & video: ' + money(values.photo),
+          'Music: ' + money(values.music),
+          'Flowers & décor: ' + money(values.flowers),
+          'Other costs: ' + money(values.other),
+          '',
+          'Estimated total: ' + money(total),
+          'Cost per guest: ' + money(perGuest),
+          '',
+          'For informational purposes only. This estimate is based on the amounts entered and is not a vendor quote.'
+        ];
+        latestText = lines.join('\n');
+        emailEl.href = 'mailto:?subject=' + encodeURIComponent('My wedding budget estimate') + '&body=' + encodeURIComponent(latestText);
+
+        emptyState.style.display = 'none';
+        results.classList.add('active');
+        results.setAttribute('tabindex', '-1');
+        results.focus({ preventScroll: true });
+      });
+
+      copyButton.addEventListener('click', function () {
+        if (!latestText) return;
+        function success() {
+          copyStatus.textContent = 'Results copied.';
+          copyButton.textContent = 'Copied';
+          window.setTimeout(function () { copyButton.textContent = 'Copy results'; }, 1800);
+        }
+        function fallback() {
+          var area = document.createElement('textarea');
+          area.value = latestText;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.opacity = '0';
+          document.body.appendChild(area);
+          area.select();
+          try {
+            document.execCommand('copy');
+            success();
+          } catch (e) {
+            copyStatus.textContent = 'Copy was unavailable. Select the email option instead.';
+          }
+          document.body.removeChild(area);
+        }
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(latestText).then(success).catch(fallback);
+        } else {
+          fallback();
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

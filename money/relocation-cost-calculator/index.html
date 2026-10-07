@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Relocation Cost Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      --ink: #0b0e14;
+      --surface: #0b0e14;
+      --panel: #131821;
+      --field: #0f131a;
+      --text: #f5f5f5;
+      --muted: #aeb7c4;
+      --line: #2a313d;
+      --blue: #6490c4;
+      --orange: #f7931a;
+      --orange-ink: #181006;
+      --positive: #39ff14;
+      --negative: #ff686d;
+      --focus: #8bb5e5;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .34);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --surface: #10141c;
+        --panel: #171d27;
+        --field: #0d1118;
+        --text: #ffffff;
+        --muted: #b8c0cb;
+        --line: #303947;
+        --blue: #78a5d8;
+        --positive: #52ef36;
+        --negative: #ff7479;
+        --focus: #9bc4ef;
+        --shadow: 0 24px 70px rgba(0, 0, 0, .28);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--surface);
+      color: var(--text);
+      font-family: "IBM Plex Sans", sans-serif;
+      line-height: 1.5;
+    }
+
+    button, input { font: inherit; }
+    a { color: inherit; }
+
+    .page {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 22px 0 64px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 42px;
+    }
+    .back-link:hover { color: var(--orange); }
+    .back-link:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    header {
+      max-width: 770px;
+      margin-bottom: 36px;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.25rem, 6vw, 4.45rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      max-width: 800px;
+    }
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 2vw, 1.2rem);
+      max-width: 690px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, .82fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .calculator,
+    .results {
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .calculator {
+      border-top: 5px solid var(--orange);
+      padding: clamp(24px, 4vw, 38px);
+    }
+
+    .section-label {
+      margin: 0 0 24px;
+      font: 600 .77rem/1.3 "IBM Plex Mono", monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .field-grid { display: grid; gap: 21px; }
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 600;
+    }
+    .hint {
+      display: block;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 400;
+      margin-top: 3px;
+    }
+    .money-input { position: relative; }
+    .money-input::before {
+      content: "$";
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-weight: 600;
+      pointer-events: none;
+    }
+    input[type="number"] {
+      display: block;
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 14px 12px 34px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--field);
+      color: var(--text);
+      font-size: 1rem;
+      appearance: textfield;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { appearance: none; margin: 0; }
+    input::placeholder { color: var(--muted); opacity: .72; }
+    input:focus { border-color: var(--blue); }
+    .validation {
+      min-height: 1.3em;
+      margin: 14px 0 0;
+      color: var(--negative);
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+    button {
+      border: 0;
+      border-radius: 7px;
+      min-height: 48px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .calculate {
+      flex: 1;
+      background: var(--blue);
+      color: #08111d;
+    }
+    .reset {
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--line);
+    }
+    button:hover { filter: brightness(1.06); }
+
+    .empty {
+      min-height: 500px;
+      display: grid;
+      align-content: center;
+      padding: clamp(26px, 5vw, 52px);
+      border: 1px dashed var(--line);
+      box-shadow: none;
+    }
+    .empty-mark {
+      width: 58px;
+      height: 4px;
+      background: var(--orange);
+      margin-bottom: 23px;
+    }
+    .empty h2 { margin: 0 0 9px; font-size: 1.45rem; }
+    .empty p { margin: 0; color: var(--muted); max-width: 34ch; }
+
+    .results {
+      border-top: 5px solid var(--blue);
+      padding: clamp(24px, 4vw, 34px);
+    }
+    .results[hidden], .empty[hidden] { display: none; }
+    .verdict {
+      margin-bottom: 25px;
+      padding-bottom: 23px;
+      border-bottom: 1px solid var(--line);
+    }
+    .verdict .section-label { margin-bottom: 10px; }
+    .verdict h2 {
+      margin: 0 0 9px;
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      line-height: 1.08;
+      letter-spacing: -.025em;
+    }
+    .verdict p { margin: 0; color: var(--muted); }
+    .verdict.positive h2 { color: var(--positive); }
+    .verdict.negative h2 { color: var(--negative); }
+
+    .metric-list { display: grid; gap: 0; margin: 0; }
+    .metric {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .metric dt { color: var(--muted); }
+    .metric dd {
+      margin: 0;
+      font: 600 1rem/1.2 "IBM Plex Mono", monospace;
+      text-align: right;
+    }
+    .metric.primary dd { font-size: 1.24rem; color: var(--orange); }
+
+    .share-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .email {
+      background: var(--orange);
+      color: var(--orange-ink);
+    }
+    .copy {
+      background: var(--field);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+    .status {
+      min-height: 1.2em;
+      margin: 9px 0 0;
+      color: var(--positive);
+      text-align: center;
+      font-size: .82rem;
+      font-weight: 600;
+    }
+
+    details {
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 17px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    details p,
+    details ul { color: var(--muted); font-size: .92rem; }
+    details ul { padding-left: 20px; }
+    details li + li { margin-top: 7px; }
+
+    footer {
+      max-width: 760px;
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    @media (max-width: 800px) {
+      .page { width: min(100% - 28px, 640px); padding-top: 16px; }
+      .back-link { margin-bottom: 30px; }
+      .workspace { grid-template-columns: 1fr; }
+      .empty { min-height: 260px; }
+    }
+
+    @media (max-width: 440px) {
+      h1 { font-size: 2.45rem; }
+      .calculator, .results { padding: 22px 18px; }
+      .form-actions, .share-actions { grid-template-columns: 1fr; flex-direction: column; }
+      .share-actions { display: grid; }
+      .metric { grid-template-columns: 1fr; gap: 4px; }
+      .metric dd { text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      .back-link, .calculator, .share-actions, .empty, .status { display: none !important; }
+      .page { width: 100%; padding: 0; }
+      .workspace { display: block; }
+      .results { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <header>
+      <h1>Is the move worth the raise?</h1>
+      <p class="lede">Compare your first-year relocation costs with your annual pay change, then see when the move could pay for itself.</p>
+    </header>
+
+    <div class="workspace">
+      <form class="calculator" id="calculator" novalidate>
+        <p class="section-label">Your move</p>
+        <div class="field-grid">
+          <div class="field">
+            <label for="moving">Moving costs <span class="hint">Truck, movers, travel, deposits, and setup fees</span></label>
+            <div class="money-input"><input id="moving" name="moving" type="number" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 4,500" required /></div>
+          </div>
+          <div class="field">
+            <label for="housing">Temporary housing total <span class="hint">The full cost of hotels, short-term rentals, or overlap</span></label>
+            <div class="money-input"><input id="housing" name="housing" type="number" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 2,400" required /></div>
+          </div>
+          <div class="field">
+            <label for="costDifference">Annual cost-of-living difference <span class="hint">Use a positive number if the new place costs more; a negative number if it costs less</span></label>
+            <div class="money-input"><input id="costDifference" name="costDifference" type="number" step="0.01" inputmode="decimal" placeholder="e.g. 6,000 or -3,000" required /></div>
+          </div>
+          <div class="field">
+            <label for="salaryChange">Annual salary change <span class="hint">New annual salary minus current annual salary, before taxes</span></label>
+            <div class="money-input"><input id="salaryChange" name="salaryChange" type="number" step="0.01" inputmode="decimal" placeholder="e.g. 12,000" required /></div>
+          </div>
+          <p class="validation" id="validation" role="alert" aria-live="polite"></p>
+          <div class="form-actions">
+            <button class="calculate" type="submit">Calculate the move</button>
+            <button class="reset" type="reset">Clear</button>
+          </div>
+        </div>
+      </form>
+
+      <section class="empty" id="empty" aria-live="polite">
+        <div class="empty-mark"></div>
+        <h2>Your comparison will appear here.</h2>
+        <p>Enter all four amounts to see the first-year result and estimated break-even point.</p>
+      </section>
+
+      <section class="results" id="results" hidden aria-live="polite">
+        <div class="verdict" id="verdict">
+          <p class="section-label">First-year outlook</p>
+          <h2 id="verdictTitle"></h2>
+          <p id="verdictText"></p>
+        </div>
+
+        <dl class="metric-list">
+          <div class="metric"><dt>Upfront move costs</dt><dd id="upfrontValue"></dd></div>
+          <div class="metric"><dt>First-year relocation cost</dt><dd id="firstYearCostValue"></dd></div>
+          <div class="metric"><dt>Annual pay change</dt><dd id="salaryValue"></dd></div>
+          <div class="metric primary"><dt>First-year net result</dt><dd id="netValue"></dd></div>
+          <div class="metric"><dt>Ongoing monthly difference</dt><dd id="monthlyValue"></dd></div>
+          <div class="metric"><dt>Estimated break-even</dt><dd id="breakEvenValue"></dd></div>
+        </dl>
+
+        <div class="share-actions">
+          <button class="email" id="emailButton" type="button">Email my results</button>
+          <button class="copy" id="copyButton" type="button">Copy results</button>
+        </div>
+        <p class="status" id="copyStatus" aria-live="polite"></p>
+
+        <details>
+          <summary>Explain these results</summary>
+          <p id="explanationLead"></p>
+          <ul>
+            <li><strong>Upfront move costs</strong> are your moving and temporary housing totals combined.</li>
+            <li><strong>First-year relocation cost</strong> adds the annual cost-of-living increase to those upfront costs. If the new place is cheaper, those savings reduce the total.</li>
+            <li><strong>Ongoing monthly difference</strong> is the salary change minus the annual cost-of-living difference, divided by 12.</li>
+            <li><strong>Break-even</strong> estimates how many months of that ongoing difference it takes to recover the upfront move costs.</li>
+          </ul>
+          <p>This comparison uses gross salary, not take-home pay. Taxes, bonuses, benefits, commuting, home-sale costs, and future raises are not included.</p>
+        </details>
+      </section>
+    </div>
+
+    <footer>For informational purposes only. This estimate is not financial, tax, employment, or legal advice.</footer>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("calculator");
+      var empty = document.getElementById("empty");
+      var results = document.getElementById("results");
+      var validation = document.getElementById("validation");
+      var copyStatus = document.getElementById("copyStatus");
+      var lastSummary = "";
+
+      function money(value, signed) {
+        var abs = Math.abs(value);
+        var formatted = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0
+        }).format(abs);
+        if (!signed) return value < 0 ? "−" + formatted : formatted;
+        if (value > 0) return "+" + formatted;
+        if (value < 0) return "−" + formatted;
+        return formatted;
+      }
+
+      function getNumber(id) {
+        var input = document.getElementById(id);
+        if (input.value.trim() === "") return null;
+        var value = Number(input.value);
+        return Number.isFinite(value) ? value : null;
+      }
+
+      function setText(id, value) {
+        document.getElementById(id).textContent = value;
+      }
+
+      function monthLabel(months) {
+        if (!Number.isFinite(months)) return "Not reached";
+        if (months <= 0) return "Immediate";
+        if (months < 1) return "Less than 1 month";
+        if (months > 600) return "More than 50 years";
+        var rounded = Math.ceil(months);
+        return rounded + (rounded === 1 ? " month" : " months");
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        copyStatus.textContent = "";
+
+        var moving = getNumber("moving");
+        var housing = getNumber("housing");
+        var costDifference = getNumber("costDifference");
+        var salaryChange = getNumber("salaryChange");
+
+        if ([moving, housing, costDifference, salaryChange].some(function (value) { return value === null; })) {
+          validation.textContent = "Enter an amount in every field. Use 0 when a cost does not apply.";
+          return;
+        }
+        if (moving < 0 || housing < 0) {
+          validation.textContent = "Moving costs and temporary housing cannot be negative.";
+          return;
+        }
+
+        validation.textContent = "";
+
+        var upfront = moving + housing;
+        var firstYearCost = upfront + costDifference;
+        var annualOngoing = salaryChange - costDifference;
+        var monthlyOngoing = annualOngoing / 12;
+        var firstYearNet = salaryChange - firstYearCost;
+        var breakEvenMonths = monthlyOngoing > 0 ? upfront / monthlyOngoing : Infinity;
+        var breakEven = monthLabel(breakEvenMonths);
+
+        setText("upfrontValue", money(upfront, false));
+        setText("firstYearCostValue", money(firstYearCost, false));
+        setText("salaryValue", money(salaryChange, true));
+        setText("netValue", money(firstYearNet, true));
+        setText("monthlyValue", money(monthlyOngoing, true) + "/mo");
+        setText("breakEvenValue", breakEven);
+
+        var verdict = document.getElementById("verdict");
+        verdict.classList.remove("positive", "negative");
+        var title;
+        var body;
+        var explanation;
+
+        if (firstYearNet > 0) {
+          verdict.classList.add("positive");
+          title = "Ahead " + money(firstYearNet, false) + " in year one";
+          body = "On these numbers, the pay change covers the move and the cost-of-living difference during the first year.";
+          explanation = "Your estimated first-year pay increase is larger than the move-related costs in this comparison.";
+        } else if (firstYearNet < 0) {
+          verdict.classList.add("negative");
+          title = "Behind " + money(firstYearNet, false) + " in year one";
+          if (monthlyOngoing > 0) {
+            body = "The move does not pay for itself in year one, but the ongoing monthly gain could recover the upfront cost in about " + breakEven.toLowerCase() + ".";
+            explanation = "The annual pay change beats the ongoing cost-of-living increase, but not enough to erase the upfront move costs during the first year.";
+          } else {
+            body = "The pay change does not cover the higher ongoing costs, so this move does not reach a financial break-even on these inputs.";
+            explanation = "The ongoing pay change is equal to or smaller than the cost-of-living increase, so time alone does not recover the upfront move costs.";
+          }
+        } else {
+          title = "Even in year one";
+          body = "The annual pay change exactly matches the first-year relocation cost on these inputs.";
+          explanation = "Your estimated pay change and first-year relocation cost are equal.";
+        }
+
+        setText("verdictTitle", title);
+        setText("verdictText", body);
+        setText("explanationLead", explanation);
+
+        lastSummary = [
+          "Relocation Cost Calculator",
+          "",
+          "Upfront move costs: " + money(upfront, false),
+          "First-year relocation cost: " + money(firstYearCost, false),
+          "Annual pay change: " + money(salaryChange, true),
+          "First-year net result: " + money(firstYearNet, true),
+          "Ongoing monthly difference: " + money(monthlyOngoing, true) + "/month",
+          "Estimated break-even: " + breakEven,
+          "",
+          title + ". " + body,
+          "",
+          "This estimate uses gross salary and is for informational purposes only."
+        ].join("\n");
+
+        empty.hidden = true;
+        results.hidden = false;
+        if (window.matchMedia("(max-width: 800px)").matches) {
+          results.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      form.addEventListener("reset", function () {
+        window.setTimeout(function () {
+          validation.textContent = "";
+          copyStatus.textContent = "";
+          lastSummary = "";
+          results.hidden = true;
+          empty.hidden = false;
+        }, 0);
+      });
+
+      document.getElementById("emailButton").addEventListener("click", function () {
+        if (!lastSummary) return;
+        var subject = encodeURIComponent("My relocation cost estimate");
+        var body = encodeURIComponent(lastSummary);
+        var emailLink = document.createElement("a");
+        emailLink.href = "mailto:?subject=" + subject + "&body=" + body;
+        emailLink.style.display = "none";
+        document.body.appendChild(emailLink);
+        emailLink.click();
+        document.body.removeChild(emailLink);
+      });
+
+      document.getElementById("copyButton").addEventListener("click", function () {
+        if (!lastSummary) return;
+
+        function copied() {
+          copyStatus.textContent = "Results copied.";
+          window.setTimeout(function () { copyStatus.textContent = ""; }, 2500);
+        }
+
+        function fallbackCopy() {
+          var area = document.createElement("textarea");
+          area.value = lastSummary;
+          area.setAttribute("readonly", "");
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          try {
+            document.execCommand("copy");
+            copied();
+          } catch (error) {
+            copyStatus.textContent = "Select and copy the results manually.";
+          }
+          document.body.removeChild(area);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastSummary).then(copied).catch(fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      });
+    }());
+  </script>
+</body>
+</html>
