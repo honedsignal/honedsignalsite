@@ -189,6 +189,29 @@ def main():
     head = inject(head, block)
     write(p, pre + head + post)
 
+    # browse page (visual gateway hub, moved from /money/)
+    p = os.path.join(MONEY, "browse", "index.html")
+    if os.path.exists(p):
+        doc = read(p)
+        pre, head, post = split_head(doc)
+        b_title = "Browse All Money Calculators | Honed Money"
+        b_desc = ("Browse all Honed Money calculator collections by topic — "
+                  "21 illustrated sections covering every money question, "
+                  "from budgeting to estate planning.")
+        b_url = BASE + "/money/browse/"
+        sitemap_urls.append(b_url)
+        head = clean_head(head)
+        head = set_title(head, b_title)
+        block = ('<meta name="description" content="' + ihtml.escape(b_desc, quote=True) + '" />\n'
+                 + '<link rel="canonical" href="' + b_url + '" />\n'
+                 + '<script type="application/ld+json">\n'
+                 + '{"@context":"https://schema.org","@type":"CollectionPage",\n'
+                 + '"name":' + jstr(b_title) + ',"url":' + jstr(b_url) + ",\n"
+                 + '"description":' + jstr(b_desc) + "}\n"
+                 + "</script>")
+        head = inject(head, block)
+        write(p, pre + head + post)
+
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in sorted(set(sitemap_urls)):
