@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Honed Money — Free Personal Finance Calculators</title>
+  <title>Browse All Money Calculators | Honed Money</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
@@ -144,6 +144,41 @@
       transform: rotate(-45deg);
     }
 
+    .decision-banner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      margin-top: clamp(32px, 5vw, 48px);
+      padding: clamp(22px, 4vw, 30px);
+      border: 1px solid var(--orange);
+      background: var(--check-bg);
+      color: var(--ink);
+      text-decoration: none;
+      transition: background-color .18s ease, border-color .18s ease;
+    }
+    .decision-banner:hover,
+    .decision-banner:focus-visible {
+      background: var(--surface-hover);
+      border-color: var(--orange);
+    }
+    .decision-banner h3 {
+      margin: 0 0 6px;
+      font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+      line-height: 1.1;
+      letter-spacing: -.025em;
+    }
+    .decision-banner p {
+      max-width: 62ch;
+      margin: 0;
+      color: var(--muted);
+    }
+    .decision-arrow {
+      color: var(--orange);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      line-height: 1;
+    }
+
     .topics { padding: clamp(40px, 6vw, 64px) 0 0; }
     .topics-header {
       display: flex;
@@ -234,6 +269,7 @@
       .page { padding-top: 48px; }
       .title-block h1 { font-size: clamp(3.5rem, 18vw, 5rem); }
       .benefit-list { grid-template-columns: 1fr; gap: 14px; }
+      .decision-banner { grid-template-columns: minmax(0, 1fr) auto; gap: 14px; }
       .topics-header { display: block; }
       .topics-header p { margin-top: 10px; }
       footer { flex-direction: column; gap: 8px; }
@@ -243,16 +279,17 @@
       .topic-links a { padding: 9px 13px; font-size: .75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .topic-links a, .visual-link { transition: none; }
+      .topic-links a, .visual-link, .decision-banner { transition: none; }
     }
   </style>
+
 <!-- honed-seo-start -->
-<meta name="description" content="112 free money calculators from Honed Money: budgeting, debt payoff, mortgages, retirement, taxes, insurance and more. Plain-English results, no signup." />
-<link rel="canonical" href="https://honedsignal.com/money/" />
+<meta name="description" content="Browse all Honed Money calculator collections by topic — 21 illustrated sections covering every money question, from budgeting to estate planning." />
+<link rel="canonical" href="https://honedsignal.com/money/browse/" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite",
-"name":"Honed Money","url":"https://honedsignal.com/money/",
-"description":"112 free money calculators from Honed Money: budgeting, debt payoff, mortgages, retirement, taxes, insurance and more. Plain-English results, no signup."}
+{"@context":"https://schema.org","@type":"CollectionPage",
+"name":"Browse All Money Calculators | Honed Money","url":"https://honedsignal.com/money/browse/",
+"description":"Browse all Honed Money calculator collections by topic — 21 illustrated sections covering every money question, from budgeting to estate planning."}
 </script>
 <!-- honed-seo-end -->
 </head>
@@ -274,6 +311,13 @@
         <li>Email or copy your results — no account, no signup</li>
         <li>Built to help you decide, not just calculate</li>
       </ul>
+      <a class="decision-banner" href="/money/decide/">
+        <div>
+          <h3>Not sure where to start?</h3>
+          <p>Tell us what you're deciding — we'll walk you through the calculators that answer it.</p>
+        </div>
+        <span class="decision-arrow" aria-hidden="true">→</span>
+      </a>
     </section>
 
     <nav class="topics" aria-labelledby="topics-title">
