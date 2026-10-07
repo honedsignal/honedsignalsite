@@ -78,7 +78,7 @@ DECISIONS = [
       together=("If all three numbers fit comfortably — the price is in your range, the payment leaves "
                 "breathing room, and you have the cash — you can afford the house. If any one of them "
                 "is a stretch, the honest answer is not yet.")),
- dict(slug="buy-or-rent", img="housing",
+ dict(slug="buy-or-rent", img="buy-or-rent",
       q="Should I buy or rent?",
       sub="It's not a lifestyle question first. It's a math question first.",
       intro=("Buying isn't automatically smarter than renting — it depends on prices, rents, how long "
@@ -167,7 +167,7 @@ DECISIONS = [
       ],
       together=("Fund the emergency cushion first, then automate monthly savings from your budget surplus. "
                 "The compound interest calculator shows you why starting now matters more than the amount.")),
- dict(slug="should-i-refinance", img="housing",
+ dict(slug="should-i-refinance", img="refinance",
       q="Should I refinance my mortgage?",
       sub="A lower rate is only half the story. The fees are the other half.",
       intro=("Refinancing trades a lower rate for upfront closing costs. It only wins if you keep the "
