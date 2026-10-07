@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <title>Retirement Age Comparison | Honed Money</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #10141b;
+      --surface: #181f29;
+      --surface-2: #202a36;
+      --ink: #f5f5f5;
+      --muted: #b6c0cb;
+      --line: #3a4654;
+      --blue: #77a6d8;
+      --orange: #f7931a;
+      --orange-ink: #171006;
+      --focus: #9ac6ef;
+      --danger: #ff928c;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .3);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0e14;
+        --surface: #131923;
+        --surface-2: #1b2430;
+        --ink: #f5f5f5;
+        --muted: #aeb8c4;
+        --line: #33404e;
+        --blue: #6490c4;
+        --orange: #f7931a;
+        --orange-ink: #171006;
+        --focus: #8db9e6;
+        --danger: #ff8d87;
+        --shadow: 0 18px 50px rgba(0, 0, 0, .36);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: "IBM Plex Sans", sans-serif; font-size: 16px; line-height: 1.55; }
+    button, input { font: inherit; }
+    a { color: var(--blue); }
+    .shell { width: min(1120px, calc(100% - 36px)); margin: 0 auto; padding: 22px 0 54px; }
+    .back-link { display: inline-block; margin-bottom: 30px; color: var(--muted); font-size: .92rem; font-weight: 600; text-decoration: none; }
+    .back-link:hover { color: var(--ink); text-decoration: underline; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); gap: 34px; align-items: end; margin-bottom: 30px; }
+    h1 { margin: 0 0 13px; max-width: 730px; font-size: clamp(2.1rem, 5vw, 4.25rem); line-height: .98; letter-spacing: -.045em; }
+    .lede { max-width: 690px; margin: 0; color: var(--muted); font-size: clamp(1.03rem, 2vw, 1.22rem); }
+    .age-strip { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 21px 0 8px; }
+    .age-strip::before { content: ""; position: absolute; left: 12%; right: 12%; top: 34px; height: 2px; background: var(--line); }
+    .age-mark { position: relative; text-align: center; }
+    .age-mark span { display: grid; place-items: center; width: 30px; height: 30px; margin: 0 auto 8px; border: 3px solid var(--bg); border-radius: 50%; background: var(--orange); color: var(--orange-ink); font-family: "IBM Plex Mono", monospace; font-size: .69rem; font-weight: 600; }
+    .age-mark strong { font-size: .78rem; color: var(--muted); }
+    .panel { background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .calculator { display: grid; grid-template-columns: minmax(290px, .8fr) minmax(0, 1.2fr); }
+    .form-pane { padding: clamp(24px, 4vw, 42px); border-right: 1px solid var(--line); }
+    .results-pane { min-width: 0; padding: clamp(24px, 4vw, 42px); background: var(--surface-2); }
+    h2 { margin: 0 0 7px; font-size: clamp(1.35rem, 2.4vw, 1.8rem); letter-spacing: -.025em; }
+    .section-note { margin: 0 0 23px; color: var(--muted); font-size: .94rem; }
+    .fields { display: grid; gap: 17px; }
+    label { display: block; font-weight: 600; font-size: .93rem; }
+    .input-wrap { position: relative; display: block; margin-top: 7px; }
+    .affix { position: absolute; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+    .prefix { left: 14px; }
+    .suffix { right: 14px; }
+    input[type="number"] { width: 100%; min-height: 50px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); color: var(--ink); padding: 11px 14px; outline: none; }
+    input.with-prefix { padding-left: 31px; }
+    input.with-suffix { padding-right: 36px; }
+    input::placeholder { color: var(--muted); opacity: .72; }
+    input:focus { border-color: var(--focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 25%, transparent); }
+    .button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .btn { min-height: 47px; border: 0; border-radius: 6px; padding: 11px 18px; font-weight: 700; cursor: pointer; }
+    .btn-primary { background: var(--orange); color: var(--orange-ink); }
+    .btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+    .btn:hover { filter: brightness(1.06); }
+    .btn:focus-visible, .back-link:focus-visible, summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+    .error { min-height: 1.5em; margin: 14px 0 0; color: var(--danger); font-weight: 600; font-size: .9rem; }
+    .empty-state { min-height: 100%; display: grid; align-content: center; justify-items: start; padding: 18px 0; }
+    .empty-state .number { font-family: "IBM Plex Mono", monospace; font-size: clamp(3rem, 7vw, 5.8rem); line-height: 1; color: var(--orange); letter-spacing: -.07em; }
+    .empty-state p { max-width: 440px; margin: 18px 0 0; color: var(--muted); }
+    [hidden] { display: none !important; }
+    .comparison-table { width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 23px; font-variant-numeric: tabular-nums; }
+    .comparison-table caption { text-align: left; margin-bottom: 8px; color: var(--muted); font-size: .84rem; }
+    .comparison-table th, .comparison-table td { border-bottom: 1px solid var(--line); padding: 15px 12px; text-align: right; vertical-align: middle; }
+    .comparison-table th:first-child, .comparison-table td:first-child { text-align: left; padding-left: 0; }
+    .comparison-table th { color: var(--muted); font-size: .82rem; }
+    .comparison-table td:first-child { font-weight: 700; }
+    .comparison-table .money { font-family: "IBM Plex Mono", monospace; font-weight: 600; }
+    .age-chip { display: inline-block; min-width: 44px; padding: 4px 8px; border-radius: 999px; background: var(--ink); color: var(--bg); text-align: center; font-family: "IBM Plex Mono", monospace; font-size: .78rem; }
+    .verdict { margin-top: 24px; padding: 22px; background: var(--surface); border-top: 4px solid var(--orange); }
+    .verdict h3 { margin: 0 0 11px; font-size: 1.08rem; }
+    .verdict p { margin: 8px 0 0; color: var(--muted); }
+    .verdict strong { color: var(--ink); }
+    .result-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 19px; }
+    .email-btn { background: var(--orange); color: var(--orange-ink); text-decoration: none; display: inline-flex; align-items: center; }
+    .copy-status { align-self: center; color: var(--muted); font-size: .88rem; }
+    details { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 17px; }
+    summary { cursor: pointer; font-weight: 700; color: var(--blue); }
+    .explanation { color: var(--muted); }
+    .explanation p { margin: 12px 0; }
+    .fine-print { max-width: 920px; margin: 25px auto 0; color: var(--muted); font-size: .82rem; }
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; gap: 17px; }
+      .age-strip { max-width: 370px; }
+      .calculator { grid-template-columns: 1fr; }
+      .form-pane { border-right: 0; border-bottom: 1px solid var(--line); }
+      .empty-state { min-height: 250px; }
+    }
+    @media (max-width: 590px) {
+      .shell { width: min(100% - 24px, 1120px); padding-top: 15px; }
+      .back-link { margin-bottom: 24px; }
+      h1 { font-size: clamp(2.05rem, 12vw, 3rem); }
+      .form-pane, .results-pane { padding: 22px 18px; }
+      .button-row .btn { flex: 1; }
+      .comparison-table, .comparison-table tbody { display: block; }
+      .comparison-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      .comparison-table tr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; padding: 17px 0; border-bottom: 1px solid var(--line); }
+      .comparison-table td, .comparison-table td:first-child { display: block; padding: 0; border: 0; text-align: left; }
+      .comparison-table td:first-child { grid-column: 1 / -1; margin-bottom: 4px; }
+      .comparison-table td::before { content: attr(data-label); display: block; margin-bottom: 2px; color: var(--muted); font-family: "IBM Plex Sans", sans-serif; font-size: .72rem; font-weight: 500; }
+      .comparison-table td:first-child::before { display: none; }
+      .comparison-table td:last-child { grid-column: 1 / -1; }
+      .result-actions .btn, .email-btn { width: 100%; justify-content: center; text-align: center; }
+      .copy-status { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+<!-- honed-seo-start -->
+<meta name="description" content="What 62 vs 65 vs 70 buys you. Free retirement age comparison from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/retirement-age-comparison/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Retirement Age Comparison","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/retirement-age-comparison/","description":"What 62 vs 65 vs 70 buys you. Free retirement age comparison from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <main class="shell">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <style><style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style></style>
+<div class="hs-hero">
+  <img src="/money/images/retirement.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 id="page-title" class="hs-hero-title">What does waiting to retire buy you?</h1>
+</div>
+        <p class="lede">Compare ages 62, 65, and 70 using the same savings plan. See the extra time, the projected nest egg, and a simple monthly-income estimate side by side.</p>
+      </div>
+      <div class="age-strip" aria-hidden="true">
+        <div class="age-mark"><span>62</span><strong>Earlier</strong></div>
+        <div class="age-mark"><span>65</span><strong>Middle</strong></div>
+        <div class="age-mark"><span>70</span><strong>Later</strong></div>
+      </div>
+    </section>
+
+    <section class="panel calculator" aria-label="Retirement age calculator">
+      <form class="form-pane" id="retirement-form" novalidate>
+        <h2>Your starting point</h2>
+        <p class="section-note">Enter today’s numbers. All four fields are required.</p>
+        <div class="fields">
+          <label>Current age
+            <span class="input-wrap"><input id="current-age" type="number" inputmode="numeric" min="18" max="61" step="1" placeholder="Example: 42" autocomplete="off" /></span>
+          </label>
+          <label>Current retirement savings
+            <span class="input-wrap"><span class="affix prefix">$</span><input class="with-prefix" id="current-savings" type="number" inputmode="decimal" min="0" step="100" placeholder="Example: 85,000" autocomplete="off" /></span>
+          </label>
+          <label>Monthly contribution
+            <span class="input-wrap"><span class="affix prefix">$</span><input class="with-prefix" id="monthly-contribution" type="number" inputmode="decimal" min="0" step="25" placeholder="Example: 750" autocomplete="off" /></span>
+          </label>
+          <label>Expected annual return
+            <span class="input-wrap"><input class="with-suffix" id="annual-return" type="number" inputmode="decimal" min="-20" max="30" step="0.1" placeholder="Example: 6" autocomplete="off" /><span class="affix suffix">%</span></span>
+          </label>
+        </div>
+        <div class="button-row">
+          <button class="btn btn-primary" type="submit">Compare ages</button>
+          <button class="btn btn-secondary" id="reset-button" type="reset">Clear</button>
+        </div>
+        <p class="error" id="form-error" role="alert" aria-live="polite"></p>
+      </form>
+
+      <div class="results-pane" aria-live="polite">
+        <div class="empty-state" id="empty-state"><span class="number">62—70</span><p>Your three retirement snapshots will appear here after you enter your numbers.</p></div>
+        <div id="results" hidden>
+          <h2>Your three paths</h2>
+          <p class="section-note" id="result-summary"></p>
+          <table class="comparison-table">
+            <caption>Projected values based on your entries</caption>
+            <thead><tr><th scope="col">Retire at</th><th scope="col">Years left</th><th scope="col">Nest egg</th><th scope="col">Est. monthly income</th></tr></thead>
+            <tbody id="comparison-body"></tbody>
+          </table>
+          <div class="verdict" id="verdict"></div>
+          <div class="result-actions">
+            <a class="btn email-btn" id="email-results" href="mailto:">Email my results</a>
+            <button class="btn btn-secondary" id="copy-results" type="button">Copy results</button>
+            <span class="copy-status" id="copy-status" role="status"></span>
+          </div>
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explanation">
+              <p><strong>Nest egg:</strong> We grow your current savings and add your monthly contributions through each retirement age. The calculation assumes one steady return, compounded monthly. Real markets move up and down, so this is an estimate—not a promise.</p>
+              <p><strong>Monthly income:</strong> The 4% rule is a rough planning shortcut. It starts with 4% of the nest egg in the first retirement year, divided into 12 monthly amounts. It does not guarantee that the money will last, and it does not include taxes, fees, Social Security, pensions, or inflation.</p>
+              <p><strong>The tradeoff:</strong> Working longer gives your savings more time to grow and adds more contributions. In return, you begin retirement later. The best age is not simply the biggest number—it also depends on health, work, family, spending needs, and income you may receive from other sources.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <p class="fine-print">For informational and educational purposes only—not financial, tax, legal, investment, or insurance advice. Results are estimates based on the information and assumptions shown; actual results will vary. Consider verifying retirement decisions with a qualified professional and official benefit sources.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+      var form = document.getElementById("retirement-form");
+      var error = document.getElementById("form-error");
+      var emptyState = document.getElementById("empty-state");
+      var results = document.getElementById("results");
+      var body = document.getElementById("comparison-body");
+      var summary = document.getElementById("result-summary");
+      var verdict = document.getElementById("verdict");
+      var emailButton = document.getElementById("email-results");
+      var copyButton = document.getElementById("copy-results");
+      var copyStatus = document.getElementById("copy-status");
+      var lastResultText = "";
+      var money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+      var oneDecimal = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
+
+      function readNumber(id) {
+        var raw = document.getElementById(id).value.trim();
+        return raw === "" ? NaN : Number(raw);
+      }
+      function futureValue(principal, monthlyContribution, annualRate, years) {
+        var months = Math.round(years * 12);
+        var monthlyRate = annualRate / 100 / 12;
+        if (monthlyRate === 0) return principal + monthlyContribution * months;
+        var growth = Math.pow(1 + monthlyRate, months);
+        return principal * growth + monthlyContribution * ((growth - 1) / monthlyRate);
+      }
+      function sentenceMoney(value) { return money.format(Math.round(value)); }
+      function validate(age, savings, contribution, rate) {
+        if (![age, savings, contribution, rate].every(Number.isFinite)) return "Please complete all four fields.";
+        if (!Number.isInteger(age) || age < 18 || age > 61) return "Enter a whole current age from 18 through 61 so all three retirement ages are still ahead.";
+        if (savings < 0) return "Current savings cannot be negative.";
+        if (contribution < 0) return "Monthly contribution cannot be negative.";
+        if (rate < -20 || rate > 30) return "Enter an expected annual return from −20% through 30%.";
+        if (savings === 0 && contribution === 0) return "Enter current savings, a monthly contribution, or both above zero.";
+        return "";
+      }
+      function buildResultText(age, savings, contribution, rate, scenarios) {
+        var lines = ["Retirement Age Comparison", "Current age: " + age, "Current savings: " + money.format(savings), "Monthly contribution: " + money.format(contribution), "Expected annual return: " + oneDecimal.format(rate) + "%", ""];
+        scenarios.forEach(function (item) {
+          lines.push("Retire at " + item.age + ": " + item.years + " years left | " + sentenceMoney(item.balance) + " projected nest egg | " + sentenceMoney(item.monthlyIncome) + "/month at 4%");
+        });
+        lines.push("", "Waiting from 62 to 65 adds " + sentenceMoney(scenarios[1].balance - scenarios[0].balance) + ". Waiting from 65 to 70 adds another " + sentenceMoney(scenarios[2].balance - scenarios[1].balance) + ".", "", "The monthly-income figures use the 4% rule: 4% of the projected balance per year, divided by 12. Estimates only; not financial advice.");
+        return lines.join("\n");
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        copyStatus.textContent = "";
+        var age = readNumber("current-age");
+        var savings = readNumber("current-savings");
+        var contribution = readNumber("monthly-contribution");
+        var rate = readNumber("annual-return");
+        var message = validate(age, savings, contribution, rate);
+        if (message) {
+          error.textContent = message;
+          results.hidden = true;
+          emptyState.hidden = false;
+          return;
+        }
+        error.textContent = "";
+        var scenarios = [62, 65, 70].map(function (target) {
+          var years = target - age;
+          var balance = futureValue(savings, contribution, rate, years);
+          return { age: target, years: years, balance: balance, monthlyIncome: balance * 0.04 / 12 };
+        });
+        body.innerHTML = scenarios.map(function (item) {
+          return "<tr><td><span class=\"age-chip\">" + item.age + "</span></td><td data-label=\"Years of contributions\">" + item.years + "</td><td class=\"money\" data-label=\"Projected nest egg\">" + sentenceMoney(item.balance) + "</td><td class=\"money\" data-label=\"4% monthly estimate\">" + sentenceMoney(item.monthlyIncome) + "</td></tr>";
+        }).join("");
+        summary.textContent = "From age " + age + ", with " + money.format(contribution) + " added each month and a " + oneDecimal.format(rate) + "% annual return.";
+        var deltaOne = scenarios[1].balance - scenarios[0].balance;
+        var deltaTwo = scenarios[2].balance - scenarios[1].balance;
+        var incomeOne = scenarios[1].monthlyIncome - scenarios[0].monthlyIncome;
+        var incomeTwo = scenarios[2].monthlyIncome - scenarios[1].monthlyIncome;
+        verdict.innerHTML = "<h3>What each extra stretch of work buys</h3><p>Waiting from <strong>62 to 65</strong> adds <strong>" + sentenceMoney(deltaOne) + "</strong> to the projected nest egg and about <strong>" + sentenceMoney(incomeOne) + " more per month</strong> under the 4% rule.</p><p>Waiting from <strong>65 to 70</strong> adds another <strong>" + sentenceMoney(deltaTwo) + "</strong> and about <strong>" + sentenceMoney(incomeTwo) + " more per month</strong>. That larger balance comes with a real tradeoff: retirement starts five years later.</p>";
+        lastResultText = buildResultText(age, savings, contribution, rate, scenarios);
+        emailButton.href = "mailto:?subject=" + encodeURIComponent("My retirement age comparison") + "&body=" + encodeURIComponent(lastResultText);
+        emptyState.hidden = true;
+        results.hidden = false;
+        results.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      });
+
+      form.addEventListener("reset", function () {
+        window.setTimeout(function () {
+          error.textContent = "";
+          copyStatus.textContent = "";
+          lastResultText = "";
+          results.hidden = true;
+          emptyState.hidden = false;
+        }, 0);
+      });
+
+      copyButton.addEventListener("click", function () {
+        if (!lastResultText) return;
+        copyStatus.textContent = "";
+        function copied() { copyStatus.textContent = "Results copied."; }
+        function fallback() {
+          var area = document.createElement("textarea");
+          area.value = lastResultText;
+          area.setAttribute("readonly", "");
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          try { document.execCommand("copy"); copied(); }
+          catch (e) { copyStatus.textContent = "Could not copy automatically. Select the results and copy them manually."; }
+          document.body.removeChild(area);
+        }
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastResultText).then(copied).catch(fallback);
+        else fallback();
+      });
+    })();
+  </script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+</body>
+</html>
