@@ -22,6 +22,8 @@
 
 
 
+
+
 <!-- honed-seo-start -->
 <meta name="description" content="Plan your way out of credit card debt. Free credit card payoff analyzer from Honed Money — plain-English results, no signup needed." />
 <link rel="canonical" href="https://honedsignal.com/money/credit-card-payoff-analyzer/" />
@@ -100,5 +102,6 @@
   document.getElementById('addCard').addEventListener('click',function(){addCard();cardList.lastElementChild.querySelector('.card-name').focus()});form.addEventListener('submit',calculate);document.querySelectorAll('.strategy').forEach(function(b){b.addEventListener('click',function(){setActive(b.dataset.strategy)})});document.querySelectorAll('.chip').forEach(function(b){b.addEventListener('click',function(){var x=document.getElementById('extra');x.value=(parseFloat(x.value)||0)+parseFloat(b.dataset.add);calculate()})});document.getElementById('toggleSchedule').addEventListener('click',function(){showFull=!showFull;renderTable()});document.getElementById('copyResults').addEventListener('click',copyResults);document.getElementById('explainResults').addEventListener('click',function(){var button=this,panel=document.getElementById('resultsExplanation'),expanded=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!expanded));button.textContent=expanded?'Explain these results':'Hide explanation';panel.classList.toggle('hidden',expanded)});document.getElementById('downloadCsv').addEventListener('click',function(){var p=plans[active];if(!p)return;var lines=['Month,Date,Payment,Principal,Interest,Remaining Balance'];p.rows.forEach(function(r){lines.push([r.month,r.date.toISOString().slice(0,10),r.payment.toFixed(2),r.principal.toFixed(2),r.interest.toFixed(2),r.balance.toFixed(2)].join(','))});var blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='credit-card-'+active+'-schedule.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});addCard();
 })();
 </script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
 </body>
 </html>
