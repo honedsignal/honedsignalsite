@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Honed Money</title>
+  <meta name="description" content="Six straightforward calculators for everyday money decisions, from dividend income to debt payoff and housing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #0b0e14;
+      --surface: #121820;
+      --surface-raised: #161e27;
+      --ink: #f5f5f5;
+      --muted: #aeb7c0;
+      --line: #2b3540;
+      --line-strong: #46525d;
+      --orange: #f7931a;
+      --orange-soft: rgba(247, 147, 26, .12);
+      --blue: #78a6d2;
+      --green: #39ff14;
+      --red: #ff7379;
+      --shadow: 0 22px 65px rgba(0, 0, 0, .34);
+      --focus: #f7931a;
+    }
+
+    /* Honed Signal uses a dark presentation in both system appearances. */
+    @media (prefers-color-scheme: light) {
+      :root {
+        --paper: #0b0e14;
+        --surface: #121820;
+        --surface-raised: #161e27;
+        --ink: #f5f5f5;
+        --muted: #aeb7c0;
+        --line: #2b3540;
+        --line-strong: #46525d;
+        --orange: #f7931a;
+        --orange-soft: rgba(247, 147, 26, .12);
+        --blue: #78a6d2;
+        --green: #39ff14;
+        --red: #ff7379;
+        --shadow: 0 22px 65px rgba(0, 0, 0, .34);
+        --focus: #f7931a;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 42%, transparent);
+      outline-offset: 5px;
+    }
+    .page {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 52px) clamp(16px, 4vw, 48px) max(42px, env(safe-area-inset-bottom));
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+      align-items: end;
+      gap: clamp(30px, 6vw, 84px);
+      padding: 12px 0 clamp(34px, 5vw, 58px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(3rem, 8.8vw, 7.3rem);
+      line-height: .88;
+      letter-spacing: -.065em;
+      font-weight: 700;
+    }
+    .brand h1 span { color: var(--orange); }
+    .byline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 19px 0 0 4px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .77rem;
+      letter-spacing: .085em;
+      text-transform: uppercase;
+    }
+    .byline::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--orange);
+    }
+    .intro-copy { padding-bottom: 2px; }
+    .intro-copy p {
+      margin: 0;
+      max-width: 34ch;
+      color: var(--muted);
+      font-size: clamp(1.03rem, 1.8vw, 1.28rem);
+      line-height: 1.48;
+    }
+    .tool-count {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-top: 22px;
+      color: var(--ink);
+    }
+    .tool-count strong {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--orange);
+    }
+    .tool-count span {
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 600;
+    }
+
+    .catalog { padding: clamp(34px, 5vw, 58px) 0 0; }
+    .catalog-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+    .catalog-head h2 {
+      margin: 0;
+      font-size: clamp(1.55rem, 2.7vw, 2.15rem);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+    }
+    .catalog-head p {
+      margin: 0 0 2px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .74rem;
+    }
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+    .tool {
+      --card-accent: var(--orange);
+      position: relative;
+      display: flex;
+      min-width: 0;
+      min-height: 300px;
+      flex-direction: column;
+      grid-column: span 4;
+      padding: clamp(22px, 3vw, 32px);
+      overflow: hidden;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+      text-decoration: none;
+      isolation: isolate;
+    }
+    .tool:nth-child(2), .tool:nth-child(5) { --card-accent: var(--blue); }
+    .tool:nth-child(3) { --card-accent: var(--red); }
+    .tool:nth-child(4), .tool:nth-child(6) { --card-accent: var(--green); }
+    .tool::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      z-index: -1;
+      height: 4px;
+      background: var(--card-accent);
+      transform: scaleX(.22);
+      transform-origin: left;
+      transition: transform .24s ease;
+    }
+    .tool:hover { background: var(--surface-raised); }
+    .tool:hover::after, .tool:focus-visible::after { transform: scaleX(1); }
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .index {
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+    }
+    .glyph {
+      display: grid;
+      width: 43px;
+      height: 43px;
+      place-items: center;
+      border: 1px solid var(--line-strong);
+      color: var(--card-accent);
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .tool:hover .glyph { border-color: var(--card-accent); background: color-mix(in srgb, var(--card-accent) 8%, transparent); }
+    .glyph svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: square; stroke-linejoin: miter; }
+    .tool h3 {
+      margin: auto 0 11px;
+      max-width: 11ch;
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      line-height: 1.04;
+      letter-spacing: -.038em;
+    }
+    .tool p {
+      max-width: 35ch;
+      min-height: 3em;
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+    .open {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 26px;
+      padding-top: 17px;
+      border-top: 1px solid var(--line);
+      font-size: .83rem;
+      font-weight: 700;
+    }
+    .open svg {
+      width: 19px;
+      height: 19px;
+      color: var(--card-accent);
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      transition: transform .2s ease;
+    }
+    .tool:hover .open svg { transform: translateX(4px); }
+
+    .footer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 30px 0 4px;
+      color: var(--muted);
+      font-size: .76rem;
+    }
+    .footer p { margin: 0; }
+    .footer strong { color: var(--ink); font-weight: 600; }
+
+    @media (max-width: 880px) {
+      .masthead { grid-template-columns: 1fr; gap: 26px; }
+      .intro-copy p { max-width: 48ch; }
+      .tool { grid-column: span 6; }
+    }
+    @media (max-width: 580px) {
+      .page { padding-left: 16px; padding-right: 16px; }
+      .brand h1 { font-size: clamp(3rem, 15vw, 4.7rem); }
+      .masthead { padding-top: 4px; }
+      .catalog-head { align-items: flex-start; flex-direction: column; gap: 7px; }
+      .tools { display: block; border-left: 1px solid var(--line); }
+      .tool { min-height: 270px; }
+      .footer { flex-direction: column; gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .tool::after, .open svg { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="masthead">
+      <div class="brand">
+        <h1>Honed Money<span>.</span></h1>
+        <p class="byline">by Honed Signal</p>
+      </div>
+      <div class="intro-copy">
+        <p>Clear answers for the money decisions that show up in real life—income, debt, savings, housing, and the bills in between.</p>
+        <div class="tool-count"><strong>06</strong><span>free calculators</span></div>
+      </div>
+    </header>
+
+    <section class="catalog" aria-labelledby="catalog-title">
+      <div class="catalog-head">
+        <h2 id="catalog-title">Choose a question to answer.</h2>
+        <p>No account required</p>
+      </div>
+
+      <div class="tools">
+        <a class="tool" href="/money/dividend-calculator/">
+          <div class="card-top">
+            <span class="index">01 / INCOME</span>
+            <span class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 19V9m7 10V5m7 14v-7"/><path d="M3 19h18"/></svg>
+            </span>
+          </div>
+          <h3>Dividend Calculator</h3>
+          <p>Estimate annual, monthly, and per-payment income from a dividend investment.</p>
+          <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
+        </a>
+
+        <a class="tool" href="/money/subscription-cost-analyzer/">
+          <div class="card-top">
+            <span class="index">02 / SPENDING</span>
+            <span class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 4h10v16H7zM10 8h4m-4 4h4m-4 4h2"/></svg>
+            </span>
+          </div>
+          <h3>Subscription Cost Analyzer</h3>
+          <p>See what recurring services cost per year and what you could save by changing them.</p>
+          <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
+        </a>
+
+        <a class="tool" href="/money/credit-card-payoff-analyzer/">
+          <div class="card-top">
+            <span class="index">03 / DEBT</span>
+            <span class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 10h18M7 15h4"/></svg>
+            </span>
+          </div>
+          <h3>Credit Card Payoff Analyzer</h3>
+          <p>Compare avalanche and snowball plans to find your payoff date and total interest.</p>
+          <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
+        </a>
+
+        <a class="tool" href="/money/emergency-fund-calculator/">
+          <div class="card-top">
+            <span class="index">04 / RESERVE</span>
+            <span class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 9h16v10H4zM2 9l10-5 10 5M8 12v4m4-4v4m4-4v4"/></svg>
+            </span>
+          </div>
+          <h3>Emergency Fund Calculator</h3>
+          <p>Set a cash-reserve target based on your essential expenses, income stability, and timeline.</p>
+          <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
+        </a>
+
+        <a class="tool" href="/money/rent-vs-buy-calculator/">
+          <div class="card-top">
+            <span class="index">05 / HOUSING</span>
+            <span class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10M9 20v-6h6v6"/></svg>
+            </span>
+          </div>
+          <h3>Rent vs. Buy Calculator</h3>
+          <p>Compare the long-term cost of renting and owning with the assumptions that matter most.</p>
+          <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
+        </a>
+
+        <a class="tool" href="/money/take-home-pay-calculator/">
+          <div class="card-top">
+            <span class="index">06 / PAYCHECK</span>
+            <span class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM8 10h8m-8 4h5"/><path d="M17 9v6"/></svg>
+            </span>
+          </div>
+          <h3>Take-Home Pay Calculator</h3>
+          <p>Estimate what reaches your bank account after federal taxes and payroll deductions.</p>
+          <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>For informational and educational purposes only.</p>
+      <p><strong>Honed Money</strong> by Honed Signal</p>
+    </footer>
+  </main>
+</body>
+</html>

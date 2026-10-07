@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Dividend Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #10151c;
+      --muted: #5d6671;
+      --paper: #f5f5f3;
+      --surface: #ffffff;
+      --surface-2: #e9eceb;
+      --line: #cfd4d3;
+      --line-strong: #aeb6b5;
+      --accent: #1d6692;
+      --accent-strong: #0c4d78;
+      --positive: #147a3e;
+      --positive-soft: #e0f3e6;
+      --orange: #d66900;
+      --focus: #1871a6;
+      --shadow: 0 18px 55px rgba(15, 26, 35, .10);
+      --chart-fill: rgba(29, 102, 146, .12);
+      --danger: #b63139;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f3f6f7;
+        --muted: #aeb8c0;
+        --paper: #0b0e14;
+        --surface: #121821;
+        --surface-2: #1a222c;
+        --line: #2c3742;
+        --line-strong: #46525d;
+        --accent: #77a6d6;
+        --accent-strong: #9bc2e8;
+        --positive: #39ff14;
+        --positive-soft: rgba(57, 255, 20, .09);
+        --orange: #f7931a;
+        --focus: #82b6e6;
+        --shadow: 0 22px 65px rgba(0, 0, 0, .38);
+        --chart-fill: rgba(100, 144, 196, .15);
+        --danger: #ff7379;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+    button, input, select { -webkit-tap-highlight-color: transparent; }
+    .page {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 52px) clamp(16px, 3.6vw, 46px) 68px;
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+      gap: 36px;
+      align-items: end;
+      padding: 12px 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    .intro h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(2.25rem, 6vw, 5.8rem);
+      line-height: .94;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    .intro h1 span { color: var(--positive); }
+    .intro-copy {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+      max-width: 38ch;
+    }
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(300px, 385px) minmax(0, 1fr);
+      gap: 0;
+      margin-top: 34px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .inputs {
+      padding: 28px;
+      border-right: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .section-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .section-label h2, .section-label h3 {
+      margin: 0;
+      font-size: .86rem;
+      line-height: 1;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .quiet-button {
+      border: 0;
+      padding: 5px 0;
+      background: transparent;
+      color: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+    .quiet-button:hover { color: var(--accent-strong); }
+    .field { margin-bottom: 18px; }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: .83rem;
+      font-weight: 600;
+    }
+    .optional { font-weight: 400; color: var(--muted); }
+    .control {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .prefix, .suffix {
+      position: absolute;
+      z-index: 1;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .9rem;
+      pointer-events: none;
+    }
+    .prefix { left: 13px; }
+    .suffix { right: 13px; }
+    input, select {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--paper);
+      color: var(--ink);
+      outline: none;
+      padding: 10px 12px;
+      font-variant-numeric: tabular-nums;
+    }
+    input.has-prefix { padding-left: 29px; }
+    input.has-suffix { padding-right: 34px; }
+    input:focus, select:focus, button:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 28%, transparent);
+      outline-offset: 1px;
+      border-color: var(--focus);
+    }
+    input[aria-invalid="true"] { border-color: var(--danger); }
+    .error {
+      min-height: 18px;
+      margin: 5px 0 -3px;
+      color: var(--danger);
+      font-size: .76rem;
+    }
+    .rule {
+      height: 1px;
+      margin: 24px 0;
+      background: var(--line);
+    }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 4px 0 18px;
+    }
+    .toggle-copy strong { display: block; font-size: .9rem; }
+    .toggle-copy span { color: var(--muted); font-size: .78rem; }
+    .switch {
+      position: relative;
+      width: 48px;
+      height: 28px;
+      flex: 0 0 auto;
+    }
+    .switch input {
+      position: absolute;
+      inset: 0;
+      width: 48px;
+      height: 28px;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      opacity: 1;
+      appearance: none;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--surface-2);
+      cursor: pointer;
+      transition: background .18s ease, border-color .18s ease;
+    }
+    .switch input::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 3px;
+      top: 3px;
+      border-radius: 50%;
+      background: var(--ink);
+      transition: transform .18s ease, background .18s ease;
+    }
+    .switch input:checked { background: var(--positive); border-color: var(--positive); }
+    .switch input:checked::after { transform: translateX(20px); background: #071008; }
+    .switch input:focus-visible { outline: 3px solid color-mix(in srgb, var(--focus) 28%, transparent); outline-offset: 2px; }
+    .track { display: none; }
+    .results { min-width: 0; }
+    .primary-result {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(200px, .65fr);
+      min-height: 205px;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-number {
+      padding: 30px clamp(24px, 4vw, 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--positive-soft);
+    }
+    .hero-number .eyebrow {
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .money {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.6rem, 6vw, 5.3rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      overflow-wrap: anywhere;
+    }
+    .money-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+    .side-result {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      background: var(--surface-2);
+    }
+    .side-stat + .side-stat { padding-top: 16px; border-top: 1px solid var(--line); }
+    .stat-name { display: block; color: var(--muted); font-size: .78rem; margin-bottom: 3px; }
+    .stat-value {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.25rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+    .metric {
+      min-width: 0;
+      padding: 22px clamp(17px, 3vw, 28px);
+    }
+    .metric + .metric { border-left: 1px solid var(--line); }
+    .metric .stat-value { display: block; margin-top: 6px; }
+    .metric-sub { display: block; margin-top: 3px; color: var(--muted); font-size: .75rem; }
+    .projection { padding: 30px clamp(22px, 4vw, 40px) 34px; }
+    .projection-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 21px;
+    }
+    .projection-head h2 { margin: 0 0 4px; font-size: 1.25rem; }
+    .projection-head p { margin: 0; color: var(--muted); font-size: .84rem; }
+    .chart-wrap {
+      position: relative;
+      height: 250px;
+      margin-bottom: 23px;
+      border-bottom: 1px solid var(--line-strong);
+      border-left: 1px solid var(--line-strong);
+    }
+    #chart { width: 100%; height: 100%; display: block; overflow: visible; }
+    .chart-grid { stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 5; }
+    .chart-line { stroke: var(--accent); stroke-width: 3; fill: none; vector-effect: non-scaling-stroke; }
+    .chart-area { fill: var(--chart-fill); }
+    .chart-point { fill: var(--surface); stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
+    .axis-label { fill: var(--muted); font: 11px "IBM Plex Mono", monospace; }
+    .table-shell { overflow: hidden; border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    th {
+      padding: 10px 13px;
+      color: var(--muted);
+      background: var(--surface-2);
+      font-size: .73rem;
+      text-align: right;
+      font-weight: 600;
+    }
+    th:first-child, td:first-child { text-align: left; }
+    td { padding: 11px 13px; text-align: right; font-family: "IBM Plex Mono", monospace; font-size: .82rem; border-top: 1px solid var(--line); }
+    .download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 9px 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: .82rem;
+      font-weight: 600;
+    }
+    .download:hover { border-color: var(--accent); color: var(--accent-strong); }
+    .download[aria-disabled="true"], .download:disabled { opacity: .52; cursor: not-allowed; color: var(--muted); border-color: var(--line); }
+    .download svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .result-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 9px; }
+    .explain {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .explain article { padding: 23px 25px; }
+    .explain article + article { border-left: 1px solid var(--line); }
+    .explain h3 { margin: 0 0 7px; font-size: .95rem; }
+    .explain p { margin: 0; color: var(--muted); font-size: .82rem; }
+    .disclaimer {
+      max-width: 940px;
+      margin: 25px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: .74rem;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 860px) {
+      .intro { grid-template-columns: 1fr; gap: 18px; }
+      .intro h1 { max-width: 680px; }
+      .workbench { grid-template-columns: 1fr; }
+      .inputs { border-right: 0; border-bottom: 1px solid var(--line); }
+      .explain { grid-template-columns: 1fr; }
+      .explain article + article { border-left: 0; border-top: 1px solid var(--line); }
+    }
+    @media (max-width: 600px) {
+      .page { padding: 17px 13px 48px; }
+      .intro { padding-bottom: 25px; }
+      .intro h1 { font-size: clamp(2.6rem, 14vw, 4.5rem); }
+      .workbench { margin-top: 24px; }
+      .inputs { padding: 22px 18px; }
+      .field-row { grid-template-columns: 1fr; gap: 0; }
+      .primary-result { grid-template-columns: 1fr; }
+      .hero-number { min-height: 180px; padding: 28px 20px; }
+      .side-result { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+      .side-stat { padding: 18px; }
+      .side-stat + .side-stat { padding-top: 18px; border-top: 0; border-left: 1px solid var(--line); }
+      .metric-strip { grid-template-columns: 1fr 1fr; }
+      .metric:nth-child(3) { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); }
+      .projection { padding: 25px 17px 28px; }
+      .projection-head { flex-direction: column; align-items: stretch; }
+      .result-actions { display: grid; grid-template-columns: 1fr; }
+      .download { width: 100%; }
+      .chart-wrap { height: 220px; margin-top: 10px; }
+      .table-shell { border: 0; overflow: visible; }
+      table, tbody, tr, td { display: block; }
+      thead { display: none; }
+      tr { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); margin-bottom: 10px; }
+      td { display: flex; justify-content: space-between; gap: 16px; padding: 10px 12px; text-align: right !important; border-top: 1px solid var(--line); }
+      td:first-child { grid-column: 1 / -1; border-top: 0; background: var(--surface-2); font-family: "IBM Plex Sans", sans-serif; font-weight: 700; }
+      td:nth-child(2), td:nth-child(3) { border-top: 1px solid var(--line); }
+      td:nth-child(odd):not(:first-child) { border-left: 1px solid var(--line); }
+      td::before { content: attr(data-label); color: var(--muted); font-family: "IBM Plex Sans", sans-serif; font-size: .74rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="intro">
+      <h1>Turn shares into an <span>income plan.</span></h1>
+      <p class="intro-copy">Estimate annual, monthly, and per-payment dividends—then project how income could grow with reinvestment.</p>
+    </header>
+
+    <section class="workbench" aria-label="Dividend income calculator">
+      <form class="inputs" id="calculator" novalidate>
+        <div class="section-label">
+          <h2>Your inputs</h2>
+          <button class="quiet-button" type="button" id="clearButton">Clear</button>
+        </div>
+
+        <div class="field">
+          <label for="ticker">Ticker <span class="optional">(optional)</span></label>
+          <input id="ticker" name="ticker" type="text" inputmode="text" autocomplete="off" maxlength="8" placeholder="e.g. KO">
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="shares">Shares owned</label>
+            <input id="shares" name="shares" type="number" inputmode="decimal" min="0" step="0.001" value="100" aria-describedby="sharesError">
+            <div class="error" id="sharesError" aria-live="polite"></div>
+          </div>
+          <div class="field">
+            <label for="dividend">Annual dividend / share</label>
+            <div class="control"><span class="prefix">$</span><input class="has-prefix" id="dividend" name="dividend" type="number" inputmode="decimal" min="0" step="0.0001" value="2.00" aria-describedby="dividendError"></div>
+            <div class="error" id="dividendError" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="price">Share price <span class="optional">(optional)</span></label>
+            <div class="control"><span class="prefix">$</span><input class="has-prefix" id="price" name="price" type="number" inputmode="decimal" min="0" step="0.01" value="50.00" aria-describedby="priceError"></div>
+            <div class="error" id="priceError" aria-live="polite"></div>
+          </div>
+          <div class="field">
+            <label for="frequency">Payments per year</label>
+            <select id="frequency" name="frequency">
+              <option value="12">12 — Monthly</option>
+              <option value="4" selected>4 — Quarterly</option>
+              <option value="2">2 — Semiannual</option>
+              <option value="1">1 — Annual</option>
+            </select>
+            <div class="error"></div>
+          </div>
+        </div>
+
+        <div class="rule"></div>
+        <div class="section-label"><h3>Projection assumptions</h3></div>
+
+        <div class="toggle-row">
+          <div class="toggle-copy"><strong>Reinvest dividends</strong><span>Use each payment to buy more shares</span></div>
+          <label class="switch" aria-label="Reinvest dividends">
+            <input id="reinvest" type="checkbox" checked>
+            <span class="track"></span>
+          </label>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="years">Projection</label>
+            <div class="control"><input class="has-suffix" id="years" name="years" type="number" inputmode="numeric" min="1" max="40" step="1" value="10"><span class="suffix">yrs</span></div>
+            <div class="error" id="yearsError" aria-live="polite"></div>
+          </div>
+          <div class="field">
+            <label for="growth">Dividend growth</label>
+            <div class="control"><input class="has-suffix" id="growth" name="growth" type="number" inputmode="decimal" min="-100" max="100" step="0.1" value="3"><span class="suffix">%</span></div>
+            <div class="error" id="growthError" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="priceGrowth">Share-price growth</label>
+            <div class="control"><input class="has-suffix" id="priceGrowth" name="priceGrowth" type="number" inputmode="decimal" min="-100" max="100" step="0.1" value="4"><span class="suffix">%</span></div>
+            <div class="error" id="priceGrowthError" aria-live="polite"></div>
+          </div>
+          <div class="field">
+            <label for="tax">Dividend tax rate</label>
+            <div class="control"><input class="has-suffix" id="tax" name="tax" type="number" inputmode="decimal" min="0" max="100" step="0.1" value="0"><span class="suffix">%</span></div>
+            <div class="error" id="taxError" aria-live="polite"></div>
+          </div>
+        </div>
+      </form>
+
+      <div class="results" aria-live="polite">
+        <div class="primary-result">
+          <div class="hero-number">
+            <span class="eyebrow">Estimated annual dividend income</span>
+            <strong class="money" id="annualIncome">$200.00</strong>
+            <span class="money-note" id="annualNote">$2.00 per share × 100 shares</span>
+          </div>
+          <div class="side-result">
+            <div class="side-stat"><span class="stat-name">Monthly average</span><strong class="stat-value" id="monthlyIncome">$16.67</strong></div>
+            <div class="side-stat"><span class="stat-name" id="paymentLabel">Each quarterly payment</span><strong class="stat-value" id="paymentIncome">$50.00</strong></div>
+          </div>
+        </div>
+
+        <div class="metric-strip">
+          <div class="metric"><span class="stat-name">Current yield</span><strong class="stat-value" id="yieldValue">4.00%</strong><span class="metric-sub">Annual dividend ÷ share price</span></div>
+          <div class="metric"><span class="stat-name">Position value</span><strong class="stat-value" id="positionValue">$5,000.00</strong><span class="metric-sub">Shares × share price</span></div>
+          <div class="metric"><span class="stat-name">After-tax annual income</span><strong class="stat-value" id="afterTax">$200.00</strong><span class="metric-sub" id="taxNote">Using a 0% dividend tax rate</span></div>
+        </div>
+
+        <div class="projection">
+          <div class="projection-head">
+            <div>
+              <h2 id="projectionTitle">10-year income projection</h2>
+              <p id="projectionSummary">Estimated annual income at year 10: $392.43</p>
+            </div>
+            <div class="result-actions">
+              <button type="button" class="download" id="copyButton" aria-label="Copy these dividend results">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8h11v12H8zM5 16H3V4h11v2"/></svg>
+                <span id="copyLabel">Copy results</span>
+              </button>
+              <a class="download" id="emailButton" aria-label="Email these dividend results" href="#">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h18v12H3zM3.5 7l8.5 6 8.5-6"/></svg>
+                Email my results
+              </a>
+              <button type="button" class="download" id="downloadButton" aria-label="Download projection as CSV">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg>
+                Download CSV
+              </button>
+            </div>
+            <span class="sr-only" id="copyStatus" aria-live="polite"></span>
+          </div>
+          <div class="chart-wrap" role="img" aria-label="Projected annual dividend income line chart">
+            <svg id="chart" viewBox="0 0 700 250" preserveAspectRatio="none"></svg>
+          </div>
+          <div class="table-shell">
+            <table>
+              <thead><tr><th>Year</th><th>Shares</th><th>Dividend / share</th><th>Annual income</th><th>Cumulative income</th></tr></thead>
+              <tbody id="projectionRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="explain" aria-label="How to use the calculator">
+      <article><h3>Use the declared annual dividend</h3><p>Enter the total dividend paid per share over a full year—not the amount from one quarterly payment.</p></article>
+      <article><h3>Growth is an assumption</h3><p>Companies can raise, hold, cut, or stop dividends. A projection is a scenario, not a promise.</p></article>
+      <article><h3>Reinvestment needs a price</h3><p>When reinvestment is on, the calculator uses the projected share price to estimate fractional shares bought.</p></article>
+    </section>
+    <p class="disclaimer">For informational and educational purposes only. This calculator does not constitute investment, tax, or legal advice. Results are estimates based on the assumptions entered.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+      var ids = ["ticker", "shares", "dividend", "price", "frequency", "reinvest", "years", "growth", "priceGrowth", "tax"];
+      var el = {};
+      ids.forEach(function (id) { el[id] = document.getElementById(id); });
+      var projectionData = [];
+      var latestResultsText = "";
+      var copyTimer = null;
+
+      function number(value, fallback) {
+        var parsed = parseFloat(value);
+        return Number.isFinite(parsed) ? parsed : fallback;
+      }
+      function money(value) {
+        if (!Number.isFinite(value)) return "—";
+        var decimals = Math.abs(value) >= 100000 ? 0 : 2;
+        return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(value);
+      }
+      function compactMoney(value) {
+        if (value >= 1000000) return "$" + (value / 1000000).toFixed(value >= 10000000 ? 0 : 1) + "M";
+        if (value >= 1000) return "$" + (value / 1000).toFixed(value >= 10000 ? 0 : 1) + "k";
+        return money(value);
+      }
+      function num(value, maxDecimals) {
+        return new Intl.NumberFormat("en-US", { maximumFractionDigits: maxDecimals }).format(value);
+      }
+      function setText(id, text) { document.getElementById(id).textContent = text; }
+      function setError(id, message) {
+        var input = el[id];
+        var error = document.getElementById(id + "Error");
+        if (input) input.setAttribute("aria-invalid", message ? "true" : "false");
+        if (error) error.textContent = message || "";
+      }
+      function validate() {
+        var valid = true;
+        var shares = number(el.shares.value, NaN);
+        var dividend = number(el.dividend.value, NaN);
+        var price = el.price.value.trim() === "" ? null : number(el.price.value, NaN);
+        var years = number(el.years.value, NaN);
+        var growth = number(el.growth.value, NaN);
+        var priceGrowth = number(el.priceGrowth.value, NaN);
+        var tax = number(el.tax.value, NaN);
+        var checks = [
+          ["shares", !Number.isFinite(shares) || shares < 0, "Enter zero or more shares."],
+          ["dividend", !Number.isFinite(dividend) || dividend < 0, "Enter a valid annual dividend."],
+          ["price", price !== null && (!Number.isFinite(price) || price <= 0), "Enter a price above zero or leave blank."],
+          ["years", !Number.isInteger(years) || years < 1 || years > 40, "Choose 1 to 40 years."],
+          ["growth", !Number.isFinite(growth) || growth < -100 || growth > 100, "Use a rate from -100% to 100%."],
+          ["priceGrowth", !Number.isFinite(priceGrowth) || priceGrowth < -100 || priceGrowth > 100, "Use a rate from -100% to 100%."],
+          ["tax", !Number.isFinite(tax) || tax < 0 || tax > 100, "Use a rate from 0% to 100%."]
+        ];
+        checks.forEach(function (check) { setError(check[0], check[1] ? check[2] : ""); if (check[1]) valid = false; });
+        return valid;
+      }
+      function frequencyName(value) {
+        return { "12": "monthly", "4": "quarterly", "2": "semiannual", "1": "annual" }[String(value)] || "scheduled";
+      }
+      function calculateProjection(shares, dividend, price, frequency, years, dividendGrowth, sharePriceGrowth, reinvest, taxRate) {
+        var rows = [];
+        var currentShares = shares;
+        var currentDividend = dividend;
+        var currentPrice = price;
+        var cumulative = 0;
+        for (var year = 1; year <= years; year++) {
+          var grossIncome = 0;
+          var dividendPerPayment = currentDividend / frequency;
+          for (var payment = 0; payment < frequency; payment++) {
+            var payout = currentShares * dividendPerPayment;
+            grossIncome += payout;
+            if (reinvest && currentPrice > 0) {
+              var spendable = payout * (1 - taxRate);
+              currentShares += spendable / currentPrice;
+            }
+          }
+          cumulative += grossIncome;
+          rows.push({ year: year, shares: currentShares, dividend: currentDividend, income: grossIncome, cumulative: cumulative, price: currentPrice });
+          currentDividend = currentDividend * (1 + dividendGrowth);
+          if (currentPrice > 0) currentPrice = currentPrice * (1 + sharePriceGrowth);
+        }
+        return rows;
+      }
+      function drawChart(rows) {
+        var svg = document.getElementById("chart");
+        while (svg.firstChild) svg.removeChild(svg.firstChild);
+        if (!rows.length) return;
+        var NS = "http://www.w3.org/2000/svg";
+        var w = 700, h = 250, left = 56, right = 14, top = 16, bottom = 32;
+        var plotW = w - left - right, plotH = h - top - bottom;
+        var max = Math.max.apply(null, rows.map(function (r) { return r.income; }));
+        max = max > 0 ? max * 1.12 : 1;
+        function x(i) { return left + (rows.length === 1 ? plotW / 2 : (i / (rows.length - 1)) * plotW); }
+        function y(value) { return top + plotH - (value / max) * plotH; }
+        function node(tag, attrs, text) {
+          var n = document.createElementNS(NS, tag);
+          Object.keys(attrs || {}).forEach(function (key) { n.setAttribute(key, attrs[key]); });
+          if (text !== undefined) n.textContent = text;
+          svg.appendChild(n);
+          return n;
+        }
+        for (var g = 0; g <= 4; g++) {
+          var gy = top + (plotH / 4) * g;
+          var val = max * (1 - g / 4);
+          node("line", { x1: left, y1: gy, x2: w - right, y2: gy, class: "chart-grid" });
+          node("text", { x: left - 8, y: gy + 4, "text-anchor": "end", class: "axis-label" }, compactMoney(val));
+        }
+        var points = rows.map(function (r, i) { return [x(i), y(r.income)]; });
+        var line = points.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(2) + " " + p[1].toFixed(2); }).join(" ");
+        var area = line + " L " + points[points.length - 1][0] + " " + (top + plotH) + " L " + points[0][0] + " " + (top + plotH) + " Z";
+        node("path", { d: area, class: "chart-area" });
+        node("path", { d: line, class: "chart-line" });
+        points.forEach(function (p, i) {
+          if (rows.length <= 12 || i === 0 || i === rows.length - 1 || (i + 1) % 5 === 0) node("circle", { cx: p[0], cy: p[1], r: 4, class: "chart-point" });
+        });
+        var labelIndices = [0];
+        if (rows.length > 2) labelIndices.push(Math.floor((rows.length - 1) / 2));
+        if (rows.length > 1) labelIndices.push(rows.length - 1);
+        labelIndices.filter(function (v, i, a) { return a.indexOf(v) === i; }).forEach(function (i) {
+          node("text", { x: x(i), y: h - 9, "text-anchor": i === 0 ? "start" : (i === rows.length - 1 ? "end" : "middle"), class: "axis-label" }, "Year " + rows[i].year);
+        });
+      }
+      function renderTable(rows) {
+        var body = document.getElementById("projectionRows");
+        body.innerHTML = "";
+        var picks = rows.filter(function (r) { return r.year === 1 || r.year === rows.length || r.year % 5 === 0; });
+        picks.forEach(function (r) {
+          var tr = document.createElement("tr");
+          var cells = [
+            ["Year", "Year " + r.year],
+            ["Shares", num(r.shares, 3)],
+            ["Dividend/share", money(r.dividend)],
+            ["Annual income", money(r.income)],
+            ["Cumulative", money(r.cumulative)]
+          ];
+          cells.forEach(function (cell) {
+            var td = document.createElement("td");
+            td.setAttribute("data-label", cell[0]);
+            td.textContent = cell[1];
+            tr.appendChild(td);
+          });
+          body.appendChild(tr);
+        });
+      }
+      function setResultActionsDisabled() {
+        var link = document.getElementById("emailButton");
+        var copyButton = document.getElementById("copyButton");
+        link.removeAttribute("href");
+        link.setAttribute("aria-disabled", "true");
+        copyButton.disabled = true;
+        latestResultsText = "";
+        clearTimeout(copyTimer);
+        document.getElementById("copyLabel").textContent = "Copy results";
+        document.getElementById("copyStatus").textContent = "";
+      }
+      function updateEmailLink(details) {
+        var link = document.getElementById("emailButton");
+        var ticker = el.ticker.value.trim().toUpperCase();
+        var subject = (ticker ? ticker + " " : "") + "Dividend income estimate";
+        var frequency = frequencyName(details.frequency);
+        var rows = projectionData.filter(function (r) { return r.year === 1 || r.year === projectionData.length || r.year % 5 === 0; });
+        var lines = [
+          (ticker ? ticker + " dividend income estimate" : "Dividend income estimate"),
+          "",
+          "CURRENT ESTIMATE",
+          "Annual income: " + money(details.annual),
+          "Monthly average: " + money(details.monthly),
+          "Each " + frequency + " payment: " + money(details.perPayment),
+          "Current yield: " + (details.currentYield === null ? "Not calculated" : (details.currentYield * 100).toFixed(2) + "%"),
+          "Position value: " + (details.position === null ? "Not calculated" : money(details.position)),
+          "After-tax annual income: " + money(details.afterTax),
+          "",
+          "ASSUMPTIONS",
+          "Shares: " + num(details.shares, 3),
+          "Annual dividend per share: " + money(details.dividend),
+          "Share price: " + (details.price > 0 ? money(details.price) : "Not provided"),
+          "Payments per year: " + details.frequency,
+          "Projection: " + details.years + " years",
+          "Dividend growth: " + (details.growth * 100).toFixed(1) + "% per year",
+          "Share-price growth: " + (details.priceGrowth * 100).toFixed(1) + "% per year",
+          "Reinvest dividends: " + (el.reinvest.checked ? "Yes" : "No"),
+          "Dividend tax rate: " + (details.tax * 100).toFixed(1) + "%",
+          "",
+          "PROJECTION SNAPSHOT"
+        ];
+        rows.forEach(function (r) {
+          lines.push("Year " + r.year + ": " + money(r.income) + " annual income; " + num(r.shares, 3) + " shares; " + money(r.cumulative) + " cumulative income");
+        });
+        lines.push("", "For informational and educational purposes only. These results are estimates based on the assumptions entered and do not constitute investment, tax, or legal advice.");
+        latestResultsText = lines.join("\r\n");
+        link.href = "mailto:?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(latestResultsText);
+        link.setAttribute("aria-disabled", "false");
+        document.getElementById("copyButton").disabled = false;
+      }
+      function fallbackCopy(text) {
+        var textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        textarea.style.pointerEvents = "none";
+        document.body.appendChild(textarea);
+        textarea.select();
+        var copied = false;
+        try { copied = document.execCommand("copy"); } catch (error) { copied = false; }
+        textarea.remove();
+        return copied;
+      }
+      function showCopyConfirmation(copied) {
+        var label = document.getElementById("copyLabel");
+        var status = document.getElementById("copyStatus");
+        clearTimeout(copyTimer);
+        label.textContent = copied ? "Copied" : "Copy failed";
+        status.textContent = copied ? "Results copied to clipboard." : "Results could not be copied.";
+        copyTimer = setTimeout(function () {
+          label.textContent = "Copy results";
+          status.textContent = "";
+        }, 1800);
+      }
+      function copyResults() {
+        if (!latestResultsText) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latestResultsText).then(function () {
+            showCopyConfirmation(true);
+          }).catch(function () {
+            showCopyConfirmation(fallbackCopy(latestResultsText));
+          });
+        } else {
+          showCopyConfirmation(fallbackCopy(latestResultsText));
+        }
+      }
+      function update() {
+        if (!validate()) { setResultActionsDisabled(); return; }
+        var shares = number(el.shares.value, 0);
+        var dividend = number(el.dividend.value, 0);
+        var price = el.price.value.trim() === "" ? 0 : number(el.price.value, 0);
+        var frequency = number(el.frequency.value, 4);
+        var years = number(el.years.value, 10);
+        var growth = number(el.growth.value, 0) / 100;
+        var priceGrowth = number(el.priceGrowth.value, 0) / 100;
+        var tax = number(el.tax.value, 0) / 100;
+        var annual = shares * dividend;
+        var monthly = annual / 12;
+        var perPayment = annual / frequency;
+        var currentYield = price > 0 ? dividend / price : null;
+        var position = price > 0 ? shares * price : null;
+        var afterTax = annual * (1 - tax);
+        setText("annualIncome", money(annual));
+        setText("annualNote", money(dividend) + " per share × " + num(shares, 3) + " shares");
+        setText("monthlyIncome", money(monthly));
+        setText("paymentLabel", "Each " + frequencyName(frequency) + " payment");
+        setText("paymentIncome", money(perPayment));
+        setText("yieldValue", currentYield === null ? "—" : (currentYield * 100).toFixed(2) + "%");
+        setText("positionValue", position === null ? "—" : money(position));
+        setText("afterTax", money(afterTax));
+        setText("taxNote", "Using a " + (tax * 100).toFixed(tax * 100 % 1 ? 1 : 0) + "% dividend tax rate");
+        projectionData = calculateProjection(shares, dividend, price, frequency, years, growth, priceGrowth, el.reinvest.checked, tax);
+        var finalRow = projectionData[projectionData.length - 1];
+        setText("projectionTitle", years + "-year income projection");
+        setText("projectionSummary", "Estimated annual income at year " + years + ": " + money(finalRow.income));
+        drawChart(projectionData);
+        renderTable(projectionData);
+        updateEmailLink({
+          shares: shares,
+          dividend: dividend,
+          price: price,
+          frequency: frequency,
+          years: years,
+          growth: growth,
+          priceGrowth: priceGrowth,
+          tax: tax,
+          annual: annual,
+          monthly: monthly,
+          perPayment: perPayment,
+          currentYield: currentYield,
+          position: position,
+          afterTax: afterTax
+        });
+      }
+      function clearForm() {
+        el.ticker.value = "";
+        el.shares.value = "";
+        el.dividend.value = "";
+        el.price.value = "";
+        el.frequency.value = "4";
+        el.reinvest.checked = false;
+        el.years.value = "10";
+        el.growth.value = "0";
+        el.priceGrowth.value = "0";
+        el.tax.value = "0";
+        ["shares", "dividend", "price", "years", "growth", "priceGrowth", "tax"].forEach(function (id) { setError(id, ""); });
+        setText("annualIncome", "$0.00");
+        setText("annualNote", "Enter shares and an annual dividend to begin");
+        setText("monthlyIncome", "$0.00");
+        setText("paymentIncome", "$0.00");
+        setText("yieldValue", "—");
+        setText("positionValue", "—");
+        setText("afterTax", "$0.00");
+        projectionData = [];
+        document.getElementById("projectionRows").innerHTML = "";
+        document.getElementById("chart").innerHTML = "";
+        setResultActionsDisabled();
+        el.shares.focus();
+      }
+      function downloadCsv() {
+        if (!projectionData.length) return;
+        var ticker = el.ticker.value.trim().toUpperCase();
+        var lines = [["Ticker", "Year", "Shares", "Dividend per share", "Annual income", "Cumulative income", "Projected share price"].join(",")];
+        projectionData.forEach(function (r) {
+          lines.push([ticker, r.year, r.shares.toFixed(4), r.dividend.toFixed(4), r.income.toFixed(2), r.cumulative.toFixed(2), r.price ? r.price.toFixed(2) : ""].map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(","));
+        });
+        var blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = (ticker ? ticker.toLowerCase() + "-" : "") + "dividend-projection.csv";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+      ids.forEach(function (id) {
+        var eventName = el[id].tagName === "SELECT" || el[id].type === "checkbox" ? "change" : "input";
+        el[id].addEventListener(eventName, function () {
+          if (id === "ticker") el.ticker.value = el.ticker.value.toUpperCase().replace(/[^A-Z.\-]/g, "");
+          update();
+        });
+      });
+      document.getElementById("clearButton").addEventListener("click", clearForm);
+      document.getElementById("copyButton").addEventListener("click", copyResults);
+      document.getElementById("downloadButton").addEventListener("click", downloadCsv);
+      update();
+    })();
+  </script>
+</body>
+</html>

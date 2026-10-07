@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Subscription Cost Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f3f4f2;
+      --surface: #ffffff;
+      --surface-2: #e8ebe9;
+      --ink: #10151c;
+      --muted: #59636d;
+      --line: #cbd1cf;
+      --line-strong: #9ea8a5;
+      --orange: #d96d00;
+      --orange-soft: #fff0dc;
+      --green: #16733a;
+      --green-soft: #e3f2e7;
+      --blue: #28638c;
+      --danger: #af3038;
+      --receipt: #0b0e14;
+      --receipt-ink: #f5f5f5;
+      --receipt-muted: #aeb7c1;
+      --receipt-line: #2b3540;
+      --shadow: 0 20px 60px rgba(12, 20, 26, .11);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #0b0e14;
+        --surface: #121820;
+        --surface-2: #1a222b;
+        --ink: #f4f6f7;
+        --muted: #aeb7c0;
+        --line: #2b3540;
+        --line-strong: #4b5863;
+        --orange: #f7931a;
+        --orange-soft: rgba(247, 147, 26, .12);
+        --green: #39ff14;
+        --green-soft: rgba(57, 255, 20, .09);
+        --blue: #78a6d2;
+        --danger: #ff7379;
+        --receipt: #07090d;
+        --receipt-ink: #f7f8f8;
+        --receipt-muted: #abb5bf;
+        --receipt-line: #2c3742;
+        --shadow: 0 24px 70px rgba(0, 0, 0, .4);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+    button, input, select { -webkit-tap-highlight-color: transparent; }
+    .page {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 52px) clamp(16px, 3.6vw, 46px) 68px;
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+      align-items: end;
+      gap: 34px;
+      padding: 12px 0 32px;
+      border-bottom: 1px solid var(--line);
+    }
+    .intro h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(2.45rem, 6vw, 5.7rem);
+      line-height: .94;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    .intro h1 span { color: var(--orange); }
+    .intro p {
+      max-width: 39ch;
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+    }
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(320px, .75fr);
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .ledger { min-width: 0; padding: clamp(20px, 3vw, 32px); }
+    .ledger-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .ledger-head h2, .breakdown h2 {
+      margin: 0;
+      font-size: 1.15rem;
+      letter-spacing: -.015em;
+    }
+    .ledger-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+    .text-button {
+      border: 0;
+      background: transparent;
+      padding: 5px 0;
+      color: var(--blue);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+    .text-button:disabled { opacity: .45; cursor: not-allowed; }
+    .column-heads {
+      display: grid;
+      grid-template-columns: minmax(125px, 1.25fr) minmax(95px, .72fr) minmax(112px, .88fr) minmax(122px, 1fr) 38px;
+      gap: 10px;
+      padding: 0 0 8px;
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .065em;
+      text-transform: uppercase;
+    }
+    .rows { display: grid; gap: 10px; }
+    .sub-row {
+      display: grid;
+      grid-template-columns: minmax(125px, 1.25fr) minmax(95px, .72fr) minmax(112px, .88fr) minmax(122px, 1fr) 38px;
+      align-items: start;
+      gap: 10px;
+    }
+    input, select {
+      width: 100%;
+      min-width: 0;
+      min-height: 46px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--paper);
+      color: var(--ink);
+      outline: none;
+      padding: 10px 11px;
+      font-variant-numeric: tabular-nums;
+    }
+    input::placeholder { color: color-mix(in srgb, var(--muted) 72%, transparent); }
+    input:focus, select:focus, button:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 28%, transparent);
+      outline-offset: 1px;
+      border-color: var(--blue);
+    }
+    .money-control { position: relative; }
+    .money-control::before {
+      content: "$";
+      position: absolute;
+      z-index: 1;
+      left: 11px;
+      top: 50%;
+      translate: 0 -50%;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .85rem;
+      pointer-events: none;
+    }
+    .money-control input { padding-left: 27px; }
+    .remove {
+      width: 38px;
+      min-height: 46px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+    .remove:hover { color: var(--danger); }
+    .target-wrap {
+      grid-column: 4 / 5;
+      display: none;
+      margin-top: -4px;
+    }
+    .sub-row.is-downgrade .target-wrap { display: block; }
+    .target-wrap label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+    .target-wrap input { min-height: 40px; }
+    .row-divider {
+      display: none;
+      height: 1px;
+      background: var(--line);
+      grid-column: 1 / -1;
+    }
+    .ledger-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+    .primary {
+      min-height: 44px;
+      border: 1px solid var(--ink);
+      border-radius: 3px;
+      padding: 9px 16px;
+      background: var(--ink);
+      color: var(--surface);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary:hover { background: var(--orange); border-color: var(--orange); color: #111; }
+    .result-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .result-actions-label {
+      flex-basis: 100%;
+      margin: 0;
+      color: var(--muted);
+      font-size: .78rem;
+      text-align: right;
+    }
+    .email-results,
+    .copy-results {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border: 1px solid var(--orange);
+      border-radius: 3px;
+      padding: 9px 14px;
+      background: var(--orange-soft);
+      color: var(--ink);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .email-results:hover,
+    .copy-results:hover:not(:disabled) { background: var(--orange); border-color: var(--orange); color: #111; }
+    .email-results[aria-disabled="true"],
+    .copy-results:disabled {
+      opacity: .72;
+      cursor: not-allowed;
+      border-color: var(--line-strong);
+      background: var(--surface-2);
+      color: var(--muted);
+    }
+    .receipt {
+      min-width: 0;
+      padding: clamp(24px, 3.3vw, 38px);
+      background: var(--receipt);
+      color: var(--receipt-ink);
+      border-left: 1px solid var(--receipt-line);
+    }
+    .receipt-kicker {
+      margin: 0 0 20px;
+      color: var(--receipt-muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .72rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .big-total { padding-bottom: 25px; border-bottom: 1px dashed var(--receipt-line); }
+    .big-total span { display: block; color: var(--receipt-muted); font-size: .83rem; }
+    .big-total strong {
+      display: block;
+      margin-top: 5px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.15rem, 4vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -.05em;
+    }
+    .big-total small { color: var(--receipt-muted); }
+    .receipt-lines { padding: 17px 0; border-bottom: 1px dashed var(--receipt-line); }
+    .receipt-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      padding: 6px 0;
+      color: var(--receipt-muted);
+      font-size: .9rem;
+    }
+    .receipt-line output, .receipt-line strong {
+      color: var(--receipt-ink);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+      text-align: right;
+    }
+    .savings { padding: 20px 0; }
+    .savings .receipt-line output { color: var(--green); }
+    .meter {
+      height: 9px;
+      margin: 7px 0 12px;
+      background: var(--receipt-line);
+      overflow: hidden;
+    }
+    .meter span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: var(--green);
+      transition: width .25s ease;
+    }
+    .meter-copy { margin: 0; color: var(--receipt-muted); font-size: .78rem; }
+    .insight {
+      margin: 4px 0 0;
+      padding: 15px 16px;
+      background: rgba(255, 255, 255, .055);
+      color: var(--receipt-muted);
+      font-size: .86rem;
+    }
+    .insight strong { color: var(--receipt-ink); }
+    .breakdown {
+      display: grid;
+      grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+      gap: 0;
+      margin-top: 30px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .breakdown-copy { padding: clamp(22px, 3vw, 32px); border-right: 1px solid var(--line); }
+    .breakdown-copy p { margin: 7px 0 0; color: var(--muted); font-size: .9rem; }
+    .category-list { padding: 18px clamp(22px, 3vw, 32px); }
+    .category-row {
+      display: grid;
+      grid-template-columns: minmax(100px, 1fr) minmax(100px, 2fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .category-row:last-child { border-bottom: 0; }
+    .category-name { font-size: .88rem; font-weight: 600; }
+    .bar { height: 7px; background: var(--surface-2); overflow: hidden; }
+    .bar span { display: block; width: 0%; height: 100%; background: var(--orange); }
+    .category-value { min-width: 78px; text-align: right; font-family: "IBM Plex Mono", monospace; font-size: .82rem; }
+    .empty {
+      padding: 22px 0;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    .footer-note {
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: .78rem;
+      text-align: center;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 860px) {
+      .intro { grid-template-columns: 1fr; gap: 16px; }
+      .workbench { grid-template-columns: 1fr; }
+      .receipt { border-left: 0; border-top: 1px solid var(--receipt-line); }
+      .breakdown { grid-template-columns: 1fr; }
+      .breakdown-copy { border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+    @media (max-width: 640px) {
+      .page { padding-inline: 14px; padding-bottom: 42px; }
+      .intro h1 { font-size: clamp(2.35rem, 14vw, 4.2rem); }
+      .workbench { margin-inline: -1px; }
+      .ledger { padding: 20px 16px 24px; }
+      .ledger-head { align-items: flex-start; }
+      .column-heads { display: none; }
+      .rows { gap: 14px; }
+      .sub-row {
+        position: relative;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+        padding: 14px 0 18px;
+        border-bottom: 1px solid var(--line);
+      }
+      .sub-row > input:first-child { grid-column: 1 / -1; padding-right: 46px; }
+      .sub-row > .money-control { grid-column: 1 / 2; }
+      .sub-row > .cadence { grid-column: 2 / 3; }
+      .sub-row > .decision { grid-column: 1 / -1; }
+      .sub-row > .remove {
+        position: absolute;
+        right: 0;
+        top: 14px;
+        min-height: 46px;
+      }
+      .target-wrap { grid-column: 1 / -1; margin-top: 0; }
+      .row-divider { display: none; }
+      .ledger-actions { align-items: stretch; flex-direction: column; }
+      .ledger-actions .primary { width: 100%; }
+      .result-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .result-actions-label { grid-column: 1 / -1; text-align: center; }
+      .email-results, .copy-results { width: 100%; }
+      .result-actions .text-button { grid-column: 1 / -1; justify-self: center; }
+      .receipt { padding: 26px 22px 30px; }
+      .category-row { grid-template-columns: minmax(90px, 1fr) auto; gap: 8px 12px; }
+      .category-row .bar { grid-column: 1 / -1; grid-row: 2; }
+      .category-value { grid-column: 2; grid-row: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .meter span { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Find the quiet leaks in your <span>budget.</span></h1>
+      <p>Add every recurring charge. See the monthly, yearly, and five-year cost—then model what changes if you cancel or downgrade.</p>
+    </section>
+
+    <section class="workbench" aria-label="Subscription analyzer">
+      <div class="ledger">
+        <div class="ledger-head">
+          <div>
+            <h2>Recurring charges</h2>
+            <p>Enter any price and billing schedule.</p>
+          </div>
+          <button class="text-button" id="clearBtn" type="button">Clear all</button>
+        </div>
+
+        <div class="column-heads" aria-hidden="true">
+          <span>Subscription</span><span>Price</span><span>Billed</span><span>Decision</span><span></span>
+        </div>
+        <div class="rows" id="rows"></div>
+
+        <div class="ledger-actions">
+          <button class="primary" id="addBtn" type="button">+ Add subscription</button>
+          <div class="result-actions">
+            <p class="result-actions-label" id="resultActionsHint">Add a named subscription and price to enable results.</p>
+            <button class="text-button" id="exportBtn" type="button" disabled>Export CSV</button>
+            <a class="email-results" id="emailBtn" href="#" aria-disabled="true" tabindex="-1">Email my results</a>
+            <button class="copy-results" id="copyBtn" type="button" disabled>Copy results</button>
+            <span class="sr-only" id="copyStatus" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="receipt" aria-live="polite" aria-atomic="true">
+        <p class="receipt-kicker">Cost summary</p>
+        <div class="big-total">
+          <span>Current monthly cost</span>
+          <strong id="monthlyTotal">$0.00</strong>
+          <small id="subCount">0 subscriptions</small>
+        </div>
+        <div class="receipt-lines">
+          <div class="receipt-line"><span>Per day</span><output id="dailyTotal">$0.00</output></div>
+          <div class="receipt-line"><span>Per week</span><output id="weeklyTotal">$0.00</output></div>
+          <div class="receipt-line"><span>Per year</span><output id="annualTotal">$0.00</output></div>
+          <div class="receipt-line"><span>Over 5 years</span><output id="fiveYearTotal">$0.00</output></div>
+        </div>
+        <div class="savings">
+          <div class="receipt-line"><span>Planned monthly cost</span><output id="plannedMonthly">$0.00</output></div>
+          <div class="receipt-line"><strong>Annual savings</strong><output id="annualSavings">$0.00</output></div>
+          <div class="meter" aria-hidden="true"><span id="savingsMeter"></span></div>
+          <p class="meter-copy" id="savingsCopy">Mark items to cancel or downgrade to compare.</p>
+        </div>
+        <p class="insight" id="insight"><strong>Start with the full list.</strong> Small renewals are easy to miss until they share one total.</p>
+      </aside>
+    </section>
+
+    <section class="breakdown" aria-labelledby="breakdown-title">
+      <div class="breakdown-copy">
+        <h2 id="breakdown-title">Where it goes</h2>
+        <p>Monthly spend grouped by category. Use this to spot overlap—not to judge what you value.</p>
+      </div>
+      <div class="category-list" id="categoryList">
+        <div class="empty">Add a named subscription to see your spending mix.</div>
+      </div>
+    </section>
+    <p class="footer-note">Estimates use 365 days per year and normalize each billing schedule to a monthly average.</p>
+  </main>
+
+  <template id="rowTemplate">
+    <div class="sub-row">
+      <label class="sr-only">Subscription name</label>
+      <input class="name" type="text" maxlength="60" placeholder="e.g. Streaming service" autocomplete="off" />
+      <div class="money-control">
+        <label class="sr-only">Price</label>
+        <input class="price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" />
+      </div>
+      <label class="sr-only">Billing schedule</label>
+      <select class="cadence">
+        <option value="weekly">Weekly</option>
+        <option value="monthly" selected>Monthly</option>
+        <option value="quarterly">Quarterly</option>
+        <option value="semiannual">Every 6 months</option>
+        <option value="annual">Yearly</option>
+      </select>
+      <label class="sr-only">Decision</label>
+      <select class="decision">
+        <option value="keep" selected>Keep</option>
+        <option value="downgrade">Downgrade</option>
+        <option value="cancel">Cancel</option>
+      </select>
+      <button class="remove" type="button" aria-label="Remove subscription">×</button>
+      <div class="target-wrap">
+        <label>New price on the same billing schedule</label>
+        <div class="money-control"><input class="target" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" /></div>
+      </div>
+      <div class="row-divider"></div>
+    </div>
+  </template>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var rowsEl = document.getElementById("rows");
+      var template = document.getElementById("rowTemplate");
+      var addBtn = document.getElementById("addBtn");
+      var clearBtn = document.getElementById("clearBtn");
+      var exportBtn = document.getElementById("exportBtn");
+      var copyBtn = document.getElementById("copyBtn");
+      var copyStatus = document.getElementById("copyStatus");
+      var emailBtn = document.getElementById("emailBtn");
+      var resultActionsHint = document.getElementById("resultActionsHint");
+      var categoryList = document.getElementById("categoryList");
+      var resultsText = "";
+      var copiedTimer = 0;
+
+      var categoryRules = [
+        ["Streaming", /netflix|hulu|disney|peacock|paramount|hbo|max|prime video|youtube tv|stream/i],
+        ["Music & audio", /spotify|apple music|pandora|audible|sirius|music|podcast/i],
+        ["Software & AI", /adobe|microsoft|office|chatgpt|claude|gemini|notion|canva|software|ai\b/i],
+        ["Cloud & storage", /icloud|dropbox|google one|onedrive|storage|cloud/i],
+        ["Fitness", /gym|fitness|peloton|strava|calm|headspace/i],
+        ["News & reading", /news|times|journal|medium|substack|kindle|magazine/i],
+        ["Gaming", /xbox|playstation|nintendo|game pass|gaming/i]
+      ];
+
+      function money(value) {
+        return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value || 0);
+      }
+
+      function monthlyValue(price, cadence) {
+        if (cadence === "weekly") return price * 52 / 12;
+        if (cadence === "quarterly") return price / 3;
+        if (cadence === "semiannual") return price / 6;
+        if (cadence === "annual") return price / 12;
+        return price;
+      }
+
+      function getCategory(name) {
+        for (var i = 0; i < categoryRules.length; i++) {
+          if (categoryRules[i][1].test(name)) return categoryRules[i][0];
+        }
+        return "Other";
+      }
+
+      function addRow(focusName) {
+        var fragment = template.content.cloneNode(true);
+        var row = fragment.querySelector(".sub-row");
+        rowsEl.appendChild(fragment);
+        bindRow(row);
+        update();
+        if (focusName) row.querySelector(".name").focus();
+      }
+
+      function bindRow(row) {
+        var controls = row.querySelectorAll("input, select");
+        controls.forEach(function (control) {
+          control.addEventListener("input", function () {
+            if (control.classList.contains("decision")) {
+              row.classList.toggle("is-downgrade", control.value === "downgrade");
+            }
+            update();
+          });
+          control.addEventListener("change", function () {
+            if (control.classList.contains("decision")) {
+              row.classList.toggle("is-downgrade", control.value === "downgrade");
+              if (control.value === "downgrade") row.querySelector(".target").focus();
+            }
+            update();
+          });
+        });
+        row.querySelector(".remove").addEventListener("click", function () {
+          row.remove();
+          if (!rowsEl.children.length) addRow(false);
+          update();
+        });
+      }
+
+      function readRows() {
+        return Array.prototype.map.call(rowsEl.querySelectorAll(".sub-row"), function (row) {
+          var name = row.querySelector(".name").value.trim();
+          var price = Math.max(0, parseFloat(row.querySelector(".price").value) || 0);
+          var cadence = row.querySelector(".cadence").value;
+          var decision = row.querySelector(".decision").value;
+          var target = Math.max(0, parseFloat(row.querySelector(".target").value) || 0);
+          var monthly = monthlyValue(price, cadence);
+          var planned = decision === "cancel" ? 0 : decision === "downgrade" ? monthlyValue(target, cadence) : monthly;
+          return { name: name, price: price, cadence: cadence, decision: decision, target: target, monthly: monthly, planned: planned };
+        }).filter(function (item) { return item.name || item.price > 0; });
+      }
+
+      function update() {
+        var items = readRows();
+        var current = items.reduce(function (sum, item) { return sum + item.monthly; }, 0);
+        var planned = items.reduce(function (sum, item) { return sum + item.planned; }, 0);
+        var savingsMonthly = Math.max(0, current - planned);
+        var annual = current * 12;
+        var annualSavings = savingsMonthly * 12;
+        var completed = items.filter(function (item) { return item.name && item.price > 0; });
+
+        document.getElementById("monthlyTotal").textContent = money(current);
+        document.getElementById("dailyTotal").textContent = money(annual / 365);
+        document.getElementById("weeklyTotal").textContent = money(annual / 52);
+        document.getElementById("annualTotal").textContent = money(annual);
+        document.getElementById("fiveYearTotal").textContent = money(annual * 5);
+        document.getElementById("plannedMonthly").textContent = money(planned);
+        document.getElementById("annualSavings").textContent = money(annualSavings);
+        document.getElementById("subCount").textContent = completed.length + (completed.length === 1 ? " subscription" : " subscriptions");
+        document.getElementById("savingsMeter").style.width = current > 0 ? Math.min(100, savingsMonthly / current * 100) + "%" : "0%";
+
+        var changed = items.some(function (item) { return item.decision !== "keep"; });
+        var savingsCopy = document.getElementById("savingsCopy");
+        savingsCopy.textContent = changed ? (current > 0 ? Math.round(savingsMonthly / current * 100) + "% lower than your current recurring spend." : "Add prices to compare your plan.") : "Mark items to cancel or downgrade to compare.";
+
+        var insight = document.getElementById("insight");
+        if (current <= 0) {
+          insight.innerHTML = "<strong>Start with the full list.</strong> Small renewals are easy to miss until they share one total.";
+        } else if (annualSavings > 0) {
+          insight.innerHTML = "<strong>Your plan frees up " + money(annualSavings) + " a year.</strong> That is " + money(annualSavings * 5) + " over five years before any interest or investment growth.";
+        } else {
+          insight.innerHTML = "<strong>That is " + money(annual / 365) + " every day.</strong> Over five years, the same subscriptions add up to " + money(annual * 5) + ".";
+        }
+
+        exportBtn.disabled = completed.length === 0;
+        updateResultActions(completed, current, planned, annual, annualSavings);
+        renderCategories(completed);
+      }
+
+      function renderCategories(items) {
+        var groups = {};
+        items.forEach(function (item) {
+          var category = getCategory(item.name);
+          groups[category] = (groups[category] || 0) + item.monthly;
+        });
+        var entries = Object.keys(groups).map(function (name) { return [name, groups[name]]; }).sort(function (a, b) { return b[1] - a[1]; });
+        categoryList.innerHTML = "";
+        if (!entries.length) {
+          categoryList.innerHTML = '<div class="empty">Add a named subscription to see your spending mix.</div>';
+          return;
+        }
+        var max = entries[0][1] || 1;
+        entries.forEach(function (entry) {
+          var row = document.createElement("div");
+          row.className = "category-row";
+          var label = document.createElement("span");
+          label.className = "category-name";
+          label.textContent = entry[0];
+          var bar = document.createElement("div");
+          bar.className = "bar";
+          var fill = document.createElement("span");
+          fill.style.width = (entry[1] / max * 100) + "%";
+          bar.appendChild(fill);
+          var value = document.createElement("span");
+          value.className = "category-value";
+          value.textContent = money(entry[1]) + "/mo";
+          row.appendChild(label);
+          row.appendChild(bar);
+          row.appendChild(value);
+          categoryList.appendChild(row);
+        });
+      }
+
+      function buildResultsText(items, current, planned, annual, annualSavings) {
+        var cadenceLabels = {
+          weekly: "weekly",
+          monthly: "monthly",
+          quarterly: "quarterly",
+          semiannual: "every 6 months",
+          annual: "yearly"
+        };
+        var lines = [
+          "Subscription Cost Analysis",
+          "",
+          "CURRENT COST",
+          "Monthly: " + money(current),
+          "Daily: " + money(annual / 365),
+          "Weekly: " + money(annual / 52),
+          "Yearly: " + money(annual),
+          "Five years: " + money(annual * 5),
+          "",
+          "PLANNED COST",
+          "Monthly: " + money(planned),
+          "Annual savings: " + money(annualSavings),
+          "",
+          "SUBSCRIPTIONS"
+        ];
+
+        items.forEach(function (item) {
+          var decision = item.decision === "keep" ? "Keep" : item.decision === "cancel" ? "Cancel" : "Downgrade to " + money(item.target);
+          lines.push("- " + item.name + ": " + money(item.price) + " " + cadenceLabels[item.cadence] + " (" + money(item.monthly) + "/month) — " + decision);
+        });
+        lines.push("", "Calculated with the Honed Signal Subscription Cost Analyzer.");
+        return lines.join("\r\n");
+      }
+
+      function updateResultActions(items, current, planned, annual, annualSavings) {
+        if (!items.length) {
+          resultsText = "";
+          copyBtn.disabled = true;
+          emailBtn.href = "#";
+          emailBtn.setAttribute("aria-disabled", "true");
+          emailBtn.setAttribute("tabindex", "-1");
+          resultActionsHint.textContent = "Add a named subscription and price to enable results.";
+          return;
+        }
+
+        resultsText = buildResultsText(items, current, planned, annual, annualSavings);
+        copyBtn.disabled = false;
+        emailBtn.href = "mailto:?subject=" + encodeURIComponent("My subscription cost analysis") + "&body=" + encodeURIComponent(resultsText);
+        emailBtn.setAttribute("aria-disabled", "false");
+        emailBtn.removeAttribute("tabindex");
+        resultActionsHint.textContent = "Results are ready to email or copy.";
+      }
+
+      function showCopyFeedback(label, announcement) {
+        window.clearTimeout(copiedTimer);
+        copyBtn.textContent = label;
+        copyStatus.textContent = announcement;
+        copiedTimer = window.setTimeout(function () {
+          copyBtn.textContent = "Copy results";
+          copyStatus.textContent = "";
+        }, 1600);
+      }
+
+      function fallbackCopy(text) {
+        var field = document.createElement("textarea");
+        field.value = text;
+        field.setAttribute("readonly", "");
+        field.style.position = "fixed";
+        field.style.opacity = "0";
+        document.body.appendChild(field);
+        field.focus();
+        field.select();
+        var copied = false;
+        try { copied = document.execCommand("copy"); } catch (error) { copied = false; }
+        field.remove();
+        return copied;
+      }
+
+      function copyResults() {
+        if (!resultsText || copyBtn.disabled) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(resultsText).then(function () {
+            showCopyFeedback("Copied", "Results copied to clipboard.");
+          }).catch(function () {
+            var copied = fallbackCopy(resultsText);
+            showCopyFeedback(copied ? "Copied" : "Copy failed", copied ? "Results copied to clipboard." : "Results could not be copied.");
+          });
+          return;
+        }
+        if (fallbackCopy(resultsText)) {
+          showCopyFeedback("Copied", "Results copied to clipboard.");
+        } else {
+          showCopyFeedback("Copy failed", "Results could not be copied.");
+        }
+      }
+
+      function exportCsv() {
+        var items = readRows().filter(function (item) { return item.name && item.price > 0; });
+        if (!items.length) return;
+        var lines = [["Subscription", "Price", "Billing schedule", "Monthly equivalent", "Decision", "Planned monthly cost"]];
+        items.forEach(function (item) {
+          lines.push([item.name, item.price.toFixed(2), item.cadence, item.monthly.toFixed(2), item.decision, item.planned.toFixed(2)]);
+        });
+        var csv = lines.map(function (line) {
+          return line.map(function (value) { return '"' + String(value).replace(/"/g, '""') + '"'; }).join(",");
+        }).join("\n");
+        var blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = "subscription-cost-analysis.csv";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      addBtn.addEventListener("click", function () { addRow(true); });
+      clearBtn.addEventListener("click", function () {
+        rowsEl.innerHTML = "";
+        addRow(false);
+      });
+      exportBtn.addEventListener("click", exportCsv);
+      copyBtn.addEventListener("click", copyResults);
+      emailBtn.addEventListener("click", function (event) {
+        if (emailBtn.getAttribute("aria-disabled") === "true") event.preventDefault();
+      });
+
+      addRow(false);
+    })();
+  </script>
+</body>
+</html>
