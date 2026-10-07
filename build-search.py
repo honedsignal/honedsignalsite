@@ -168,6 +168,15 @@ def main():
             entries.append({"t": q, "d": "A guided path: the calculators that answer this decision, in order.",
                             "u": "/money/decide/%s/" % slug, "tags": ["Decisions"], "kind": "decision"})
 
+    # deduplicate on URL, keeping first occurrence
+    seen = set()
+    unique = []
+    for e in entries:
+        if e["u"] not in seen:
+            seen.add(e["u"])
+            unique.append(e)
+    entries = unique
+
     with open(os.path.join(MONEY, "search-index.json"), "w") as f:
         json.dump(entries, f, separators=(",", ":"))
     print("index entries:", len(entries))
