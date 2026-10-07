@@ -19,6 +19,7 @@
       --blue: #78a8d8;
       --blue-soft: #17283a;
       --orange: #f7931a;
+      --orange-ink: #0b0e14;
       --green: #39ff14;
       --green-soft: #102b14;
       --focus: #91bde5;
@@ -36,6 +37,7 @@
         --blue: #83b3e1;
         --blue-soft: #162b3d;
         --orange: #f7931a;
+        --orange-ink: #0b0e14;
         --green: #39ff14;
         --green-soft: #102b14;
         --focus: #9bc8ef;
@@ -343,6 +345,12 @@
       cursor: pointer;
     }
     .secondary:hover { background: #1f3040; }
+    #email {
+      border-color: var(--orange);
+      background: var(--orange);
+      color: var(--orange-ink);
+    }
+    #email:hover { filter: brightness(1.07); }
     .copy-status {
       min-height: 22px;
       margin: 8px 0 0;

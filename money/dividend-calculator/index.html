@@ -24,6 +24,7 @@
       --positive: #147a3e;
       --positive-soft: #e0f3e6;
       --orange: #d66900;
+      --orange-ink: #181108;
       --focus: #1871a6;
       --shadow: 0 18px 55px rgba(15, 26, 35, .10);
       --chart-fill: rgba(29, 102, 146, .12);
@@ -44,6 +45,7 @@
         --positive: #39ff14;
         --positive-soft: rgba(57, 255, 20, .09);
         --orange: #f7931a;
+        --orange-ink: #0b0e14;
         --focus: #82b6e6;
         --shadow: 0 22px 65px rgba(0, 0, 0, .38);
         --chart-fill: rgba(100, 144, 196, .15);
@@ -413,7 +415,10 @@
       font-weight: 600;
     }
     .download:hover { border-color: var(--accent); color: var(--accent-strong); }
+    #emailButton { background: var(--orange); border-color: var(--orange); color: var(--orange-ink); }
+    #emailButton:hover { background: var(--orange); border-color: var(--orange); color: var(--orange-ink); }
     .download[aria-disabled="true"], .download:disabled { opacity: .52; cursor: not-allowed; color: var(--muted); border-color: var(--line); }
+    #emailButton[aria-disabled="true"] { background: var(--surface-2); color: var(--muted); border-color: var(--line); }
     .download svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; }
     .result-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 9px; }
     .explain {
