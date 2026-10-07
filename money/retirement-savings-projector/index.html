@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Retirement Savings Projector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #10151c;
+      --muted: #5d6671;
+      --paper: #f5f5f3;
+      --surface: #ffffff;
+      --surface-2: #e9eceb;
+      --line: #cfd4d3;
+      --line-strong: #aeb6b5;
+      --blue: #1d6692;
+      --blue-strong: #0c4d78;
+      --green: #147a3e;
+      --green-soft: #e0f3e6;
+      --orange: #d66900;
+      --orange-ink: #fff9f1;
+      --orange-soft: #fff0df;
+      --danger: #b63139;
+      --focus: #1871a6;
+      --shadow: 0 18px 55px rgba(15, 26, 35, .10);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f3f6f7;
+        --muted: #aeb8c0;
+        --paper: #0b0e14;
+        --surface: #121821;
+        --surface-2: #1a222c;
+        --line: #2c3742;
+        --line-strong: #46525d;
+        --blue: #77a6d6;
+        --blue-strong: #9bc2e8;
+        --green: #39ff14;
+        --green-soft: rgba(57, 255, 20, .09);
+        --orange: #f7931a;
+        --orange-ink: #0b0e14;
+        --orange-soft: rgba(247, 147, 26, .12);
+        --danger: #ff7379;
+        --focus: #82b6e6;
+        --shadow: 0 22px 65px rgba(0, 0, 0, .38);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, input, a { -webkit-tap-highlight-color: transparent; }
+    .home-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: color-mix(in srgb, var(--paper) 94%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    .home-link {
+      display: block;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 10px clamp(16px, 3.5vw, 42px);
+      color: var(--blue);
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .home-link:hover { color: var(--blue-strong); text-decoration: underline; text-underline-offset: 3px; }
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: clamp(26px, 4vw, 52px) clamp(16px, 3.5vw, 42px) 64px;
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+      gap: 40px;
+      align-items: end;
+      padding: 4px 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      max-width: 770px;
+      font-size: clamp(2.45rem, 6vw, 5.6rem);
+      line-height: .96;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    h1 span { color: var(--green); }
+    .intro p {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      max-width: 37ch;
+    }
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
+      margin-top: 34px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .input-panel {
+      padding: 28px;
+      border-right: 1px solid var(--line);
+    }
+    .section-heading {
+      margin: 0 0 22px;
+      font-size: .86rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .field { margin-bottom: 18px; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 600;
+    }
+    .control { position: relative; display: flex; align-items: center; }
+    .prefix, .suffix {
+      position: absolute;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .9rem;
+      pointer-events: none;
+    }
+    .prefix { left: 13px; }
+    .suffix { right: 13px; }
+    input {
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 12px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--paper);
+      color: var(--ink);
+      outline: none;
+      font-variant-numeric: tabular-nums;
+    }
+    input.has-prefix { padding-left: 29px; }
+    input.has-suffix { padding-right: 55px; }
+    input:focus, button:focus-visible, a:focus-visible, summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 28%, transparent);
+      outline-offset: 2px;
+    }
+    input:focus { border-color: var(--focus); }
+    input[aria-invalid="true"] { border-color: var(--danger); }
+    .error {
+      min-height: 18px;
+      margin: 5px 0 -3px;
+      color: var(--danger);
+      font-size: .77rem;
+    }
+    .calculate {
+      width: 100%;
+      min-height: 50px;
+      margin-top: 5px;
+      padding: 12px 18px;
+      border: 1px solid var(--orange);
+      border-radius: 3px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .calculate:hover { filter: brightness(.94); }
+    .assumption {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: .77rem;
+    }
+    .results-panel { min-width: 0; padding: clamp(26px, 4vw, 44px); }
+    .empty-state {
+      display: grid;
+      min-height: 390px;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-state p { max-width: 34ch; margin: 0; }
+    .results[hidden], .empty-state[hidden] { display: none !important; }
+    .result-kicker {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 600;
+    }
+    .total {
+      margin: 0;
+      color: var(--green);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.25rem, 5.3vw, 4.9rem);
+      line-height: 1;
+      letter-spacing: -.05em;
+      overflow-wrap: anywhere;
+    }
+    .timeline {
+      margin: 12px 0 28px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .metric { padding: 20px 0; }
+    .metric + .metric { padding-left: 24px; border-left: 1px solid var(--line); }
+    .metric-label { display: block; margin-bottom: 6px; color: var(--muted); font-size: .8rem; }
+    .metric-value {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(1.22rem, 2.5vw, 1.72rem);
+      font-weight: 600;
+      letter-spacing: -.025em;
+      overflow-wrap: anywhere;
+    }
+    .metric-growth .metric-value { color: var(--green); }
+    .mix {
+      display: flex;
+      width: 100%;
+      height: 10px;
+      margin-top: 24px;
+      overflow: hidden;
+      background: var(--surface-2);
+      border-radius: 99px;
+    }
+    .mix-contrib { background: var(--blue); }
+    .mix-growth { background: var(--green); }
+    .mix-key { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 9px; color: var(--muted); font-size: .76rem; }
+    .key-item { display: inline-flex; align-items: center; gap: 7px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .dot.green { background: var(--green); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .action {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: transparent;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .action.email { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .action:hover { filter: brightness(.94); }
+    .copy-status { align-self: center; min-height: 22px; color: var(--green); font-size: .8rem; font-weight: 600; }
+    details {
+      margin-top: 22px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    summary {
+      padding: 16px 0;
+      cursor: pointer;
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .explanation { padding: 0 0 18px; color: var(--muted); }
+    .explanation p { margin: 0 0 12px; max-width: 70ch; }
+    .explanation p:last-child { margin-bottom: 0; }
+    .plain-note {
+      margin-top: 26px;
+      padding: 18px 20px;
+      background: var(--orange-soft);
+      color: var(--ink);
+      font-size: .9rem;
+    }
+    .fine-print { margin: 30px 0 0; color: var(--muted); font-size: .76rem; max-width: 88ch; }
+
+    @media (max-width: 780px) {
+      .intro { grid-template-columns: 1fr; gap: 18px; }
+      .intro p { max-width: 44ch; }
+      .workbench { grid-template-columns: 1fr; }
+      .input-panel { border-right: 0; border-bottom: 1px solid var(--line); }
+      .empty-state { min-height: 240px; }
+    }
+    @media (max-width: 480px) {
+      .page { padding-top: 23px; }
+      .intro { padding-bottom: 26px; }
+      h1 { font-size: clamp(2.5rem, 14vw, 4rem); }
+      .workbench { margin-top: 24px; }
+      .input-panel, .results-panel { padding: 22px 18px; }
+      .breakdown { grid-template-columns: 1fr; }
+      .metric + .metric { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+      .actions { display: grid; grid-template-columns: 1fr; }
+      .action { width: 100%; text-align: center; }
+      .copy-status { text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="home-wrap"><a class="home-link" href="/money/">← Honed Money</a></div>
+  <main class="page">
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Retirement savings <span>projector.</span></h1>
+      <p>See what steady monthly saving and long-term growth could add up to by retirement.</p>
+    </section>
+
+    <section class="workbench" aria-label="Retirement projection calculator">
+      <form class="input-panel" id="projection-form" novalidate>
+        <h2 class="section-heading">Your projection</h2>
+
+        <div class="field">
+          <label for="current-savings">Current retirement savings</label>
+          <div class="control"><span class="prefix">$</span><input class="has-prefix" id="current-savings" name="currentSavings" type="number" inputmode="decimal" min="0" step="100" value="10000" aria-describedby="current-error"></div>
+          <p class="error" id="current-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="monthly-contribution">Monthly contribution</label>
+          <div class="control"><span class="prefix">$</span><input class="has-prefix" id="monthly-contribution" name="monthlyContribution" type="number" inputmode="decimal" min="0" step="25" value="500" aria-describedby="monthly-error"></div>
+          <p class="error" id="monthly-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="years">Years until retirement</label>
+          <div class="control"><input class="has-suffix" id="years" name="years" type="number" inputmode="decimal" min="1" max="70" step="1" value="30" aria-describedby="years-error"><span class="suffix">years</span></div>
+          <p class="error" id="years-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="return-rate">Expected annual return</label>
+          <div class="control"><input class="has-suffix" id="return-rate" name="returnRate" type="number" inputmode="decimal" min="0" max="30" step="0.1" value="7" aria-describedby="return-error"><span class="suffix">%</span></div>
+          <p class="error" id="return-error" aria-live="polite"></p>
+        </div>
+
+        <button class="calculate" type="submit">Project my savings</button>
+        <p class="assumption">Assumes contributions are made at the end of each month and returns are added monthly.</p>
+      </form>
+
+      <section class="results-panel" aria-live="polite">
+        <div class="empty-state" id="empty-state" hidden><p>Enter your numbers, then project your savings to see the breakdown.</p></div>
+        <div class="results" id="results">
+          <p class="result-kicker">Projected balance at retirement</p>
+          <h2 class="total" id="projected-total">$0</h2>
+          <p class="timeline" id="timeline"></p>
+
+          <div class="breakdown" aria-label="Projection breakdown">
+            <div class="metric">
+              <span class="metric-label">Your total contributions</span>
+              <strong class="metric-value" id="contributions-total">$0</strong>
+            </div>
+            <div class="metric metric-growth">
+              <span class="metric-label">Estimated investment growth</span>
+              <strong class="metric-value" id="growth-total">$0</strong>
+            </div>
+          </div>
+
+          <div class="mix" aria-hidden="true"><div class="mix-contrib" id="mix-contrib"></div><div class="mix-growth" id="mix-growth"></div></div>
+          <div class="mix-key">
+            <span class="key-item"><span class="dot"></span><span id="contrib-share">Contributions</span></span>
+            <span class="key-item"><span class="dot green"></span><span id="growth-share">Growth</span></span>
+          </div>
+
+          <div class="actions">
+            <a class="action email" id="email-results" href="#">Email my results</a>
+            <button class="action" id="copy-results" type="button">Copy results</button>
+            <span class="copy-status" id="copy-status" role="status"></span>
+          </div>
+
+          <details id="explain-details">
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+
+          <div class="plain-note"><strong>Compounding, in plain English:</strong> your money can earn returns, then those returns can earn returns too. The more time your savings have, the more that snowball effect can matter.</div>
+        </div>
+      </section>
+    </section>
+
+    <p class="fine-print">This projection is for informational and educational purposes only and is not investment advice. It uses a constant return for illustration; real investment returns change over time, and taxes, fees, inflation, contribution limits, and withdrawals are not included.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("projection-form");
+      var fields = {
+        current: document.getElementById("current-savings"),
+        monthly: document.getElementById("monthly-contribution"),
+        years: document.getElementById("years"),
+        rate: document.getElementById("return-rate")
+      };
+      var errors = {
+        current: document.getElementById("current-error"),
+        monthly: document.getElementById("monthly-error"),
+        years: document.getElementById("years-error"),
+        rate: document.getElementById("return-error")
+      };
+      var results = document.getElementById("results");
+      var empty = document.getElementById("empty-state");
+      var copyStatus = document.getElementById("copy-status");
+      var latestText = "";
+
+      var money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+      var number = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
+
+      function setError(key, message) {
+        errors[key].textContent = message;
+        fields[key].setAttribute("aria-invalid", message ? "true" : "false");
+      }
+
+      function validate() {
+        var values = {
+          current: Number(fields.current.value),
+          monthly: Number(fields.monthly.value),
+          years: Number(fields.years.value),
+          rate: Number(fields.rate.value)
+        };
+        var valid = true;
+
+        if (fields.current.value === "" || !Number.isFinite(values.current) || values.current < 0) {
+          setError("current", "Enter a current balance of $0 or more."); valid = false;
+        } else { setError("current", ""); }
+
+        if (fields.monthly.value === "" || !Number.isFinite(values.monthly) || values.monthly < 0) {
+          setError("monthly", "Enter a monthly contribution of $0 or more."); valid = false;
+        } else { setError("monthly", ""); }
+
+        if (fields.years.value === "" || !Number.isFinite(values.years) || values.years < 1 || values.years > 70) {
+          setError("years", "Enter between 1 and 70 years."); valid = false;
+        } else { setError("years", ""); }
+
+        if (fields.rate.value === "" || !Number.isFinite(values.rate) || values.rate < 0 || values.rate > 30) {
+          setError("rate", "Enter an expected return from 0% to 30%."); valid = false;
+        } else { setError("rate", ""); }
+
+        if (valid && values.current === 0 && values.monthly === 0) {
+          setError("monthly", "Add a current balance or a monthly contribution."); valid = false;
+        }
+        return valid ? values : null;
+      }
+
+      function project(values) {
+        var months = Math.round(values.years * 12);
+        var monthlyRate = values.rate / 100 / 12;
+        var factor = monthlyRate === 0 ? 1 : Math.pow(1 + monthlyRate, months);
+        var startingFuture = values.current * factor;
+        var contributionsFuture = monthlyRate === 0 ? values.monthly * months : values.monthly * ((factor - 1) / monthlyRate);
+        var total = startingFuture + contributionsFuture;
+        var contributed = values.current + values.monthly * months;
+        var growth = Math.max(0, total - contributed);
+        return { months: months, total: total, contributed: contributed, growth: growth };
+      }
+
+      function update(values, outcome) {
+        var totalSafe = outcome.total || 1;
+        var contributionPercent = Math.max(0, Math.min(100, outcome.contributed / totalSafe * 100));
+        var growthPercent = Math.max(0, 100 - contributionPercent);
+        var endYear = new Date().getFullYear() + Math.round(values.years);
+
+        document.getElementById("projected-total").textContent = money.format(outcome.total);
+        document.getElementById("timeline").textContent = "After " + number.format(values.years) + " years — around " + endYear;
+        document.getElementById("contributions-total").textContent = money.format(outcome.contributed);
+        document.getElementById("growth-total").textContent = money.format(outcome.growth);
+        document.getElementById("mix-contrib").style.width = contributionPercent + "%";
+        document.getElementById("mix-growth").style.width = growthPercent + "%";
+        document.getElementById("contrib-share").textContent = "Contributions " + Math.round(contributionPercent) + "%";
+        document.getElementById("growth-share").textContent = "Growth " + Math.round(growthPercent) + "%";
+
+        var explanation = document.getElementById("explanation");
+        var intro = "Starting with " + money.format(values.current) + " and adding " + money.format(values.monthly) + " each month, you would put in " + money.format(outcome.contributed) + " over " + number.format(values.years) + " years.";
+        var growthSentence = values.rate === 0
+          ? "At a 0% return, the projected balance is simply the money you contribute."
+          : "At the steady " + number.format(values.rate) + "% annual return used here, compounding adds an estimated " + money.format(outcome.growth) + ", bringing the projection to " + money.format(outcome.total) + ".";
+        explanation.innerHTML = "<p>" + intro + "</p><p>" + growthSentence + "</p><p>This is a planning estimate, not a promise. Markets do not grow at the same rate every year, so try a lower return too and compare the result.</p>";
+
+        latestText = [
+          "Retirement Savings Projection",
+          "Current savings: " + money.format(values.current),
+          "Monthly contribution: " + money.format(values.monthly),
+          "Years until retirement: " + number.format(values.years),
+          "Expected annual return: " + number.format(values.rate) + "%",
+          "",
+          "Projected balance: " + money.format(outcome.total),
+          "Total contributions: " + money.format(outcome.contributed),
+          "Estimated investment growth: " + money.format(outcome.growth),
+          "",
+          "Informational and educational purposes only; not investment advice."
+        ].join("\n");
+
+        document.getElementById("email-results").href = "mailto:?subject=" + encodeURIComponent("My retirement savings projection") + "&body=" + encodeURIComponent(latestText);
+        results.hidden = false;
+        empty.hidden = true;
+        copyStatus.textContent = "";
+      }
+
+      function calculate(event) {
+        if (event) { event.preventDefault(); }
+        var values = validate();
+        if (!values) {
+          results.hidden = true;
+          empty.hidden = false;
+          var invalid = form.querySelector('[aria-invalid="true"]');
+          if (invalid && event) { invalid.focus(); }
+          return;
+        }
+        update(values, project(values));
+      }
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var copied = false;
+        try { copied = document.execCommand("copy"); } catch (e) { copied = false; }
+        document.body.removeChild(area);
+        return copied;
+      }
+
+      form.addEventListener("submit", calculate);
+      document.getElementById("copy-results").addEventListener("click", function () {
+        if (!latestText) { return; }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latestText).then(function () {
+            copyStatus.textContent = "Copied.";
+          }).catch(function () {
+            copyStatus.textContent = fallbackCopy(latestText) ? "Copied." : "Select and copy the results manually.";
+          });
+        } else {
+          copyStatus.textContent = fallbackCopy(latestText) ? "Copied." : "Select and copy the results manually.";
+        }
+      });
+
+      calculate();
+    }());
+  </script>
+</body>
+</html>

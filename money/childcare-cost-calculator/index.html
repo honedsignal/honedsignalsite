@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Childcare Cost Calculator</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #f5f5f5;
+      --paper: #10141c;
+      --panel: #181e27;
+      --panel-2: #202833;
+      --line: #37414e;
+      --muted: #bbc3cc;
+      --orange: #f7931a;
+      --orange-ink: #160f05;
+      --blue: #79a2d0;
+      --blue-soft: #1b2b3d;
+      --green: #39ff14;
+      --focus: #8cb7e6;
+      --shadow: 0 20px 60px rgba(0, 0, 0, .26);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f5f5f5;
+        --paper: #0b0e14;
+        --panel: #131820;
+        --panel-2: #1a212b;
+        --line: #303946;
+        --muted: #b4bdc8;
+        --orange: #f7931a;
+        --orange-ink: #160f05;
+        --blue: #6490c4;
+        --blue-soft: #172638;
+        --green: #39ff14;
+        --focus: #79a9dd;
+        --shadow: 0 20px 60px rgba(0, 0, 0, .32);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { min-width: 320px; background: var(--paper); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--line) 30%, transparent) 1px, transparent 1px) 0 0 / 46px 46px,
+        var(--paper);
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      line-height: 1.5;
+    }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+    .shell { width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 64px; }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      color: var(--muted);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+    }
+    .back:hover { color: var(--ink); border-color: var(--orange); }
+    .back:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+    .hero { padding: clamp(34px, 8vw, 76px) 0 30px; max-width: 760px; }
+    .section-mark { display: flex; align-items: center; gap: 12px; color: var(--orange); font-weight: 800; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+    .section-mark::before { content: ""; width: 34px; height: 4px; background: var(--orange); }
+    h1 {
+      margin: 12px 0 14px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(3.25rem, 8.5vw, 6.4rem);
+      line-height: .88;
+      letter-spacing: -.035em;
+      text-transform: uppercase;
+      max-width: 820px;
+    }
+    .lede { margin: 0; color: var(--muted); font-size: clamp(1rem, 2vw, 1.18rem); max-width: 640px; }
+    .workspace { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: 24px; align-items: start; }
+    .panel { background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .form-panel { padding: clamp(22px, 4vw, 36px); border-top: 6px solid var(--orange); }
+    .panel-title { margin: 0 0 22px; font-family: "Barlow Condensed", sans-serif; font-size: 1.7rem; line-height: 1; text-transform: uppercase; letter-spacing: .01em; }
+    .field { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 8px; font-size: .91rem; font-weight: 800; }
+    .hint { display: block; margin-top: 6px; color: var(--muted); font-size: .78rem; }
+    input, select {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--panel-2);
+      color: var(--ink);
+      padding: 12px 14px;
+    }
+    input:hover, select:hover { border-color: var(--blue); }
+    .money-wrap { position: relative; }
+    .money-wrap span { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: 700; }
+    .money-wrap input { padding-left: 31px; }
+    .calculate {
+      width: 100%; min-height: 54px; border: 0; border-radius: 4px; cursor: pointer;
+      background: var(--orange); color: var(--orange-ink); font-weight: 800;
+      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .18);
+    }
+    .calculate:hover { filter: brightness(1.06); }
+    .error { min-height: 24px; margin: 10px 0 0; color: #c93d43; font-size: .84rem; font-weight: 700; }
+    @media (prefers-color-scheme: dark) { .error { color: #ff7e83; } }
+    .empty {
+      min-height: 350px;
+      display: grid;
+      place-items: center;
+      padding: 34px;
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      text-align: center;
+      background: color-mix(in srgb, var(--panel) 76%, transparent);
+    }
+    .empty svg { width: 56px; height: 56px; margin-bottom: 14px; color: var(--blue); }
+    .empty strong { display: block; color: var(--ink); font-family: "Barlow Condensed", sans-serif; font-size: 1.55rem; text-transform: uppercase; }
+    .results { display: none; }
+    .results.is-visible { display: block; }
+    .result-top { padding: clamp(22px, 4vw, 36px); background: var(--panel); border: 1px solid var(--line); border-top: 6px solid var(--blue); box-shadow: var(--shadow); }
+    .result-label { margin: 0; color: var(--muted); font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+    .annual { margin: 4px 0 0; font-family: "Barlow Condensed", sans-serif; font-size: clamp(3.2rem, 7vw, 5rem); line-height: 1; letter-spacing: -.025em; }
+    .annual span { font-size: .34em; color: var(--muted); letter-spacing: 0; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 28px; border-top: 1px solid var(--line); }
+    .metric { padding: 20px 14px 0 0; }
+    .metric + .metric { padding-left: 18px; border-left: 1px solid var(--line); }
+    .metric small { display: block; min-height: 38px; color: var(--muted); font-size: .75rem; font-weight: 700; }
+    .metric strong { display: block; margin-top: 4px; font-family: "Barlow Condensed", sans-serif; font-size: clamp(1.55rem, 4vw, 2.2rem); line-height: 1; }
+    .burden { margin-top: 28px; padding: 20px; background: var(--panel-2); border-radius: 4px; }
+    .burden-head { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+    .burden-head strong { font-size: .9rem; }
+    .burden-head span { color: var(--blue); font-weight: 800; }
+    .track { height: 10px; background: var(--line); margin: 12px 0 14px; overflow: hidden; }
+    .fill { height: 100%; width: 0; background: var(--orange); transition: width .45s ease; }
+    .burden p { margin: 0; font-size: .9rem; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .action {
+      display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+      min-height: 48px; border-radius: 4px; border: 1px solid var(--line); cursor: pointer; font-weight: 800; text-decoration: none;
+      background: var(--panel); color: var(--ink);
+    }
+    .action:hover { border-color: var(--blue); }
+    .action.email { background: var(--orange); color: var(--orange-ink); border-color: var(--orange); }
+    .action svg { width: 18px; height: 18px; }
+    details { margin-top: 16px; background: var(--panel); border: 1px solid var(--line); }
+    summary { cursor: pointer; list-style: none; padding: 18px 20px; font-weight: 800; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--orange); font-size: 1.25rem; line-height: 1; }
+    details[open] summary::after { content: "−"; }
+    .explanation { padding: 0 20px 20px; color: var(--muted); }
+    .explanation p { margin: 0 0 12px; }
+    .explanation p:last-child { margin: 0; }
+    .fineprint { margin: 26px 0 0; color: var(--muted); font-size: .78rem; max-width: 920px; }
+    .toast { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 4px; font-weight: 800; font-size: .85rem; transition: opacity .2s, transform .2s; z-index: 10; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    [hidden] { display: none !important; }
+    @media (max-width: 780px) {
+      .shell { width: min(100% - 22px, 620px); padding-top: 8px; }
+      .hero { padding: 28px 0 24px; }
+      h1 { font-size: clamp(2.6rem, 11vw, 3.5rem); line-height: .92; overflow-wrap: anywhere; }
+      .workspace { grid-template-columns: 1fr; }
+      .empty { min-height: 220px; }
+      .metrics { grid-template-columns: 1fr; }
+      .metric { display: flex; justify-content: space-between; align-items: end; padding: 15px 0; }
+      .metric + .metric { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+      .metric small { min-height: 0; max-width: 48%; }
+      .metric strong { text-align: right; }
+    }
+    @media (max-width: 430px) {
+      .actions { grid-template-columns: 1fr; }
+      .annual { font-size: 3.15rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; } }
+    @media print {
+      body { background: #fff; color: #000; }
+      .back, .form-panel, .actions, .empty, .toast { display: none !important; }
+      .workspace { display: block; }
+      .results { display: block; }
+      .result-top, details { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <a class="back" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <header class="hero">
+      <div class="section-mark">Family finances</div>
+      <h1>Childcare cost calculator</h1>
+      <p class="lede">Turn a weekly price into the monthly and annual cost—and see how much of your household income it may take.</p>
+    </header>
+
+    <div class="workspace">
+      <form class="panel form-panel" id="calculator" novalidate>
+        <h2 class="panel-title">Your care setup</h2>
+        <div class="field">
+          <label for="children">Number of children</label>
+          <input id="children" name="children" type="number" inputmode="numeric" min="1" max="12" step="1" value="1" required />
+        </div>
+        <div class="field">
+          <label for="careType">Type of care</label>
+          <select id="careType" name="careType">
+            <option value="Daycare center">Daycare center</option>
+            <option value="Nanny">Nanny</option>
+            <option value="Family care">Family care</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="weeklyCost">Weekly cost per child</label>
+          <div class="money-wrap"><span aria-hidden="true">$</span><input id="weeklyCost" name="weeklyCost" type="number" inputmode="decimal" min="0.01" max="100000" step="0.01" placeholder="300" required /></div>
+          <span class="hint">Enter the amount paid for one child each week.</span>
+        </div>
+        <div class="field">
+          <label for="income">Annual household income</label>
+          <div class="money-wrap"><span aria-hidden="true">$</span><input id="income" name="income" type="number" inputmode="decimal" min="1" max="1000000000" step="1" placeholder="85,000" required /></div>
+          <span class="hint">Use gross income, before taxes and other deductions.</span>
+        </div>
+        <button class="calculate" type="submit">Calculate childcare cost</button>
+        <p class="error" id="error" role="alert" aria-live="polite"></p>
+      </form>
+
+      <section aria-live="polite" aria-label="Calculation results">
+        <div class="empty" id="empty">
+          <div>
+            <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M18 24h28l-4 18H22l-4-18Z" stroke="currentColor" stroke-width="3"/><path d="M24 24c0-8 5-13 14-13 5 0 8 2 10 5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M20 42h25M27 42l-3 6M39 42l3 6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="51" r="3" fill="currentColor"/><circle cx="43" cy="51" r="3" fill="currentColor"/></svg>
+            <strong>Your estimate will appear here</strong>
+            <span>Add your weekly cost and household income to get started.</span>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <div class="result-top">
+            <p class="result-label">Estimated annual childcare cost</p>
+            <p class="annual"><span id="annualCost">$0</span> <span>per year</span></p>
+            <div class="metrics">
+              <div class="metric"><small>Average monthly cost</small><strong id="monthlyCost">$0</strong></div>
+              <div class="metric"><small>Weekly household cost</small><strong id="weeklyTotal">$0</strong></div>
+              <div class="metric"><small>Share of gross income</small><strong id="incomeShare">0%</strong></div>
+            </div>
+            <div class="burden">
+              <div class="burden-head"><strong>Income share</strong><span id="burdenLabel">—</span></div>
+              <div class="track" aria-hidden="true"><div class="fill" id="fill"></div></div>
+              <p id="burdenText"></p>
+            </div>
+            <div class="actions">
+              <a class="action email" id="emailResults" href="#">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18v12H3V6Z" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2"/></svg>
+                Email my results
+              </a>
+              <button class="action" id="copyResults" type="button">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="11" height="11" stroke="currentColor" stroke-width="2"/><path d="M16 8V5H5v11h3" stroke="currentColor" stroke-width="2"/></svg>
+                Copy results
+              </button>
+            </div>
+          </div>
+
+          <details id="explain">
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <p class="fineprint">This estimate uses 52 weeks per year and 12 months per year. It does not include tax credits, employer benefits, subsidies, registration fees, backup care, or unpaid weeks. Informational purposes only.</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite">Results copied</div>
+
+  <script>
+    (function () {
+      var form = document.getElementById('calculator');
+      var childrenInput = document.getElementById('children');
+      var careTypeInput = document.getElementById('careType');
+      var weeklyCostInput = document.getElementById('weeklyCost');
+      var incomeInput = document.getElementById('income');
+      var error = document.getElementById('error');
+      var empty = document.getElementById('empty');
+      var results = document.getElementById('results');
+      var copyButton = document.getElementById('copyResults');
+      var emailLink = document.getElementById('emailResults');
+      var toast = document.getElementById('toast');
+      var latestText = '';
+
+      function money(value, digits) {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency', currency: 'USD',
+          maximumFractionDigits: digits || 0,
+          minimumFractionDigits: digits || 0
+        }).format(value);
+      }
+
+      function burdenRead(share) {
+        if (share <= 7) return { label: 'Lower share', text: 'This takes a smaller share of the household income entered, though it can still be a major line item.' };
+        if (share <= 15) return { label: 'Meaningful share', text: 'This is a meaningful part of household income and is worth planning for as a major monthly expense.' };
+        if (share <= 25) return { label: 'Heavy share', text: 'This takes a large share of household income. Tax credits, employer benefits, or lower-cost care options could materially change the budget.' };
+        return { label: 'Very high share', text: 'This takes more than one quarter of the household income entered. Compare the estimate with take-home pay and check for any available support.' };
+      }
+
+      function calculate(event) {
+        event.preventDefault();
+        error.textContent = '';
+        var children = Number(childrenInput.value);
+        var weeklyPerChild = Number(weeklyCostInput.value);
+        var income = Number(incomeInput.value);
+        var careType = careTypeInput.value;
+
+        if (!Number.isInteger(children) || children < 1 || children > 12) {
+          error.textContent = 'Enter a whole number of children from 1 to 12.';
+          childrenInput.focus();
+          return;
+        }
+        if (!Number.isFinite(weeklyPerChild) || weeklyPerChild <= 0) {
+          error.textContent = 'Enter a weekly cost greater than $0.';
+          weeklyCostInput.focus();
+          return;
+        }
+        if (!Number.isFinite(income) || income <= 0) {
+          error.textContent = 'Enter annual household income greater than $0.';
+          incomeInput.focus();
+          return;
+        }
+
+        var weeklyTotal = children * weeklyPerChild;
+        var annual = weeklyTotal * 52;
+        var monthly = annual / 12;
+        var share = annual / income * 100;
+        var perHundred = share;
+        var read = burdenRead(share);
+        var childWord = children === 1 ? 'child' : 'children';
+
+        document.getElementById('annualCost').textContent = money(annual);
+        document.getElementById('monthlyCost').textContent = money(monthly);
+        document.getElementById('weeklyTotal').textContent = money(weeklyTotal);
+        document.getElementById('incomeShare').textContent = share.toFixed(1) + '%';
+        document.getElementById('burdenLabel').textContent = read.label;
+        document.getElementById('burdenText').textContent = read.text;
+        document.getElementById('fill').style.width = Math.min(100, share / 35 * 100) + '%';
+
+        document.getElementById('explanation').innerHTML =
+          '<p>For ' + children + ' ' + childWord + ' in ' + careType.toLowerCase() + ', a weekly price of <strong>' + money(weeklyPerChild, 2) + ' per child</strong> becomes about <strong>' + money(monthly) + ' each month</strong> or <strong>' + money(annual) + ' each year</strong>.</p>' +
+          '<p>Compared with the gross household income entered, that is <strong>' + share.toFixed(1) + '%</strong>—about <strong>' + money(perHundred, 2) + ' of every $100</strong> in income before taxes. This comparison uses gross income, so the share of take-home pay will be higher.</p>' +
+          '<p>The total assumes care is paid for all 52 weeks. If you only pay during school terms or have unpaid vacation weeks, use your average weekly cost across the full year for a closer estimate.</p>';
+
+        latestText = 'Childcare Cost Estimate\n' +
+          'Care type: ' + careType + '\n' +
+          'Children: ' + children + '\n' +
+          'Weekly cost per child: ' + money(weeklyPerChild, 2) + '\n' +
+          'Weekly household cost: ' + money(weeklyTotal, 2) + '\n' +
+          'Average monthly cost: ' + money(monthly, 2) + '\n' +
+          'Annual cost: ' + money(annual, 2) + '\n' +
+          'Annual household income: ' + money(income, 2) + '\n' +
+          'Share of gross income: ' + share.toFixed(1) + '%\n\n' +
+          'Assumes 52 paid weeks per year. Informational purposes only.';
+
+        emailLink.href = 'mailto:?subject=' + encodeURIComponent('My childcare cost estimate') + '&body=' + encodeURIComponent(latestText);
+        empty.hidden = true;
+        results.classList.add('is-visible');
+      }
+
+      function fallbackCopy(text) {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        var copied = document.execCommand('copy');
+        document.body.removeChild(area);
+        return copied;
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.setTimeout(function () { toast.classList.remove('show'); }, 1800);
+      }
+
+      copyButton.addEventListener('click', function () {
+        if (!latestText) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latestText).then(function () {
+            showToast('Results copied');
+          }).catch(function () {
+            showToast(fallbackCopy(latestText) ? 'Results copied' : 'Could not copy');
+          });
+        } else {
+          showToast(fallbackCopy(latestText) ? 'Results copied' : 'Could not copy');
+        }
+      });
+
+      form.addEventListener('submit', calculate);
+    }());
+  </script>
+</body>
+</html>

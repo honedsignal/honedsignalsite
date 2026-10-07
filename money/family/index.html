@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Family finances — Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #10151d;
+      --surface: #1a222d;
+      --surface-2: #252f3c;
+      --ink: #f5f5f5;
+      --muted: #c1c8d2;
+      --line: #374353;
+      --orange: #f7931a;
+      --orange-ink: #0b0e14;
+      --blue: #78a4d5;
+      --green: #39ff14;
+      --shadow: 0 24px 54px rgba(0, 0, 0, .30);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0e14;
+        --surface: #141922;
+        --surface-2: #1b222d;
+        --ink: #f5f5f5;
+        --muted: #b8c0cc;
+        --line: #303946;
+        --orange: #f7931a;
+        --orange-ink: #0b0e14;
+        --blue: #6490c4;
+        --green: #39ff14;
+        --shadow: 0 24px 54px rgba(0, 0, 0, .38);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--bg); }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, transparent 0 49.8%, color-mix(in srgb, var(--line) 35%, transparent) 49.8% 50.2%, transparent 50.2%) top 0 center / 88px 88px,
+        linear-gradient(0deg, transparent 0 49.8%, color-mix(in srgb, var(--line) 35%, transparent) 49.8% 50.2%, transparent 50.2%) top 0 center / 88px 88px,
+        var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", ui-sans-serif, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: max(22px, env(safe-area-inset-top)) 0 max(42px, env(safe-area-inset-bottom));
+    }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 44px;
+      font-weight: 700;
+      font-size: .96rem;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color .18s ease;
+    }
+
+    .home-link span {
+      color: var(--orange);
+      font-size: 1.35rem;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
+
+    .home-link:hover { color: var(--ink); }
+    .home-link:focus-visible,
+    .tool-link:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 70%, white);
+      outline-offset: 4px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      margin: clamp(34px, 7vw, 78px) 0 clamp(34px, 5vw, 56px);
+    }
+
+    .intro-copy { max-width: 720px; }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 16px;
+      color: var(--orange);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      background: currentColor;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-family: "IBM Plex Serif", ui-serif, Georgia, serif;
+      font-size: clamp(2.6rem, 6vw, 5.3rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+
+    .lede {
+      max-width: 650px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      line-height: 1.65;
+    }
+
+    .family-mark {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .family-mark::after {
+      content: "";
+      position: absolute;
+      right: 10px;
+      bottom: 11px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px var(--surface);
+    }
+
+    .family-mark svg { width: 62px; height: 62px; color: var(--blue); }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .tool-card {
+      position: relative;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      padding: 26px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 9px 9px 28px 9px;
+      box-shadow: var(--shadow);
+    }
+
+    .tool-card::before {
+      content: attr(data-index);
+      position: absolute;
+      right: 18px;
+      top: 12px;
+      color: color-mix(in srgb, var(--muted) 18%, transparent);
+      font-family: "IBM Plex Serif", Georgia, serif;
+      font-size: 4.7rem;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .icon {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      margin-bottom: 45px;
+      background: var(--surface-2);
+      color: var(--blue);
+      border-radius: 50% 50% 50% 12px;
+    }
+
+    .icon svg { width: 29px; height: 29px; }
+
+    .tool-card:nth-child(2) .icon { color: var(--orange); }
+    .tool-card:nth-child(3) .icon { color: var(--green); }
+
+    h2 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+      line-height: 1.14;
+      letter-spacing: -.025em;
+    }
+
+    .description {
+      position: relative;
+      z-index: 1;
+      margin: 13px 0 26px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .tool-link {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: 100%;
+      min-height: 50px;
+      margin-top: auto;
+      padding: 13px 16px;
+      border-radius: 4px 4px 16px 4px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .18s ease, color .18s ease;
+    }
+
+    .tool-link svg { width: 20px; height: 20px; transition: transform .18s ease; }
+    .tool-link:hover svg { transform: translateX(3px); }
+    .tool-link:hover { background: var(--ink); color: var(--bg); }
+
+    .note {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin: 34px 0 0;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.55;
+    }
+
+    .note svg { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 1px; color: var(--blue); }
+
+    @media (max-width: 780px) {
+      .intro { grid-template-columns: 1fr; align-items: start; }
+      .family-mark { display: none; }
+      .tools { grid-template-columns: 1fr; }
+      .tool-card { min-height: 270px; }
+      .icon { margin-bottom: 34px; }
+    }
+
+    @media (max-width: 520px) {
+      .page { width: min(100% - 28px, 1120px); padding-top: max(12px, env(safe-area-inset-top)); }
+      .intro { margin-top: 24px; gap: 0; }
+      h1 { font-size: clamp(2.45rem, 14vw, 3.7rem); }
+      .lede { margin-top: 17px; }
+      .tool-card { padding: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="home-link" href="/money/" aria-label="Back to Honed Money home">
+      <span aria-hidden="true">←</span> Honed Money
+    </a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <p class="eyebrow">Plan for what matters</p>
+        <h1 id="page-title">Family finances</h1>
+        <p class="lede">Three practical calculators for the decisions that shape a household—from today’s care costs to tomorrow’s college bill and the protection in between.</p>
+      </div>
+      <div class="family-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="22" cy="20" r="8"/><circle cx="43" cy="23" r="6"/>
+          <path d="M7 48c1.8-10 7-15 15-15s13.2 5 15 15M34 47c1.2-7.2 4.4-11 9-11 5.7 0 9.2 4.3 10 12"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="tools" aria-label="Family financial calculators">
+      <article class="tool-card" data-index="01">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 15h20v12H6zM10 15V9l6-4 6 4v6M11 20h3M18 20h3M11 24h3M18 24h3"/>
+          </svg>
+        </div>
+        <h2>Childcare Cost Calculator</h2>
+        <p class="description">What childcare really costs you.</p>
+        <a class="tool-link" href="/money/childcare-cost-calculator/">
+          <span>Open tool</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+      </article>
+
+      <article class="tool-card" data-index="02">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 13 13-7 13 7-13 7-13-7Z"/><path d="M8 16.5V23c4.8 3.6 11.2 3.6 16 0v-6.5M29 13v9"/>
+          </svg>
+        </div>
+        <h2>College Savings Estimator</h2>
+        <p class="description">Will the 529 cover it?</p>
+        <a class="tool-link" href="/money/college-savings-estimator/">
+          <span>Open tool</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+      </article>
+
+      <article class="tool-card" data-index="03">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 28S5 22.2 5 13.8C5 9.5 8 7 11.3 7c2.1 0 3.8 1.1 4.7 2.7C16.9 8.1 18.6 7 20.7 7 24 7 27 9.5 27 13.8 27 22.2 16 28 16 28Z"/><path d="M11 17h3l2-4 2.2 7 1.7-3H23"/>
+          </svg>
+        </div>
+        <h2>Life Insurance Needs Calculator</h2>
+        <p class="description">How much coverage is enough?</p>
+        <a class="tool-link" href="/money/life-insurance-needs-calculator/">
+          <span>Open tool</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+      </article>
+    </section>
+
+    <p class="note">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg>
+      <span>These calculators provide estimates for planning and comparison. Review important financial and insurance decisions with a qualified professional.</span>
+    </p>
+  </main>
+</body>
+</html>

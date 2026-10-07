@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Life Insurance Needs Calculator</title>
+  <meta name="description" content="Estimate a starting life insurance coverage need with the DIME method: debts, income replacement, mortgage, and education, minus existing coverage." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#11161c;--surface:#181f27;--surface-2:#202a34;--ink:#f5f5f5;--muted:#b7c0c9;
+      --line:#34404b;--line-strong:#596570;--orange:#f7931a;--orange-ink:#181108;
+      --orange-soft:#392917;--blue:#82acd5;--blue-soft:#192d40;--green:#39ff14;
+      --red:#ff747b;--red-soft:#402027;--shadow:0 24px 70px rgba(0,0,0,.28);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#0b0e14;--surface:#121820;--surface-2:#1a232d;--ink:#f5f5f5;--muted:#acb7c1;
+      --line:#2c3742;--line-strong:#4a5864;--orange:#f7931a;--orange-ink:#1a1106;
+      --orange-soft:#362513;--blue:#78a6d2;--blue-soft:#172b3d;--green:#39ff14;
+      --red:#ff747b;--red-soft:#3b1c22;--shadow:0 24px 70px rgba(0,0,0,.4);
+    }}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-width:320px;overflow-x:hidden;background:var(--bg);color:var(--ink);font:16px/1.5 "IBM Plex Sans",sans-serif;-webkit-font-smoothing:antialiased}
+    button,input{font:inherit;color:inherit}button,a{-webkit-tap-highlight-color:transparent}
+    .page{width:min(1180px,100%);margin:0 auto;padding:0 clamp(14px,4vw,46px) max(52px,env(safe-area-inset-bottom))}
+    .home-nav{position:sticky;top:0;z-index:20;padding:max(10px,env(safe-area-inset-top)) 0 9px;background:var(--bg)}
+    .home-link{display:inline-flex;align-items:center;min-height:34px;color:var(--muted);font-size:.76rem;font-weight:700;text-decoration:none}
+    .home-link:hover{color:var(--orange)}
+    .intro{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.65fr);gap:clamp(25px,6vw,78px);align-items:end;padding:4px 0 clamp(25px,4vw,40px);border-bottom:1px solid var(--line)}
+    .kicker{margin:0 0 11px;color:var(--orange);font:600 .72rem "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
+    .intro h1{margin:0;max-width:800px;font-size:clamp(2.5rem,6.4vw,5.9rem);line-height:.92;letter-spacing:-.062em}
+    .intro h1 span{color:var(--orange)}
+    .intro-copy{margin:0;max-width:40ch;color:var(--muted);font-size:clamp(1rem,1.6vw,1.17rem)}
+    .method-note{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;margin:22px 0 0;padding:16px 18px;background:var(--blue-soft);border-top:3px solid var(--blue)}
+    .method-badge{display:grid;place-items:center;min-width:56px;height:30px;background:var(--blue);color:#fff;font:600 .72rem "IBM Plex Mono",monospace;letter-spacing:.08em}
+    .method-note p{margin:0;font-size:.8rem}.method-note strong{color:var(--ink)}
+    .workbench{display:grid;grid-template-columns:minmax(320px,420px) minmax(0,1fr);margin-top:22px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+    .inputs{padding:clamp(20px,2.8vw,31px);border-right:1px solid var(--line)}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:2px 0 20px}.section-head h2{margin:0;font-size:1rem;letter-spacing:-.015em}
+    .step{color:var(--orange);font:600 .67rem "IBM Plex Mono",monospace;letter-spacing:.06em}
+    .field{margin-bottom:16px}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+    label{display:block;margin-bottom:7px;color:var(--muted);font-size:.76rem;font-weight:700}
+    .control{display:flex;align-items:center;min-height:49px;background:var(--bg);border:1px solid var(--line-strong);transition:border-color .15s,box-shadow .15s}
+    .control:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px color-mix(in srgb,var(--orange) 18%,transparent)}
+    .control input{width:100%;min-width:0;border:0;outline:0;background:transparent;padding:11px 10px;font:600 .95rem "IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+    .affix{padding-left:12px;color:var(--muted);font:600 .8rem "IBM Plex Mono",monospace}.affix.end{padding:0 12px 0 0}
+    .micro{display:block;margin-top:6px;color:var(--muted);font-size:.68rem;line-height:1.42}
+    .calculate{width:100%;min-height:50px;border:0;margin-top:8px;padding:13px 17px;background:var(--orange);color:var(--orange-ink);font-weight:700;cursor:pointer;box-shadow:0 5px 0 color-mix(in srgb,var(--orange) 56%,#000);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 2px 0 color-mix(in srgb,var(--orange) 56%,#000)}
+    .privacy{margin:14px 0 0;color:var(--muted);font-size:.66rem}
+    .results{min-width:0;padding:clamp(19px,3vw,34px);background:linear-gradient(135deg,color-mix(in srgb,var(--surface-2) 62%,transparent),transparent 58%)}
+    .empty{min-height:680px;display:grid;place-items:center;text-align:center}.empty-graphic{width:170px;height:135px;margin:0 auto 24px;position:relative}.empty-graphic svg{width:100%;height:100%;color:var(--blue)}
+    .empty-graphic::after{content:"DIME";position:absolute;right:-2px;bottom:-8px;padding:7px 10px;background:var(--orange);color:var(--orange-ink);font:600 .65rem "IBM Plex Mono",monospace;letter-spacing:.07em}
+    .empty h2{margin:0 0 8px;font-size:1.65rem;letter-spacing:-.035em}.empty p{margin:0 auto;max-width:44ch;color:var(--muted);font-size:.9rem}
+    .hidden{display:none!important}.error{margin:0;padding:13px 14px;background:var(--red-soft);color:var(--red);border:1px solid color-mix(in srgb,var(--red) 38%,transparent);font-size:.82rem;font-weight:700}
+    .result-lead{position:relative;overflow:hidden;padding:clamp(24px,4vw,39px);background:var(--ink);color:var(--bg)}
+    @media(prefers-color-scheme:dark){.result-lead{background:#f3f5f6;color:#0b0e14}}
+    .result-lead::after{content:"";position:absolute;width:174px;height:174px;right:-69px;bottom:-88px;border:23px solid var(--orange);border-radius:50%}
+    .eyebrow{position:relative;z-index:1;margin:0 0 9px;font:600 .67rem "IBM Plex Mono",monospace;letter-spacing:.075em;opacity:.62}
+    .big-number{position:relative;z-index:1;margin:0;font:600 clamp(3rem,7vw,5.7rem)/.92 "IBM Plex Mono",monospace;letter-spacing:-.075em}
+    .hero-note{position:relative;z-index:1;margin:11px 0 0;font-weight:700}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1px;background:var(--line)}
+    .metric{min-width:0;padding:18px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:700}.metric strong{display:block;margin-top:5px;font:600 clamp(1.06rem,2.3vw,1.42rem) "IBM Plex Mono",monospace;letter-spacing:-.035em;overflow-wrap:anywhere}.metric small{display:block;margin-top:5px;color:var(--muted);font-size:.63rem}.metric.offset strong{color:var(--orange)}
+    .breakdown{margin-top:15px;border:1px solid var(--line);background:var(--surface)}.breakdown-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:18px 20px 14px}.breakdown-head h2{margin:0;font-size:1rem}.breakdown-head p{margin:4px 0 0;color:var(--muted);font-size:.68rem}
+    .breakdown-row{display:grid;grid-template-columns:minmax(130px,1fr) auto;gap:14px;padding:11px 20px;border-top:1px solid var(--line);font-size:.76rem}.breakdown-row span{color:var(--muted)}.breakdown-row strong{font:600 .75rem "IBM Plex Mono",monospace;text-align:right}.breakdown-row.offset strong{color:var(--orange)}.breakdown-row.total{background:var(--surface-2);font-weight:700}.breakdown-row.total span,.breakdown-row.total strong{color:var(--ink)}
+    .dime-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:15px;background:var(--line);border:1px solid var(--line)}.dime-cell{padding:13px 12px;background:var(--surface)}.dime-cell b{display:block;color:var(--orange);font:600 .78rem "IBM Plex Mono",monospace}.dime-cell span{display:block;margin-top:3px;color:var(--muted);font-size:.64rem}
+    .explain{margin-top:14px;border:1px solid var(--line);background:var(--blue-soft)}.explain-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;border:0;background:transparent;padding:15px 17px;cursor:pointer;text-align:left;font-weight:700}.explain-toggle:hover{background:color-mix(in srgb,var(--blue) 9%,transparent)}.explain-toggle svg{width:18px;flex:0 0 auto;color:var(--blue);transition:transform .18s}.explain-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}.explain-copy{margin:0;padding:0 17px 18px;color:var(--muted);font-size:.84rem;line-height:1.68}.explain-copy[hidden]{display:none}
+    .share{margin-top:14px;padding:19px 21px;background:var(--surface);border:1px solid var(--line)}.share-head{display:flex;align-items:center;justify-content:space-between;gap:18px}.share h2{margin:0;font-size:1rem}.actions{display:flex;gap:8px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 12px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;font-size:.7rem;font-weight:700}.action.email{background:var(--orange);border-color:var(--orange);color:var(--orange-ink)}.notice{min-height:18px;margin:8px 0 0;color:var(--muted);font-size:.7rem}
+    .footer{display:grid;grid-template-columns:1fr auto;gap:30px;margin-top:25px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.67rem}.footer p{margin:0;max-width:88ch}
+    .calculate:focus-visible,.action:focus-visible,.explain-toggle:focus-visible,.home-link:focus-visible{outline:3px solid color-mix(in srgb,var(--orange) 46%,transparent);outline-offset:3px}
+    @media(max-width:850px){.intro{grid-template-columns:1fr;gap:15px}.intro-copy{max-width:55ch}.workbench{grid-template-columns:1fr}.inputs{border-right:0;border-bottom:1px solid var(--line)}.empty{min-height:410px}}
+    @media(max-width:560px){.page{padding-left:12px;padding-right:12px}.intro h1{font-size:clamp(2.4rem,12vw,3.85rem)}.field-row,.metric-grid{grid-template-columns:1fr}.results{padding:12px}.result-lead{padding:20px}.big-number{font-size:clamp(2.6rem,13vw,4rem)}.share-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.action{flex:1}.footer{grid-template-columns:1fr;gap:8px}.breakdown-row{padding-left:14px;padding-right:14px}.dime-strip{grid-template-columns:1fr 1fr}.method-note{padding:14px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <nav class="home-nav" aria-label="Honed Money"><a class="home-link" href="/money/">← Honed Money</a></nav>
+
+  <header class="intro">
+    <div><p class="kicker">Honed Money · Family</p><h1>Put a number on <span>the safety net.</span></h1></div>
+    <p class="intro-copy">Use the DIME method to estimate a starting amount of life insurance for debts, income replacement, a mortgage, and future education costs.</p>
+  </header>
+
+  <aside class="method-note" aria-label="DIME method summary">
+    <span class="method-badge">DIME</span>
+    <p><strong>Debt + Income + Mortgage + Education.</strong> Add those four needs, then subtract life insurance already in place. This is a planning shortcut—not a full financial plan.</p>
+  </aside>
+
+  <section class="workbench" aria-label="Life insurance needs calculator">
+    <form class="inputs" id="dimeForm" novalidate>
+      <div class="section-head"><h2>Income to protect</h2><span class="step">YOUR ESTIMATE</span></div>
+      <div class="field-row">
+        <div class="field">
+          <label for="income">Annual income</label>
+          <div class="control"><span class="affix">$</span><input id="income" type="number" min="0" step="1000" inputmode="decimal" placeholder="75,000" autocomplete="off" /></div>
+          <small class="micro">Use the amount your household would need to replace each year.</small>
+        </div>
+        <div class="field">
+          <label for="years">Years to replace</label>
+          <div class="control"><input id="years" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="10" autocomplete="off" /><span class="affix end">years</span></div>
+          <small class="micro">A planning horizon—not a policy term recommendation.</small>
+        </div>
+      </div>
+
+      <div class="section-head"><h2>Large obligations</h2><span class="step">D + M + E</span></div>
+      <div class="field">
+        <label for="debts">Debts</label>
+        <div class="control"><span class="affix">$</span><input id="debts" type="number" min="0" step="100" inputmode="decimal" placeholder="25,000" autocomplete="off" /></div>
+        <small class="micro">Credit cards, car loans, personal loans, final expenses, or other balances. Leave the mortgage below.</small>
+      </div>
+      <div class="field">
+        <label for="mortgage">Mortgage balance</label>
+        <div class="control"><span class="affix">$</span><input id="mortgage" type="number" min="0" step="1000" inputmode="decimal" placeholder="240,000" autocomplete="off" /></div>
+      </div>
+      <div class="field">
+        <label for="education">Future education costs</label>
+        <div class="control"><span class="affix">$</span><input id="education" type="number" min="0" step="1000" inputmode="decimal" placeholder="80,000" autocomplete="off" /></div>
+        <small class="micro">Enter one combined amount for the people you plan to support.</small>
+      </div>
+
+      <div class="section-head"><h2>Coverage already in place</h2><span class="step">SUBTRACT</span></div>
+      <div class="field">
+        <label for="existing">Existing life insurance coverage</label>
+        <div class="control"><span class="affix">$</span><input id="existing" type="number" min="0" step="1000" inputmode="decimal" placeholder="100,000" autocomplete="off" /></div>
+        <small class="micro">Include personal and employer-provided life insurance you expect to count on. Employer coverage may end when employment changes.</small>
+      </div>
+
+      <button class="calculate" type="submit">Estimate coverage need</button>
+      <p class="privacy">Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div>
+          <div class="empty-graphic" aria-hidden="true">
+            <svg viewBox="0 0 180 140" fill="none"><path d="M90 128S22 91 22 49C22 24 41 10 62 10c13 0 23 6 28 16 6-10 16-16 29-16 21 0 39 14 39 39 0 42-68 79-68 79Z" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/><path d="M47 69h27l9-19 15 38 10-19h27" stroke="currentColor" stroke-width="7" stroke-linecap="square" stroke-linejoin="round"/></svg>
+          </div>
+          <h2>Start with the four big needs.</h2>
+          <p>Enter the obligations you want a policy to help cover. The result will show what existing coverage already handles—and the remaining gap.</p>
+        </div>
+      </div>
+
+      <div id="resultState" class="hidden" aria-live="polite">
+        <div class="error hidden" id="errorBox"></div>
+        <div id="validResults" class="hidden">
+          <section class="result-lead" id="resultLead">
+            <p class="eyebrow">ESTIMATED ADDITIONAL COVERAGE NEED</p>
+            <p class="big-number" id="recommended">—</p>
+            <p class="hero-note" id="heroNote">—</p>
+          </section>
+
+          <div class="metric-grid">
+            <article class="metric"><span>GROSS DIME NEED</span><strong id="grossNeed">—</strong><small>Before existing coverage</small></article>
+            <article class="metric"><span>INCOME REPLACEMENT</span><strong id="incomeNeed">—</strong><small id="incomeFormula">Annual income × years</small></article>
+            <article class="metric offset"><span>EXISTING COVERAGE</span><strong id="existingCoverage">—</strong><small>Subtracted from gross need</small></article>
+          </div>
+
+          <div class="dime-strip" aria-label="DIME method components">
+            <div class="dime-cell"><b>D</b><span>Debt</span></div><div class="dime-cell"><b>I</b><span>Income</span></div><div class="dime-cell"><b>M</b><span>Mortgage</span></div><div class="dime-cell"><b>E</b><span>Education</span></div>
+          </div>
+
+          <section class="breakdown" aria-label="Coverage need breakdown">
+            <div class="breakdown-head"><div><h2>Coverage breakdown</h2><p>How the DIME estimate was built</p></div><span class="step">ADD, THEN SUBTRACT</span></div>
+            <div class="breakdown-row"><span>Debt</span><strong id="debtRow">—</strong></div>
+            <div class="breakdown-row"><span>Income replacement</span><strong id="incomeRow">—</strong></div>
+            <div class="breakdown-row"><span>Mortgage</span><strong id="mortgageRow">—</strong></div>
+            <div class="breakdown-row"><span>Education</span><strong id="educationRow">—</strong></div>
+            <div class="breakdown-row"><span>Gross DIME need</span><strong id="grossRow">—</strong></div>
+            <div class="breakdown-row offset"><span>Less existing coverage</span><strong id="existingRow">—</strong></div>
+            <div class="breakdown-row total"><span>Estimated additional coverage need</span><strong id="netRow">—</strong></div>
+          </section>
+
+          <section class="explain" aria-label="Plain-English results explanation">
+            <button type="button" class="explain-toggle" id="explainToggle" aria-expanded="false" aria-controls="explainCopy"><span>Explain these results</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <p class="explain-copy" id="explainCopy" hidden></p>
+          </section>
+
+          <section class="share">
+            <div class="share-head"><h2>Take the estimate with you</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
+            <p class="notice" id="copyNotice" role="status"></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p><strong>What this does not model:</strong> Social Security survivor benefits, a partner’s income, retirement or college savings, inflation, investment returns, funeral costs unless entered as debt, taxes, ongoing childcare, caregiving, or the cost and availability of a policy.</p>
+    <p>For informational purposes only, not insurance, legal, tax, or financial advice.</p>
+  </footer>
+</main>
+<script>
+(function(){
+  "use strict";
+  var form=document.getElementById("dimeForm"),lastResult=null;
+  function byId(id){return document.getElementById(id)}
+  function inputNumber(id){var raw=byId(id).value.trim();return raw===""?0:Number(raw)}
+  function money(n){return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(n)}
+  function values(){return{income:inputNumber("income"),years:inputNumber("years"),debts:inputNumber("debts"),mortgage:inputNumber("mortgage"),education:inputNumber("education"),existing:inputNumber("existing")}}
+  function validate(x){
+    var vals=[x.income,x.years,x.debts,x.mortgage,x.education,x.existing];
+    if(vals.some(function(v){return!Number.isFinite(v)||v<0}))return"Enter zero or a positive number in every field.";
+    if(x.years>100)return"Enter an income-replacement period of 100 years or less.";
+    if(!Number.isInteger(x.years))return"Enter income-replacement years as a whole number.";
+    if([x.income,x.debts,x.mortgage,x.education,x.existing].some(function(v){return v>1000000000}))return"Enter dollar amounts of $1 billion or less.";
+    if(x.income===0&&x.debts===0&&x.mortgage===0&&x.education===0)return"Enter at least one future need: income, debt, mortgage, or education.";
+    return"";
+  }
+  function showError(message){byId("emptyState").classList.add("hidden");byId("resultState").classList.remove("hidden");byId("errorBox").textContent=message;byId("errorBox").classList.remove("hidden");byId("validResults").classList.add("hidden");lastResult=null}
+  function calculate(event){
+    if(event)event.preventDefault();
+    var x=values(),error=validate(x);if(error){showError(error);return}
+    var incomeNeed=x.income*x.years,gross=x.debts+incomeNeed+x.mortgage+x.education,net=Math.max(0,gross-x.existing),surplus=Math.max(0,x.existing-gross);
+    lastResult={x:x,incomeNeed:incomeNeed,gross:gross,net:net,surplus:surplus};render(lastResult);
+  }
+  function render(r){
+    byId("emptyState").classList.add("hidden");byId("resultState").classList.remove("hidden");byId("errorBox").classList.add("hidden");byId("validResults").classList.remove("hidden");
+    byId("recommended").textContent=money(r.net);byId("grossNeed").textContent=money(r.gross);byId("incomeNeed").textContent=money(r.incomeNeed);byId("existingCoverage").textContent=money(r.x.existing);
+    byId("incomeFormula").textContent=money(r.x.income)+" × "+r.x.years+" year"+(r.x.years===1?"":"s");
+    byId("debtRow").textContent=money(r.x.debts);byId("incomeRow").textContent=money(r.incomeNeed);byId("mortgageRow").textContent=money(r.x.mortgage);byId("educationRow").textContent=money(r.x.education);byId("grossRow").textContent=money(r.gross);byId("existingRow").textContent="− "+money(r.x.existing);byId("netRow").textContent=money(r.net);
+    byId("heroNote").textContent=r.net>0?"The gap after subtracting existing coverage.":"Existing coverage meets or exceeds this DIME estimate.";
+    byId("explainCopy").textContent=explanation(r);byId("explainCopy").hidden=true;byId("explainToggle").setAttribute("aria-expanded","false");
+    byId("emailResults").href="mailto:?subject="+encodeURIComponent("My life insurance needs estimate")+"&body="+encodeURIComponent(summary(r));byId("copyNotice").textContent="";
+    if(window.matchMedia("(max-width: 850px)").matches){setTimeout(function(){byId("resultLead").scrollIntoView({behavior:"smooth",block:"start"})},50)}
+  }
+  function explanation(r){
+    var x=r.x,parts=[];
+    parts.push("The DIME method adds "+money(x.debts)+" of debt, "+money(r.incomeNeed)+" of income replacement, "+money(x.mortgage)+" for the mortgage, and "+money(x.education)+" for education. That creates a gross need of "+money(r.gross)+".");
+    parts.push("After subtracting "+money(x.existing)+" of existing life insurance, the estimated additional coverage need is "+money(r.net)+".");
+    if(r.net===0&&r.surplus>0)parts.push("Existing coverage is "+money(r.surplus)+" above this narrow DIME estimate. That does not automatically mean the coverage is right for your household; needs outside DIME can still matter.");
+    else if(r.net>0)parts.push("The "+money(r.net)+" figure is a starting point for comparing policy amounts, not a recommendation to buy that exact amount.");
+    parts.push("Review the estimate against survivor benefits, savings, ongoing childcare or caregiving, inflation, a partner’s income, and how long employer coverage would remain available.");
+    return parts.join(" ");
+  }
+  function summary(r){var x=r.x;return[
+    "Life Insurance Needs Calculator — DIME results","",
+    "Debt: "+money(x.debts),
+    "Income replacement: "+money(x.income)+" × "+x.years+" years = "+money(r.incomeNeed),
+    "Mortgage: "+money(x.mortgage),
+    "Education: "+money(x.education),
+    "Gross DIME need: "+money(r.gross),
+    "Existing life insurance: − "+money(x.existing),"",
+    "Estimated additional coverage need: "+money(r.net),"",
+    "This is a starting estimate using the DIME method. It does not model survivor benefits, savings, inflation, taxes, caregiving, policy cost, or every household need.",
+    "For informational purposes only, not insurance, legal, tax, or financial advice."
+  ].join("\n")}
+  function copyResults(){
+    if(!lastResult)return;var button=byId("copyResults"),notice=byId("copyNotice"),text=summary(lastResult);
+    function done(){button.textContent="Copied";notice.textContent="Results copied to your clipboard.";clearTimeout(button._timer);button._timer=setTimeout(function(){button.textContent="Copy results";notice.textContent=""},1800)}
+    function fallback(){var area=document.createElement("textarea");area.value=text;area.setAttribute("readonly","");area.style.position="fixed";area.style.opacity="0";document.body.appendChild(area);area.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){ok=false}area.remove();if(ok)done();else{notice.textContent="Copy was blocked. Select the results and copy them manually."}}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done).catch(fallback)}else fallback();
+  }
+  function toggleExplanation(){var button=byId("explainToggle"),copy=byId("explainCopy"),open=button.getAttribute("aria-expanded")!=="true";button.setAttribute("aria-expanded",open?"true":"false");copy.hidden=!open}
+  form.addEventListener("submit",calculate);byId("copyResults").addEventListener("click",copyResults);byId("explainToggle").addEventListener("click",toggleExplanation);
+})();
+</script>
+</body>
+</html>

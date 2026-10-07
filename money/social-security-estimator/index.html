@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Social Security Benefit Estimator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      color-scheme: light dark;
+      --ink: #f5f5f5;
+      --muted: #aab4c3;
+      --paper: #0b0e14;
+      --surface: #141a23;
+      --surface-2: #1c2430;
+      --line: #2d3949;
+      --blue: #6490c4;
+      --orange: #f7931a;
+      --orange-ink: #160f05;
+      --green: #39ff14;
+      --red: #e5484d;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .3);
+      --radius-lg: 22px;
+      --radius-md: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #fbfbfc;
+        --muted: #b4bfcd;
+        --paper: #07090d;
+        --surface: #101620;
+        --surface-2: #19222e;
+        --line: #334153;
+        --blue: #78a4d4;
+        --orange: #ff9b20;
+        --orange-ink: #160f05;
+        --green: #39ff14;
+        --red: #f05a60;
+        --shadow: 0 24px 70px rgba(0, 0, 0, .42);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+      line-height: 1.5;
+    }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+
+    .site-wrap {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) 0 max(48px, env(safe-area-inset-bottom));
+    }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .home-link:hover, .home-link:focus-visible { color: var(--orange); }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+      gap: 26px;
+      align-items: end;
+      padding: 30px 0 34px;
+      border-top: 1px solid var(--line);
+    }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.35rem, 6vw, 4.8rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+    .intro-copy {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .calculator-shell {
+      display: grid;
+      grid-template-columns: minmax(290px, .76fr) minmax(0, 1.24fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .input-panel {
+      border-radius: var(--radius-lg) var(--radius-md) var(--radius-md) var(--radius-lg);
+      padding: clamp(22px, 4vw, 34px);
+      position: sticky;
+      top: 18px;
+    }
+    .results-panel {
+      min-height: 520px;
+      border-radius: var(--radius-md) var(--radius-lg) var(--radius-lg) var(--radius-md);
+      padding: clamp(22px, 4vw, 36px);
+    }
+
+    .section-label {
+      display: block;
+      margin: 0 0 20px;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+    }
+    .field { margin-bottom: 22px; }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .hint {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: .83rem;
+      line-height: 1.42;
+    }
+    .money-input {
+      position: relative;
+    }
+    .money-input span {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-weight: 600;
+    }
+    input[type="number"] {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--surface-2);
+      color: var(--ink);
+      padding: 11px 14px;
+      font-size: 1.03rem;
+      font-weight: 600;
+      outline: none;
+    }
+    .money-input input { padding-left: 32px; }
+    input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) 24%, transparent); }
+    input[aria-invalid="true"] { border-color: var(--red); }
+    .error {
+      min-height: 20px;
+      margin: -10px 0 12px;
+      color: var(--red);
+      font-size: .86rem;
+      font-weight: 600;
+    }
+
+    .primary-button, .action-button, .explain-toggle {
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .primary-button {
+      width: 100%;
+      min-height: 54px;
+      border-radius: 9px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      padding: 13px 18px;
+    }
+    .primary-button:hover { filter: brightness(1.06); }
+    .primary-button:focus-visible, .action-button:focus-visible, .explain-toggle:focus-visible, .home-link:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--orange) 50%, transparent);
+      outline-offset: 3px;
+    }
+    .input-note {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .empty-state {
+      min-height: 448px;
+      display: grid;
+      align-content: center;
+      max-width: 520px;
+    }
+    .empty-mark {
+      width: 64px;
+      height: 10px;
+      margin-bottom: 24px;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+    .empty-state h2, .results-header h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.65rem, 3vw, 2.25rem);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+    }
+    .empty-state p, .results-header p { margin: 0; color: var(--muted); }
+
+    .results { display: none; }
+    .results.is-visible { display: block; }
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .fra-chip {
+      flex: 0 0 auto;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--surface-2);
+      color: var(--muted);
+      text-align: right;
+      font-size: .78rem;
+    }
+    .fra-chip strong { display: block; color: var(--ink); font-size: .98rem; }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin: 28px 0;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .benefit-card {
+      min-width: 0;
+      background: var(--surface);
+      padding: 22px 18px;
+    }
+    .benefit-card.featured { background: color-mix(in srgb, var(--orange) 9%, var(--surface)); }
+    .claim-age {
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 600;
+    }
+    .benefit-amount {
+      display: block;
+      margin: 5px 0 1px;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: clamp(1.55rem, 3vw, 2.1rem);
+      line-height: 1.1;
+      letter-spacing: -.04em;
+      overflow-wrap: anywhere;
+    }
+    .per-month { color: var(--muted); font-size: .76rem; }
+    .adjustment {
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.35;
+    }
+
+    .comparison {
+      padding: 24px 0 10px;
+      border-top: 1px solid var(--line);
+    }
+    .comparison-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: baseline;
+      margin-bottom: 16px;
+    }
+    .comparison h3, .explanation h3 {
+      margin: 0;
+      font-size: 1.08rem;
+    }
+    .comparison-head span { color: var(--muted); font-size: .82rem; }
+    .total-list { display: grid; gap: 9px; }
+    .total-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: baseline;
+      padding: 13px 15px;
+      background: var(--surface-2);
+      border-radius: 8px;
+    }
+    .total-row.best {
+      box-shadow: inset 4px 0 0 var(--green);
+    }
+    .total-row span { color: var(--muted); font-size: .88rem; }
+    .total-row strong { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 1rem; }
+    .breakeven {
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .action-button {
+      min-height: 45px;
+      border-radius: 8px;
+      padding: 10px 16px;
+    }
+    .email-button { background: var(--orange); color: var(--orange-ink); }
+    .copy-button { background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); }
+
+    .explain-wrap { margin-top: 16px; }
+    .explain-toggle {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 15px 0;
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .explain-toggle .symbol {
+      color: var(--orange);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 1.2rem;
+    }
+    .explanation { padding: 20px 0 2px; }
+    .explanation[hidden] { display: none; }
+    .explanation p { margin: 0 0 13px; color: var(--muted); }
+    .explanation strong { color: var(--ink); }
+
+    .method-note {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: max(20px, env(safe-area-inset-bottom));
+      transform: translate(-50%, 16px);
+      max-width: calc(100% - 32px);
+      padding: 11px 16px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--paper);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index: 10;
+      font-weight: 600;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    footer {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    @media (max-width: 840px) {
+      .intro { grid-template-columns: 1fr; gap: 14px; align-items: start; }
+      .intro-copy { max-width: 650px; }
+      .calculator-shell { grid-template-columns: 1fr; }
+      .input-panel { position: static; border-radius: var(--radius-lg) var(--radius-lg) var(--radius-md) var(--radius-md); }
+      .results-panel { min-height: 420px; border-radius: var(--radius-md) var(--radius-md) var(--radius-lg) var(--radius-lg); }
+      .empty-state { min-height: 300px; }
+    }
+
+    @media (max-width: 590px) {
+      .site-wrap { width: min(100% - 22px, 1160px); }
+      .intro { padding: 24px 0 26px; }
+      h1 { font-size: clamp(2.25rem, 11.5vw, 3.05rem); }
+      .benefit-grid { grid-template-columns: 1fr; }
+      .benefit-card { display: grid; grid-template-columns: minmax(92px, .7fr) 1fr; column-gap: 12px; align-items: center; }
+      .benefit-card .claim-age, .benefit-card .adjustment { grid-column: 1; }
+      .benefit-card .benefit-amount, .benefit-card .per-month { grid-column: 2; }
+      .benefit-card .benefit-amount { grid-row: 1 / span 2; align-self: center; }
+      .benefit-card .per-month { grid-row: 3; }
+      .benefit-card .adjustment { margin-top: 7px; }
+      .results-header { align-items: start; flex-direction: column; }
+      .fra-chip { text-align: left; }
+      .comparison-head { display: block; }
+      .comparison-head span { display: block; margin-top: 4px; }
+      .total-row { grid-template-columns: 1fr; gap: 2px; }
+      .actions { display: grid; grid-template-columns: 1fr; }
+      .action-button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .toast { transition: none; }
+    }
+
+    @media print {
+      .home-link, .input-panel, .actions, .explain-toggle, .toast { display: none !important; }
+      body { background: white; color: black; }
+      .site-wrap { width: 100%; padding: 0; }
+      .calculator-shell { display: block; }
+      .results-panel { box-shadow: none; border: 0; padding: 0; }
+      .results { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-wrap">
+    <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <header class="intro">
+      <h1>Social Security benefit estimator</h1>
+      <p class="intro-copy">See how claiming at 62, at full retirement age, or at 70 could change your monthly check and your total benefits over time.</p>
+    </header>
+
+    <main class="calculator-shell">
+      <form class="panel input-panel" id="benefit-form" novalidate>
+        <span class="section-label">YOUR ESTIMATE</span>
+
+        <div class="field">
+          <label for="fra-benefit">Monthly benefit at full retirement age</label>
+          <div class="money-input">
+            <span aria-hidden="true">$</span>
+            <input id="fra-benefit" name="fraBenefit" type="number" min="1" max="20000" step="1" inputmode="decimal" placeholder="2,000" required />
+          </div>
+          <small class="hint">Use the estimate shown on your Social Security Statement.</small>
+        </div>
+
+        <div class="field">
+          <label for="birth-year">Birth year</label>
+          <input id="birth-year" name="birthYear" type="number" min="1920" max="2010" step="1" inputmode="numeric" placeholder="1965" required />
+          <small class="hint">This determines your full retirement age under current law.</small>
+        </div>
+
+        <div class="field">
+          <label for="compare-age">Compare total benefits through age</label>
+          <input id="compare-age" name="compareAge" type="number" min="70" max="100" step="1" inputmode="numeric" value="85" required />
+          <small class="hint">Try a few ages. The best claiming age depends partly on longevity.</small>
+        </div>
+
+        <div class="error" id="form-error" role="alert" aria-live="polite"></div>
+        <button class="primary-button" type="submit">Estimate my benefits</button>
+        <p class="input-note">Rough estimate only. Your official benefit amount comes from the Social Security Administration at SSA.gov.</p>
+      </form>
+
+      <section class="panel results-panel" aria-live="polite">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-mark" aria-hidden="true"></div>
+          <h2>Three claiming ages, one clear comparison.</h2>
+          <p>Enter your statement estimate to compare the trade-off between a smaller check sooner and a larger check later.</p>
+        </div>
+
+        <div class="results" id="results">
+          <div class="results-header">
+            <div>
+              <span class="section-label">ESTIMATED MONTHLY BENEFIT</span>
+              <h2>Your claiming-age comparison</h2>
+              <p>Shown in today’s dollars, before taxes or Medicare premiums.</p>
+            </div>
+            <div class="fra-chip">Your full retirement age<strong id="fra-display">67</strong></div>
+          </div>
+
+          <div class="benefit-grid">
+            <article class="benefit-card">
+              <span class="claim-age">Claim at 62</span>
+              <strong class="benefit-amount" id="benefit-62">$0</strong>
+              <span class="per-month">per month</span>
+              <div class="adjustment" id="adjustment-62">—</div>
+            </article>
+            <article class="benefit-card featured">
+              <span class="claim-age" id="claim-fra-label">Claim at full retirement age</span>
+              <strong class="benefit-amount" id="benefit-fra">$0</strong>
+              <span class="per-month">per month</span>
+              <div class="adjustment">Your statement estimate</div>
+            </article>
+            <article class="benefit-card">
+              <span class="claim-age">Claim at 70</span>
+              <strong class="benefit-amount" id="benefit-70">$0</strong>
+              <span class="per-month">per month</span>
+              <div class="adjustment" id="adjustment-70">—</div>
+            </article>
+          </div>
+
+          <section class="comparison" aria-labelledby="comparison-title">
+            <div class="comparison-head">
+              <h3 id="comparison-title">Total benefits received</h3>
+              <span id="through-age">Through age 85</span>
+            </div>
+            <div class="total-list">
+              <div class="total-row" id="total-row-62"><span>Start at 62</span><strong id="total-62">$0</strong></div>
+              <div class="total-row" id="total-row-fra"><span id="total-fra-label">Start at full retirement age</span><strong id="total-fra">$0</strong></div>
+              <div class="total-row" id="total-row-70"><span>Start at 70</span><strong id="total-70">$0</strong></div>
+            </div>
+            <p class="breakeven" id="breakeven-text"></p>
+          </section>
+
+          <div class="actions">
+            <button class="action-button email-button" id="email-results" type="button">Email my results</button>
+            <button class="action-button copy-button" id="copy-results" type="button">Copy results</button>
+          </div>
+
+          <div class="explain-wrap">
+            <button class="explain-toggle" id="explain-toggle" type="button" aria-expanded="false" aria-controls="explanation">
+              <span>Explain these results</span><span class="symbol" aria-hidden="true">+</span>
+            </button>
+            <div class="explanation" id="explanation" hidden></div>
+          </div>
+
+          <p class="method-note">This estimate applies Social Security’s standard early-claim reduction and delayed-retirement credit formulas to the full-retirement-age amount you entered. It does not model future cost-of-living adjustments, earnings tests, taxes, Medicare premiums, spousal or survivor benefits, or changes in law. Informational purposes only.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>For planning, not a guarantee of benefits. Check your Social Security Statement for your official personalized estimate.</footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var form = document.getElementById('benefit-form');
+      var fraBenefitInput = document.getElementById('fra-benefit');
+      var birthYearInput = document.getElementById('birth-year');
+      var compareAgeInput = document.getElementById('compare-age');
+      var errorBox = document.getElementById('form-error');
+      var results = document.getElementById('results');
+      var emptyState = document.getElementById('empty-state');
+      var explainToggle = document.getElementById('explain-toggle');
+      var explanation = document.getElementById('explanation');
+      var toast = document.getElementById('toast');
+      var currentSummary = '';
+      var toastTimer;
+
+      function money(value) {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          maximumFractionDigits: 0
+        }).format(Math.round(value));
+      }
+
+      function percent(value) {
+        return new Intl.NumberFormat('en-US', {
+          maximumFractionDigits: 1
+        }).format(value * 100) + '%';
+      }
+
+      function getFraMonths(year) {
+        if (year <= 1937) return 65 * 12;
+        if (year <= 1942) return 65 * 12 + (year - 1937) * 2;
+        if (year <= 1954) return 66 * 12;
+        if (year <= 1959) return 66 * 12 + (year - 1954) * 2;
+        return 67 * 12;
+      }
+
+      function getDelayedCreditAnnual(year) {
+        if (year >= 1943) return 0.08;
+        if (year >= 1941) return 0.075;
+        if (year >= 1939) return 0.07;
+        if (year >= 1937) return 0.065;
+        if (year >= 1935) return 0.06;
+        if (year >= 1933) return 0.055;
+        return 0.05;
+      }
+
+      function ageText(months) {
+        var years = Math.floor(months / 12);
+        var remainder = months % 12;
+        if (!remainder) return String(years);
+        return years + ' years, ' + remainder + (remainder === 1 ? ' month' : ' months');
+      }
+
+      function preciseAge(months) {
+        var years = Math.floor(months / 12);
+        var remainder = Math.round(months % 12);
+        if (remainder === 12) { years += 1; remainder = 0; }
+        return remainder ? years + ' years, ' + remainder + (remainder === 1 ? ' month' : ' months') : String(years);
+      }
+
+      function breakEvenAge(firstClaimMonths, firstBenefit, secondClaimMonths, secondBenefit) {
+        var denominator = secondBenefit - firstBenefit;
+        if (denominator <= 0) return null;
+        return (secondBenefit * secondClaimMonths - firstBenefit * firstClaimMonths) / denominator;
+      }
+
+      function showToast(message) {
+        clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add('show');
+        toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+      }
+
+      function setInvalid(input, invalid) {
+        input.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+      }
+
+      function calculate(event) {
+        event.preventDefault();
+        var fraBenefit = Number(fraBenefitInput.value);
+        var birthYear = Number(birthYearInput.value);
+        var compareAge = Number(compareAgeInput.value);
+        var errors = [];
+
+        setInvalid(fraBenefitInput, false);
+        setInvalid(birthYearInput, false);
+        setInvalid(compareAgeInput, false);
+
+        if (!Number.isFinite(fraBenefit) || fraBenefit <= 0 || fraBenefit > 20000) {
+          errors.push('Enter a monthly benefit between $1 and $20,000.');
+          setInvalid(fraBenefitInput, true);
+        }
+        if (!Number.isInteger(birthYear) || birthYear < 1920 || birthYear > 2010) {
+          errors.push('Enter a birth year from 1920 through 2010.');
+          setInvalid(birthYearInput, true);
+        }
+        if (!Number.isInteger(compareAge) || compareAge < 70 || compareAge > 100) {
+          errors.push('Choose a comparison age from 70 through 100.');
+          setInvalid(compareAgeInput, true);
+        }
+
+        if (errors.length) {
+          errorBox.textContent = errors[0];
+          return;
+        }
+        errorBox.textContent = '';
+
+        var fraMonths = getFraMonths(birthYear);
+        var earlyMonths = Math.max(0, fraMonths - 62 * 12);
+        var earlyReduction = Math.min(earlyMonths, 36) * (5 / 900) + Math.max(0, earlyMonths - 36) * (5 / 1200);
+        var delayedMonths = Math.max(0, 70 * 12 - fraMonths);
+        var delayedAnnualRate = getDelayedCreditAnnual(birthYear);
+        var delayedIncrease = delayedMonths * (delayedAnnualRate / 12);
+
+        var benefit62 = fraBenefit * (1 - earlyReduction);
+        var benefit70 = fraBenefit * (1 + delayedIncrease);
+        var compareMonths = compareAge * 12;
+        var total62 = benefit62 * Math.max(0, compareMonths - 62 * 12);
+        var totalFra = fraBenefit * Math.max(0, compareMonths - fraMonths);
+        var total70 = benefit70 * Math.max(0, compareMonths - 70 * 12);
+        var totals = [total62, totalFra, total70];
+        var maxTotal = Math.max.apply(null, totals);
+        var breakEven62Fra = breakEvenAge(62 * 12, benefit62, fraMonths, fraBenefit);
+        var breakEvenFra70 = breakEvenAge(fraMonths, fraBenefit, 70 * 12, benefit70);
+        var fraText = ageText(fraMonths);
+
+        document.getElementById('fra-display').textContent = fraText;
+        document.getElementById('benefit-62').textContent = money(benefit62);
+        document.getElementById('benefit-fra').textContent = money(fraBenefit);
+        document.getElementById('benefit-70').textContent = money(benefit70);
+        document.getElementById('adjustment-62').textContent = percent(earlyReduction) + ' less than your full benefit';
+        document.getElementById('adjustment-70').textContent = percent(delayedIncrease) + ' more than your full benefit';
+        document.getElementById('claim-fra-label').textContent = 'Claim at ' + fraText;
+        document.getElementById('through-age').textContent = 'Through age ' + compareAge;
+        document.getElementById('total-62').textContent = money(total62);
+        document.getElementById('total-fra').textContent = money(totalFra);
+        document.getElementById('total-70').textContent = money(total70);
+        document.getElementById('total-fra-label').textContent = 'Start at ' + fraText;
+
+        ['total-row-62', 'total-row-fra', 'total-row-70'].forEach(function (id) {
+          document.getElementById(id).classList.remove('best');
+        });
+        totals.forEach(function (total, index) {
+          if (Math.abs(total - maxTotal) < 1) {
+            document.getElementById(['total-row-62', 'total-row-fra', 'total-row-70'][index]).classList.add('best');
+          }
+        });
+
+        var breakEvenLine = 'Waiting until ' + fraText + ' catches up with claiming at 62 around age ' + preciseAge(breakEven62Fra) + '. Waiting until 70 catches up with claiming at full retirement age around age ' + preciseAge(breakEvenFra70) + '.';
+        document.getElementById('breakeven-text').textContent = breakEvenLine;
+
+        var leaders = [];
+        if (Math.abs(total62 - maxTotal) < 1) leaders.push('claiming at 62');
+        if (Math.abs(totalFra - maxTotal) < 1) leaders.push('claiming at full retirement age');
+        if (Math.abs(total70 - maxTotal) < 1) leaders.push('claiming at 70');
+        var leaderText = leaders.length === 1 ? leaders[0] : leaders.join(' and ');
+
+        explanation.innerHTML =
+          '<h3>The plain-English version</h3>' +
+          '<p>Based on birth year <strong>' + birthYear + '</strong>, your full retirement age is <strong>' + fraText + '</strong>. Claiming at 62 starts payments sooner, but reduces the monthly amount by about <strong>' + percent(earlyReduction) + '</strong>, to roughly <strong>' + money(benefit62) + ' a month</strong>.</p>' +
+          '<p>Waiting until 70 raises the estimate by about <strong>' + percent(delayedIncrease) + '</strong> above your full-retirement-age amount, to roughly <strong>' + money(benefit70) + ' a month</strong>. The larger check lasts for the rest of retirement, but you give up the payments you could have collected earlier.</p>' +
+          '<p>By age <strong>' + compareAge + '</strong>, <strong>' + leaderText + '</strong> produces the highest total in this simplified comparison. That does not automatically make it the right choice: health, work plans, taxes, cash needs, and benefits for a spouse or survivor can change the decision.</p>';
+
+        currentSummary =
+          'Social Security Benefit Estimate\n\n' +
+          'Birth year: ' + birthYear + '\n' +
+          'Full retirement age: ' + fraText + '\n' +
+          'Statement estimate at full retirement age: ' + money(fraBenefit) + '/month\n\n' +
+          'Claim at 62: ' + money(benefit62) + '/month\n' +
+          'Claim at ' + fraText + ': ' + money(fraBenefit) + '/month\n' +
+          'Claim at 70: ' + money(benefit70) + '/month\n\n' +
+          'Estimated total through age ' + compareAge + ':\n' +
+          '- Start at 62: ' + money(total62) + '\n' +
+          '- Start at ' + fraText + ': ' + money(totalFra) + '\n' +
+          '- Start at 70: ' + money(total70) + '\n\n' +
+          breakEvenLine + '\n\n' +
+          'Rough estimate only. Excludes future COLAs, earnings tests, taxes, Medicare premiums, spousal or survivor benefits, and changes in law. Your official figure comes from SSA.gov. Informational purposes only.';
+
+        emptyState.style.display = 'none';
+        results.classList.add('is-visible');
+        explanation.hidden = true;
+        explainToggle.setAttribute('aria-expanded', 'false');
+        explainToggle.querySelector('.symbol').textContent = '+';
+
+        if (window.matchMedia('(max-width: 840px)').matches) {
+          results.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        }
+      }
+
+      explainToggle.addEventListener('click', function () {
+        var willOpen = explanation.hidden;
+        explanation.hidden = !willOpen;
+        explainToggle.setAttribute('aria-expanded', String(willOpen));
+        explainToggle.querySelector('.symbol').textContent = willOpen ? '−' : '+';
+      });
+
+      document.getElementById('email-results').addEventListener('click', function () {
+        if (!currentSummary) return;
+        var emailLink = document.createElement('a');
+        emailLink.href = 'mailto:?subject=' + encodeURIComponent('My Social Security benefit estimate') + '&body=' + encodeURIComponent(currentSummary);
+        emailLink.rel = 'noopener';
+        document.body.appendChild(emailLink);
+        emailLink.click();
+        document.body.removeChild(emailLink);
+      });
+
+      document.getElementById('copy-results').addEventListener('click', function () {
+        if (!currentSummary) return;
+        function fallbackCopy() {
+          var area = document.createElement('textarea');
+          area.value = currentSummary;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.opacity = '0';
+          document.body.appendChild(area);
+          area.select();
+          try {
+            document.execCommand('copy');
+            showToast('Results copied');
+          } catch (error) {
+            showToast('Could not copy automatically');
+          }
+          document.body.removeChild(area);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(currentSummary).then(function () {
+            showToast('Results copied');
+          }).catch(fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      });
+
+      form.addEventListener('submit', calculate);
+    }());
+  </script>
+</body>
+</html>
