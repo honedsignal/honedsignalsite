@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Home Office Deduction Estimator</title>
+  <meta name="description" content="Compare the IRS simplified home office deduction with an estimate based on actual home expenses." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#edf0f2;--surface:#fff;--surface-2:#e3e8ec;--ink:#101820;--muted:#52606b;
+      --line:#bac4cc;--line-strong:#778692;--orange:#c95f00;--orange-ink:#fffaf5;
+      --orange-soft:#f6e1c9;--blue:#356d9f;--blue-soft:#dce9f4;--green:#167326;--green-soft:#d9eddd;
+      --red:#b32631;--red-soft:#f3dadd;--shadow:0 22px 60px rgba(28,42,53,.14);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#0b0e14;--surface:#121820;--surface-2:#1a232d;--ink:#f5f5f5;--muted:#acb7c1;
+      --line:#2c3742;--line-strong:#4a5864;--orange:#f7931a;--orange-ink:#1a1106;
+      --orange-soft:#362513;--blue:#78a6d2;--blue-soft:#172b3d;--green:#39ff14;--green-soft:#133119;
+      --red:#ff747b;--red-soft:#3b1c22;--shadow:0 24px 70px rgba(0,0,0,.4);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;overflow-x:hidden;background:var(--bg);color:var(--ink);font:16px/1.5 "IBM Plex Sans",sans-serif;-webkit-font-smoothing:antialiased}button,input{font:inherit;color:inherit}button,a{-webkit-tap-highlight-color:transparent}.page{width:min(1180px,100%);margin:0 auto;padding:0 clamp(14px,4vw,46px) max(48px,env(safe-area-inset-bottom))}
+    .home-nav{position:sticky;top:0;z-index:20;padding:max(10px,env(safe-area-inset-top)) 0 9px;background:var(--bg)}.home-link{display:inline-flex;align-items:center;min-height:34px;color:var(--muted);font-size:.76rem;font-weight:700;text-decoration:none}.home-link:hover{color:var(--orange)}
+    .intro{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.65fr);gap:clamp(25px,6vw,78px);align-items:end;padding:4px 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line)}.kicker{margin:0 0 11px;color:var(--orange);font:600 .72rem "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase}.intro h1{margin:0;max-width:820px;font-size:clamp(2.45rem,6.3vw,5.7rem);line-height:.93;letter-spacing:-.06em}.intro h1 span{color:var(--orange)}.intro-copy{margin:0;max-width:39ch;color:var(--muted);font-size:clamp(1rem,1.6vw,1.16rem)}
+    .rule-note{display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start;margin:22px 0 0;padding:16px 18px;background:var(--orange-soft);border-top:3px solid var(--orange)}.rule-mark{display:grid;place-items:center;width:28px;height:28px;background:var(--orange);color:var(--orange-ink);font:600 .78rem "IBM Plex Mono",monospace}.rule-note p{margin:0;font-size:.82rem}.rule-note strong{color:var(--ink)}
+    .workbench{display:grid;grid-template-columns:minmax(310px,410px) minmax(0,1fr);margin-top:22px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}.inputs{padding:clamp(20px,2.8vw,31px);border-right:1px solid var(--line)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:21px}.section-head h2{margin:0;font-size:1rem;letter-spacing:-.015em}.step{color:var(--orange);font:600 .69rem "IBM Plex Mono",monospace;letter-spacing:.06em}.subhead{margin:25px 0 13px;padding-top:20px;border-top:1px solid var(--line);color:var(--ink);font-size:.82rem}.field{margin-bottom:16px}label{display:block;margin-bottom:7px;color:var(--muted);font-size:.77rem;font-weight:700}.control{display:flex;align-items:center;min-height:49px;background:var(--bg);border:1px solid var(--line-strong);transition:border-color .15s,box-shadow .15s}.control:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px color-mix(in srgb,var(--orange) 18%,transparent)}.control input{width:100%;min-width:0;border:0;outline:0;background:transparent;padding:11px;font:600 1rem "IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}.affix{padding-left:13px;color:var(--muted);font:600 .83rem "IBM Plex Mono",monospace}.affix.end{padding:0 13px 0 0}.micro{display:block;margin-top:5px;color:var(--muted);font-size:.68rem;line-height:1.42}.expense-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.expense-grid .field{margin:0}.calculate{width:100%;min-height:50px;border:0;margin-top:26px;padding:13px 17px;background:var(--orange);color:var(--orange-ink);font-weight:700;cursor:pointer;box-shadow:0 5px 0 color-mix(in srgb,var(--orange) 56%,#000);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 2px 0 color-mix(in srgb,var(--orange) 56%,#000)}.privacy{margin:14px 0 0;color:var(--muted);font-size:.66rem}
+    .results{min-width:0;padding:clamp(19px,3vw,34px);background:linear-gradient(135deg,color-mix(in srgb,var(--surface-2) 62%,transparent),transparent 58%)}.empty{min-height:610px;display:grid;place-items:center;text-align:center}.empty-graphic{width:180px;height:116px;margin:0 auto 23px;position:relative;border:1px solid var(--line-strong);border-top:8px solid var(--blue)}.empty-graphic::before{content:"$5 / FT²";position:absolute;inset:0;display:grid;place-items:center;color:var(--blue);font:600 1.3rem "IBM Plex Mono",monospace}.empty-graphic::after{content:"ACTUAL";position:absolute;right:-18px;bottom:-15px;padding:7px 9px;background:var(--orange);color:var(--orange-ink);font:600 .62rem "IBM Plex Mono",monospace;letter-spacing:.05em}.empty h2{margin:0 0 8px;font-size:1.6rem;letter-spacing:-.035em}.empty p{margin:0 auto;max-width:43ch;color:var(--muted);font-size:.89rem}.hidden{display:none!important}.error{margin:0;padding:13px 14px;background:var(--red-soft);color:var(--red);border:1px solid color-mix(in srgb,var(--red) 38%,transparent);font-size:.82rem;font-weight:700}
+    .result-lead{padding:clamp(23px,4vw,37px);background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-lead{background:#f3f5f6;color:#0b0e14}}.eyebrow{margin:0 0 8px;font:600 .67rem "IBM Plex Mono",monospace;letter-spacing:.08em;opacity:.63}.big-number{margin:0;font:600 clamp(3rem,7vw,5.7rem)/.92 "IBM Plex Mono",monospace;letter-spacing:-.075em}.winner-line{margin:11px 0 0;font-weight:700}.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:1px;background:var(--line)}.method{position:relative;min-width:0;padding:21px;background:var(--surface)}.method.winner{background:var(--green-soft)}.method-badge{position:absolute;top:16px;right:16px;padding:5px 7px;background:var(--green);color:#061006;font:600 .58rem "IBM Plex Mono",monospace;letter-spacing:.06em}.method h2{margin:0 0 13px;font-size:.94rem}.method-value{display:block;font:600 clamp(1.65rem,4vw,2.55rem) "IBM Plex Mono",monospace;letter-spacing:-.045em}.method small{display:block;margin-top:8px;color:var(--muted);font-size:.7rem;line-height:1.45}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:15px;background:var(--line);border:1px solid var(--line)}.stat{padding:17px;background:var(--surface)}.stat span{display:block;color:var(--muted);font-size:.64rem;font-weight:700}.stat strong{display:block;margin-top:5px;font:600 clamp(1.08rem,2.3vw,1.42rem) "IBM Plex Mono",monospace;letter-spacing:-.025em;overflow-wrap:anywhere}
+    .method-context{margin:14px 0 0;padding:16px 18px;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-size:.78rem;line-height:1.55}.method-context strong{color:var(--ink)}.explain{margin-top:14px;border:1px solid var(--line);background:var(--blue-soft)}.explain-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;border:0;background:transparent;padding:15px 17px;cursor:pointer;text-align:left;font-weight:700}.explain-toggle:hover{background:color-mix(in srgb,var(--blue) 9%,transparent)}.explain-toggle svg{width:18px;flex:0 0 auto;color:var(--blue);transition:transform .18s}.explain-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}.explain-copy{margin:0;padding:0 17px 18px;color:var(--muted);font-size:.84rem;line-height:1.68}.explain-copy strong{color:var(--ink)}.explain-copy[hidden]{display:none}
+    .share{margin-top:14px;padding:18px 20px;background:var(--surface);border:1px solid var(--line)}.share-head{display:flex;align-items:center;justify-content:space-between;gap:18px}.share h2{margin:0;font-size:1rem}.actions{display:flex;gap:8px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 12px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;font-size:.7rem;font-weight:700}.action.email{background:var(--orange);border-color:var(--orange);color:var(--orange-ink)}.notice{min-height:18px;margin:8px 0 0;color:var(--muted);font-size:.7rem}.source-row{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:24px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.source-row p{margin:0}.source-row a{color:var(--blue);font-weight:700}.disclaimer{margin:14px 0 0;padding:15px 17px;background:var(--orange-soft);color:var(--ink);font-size:.75rem;font-weight:600}.disclaimer strong{color:var(--orange)}
+    .calculate:focus-visible,.action:focus-visible,.explain-toggle:focus-visible,.home-link:focus-visible{outline:3px solid color-mix(in srgb,var(--orange) 46%,transparent);outline-offset:3px}
+    @media(max-width:850px){.intro{grid-template-columns:1fr;gap:14px}.intro-copy{max-width:55ch}.workbench{grid-template-columns:1fr}.inputs{border-right:0;border-bottom:1px solid var(--line)}.empty{min-height:390px}}
+    @media(max-width:560px){.page{padding-left:12px;padding-right:12px}.intro h1{font-size:clamp(2.4rem,12vw,3.85rem)}.expense-grid,.method-grid,.stats{grid-template-columns:1fr}.results{padding:12px}.result-lead{padding:20px}.big-number{font-size:clamp(2.65rem,14vw,4rem)}.share-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.action{flex:1}.source-row{align-items:flex-start;flex-direction:column;gap:6px}.rule-note{padding:14px}.method-badge{top:14px;right:14px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <nav class="home-nav" aria-label="Honed Money"><a class="home-link" href="/money/">← Honed Money</a></nav>
+
+  <header class="intro">
+    <div><p class="kicker">Honed Money · Business</p><h1>Your workspace, <span>two ways.</span></h1></div>
+    <p class="intro-copy">Compare the IRS simplified method with a basic allocation of your annual home expenses. See the arithmetic before you discuss it with a tax professional.</p>
+  </header>
+
+  <aside class="rule-note" aria-label="Important eligibility rule">
+    <span class="rule-mark" aria-hidden="true">!</span>
+    <p><strong>The space generally must be used exclusively and regularly for business.</strong> A kitchen table used by the household usually does not qualify. Exceptions and additional principal-place-of-business rules may apply.</p>
+  </aside>
+
+  <section class="workbench" aria-label="Home office deduction estimator">
+    <form class="inputs" id="officeForm" novalidate>
+      <div class="section-head"><h2>Workspace</h2><span class="step">ANNUAL INPUTS</span></div>
+      <div class="expense-grid">
+        <div class="field">
+          <label for="officeSqFt">Office area</label>
+          <div class="control"><input id="officeSqFt" type="number" min="1" step="1" inputmode="decimal" placeholder="180" autocomplete="off"><span class="affix end">ft²</span></div>
+        </div>
+        <div class="field">
+          <label for="homeSqFt">Total home area</label>
+          <div class="control"><input id="homeSqFt" type="number" min="1" step="1" inputmode="decimal" placeholder="1,600" autocomplete="off"><span class="affix end">ft²</span></div>
+        </div>
+      </div>
+      <small class="micro">Use the same measurement basis for both figures.</small>
+
+      <h3 class="subhead">Indirect home expenses</h3>
+      <div class="field">
+        <label for="housing">Rent or deductible mortgage interest</label>
+        <div class="control"><span class="affix">$</span><input id="housing" type="number" min="0" step="0.01" inputmode="decimal" placeholder="18,000" autocomplete="off"></div>
+        <small class="micro">Mortgage principal is not included here.</small>
+      </div>
+      <div class="expense-grid">
+        <div class="field">
+          <label for="utilities">Utilities</label>
+          <div class="control"><span class="affix">$</span><input id="utilities" type="number" min="0" step="0.01" inputmode="decimal" placeholder="3,000" autocomplete="off"></div>
+        </div>
+        <div class="field">
+          <label for="insurance">Home or renters insurance</label>
+          <div class="control"><span class="affix">$</span><input id="insurance" type="number" min="0" step="0.01" inputmode="decimal" placeholder="1,500" autocomplete="off"></div>
+        </div>
+      </div>
+      <button class="calculate" type="submit">Compare methods</button>
+      <p class="privacy">Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-graphic" aria-hidden="true"></div><h2>Flat rate or expense share?</h2><p>The simplified method values up to 300 square feet. The actual-expense estimate allocates listed costs using your business-use percentage.</p></div>
+      </div>
+
+      <div id="resultState" class="hidden" aria-live="polite">
+        <div class="error hidden" id="errorBox"></div>
+        <div id="validResults" class="hidden">
+          <section class="result-lead">
+            <p class="eyebrow">LARGER ESTIMATED DEDUCTION</p>
+            <p class="big-number" id="bestDeduction">—</p>
+            <p class="winner-line" id="winnerLine">—</p>
+          </section>
+
+          <div class="method-grid" aria-label="Method comparison">
+            <article class="method" id="simplifiedCard">
+              <span class="method-badge hidden" id="simplifiedBadge">LARGER</span>
+              <h2>Simplified method</h2>
+              <strong class="method-value" id="simplifiedValue">—</strong>
+              <small id="simplifiedFormula">—</small>
+            </article>
+            <article class="method" id="actualCard">
+              <span class="method-badge hidden" id="actualBadge">LARGER</span>
+              <h2>Actual-expense estimate</h2>
+              <strong class="method-value" id="actualValue">—</strong>
+              <small id="actualFormula">—</small>
+            </article>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><span>BUSINESS-USE SHARE</span><strong id="businessShare">—</strong></div>
+            <div class="stat"><span>LISTED HOME EXPENSES</span><strong id="totalExpenses">—</strong></div>
+            <div class="stat"><span>ESTIMATED DIFFERENCE</span><strong id="difference">—</strong></div>
+          </div>
+
+          <p class="method-context"><strong>This is a narrow comparison.</strong> The actual method may also involve direct office expenses, depreciation, real estate taxes, repairs, carryovers, and income limits. Those items are not modeled here.</p>
+
+          <section class="explain">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">
+              <span>Explain these results</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="explain-copy" id="explainCopy" hidden></div>
+          </section>
+
+          <section class="share">
+            <div class="share-head"><h2>Take the comparison with you</h2><div class="actions"><button class="action" id="copyButton" type="button">Copy results</button><a class="action email" id="emailButton" href="mailto:">Email my results</a></div></div>
+            <p class="notice" id="copyNotice" role="status"></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="source-row"><p>IRS simplified-method rate checked October 7, 2026.</p><a href="https://www.irs.gov/businesses/small-businesses-self-employed/simplified-option-for-home-office-deduction" target="_blank" rel="noopener noreferrer">Read the IRS guidance ↗</a></div>
+  <p class="disclaimer"><strong>Estimate only — not tax advice.</strong> Eligibility and the allowable deduction depend on your facts, records, business income, filing status, and current tax rules. This tool does not prepare Form 8829 or a tax return.</p>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var form=document.getElementById("officeForm");
+  var emptyState=document.getElementById("emptyState");
+  var resultState=document.getElementById("resultState");
+  var validResults=document.getElementById("validResults");
+  var errorBox=document.getElementById("errorBox");
+  var copyButton=document.getElementById("copyButton");
+  var copyNotice=document.getElementById("copyNotice");
+  var emailButton=document.getElementById("emailButton");
+  var explainToggle=document.getElementById("explainToggle");
+  var explainCopy=document.getElementById("explainCopy");
+  var currentText="";
+
+  function value(id){var raw=document.getElementById(id).value.trim();return raw===""?0:Number(raw);}
+  function money(n){return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(n);}
+  function moneyExact(n){return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",minimumFractionDigits:2,maximumFractionDigits:2}).format(n);}
+  function pct(n){return new Intl.NumberFormat("en-US",{style:"percent",minimumFractionDigits:1,maximumFractionDigits:1}).format(n);}
+  function num(n){return new Intl.NumberFormat("en-US",{maximumFractionDigits:1}).format(n);}
+  function setText(id,text){document.getElementById(id).textContent=text;}
+  function showError(message){
+    emptyState.classList.add("hidden");resultState.classList.remove("hidden");validResults.classList.add("hidden");
+    errorBox.textContent=message;errorBox.classList.remove("hidden");
+  }
+  function fallbackCopy(text){
+    var area=document.createElement("textarea");area.value=text;area.setAttribute("readonly","");area.style.position="fixed";area.style.opacity="0";document.body.appendChild(area);area.select();
+    var ok=false;try{ok=document.execCommand("copy");}catch(e){ok=false;}document.body.removeChild(area);return ok;
+  }
+
+  form.addEventListener("submit",function(event){
+    event.preventDefault();copyNotice.textContent="";
+    var office=value("officeSqFt"),home=value("homeSqFt"),housing=value("housing"),utilities=value("utilities"),insurance=value("insurance");
+    var all=[office,home,housing,utilities,insurance];
+    if(all.some(function(n){return !Number.isFinite(n)||n<0;})){showError("Enter valid numbers. Expenses may be zero, but none can be negative.");return;}
+    if(office<=0||home<=0){showError("Enter both the office area and the total home area.");return;}
+    if(office>home){showError("The office area cannot be larger than the total home area.");return;}
+
+    var share=office/home;
+    var simplifiedArea=Math.min(office,300);
+    var simplified=simplifiedArea*5;
+    var expenses=housing+utilities+insurance;
+    var actual=expenses*share;
+    var difference=Math.abs(simplified-actual);
+    var tolerance=.005;
+    var winner=Math.abs(simplified-actual)<tolerance?"tie":(simplified>actual?"simplified":"actual");
+    var best=Math.max(simplified,actual);
+
+    emptyState.classList.add("hidden");resultState.classList.remove("hidden");errorBox.classList.add("hidden");validResults.classList.remove("hidden");
+    setText("bestDeduction",money(best));
+    setText("simplifiedValue",money(simplified));setText("actualValue",money(actual));
+    setText("simplifiedFormula",num(simplifiedArea)+" ft² × $5"+(office>300?" (300 ft² cap applied)":""));
+    setText("actualFormula",money(expenses)+" × "+pct(share)+" business use");
+    setText("businessShare",pct(share));setText("totalExpenses",money(expenses));setText("difference",money(difference));
+
+    var sCard=document.getElementById("simplifiedCard"),aCard=document.getElementById("actualCard"),sBadge=document.getElementById("simplifiedBadge"),aBadge=document.getElementById("actualBadge");
+    sCard.classList.toggle("winner",winner==="simplified");aCard.classList.toggle("winner",winner==="actual");
+    sBadge.classList.toggle("hidden",winner!=="simplified");aBadge.classList.toggle("hidden",winner!=="actual");
+    var winnerSentence=winner==="tie"?"Both methods produce the same estimate.":winner==="simplified"?"The simplified method is larger by "+money(difference)+".":"The actual-expense estimate is larger by "+money(difference)+".";
+    setText("winnerLine",winnerSentence);
+
+    var capNote=office>300?" Because the office is larger than 300 square feet, the simplified calculation stops at the IRS maximum area.":" The simplified calculation uses all "+num(office)+" square feet because it is within the 300-square-foot limit.";
+    var explanation="Your office represents <strong>"+pct(share)+"</strong> of the home. Applying that share to the <strong>"+money(expenses)+"</strong> of expenses entered produces an actual-expense estimate of <strong>"+money(actual)+"</strong>. The simplified method produces <strong>"+money(simplified)+"</strong> at $5 per square foot."+capNote+" <strong>"+winnerSentence+"</strong> A larger estimate here is not automatically the allowable deduction; eligibility, business-income limits, unmodeled expenses, documentation, and future depreciation treatment can change the answer.";
+    explainCopy.innerHTML=explanation;
+    explainCopy.hidden=true;explainToggle.setAttribute("aria-expanded","false");
+
+    currentText=[
+      "Home Office Deduction Estimate",
+      "Office area: "+num(office)+" sq ft",
+      "Total home area: "+num(home)+" sq ft",
+      "Business-use share: "+pct(share),
+      "Listed annual home expenses: "+moneyExact(expenses),
+      "Simplified method: "+moneyExact(simplified),
+      "Actual-expense estimate: "+moneyExact(actual),
+      winnerSentence,
+      "",
+      "Estimate only — not tax advice. Eligibility, income limits, records, and unmodeled expenses can change the allowable deduction."
+    ].join("\n");
+    emailButton.href="mailto:?subject="+encodeURIComponent("My home office deduction estimate")+"&body="+encodeURIComponent(currentText);
+    requestAnimationFrame(function(){resultState.scrollIntoView({behavior:"smooth",block:"nearest"});});
+  });
+
+  explainToggle.addEventListener("click",function(){var open=explainToggle.getAttribute("aria-expanded")==="true";explainToggle.setAttribute("aria-expanded",String(!open));explainCopy.hidden=open;});
+  copyButton.addEventListener("click",function(){
+    if(!currentText)return;
+    var finish=function(ok){copyNotice.textContent=ok?"Results copied.":"Copy failed. Select the results and copy them manually.";};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(currentText).then(function(){finish(true);}).catch(function(){finish(fallbackCopy(currentText));});}
+    else{finish(fallbackCopy(currentText));}
+  });
+})();
+</script>
+</body>
+</html>
