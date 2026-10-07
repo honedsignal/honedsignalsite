@@ -302,6 +302,44 @@
     .metric + .metric { border-left: 1px solid var(--line); }
     .metric .stat-value { display: block; margin-top: 6px; }
     .metric-sub { display: block; margin-top: 3px; color: var(--muted); font-size: .75rem; }
+    .result-explanation {
+      padding: 18px clamp(22px, 4vw, 40px);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .explain-results-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 42px;
+      padding: 9px 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: .84rem;
+      font-weight: 600;
+    }
+    .explain-results-button:hover { border-color: var(--accent); color: var(--accent-strong); }
+    .explain-results-button:disabled { opacity: .52; cursor: not-allowed; color: var(--muted); border-color: var(--line); }
+    .explain-results-button svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      transition: transform .18s ease;
+    }
+    .explain-results-button[aria-expanded="true"] svg { transform: rotate(180deg); }
+    .result-explanation-copy {
+      max-width: 76ch;
+      margin: 15px 0 3px;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.62;
+    }
+    .result-explanation-copy[hidden] { display: none; }
     .projection { padding: 30px clamp(22px, 4vw, 40px) 34px; }
     .projection-head {
       display: flex;
@@ -536,6 +574,14 @@
           <div class="metric"><span class="stat-name">After-tax annual income</span><strong class="stat-value" id="afterTax">$200.00</strong><span class="metric-sub" id="taxNote">Using a 0% dividend tax rate</span></div>
         </div>
 
+        <div class="result-explanation">
+          <button type="button" class="explain-results-button" id="explainResultsButton" aria-expanded="false" aria-controls="resultExplanation">
+            <span>Explain these results</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 9 5 5 5-5"/></svg>
+          </button>
+          <p class="result-explanation-copy" id="resultExplanation" hidden></p>
+        </div>
+
         <div class="projection">
           <div class="projection-head">
             <div>
@@ -588,6 +634,8 @@
       var projectionData = [];
       var latestResultsText = "";
       var copyTimer = null;
+      var explainButton = document.getElementById("explainResultsButton");
+      var explanation = document.getElementById("resultExplanation");
 
       function number(value, fallback) {
         var parsed = parseFloat(value);
@@ -728,10 +776,45 @@
         link.removeAttribute("href");
         link.setAttribute("aria-disabled", "true");
         copyButton.disabled = true;
+        explainButton.disabled = true;
+        explainButton.setAttribute("aria-expanded", "false");
+        explanation.hidden = true;
+        explanation.textContent = "";
         latestResultsText = "";
         clearTimeout(copyTimer);
         document.getElementById("copyLabel").textContent = "Copy results";
         document.getElementById("copyStatus").textContent = "";
+      }
+      function rateText(rate) {
+        var percent = rate * 100;
+        return percent.toFixed(percent % 1 ? 1 : 0) + "%";
+      }
+      function updateResultExplanation(details) {
+        var ticker = el.ticker.value.trim().toUpperCase();
+        var holdingName = ticker ? "your " + ticker + " shares" : "your shares";
+        var paymentWord = details.frequency === 1 ? "payment" : "payments";
+        var sentences = [];
+        sentences.push("With " + num(details.shares, 3) + " shares paying " + money(details.dividend) + " per share each year, " + holdingName + " are estimated to produce " + money(details.annual) + " a year.");
+        if (details.frequency === 12) {
+          sentences.push("That is about " + money(details.monthly) + " per month, with each monthly payment estimated at " + money(details.perPayment) + ".");
+        } else {
+          sentences.push("That averages " + money(details.monthly) + " per month, but the cash would arrive as " + details.frequency + " " + frequencyName(details.frequency) + " " + paymentWord + " of about " + money(details.perPayment) + " each.");
+        }
+        if (details.price > 0) {
+          sentences.push("At " + money(details.price) + " per share, the position is worth about " + money(details.position) + ", and the yearly dividend equals " + (details.currentYield * 100).toFixed(2) + "% of that value; after the " + rateText(details.tax) + " tax rate you entered, the estimate is " + money(details.afterTax) + " a year.");
+        } else {
+          sentences.push("No share price was entered, so the calculator cannot compare the dividend with the position's value; after the " + rateText(details.tax) + " tax rate you entered, the estimate is " + money(details.afterTax) + " a year.");
+        }
+        var finalRow = projectionData[projectionData.length - 1];
+        if (el.reinvest.checked && details.price > 0) {
+          sentences.push("If the dividend changes by " + rateText(details.growth) + " a year and after-tax payments buy more shares at the projected prices, annual dividend income could reach " + money(finalRow.income) + " in year " + details.years + ".");
+        } else if (el.reinvest.checked) {
+          sentences.push("With the dividend changing by " + rateText(details.growth) + " a year, annual dividend income could reach " + money(finalRow.income) + " in year " + details.years + "; reinvestment is not added because a share price is needed to estimate extra shares.");
+        } else {
+          sentences.push("If the dividend changes by " + rateText(details.growth) + " a year and payments are not reinvested, annual dividend income could reach " + money(finalRow.income) + " in year " + details.years + ".");
+        }
+        explanation.textContent = sentences.join(" ");
+        explainButton.disabled = false;
       }
       function updateEmailLink(details) {
         var link = document.getElementById("emailButton");
@@ -840,7 +923,7 @@
         setText("projectionSummary", "Estimated annual income at year " + years + ": " + money(finalRow.income));
         drawChart(projectionData);
         renderTable(projectionData);
-        updateEmailLink({
+        var details = {
           shares: shares,
           dividend: dividend,
           price: price,
@@ -855,7 +938,9 @@
           currentYield: currentYield,
           position: position,
           afterTax: afterTax
-        });
+        };
+        updateEmailLink(details);
+        updateResultExplanation(details);
       }
       function clearForm() {
         el.ticker.value = "";
@@ -909,6 +994,11 @@
       document.getElementById("clearButton").addEventListener("click", clearForm);
       document.getElementById("copyButton").addEventListener("click", copyResults);
       document.getElementById("downloadButton").addEventListener("click", downloadCsv);
+      explainButton.addEventListener("click", function () {
+        var willOpen = explainButton.getAttribute("aria-expanded") !== "true";
+        explainButton.setAttribute("aria-expanded", String(willOpen));
+        explanation.hidden = !willOpen;
+      });
       update();
     })();
   </script>

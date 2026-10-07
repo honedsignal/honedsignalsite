@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Tax Filing Resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0b0e14;
+      --surface: #f5f5f5;
+      --panel: #ffffff;
+      --panel-2: #ebedf0;
+      --text: #10141c;
+      --muted: #505a67;
+      --line: #cfd4da;
+      --blue: #416f9f;
+      --blue-soft: #dbe9f6;
+      --orange: #d86e00;
+      --orange-soft: #ffe7ce;
+      --green: #167b27;
+      --green-soft: #dcefdc;
+      --red: #b83439;
+      --shadow: 0 18px 48px rgba(11,14,20,.11);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --surface: #0b0e14;
+        --panel: #131821;
+        --panel-2: #1a202a;
+        --text: #f5f5f5;
+        --muted: #aab4c2;
+        --line: #2d3745;
+        --blue: #7aa6d4;
+        --blue-soft: #172c42;
+        --orange: #f7931a;
+        --orange-soft: #3a2816;
+        --green: #39ff14;
+        --green-soft: #15351a;
+        --red: #ff676b;
+        --shadow: 0 18px 48px rgba(0,0,0,.28);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--text);
+      font-family: "IBM Plex Sans", sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    .stamp { display: inline-flex; align-items: center; gap: 9px; font-weight: 600; }
+    .stamp::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-soft); }
+    .jump { display: flex; gap: 18px; flex-wrap: wrap; }
+    .jump a { text-decoration: none; }
+    .jump a:hover { color: var(--orange); }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 64px;
+      align-items: end;
+      padding: 70px 0 62px;
+    }
+    h1, h2, h3 { margin: 0; }
+    h1 {
+      font-family: "Newsreader", serif;
+      font-size: clamp(3.2rem, 7.5vw, 6.8rem);
+      line-height: .92;
+      letter-spacing: -.055em;
+      max-width: 780px;
+      font-weight: 650;
+    }
+    h1 em { color: var(--orange); font-style: normal; }
+    .hero-copy { max-width: 480px; }
+    .hero-copy p { margin: 0 0 24px; color: var(--muted); font-size: clamp(1.02rem, 2vw, 1.2rem); }
+    .hero-actions, .action-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 11px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--text);
+      color: var(--surface);
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid var(--text);
+    }
+    .button.secondary { background: transparent; color: var(--text); border-color: var(--line); }
+    .button:hover { background: var(--orange); border-color: var(--orange); color: #0b0e14; }
+    .status-rail {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--ink);
+      color: #f5f5f5;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .status-item { padding: 26px 28px; min-height: 154px; border-right: 1px solid #2b313b; }
+    .status-item:last-child { border-right: 0; }
+    .status-item strong { display: block; font-family: "Newsreader", serif; font-size: 1.75rem; line-height: 1.04; margin: 8px 0 7px; }
+    .status-item span { color: #afb9c6; font-size: .9rem; }
+    .status-tag { color: #39ff14 !important; font-size: .76rem !important; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .status-tag.closed { color: #ff9b9e !important; }
+    section { padding: 84px 0; }
+    .section-heading { display: grid; grid-template-columns: .65fr 1.35fr; gap: 40px; align-items: start; margin-bottom: 38px; }
+    .section-heading h2 { font-family: "Newsreader", serif; font-size: clamp(2.3rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -.035em; }
+    .section-heading p { margin: 7px 0 0; color: var(--muted); max-width: 690px; font-size: 1.04rem; }
+    .pathway { border-top: 1px solid var(--line); }
+    .path-row { display: grid; grid-template-columns: 52px 260px 1fr auto; gap: 22px; align-items: start; padding: 26px 0; border-bottom: 1px solid var(--line); }
+    .path-number { width: 36px; height: 36px; display: grid; place-items: center; background: var(--orange-soft); color: var(--orange); border-radius: 50%; font-weight: 700; }
+    .path-row h3 { font-size: 1.1rem; padding-top: 5px; }
+    .path-row p { margin: 4px 0 0; color: var(--muted); }
+    .text-link { display: inline-flex; align-items: center; gap: 7px; color: var(--blue); text-decoration: none; font-weight: 700; white-space: nowrap; padding-top: 5px; }
+    .text-link:hover { color: var(--orange); }
+    .federal-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; }
+    .feature {
+      background: var(--panel);
+      padding: 34px;
+      border-radius: var(--radius-lg) var(--radius-sm) var(--radius-lg) var(--radius-sm);
+      border: 1px solid var(--line);
+    }
+    .feature.major { background: var(--blue-soft); border-color: transparent; }
+    .eyebrow { display: inline-block; color: var(--blue); font-size: .78rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 14px; }
+    .feature h3 { font-family: "Newsreader", serif; font-size: 2rem; line-height: 1; margin-bottom: 12px; }
+    .feature p { color: var(--muted); margin: 0 0 18px; }
+    .fact { display: flex; align-items: baseline; gap: 9px; margin: 20px 0 8px; }
+    .fact strong { font-family: "Newsreader", serif; font-size: 2.5rem; line-height: 1; }
+    .fact span { color: var(--muted); }
+    .fine { font-size: .86rem; color: var(--muted); }
+    .notice { margin-top: 24px; padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius-sm); display: flex; gap: 14px; align-items: flex-start; }
+    .notice svg { flex: 0 0 auto; color: var(--orange); margin-top: 2px; }
+    .notice p { margin: 0; color: var(--muted); }
+    .notice strong { color: var(--text); }
+    .help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .help-item { padding: 28px 0 24px; border-top: 3px solid var(--blue); }
+    .help-item:nth-child(2) { border-top-color: var(--orange); }
+    .help-item:nth-child(3) { border-top-color: var(--green); }
+    .help-item h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .help-item p { color: var(--muted); margin: 0 0 15px; }
+    .help-item .meta { font-size: .88rem; font-weight: 700; color: var(--text); }
+    .help-item a { color: var(--blue); font-weight: 700; text-decoration: none; }
+    .help-item a:hover { color: var(--orange); }
+    .directory-wrap { background: var(--ink); color: #f5f5f5; padding: 84px 0 92px; }
+    .directory-wrap .section-heading p { color: #aab4c2; }
+    .directory-tools { display: grid; grid-template-columns: 1fr auto; gap: 16px; margin-bottom: 20px; align-items: center; }
+    .searchbox { position: relative; }
+    .searchbox svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #8b98a8; }
+    .searchbox input { width: 100%; min-height: 50px; padding: 12px 16px 12px 46px; border: 1px solid #34404e; border-radius: var(--radius-sm); background: #131821; color: #f5f5f5; outline: none; }
+    .searchbox input:focus { border-color: #f7931a; box-shadow: 0 0 0 3px rgba(247,147,26,.18); }
+    .filters { display: flex; gap: 8px; }
+    .filter { min-height: 42px; padding: 9px 13px; border: 1px solid #34404e; background: transparent; color: #d3dae3; border-radius: 999px; cursor: pointer; font-weight: 600; }
+    .filter[aria-pressed="true"] { background: #f7931a; border-color: #f7931a; color: #0b0e14; }
+    .directory-count { color: #aab4c2; font-size: .88rem; margin: 0 0 16px; }
+    .state-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #2d3745; }
+    .state-card { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 20px 20px 20px 0; border-bottom: 1px solid #2d3745; text-decoration: none; min-width: 0; }
+    .state-card:nth-child(odd) { border-right: 1px solid #2d3745; padding-right: 28px; }
+    .state-card:nth-child(even) { padding-left: 28px; }
+    .state-card:hover .state-name { color: #f7931a; }
+    .state-name { font-weight: 700; font-size: 1.05rem; }
+    .state-note { color: #aab4c2; font-size: .86rem; margin-top: 4px; }
+    .state-side { display: flex; gap: 10px; align-items: flex-start; }
+    .badge { display: inline-flex; align-items: center; min-height: 25px; padding: 3px 8px; border-radius: 999px; background: #172c42; color: #9cc5ef; font-size: .72rem; font-weight: 700; white-space: nowrap; }
+    .badge.no { background: #1d3120; color: #92ec83; }
+    .state-card svg { margin-top: 4px; color: #718095; }
+    .empty { grid-column: 1 / -1; padding: 36px 0; color: #aab4c2; }
+    .paid-options { display: grid; gap: 18px; }
+    .paid-band { display: grid; grid-template-columns: .75fr 1.25fr; gap: 48px; align-items: start; background: var(--orange-soft); padding: 38px; border-radius: var(--radius-sm) var(--radius-lg) var(--radius-sm) var(--radius-lg); }
+    .paid-band.alt { background: var(--blue-soft); border-radius: var(--radius-lg) var(--radius-sm) var(--radius-lg) var(--radius-sm); }
+    .paid-band h2 { font-family: "Newsreader", serif; font-size: clamp(2.1rem, 4vw, 3.6rem); line-height: 1; }
+    .pricing { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: color-mix(in srgb, var(--orange) 30%, transparent); }
+    .alt .pricing { background: color-mix(in srgb, var(--blue) 30%, transparent); }
+    .price { background: var(--orange-soft); padding: 16px; }
+    .alt .price { background: var(--blue-soft); }
+    .price strong { display: block; font-size: 1.25rem; }
+    .price span { color: var(--muted); font-size: .88rem; }
+    .paid-copy { grid-column: 2; color: var(--muted); margin: -20px 0 0; }
+    .paid-copy a { color: var(--blue); font-weight: 700; }
+    .verification { padding-top: 20px; }
+    details { border-top: 1px solid var(--line); }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; padding: 20px 0; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 20px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--orange); font-size: 1.3rem; }
+    details[open] summary::after { content: "−"; }
+    .detail-body { color: var(--muted); padding: 0 0 22px; max-width: 850px; }
+    .detail-body p { margin: 0 0 12px; }
+    .detail-body a { color: var(--blue); }
+    footer { padding: 28px 0 46px; border-top: 1px solid var(--line); color: var(--muted); font-size: .86rem; }
+    footer strong { color: var(--text); }
+    @media (max-width: 860px) {
+      .hero, .section-heading, .federal-grid, .paid-band { grid-template-columns: 1fr; }
+      .hero { gap: 28px; padding: 52px 0 48px; }
+      .status-rail { grid-template-columns: 1fr; }
+      .status-item { border-right: 0; border-bottom: 1px solid #2b313b; min-height: 0; }
+      .status-item:last-child { border-bottom: 0; }
+      .path-row { grid-template-columns: 42px 1fr; }
+      .path-row > p, .path-row > a { grid-column: 2; }
+      .help-grid { grid-template-columns: 1fr; }
+      .directory-tools { grid-template-columns: 1fr; }
+      .filters { overflow: visible; flex-wrap: wrap; }
+      .paid-copy { grid-column: 1; margin: 0; }
+    }
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 28px, 1180px); }
+      .topline { align-items: flex-start; }
+      .jump { display: none; }
+      section, .directory-wrap { padding: 62px 0; }
+      h1 { font-size: clamp(3.1rem, 16vw, 4.8rem); }
+      .status-item { padding: 22px; }
+      .section-heading { gap: 14px; margin-bottom: 26px; }
+      .feature { padding: 24px; }
+      .state-grid { grid-template-columns: 1fr; }
+      .state-card:nth-child(odd), .state-card:nth-child(even) { border-right: 0; padding: 18px 0; }
+      .state-side { flex-direction: column; align-items: flex-end; }
+      .paid-band { padding: 26px 22px; gap: 28px; }
+      .pricing { grid-template-columns: 1fr; }
+      .hero-actions .button, .action-row .button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="topline">
+        <span class="stamp">Verified October 7, 2026</span>
+        <nav class="jump" aria-label="On this page">
+          <a href="#fit">Find your route</a>
+          <a href="#free">Free filing</a>
+          <a href="#states">State directory</a>
+        </nav>
+      </div>
+
+      <header class="hero">
+        <h1>File with confidence, <em>not surprise.</em></h1>
+        <div class="hero-copy">
+          <p>A plain-English map of free federal filing, trusted in-person help, state resources, and clearly labeled low-cost options.</p>
+          <div class="hero-actions">
+            <a class="button" href="#fit">Find the right starting point</a>
+            <a class="button secondary" href="#states">Choose your state</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="status-rail" aria-label="Current program status">
+        <div class="status-item">
+          <span class="status-tag">Open</span>
+          <strong>IRS Free File</strong>
+          <span>Guided software for 2025 AGI of $89,000 or less, open through Oct. 15, 2026.</span>
+        </div>
+        <div class="status-item">
+          <span class="status-tag closed">Ended</span>
+          <strong>IRS Direct File</strong>
+          <span>Not available for the 2026 filing season. Some states still offer their own direct-file tools.</span>
+        </div>
+        <div class="status-item">
+          <span class="status-tag">Any income</span>
+          <strong>Fillable Forms</strong>
+          <span>Free federal forms with no income cap; state filing is not included.</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="fit">
+      <div class="shell">
+        <div class="section-heading">
+          <h2>Which route fits?</h2>
+          <p>Start with the shape of your return—not a software brand. Then confirm that the option supports every form you need before entering your tax information.</p>
+        </div>
+        <div class="pathway">
+          <div class="path-row">
+            <div class="path-number">1</div>
+            <h3>Simple W-2 return</h3>
+            <p>Start with IRS Free File if your 2025 AGI is $89,000 or less. Above that, Fillable Forms handles federal filing at any income, but it is more hands-on and does not include a state return.</p>
+            <a class="text-link" href="https://www.irs.gov/e-file-do-your-taxes-for-free" target="_blank" rel="noreferrer">Open IRS Free File ↗</a>
+          </div>
+          <div class="path-row">
+            <div class="path-number">2</div>
+            <h3>Self-employed or 1099</h3>
+            <p>Look for Schedule C and your specific expense forms in the supported-forms list. VITA can handle some basic self-employment returns, but not every business situation.</p>
+            <a class="text-link" href="#paid">Compare a low-cost option ↓</a>
+          </div>
+          <div class="path-row">
+            <div class="path-number">3</div>
+            <h3>Investor or capital gains</h3>
+            <p>Confirm support for Form 8949, Schedule D, and any state-specific investment forms. “Free” does not automatically mean every investment form is included.</p>
+            <a class="text-link" href="#states">Check your state ↓</a>
+          </div>
+          <div class="path-row">
+            <div class="path-number">4</div>
+            <h3>Need a person—or IRS problem help</h3>
+            <p>Use VITA/TCE or AARP Tax-Aide for preparation help. For hardship, delays, or a problem normal IRS channels have not fixed, contact the Taxpayer Advocate Service.</p>
+            <a class="text-link" href="#help">See help options ↓</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="free">
+      <div class="shell">
+        <div class="section-heading">
+          <h2>Free federal options</h2>
+          <p>These are the official starting points. Enter IRS Free File through the IRS page so you can see each partner’s exact income, age, state, and form requirements.</p>
+        </div>
+        <div class="federal-grid">
+          <article class="feature major">
+            <span class="eyebrow">Best first stop</span>
+            <h3>IRS Free File guided software</h3>
+            <p>Eight private-sector partners participate for the 2026 filing season. Each offer has its own eligibility rules; many include a free state return, but not all.</p>
+            <div class="fact"><strong>$89,000</strong><span>2025 AGI limit</span></div>
+            <div class="action-row">
+              <a class="button" href="https://www.irs.gov/e-file-do-your-taxes-for-free" target="_blank" rel="noreferrer">Compare official offers ↗</a>
+            </div>
+          </article>
+          <article class="feature">
+            <span class="eyebrow">More manual</span>
+            <h3>Free File Fillable Forms</h3>
+            <p>Electronic versions of federal tax forms for people comfortable preparing their own return. There is no income limit.</p>
+            <div class="fact"><strong>$0</strong><span>federal filing</span></div>
+            <p class="fine">Federal only. No guided interview and no state return.</p>
+          </article>
+        </div>
+        <div class="notice">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3h.01M10.3 3.9 2.2 18a2 2 0 0 0 1.74 3h16.12a2 2 0 0 0 1.74-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <p><strong>Direct File is not an option this season.</strong> The federal IRS Direct File program ended before the 2026 filing season. Do not confuse it with state programs such as Direct File Oregon or Wisconsin’s WisTax.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="help">
+      <div class="shell">
+        <div class="section-heading">
+          <h2>Free help from people</h2>
+          <p>Tax-preparation sites are seasonal. Call or check the locator before traveling, especially outside February through April.</p>
+        </div>
+        <div class="help-grid">
+          <article class="help-item">
+            <h3>VITA / TCE</h3>
+            <p>IRS-certified volunteer help. VITA generally focuses on people around $70,244 or less, people with disabilities, and limited-English speakers. TCE focuses on age 60+ and retirement questions.</p>
+            <p class="meta">Locator: <a href="https://freetaxassistance.for.irs.gov" target="_blank" rel="noreferrer">Find a site ↗</a><br>Phone: <a href="tel:18009069887">800-906-9887</a></p>
+          </article>
+          <article class="help-item">
+            <h3>AARP Foundation Tax-Aide</h3>
+            <p>Free help with an emphasis on taxpayers over 50 with low-to-moderate income. No AARP membership is required. Complex business, rental, and AMT returns may be out of scope.</p>
+            <p class="meta">Closed for the 2026 season; typically Feb. 1–Apr. 15.<br><a href="https://taxaide.aarpfoundation.org/" target="_blank" rel="noreferrer">Program details ↗</a></p>
+          </article>
+          <article class="help-item">
+            <h3>Taxpayer Advocate Service</h3>
+            <p>Free, independent help within the IRS when a tax problem is causing financial difficulty or normal IRS channels have not resolved it.</p>
+            <p class="meta"><a href="https://taxpayeradvocate.irs.gov" target="_blank" rel="noreferrer">Visit TAS ↗</a><br>Phone: <a href="tel:18777774778">1-877-777-4778</a></p>
+          </article>
+        </div>
+        <div class="notice">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v15H4V5Zm4-2v4m8-4v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <p><strong>Bring the basics.</strong> Photo ID; Social Security or ITIN cards for everyone on the return; birth dates; W-2s, 1099s and other income statements; last year’s federal and state returns if available; and bank routing/account numbers for direct deposit.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="directory-wrap" id="states">
+      <div class="shell">
+        <div class="section-heading">
+          <h2>State filing directory</h2>
+          <p>Choose your official state tax agency or free-file page. “No broad income tax” means the state does not generally tax wage income; special taxes or filing duties may still apply.</p>
+        </div>
+        <div class="directory-tools">
+          <label class="searchbox">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search states</span>
+            <input id="stateSearch" type="search" placeholder="Search a state or District of Columbia" autocomplete="off" />
+          </label>
+          <div class="filters" role="group" aria-label="Filter by income tax status">
+            <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter" type="button" data-filter="yes" aria-pressed="false">Has income tax</button>
+            <button class="filter" type="button" data-filter="no" aria-pressed="false">No broad tax</button>
+          </div>
+        </div>
+        <p class="directory-count" id="directoryCount" aria-live="polite">51 official resources</p>
+        <div class="state-grid" id="stateGrid"></div>
+      </div>
+    </section>
+
+    <section id="paid">
+      <div class="shell">
+        <div class="section-heading">
+          <h2>Low-cost paid options</h2>
+          <p>These are pricing snapshots from the providers’ own sites, not endorsements. Prices can change at checkout, and no links on this page are affiliate links.</p>
+        </div>
+        <div class="paid-options">
+          <div class="paid-band">
+            <div>
+              <span class="eyebrow">Paid option · no affiliate link</span>
+              <h2>FreeTaxUSA</h2>
+            </div>
+            <div class="pricing" aria-label="FreeTaxUSA pricing snapshot">
+              <div class="price"><strong>$0</strong><span>Federal return</span></div>
+              <div class="price"><strong>$15.99</strong><span>Each state return</span></div>
+              <div class="price"><strong>$7.99</strong><span>Deluxe Support</span></div>
+              <div class="price"><strong>$64.99</strong><span>Pro Support</span></div>
+            </div>
+            <p class="paid-copy">Pricing shown on the official site for a 2025 return and retrieved October 7, 2026. Audit Defense was listed at $19.99. Confirm the current total and supported forms before paying. <a href="https://www.freetaxusa.com/pricing" target="_blank" rel="noreferrer">See official pricing ↗</a></p>
+          </div>
+          <div class="paid-band alt">
+            <div>
+              <span class="eyebrow">Paid option · no affiliate link</span>
+              <h2>TaxSlayer</h2>
+            </div>
+            <div class="pricing" aria-label="TaxSlayer pricing snapshot">
+              <div class="price"><strong>$0</strong><span>Simply Free: federal + one state</span></div>
+              <div class="price"><strong>$44.99</strong><span>Classic federal</span></div>
+              <div class="price"><strong>$64.99</strong><span>Premium federal</span></div>
+              <div class="price"><strong>$47.99</strong><span>Paid-plan state return</span></div>
+            </div>
+            <p class="paid-copy">Simply Free is for qualifying simple returns. The provider listed Self-Employed federal filing at $74.99. State pricing and offer terms may change, so review the final total before e-filing. <a href="https://www.taxslayer.com/lp/file-with-taxslayer/" target="_blank" rel="noreferrer">See official pricing ↗</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="verification">
+      <div class="shell">
+        <div class="section-heading">
+          <h2>Verification notes</h2>
+          <p>Programs, thresholds, filing windows, prices, and supported forms change. This page is a dated guide—not a substitute for checking the source before you file.</p>
+        </div>
+        <details>
+          <summary>Federal status and Free File sources</summary>
+          <div class="detail-body">
+            <p><a href="https://www.irs.gov/e-file-do-your-taxes-for-free" target="_blank" rel="noreferrer">IRS Free File hub</a> · <a href="https://www.irs.gov/newsroom/irs-reminder-extension-filers-can-use-irs-free-file-this-summer" target="_blank" rel="noreferrer">IRS extension-filer update</a> · <a href="https://www.irs.gov/newsroom/free-options-and-resources-for-preparing-and-filing-taxes-in-2026" target="_blank" rel="noreferrer">IRS 2026 free-options overview</a></p>
+            <p>Direct File’s end was cross-checked against the <a href="https://home.treasury.gov/policy-issues/tax-policy/office-of-tax-policy-reports" target="_blank" rel="noreferrer">U.S. Treasury tax policy reports</a> and <a href="https://www.oregon.gov/dor/programs/individuals/pages/direct_file_or.aspx" target="_blank" rel="noreferrer">Oregon’s official 2026 filing guidance</a>.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Volunteer and advocacy sources</summary>
+          <div class="detail-body">
+            <p><a href="https://www.irs.gov/individuals/free-tax-return-preparation-for-qualifying-taxpayers" target="_blank" rel="noreferrer">IRS VITA/TCE program page</a> · <a href="https://taxaide.aarpfoundation.org/" target="_blank" rel="noreferrer">AARP Foundation Tax-Aide</a> · <a href="https://taxpayeradvocate.irs.gov" target="_blank" rel="noreferrer">Taxpayer Advocate Service</a></p>
+          </div>
+        </details>
+        <details>
+          <summary>State-directory scope</summary>
+          <div class="detail-body">
+            <p>Each directory link goes to an official state or District of Columbia government site and was checked on October 7, 2026. In states without a broad individual income tax, the link goes to the official tax agency or an official page explaining that status.</p>
+            <p>Washington has no broad personal income tax but does have a separate capital gains tax. New Hampshire’s tax on interest and dividends was repealed for periods after December 31, 2024.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell"><strong>Informational purposes only.</strong> This guide is not tax advice and does not guarantee eligibility, pricing, form support, or filing results. Verify details at the linked source before filing.</div>
+  </footer>
+
+  <script>
+    const states = [
+      {name:"Alabama", tax:"yes", url:"https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-electronic-filing-options/", note:"Free options, including My Alabama Taxes direct filing."},
+      {name:"Alaska", tax:"no", url:"https://tax.alaska.gov/programs/programs/index.aspx?10001", note:"No broad individual income tax."},
+      {name:"Arizona", tax:"yes", url:"https://azdor.gov/e-file-process/free-electronic-filing-individuals", note:"Free File Alliance offers; eligibility varies."},
+      {name:"Arkansas", tax:"yes", url:"https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/arkansas-efile/freefile-program-for-individual-income-tax/", note:"Official Free File program."},
+      {name:"California", tax:"yes", url:"https://www.ca.gov/departments/236/services/1168/", note:"CalFile offers free direct e-file."},
+      {name:"Colorado", tax:"yes", url:"https://tax.colorado.gov/training/file-individual-income-tax-online", note:"Revenue Online free e-file."},
+      {name:"Connecticut", tax:"yes", url:"https://portal.ct.gov/drs/individuals/resident-income-tax/approved-vendors", note:"Approved vendors and free-file offers."},
+      {name:"Delaware", tax:"yes", url:"https://revenue.delaware.gov/personal-income-tax-forms/", note:"Current forms and taxpayer portal filing."},
+      {name:"Florida", tax:"no", url:"https://floridarevenue.com/", note:"No broad individual income tax."},
+      {name:"Georgia", tax:"yes", url:"https://dor.georgia.gov/node/52996", note:"Official file-for-free options."},
+      {name:"Hawaii", tax:"yes", url:"https://tax.hawaii.gov:443/eservices/", note:"Hawaii Tax Online e-services."},
+      {name:"Idaho", tax:"yes", url:"https://tax.idaho.gov/freefile", note:"Free filing options for 2025 returns."},
+      {name:"Illinois", tax:"yes", url:"https://tax.Illinois.gov/programs/mytax/help/what-is-mytax-illinois-.html", note:"MyTax Illinois filing information."},
+      {name:"Indiana", tax:"yes", url:"https://www.in.gov/dor/i-am-a/individual/infreefile/", note:"INfreefile offers and eligibility."},
+      {name:"Iowa", tax:"yes", url:"https://revenue.iowa.gov/taxes/file-my-taxes/individual-taxes/file-free", note:"Tax year 2025 free-file options."},
+      {name:"Kansas", tax:"yes", url:"https://ksrevenue.gov/iiwebfile.html", note:"KS WebFile free filing."},
+      {name:"Kentucky", tax:"yes", url:"https://revenue.ky.gov/Individual/pages/free-electronic-filing.aspx", note:"Free File offers plus KY File."},
+      {name:"Louisiana", tax:"yes", url:"https://revenue.louisiana.gov/tax-education-and-faqs/faqs/individual-income-tax/can-i-file-my-louisiana-return-on-the-department-s-website/", note:"Louisiana File Online is free."},
+      {name:"Maine", tax:"yes", url:"https://www11.maine.gov/revenue/fastfile/index.html", note:"Maine Tax Portal free filing."},
+      {name:"Maryland", tax:"yes", url:"https://www.marylandtaxes.gov/reports/income-summary.php", note:"Maryland Tax Connect filing information."},
+      {name:"Massachusetts", tax:"yes", url:"https://www.mass.gov/dor", note:"DOR hub and MassTaxConnect access."},
+      {name:"Michigan", tax:"yes", url:"https://www.michigan.gov/incometax", note:"Individual Income Tax hub."},
+      {name:"Minnesota", tax:"yes", url:"http://revenue.state.mn.us/file-income-tax-return", note:"Official filing and free-file guidance."},
+      {name:"Mississippi", tax:"yes", url:"https://www.dor.ms.gov/individual/e-file-information", note:"Free and reduced-fee e-file list."},
+      {name:"Missouri", tax:"yes", url:"https://dor.mo.gov/taxation/individual/tax-types/income/filing.html", note:"Individual filing options."},
+      {name:"Montana", tax:"yes", url:"https://tap.dor.mt.gov", note:"TransAction Portal."},
+      {name:"Nebraska", tax:"yes", url:"https://revenue.nebraska.gov/individuals/nebfile-individuals", note:"NebFile free resident filing."},
+      {name:"Nevada", tax:"no", url:"https://tax.nv.gov/about-nevada-department-of-taxation/income-tax-in-nevada/", note:"No broad individual income tax; ignore its stale IRS Direct File link."},
+      {name:"New Hampshire", tax:"no", url:"https://www.revenue.nh.gov/taxes-glance/interest-dividends-tax", note:"No wage tax; interest/dividends tax repealed after 2024."},
+      {name:"New Jersey", tax:"yes", url:"https://www.nj.gov/treasury/taxation/gitforms.shtml", note:"NJ e-file and forms information."},
+      {name:"New Mexico", tax:"yes", url:"https://tax.newmexico.gov/online-services/", note:"Taxpayer Access Point (TAP)."},
+      {name:"New York", tax:"yes", url:"https://www.tax.ny.gov/pit/efile/", note:"E-file and 2025 free-file options."},
+      {name:"North Carolina", tax:"yes", url:"https://www.ncdor.gov/NCfreefile", note:"NC Free File eligibility for tax year 2025."},
+      {name:"North Dakota", tax:"yes", url:"http://tax.nd.gov/individual", note:"E-filing and Free File options."},
+      {name:"Ohio", tax:"yes", url:"https://tax.ohio.gov", note:"OH|TAX eServices and filing access."},
+      {name:"Oklahoma", tax:"yes", url:"https://oklahoma.gov/content/dam/ok/en/tax/documents/resources/publications/infographics/FilingIncomeTax.pdf", note:"Official guide to online, mail, and software filing."},
+      {name:"Oregon", tax:"yes", url:"https://www.oregon.gov/dor/programs/individuals/pages/direct_file_or.aspx", note:"Direct File Oregon for eligible full-year residents."},
+      {name:"Pennsylvania", tax:"yes", url:"https://www.pa.gov/services/revenue/file-a-pennsylvania-income-tax-return", note:"myPATH and free e-file options."},
+      {name:"Rhode Island", tax:"yes", url:"https://tax.ri.gov/online-services/make-payment-online/free-file", note:"Free File offers and thresholds."},
+      {name:"South Carolina", tax:"yes", url:"https://dor.sc.gov", note:"SCDOR and MyDORWAY access."},
+      {name:"South Dakota", tax:"no", url:"https://dor.sd.gov/individuals/taxes", note:"No broad individual income tax."},
+      {name:"Tennessee", tax:"no", url:"https://www.tn.gov/revenue/taxes/hall-income-tax.html", note:"Hall income tax repealed for periods beginning in 2021."},
+      {name:"Texas", tax:"no", url:"https://comptroller.texas.gov", note:"No broad individual income tax."},
+      {name:"Utah", tax:"yes", url:"https://tax.utah.gov/online-services/about-tap/", note:"TAP offers free online filing."},
+      {name:"Vermont", tax:"yes", url:"https://tax.vermont.gov/individuals/income-tax-returns", note:"Personal income tax filing guidance."},
+      {name:"Virginia", tax:"yes", url:"https://www.tax.virginia.gov/individual-income-tax-filing", note:"Current individual filing options."},
+      {name:"Washington", tax:"no", url:"http://dor.wa.gov/forms-publications", note:"No broad personal income tax; separate capital gains tax may apply."},
+      {name:"West Virginia", tax:"yes", url:"https://tax.wv.gov", note:"Tax Division hub and MyTaxes link."},
+      {name:"Wisconsin", tax:"yes", url:"https://www.revenue.wi.gov/Pages/FAQS/ise-WisTax.aspx", note:"WisTax free state filing for eligible returns."},
+      {name:"Wyoming", tax:"no", url:"https://revenue.wyo.gov", note:"No broad individual income tax."},
+      {name:"District of Columbia", tax:"yes", url:"https://otr.cfo.dc.gov/page/individual-income-tax-forms", note:"Current forms and no-cost MyTax.DC.gov filing."}
+    ];
+
+    const stateGrid = document.getElementById('stateGrid');
+    const stateSearch = document.getElementById('stateSearch');
+    const directoryCount = document.getElementById('directoryCount');
+    const filterButtons = Array.from(document.querySelectorAll('.filter'));
+    let activeFilter = 'all';
+
+    function renderStates() {
+      const query = stateSearch.value.trim().toLowerCase();
+      const filtered = states.filter(function(state) {
+        const matchesText = state.name.toLowerCase().includes(query) || state.note.toLowerCase().includes(query);
+        const matchesFilter = activeFilter === 'all' || state.tax === activeFilter;
+        return matchesText && matchesFilter;
+      });
+
+      directoryCount.textContent = filtered.length + (filtered.length === 1 ? ' official resource' : ' official resources');
+      if (!filtered.length) {
+        stateGrid.innerHTML = '<p class="empty">No states match that search. Try the full state name.</p>';
+        return;
+      }
+      stateGrid.innerHTML = filtered.map(function(state) {
+        const noTax = state.tax === 'no';
+        return '<a class="state-card" href="' + state.url + '" target="_blank" rel="noreferrer">' +
+          '<span><span class="state-name">' + state.name + '</span><span class="state-note">' + state.note + '</span></span>' +
+          '<span class="state-side"><span class="badge ' + (noTax ? 'no' : '') + '">' + (noTax ? 'No broad tax' : 'Income tax') + '</span>' +
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16 16 8m-6 0h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>';
+      }).join('');
+    }
+
+    stateSearch.addEventListener('input', renderStates);
+    filterButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        activeFilter = button.getAttribute('data-filter');
+        filterButtons.forEach(function(item) { item.setAttribute('aria-pressed', String(item === button)); });
+        renderStates();
+      });
+    });
+    renderStates();
+  </script>
+</body>
+</html>

@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
   <title>Honed Money</title>
-  <meta name="description" content="Six straightforward calculators for everyday money decisions, from dividend income to debt payoff and housing." />
+  <meta name="description" content="Nine straightforward tools for everyday money decisions, from dividend income and debt payoff to housing and taxes." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -177,9 +177,9 @@
       text-decoration: none;
       isolation: isolate;
     }
-    .tool:nth-child(2), .tool:nth-child(5) { --card-accent: var(--blue); }
-    .tool:nth-child(3) { --card-accent: var(--red); }
-    .tool:nth-child(4), .tool:nth-child(6) { --card-accent: var(--green); }
+    .tool:nth-child(2), .tool:nth-child(5), .tool:nth-child(8) { --card-accent: var(--blue); }
+    .tool:nth-child(3), .tool:nth-child(7) { --card-accent: var(--red); }
+    .tool:nth-child(4), .tool:nth-child(6), .tool:nth-child(9) { --card-accent: var(--green); }
     .tool::after {
       content: "";
       position: absolute;
@@ -294,7 +294,7 @@
       </div>
       <div class="intro-copy">
         <p>Clear answers for the money decisions that show up in real life—income, debt, savings, housing, and the bills in between.</p>
-        <div class="tool-count"><strong>06</strong><span>free calculators</span></div>
+        <div class="tool-count"><strong>09</strong><span>free money tools</span></div>
       </div>
     </header>
 
@@ -374,6 +374,42 @@
           </div>
           <h3>Take-Home Pay Calculator</h3>
           <p>Estimate what reaches your bank account after federal taxes and payroll deductions.</p>
+          <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
+        </a>
+
+        <a class="tool" href="/money/capital-gains-tax-calculator/">
+          <div class="card-top">
+            <span class="index">07 / INVESTING TAX</span>
+            <span class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 19h16M6 16l4-4 3 3 5-7"/><path d="M14 8h4v4"/></svg>
+            </span>
+          </div>
+          <h3>Capital Gains Tax Calculator</h3>
+          <p>Estimate federal tax on an investment sale based on your gain, income, and holding period.</p>
+          <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
+        </a>
+
+        <a class="tool" href="/money/tax-refund-estimator/">
+          <div class="card-top">
+            <span class="index">08 / TAX ESTIMATE</span>
+            <span class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h3"/><path d="M15 14v4m-2-2h4"/></svg>
+            </span>
+          </div>
+          <h3>Tax Refund Estimator</h3>
+          <p>Estimate whether you may get a refund or owe tax using your income, credits, and withholding.</p>
+          <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
+        </a>
+
+        <a class="tool" href="/money/tax-filing-resources/">
+          <div class="card-top">
+            <span class="index">09 / FILING HELP</span>
+            <span class="glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5zM15 4v5h4M8 12h8M8 16h6"/></svg>
+            </span>
+          </div>
+          <h3>Tax Filing Resources</h3>
+          <p>Find free filing programs, trusted tax help, paid options, and state filing information.</p>
           <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
         </a>
       </div>

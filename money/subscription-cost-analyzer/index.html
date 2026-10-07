@@ -341,6 +341,44 @@
       font-size: .86rem;
     }
     .insight strong { color: var(--receipt-ink); }
+    .explain-results {
+      width: 100%;
+      min-height: 44px;
+      margin-top: 14px;
+      border: 1px solid var(--orange);
+      border-radius: 3px;
+      padding: 10px 14px;
+      background: transparent;
+      color: var(--receipt-ink);
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+    }
+    .explain-results::after {
+      content: "+";
+      float: right;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+    }
+    .explain-results[aria-expanded="true"]::after { content: "−"; }
+    .explain-results:disabled {
+      border-color: var(--receipt-line);
+      color: var(--receipt-muted);
+      cursor: not-allowed;
+    }
+    .explain-results:disabled::after { color: var(--receipt-muted); }
+    .results-explanation {
+      margin: 0;
+      padding: 15px 16px;
+      border: 1px solid var(--receipt-line);
+      border-top: 0;
+      color: var(--receipt-muted);
+      font-size: .86rem;
+      line-height: 1.55;
+    }
+    .results-explanation strong { color: var(--receipt-ink); }
+    .results-explanation[hidden] { display: none; }
     .breakdown {
       display: grid;
       grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
@@ -498,6 +536,8 @@
           <p class="meter-copy" id="savingsCopy">Mark items to cancel or downgrade to compare.</p>
         </div>
         <p class="insight" id="insight"><strong>Start with the full list.</strong> Small renewals are easy to miss until they share one total.</p>
+        <button class="explain-results" id="explainBtn" type="button" aria-expanded="false" aria-controls="resultsExplanation" disabled>Explain these results</button>
+        <p class="results-explanation" id="resultsExplanation" hidden></p>
       </aside>
     </section>
 
@@ -558,6 +598,8 @@
       var emailBtn = document.getElementById("emailBtn");
       var resultActionsHint = document.getElementById("resultActionsHint");
       var categoryList = document.getElementById("categoryList");
+      var explainBtn = document.getElementById("explainBtn");
+      var resultsExplanation = document.getElementById("resultsExplanation");
       var resultsText = "";
       var copiedTimer = 0;
 
@@ -636,6 +678,26 @@
         }).filter(function (item) { return item.name || item.price > 0; });
       }
 
+      function updateExplanation(hasResults, current, planned, annual, annualSavings) {
+        if (!hasResults) {
+          explainBtn.disabled = true;
+          explainBtn.setAttribute("aria-expanded", "false");
+          explainBtn.textContent = "Explain these results";
+          resultsExplanation.hidden = true;
+          resultsExplanation.textContent = "";
+          return;
+        }
+
+        explainBtn.disabled = false;
+        var opening = "You're currently spending " + money(current) + " a month. Spread across the year, that's about " + money(annual / 365) + " a day and " + money(annual / 52) + " a week, for " + money(annual) + " a year; the " + money(annual * 5) + " five-year number is simply five years at today's prices. ";
+        if (annualSavings > 0) {
+          var savingsPercent = current > 0 ? Math.round((current - planned) / current * 100) : 0;
+          resultsExplanation.textContent = opening + "With the choices you've marked, your subscriptions would fall to " + money(planned) + " a month. That leaves " + money(annualSavings) + " in annual savings—about " + savingsPercent + "% less than your current recurring cost.";
+        } else {
+          resultsExplanation.textContent = opening + "Your planned cost is still " + money(planned) + " a month, so the annual savings figure is " + money(annualSavings) + ". Mark something to cancel or downgrade if you want to compare a lower-cost plan.";
+        }
+      }
+
       function update() {
         var items = readRows();
         var current = items.reduce(function (sum, item) { return sum + item.monthly; }, 0);
@@ -670,6 +732,7 @@
 
         exportBtn.disabled = completed.length === 0;
         updateResultActions(completed, current, planned, annual, annualSavings);
+        updateExplanation(completed.length > 0, current, planned, annual, annualSavings);
         renderCategories(completed);
       }
 
@@ -832,6 +895,13 @@
       copyBtn.addEventListener("click", copyResults);
       emailBtn.addEventListener("click", function (event) {
         if (emailBtn.getAttribute("aria-disabled") === "true") event.preventDefault();
+      });
+      explainBtn.addEventListener("click", function () {
+        if (explainBtn.disabled) return;
+        var willOpen = explainBtn.getAttribute("aria-expanded") !== "true";
+        explainBtn.setAttribute("aria-expanded", String(willOpen));
+        explainBtn.textContent = willOpen ? "Hide explanation" : "Explain these results";
+        resultsExplanation.hidden = !willOpen;
       });
 
       addRow(false);
