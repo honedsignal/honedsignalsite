@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <title>Self-Employment Tax Estimator</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0b0e14;
+      --surface: #141a22;
+      --surface-2: #1d2530;
+      --text: #f5f5f5;
+      --muted: #b6c0cc;
+      --line: #34404e;
+      --blue: #78a4d5;
+      --orange: #f7931a;
+      --green: #39ff14;
+      --red: #e5484d;
+      --focus: #9cc8f2;
+      --shadow: 0 18px 50px rgba(0,0,0,.28);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #07090d;
+        --surface: #0f131a;
+        --surface-2: #171d26;
+        --text: #f5f5f5;
+        --muted: #aeb8c5;
+        --line: #29313d;
+        --blue: #6490c4;
+        --orange: #f7931a;
+        --green: #39ff14;
+        --red: #e5484d;
+        --focus: #8bb7e8;
+        --shadow: 0 22px 60px rgba(0,0,0,.35);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.5;
+    }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: var(--blue); }
+    .wrap { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
+    .intro {
+      padding: clamp(34px, 7vw, 72px) 0 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+      gap: 48px;
+      align-items: end;
+    }
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--orange);
+      font: 600 12px/1.2 "IBM Plex Mono", monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(38px, 6.5vw, 72px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    .dek { margin: 20px 0 0; color: var(--muted); max-width: 650px; font-size: clamp(17px, 2vw, 20px); }
+    .year-card { border-top: 3px solid var(--orange); padding-top: 16px; }
+    .year-card strong { display: block; font: 600 34px/1 "IBM Plex Mono", monospace; }
+    .year-card span { display: block; color: var(--muted); margin-top: 8px; font-size: 14px; }
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(280px, .78fr) minmax(0, 1.22fr);
+      gap: 22px;
+      padding-bottom: 28px;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .inputs { padding: clamp(24px, 4vw, 36px); }
+    h2 { margin: 0; font-size: 21px; letter-spacing: -.02em; }
+    .panel-lead { margin: 7px 0 26px; color: var(--muted); font-size: 14px; }
+    .field { margin-top: 22px; }
+    label { display: block; font-weight: 700; margin-bottom: 8px; }
+    .hint { display: block; color: var(--muted); font-size: 13px; margin-top: 7px; }
+    .money-field { position: relative; }
+    .money-field span {
+      position: absolute; inset: 0 auto 0 15px;
+      display: grid; place-items: center;
+      color: var(--muted); font: 600 16px "IBM Plex Mono", monospace;
+      pointer-events: none;
+    }
+    input, select {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      color: var(--text);
+      border-radius: 4px;
+      outline: 0;
+    }
+    input { padding: 12px 15px 12px 34px; font: 600 18px "IBM Plex Mono", monospace; }
+    select { padding: 12px 40px 12px 15px; appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 18px) 22px, calc(100% - 12px) 22px; background-size: 6px 6px; background-repeat: no-repeat; }
+    input:focus, select:focus, button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid color-mix(in srgb, var(--focus) 45%, transparent); outline-offset: 2px; }
+    .notice {
+      margin: 18px 0 0; padding: 12px 14px;
+      background: color-mix(in srgb, var(--orange) 10%, var(--surface));
+      border-left: 3px solid var(--orange);
+      color: var(--text); font-size: 14px;
+    }
+    .notice strong { color: var(--orange); }
+    .formula {
+      margin-top: 28px; padding: 18px 0 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted); font-size: 13px;
+    }
+    .formula b { color: var(--text); }
+    .results { padding: clamp(24px, 4vw, 40px); }
+    .result-top { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
+    .as-of { color: var(--muted); font: 500 12px/1.3 "IBM Plex Mono", monospace; text-align: right; }
+    .headline-result { margin: 30px 0 28px; }
+    .headline-result .label { color: var(--muted); font-size: 14px; font-weight: 600; }
+    .headline-result .amount { margin-top: 4px; font: 600 clamp(44px, 7vw, 74px)/1 "IBM Plex Mono", monospace; letter-spacing: -.06em; }
+    .headline-result .sub { margin-top: 9px; color: var(--muted); font-size: 14px; }
+    .meter { height: 8px; display: flex; gap: 3px; margin-bottom: 30px; }
+    .meter span { display: block; min-width: 0; transition: width .25s ease; }
+    .meter .se { background: var(--orange); }
+    .meter .income { background: var(--blue); }
+    .meter .keep { background: var(--green); opacity: .82; }
+    .result-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .metric { min-width: 0; padding: 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .metric .m-label { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .metric .m-value { margin-top: 5px; font: 600 clamp(20px, 3vw, 27px)/1.2 "IBM Plex Mono", monospace; overflow-wrap: anywhere; }
+    .metric .m-note { margin-top: 6px; color: var(--muted); font-size: 12px; }
+    .quarterly {
+      display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px;
+      margin-top: 22px; padding: 20px 22px;
+      background: var(--surface-2); border-left: 4px solid var(--orange);
+    }
+    .quarterly span { color: var(--muted); font-size: 13px; }
+    .quarterly strong { font: 600 clamp(24px, 4vw, 34px)/1 "IBM Plex Mono", monospace; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    button, .button {
+      min-height: 46px; padding: 11px 17px;
+      border: 1px solid var(--line); border-radius: 4px;
+      background: var(--surface-2); color: var(--text);
+      cursor: pointer; font-weight: 700; text-decoration: none;
+    }
+    .primary { background: var(--orange); color: #0b0e14; border-color: var(--orange); }
+    button:hover, .button:hover { border-color: var(--blue); }
+    button:disabled { opacity: .48; cursor: not-allowed; border-color: var(--line); }
+    .explainer { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 16px; }
+    .explain-toggle { width: 100%; display: flex; justify-content: space-between; align-items: center; text-align: left; background: transparent; border: 0; padding: 10px 0; }
+    .explain-toggle .plus { font: 600 22px/1 "IBM Plex Mono", monospace; color: var(--orange); transition: transform .2s ease; }
+    .explain-toggle[aria-expanded="true"] .plus { transform: rotate(45deg); }
+    .explain-copy { display: none; padding: 4px 0 2px; color: var(--muted); }
+    .explain-copy.open { display: block; }
+    .explain-copy p { margin: 0 0 12px; }
+    .explain-copy strong { color: var(--text); }
+    .fine-print { width: min(1160px, calc(100% - 36px)); margin: 0 auto; padding: 22px 0 54px; }
+    .disclaimer { border-top: 1px solid var(--line); padding-top: 22px; font-size: 14px; color: var(--muted); }
+    .disclaimer strong { color: var(--text); }
+    .sources { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px 20px; font-size: 13px; }
+    .sources a { text-underline-offset: 3px; }
+    .toast {
+      position: fixed; left: 50%; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%) translateY(18px);
+      opacity: 0; pointer-events: none; background: var(--text); color: var(--bg); padding: 10px 14px; border-radius: 3px; font-weight: 700; font-size: 13px; transition: .2s ease;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    @media (max-width: 780px) {
+      .intro { grid-template-columns: 1fr; gap: 28px; }
+      .year-card { max-width: 320px; }
+      .calculator { grid-template-columns: 1fr; }
+      .results { box-shadow: none; }
+    }
+    @media (max-width: 500px) {
+      .wrap, .fine-print { width: min(100% - 24px, 1160px); }
+      .intro { padding-top: 28px; }
+      h1 { font-size: 43px; }
+      .inputs, .results { padding: 22px 18px; }
+      .result-top { display: block; }
+      .as-of { text-align: left; margin-top: 7px; }
+      .result-grid { grid-template-columns: 1fr; }
+      .quarterly { grid-template-columns: 1fr; }
+      .actions { display: grid; grid-template-columns: 1fr; }
+      button, .button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+    @media print {
+      body { background: #fff; color: #000; }
+      .panel { box-shadow: none; }
+      .actions, .explain-toggle { display: none; }
+      .explain-copy { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="intro wrap" aria-labelledby="page-title">
+      <div>
+        <p class="kicker">Honed Money · Business</p>
+        <h1 id="page-title">Estimate the tax behind your take-home.</h1>
+        <p class="dek">Enter annual net self-employment profit to see a simplified 2026 federal tax estimate—before the money leaves your account.</p>
+      </div>
+      <div class="year-card" aria-label="Tax year 2026">
+        <strong>2026</strong>
+        <span>Federal rates · Returns generally filed in 2027</span>
+      </div>
+    </section>
+
+    <section class="calculator wrap" aria-label="Self-employment tax calculator">
+      <form class="panel inputs" id="taxForm" novalidate>
+        <h2>Your estimate</h2>
+        <p class="panel-lead">Two inputs. No tax jargon required.</p>
+
+        <div class="field">
+          <label for="profit">Annual net self-employment profit</label>
+          <div class="money-field">
+            <span aria-hidden="true">$</span>
+            <input id="profit" name="profit" type="number" inputmode="decimal" min="0" step="100" placeholder="e.g. 75,000" aria-describedby="profitHint" />
+          </div>
+          <span class="hint" id="profitHint">Revenue minus ordinary business expenses, before personal taxes. Example: $75,000.</span>
+        </div>
+
+        <div class="field">
+          <label for="status">Federal filing status</label>
+          <select id="status" name="status">
+            <option value="single">Single</option>
+            <option value="joint">Married filing jointly</option>
+            <option value="separate">Married filing separately</option>
+            <option value="head">Head of household</option>
+          </select>
+          <span class="hint">Used for the standard deduction, income-tax brackets, and Additional Medicare threshold.</span>
+        </div>
+
+        <p class="notice"><strong>Estimate only—not tax advice.</strong> State and local taxes are not included.</p>
+
+        <div class="formula">
+          <b>How the estimate works:</b> 92.35% of net profit is generally subject to self-employment tax. The base 15.3% combines 12.4% Social Security and 2.9% Medicare.
+        </div>
+      </form>
+
+      <section class="panel results" aria-labelledby="results-title" aria-live="polite">
+        <div class="result-top">
+          <h2 id="results-title">Estimated federal burden</h2>
+          <div class="as-of">2026 FEDERAL RULES</div>
+        </div>
+
+        <div class="headline-result">
+          <div class="label">Self-employment tax + income tax</div>
+          <div class="amount" id="totalTax">—</div>
+          <div class="sub"><span id="effectiveRate">Enter an amount</span><span id="rateSuffix"> to estimate</span> · state and local taxes not included</div>
+        </div>
+
+        <div class="meter" aria-hidden="true">
+          <span class="se" id="seBar" style="width:0%"></span>
+          <span class="income" id="incomeBar" style="width:0%"></span>
+          <span class="keep" id="keepBar" style="width:100%"></span>
+        </div>
+
+        <div class="result-grid">
+          <div class="metric">
+            <div class="m-label">Self-employment tax</div>
+            <div class="m-value" id="seTax">$0</div>
+            <div class="m-note" id="seBreakdown">Social Security $0 · Medicare $0</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">Estimated income tax</div>
+            <div class="m-value" id="incomeTax">$0</div>
+            <div class="m-note">After half-SE-tax and standard deductions</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">Deductible half of SE tax</div>
+            <div class="m-value" id="halfDeduction">$0</div>
+            <div class="m-note">Adjustment used before income tax</div>
+          </div>
+          <div class="metric">
+            <div class="m-label">Estimated after-tax income</div>
+            <div class="m-value" id="afterTax">$0</div>
+            <div class="m-note">Before state, local, and other taxes</div>
+          </div>
+        </div>
+
+        <div class="quarterly">
+          <div>
+            <h2>Quarterly planning amount</h2>
+            <span>Total estimate divided into four equal payments</span>
+          </div>
+          <strong id="quarterly">$0</strong>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="primary" id="emailBtn">Email my results</button>
+          <button type="button" id="copyBtn">Copy results</button>
+        </div>
+
+        <div class="explainer">
+          <button type="button" class="explain-toggle" id="explainBtn" aria-expanded="false" aria-controls="explainCopy">
+            <span>Explain these results</span><span class="plus" aria-hidden="true">+</span>
+          </button>
+          <div class="explain-copy" id="explainCopy">
+            <p id="explainIntro">Enter your annual net profit to see a plain-English walkthrough.</p>
+            <p id="explainSe"></p>
+            <p id="explainIncome"></p>
+            <p id="explainPlan"></p>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="fine-print">
+    <div class="disclaimer"><strong>Estimate only—not tax advice.</strong> This simplified tool assumes all income is self-employment profit, no W-2 wages, the standard deduction, and no credits, itemized deductions, qualified business income deduction, spouse income, withholding, prior payments, or special tax rules. Actual quarterly payment requirements may differ; check Form 1040-ES or a qualified tax professional.</div>
+    <div class="sources" aria-label="Official sources">
+      <a href="https://www.irs.gov/taxtopics/tc554" target="_blank" rel="noopener noreferrer">IRS · Self-employment tax rules</a>
+      <a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill" target="_blank" rel="noopener noreferrer">IRS · 2026 brackets &amp; deductions</a>
+      <a href="https://www.ssa.gov/faqs/en/questions/KA-02387.html" target="_blank" rel="noopener noreferrer">SSA · 2026 taxable maximum</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Results copied</div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var PROFIT_FACTOR = 0.9235;
+      var SOCIAL_SECURITY_RATE = 0.124;
+      var MEDICARE_RATE = 0.029;
+      var ADDITIONAL_MEDICARE_RATE = 0.009;
+      var SOCIAL_SECURITY_BASE = 184500;
+
+      var rules = {
+        single: {
+          label: 'Single', deduction: 16100, medicareThreshold: 200000,
+          brackets: [[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[Infinity,.37]]
+        },
+        joint: {
+          label: 'Married filing jointly', deduction: 32200, medicareThreshold: 250000,
+          brackets: [[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[Infinity,.37]]
+        },
+        separate: {
+          label: 'Married filing separately', deduction: 16100, medicareThreshold: 125000,
+          brackets: [[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[384350,.35],[Infinity,.37]]
+        },
+        head: {
+          label: 'Head of household', deduction: 24150, medicareThreshold: 200000,
+          brackets: [[17700,.10],[67450,.12],[105700,.22],[201750,.24],[256200,.32],[640600,.35],[Infinity,.37]]
+        }
+      };
+
+      var $ = function (id) { return document.getElementById(id); };
+      var profitInput = $('profit');
+      var statusInput = $('status');
+      var lastResult = null;
+
+      function currency(value) {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Math.max(0, value || 0));
+      }
+
+      function exactCurrency(value) {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Math.max(0, value || 0));
+      }
+
+      function progressiveTax(income, brackets) {
+        var tax = 0;
+        var lower = 0;
+        for (var i = 0; i < brackets.length; i++) {
+          var upper = brackets[i][0];
+          var rate = brackets[i][1];
+          if (income > lower) {
+            tax += (Math.min(income, upper) - lower) * rate;
+          }
+          if (income <= upper) break;
+          lower = upper;
+        }
+        return tax;
+      }
+
+      function calculate() {
+        var rule = rules[statusInput.value];
+        if (profitInput.value.trim() === '') {
+          lastResult = null;
+          $('totalTax').textContent = '—';
+          $('effectiveRate').textContent = 'Enter an amount';
+          $('rateSuffix').textContent = ' to estimate';
+          $('seTax').textContent = '—';
+          $('incomeTax').textContent = '—';
+          $('halfDeduction').textContent = '—';
+          $('afterTax').textContent = '—';
+          $('quarterly').textContent = '—';
+          $('seBreakdown').textContent = 'Social Security + Medicare';
+          $('seBar').style.width = '0%';
+          $('incomeBar').style.width = '0%';
+          $('keepBar').style.width = '100%';
+          $('emailBtn').disabled = true;
+          $('copyBtn').disabled = true;
+          updateExplanation({ profit: 0 });
+          return;
+        }
+        var profit = Math.max(0, Number(profitInput.value) || 0);
+        var seEarnings = profit * PROFIT_FACTOR;
+        var owesSE = seEarnings >= 400;
+        var socialSecurityTax = owesSE ? Math.min(seEarnings, SOCIAL_SECURITY_BASE) * SOCIAL_SECURITY_RATE : 0;
+        var medicareTax = owesSE ? seEarnings * MEDICARE_RATE : 0;
+        var additionalMedicareTax = owesSE ? Math.max(0, seEarnings - rule.medicareThreshold) * ADDITIONAL_MEDICARE_RATE : 0;
+        var baseSETax = socialSecurityTax + medicareTax;
+        var seTax = baseSETax + additionalMedicareTax;
+        var halfDeduction = baseSETax / 2;
+        var taxableIncome = Math.max(0, profit - halfDeduction - rule.deduction);
+        var incomeTax = progressiveTax(taxableIncome, rule.brackets);
+        var totalTax = seTax + incomeTax;
+        var quarterly = totalTax / 4;
+        var afterTax = Math.max(0, profit - totalTax);
+        var effectiveRate = profit > 0 ? totalTax / profit : 0;
+
+        lastResult = {
+          profit: profit, status: rule.label, standardDeduction: rule.deduction,
+          seEarnings: seEarnings, socialSecurityTax: socialSecurityTax,
+          medicareTax: medicareTax, additionalMedicareTax: additionalMedicareTax,
+          seTax: seTax, halfDeduction: halfDeduction, taxableIncome: taxableIncome,
+          incomeTax: incomeTax, totalTax: totalTax, quarterly: quarterly,
+          afterTax: afterTax, effectiveRate: effectiveRate
+        };
+
+        $('emailBtn').disabled = false;
+        $('copyBtn').disabled = false;
+        $('totalTax').textContent = currency(totalTax);
+        $('effectiveRate').textContent = (effectiveRate * 100).toFixed(1) + '%';
+        $('rateSuffix').textContent = ' of net profit';
+        $('seTax').textContent = currency(seTax);
+        $('incomeTax').textContent = currency(incomeTax);
+        $('halfDeduction').textContent = currency(halfDeduction);
+        $('afterTax').textContent = currency(afterTax);
+        $('quarterly').textContent = currency(quarterly);
+
+        var breakdown = 'Social Security ' + currency(socialSecurityTax) + ' · Medicare ' + currency(medicareTax);
+        if (additionalMedicareTax > 0) breakdown += ' · Additional Medicare ' + currency(additionalMedicareTax);
+        $('seBreakdown').textContent = breakdown;
+
+        var sePct = profit > 0 ? Math.min(100, (seTax / profit) * 100) : 0;
+        var incomePct = profit > 0 ? Math.min(100 - sePct, (incomeTax / profit) * 100) : 0;
+        var keepPct = Math.max(0, 100 - sePct - incomePct);
+        $('seBar').style.width = sePct + '%';
+        $('incomeBar').style.width = incomePct + '%';
+        $('keepBar').style.width = keepPct + '%';
+
+        updateExplanation(lastResult);
+      }
+
+      function updateExplanation(r) {
+        if (!r.profit) {
+          $('explainIntro').textContent = 'Enter your annual net profit to see a plain-English walkthrough.';
+          $('explainSe').textContent = '';
+          $('explainIncome').textContent = '';
+          $('explainPlan').textContent = '';
+          return;
+        }
+        $('explainIntro').innerHTML = 'You entered <strong>' + currency(r.profit) + '</strong> of annual net self-employment profit and selected <strong>' + r.status + '</strong>.';
+        if (r.seEarnings < 400) {
+          $('explainSe').textContent = 'After the standard 92.35% adjustment, your net earnings are below $400, so this estimate shows no self-employment tax.';
+        } else {
+          var seText = 'The IRS generally applies self-employment tax to 92.35% of profit—' + currency(r.seEarnings) + ' here. That produces ' + currency(r.socialSecurityTax) + ' of Social Security tax and ' + currency(r.medicareTax) + ' of Medicare tax.';
+          if (r.additionalMedicareTax > 0) seText += ' It also includes ' + currency(r.additionalMedicareTax) + ' of Additional Medicare Tax.';
+          $('explainSe').textContent = seText;
+        }
+        $('explainIncome').textContent = 'For the income-tax estimate, the tool subtracts the deductible half of base self-employment tax (' + currency(r.halfDeduction) + ') and the ' + currency(r.standardDeduction) + ' standard deduction. That leaves ' + currency(r.taxableIncome) + ' to run through the 2026 federal brackets, producing about ' + currency(r.incomeTax) + ' of income tax.';
+        $('explainPlan').textContent = 'Together, the estimate is ' + currency(r.totalTax) + ', or ' + (r.effectiveRate * 100).toFixed(1) + '% of profit. Dividing that into four equal planning payments gives ' + currency(r.quarterly) + ' per quarter. Your actual required payments can differ because this estimate does not know about other income, withholding, credits, or deductions.';
+      }
+
+      function resultsText() {
+        var r = lastResult;
+        return [
+          'Self-Employment Tax Estimate — 2026',
+          'Net self-employment profit: ' + exactCurrency(r.profit),
+          'Filing status: ' + r.status,
+          'Self-employment tax: ' + exactCurrency(r.seTax),
+          '  Social Security: ' + exactCurrency(r.socialSecurityTax),
+          '  Medicare: ' + exactCurrency(r.medicareTax),
+          (r.additionalMedicareTax > 0 ? '  Additional Medicare: ' + exactCurrency(r.additionalMedicareTax) : null),
+          'Deductible half of base SE tax: ' + exactCurrency(r.halfDeduction),
+          'Estimated federal income tax: ' + exactCurrency(r.incomeTax),
+          'Estimated total federal burden: ' + exactCurrency(r.totalTax),
+          'Quarterly planning amount: ' + exactCurrency(r.quarterly),
+          'Estimated after-tax income: ' + exactCurrency(r.afterTax),
+          'Effective rate: ' + (r.effectiveRate * 100).toFixed(1) + '%',
+          '',
+          'Estimate only—not tax advice. State and local taxes are not included.'
+        ].filter(function (line) { return line !== null; }).join('\n');
+      }
+
+      function showToast(message) {
+        var toast = $('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.setTimeout(function () { toast.classList.remove('show'); }, 1800);
+      }
+
+      function fallbackCopy(text) {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(area);
+        showToast(ok ? 'Results copied' : 'Select and copy from your email draft');
+      }
+
+      profitInput.addEventListener('input', calculate);
+      statusInput.addEventListener('change', calculate);
+      $('taxForm').addEventListener('submit', function (e) { e.preventDefault(); calculate(); });
+
+      $('explainBtn').addEventListener('click', function () {
+        var open = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!open));
+        $('explainCopy').classList.toggle('open', !open);
+      });
+
+      $('copyBtn').addEventListener('click', function () {
+        calculate();
+        var text = resultsText();
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () { showToast('Results copied'); }).catch(function () { fallbackCopy(text); });
+        } else {
+          fallbackCopy(text);
+        }
+      });
+
+      $('emailBtn').addEventListener('click', function () {
+        calculate();
+        var subject = 'My 2026 self-employment tax estimate';
+        var link = document.createElement('a');
+        link.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(resultsText());
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+      calculate();
+    }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Freelance Rate Calculator</title>
+  <meta name="description" content="Turn an income goal into a practical hourly, day, and project freelance rate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#11161c;--surface:#181f27;--surface-2:#202a34;--ink:#f5f5f5;--muted:#b7c0c9;
+      --line:#34404b;--line-strong:#596570;--orange:#f7931a;--orange-soft:#392917;
+      --blue:#82acd5;--blue-soft:#192d40;--green:#39ff14;--green-soft:#17351a;
+      --red:#ff747b;--red-soft:#402027;--shadow:0 24px 70px rgba(0,0,0,.28);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#0b0e14;--surface:#121820;--surface-2:#1a232d;--ink:#f5f5f5;--muted:#aeb7c0;
+      --line:#2b3540;--line-strong:#46525d;--orange:#f7931a;--orange-soft:#332313;
+      --blue:#78a6d2;--blue-soft:#16293a;--green:#39ff14;--green-soft:#143118;
+      --red:#ff7379;--red-soft:#3a1c22;--shadow:0 24px 70px rgba(0,0,0,.4);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;overflow-x:hidden;background:var(--bg);color:var(--ink);font:16px/1.5 "IBM Plex Sans",sans-serif;-webkit-font-smoothing:antialiased}button,input,select{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}.page{width:min(1220px,100%);margin:0 auto;padding:clamp(26px,4.2vw,54px) clamp(16px,4vw,48px) max(56px,env(safe-area-inset-bottom))}
+    .intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(270px,.65fr);gap:clamp(28px,6vw,82px);align-items:end;padding:8px 0 clamp(27px,4vw,42px);border-bottom:1px solid var(--line)}.intro h1{margin:0;max-width:800px;font-size:clamp(2.6rem,6.8vw,6.3rem);line-height:.9;letter-spacing:-.065em;font-weight:700}.intro h1 span{color:var(--orange)}.intro p{margin:0 0 4px;max-width:38ch;color:var(--muted);font-size:clamp(1rem,1.65vw,1.2rem)}
+    .workbench{display:grid;grid-template-columns:minmax(320px,410px) minmax(0,1fr);margin-top:30px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}.inputs{padding:clamp(20px,2.7vw,30px);border-right:1px solid var(--line)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:23px}.section-head h2{margin:0;font-size:.86rem;letter-spacing:.085em;text-transform:uppercase}.step{color:var(--orange);font:600 .68rem "IBM Plex Mono",monospace}.field{margin-bottom:17px}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;margin-bottom:7px;color:var(--muted);font-size:.78rem;font-weight:600}.control{display:flex;align-items:center;min-height:47px;background:var(--bg);border:1px solid var(--line-strong);transition:border-color .15s,box-shadow .15s}.control:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px color-mix(in srgb,var(--orange) 18%,transparent)}.affix{padding-left:12px;color:var(--muted);font:500 .8rem "IBM Plex Mono",monospace}.affix.end{padding:0 11px 0 0}.control input,.control select{width:100%;min-width:0;border:0;outline:0;background:transparent;padding:11px 10px;font-weight:600;font-variant-numeric:tabular-nums}.control select{cursor:pointer}.micro{display:block;margin-top:5px;color:var(--muted);font-size:.68rem;line-height:1.42}.divider{display:flex;align-items:center;gap:10px;margin:23px 0 14px}.divider span{color:var(--ink);font-size:.72rem;font-weight:700}.divider::after{content:"";height:1px;flex:1;background:var(--line)}.calculate{width:100%;border:0;margin-top:7px;padding:14px 18px;background:var(--orange);color:#181108;font-weight:700;cursor:pointer;box-shadow:0 6px 0 #8f4d04;transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 #8f4d04}.privacy{margin:15px 0 0;color:var(--muted);font-size:.67rem}
+    .results{min-width:0;padding:clamp(20px,3vw,34px);background:linear-gradient(135deg,color-mix(in srgb,var(--surface-2) 54%,transparent),transparent 58%)}.empty{min-height:660px;display:grid;place-items:center;text-align:center}.empty-mark{width:104px;height:104px;margin:0 auto 22px;position:relative;border:1px solid var(--line-strong);display:grid;place-items:center}.empty-mark::before{content:"$";font:600 2.5rem "IBM Plex Mono",monospace;color:var(--blue)}.empty-mark::after{content:"";position:absolute;width:29px;height:29px;right:-10px;bottom:-10px;border:8px solid var(--orange);border-radius:50%}.empty h2{margin:0 0 8px;font-size:1.6rem;letter-spacing:-.035em}.empty p{margin:0 auto;max-width:42ch;color:var(--muted);font-size:.9rem}.hidden{display:none!important}.error{margin:0 0 14px;padding:12px 14px;background:var(--red-soft);color:var(--red);font-size:.82rem;font-weight:600;border:1px solid color-mix(in srgb,var(--red) 35%,transparent)}
+    .hero-result{position:relative;overflow:hidden;padding:clamp(24px,4vw,40px);background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.hero-result{background:#f2f4f5;color:#0b0e14}}.hero-result::after{content:"";position:absolute;width:164px;height:164px;right:-65px;bottom:-82px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 9px;font:600 .68rem "IBM Plex Mono",monospace;letter-spacing:.07em;opacity:.6}.rate{position:relative;z-index:1;margin:0;font:600 clamp(3.15rem,7vw,6.25rem)/.9 "IBM Plex Mono",monospace;letter-spacing:-.075em}.rate-label{position:relative;z-index:1;margin:11px 0 0;font-weight:700}.quick-rates{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:1px;background:var(--line)}.quick{padding:18px;background:var(--surface)}.quick span{display:block;color:var(--muted);font-size:.66rem;font-weight:700}.quick strong{display:block;margin-top:5px;font:600 clamp(1.12rem,2.4vw,1.55rem) "IBM Plex Mono",monospace;letter-spacing:-.03em}.quick em{display:block;margin-top:5px;color:var(--muted);font-size:.63rem;font-style:normal}
+    .math{margin-top:16px;padding:22px;background:var(--surface);border:1px solid var(--line)}.math-head,.share-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:14px}.math h2,.share h2{margin:0;font-size:1rem;letter-spacing:-.02em}.formula{border-top:1px solid var(--line)}.formula-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.formula-row span{font-size:.78rem}.formula-row span small{display:block;margin-top:2px;color:var(--muted);font-size:.65rem}.formula-row strong{font:600 .78rem "IBM Plex Mono",monospace;text-align:right}.formula-row.total{color:var(--green)}.formula-row.rate-row{color:var(--orange);font-weight:700}
+    .explain{margin-top:14px;border:1px solid var(--line);background:var(--blue-soft)}.explain-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;border:0;background:transparent;padding:15px 17px;cursor:pointer;text-align:left;font-weight:700}.explain-toggle:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}.explain-toggle:focus-visible,.action:focus-visible,.calculate:focus-visible{outline:3px solid color-mix(in srgb,var(--orange) 45%,transparent);outline-offset:3px}.explain-toggle svg{width:18px;flex:0 0 auto;color:var(--blue);transition:transform .18s}.explain-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}.explain-copy{margin:0;padding:0 17px 18px;color:var(--muted);font-size:.84rem;line-height:1.68}.explain-copy strong{color:var(--ink)}.explain-copy[hidden]{display:none}
+    .share{margin-top:14px;padding:19px 22px;background:var(--surface);border:1px solid var(--line)}.actions{display:flex;gap:8px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 12px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;font-size:.7rem;font-weight:700}.action.email{background:var(--orange);border-color:var(--orange);color:#181108}.context{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.context div{padding-top:12px;border-top:1px solid var(--line)}.context span{display:block;color:var(--muted);font-size:.63rem;font-weight:700}.context strong{display:block;margin-top:5px;font:600 .78rem "IBM Plex Mono",monospace}.note{margin:15px 0 0;color:var(--muted);font-size:.66rem;line-height:1.5}.note strong{color:var(--ink)}
+    .footer{display:grid;grid-template-columns:1fr auto;gap:28px;margin-top:25px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.67rem}.footer p{margin:0;max-width:86ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.intro{grid-template-columns:1fr;gap:16px}.intro p{max-width:52ch}.workbench{grid-template-columns:1fr}.inputs{border-right:0;border-bottom:1px solid var(--line)}.empty{min-height:430px}}
+    @media(max-width:560px){.page{padding-left:12px;padding-right:12px}.intro h1{font-size:clamp(2.55rem,13vw,4rem)}.field-row{grid-template-columns:1fr;gap:0}.results{padding:12px}.hero-result,.math{padding:19px}.quick-rates{grid-template-columns:1fr}.math-head,.share-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.action{flex:1}.context{grid-template-columns:1fr}.footer{grid-template-columns:1fr;gap:8px}.rate{font-size:clamp(2.55rem,13vw,4rem)}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <header class="intro">
+    <h1>Set a rate that <span>holds up.</span></h1>
+    <p>Turn your income goal into an hourly, day, and project rate—after taxes, business costs, time off, and unpaid work time.</p>
+  </header>
+
+  <section class="workbench" aria-label="Freelance rate calculator">
+    <form class="inputs" id="rateForm" novalidate>
+      <div class="section-head"><h2>Your goal</h2><span class="step">01 / 03</span></div>
+      <div class="field">
+        <label for="goalType">What are you starting from?</label>
+        <div class="control"><select id="goalType"><option value="takehome">Target annual take-home</option><option value="salary">Gross salary to replace</option></select></div>
+        <small class="micro" id="goalTypeHelp">The amount you want to keep after estimated taxes and business expenses.</small>
+      </div>
+      <div class="field">
+        <label for="goalAmount" id="goalLabel">Target annual take-home</label>
+        <div class="control"><span class="affix">$</span><input id="goalAmount" type="number" min="1" step="1000" inputmode="decimal" value="65000"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="taxRate">Estimated tax rate</label><div class="control"><input id="taxRate" type="number" min="0" max="75" step="0.5" inputmode="decimal" value="25"><span class="affix end">%</span></div><small class="micro">Your combined effective federal, state, and local estimate.</small></div>
+        <div class="field"><label for="expenses">Annual business expenses</label><div class="control"><span class="affix">$</span><input id="expenses" type="number" min="0" step="500" inputmode="decimal" value="10000"></div><small class="micro">Software, equipment, insurance, and other operating costs.</small></div>
+      </div>
+
+      <div class="divider"><span>Time you can actually bill</span></div>
+      <div class="field-row">
+        <div class="field"><label for="billableHours">Billable hours per week</label><div class="control"><input id="billableHours" type="number" min="1" max="80" step="1" inputmode="decimal" value="25"><span class="affix end">hrs</span></div><small class="micro">The rest of a 40-hour week is treated as unpaid admin or sales time.</small></div>
+        <div class="field"><label for="weeksOff">Weeks off per year</label><div class="control"><input id="weeksOff" type="number" min="0" max="51" step="1" inputmode="decimal" value="4"><span class="affix end">wks</span></div><small class="micro">Vacation, holidays, sick time, and gaps between projects.</small></div>
+      </div>
+
+      <div class="divider"><span>Quote examples</span></div>
+      <div class="field"><label for="projectHours">Typical project size</label><div class="control"><input id="projectHours" type="number" min="0.5" max="1000" step="0.5" inputmode="decimal" value="20"><span class="affix end">hrs</span></div><small class="micro">Used only to show a project-price equivalent.</small></div>
+
+      <button class="calculate" type="submit">Calculate my rate</button>
+      <p class="privacy">Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-mark" aria-hidden="true"></div><h2>Give every billed hour a job.</h2><p>Your rate needs to pay you, cover business costs, allow time off, and carry the hours clients never see.</p></div>
+      </div>
+
+      <div id="resultState" class="hidden" aria-live="polite">
+        <div class="error hidden" id="errorBox"></div>
+        <section class="hero-result" id="heroResult">
+          <p class="eyebrow">MINIMUM HOURLY RATE</p>
+          <p class="rate" id="hourlyRate">—</p>
+          <p class="rate-label">per billable hour</p>
+        </section>
+        <div class="quick-rates">
+          <article class="quick"><span>8-HOUR DAY RATE</span><strong id="dayRate">—</strong><em>8 billable hours</em></article>
+          <article class="quick"><span id="projectLabel">PROJECT RATE</span><strong id="projectRate">—</strong><em id="projectNote">—</em></article>
+        </div>
+
+        <section class="math">
+          <div class="math-head"><h2>How the rate is built</h2><span class="step">THE MATH</span></div>
+          <div class="formula" id="formulaRows"></div>
+        </section>
+
+        <section class="explain" aria-label="Plain-English results explanation">
+          <button type="button" class="explain-toggle" id="explainToggle" aria-expanded="false" aria-controls="explainCopy"><span>Explain these results</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <p class="explain-copy" id="explainCopy" hidden></p>
+        </section>
+
+        <section class="share">
+          <div class="share-head"><h2>Your working assumptions</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:" aria-label="Email these freelance rate results">Email my results</a><button type="button" class="action" id="copyResults" aria-live="polite">Copy results</button></div></div>
+          <div class="context">
+            <div><span>WORKING WEEKS</span><strong id="workingWeeks">—</strong></div>
+            <div><span>ANNUAL BILLABLE HOURS</span><strong id="annualHours">—</strong></div>
+            <div><span>BILLABLE SHARE OF 40-HOUR WEEK</span><strong id="utilization">—</strong></div>
+          </div>
+          <p class="note"><strong>Minimum means minimum.</strong> This result does not add a profit cushion, rush fee, unpaid invoice allowance, retirement contribution, health insurance, or value-based pricing premium unless you included those costs in annual business expenses.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p><strong>Method:</strong> Take-home goals are divided by the share of income kept after the entered tax rate, then business expenses are added. Salary benchmarks start with gross salary before expenses. The total is divided by annual billable hours.</p>
+    <p>Planning estimate only. Not tax, legal, or financial advice.</p>
+  </footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('rateForm'),lastResult=null;
+  function byId(id){return document.getElementById(id)}
+  function num(id){return parseFloat(byId(id).value)}
+  function money(n,cents){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:cents?2:0,maximumFractionDigits:cents?2:0}).format(n)}
+  function number(n){return new Intl.NumberFormat('en-US',{maximumFractionDigits:1}).format(n)}
+  function pct(n){return new Intl.NumberFormat('en-US',{style:'percent',minimumFractionDigits:0,maximumFractionDigits:1}).format(n)}
+  function values(){return{type:byId('goalType').value,goal:num('goalAmount'),tax:num('taxRate')/100,expenses:num('expenses'),billable:num('billableHours'),weeksOff:num('weeksOff'),projectHours:num('projectHours')}}
+  function validate(x){
+    if(!Number.isFinite(x.goal)||x.goal<=0)return'Enter an annual income goal greater than zero.';
+    if(!Number.isFinite(x.tax)||x.tax<0||x.tax>.75)return'Enter an estimated tax rate from 0% to 75%.';
+    if(!Number.isFinite(x.expenses)||x.expenses<0)return'Business expenses cannot be negative.';
+    if(!Number.isFinite(x.billable)||x.billable<=0||x.billable>80)return'Enter between 1 and 80 billable hours per week.';
+    if(!Number.isFinite(x.weeksOff)||x.weeksOff<0||x.weeksOff>51)return'Enter between 0 and 51 weeks off.';
+    if(!Number.isFinite(x.projectHours)||x.projectHours<=0||x.projectHours>1000)return'Enter a typical project size from 0.5 to 1,000 hours.';
+    return'';
+  }
+  function calculate(e){
+    if(e)e.preventDefault();
+    var x=values(),err=validate(x);if(err){showError(err);return}
+    var workingWeeks=52-x.weeksOff,annualHours=x.billable*workingWeeks;
+    var takeHome=x.type==='takehome'?x.goal:x.goal*(1-x.tax);
+    var profitBeforeTax=x.type==='takehome'?x.goal/(1-x.tax):x.goal;
+    var revenue=profitBeforeTax+x.expenses,hourly=revenue/annualHours;
+    lastResult={x:x,workingWeeks:workingWeeks,annualHours:annualHours,takeHome:takeHome,profitBeforeTax:profitBeforeTax,revenue:revenue,hourly:hourly,day:hourly*8,project:hourly*x.projectHours,utilization:Math.min(x.billable/40,1),nonbillable:Math.max(0,40-x.billable)};
+    render(lastResult);
+  }
+  function showError(message){
+    byId('emptyState').classList.add('hidden');byId('resultState').classList.remove('hidden');byId('errorBox').textContent=message;byId('errorBox').classList.remove('hidden');
+    byId('resultState').querySelectorAll('.hero-result,.quick-rates,.math,.explain,.share').forEach(function(el){el.classList.add('hidden')});
+  }
+  function row(label,note,value,cls){return'<div class="formula-row '+(cls||'')+'"><span>'+label+'<small>'+note+'</small></span><strong>'+value+'</strong></div>'}
+  function explanation(r){
+    var x=r.x,parts=[];
+    if(x.type==='takehome'){
+      parts.push('You want to keep '+money(x.goal,true)+' for the year. At an estimated '+pct(x.tax)+' tax rate, you keep '+pct(1-x.tax)+' of each dollar of profit, so the calculator grosses that goal up to '+money(r.profitBeforeTax,true)+' before tax.');
+    }else{
+      parts.push('You are using a '+money(x.goal,true)+' gross salary as the benchmark. At the same '+pct(x.tax)+' tax assumption, that salary would leave about '+money(r.takeHome,true)+' after tax, so the calculator starts with '+money(r.profitBeforeTax,true)+' of business profit before tax.');
+    }
+    parts.push('Adding '+money(x.expenses,true)+' of annual business costs means the business needs to bring in '+money(r.revenue,true)+' for the year.');
+    parts.push('With '+number(x.billable)+' billable hours a week and '+number(x.weeksOff)+' weeks off, you have '+number(r.annualHours)+' billable hours in the year. Dividing required revenue by those hours produces a minimum rate of '+money(r.hourly,true)+' per hour.');
+    if(r.nonbillable>0){parts.push('The other '+number(r.nonbillable)+' hours in a 40-hour workweek are not billed directly, so each client hour has to carry part of that unpaid admin, sales, and planning time.')}else{parts.push('You entered at least 40 billable hours per week, so this estimate does not reserve additional weekday time for unpaid admin or sales work.')}
+    parts.push('At that same rate, an 8-hour billable day is '+money(r.day,true)+', and a '+number(x.projectHours)+'-hour project is '+money(r.project,true)+'.');
+    if(x.type==='salary')parts.push('A salary often includes paid leave, health coverage, retirement contributions, and employer-paid payroll taxes. Add the value of benefits you need to replace to annual business expenses before relying on this number.');
+    return parts.join(' ');
+  }
+  function render(r){
+    var x=r.x;byId('emptyState').classList.add('hidden');byId('resultState').classList.remove('hidden');byId('errorBox').classList.add('hidden');byId('resultState').querySelectorAll('.hero-result,.quick-rates,.math,.explain,.share').forEach(function(el){el.classList.remove('hidden')});
+    byId('hourlyRate').textContent=money(r.hourly,true);byId('dayRate').textContent=money(r.day,true);byId('projectRate').textContent=money(r.project,true);byId('projectLabel').textContent=number(x.projectHours)+'-HOUR PROJECT';byId('projectNote').textContent=number(x.projectHours)+' × '+money(r.hourly,true);
+    var goalLabel=x.type==='takehome'?'Take-home income goal':'Gross salary benchmark';
+    var grossNote=x.type==='takehome'?'Goal ÷ '+pct(1-x.tax)+' kept after estimated tax':'Gross pay before the same tax assumption';
+    byId('formulaRows').innerHTML=row(goalLabel,x.type==='takehome'?'Amount you want to keep':'Salary you want the business to replace',money(x.goal,true))+row('Profit needed before tax',grossNote,money(r.profitBeforeTax,true))+row('Annual business expenses','Costs the work needs to cover','+ '+money(x.expenses,true))+row('Revenue needed','Income goal plus business expenses',money(r.revenue,true),'total')+row('Annual billable hours',number(x.billable)+' hours × '+number(r.workingWeeks)+' working weeks','÷ '+number(r.annualHours))+row('Minimum hourly rate','Revenue needed ÷ billable hours',money(r.hourly,true),'rate-row');
+    byId('workingWeeks').textContent=number(r.workingWeeks);byId('annualHours').textContent=number(r.annualHours)+' hrs';byId('utilization').textContent=x.billable>=40?'100%+':pct(r.utilization);
+    byId('explainCopy').textContent=explanation(r);byId('explainCopy').hidden=true;byId('explainToggle').setAttribute('aria-expanded','false');
+    byId('emailResults').href='mailto:?subject='+encodeURIComponent('My freelance rate estimate')+'&body='+encodeURIComponent(summary(r));
+    if(window.matchMedia('(max-width: 880px)').matches){setTimeout(function(){byId('heroResult').scrollIntoView({behavior:'smooth',block:'start'})},50)}
+  }
+  function summary(r){var x=r.x;return[
+    'Freelance Rate Calculator results','',
+    (x.type==='takehome'?'Target annual take-home: ':'Gross salary to replace: ')+money(x.goal,true),
+    'Estimated tax rate: '+pct(x.tax),
+    'Annual business expenses: '+money(x.expenses,true),
+    'Billable hours per week: '+number(x.billable),
+    'Weeks off: '+number(x.weeksOff),
+    'Annual billable hours: '+number(r.annualHours),
+    '',
+    'Revenue needed: '+money(r.revenue,true),
+    'Minimum hourly rate: '+money(r.hourly,true),
+    '8-hour day rate: '+money(r.day,true),
+    number(x.projectHours)+'-hour project rate: '+money(r.project,true),
+    '',
+    'Planning estimate only. Actual taxes, expenses, benefits, and billable time vary. Not tax, legal, or financial advice.'
+  ].join('\n')}
+  function copyResults(){if(!lastResult)return;var button=byId('copyResults'),text=summary(lastResult);function done(){button.textContent='Copied';clearTimeout(button._timer);button._timer=setTimeout(function(){button.textContent='Copy results'},1600)}function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{if(document.execCommand('copy'))done();else button.textContent='Select & copy'}finally{area.remove()}}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done).catch(fallback)}else{fallback()}}
+  function toggleExplanation(){var button=byId('explainToggle'),copy=byId('explainCopy'),open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',open?'true':'false');copy.hidden=!open}
+  function updateGoalCopy(){var salary=byId('goalType').value==='salary';byId('goalLabel').textContent=salary?'Gross salary to replace':'Target annual take-home';byId('goalTypeHelp').textContent=salary?'The gross employee pay you want the business to replace. Add benefits separately as expenses.':'The amount you want to keep after estimated taxes and business expenses.'}
+  form.addEventListener('submit',calculate);byId('copyResults').addEventListener('click',copyResults);byId('explainToggle').addEventListener('click',toggleExplanation);byId('goalType').addEventListener('change',updateGoalCopy);
+})();
+</script>
+</body>
+</html>
