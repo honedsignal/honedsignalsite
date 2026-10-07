@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Risk/Reward Calculator</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f5f5f5;
+      --paper: #0b0e14;
+      --surface: #131821;
+      --surface-raised: #1b222d;
+      --line: #343e4b;
+      --muted: #aeb7c2;
+      --orange: #f7931a;
+      --orange-ink: #160d03;
+      --orange-soft: #3b2914;
+      --green: #39ff14;
+      --green-soft: #153413;
+      --red: #ff646b;
+      --red-soft: #3c1c20;
+      --blue: #77a7da;
+      --focus: #86b7eb;
+      --shadow: 0 24px 64px rgba(0, 0, 0, .35);
+      --radius: 18px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --paper: #0d1118;
+        --surface: #151b24;
+        --surface-raised: #1d2530;
+        --line: #3a4552;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--paper); }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, transparent 0, transparent calc(50% - 1px), rgba(128, 137, 147, .07) calc(50% - 1px), rgba(128, 137, 147, .07) 50%, transparent 50%),
+        var(--paper);
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input { font: inherit; }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 18px 0 54px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 7px 2px;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color .18s ease;
+    }
+
+    .back-link:hover { color: var(--orange); }
+    .back-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; border-radius: 4px; }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 390px);
+      gap: 48px;
+      align-items: end;
+      padding: 54px 0 40px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      max-width: 680px;
+      margin: 0;
+      font-size: clamp(2.45rem, 7vw, 5.6rem);
+      line-height: .96;
+      letter-spacing: -.065em;
+      font-weight: 800;
+    }
+
+    .accent { color: var(--orange); }
+
+    .intro-copy {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.13rem);
+      line-height: 1.65;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(300px, .88fr) minmax(380px, 1.12fr);
+      gap: 24px;
+      align-items: start;
+      padding: 28px 0 0;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .inputs-panel {
+      border-radius: var(--radius) 5px var(--radius) var(--radius);
+      padding: 28px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 24px;
+      font-size: 1.08rem;
+      letter-spacing: -.02em;
+    }
+
+    .step {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .76rem;
+      font-weight: 600;
+    }
+
+    .field { margin-bottom: 18px; }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: .74rem;
+      font-weight: 500;
+    }
+
+    .money-input { position: relative; }
+
+    .currency {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      pointer-events: none;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      min-height: 54px;
+      padding: 12px 15px 12px 34px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      outline: 0;
+      background: var(--surface-raised);
+      color: var(--ink);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: border-color .18s ease, box-shadow .18s ease;
+    }
+
+    input[type="number"]:focus {
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent);
+    }
+
+    input[type="number"]::placeholder { color: color-mix(in srgb, var(--muted) 72%, transparent); }
+
+    .calculate {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 6px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 800;
+      cursor: pointer;
+      transition: filter .18s ease, transform .18s ease;
+    }
+
+    .calculate:hover { filter: brightness(1.06); }
+    .calculate:active { transform: translateY(1px); }
+    button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+    .error {
+      display: none;
+      margin: 16px 0 0;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: var(--red-soft);
+      color: var(--red);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+
+    .error.show { display: block; }
+
+    .results-panel {
+      min-height: 530px;
+      border-radius: 5px var(--radius) var(--radius) var(--radius);
+      padding: 28px;
+    }
+
+    .empty-state {
+      display: grid;
+      align-content: center;
+      min-height: 454px;
+      text-align: center;
+    }
+
+    .empty-mark {
+      display: block;
+      margin-bottom: 16px;
+      color: var(--line);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 3.2rem;
+      line-height: 1;
+    }
+
+    .empty-state p {
+      max-width: 360px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+
+    .results { display: none; }
+    .results.show { display: block; }
+    .empty-state.hide { display: none; }
+
+    .verdict-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin: 4px 0 22px;
+    }
+
+    .direction {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .verdict {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.05rem);
+      line-height: 1.1;
+      letter-spacing: -.035em;
+    }
+
+    .verdict-dot {
+      flex: 0 0 auto;
+      width: 13px;
+      height: 13px;
+      margin-top: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px var(--green-soft);
+    }
+
+    .verdict-dot.caution { background: var(--orange); box-shadow: 0 0 0 6px var(--orange-soft); }
+    .verdict-dot.weak { background: var(--red); box-shadow: 0 0 0 6px var(--red-soft); }
+
+    .hero-metric {
+      margin-bottom: 18px;
+      padding: 23px 22px;
+      border-radius: 12px;
+      background: var(--surface-raised);
+    }
+
+    .metric-label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .ratio {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .ratio-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stat { padding: 17px 14px; }
+    .stat:first-child { padding-left: 0; }
+    .stat + .stat { border-left: 1px solid var(--line); }
+
+    .stat-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 700;
+    }
+
+    .stat-value {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .98rem;
+      font-weight: 600;
+    }
+
+    .summary {
+      margin: 20px 0;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    details {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    summary {
+      padding: 16px 2px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    summary::marker { color: var(--orange); }
+
+    .explanation {
+      padding: 0 2px 17px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .explanation p { margin: 0 0 10px; }
+    .explanation p:last-child { margin-bottom: 0; }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .action {
+      min-height: 48px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .email {
+      border: 1px solid var(--orange);
+      background: var(--orange);
+      color: var(--orange-ink);
+    }
+
+    .copy {
+      border: 1px solid var(--line);
+      background: var(--surface-raised);
+      color: var(--ink);
+    }
+
+    .action:hover { filter: brightness(1.06); }
+
+    .footnotes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      margin-top: 30px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    .footnotes strong { display: block; margin-bottom: 6px; color: var(--ink); }
+    .footnotes p { margin: 0; }
+
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 5;
+      max-width: calc(100% - 44px);
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 700;
+      font-size: .86rem;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 790px) {
+      .shell { width: min(100% - 28px, 650px); padding-top: 10px; }
+      .intro { grid-template-columns: 1fr; gap: 20px; padding: 38px 0 30px; }
+      h1 { font-size: clamp(2.55rem, 14vw, 4.6rem); }
+      .workspace { grid-template-columns: 1fr; }
+      .inputs-panel, .results-panel { border-radius: 14px; }
+      .results-panel { min-height: 0; }
+      .empty-state { min-height: 240px; }
+    }
+
+    @media (max-width: 470px) {
+      .shell { width: calc(100% - 22px); }
+      .intro { padding-top: 30px; }
+      .inputs-panel, .results-panel { padding: 21px 18px; }
+      .stats { grid-template-columns: 1fr; }
+      .stat, .stat:first-child { padding: 12px 0; }
+      .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+      .actions { grid-template-columns: 1fr; }
+      .footnotes { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <a class="back-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Risk<span class="accent">/</span>Reward Calculator</h1>
+      <p class="intro-copy">See how much potential upside a trade offers for each dollar you could lose. Works for long and short setups.</p>
+    </section>
+
+    <section class="workspace" aria-label="Risk and reward calculator">
+      <form class="panel inputs-panel" id="calculator" novalidate>
+        <h2 class="section-heading"><span class="step">01</span> Enter your setup</h2>
+
+        <div class="field">
+          <label for="entry">Entry price <span class="hint">Your planned buy or sell price</span></label>
+          <div class="money-input">
+            <span class="currency" aria-hidden="true">$</span>
+            <input id="entry" name="entry" type="number" min="0.000001" step="any" inputmode="decimal" placeholder="100.00" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="target">Profit target <span class="hint">Where you would take profit</span></label>
+          <div class="money-input">
+            <span class="currency" aria-hidden="true">$</span>
+            <input id="target" name="target" type="number" min="0.000001" step="any" inputmode="decimal" placeholder="112.00" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="stop">Stop-loss price <span class="hint">Where you would exit a loss</span></label>
+          <div class="money-input">
+            <span class="currency" aria-hidden="true">$</span>
+            <input id="stop" name="stop" type="number" min="0.000001" step="any" inputmode="decimal" placeholder="96.00" required />
+          </div>
+        </div>
+
+        <button class="calculate" type="submit">Calculate risk and reward</button>
+        <p class="error" id="error" role="alert"></p>
+      </form>
+
+      <section class="panel results-panel" aria-live="polite" aria-labelledby="results-title">
+        <h2 class="section-heading"><span class="step">02</span> Your result</h2>
+
+        <div class="empty-state" id="emptyState">
+          <div>
+            <span class="empty-mark" aria-hidden="true">1 : ?</span>
+            <p>Enter three prices to compare the possible gain with the amount at risk.</p>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <div class="verdict-row">
+            <div>
+              <p class="direction" id="direction"></p>
+              <h3 class="verdict" id="verdict"></h3>
+            </div>
+            <span class="verdict-dot" id="verdictDot" aria-hidden="true"></span>
+          </div>
+
+          <div class="hero-metric">
+            <span class="metric-label">Risk : reward</span>
+            <strong class="ratio" id="ratio">1 : 0.00</strong>
+            <p class="ratio-note" id="ratioNote"></p>
+          </div>
+
+          <div class="stats" aria-label="Trade setup details">
+            <div class="stat">
+              <span class="stat-label">Risk per share</span>
+              <span class="stat-value" id="riskValue"></span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Reward per share</span>
+              <span class="stat-value" id="rewardValue"></span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Break-even win rate</span>
+              <span class="stat-value" id="breakevenValue"></span>
+            </div>
+          </div>
+
+          <p class="summary" id="resultSummary"></p>
+
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+
+          <div class="actions">
+            <button class="action email" id="emailButton" type="button">Email my results</button>
+            <button class="action copy" id="copyButton" type="button">Copy results</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footnotes">
+      <div>
+        <strong>How it is calculated</strong>
+        <p>Reward is the distance from entry to target. Risk is the distance from entry to stop. The ratio divides reward by risk.</p>
+      </div>
+      <div>
+        <strong>Important</strong>
+        <p>This tool is for informational and educational purposes only and does not constitute investment advice. It does not estimate the chance that either price will be reached.</p>
+      </div>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Results copied</div>
+
+  <script>
+    (function () {
+      var form = document.getElementById('calculator');
+      var entryInput = document.getElementById('entry');
+      var targetInput = document.getElementById('target');
+      var stopInput = document.getElementById('stop');
+      var error = document.getElementById('error');
+      var emptyState = document.getElementById('emptyState');
+      var results = document.getElementById('results');
+      var currentText = '';
+      var toastTimer;
+
+      function money(value) {
+        var abs = Math.abs(value);
+        var digits = abs < 1 ? 4 : 2;
+        return '$' + value.toLocaleString(undefined, {
+          minimumFractionDigits: digits,
+          maximumFractionDigits: digits
+        });
+      }
+
+      function showError(message) {
+        error.textContent = message;
+        error.classList.add('show');
+        results.classList.remove('show');
+        emptyState.classList.remove('hide');
+      }
+
+      function clearError() {
+        error.textContent = '';
+        error.classList.remove('show');
+      }
+
+      function getVerdict(ratio) {
+        if (ratio >= 3) return { title: 'Strong payoff shape', tone: 'good' };
+        if (ratio >= 2) return { title: 'Favorable payoff shape', tone: 'good' };
+        if (ratio >= 1.5) return { title: 'Reasonable payoff shape', tone: 'caution' };
+        if (ratio >= 1) return { title: 'Limited payoff edge', tone: 'caution' };
+        return { title: 'Unfavorable payoff shape', tone: 'weak' };
+      }
+
+      function calculate() {
+        var entry = Number(entryInput.value);
+        var target = Number(targetInput.value);
+        var stop = Number(stopInput.value);
+
+        clearError();
+
+        if (!Number.isFinite(entry) || !Number.isFinite(target) || !Number.isFinite(stop) || entry <= 0 || target <= 0 || stop <= 0) {
+          showError('Enter a price greater than zero in all three fields.');
+          return;
+        }
+
+        if (target === entry || stop === entry) {
+          showError('Your target and stop must both be different from the entry price.');
+          return;
+        }
+
+        var isLong = target > entry && stop < entry;
+        var isShort = target < entry && stop > entry;
+
+        if (!isLong && !isShort) {
+          showError('Place the target and stop on opposite sides of the entry price. For a long trade, target is above entry and stop is below; reverse that for a short trade.');
+          return;
+        }
+
+        var risk = Math.abs(entry - stop);
+        var reward = Math.abs(target - entry);
+        var ratio = reward / risk;
+        var breakEven = (risk / (risk + reward)) * 100;
+        var direction = isLong ? 'Long setup' : 'Short setup';
+        var verdict = getVerdict(ratio);
+        var ratioFixed = ratio.toFixed(2);
+        var chancePhrase = breakEven.toFixed(1) + '%';
+
+        document.getElementById('direction').textContent = direction;
+        document.getElementById('verdict').textContent = verdict.title;
+        document.getElementById('ratio').textContent = '1 : ' + ratioFixed;
+        document.getElementById('ratioNote').textContent = 'For every $1.00 at risk, the possible reward is $' + ratioFixed + '.';
+        document.getElementById('riskValue').textContent = money(risk);
+        document.getElementById('rewardValue').textContent = money(reward);
+        document.getElementById('breakevenValue').textContent = chancePhrase;
+
+        var dot = document.getElementById('verdictDot');
+        dot.className = 'verdict-dot' + (verdict.tone === 'good' ? '' : ' ' + verdict.tone);
+
+        var summary;
+        if (ratio >= 2) {
+          summary = 'The potential gain is at least twice the possible loss. That is favorable on payoff alone, but the trade still depends on how likely the target is to be reached.';
+        } else if (ratio >= 1) {
+          summary = 'The potential gain is larger than the possible loss, but the cushion is modest. A lower chance of success can quickly erase that advantage.';
+        } else {
+          summary = 'The possible loss is larger than the potential gain. This setup would need to succeed more often to make the payoff structure work.';
+        }
+        document.getElementById('resultSummary').textContent = summary;
+
+        document.getElementById('explanation').innerHTML =
+          '<p>Your entry is <strong>' + money(entry) + '</strong>. The distance to the stop is <strong>' + money(risk) + '</strong> per share, while the distance to the target is <strong>' + money(reward) + '</strong> per share.</p>' +
+          '<p>A <strong>1 : ' + ratioFixed + '</strong> ratio means the planned reward is ' + ratioFixed + ' times the amount at risk. At this payoff, you would need to win more than <strong>' + chancePhrase + '</strong> of similar trades to break even before fees, taxes, and price slippage.</p>' +
+          '<p>This ratio measures the shape of the plan—not its odds. A favorable ratio can still be a poor trade if the target is unrealistic or the stop is likely to be hit.</p>';
+
+        currentText = [
+          'Risk/Reward Calculator',
+          direction,
+          '',
+          'Entry price: ' + money(entry),
+          'Profit target: ' + money(target),
+          'Stop-loss price: ' + money(stop),
+          'Risk per share: ' + money(risk),
+          'Reward per share: ' + money(reward),
+          'Risk : reward: 1 : ' + ratioFixed,
+          'Break-even win rate: ' + chancePhrase,
+          'Verdict: ' + verdict.title,
+          '',
+          summary,
+          '',
+          'For informational and educational purposes only; not investment advice.'
+        ].join('\n');
+
+        emptyState.classList.add('hide');
+        results.classList.add('show');
+      }
+
+      function showToast(message) {
+        var toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+      }
+
+      function fallbackCopy(text) {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        var worked = false;
+        try { worked = document.execCommand('copy'); } catch (e) { worked = false; }
+        document.body.removeChild(area);
+        showToast(worked ? 'Results copied' : 'Select and copy the results from your email draft');
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        calculate();
+      });
+
+      document.getElementById('emailButton').addEventListener('click', function () {
+        if (!currentText) return;
+        var subject = encodeURIComponent('My risk/reward calculation');
+        var body = encodeURIComponent(currentText);
+        var emailLink = document.createElement('a');
+        emailLink.href = 'mailto:?subject=' + subject + '&body=' + body;
+        emailLink.click();
+      });
+
+      document.getElementById('copyButton').addEventListener('click', function () {
+        if (!currentText) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(currentText).then(function () {
+            showToast('Results copied');
+          }).catch(function () {
+            fallbackCopy(currentText);
+          });
+        } else {
+          fallbackCopy(currentText);
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

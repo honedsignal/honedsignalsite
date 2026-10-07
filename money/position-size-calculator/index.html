@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Position Size Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      color-scheme: dark;
+      --ink: #f5f5f5;
+      --muted: #b8c1ca;
+      --faint: #98a6b3;
+      --paper: #0b0e14;
+      --surface: #131923;
+      --surface-2: #1b2430;
+      --line: #35404c;
+      --field: #0f141c;
+      --blue: #78a5d4;
+      --blue-soft: #182d41;
+      --orange: #f7931a;
+      --orange-ink: #171008;
+      --green: #39ff14;
+      --green-soft: #16341a;
+      --red: #ff6b70;
+      --red-soft: #3a1b20;
+      --focus: #8bb9e6;
+      --shadow: 0 22px 64px rgba(0, 0, 0, .36);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #080b10;
+        --surface: #111721;
+        --surface-2: #19222d;
+        --line: #3a4653;
+        --field: #0c1118;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        linear-gradient(90deg, transparent 0, transparent calc(50% - 1px), color-mix(in srgb, var(--line) 22%, transparent) 50%, transparent calc(50% + 1px)) center top / min(92vw, 1200px) 100% no-repeat,
+        var(--paper);
+      color: var(--ink);
+      font-family: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      margin-top: max(12px, env(safe-area-inset-top));
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+    .home-link:hover { color: var(--orange); text-decoration: underline; }
+    .home-link:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+      gap: 52px;
+      align-items: end;
+      padding: 46px 0 38px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.5rem, 6.2vw, 5.4rem);
+      line-height: .95;
+      letter-spacing: -.055em;
+      font-weight: 800;
+    }
+    .intro p { margin: 0 0 4px; color: var(--muted); font-size: clamp(1rem, 1.8vw, 1.17rem); }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(0, .97fr);
+      gap: 24px;
+      padding: 28px 0 54px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .panel-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 21px 24px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    h2 { margin: 0; font-size: 1.08rem; letter-spacing: -.01em; }
+    .step {
+      color: var(--faint);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: .73rem;
+      font-weight: 600;
+    }
+    form { padding: 24px; }
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .field { min-width: 0; }
+    label { display: block; margin-bottom: 8px; font-size: .9rem; font-weight: 700; }
+    .input-shell { position: relative; }
+    .prefix, .suffix {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--faint);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: .9rem;
+      pointer-events: none;
+    }
+    .prefix { left: 14px; }
+    .suffix { right: 14px; }
+    input {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--field);
+      color: var(--ink);
+      padding: 12px 42px 12px 30px;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    input:hover { border-color: var(--blue); }
+    input[aria-invalid="true"] { border-color: var(--red); background: var(--red-soft); }
+    .hint { display: block; min-height: 2.6em; margin-top: 7px; color: var(--faint); font-size: .76rem; line-height: 1.35; }
+    .error {
+      display: none;
+      margin: 20px 0 0;
+      padding: 12px 14px;
+      background: var(--red-soft);
+      color: var(--red);
+      border-radius: 4px;
+      font-size: .87rem;
+      font-weight: 700;
+    }
+    .error.show { display: block; }
+    .calculate {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 22px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .calculate:hover { background: var(--blue); color: #fff; }
+
+    .result-panel { position: sticky; top: 16px; overflow: hidden; }
+    .empty-state { padding: 64px 28px 70px; text-align: center; }
+    .empty-rule { width: 52px; height: 5px; margin: 0 auto 20px; background: var(--orange); }
+    .empty-state strong { display: block; font-size: 1.08rem; }
+    .empty-state span { display: block; max-width: 360px; margin: 8px auto 0; color: var(--muted); font-size: .9rem; }
+    .results { display: none; }
+    .results.show { display: block; }
+    .hero-result { padding: 27px 24px 24px; background: var(--blue-soft); border-bottom: 1px solid var(--line); }
+    .hero-label { color: var(--muted); font-size: .78rem; font-weight: 700; }
+    .hero-number {
+      margin-top: 2px;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: clamp(2.7rem, 7vw, 4.35rem);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+    .hero-number .unit { font-family: "Public Sans", sans-serif; font-size: .25em; letter-spacing: 0; text-transform: uppercase; }
+    .limit-note { margin: 13px 0 0; color: var(--muted); font-size: .83rem; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; }
+    .stat { min-width: 0; padding: 19px 24px; border-bottom: 1px solid var(--line); }
+    .stat:nth-child(odd) { border-right: 1px solid var(--line); }
+    .stat-name { color: var(--faint); font-size: .74rem; font-weight: 700; }
+    .stat-value { margin-top: 5px; font-family: "IBM Plex Mono", monospace; font-size: 1.08rem; font-weight: 600; overflow-wrap: anywhere; }
+    .stat-value.risk { color: var(--red); }
+    .stat-value.safe { color: var(--green); }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 20px 24px 12px; }
+    .action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 47px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--surface-2);
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .action:hover { border-color: var(--blue); }
+    .action.email { background: var(--orange); color: var(--orange-ink); border-color: var(--orange); }
+    .action.email:hover { filter: brightness(1.08); }
+    .copy-status { min-height: 22px; margin: 0 24px 8px; color: var(--green); font-size: .78rem; font-weight: 700; text-align: center; }
+    details { margin: 0 24px 22px; border-top: 1px solid var(--line); }
+    summary { padding: 17px 0; font-weight: 800; cursor: pointer; }
+    .explanation { padding: 0 0 4px; color: var(--muted); font-size: .9rem; }
+    .explanation p { margin: 0 0 12px; }
+    .formula {
+      padding: 12px 14px;
+      background: var(--surface-2);
+      color: var(--ink);
+      border-radius: 4px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .78rem;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .method {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      padding: 28px 0 74px;
+      border-top: 1px solid var(--line);
+    }
+    .method h2 { margin-bottom: 10px; }
+    .method p, .method ul { margin: 0; color: var(--muted); font-size: .86rem; }
+    .method ul { padding-left: 1.1rem; }
+    .method li + li { margin-top: 6px; }
+    .disclaimer { font-size: .78rem !important; color: var(--faint) !important; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 28px, 680px); }
+      .intro { grid-template-columns: 1fr; gap: 18px; padding: 26px 0 28px; }
+      h1 { font-size: clamp(2.55rem, 14vw, 4.2rem); }
+      .workspace { grid-template-columns: 1fr; padding-top: 18px; }
+      .result-panel { position: static; }
+      .field-grid { grid-template-columns: 1fr; gap: 16px; }
+      .hint { min-height: 0; }
+      .method { grid-template-columns: 1fr; padding-bottom: 42px; }
+    }
+
+    @media (max-width: 430px) {
+      .panel-head, form, .hero-result { padding-left: 18px; padding-right: 18px; }
+      .stat { padding: 17px 18px; }
+      .stats { grid-template-columns: 1fr; }
+      .stat:nth-child(odd) { border-right: 0; }
+      .actions { grid-template-columns: 1fr; padding-left: 18px; padding-right: 18px; }
+      details { margin-left: 18px; margin-right: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <header class="intro">
+      <h1>Position Size Calculator</h1>
+      <p>Set a loss limit before the trade. Get a whole-share amount that stays within your risk budget and available cash.</p>
+    </header>
+
+    <main class="workspace">
+      <section class="panel input-panel" aria-labelledby="inputs-title">
+        <div class="panel-head">
+          <h2 id="inputs-title">Trade details</h2>
+          <span class="step">01 / INPUTS</span>
+        </div>
+        <form id="calculator" novalidate>
+          <div class="field-grid">
+            <div class="field">
+              <label for="account">Account size</label>
+              <div class="input-shell">
+                <span class="prefix">$</span>
+                <input id="account" name="account" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="25,000" autocomplete="off" />
+              </div>
+              <span class="hint">Cash available for this account.</span>
+            </div>
+            <div class="field">
+              <label for="riskPercent">Risk per trade</label>
+              <div class="input-shell">
+                <input id="riskPercent" name="riskPercent" type="number" min="0.01" max="100" step="0.01" inputmode="decimal" placeholder="1" autocomplete="off" />
+                <span class="suffix">%</span>
+              </div>
+              <span class="hint">The most you are willing to lose.</span>
+            </div>
+            <div class="field">
+              <label for="entry">Entry price</label>
+              <div class="input-shell">
+                <span class="prefix">$</span>
+                <input id="entry" name="entry" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="50.00" autocomplete="off" />
+              </div>
+              <span class="hint">The planned price per share.</span>
+            </div>
+            <div class="field">
+              <label for="stop">Stop-loss price</label>
+              <div class="input-shell">
+                <span class="prefix">$</span>
+                <input id="stop" name="stop" type="number" min="0" step="0.01" inputmode="decimal" placeholder="47.50" autocomplete="off" />
+              </div>
+              <span class="hint">Where you plan to exit if the trade moves against you.</span>
+            </div>
+          </div>
+          <div id="error" class="error" role="alert"></div>
+          <button class="calculate" type="submit">Calculate position size</button>
+        </form>
+      </section>
+
+      <section class="panel result-panel" aria-labelledby="results-title" aria-live="polite">
+        <div class="panel-head">
+          <h2 id="results-title">Your position</h2>
+          <span class="step">02 / RESULT</span>
+        </div>
+        <div id="empty" class="empty-state">
+          <div class="empty-rule"></div>
+          <strong>Your share count will appear here.</strong>
+          <span>Enter all four values, then calculate. The result uses whole shares and assumes no borrowed money.</span>
+        </div>
+        <div id="results" class="results">
+          <div class="hero-result">
+            <div class="hero-label">Maximum position</div>
+            <div class="hero-number"><span id="shares">0</span> <span class="unit">shares</span></div>
+            <p id="limitNote" class="limit-note"></p>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-name">Risk budget</div>
+              <div id="riskBudget" class="stat-value risk">$0.00</div>
+            </div>
+            <div class="stat">
+              <div class="stat-name">Estimated loss at stop</div>
+              <div id="estimatedLoss" class="stat-value safe">$0.00</div>
+            </div>
+            <div class="stat">
+              <div class="stat-name">Position cost</div>
+              <div id="positionCost" class="stat-value">$0.00</div>
+            </div>
+            <div class="stat">
+              <div class="stat-name">Risk per share</div>
+              <div id="riskPerShare" class="stat-value">$0.00</div>
+            </div>
+          </div>
+          <div class="actions">
+            <a id="email" class="action email" href="mailto:?subject=My%20position%20size%20calculation" role="button">Email my results</a>
+            <button id="copy" class="action" type="button">Copy results</button>
+          </div>
+          <div id="copyStatus" class="copy-status" role="status"></div>
+          <details>
+            <summary>Explain these results</summary>
+            <div id="explanation" class="explanation"></div>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <section class="method" aria-label="Method and limitations">
+      <div>
+        <h2>How it works</h2>
+        <p>Risk budget = account size × risk percentage. Risk per share = the distance between the entry and stop prices. The calculator divides the budget by that distance, rounds down to a whole share, and caps the result at what the account can buy without borrowing.</p>
+      </div>
+      <div>
+        <h2>Know the limits</h2>
+        <ul>
+          <li>Real losses can be larger if price gaps past your stop.</li>
+          <li>Fees, taxes, slippage, and existing positions are not included.</li>
+          <li class="disclaimer">For informational and educational purposes only. This is not investment advice or a recommendation to trade.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("calculator");
+      var accountEl = document.getElementById("account");
+      var riskEl = document.getElementById("riskPercent");
+      var entryEl = document.getElementById("entry");
+      var stopEl = document.getElementById("stop");
+      var errorEl = document.getElementById("error");
+      var emptyEl = document.getElementById("empty");
+      var resultsEl = document.getElementById("results");
+      var copyStatus = document.getElementById("copyStatus");
+      var lastResult = null;
+
+      var money = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      var whole = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+
+      function valueOf(el) {
+        return Number(el.value);
+      }
+
+      function markInvalid(elements) {
+        [accountEl, riskEl, entryEl, stopEl].forEach(function (el) {
+          el.setAttribute("aria-invalid", elements.indexOf(el) !== -1 ? "true" : "false");
+        });
+      }
+
+      function showError(message, elements) {
+        errorEl.textContent = message;
+        errorEl.classList.add("show");
+        markInvalid(elements || []);
+        resultsEl.classList.remove("show");
+        emptyEl.style.display = "block";
+      }
+
+      function clearError() {
+        errorEl.textContent = "";
+        errorEl.classList.remove("show");
+        markInvalid([]);
+      }
+
+      function buildText(r) {
+        return [
+          "Position Size Calculator results",
+          "",
+          "Maximum position: " + whole.format(r.shares) + " shares",
+          "Position cost: " + money.format(r.positionCost),
+          "Risk budget: " + money.format(r.riskBudget),
+          "Risk per share: " + money.format(r.riskPerShare),
+          "Estimated loss at stop: " + money.format(r.estimatedLoss),
+          "Entry price: " + money.format(r.entry),
+          "Stop-loss price: " + money.format(r.stop),
+          "",
+          r.limitText,
+          "",
+          "For informational and educational purposes only. Not investment advice."
+        ].join("\n");
+      }
+
+      function render(r) {
+        document.getElementById("shares").textContent = whole.format(r.shares);
+        document.getElementById("riskBudget").textContent = money.format(r.riskBudget);
+        document.getElementById("estimatedLoss").textContent = money.format(r.estimatedLoss);
+        document.getElementById("positionCost").textContent = money.format(r.positionCost);
+        document.getElementById("riskPerShare").textContent = money.format(r.riskPerShare);
+        document.getElementById("limitNote").textContent = r.limitText;
+
+        var leftover = Math.max(0, r.riskBudget - r.estimatedLoss);
+        var positionPercent = (r.positionCost / r.account) * 100;
+        var direction = r.stop < r.entry ? "below" : "above";
+        var explanation = document.getElementById("explanation");
+        explanation.innerHTML = "";
+
+        var first = document.createElement("p");
+        first.textContent = "You set aside " + money.format(r.riskBudget) + " as the most you want to lose. Your stop is " + money.format(r.riskPerShare) + " per share " + direction + " your entry, so " + whole.format(r.shares) + " shares would put about " + money.format(r.estimatedLoss) + " at risk if the stop fills at the exact price.";
+        explanation.appendChild(first);
+
+        var second = document.createElement("p");
+        second.textContent = "The position would cost " + money.format(r.positionCost) + ", or " + positionPercent.toFixed(1) + "% of the account. Rounding to whole shares leaves " + money.format(leftover) + " of the risk budget unused.";
+        explanation.appendChild(second);
+
+        var formula = document.createElement("div");
+        formula.className = "formula";
+        formula.textContent = money.format(r.riskBudget) + " ÷ " + money.format(r.riskPerShare) + " = " + (r.riskBudget / r.riskPerShare).toFixed(2) + " shares → " + whole.format(r.shares) + " whole shares";
+        explanation.appendChild(formula);
+
+        emptyEl.style.display = "none";
+        resultsEl.classList.add("show");
+        copyStatus.textContent = "";
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        clearError();
+
+        var account = valueOf(accountEl);
+        var riskPercent = valueOf(riskEl);
+        var entry = valueOf(entryEl);
+        var stop = valueOf(stopEl);
+        var missing = [];
+        if (!Number.isFinite(account) || account <= 0) missing.push(accountEl);
+        if (!Number.isFinite(riskPercent) || riskPercent <= 0) missing.push(riskEl);
+        if (!Number.isFinite(entry) || entry <= 0) missing.push(entryEl);
+        if (!Number.isFinite(stop) || stop < 0) missing.push(stopEl);
+
+        if (missing.length) {
+          showError("Enter a valid positive number in every field. The stop-loss price may be zero.", missing);
+          return;
+        }
+        if (riskPercent > 100) {
+          showError("Risk per trade cannot be more than 100% of the account.", [riskEl]);
+          return;
+        }
+        if (entry === stop) {
+          showError("Entry and stop-loss prices must be different so there is a measurable risk per share.", [entryEl, stopEl]);
+          return;
+        }
+
+        var riskBudget = account * (riskPercent / 100);
+        var riskPerShare = Math.abs(entry - stop);
+        var byRisk = Math.floor(riskBudget / riskPerShare);
+        var byCash = Math.floor(account / entry);
+        var shares = Math.min(byRisk, byCash);
+
+        if (shares < 1) {
+          showError("These inputs allow less than one whole share. Increase the risk budget or account size, or reduce the distance between entry and stop.", []);
+          return;
+        }
+
+        var cashLimited = byCash < byRisk;
+        lastResult = {
+          account: account,
+          riskPercent: riskPercent,
+          entry: entry,
+          stop: stop,
+          riskBudget: riskBudget,
+          riskPerShare: riskPerShare,
+          shares: shares,
+          estimatedLoss: shares * riskPerShare,
+          positionCost: shares * entry,
+          limitText: cashLimited
+            ? "Available cash sets the limit; the risk formula alone would allow " + whole.format(byRisk) + " shares."
+            : "Your risk budget sets the limit; the result is rounded down to whole shares."
+        };
+        render(lastResult);
+      });
+
+      [accountEl, riskEl, entryEl, stopEl].forEach(function (el) {
+        el.addEventListener("input", function () {
+          if (errorEl.classList.contains("show")) clearError();
+        });
+      });
+
+      document.getElementById("email").addEventListener("click", function (event) {
+        if (!lastResult) {
+          event.preventDefault();
+          return;
+        }
+        var subject = encodeURIComponent("My position size calculation");
+        var body = encodeURIComponent(buildText(lastResult));
+        this.setAttribute("href", "mailto:?subject=" + subject + "&body=" + body);
+      });
+
+      document.getElementById("copy").addEventListener("click", function () {
+        if (!lastResult) return;
+        var text = buildText(lastResult);
+
+        function success() {
+          copyStatus.textContent = "Results copied.";
+          window.setTimeout(function () { copyStatus.textContent = ""; }, 2600);
+        }
+        function fallback() {
+          var area = document.createElement("textarea");
+          area.value = text;
+          area.setAttribute("readonly", "");
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          try {
+            if (document.execCommand("copy")) success();
+            else copyStatus.textContent = "Copy failed. Select the results manually.";
+          } catch (err) {
+            copyStatus.textContent = "Copy failed. Select the results manually.";
+          }
+          document.body.removeChild(area);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(success).catch(fallback);
+        } else {
+          fallback();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

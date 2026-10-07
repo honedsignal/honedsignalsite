@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Dividend Reinvestment Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #f5f5f5;
+      --muted: #aab4c3;
+      --paper: #0b0e14;
+      --surface: #141a23;
+      --surface-2: #1c2430;
+      --line: #2d3949;
+      --blue: #6490c4;
+      --orange: #f7931a;
+      --orange-ink: #160f05;
+      --green: #39ff14;
+      --red: #e5484d;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .30);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #fbfbfc;
+        --muted: #b4bfcd;
+        --paper: #07090d;
+        --surface: #101620;
+        --surface-2: #19222e;
+        --line: #334153;
+        --blue: #78a4d4;
+        --orange: #ff9b20;
+        --orange-ink: #160f05;
+        --green: #39ff14;
+        --red: #f05a60;
+        --shadow: 0 24px 70px rgba(0, 0, 0, .42);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button { color: inherit; -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .money-home-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 96%, transparent);
+    }
+    .money-home {
+      display: block;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 10px clamp(16px, 3.5vw, 42px);
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .money-home:hover, .money-home:focus-visible { color: var(--orange); }
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 52px) clamp(16px, 3.5vw, 42px) max(52px, env(safe-area-inset-bottom));
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(260px, .7fr);
+      gap: 30px;
+      align-items: end;
+      padding: 10px 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(2.35rem, 6.5vw, 5rem);
+      line-height: .97;
+      letter-spacing: -.055em;
+    }
+    .intro-copy {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+    .intro-copy strong { color: var(--ink); }
+    .calculator-shell {
+      display: grid;
+      grid-template-columns: minmax(300px, .78fr) minmax(0, 1.22fr);
+      gap: 22px;
+      align-items: start;
+      margin-top: 30px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .input-panel {
+      position: sticky;
+      top: 56px;
+      padding: clamp(22px, 3vw, 32px);
+      border-radius: 22px 10px 10px 22px;
+    }
+    .results-panel {
+      min-height: 650px;
+      padding: clamp(22px, 3vw, 36px);
+      border-radius: 10px 22px 22px 10px;
+    }
+    .section-label {
+      display: block;
+      margin: 0 0 18px;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+    }
+    .segmented {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      margin-bottom: 22px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--paper);
+    }
+    .segment {
+      min-height: 42px;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .segment[aria-pressed="true"] { background: var(--surface-2); color: var(--ink); }
+    .field { margin-bottom: 19px; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--ink);
+      font-size: .92rem;
+      font-weight: 700;
+    }
+    .hint {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .79rem;
+      line-height: 1.4;
+    }
+    .control { position: relative; }
+    .prefix, .suffix {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .9rem;
+      pointer-events: none;
+    }
+    .prefix { left: 14px; }
+    .suffix { right: 14px; }
+    input[type="number"] {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      outline: none;
+      background: var(--surface-2);
+      color: var(--ink);
+      padding: 11px 14px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    input.has-prefix { padding-left: 31px; }
+    input.has-suffix { padding-right: 38px; }
+    input::placeholder { color: var(--muted); opacity: .72; }
+    input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) 24%, transparent); }
+    input[aria-invalid="true"] { border-color: var(--red); }
+    .error {
+      min-height: 18px;
+      margin: -9px 0 9px;
+      color: var(--red);
+      font-size: .82rem;
+      font-weight: 600;
+    }
+    .primary-button, .action-button, .explain-toggle {
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .primary-button {
+      width: 100%;
+      min-height: 52px;
+      border-radius: 8px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      padding: 13px 18px;
+    }
+    .primary-button:hover, .email-button:hover { filter: brightness(1.07); }
+    button:focus-visible, a:focus-visible, summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--orange) 52%, transparent);
+      outline-offset: 3px;
+    }
+    .assumption {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: .79rem;
+    }
+    .empty-state {
+      min-height: 570px;
+      display: grid;
+      align-content: center;
+      max-width: 540px;
+    }
+    .empty-mark {
+      width: 68px;
+      height: 9px;
+      margin-bottom: 22px;
+      border-radius: 2px;
+      background: var(--orange);
+    }
+    .empty-state h2, .results-header h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.65rem, 3vw, 2.35rem);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+    }
+    .empty-state p, .results-header p { margin: 0; color: var(--muted); }
+    .results { display: none; }
+    .results.visible { display: block; }
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 25px;
+      border-bottom: 1px solid var(--line);
+    }
+    .uplift {
+      flex: 0 0 auto;
+      text-align: right;
+    }
+    .uplift span {
+      display: block;
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .uplift strong {
+      color: var(--green);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+    }
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 24px 0 18px;
+    }
+    .path {
+      padding: 21px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--paper);
+    }
+    .path.drip { border-top: 4px solid var(--green); }
+    .path.cash { border-top: 4px solid var(--blue); }
+    .path h3 { margin: 0 0 16px; font-size: 1rem; }
+    .primary-number {
+      display: block;
+      margin-bottom: 3px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+      word-break: break-word;
+    }
+    .primary-caption { color: var(--muted); font-size: .82rem; }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .metric { padding-top: 13px; border-top: 1px solid var(--line); }
+    .metric span { display: block; color: var(--muted); font-size: .76rem; }
+    .metric strong { font-family: "IBM Plex Mono", monospace; font-size: .95rem; }
+    .visual-compare {
+      margin: 22px 0;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface-2);
+    }
+    .bar-row { display: grid; grid-template-columns: 105px 1fr; gap: 12px; align-items: center; margin: 10px 0; }
+    .bar-label { color: var(--muted); font-size: .8rem; font-weight: 700; }
+    .track { height: 13px; overflow: hidden; border-radius: 3px; background: var(--paper); }
+    .bar { height: 100%; min-width: 2px; border-radius: 3px; }
+    .bar.drip { background: var(--green); }
+    .bar.cash { background: var(--blue); }
+    .plain-note {
+      margin: 18px 0 0;
+      padding: 17px 19px;
+      border-left: 3px solid var(--orange);
+      background: color-mix(in srgb, var(--orange) 7%, var(--surface));
+      color: var(--muted);
+    }
+    .plain-note strong { color: var(--ink); }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 21px;
+    }
+    .action-button {
+      min-height: 45px;
+      padding: 10px 15px;
+      border-radius: 7px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+    .email-button { background: var(--orange); color: var(--orange-ink); border-color: var(--orange); }
+    .status { min-height: 20px; margin-top: 7px; color: var(--green); font-size: .82rem; font-weight: 600; }
+    .explain {
+      margin-top: 15px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--paper);
+    }
+    .explain summary {
+      cursor: pointer;
+      padding: 15px 18px;
+      font-weight: 700;
+      list-style: none;
+    }
+    .explain summary::-webkit-details-marker { display: none; }
+    .explain summary::after { content: "+"; float: right; color: var(--orange); font-size: 1.2rem; }
+    .explain[open] summary::after { content: "–"; }
+    .explain-body { padding: 0 18px 18px; color: var(--muted); }
+    .explain-body p { margin: 0 0 12px; }
+    .explain-body p:last-child { margin-bottom: 0; }
+    .method {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+    .method summary { cursor: pointer; color: var(--muted); font-size: .84rem; font-weight: 700; }
+    .method p { margin: 10px 0 0; color: var(--muted); font-size: .8rem; }
+    .disclaimer {
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: .75rem;
+      line-height: 1.5;
+    }
+    @media (max-width: 860px) {
+      .intro { grid-template-columns: 1fr; gap: 15px; }
+      .intro-copy { max-width: 60ch; }
+      .calculator-shell { grid-template-columns: 1fr; }
+      .input-panel { position: static; border-radius: 18px 18px 8px 8px; }
+      .results-panel { min-height: auto; border-radius: 8px 8px 18px 18px; }
+      .empty-state { min-height: 300px; }
+    }
+    @media (max-width: 580px) {
+      .page { padding-top: 22px; }
+      .intro { padding-bottom: 25px; }
+      h1 { font-size: clamp(2.15rem, 13vw, 3.6rem); }
+      .comparison { grid-template-columns: 1fr; }
+      .results-header { display: block; }
+      .uplift { margin-top: 18px; text-align: left; }
+      .actions { display: grid; grid-template-columns: 1fr; }
+      .action-button { width: 100%; }
+      .bar-row { grid-template-columns: 90px 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="money-home-wrap"><a class="money-home" href="/money/">← Honed Money</a></div>
+  <main class="page">
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Put your dividends back to work.</h1>
+      <p class="intro-copy">Compare <strong>reinvesting every dividend</strong> with taking those payments as cash. See how new shares can create their own dividends over time.</p>
+    </section>
+
+    <div class="calculator-shell">
+      <section class="panel input-panel" aria-labelledby="inputs-title">
+        <span class="section-label" id="inputs-title">Your assumptions</span>
+        <div class="segmented" aria-label="Choose starting input">
+          <button type="button" class="segment" id="sharesMode" aria-pressed="true">Start with shares</button>
+          <button type="button" class="segment" id="dollarsMode" aria-pressed="false">Start with dollars</button>
+        </div>
+
+        <form id="dripForm" novalidate>
+          <div class="field" id="startField">
+            <label for="startAmount" id="startLabel">Starting shares</label>
+            <div class="control">
+              <span class="prefix" id="startPrefix" hidden>$</span>
+              <input id="startAmount" type="number" min="0.0001" step="any" placeholder="100" inputmode="decimal" />
+            </div>
+            <span class="hint" id="startHint">Fractional shares are okay.</span>
+          </div>
+
+          <div class="field">
+            <label for="sharePrice">Current share price</label>
+            <div class="control"><span class="prefix">$</span><input class="has-prefix" id="sharePrice" type="number" min="0.01" step="0.01" placeholder="50" inputmode="decimal" /></div>
+            <span class="hint">Used to value the investment and buy reinvested shares.</span>
+          </div>
+
+          <div class="field">
+            <label for="yieldRate">Starting annual dividend yield</label>
+            <div class="control"><input class="has-suffix" id="yieldRate" type="number" min="0" max="100" step="0.01" placeholder="4" inputmode="decimal" /><span class="suffix">%</span></div>
+          </div>
+
+          <div class="field">
+            <label for="growthRate">Annual dividend growth</label>
+            <div class="control"><input class="has-suffix" id="growthRate" type="number" min="-100" max="100" step="0.01" placeholder="5" inputmode="decimal" /><span class="suffix">%</span></div>
+            <span class="hint">How much the dividend per share changes each year.</span>
+          </div>
+
+          <div class="field">
+            <label for="years">Years held</label>
+            <div class="control"><input id="years" type="number" min="1" max="60" step="1" placeholder="20" inputmode="numeric" /></div>
+          </div>
+
+          <div class="error" id="formError" role="alert" aria-live="polite"></div>
+          <button class="primary-button" type="submit">Compare the two paths</button>
+          <p class="assumption">For a clean comparison, the share price stays constant and dividends are paid and reinvested once per year. Taxes and fees are not included.</p>
+          <p class="disclaimer">For informational purposes only, not investment advice.</p>
+        </form>
+      </section>
+
+      <section class="panel results-panel" aria-live="polite">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-mark" aria-hidden="true"></div>
+          <h2>Two paths, one starting point.</h2>
+          <p>Enter your assumptions to compare ending shares, investment value, and cash dividends.</p>
+        </div>
+
+        <div class="results" id="results">
+          <div class="results-header">
+            <div>
+              <span class="section-label">Comparison</span>
+              <h2 id="resultTitle">After 20 years</h2>
+              <p id="resultSubtitle">Starting with 100 shares worth $5,000.</p>
+            </div>
+            <div class="uplift"><span>Reinvesting advantage</span><strong id="advantage">$0</strong></div>
+          </div>
+
+          <div class="comparison">
+            <article class="path drip">
+              <h3>Reinvest dividends</h3>
+              <strong class="primary-number" id="dripValue">$0</strong>
+              <span class="primary-caption">ending investment value</span>
+              <div class="metrics">
+                <div class="metric"><span>Ending shares</span><strong id="dripShares">0</strong></div>
+                <div class="metric"><span>New shares</span><strong id="newShares">0</strong></div>
+                <div class="metric"><span>Final-year dividend</span><strong id="dripFinalDividend">$0</strong></div>
+                <div class="metric"><span>Cash taken out</span><strong>$0</strong></div>
+              </div>
+            </article>
+
+            <article class="path cash">
+              <h3>Take dividends as cash</h3>
+              <strong class="primary-number" id="cashTotalValue">$0</strong>
+              <span class="primary-caption">shares plus accumulated cash</span>
+              <div class="metrics">
+                <div class="metric"><span>Ending shares</span><strong id="cashShares">0</strong></div>
+                <div class="metric"><span>Share value</span><strong id="cashShareValue">$0</strong></div>
+                <div class="metric"><span>Final-year dividend</span><strong id="cashFinalDividend">$0</strong></div>
+                <div class="metric"><span>Cash collected</span><strong id="cashCollected">$0</strong></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="visual-compare" aria-label="Ending value comparison">
+            <div class="bar-row"><span class="bar-label">Reinvest</span><div class="track"><div class="bar drip" id="dripBar"></div></div></div>
+            <div class="bar-row"><span class="bar-label">Take cash</span><div class="track"><div class="bar cash" id="cashBar"></div></div></div>
+          </div>
+
+          <p class="plain-note" id="plainNote"></p>
+
+          <div class="actions">
+            <button class="action-button email-button" id="emailButton" type="button">Email my results</button>
+            <button class="action-button" id="copyButton" type="button">Copy results</button>
+          </div>
+          <div class="status" id="copyStatus" aria-live="polite"></div>
+
+          <details class="explain">
+            <summary>Explain these results</summary>
+            <div class="explain-body" id="explanation"></div>
+          </details>
+
+          <details class="method">
+            <summary>How this estimate works</summary>
+            <p>The starting dividend per share equals the entered share price multiplied by the starting yield. Once each year, the dividend per share changes by your growth rate. In the reinvest path, that year's dividend buys fractional shares at the entered share price; those new shares earn dividends in later years. In the cash path, the starting share count does not change and each year's dividend is added to cash. The share price itself does not grow in this estimate.</p>
+          </details>
+          <p class="disclaimer">For informational and educational purposes only. This estimate does not include taxes, trading fees, dividend cuts, changing share prices, or market risk, and is not investment advice.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var mode = 'shares';
+      var lastResultText = '';
+      var form = document.getElementById('dripForm');
+      var startAmount = document.getElementById('startAmount');
+      var sharePrice = document.getElementById('sharePrice');
+      var yieldRate = document.getElementById('yieldRate');
+      var growthRate = document.getElementById('growthRate');
+      var years = document.getElementById('years');
+      var sharesMode = document.getElementById('sharesMode');
+      var dollarsMode = document.getElementById('dollarsMode');
+      var error = document.getElementById('formError');
+      var money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+      var moneyPrecise = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      var number = new Intl.NumberFormat('en-US', { maximumFractionDigits: 3 });
+
+      function setMode(nextMode) {
+        mode = nextMode;
+        var dollars = mode === 'dollars';
+        sharesMode.setAttribute('aria-pressed', String(!dollars));
+        dollarsMode.setAttribute('aria-pressed', String(dollars));
+        document.getElementById('startLabel').textContent = dollars ? 'Starting investment' : 'Starting shares';
+        document.getElementById('startHint').textContent = dollars ? 'Your starting dollars are converted to fractional shares.' : 'Fractional shares are okay.';
+        document.getElementById('startPrefix').hidden = !dollars;
+        startAmount.classList.toggle('has-prefix', dollars);
+        startAmount.value = '';
+        startAmount.placeholder = dollars ? '5000' : '100';
+        document.getElementById('emptyState').style.display = '';
+        document.getElementById('results').classList.remove('visible');
+        document.getElementById('copyStatus').textContent = '';
+        lastResultText = '';
+        error.textContent = '';
+      }
+
+      function valueOf(el) { return el.value.trim() === '' ? NaN : Number(el.value); }
+      function invalid(el, bad) { el.setAttribute('aria-invalid', bad ? 'true' : 'false'); }
+
+      function calculate(event) {
+        if (event) event.preventDefault();
+        var start = valueOf(startAmount);
+        var price = valueOf(sharePrice);
+        var y = valueOf(yieldRate);
+        var g = valueOf(growthRate);
+        var n = valueOf(years);
+        var badStart = !isFinite(start) || start <= 0;
+        var badPrice = !isFinite(price) || price <= 0;
+        var badYield = !isFinite(y) || y < 0 || y > 100;
+        var badGrowth = !isFinite(g) || g < -100 || g > 100;
+        var badYears = !Number.isInteger(n) || n < 1 || n > 60;
+        invalid(startAmount, badStart); invalid(sharePrice, badPrice); invalid(yieldRate, badYield); invalid(growthRate, badGrowth); invalid(years, badYears);
+        if (badStart || badPrice || badYield || badGrowth || badYears) {
+          error.textContent = 'Check each entry: use positive amounts, 0–100% yield, −100–100% growth, and 1–60 whole years.';
+          return;
+        }
+        error.textContent = '';
+
+        var startingShares = mode === 'shares' ? start : start / price;
+        var startingValue = startingShares * price;
+        var dividendPerShare = price * (y / 100);
+        var growth = 1 + (g / 100);
+        var dripShares = startingShares;
+        var cashCollected = 0;
+        var dripFinalDividend = 0;
+        var cashFinalDividend = 0;
+
+        for (var year = 1; year <= n; year += 1) {
+          var dripDividend = dripShares * dividendPerShare;
+          var cashDividend = startingShares * dividendPerShare;
+          dripFinalDividend = dripDividend;
+          cashFinalDividend = cashDividend;
+          dripShares += dripDividend / price;
+          cashCollected += cashDividend;
+          dividendPerShare *= growth;
+        }
+
+        var dripValue = dripShares * price;
+        var cashShareValue = startingShares * price;
+        var cashTotalValue = cashShareValue + cashCollected;
+        var advantage = dripValue - cashTotalValue;
+        var newShares = dripShares - startingShares;
+        var maxValue = Math.max(dripValue, cashTotalValue, 1);
+
+        document.getElementById('resultTitle').textContent = 'After ' + n + (n === 1 ? ' year' : ' years');
+        document.getElementById('resultSubtitle').textContent = 'Starting with ' + number.format(startingShares) + ' shares worth ' + moneyPrecise.format(startingValue) + '.';
+        document.getElementById('advantage').textContent = (advantage >= 0 ? '+' : '−') + money.format(Math.abs(advantage));
+        document.getElementById('dripValue').textContent = money.format(dripValue);
+        document.getElementById('dripShares').textContent = number.format(dripShares);
+        document.getElementById('newShares').textContent = number.format(newShares);
+        document.getElementById('dripFinalDividend').textContent = money.format(dripFinalDividend);
+        document.getElementById('cashTotalValue').textContent = money.format(cashTotalValue);
+        document.getElementById('cashShares').textContent = number.format(startingShares);
+        document.getElementById('cashShareValue').textContent = money.format(cashShareValue);
+        document.getElementById('cashFinalDividend').textContent = money.format(cashFinalDividend);
+        document.getElementById('cashCollected').textContent = money.format(cashCollected);
+        document.getElementById('dripBar').style.width = (dripValue / maxValue * 100).toFixed(1) + '%';
+        document.getElementById('cashBar').style.width = (cashTotalValue / maxValue * 100).toFixed(1) + '%';
+
+        var advantageSentence = advantage > 0.5
+          ? 'Reinvesting ends about ' + money.format(advantage) + ' ahead under these assumptions.'
+          : 'The two paths finish at nearly the same total value under these assumptions.';
+        document.getElementById('plainNote').innerHTML = '<strong>' + advantageSentence + '</strong> Reinvesting grows the share count from ' + number.format(startingShares) + ' to ' + number.format(dripShares) + ', while taking cash keeps it at ' + number.format(startingShares) + '.';
+
+        document.getElementById('explanation').innerHTML =
+          '<p>You begin with <strong>' + number.format(startingShares) + ' shares</strong>. If you take dividends as cash, you still own that same number of shares after ' + n + (n === 1 ? ' year' : ' years') + ' and you collect about <strong>' + money.format(cashCollected) + '</strong> along the way.</p>' +
+          '<p>If you reinvest instead, each dividend buys more shares. Those added shares receive their own dividends later, so the process builds on itself. That grows the holding to about <strong>' + number.format(dripShares) + ' shares</strong>, worth <strong>' + money.format(dripValue) + '</strong> at the unchanged share price.</p>' +
+          '<p>' + advantageSentence + ' Real results can be very different because dividends and share prices can rise or fall, and taxes can reduce what gets reinvested.</p>';
+
+        lastResultText = [
+          'Dividend Reinvestment Calculator',
+          'Assumptions: ' + number.format(startingShares) + ' starting shares, ' + moneyPrecise.format(price) + ' share price, ' + y + '% starting yield, ' + g + '% annual dividend growth, ' + n + (n === 1 ? ' year' : ' years') + '.',
+          '',
+          'REINVEST DIVIDENDS',
+          'Ending value: ' + money.format(dripValue),
+          'Ending shares: ' + number.format(dripShares),
+          'New shares: ' + number.format(newShares),
+          'Final-year dividend: ' + money.format(dripFinalDividend),
+          '',
+          'TAKE DIVIDENDS AS CASH',
+          'Shares plus cash: ' + money.format(cashTotalValue),
+          'Ending shares: ' + number.format(startingShares),
+          'Cash collected: ' + money.format(cashCollected),
+          'Final-year dividend: ' + money.format(cashFinalDividend),
+          '',
+          'Reinvesting advantage: ' + (advantage >= 0 ? '+' : '-') + money.format(Math.abs(advantage)),
+          '',
+          'Assumes a constant share price and annual dividend payments/reinvestment. Taxes and fees are not included. For informational and educational purposes only; not investment advice.'
+        ].join('\n');
+
+        document.getElementById('emptyState').style.display = 'none';
+        document.getElementById('results').classList.add('visible');
+        document.getElementById('copyStatus').textContent = '';
+        if (window.innerWidth < 861) document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function fallbackCopy(text) {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(area);
+        return ok;
+      }
+
+      sharesMode.addEventListener('click', function () { setMode('shares'); });
+      dollarsMode.addEventListener('click', function () { setMode('dollars'); });
+      form.addEventListener('submit', calculate);
+      document.getElementById('copyButton').addEventListener('click', function () {
+        var status = document.getElementById('copyStatus');
+        if (!lastResultText) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastResultText).then(function () { status.textContent = 'Results copied.'; }).catch(function () {
+            status.textContent = fallbackCopy(lastResultText) ? 'Results copied.' : 'Copy was unavailable. Select the results above to copy them.';
+          });
+        } else {
+          status.textContent = fallbackCopy(lastResultText) ? 'Results copied.' : 'Copy was unavailable. Select the results above to copy them.';
+        }
+      });
+      document.getElementById('emailButton').addEventListener('click', function () {
+        if (!lastResultText) return;
+        var emailLink = document.createElement('a');
+        emailLink.href = 'mailto:?subject=' + encodeURIComponent('My dividend reinvestment estimate') + '&body=' + encodeURIComponent(lastResultText);
+        emailLink.click();
+      });
+    }());
+  </script>
+</body>
+</html>

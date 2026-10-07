@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Investment Fee Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f3f6f7;
+      --muted: #aeb8c0;
+      --paper: #0b0e14;
+      --surface: #121821;
+      --surface-2: #1a222c;
+      --line: #2c3742;
+      --line-strong: #46525d;
+      --blue: #77a6d6;
+      --blue-strong: #9bc2e8;
+      --green: #39ff14;
+      --green-soft: rgba(57, 255, 20, .09);
+      --orange: #f7931a;
+      --orange-ink: #0b0e14;
+      --orange-soft: rgba(247, 147, 26, .12);
+      --red: #ff7379;
+      --focus: #82b6e6;
+      --shadow: 0 22px 65px rgba(0, 0, 0, .38);
+      --grid: rgba(243, 246, 247, .08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #080b10;
+        --surface: #10161e;
+        --surface-2: #19212b;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, input, a, summary { -webkit-tap-highlight-color: transparent; }
+    .home-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: color-mix(in srgb, var(--paper) 95%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    .home-link {
+      display: block;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 10px clamp(16px, 3.5vw, 42px);
+      color: var(--blue);
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .home-link:hover { color: var(--blue-strong); text-decoration: underline; text-underline-offset: 3px; }
+    .home-link:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 38%, transparent);
+      outline-offset: 3px;
+    }
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: clamp(26px, 4vw, 52px) clamp(16px, 3.5vw, 42px) 64px;
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      gap: 40px;
+      align-items: end;
+      padding: 4px 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      max-width: 790px;
+      font-size: clamp(2.45rem, 6vw, 5.6rem);
+      line-height: .96;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    h1 span { color: var(--green); }
+    .intro p {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      max-width: 39ch;
+    }
+
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
+      margin-top: 34px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .controls {
+      padding: clamp(22px, 3vw, 34px);
+      border-right: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .controls h2, .results h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -.02em;
+    }
+    .section-note { margin: 7px 0 22px; color: var(--muted); font-size: .9rem; }
+    .field { margin-top: 16px; }
+    .field:first-of-type { margin-top: 0; }
+    label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 7px;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    label small { color: var(--muted); font-size: .76rem; font-weight: 500; }
+    .input-wrap { position: relative; }
+    .unit {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .88rem;
+    }
+    .unit.left { left: 14px; }
+    .unit.right { right: 14px; }
+    input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line-strong);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 5px;
+      padding: 11px 42px 11px 14px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+    }
+    input.money { padding-left: 31px; }
+    input::placeholder { color: var(--muted); opacity: .72; }
+    input:hover { border-color: var(--blue); }
+    input:focus { border-color: var(--focus); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 18%, transparent); }
+    .fee-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+    .fee-pair .field { margin: 0; }
+    .fee-a { color: var(--blue); }
+    .fee-b { color: var(--orange); }
+    .error {
+      min-height: 1.3em;
+      margin: 14px 0 0;
+      color: var(--red);
+      font-size: .84rem;
+      font-weight: 600;
+    }
+    .primary {
+      width: 100%;
+      min-height: 50px;
+      margin-top: 8px;
+      border: 0;
+      border-radius: 5px;
+      padding: 12px 18px;
+      background: var(--green);
+      color: #081008;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary:hover { filter: brightness(.92); }
+
+    .results { min-width: 0; padding: clamp(22px, 3.5vw, 40px); background: var(--surface); }
+    .results[hidden] { display: none; }
+    .lead-result {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(180px, .75fr);
+      gap: 22px;
+      align-items: end;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--line);
+    }
+    .lead-label { margin: 0 0 8px; color: var(--muted); font-size: .84rem; font-weight: 600; }
+    .lead-value {
+      margin: 0;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -.055em;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+    .lead-copy { margin: 11px 0 0; color: var(--muted); max-width: 48ch; font-size: .94rem; }
+    .rate-verdict {
+      padding: 16px;
+      background: var(--orange-soft);
+      border-top: 3px solid var(--orange);
+    }
+    .rate-verdict strong { display: block; margin-bottom: 3px; font-size: 1rem; }
+    .rate-verdict span { color: var(--muted); font-size: .86rem; }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin: 26px 0;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .metric { min-width: 0; padding: 18px; background: var(--surface); }
+    .metric span { display: block; color: var(--muted); font-size: .78rem; line-height: 1.3; }
+    .metric strong {
+      display: block;
+      margin-top: 7px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+      letter-spacing: -.04em;
+      overflow-wrap: anywhere;
+    }
+    .metric.a strong { color: var(--blue); }
+    .metric.b strong { color: var(--orange); }
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .chart-card, .timeline-card { min-width: 0; }
+    .chart-title { margin: 0 0 13px; font-size: .9rem; font-weight: 600; }
+    .bar-row { display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 10px; align-items: center; margin: 12px 0; }
+    .bar-label { color: var(--muted); font-size: .78rem; }
+    .bar-track { height: 28px; background: var(--surface-2); overflow: hidden; position: relative; }
+    .bar { height: 100%; min-width: 3px; transition: width .35s ease; }
+    .bar.no-fee { background: var(--green); }
+    .bar.a { background: var(--blue); }
+    .bar.b { background: var(--orange); }
+    .bar-number { margin-top: 3px; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: .72rem; }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .checkpoint { padding: 12px; background: var(--surface-2); }
+    .checkpoint span { display: block; color: var(--muted); font-size: .74rem; }
+    .checkpoint strong { display: block; margin-top: 4px; font-family: "IBM Plex Mono", monospace; font-size: .92rem; }
+    .checkpoint small { display: block; margin-top: 2px; color: var(--orange); font-size: .72rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .action-btn {
+      min-height: 44px;
+      border: 1px solid var(--line-strong);
+      border-radius: 5px;
+      padding: 10px 15px;
+      background: var(--surface-2);
+      color: var(--ink);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .action-btn:hover { border-color: var(--blue); }
+    .action-btn.email { background: var(--orange); color: var(--orange-ink); border-color: var(--orange); }
+    .action-btn.email:hover { filter: brightness(.94); }
+    details {
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 4px 0;
+    }
+    summary { padding: 14px 0; cursor: pointer; font-weight: 700; }
+    .explanation { padding: 0 0 17px; color: var(--muted); }
+    .explanation p { margin: 0 0 11px; }
+    .explanation p:last-child { margin-bottom: 0; }
+    .explanation strong { color: var(--ink); }
+
+    .method {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, .55fr);
+      gap: 28px;
+      margin-top: 34px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+    .method h2 { margin: 0 0 9px; font-size: 1.05rem; }
+    .method p, .method li { color: var(--muted); font-size: .88rem; }
+    .method p { margin: 0; }
+    .method ul { margin: 0; padding-left: 18px; }
+    .method li + li { margin-top: 7px; }
+    .disclaimer {
+      margin-top: 28px;
+      padding: 16px 18px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: .8rem;
+    }
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: max(18px, env(safe-area-inset-bottom));
+      z-index: 50;
+      transform: translate(-50%, 18px);
+      opacity: 0;
+      pointer-events: none;
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-size: .85rem;
+      font-weight: 600;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 820px) {
+      .intro { grid-template-columns: 1fr; gap: 18px; }
+      .intro p { max-width: 54ch; }
+      .workbench { grid-template-columns: 1fr; }
+      .controls { border-right: 0; border-bottom: 1px solid var(--line); }
+      .comparison, .method { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .page { padding-top: 24px; }
+      h1 { font-size: clamp(2.35rem, 14vw, 4.2rem); }
+      .intro { padding-bottom: 25px; }
+      .workbench { margin-top: 22px; border-left: 0; border-right: 0; box-shadow: none; }
+      .controls, .results { padding-left: 0; padding-right: 0; }
+      .controls { padding-bottom: 25px; }
+      .results { padding-top: 25px; }
+      .lead-result { grid-template-columns: 1fr; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .fee-pair { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr 1fr; }
+      .actions { display: grid; grid-template-columns: 1fr; }
+      .action-btn { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="home-wrap"><a class="home-link" href="/money/">← Honed Money</a></div>
+
+  <main class="page">
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">See what fees take from your <span>future.</span></h1>
+      <p>Compare two expense ratios and see the dollar cost of each over time—including the growth those fees could have earned.</p>
+    </section>
+
+    <section class="workbench" aria-label="Investment fee calculator">
+      <form class="controls" id="calculator" novalidate>
+        <h2>Your assumptions</h2>
+        <p class="section-note">Use the return you expect before investment fees.</p>
+
+        <div class="field">
+          <label for="balance">Starting balance</label>
+          <div class="input-wrap"><span class="unit left">$</span><input class="money" id="balance" name="balance" type="number" min="0" max="100000000" step="100" placeholder="25000" inputmode="decimal" required></div>
+        </div>
+        <div class="field">
+          <label for="contribution">Annual contribution <small>spread monthly</small></label>
+          <div class="input-wrap"><span class="unit left">$</span><input class="money" id="contribution" name="contribution" type="number" min="0" max="10000000" step="100" placeholder="6000" inputmode="decimal" required></div>
+        </div>
+        <div class="field">
+          <label for="return">Expected annual return</label>
+          <div class="input-wrap"><input id="return" name="return" type="number" min="-50" max="50" step="0.1" placeholder="7" inputmode="decimal" required><span class="unit right">%</span></div>
+        </div>
+        <div class="field">
+          <label for="years">Time invested</label>
+          <div class="input-wrap"><input id="years" name="years" type="number" min="1" max="70" step="1" placeholder="30" inputmode="numeric" required><span class="unit right">years</span></div>
+        </div>
+
+        <div class="fee-pair">
+          <div class="field">
+            <label class="fee-a" for="feeA">Fee A</label>
+            <div class="input-wrap"><input id="feeA" name="feeA" type="number" min="0" max="5" step="0.01" placeholder="0.05" inputmode="decimal" required><span class="unit right">%</span></div>
+          </div>
+          <div class="field">
+            <label class="fee-b" for="feeB">Fee B</label>
+            <div class="input-wrap"><input id="feeB" name="feeB" type="number" min="0" max="5" step="0.01" placeholder="1.00" inputmode="decimal" required><span class="unit right">%</span></div>
+          </div>
+        </div>
+        <p class="error" id="error" role="alert" aria-live="polite"></p>
+        <button class="primary" type="submit">Compare fees</button>
+      </form>
+
+      <section class="results" id="results" aria-live="polite" hidden>
+        <div class="lead-result">
+          <div>
+            <p class="lead-label">Extra ending value with the lower fee</p>
+            <p class="lead-value" id="difference">$0</p>
+            <p class="lead-copy" id="leadCopy"></p>
+          </div>
+          <div class="rate-verdict">
+            <strong id="feeVerdict">Fee comparison</strong>
+            <span id="feeGap"></span>
+          </div>
+        </div>
+
+        <div class="metric-grid" aria-label="Comparison summary">
+          <div class="metric"><span>No-fee projection</span><strong id="noFeeValue">$0</strong></div>
+          <div class="metric a"><span id="aLabel">With Fee A</span><strong id="aValue">$0</strong></div>
+          <div class="metric b"><span id="bLabel">With Fee B</span><strong id="bValue">$0</strong></div>
+          <div class="metric"><span>Total contributed</span><strong id="contributed">$0</strong></div>
+          <div class="metric a"><span id="aCostLabel">Fee A drag</span><strong id="aCost">$0</strong></div>
+          <div class="metric b"><span id="bCostLabel">Fee B drag</span><strong id="bCost">$0</strong></div>
+        </div>
+
+        <div class="comparison">
+          <div class="chart-card">
+            <p class="chart-title">Projected ending value</p>
+            <div class="bar-row"><span class="bar-label">No fee</span><div><div class="bar-track"><div class="bar no-fee" id="barNoFee"></div></div><div class="bar-number" id="barNoFeeText"></div></div></div>
+            <div class="bar-row"><span class="bar-label" id="barALabel">Fee A</span><div><div class="bar-track"><div class="bar a" id="barA"></div></div><div class="bar-number" id="barAText"></div></div></div>
+            <div class="bar-row"><span class="bar-label" id="barBLabel">Fee B</span><div><div class="bar-track"><div class="bar b" id="barB"></div></div><div class="bar-number" id="barBText"></div></div></div>
+          </div>
+          <div class="timeline-card">
+            <p class="chart-title">How the gap grows</p>
+            <div class="timeline" id="timeline"></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="action-btn email" id="emailBtn" type="button">Email my results</button>
+          <button class="action-btn" id="copyBtn" type="button">Copy results</button>
+        </div>
+
+        <details id="explain">
+          <summary>Explain these results</summary>
+          <div class="explanation" id="explanation"></div>
+        </details>
+      </section>
+    </section>
+
+    <section class="method" aria-label="Methodology and assumptions">
+      <div>
+        <h2>How this estimate works</h2>
+        <p>The calculator treats the expense ratio as a reduction in the annual return, then compounds monthly. Annual contributions are split into 12 equal deposits made at the end of each month. “Fee drag” is the difference between the no-fee projection and each fee-adjusted projection; it includes both estimated fees and the growth those dollars no longer earn.</p>
+      </div>
+      <div>
+        <h2>What is not included</h2>
+        <ul>
+          <li>Taxes, trading costs, loads, or advisory fees</li>
+          <li>Changing returns, contributions, or expense ratios</li>
+          <li>Inflation or market volatility</li>
+        </ul>
+      </div>
+    </section>
+
+    <p class="disclaimer">For informational and educational purposes only. This estimate does not constitute investment advice, a recommendation, or an offer to buy or sell any security. Actual returns and costs will vary, and past performance is not indicative of future results.</p>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      "use strict";
+      var form = document.getElementById("calculator");
+      var results = document.getElementById("results");
+      var error = document.getElementById("error");
+      var lastSummary = "";
+      var toastTimer;
+
+      function money(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency", currency: "USD", maximumFractionDigits: 0
+        }).format(value);
+      }
+      function percent(value) {
+        return Number(value).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
+      }
+      function getNumber(id) {
+        var value = document.getElementById(id).value.trim();
+        return value === "" ? NaN : Number(value);
+      }
+      function project(balance, annualContribution, annualReturnPct, feePct, months) {
+        var netAnnual = (annualReturnPct - feePct) / 100;
+        var monthlyRate = Math.pow(1 + netAnnual, 1 / 12) - 1;
+        var value = balance;
+        var monthlyContribution = annualContribution / 12;
+        for (var i = 0; i < months; i += 1) {
+          value = value * (1 + monthlyRate) + monthlyContribution;
+        }
+        return value;
+      }
+      function showToast(message) {
+        var toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2200);
+      }
+      function validate(v) {
+        if (Object.keys(v).some(function (key) { return !Number.isFinite(v[key]); })) return "Enter a number in every field.";
+        if (v.balance < 0 || v.balance > 100000000) return "Starting balance must be between $0 and $100 million.";
+        if (v.contribution < 0 || v.contribution > 10000000) return "Annual contribution must be between $0 and $10 million.";
+        if (v.balance === 0 && v.contribution === 0) return "Enter a starting balance, an annual contribution, or both.";
+        if (v.returnRate < -50 || v.returnRate > 50) return "Expected return must be between -50% and 50%.";
+        if (!Number.isInteger(v.years) || v.years < 1 || v.years > 70) return "Time invested must be a whole number from 1 to 70 years.";
+        if (v.feeA < 0 || v.feeA > 5 || v.feeB < 0 || v.feeB > 5) return "Each expense ratio must be between 0% and 5%.";
+        if (v.returnRate - Math.max(v.feeA, v.feeB) <= -100) return "The fee-adjusted return must stay above -100%.";
+        return "";
+      }
+      function setText(id, value) { document.getElementById(id).textContent = value; }
+
+      function calculate(event) {
+        if (event) event.preventDefault();
+        var v = {
+          balance: getNumber("balance"), contribution: getNumber("contribution"),
+          returnRate: getNumber("return"), years: getNumber("years"),
+          feeA: getNumber("feeA"), feeB: getNumber("feeB")
+        };
+        var message = validate(v);
+        error.textContent = message;
+        if (message) { results.hidden = true; return; }
+
+        var months = v.years * 12;
+        var noFee = project(v.balance, v.contribution, v.returnRate, 0, months);
+        var valueA = project(v.balance, v.contribution, v.returnRate, v.feeA, months);
+        var valueB = project(v.balance, v.contribution, v.returnRate, v.feeB, months);
+        var costA = noFee - valueA;
+        var costB = noFee - valueB;
+        var lowerIsA = v.feeA <= v.feeB;
+        var lowFee = lowerIsA ? v.feeA : v.feeB;
+        var highFee = lowerIsA ? v.feeB : v.feeA;
+        var lowValue = lowerIsA ? valueA : valueB;
+        var highValue = lowerIsA ? valueB : valueA;
+        var difference = Math.abs(valueA - valueB);
+        var contributed = v.balance + v.contribution * v.years;
+        var sameFee = Math.abs(v.feeA - v.feeB) < 0.0000001;
+
+        setText("difference", money(difference));
+        setText("leadCopy", sameFee
+          ? "The two expense ratios are the same, so they produce the same projection."
+          : "That is the projected difference after " + v.years + " years between " + percent(lowFee) + " and " + percent(highFee) + ".");
+        setText("feeVerdict", sameFee ? "Same fee, same result" : percent(lowFee) + " keeps more invested");
+        setText("feeGap", sameFee ? "Change one fee to compare the impact." : "Fee gap: " + percent(highFee - lowFee) + " per year");
+        setText("noFeeValue", money(noFee));
+        setText("aLabel", "With Fee A (" + percent(v.feeA) + ")");
+        setText("bLabel", "With Fee B (" + percent(v.feeB) + ")");
+        setText("aValue", money(valueA));
+        setText("bValue", money(valueB));
+        setText("contributed", money(contributed));
+        setText("aCostLabel", "Fee A drag");
+        setText("bCostLabel", "Fee B drag");
+        setText("aCost", money(costA));
+        setText("bCost", money(costB));
+        setText("barALabel", "Fee A");
+        setText("barBLabel", "Fee B");
+        setText("barNoFeeText", money(noFee));
+        setText("barAText", money(valueA));
+        setText("barBText", money(valueB));
+
+        var maxValue = Math.max(noFee, valueA, valueB, 1);
+        document.getElementById("barNoFee").style.width = Math.max(0, noFee / maxValue * 100) + "%";
+        document.getElementById("barA").style.width = Math.max(0, valueA / maxValue * 100) + "%";
+        document.getElementById("barB").style.width = Math.max(0, valueB / maxValue * 100) + "%";
+
+        var checkpoints = [];
+        [0.25, 0.5, 0.75, 1].forEach(function (fraction) {
+          var year = Math.max(1, Math.round(v.years * fraction));
+          if (checkpoints.indexOf(year) === -1) checkpoints.push(year);
+        });
+        var timeline = document.getElementById("timeline");
+        timeline.innerHTML = "";
+        checkpoints.forEach(function (year) {
+          var aAtYear = project(v.balance, v.contribution, v.returnRate, v.feeA, year * 12);
+          var bAtYear = project(v.balance, v.contribution, v.returnRate, v.feeB, year * 12);
+          var item = document.createElement("div");
+          item.className = "checkpoint";
+          var label = document.createElement("span"); label.textContent = "Year " + year;
+          var amount = document.createElement("strong"); amount.textContent = money(Math.abs(aAtYear - bAtYear));
+          var note = document.createElement("small"); note.textContent = "difference";
+          item.appendChild(label); item.appendChild(amount); item.appendChild(note); timeline.appendChild(item);
+        });
+
+        var explainer = document.getElementById("explanation");
+        if (sameFee) {
+          explainer.innerHTML = "<p>You entered the same expense ratio for both options, so both end at <strong>" + money(valueA) + "</strong>. Change one fee to see how even a small annual gap can compound over time.</p><p>The no-fee projection is <strong>" + money(noFee) + "</strong>. The difference between that number and the fee-adjusted result—<strong>" + money(costA) + "</strong>—is the estimated fee drag.</p>";
+        } else {
+          explainer.innerHTML = "<p>You put in <strong>" + money(contributed) + "</strong> over " + v.years + " years, including the starting balance. At the same assumed return, the <strong>" + percent(lowFee) + " fee</strong> ends at <strong>" + money(lowValue) + "</strong>, while the <strong>" + percent(highFee) + " fee</strong> ends at <strong>" + money(highValue) + "</strong>.</p><p>The lower-fee option leaves an estimated <strong>" + money(difference) + " more</strong>. That gap is not just the fees themselves: money removed by fees also misses future growth. This is why a small percentage difference can become a much larger dollar difference over a long period.</p><p>The no-fee figure is a reference point, not a realistic promise. It helps isolate fee drag while holding every other assumption equal.</p>";
+        }
+
+        lastSummary = [
+          "Investment Fee Calculator results",
+          "Starting balance: " + money(v.balance),
+          "Annual contribution: " + money(v.contribution),
+          "Expected return before fees: " + percent(v.returnRate),
+          "Time invested: " + v.years + " years",
+          "",
+          "No-fee projection: " + money(noFee),
+          "Fee A (" + percent(v.feeA) + "): " + money(valueA),
+          "Fee A drag: " + money(costA),
+          "Fee B (" + percent(v.feeB) + "): " + money(valueB),
+          "Fee B drag: " + money(costB),
+          "Difference between fee options: " + money(difference),
+          "",
+          "Estimate assumes monthly compounding and equal monthly contributions. Informational and educational purposes only; not investment advice."
+        ].join("\n");
+
+        results.hidden = false;
+      }
+
+      form.addEventListener("submit", calculate);
+      document.getElementById("emailBtn").addEventListener("click", function () {
+        var subject = encodeURIComponent("My investment fee comparison");
+        var body = encodeURIComponent(lastSummary);
+        var link = document.createElement("a");
+        link.href = "mailto:?subject=" + subject + "&body=" + body;
+        link.click();
+      });
+      document.getElementById("copyBtn").addEventListener("click", function () {
+        function fallback() {
+          var area = document.createElement("textarea");
+          area.value = lastSummary;
+          area.setAttribute("readonly", "");
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          try { document.execCommand("copy"); showToast("Results copied"); }
+          catch (e) { showToast("Select and copy the results manually"); }
+          document.body.removeChild(area);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastSummary).then(function () { showToast("Results copied"); }).catch(fallback);
+        } else { fallback(); }
+      });
+
+    }());
+  </script>
+</body>
+</html>

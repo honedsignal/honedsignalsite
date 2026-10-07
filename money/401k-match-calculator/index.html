@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>401(k) Employer Match Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #f3f6f7;
+      --muted: #aeb8c0;
+      --paper: #0b0e14;
+      --surface: #121821;
+      --surface-2: #1a222c;
+      --line: #2c3742;
+      --line-strong: #46525d;
+      --blue: #77a6d6;
+      --blue-strong: #9bc2e8;
+      --green: #39ff14;
+      --green-soft: rgba(57, 255, 20, .09);
+      --orange: #f7931a;
+      --orange-ink: #0b0e14;
+      --orange-soft: rgba(247, 147, 26, .12);
+      --danger: #ff7379;
+      --focus: #82b6e6;
+      --shadow: 0 22px 65px rgba(0, 0, 0, .38);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f3f6f7;
+        --muted: #aeb8c0;
+        --paper: #0b0e14;
+        --surface: #121821;
+        --surface-2: #1a222c;
+        --line: #2c3742;
+        --line-strong: #46525d;
+        --blue: #77a6d6;
+        --blue-strong: #9bc2e8;
+        --green: #39ff14;
+        --green-soft: rgba(57, 255, 20, .09);
+        --orange: #f7931a;
+        --orange-ink: #0b0e14;
+        --orange-soft: rgba(247, 147, 26, .12);
+        --danger: #ff7379;
+        --focus: #82b6e6;
+        --shadow: 0 22px 65px rgba(0, 0, 0, .38);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, input, a, summary { -webkit-tap-highlight-color: transparent; }
+    .home-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+    .home-link {
+      display: block;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 10px clamp(16px, 3.5vw, 42px);
+      color: var(--blue);
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .home-link:hover { color: var(--blue-strong); text-decoration: underline; text-underline-offset: 3px; }
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: clamp(26px, 4vw, 52px) clamp(16px, 3.5vw, 42px) 64px;
+    }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+      gap: 40px;
+      align-items: end;
+      padding: 4px 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(2.4rem, 6vw, 5.5rem);
+      line-height: .96;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    h1 span { color: var(--green); }
+    .intro p {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      max-width: 38ch;
+    }
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
+      margin-top: 34px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .input-panel {
+      padding: 28px;
+      border-right: 1px solid var(--line);
+    }
+    .section-heading {
+      margin: 0 0 22px;
+      font-size: .86rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .formula-line {
+      margin: -9px 0 22px;
+      color: var(--muted);
+      font-size: .84rem;
+    }
+    .field { margin-bottom: 18px; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 600;
+    }
+    .control { position: relative; display: flex; align-items: center; }
+    .prefix, .suffix {
+      position: absolute;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .9rem;
+      pointer-events: none;
+    }
+    .prefix { left: 13px; }
+    .suffix { right: 13px; }
+    input {
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 12px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--paper);
+      color: var(--ink);
+      outline: none;
+      font-variant-numeric: tabular-nums;
+    }
+    input.has-prefix { padding-left: 29px; }
+    input.has-suffix { padding-right: 36px; }
+    input:focus, button:focus-visible, a:focus-visible, summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 28%, transparent);
+      outline-offset: 2px;
+    }
+    input:focus { border-color: var(--focus); }
+    input[aria-invalid="true"] { border-color: var(--danger); }
+    .error {
+      min-height: 18px;
+      margin: 5px 0 -3px;
+      color: var(--danger);
+      font-size: .77rem;
+    }
+    .match-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .calculate {
+      width: 100%;
+      min-height: 50px;
+      margin-top: 5px;
+      padding: 12px 18px;
+      border: 1px solid var(--orange);
+      border-radius: 3px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .calculate:hover { filter: brightness(.94); }
+    .plan-note {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: .77rem;
+    }
+    .results-panel { min-width: 0; padding: clamp(26px, 4vw, 44px); }
+    .empty-state {
+      display: grid;
+      min-height: 440px;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-state p { max-width: 35ch; margin: 0; }
+    .results[hidden], .empty-state[hidden] { display: none !important; }
+    .result-kicker {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 600;
+    }
+    .total {
+      margin: 0;
+      color: var(--green);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.2rem, 5.4vw, 4.8rem);
+      line-height: 1;
+      letter-spacing: -.05em;
+      overflow-wrap: anywhere;
+    }
+    .total-caption { margin: 10px 0 26px; color: var(--muted); }
+    .meter {
+      height: 12px;
+      margin: 0 0 9px;
+      background: var(--surface-2);
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .meter-fill {
+      width: 0;
+      height: 100%;
+      background: var(--green);
+      transition: width .35s ease;
+    }
+    .meter-copy {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 27px;
+      color: var(--muted);
+      font-size: .79rem;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .stat {
+      min-width: 0;
+      padding: 18px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .stat-label { display: block; margin-bottom: 6px; color: var(--muted); font-size: .78rem; }
+    .stat-value {
+      display: block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+      font-weight: 600;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+    .stat-value.warn { color: var(--orange); }
+    .action-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .action {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .action:hover { border-color: var(--blue); color: var(--blue); }
+    .action.email {
+      border-color: var(--orange);
+      background: var(--orange);
+      color: var(--orange-ink);
+    }
+    .action.email:hover { color: var(--orange-ink); filter: brightness(.94); }
+    .copy-status { min-height: 21px; margin: 8px 0 0; color: var(--muted); font-size: .78rem; }
+    .explanation {
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .explanation summary {
+      padding: 16px 2px;
+      color: var(--blue);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .explanation-body { padding: 0 2px 18px; }
+    .explanation-body p { margin: 0 0 12px; }
+    .explanation-body p:last-child { margin-bottom: 0; }
+    .guidance {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 34px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+    .guidance h2 { margin: 0 0 10px; font-size: 1.08rem; }
+    .guidance p { margin: 0; color: var(--muted); font-size: .9rem; }
+    footer {
+      margin-top: 42px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .78rem;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 780px) {
+      .page { padding-top: 24px; }
+      .intro { grid-template-columns: 1fr; gap: 18px; padding-bottom: 26px; }
+      h1 { font-size: clamp(2.35rem, 13vw, 4rem); }
+      .workbench { grid-template-columns: 1fr; margin-top: 24px; }
+      .input-panel { padding: 22px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .results-panel { padding: 24px 22px; }
+      .empty-state { min-height: 230px; }
+      .guidance { grid-template-columns: 1fr; gap: 22px; }
+    }
+    @media (max-width: 430px) {
+      .match-fields { grid-template-columns: 1fr; gap: 0; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .total { font-size: clamp(2.1rem, 13vw, 3.25rem); }
+      .action-row { display: grid; grid-template-columns: 1fr; }
+      .action { width: 100%; text-align: center; }
+      .meter-copy { flex-direction: column; gap: 2px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .meter-fill { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="home-wrap"><a class="home-link" href="/money/">← Honed Money</a></div>
+  <main class="page">
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Keep more of your <span>401(k) match.</span></h1>
+      <p>See what your employer may add, what it takes to earn the full match, and whether any match is being left on the table.</p>
+    </section>
+
+    <section class="workbench" aria-label="401(k) match calculator">
+      <form class="input-panel" id="match-form" novalidate>
+        <h2 class="section-heading">Your pay and plan</h2>
+        <div class="field">
+          <label for="salary">Annual salary</label>
+          <div class="control"><span class="prefix">$</span><input class="has-prefix" id="salary" name="salary" type="number" min="1" max="10000000" step="100" inputmode="decimal" placeholder="75,000" aria-describedby="salary-error"></div>
+          <p class="error" id="salary-error" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for="employee-rate">Your 401(k) contribution</label>
+          <div class="control"><input class="has-suffix" id="employee-rate" name="employee-rate" type="number" min="0" max="100" step="0.1" inputmode="decimal" placeholder="4" aria-describedby="employee-error"><span class="suffix">%</span></div>
+          <p class="error" id="employee-error" aria-live="polite"></p>
+        </div>
+
+        <h2 class="section-heading" style="margin-top:26px">Employer match formula</h2>
+        <p class="formula-line">For “50% up to 6%,” enter 50 and 6.</p>
+        <div class="match-fields">
+          <div class="field">
+            <label for="match-rate">Employer matches</label>
+            <div class="control"><input class="has-suffix" id="match-rate" name="match-rate" type="number" min="0" max="500" step="1" inputmode="decimal" placeholder="50" aria-describedby="match-error"><span class="suffix">%</span></div>
+            <p class="error" id="match-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="match-limit">Up to this much of pay</label>
+            <div class="control"><input class="has-suffix" id="match-limit" name="match-limit" type="number" min="0" max="100" step="0.1" inputmode="decimal" placeholder="6" aria-describedby="limit-error"><span class="suffix">%</span></div>
+            <p class="error" id="limit-error" aria-live="polite"></p>
+          </div>
+        </div>
+        <button class="calculate" type="submit">Calculate my match</button>
+        <p class="plan-note">Use your plan documents or benefits portal for the exact formula. Vesting rules are not included.</p>
+      </form>
+
+      <div class="results-panel">
+        <div class="empty-state" id="empty-state">
+          <p>Enter your salary, contribution rate, and employer formula to see the match you could receive each year.</p>
+        </div>
+        <div class="results" id="results" hidden aria-live="polite">
+          <p class="result-kicker">Estimated employer match each year</p>
+          <p class="total" id="employer-match">$0</p>
+          <p class="total-caption" id="match-caption">Based on the contribution and match formula entered.</p>
+
+          <div class="meter" role="img" id="meter" aria-label="0% of maximum employer match captured"><div class="meter-fill" id="meter-fill"></div></div>
+          <div class="meter-copy"><span id="captured-copy">0% of the available match captured</span><span id="max-match-copy">Maximum match: $0</span></div>
+
+          <div class="stat-grid">
+            <div class="stat"><span class="stat-label">Match left on the table</span><strong class="stat-value warn" id="left-on-table">$0</strong></div>
+            <div class="stat"><span class="stat-label">Contribution rate for full match</span><strong class="stat-value" id="full-rate">0%</strong></div>
+            <div class="stat"><span class="stat-label">Your annual contribution</span><strong class="stat-value" id="employee-annual">$0</strong></div>
+            <div class="stat"><span class="stat-label">Additional contribution to full match</span><strong class="stat-value" id="additional-needed">$0</strong></div>
+          </div>
+
+          <div class="action-row">
+            <a class="action email" id="email-results" href="#">Email my results</a>
+            <button class="action" id="copy-results" type="button">Copy results</button>
+          </div>
+          <p class="copy-status" id="copy-status" role="status"></p>
+
+          <details class="explanation" id="explanation">
+            <summary>Explain these results</summary>
+            <div class="explanation-body" id="explanation-body"></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="guidance" aria-label="Calculator notes">
+      <div>
+        <h2>How the math works</h2>
+        <p>Your match is your eligible contribution multiplied by the employer match rate. Eligible contributions stop at the plan’s “up to” percentage of salary. This calculator uses annual pay and does not model per-paycheck true-ups.</p>
+      </div>
+      <div>
+        <h2>Check the plan details</h2>
+        <p>Some plans use tiers, fixed-dollar amounts, waiting periods, vesting schedules, or paycheck-by-paycheck limits. If your formula has more than one tier, this simple calculator may not match your plan.</p>
+      </div>
+    </section>
+
+    <footer>For informational and educational purposes only. This calculator does not provide investment, tax, or legal advice. Results are estimates based only on the numbers entered.</footer>
+  </main>
+
+  <textarea class="sr-only" id="copy-fallback" tabindex="-1" aria-hidden="true"></textarea>
+
+  <script>
+    (function () {
+      'use strict';
+      var form = document.getElementById('match-form');
+      var salaryInput = document.getElementById('salary');
+      var employeeInput = document.getElementById('employee-rate');
+      var matchInput = document.getElementById('match-rate');
+      var limitInput = document.getElementById('match-limit');
+      var emptyState = document.getElementById('empty-state');
+      var results = document.getElementById('results');
+      var emailLink = document.getElementById('email-results');
+      var copyButton = document.getElementById('copy-results');
+      var copyStatus = document.getElementById('copy-status');
+      var resultText = '';
+
+      function numberFrom(input) {
+        return input.value.trim() === '' ? NaN : Number(input.value);
+      }
+
+      function setError(input, errorId, message) {
+        input.setAttribute('aria-invalid', message ? 'true' : 'false');
+        document.getElementById(errorId).textContent = message;
+      }
+
+      function money(value, cents) {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: cents ? 2 : 0,
+          maximumFractionDigits: cents ? 2 : 0
+        }).format(value);
+      }
+
+      function percent(value) {
+        return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(value) + '%';
+      }
+
+      function validate() {
+        var salary = numberFrom(salaryInput);
+        var employeeRate = numberFrom(employeeInput);
+        var matchRate = numberFrom(matchInput);
+        var matchLimit = numberFrom(limitInput);
+        var valid = true;
+
+        var salaryError = '';
+        if (!Number.isFinite(salary) || salary <= 0) salaryError = 'Enter an annual salary above $0.';
+        else if (salary > 10000000) salaryError = 'Enter a salary of $10,000,000 or less.';
+        setError(salaryInput, 'salary-error', salaryError); valid = valid && !salaryError;
+
+        var employeeError = '';
+        if (!Number.isFinite(employeeRate)) employeeError = 'Enter your contribution percentage.';
+        else if (employeeRate < 0 || employeeRate > 100) employeeError = 'Use a percentage from 0 to 100.';
+        setError(employeeInput, 'employee-error', employeeError); valid = valid && !employeeError;
+
+        var matchError = '';
+        if (!Number.isFinite(matchRate)) matchError = 'Enter the employer match percentage.';
+        else if (matchRate < 0 || matchRate > 500) matchError = 'Use a percentage from 0 to 500.';
+        setError(matchInput, 'match-error', matchError); valid = valid && !matchError;
+
+        var limitError = '';
+        if (!Number.isFinite(matchLimit)) limitError = 'Enter the pay limit percentage.';
+        else if (matchLimit < 0 || matchLimit > 100) limitError = 'Use a percentage from 0 to 100.';
+        setError(limitInput, 'limit-error', limitError); valid = valid && !limitError;
+
+        return valid ? { salary: salary, employeeRate: employeeRate, matchRate: matchRate, matchLimit: matchLimit } : null;
+      }
+
+      function calculate(values) {
+        var eligibleRate = Math.min(values.employeeRate, values.matchLimit);
+        var employeeAnnual = values.salary * values.employeeRate / 100;
+        var employeeNeededForFull = values.salary * values.matchLimit / 100;
+        var employerMatch = values.salary * eligibleRate / 100 * values.matchRate / 100;
+        var maxMatch = employeeNeededForFull * values.matchRate / 100;
+        var leftOnTable = Math.max(0, maxMatch - employerMatch);
+        var additionalEmployee = Math.max(0, employeeNeededForFull - employeeAnnual);
+        var captured = maxMatch > 0 ? Math.min(100, employerMatch / maxMatch * 100) : 100;
+        return {
+          employeeAnnual: employeeAnnual,
+          employerMatch: employerMatch,
+          maxMatch: maxMatch,
+          leftOnTable: leftOnTable,
+          additionalEmployee: additionalEmployee,
+          captured: captured
+        };
+      }
+
+      function render(values, calc) {
+        document.getElementById('employer-match').textContent = money(calc.employerMatch, true);
+        document.getElementById('match-caption').textContent = money(calc.employerMatch / 12, true) + ' per month on average, if spread evenly across the year.';
+        document.getElementById('meter-fill').style.width = calc.captured + '%';
+        document.getElementById('meter').setAttribute('aria-label', Math.round(calc.captured) + '% of maximum employer match captured');
+        document.getElementById('captured-copy').textContent = Math.round(calc.captured) + '% of the available match captured';
+        document.getElementById('max-match-copy').textContent = 'Maximum match: ' + money(calc.maxMatch, true);
+        document.getElementById('left-on-table').textContent = money(calc.leftOnTable, true);
+        document.getElementById('full-rate').textContent = percent(values.matchLimit);
+        document.getElementById('employee-annual').textContent = money(calc.employeeAnnual, true);
+        document.getElementById('additional-needed').textContent = money(calc.additionalEmployee, true) + ' / year';
+
+        var fullMatch = calc.leftOnTable < 0.005;
+        var explanation = '';
+        if (values.matchRate === 0 || values.matchLimit === 0) {
+          explanation = '<p>With the formula entered, the maximum employer match is $0. Double-check the plan formula if your employer offers a match.</p>';
+        } else if (fullMatch) {
+          explanation = '<p>You are contributing ' + percent(values.employeeRate) + ' of pay, which is enough to reach the plan’s ' + percent(values.matchLimit) + ' match limit. Based on a ' + percent(values.matchRate) + ' employer match, you are capturing the full estimated match of <strong>' + money(calc.maxMatch, true) + ' per year</strong>.</p>';
+          if (values.employeeRate > values.matchLimit) explanation += '<p>The part you contribute above ' + percent(values.matchLimit) + ' may still support your retirement savings, but it does not create more employer match under the formula entered.</p>';
+        } else {
+          explanation = '<p>You are contributing ' + percent(values.employeeRate) + ' of pay. To reach the plan’s full match, you would need to contribute ' + percent(values.matchLimit) + '—an additional <strong>' + percent(values.matchLimit - values.employeeRate) + ' of pay</strong>, or about <strong>' + money(calc.additionalEmployee, true) + ' per year</strong>.</p>';
+          explanation += '<p>At your current rate, the estimated employer match is ' + money(calc.employerMatch, true) + '. Reaching the full match would raise that to ' + money(calc.maxMatch, true) + ', so about <strong>' + money(calc.leftOnTable, true) + '</strong> of employer match is currently left on the table.</p>';
+        }
+        explanation += '<p>Your actual result can differ if the plan calculates the match each paycheck, uses a true-up, has a vesting schedule, or applies a more complex formula.</p>';
+        document.getElementById('explanation-body').innerHTML = explanation;
+
+        resultText = [
+          '401(k) Employer Match Estimate',
+          'Annual salary: ' + money(values.salary, true),
+          'Your contribution rate: ' + percent(values.employeeRate),
+          'Employer formula: ' + percent(values.matchRate) + ' match up to ' + percent(values.matchLimit) + ' of pay',
+          '',
+          'Estimated employer match: ' + money(calc.employerMatch, true) + ' per year',
+          'Maximum available match: ' + money(calc.maxMatch, true) + ' per year',
+          'Match captured: ' + Math.round(calc.captured) + '%',
+          'Match left on the table: ' + money(calc.leftOnTable, true),
+          'Contribution rate for full match: ' + percent(values.matchLimit),
+          'Your annual contribution: ' + money(calc.employeeAnnual, true),
+          'Additional annual contribution to full match: ' + money(calc.additionalEmployee, true),
+          '',
+          'Estimate only. Check your plan documents for the exact formula, paycheck rules, and vesting terms. Informational purposes only; not investment advice.'
+        ].join('\n');
+
+        var subject = 'My 401(k) employer match estimate';
+        emailLink.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(resultText);
+        copyStatus.textContent = '';
+        emptyState.hidden = true;
+        results.hidden = false;
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var values = validate();
+        if (!values) {
+          results.hidden = true;
+          emptyState.hidden = false;
+          var firstInvalid = form.querySelector('[aria-invalid="true"]');
+          if (firstInvalid) firstInvalid.focus();
+          return;
+        }
+        render(values, calculate(values));
+      });
+
+      [salaryInput, employeeInput, matchInput, limitInput].forEach(function (input) {
+        input.addEventListener('input', function () {
+          if (input.getAttribute('aria-invalid') === 'true') {
+            var ids = { salary: 'salary-error', 'employee-rate': 'employee-error', 'match-rate': 'match-error', 'match-limit': 'limit-error' };
+            setError(input, ids[input.id], '');
+          }
+        });
+      });
+
+      copyButton.addEventListener('click', function () {
+        function copied() {
+          copyStatus.textContent = 'Results copied.';
+          copyButton.textContent = 'Copied';
+          window.setTimeout(function () { copyButton.textContent = 'Copy results'; }, 1800);
+        }
+        function fallback() {
+          var area = document.getElementById('copy-fallback');
+          area.value = resultText;
+          area.removeAttribute('aria-hidden');
+          area.select();
+          try {
+            if (document.execCommand('copy')) copied();
+            else copyStatus.textContent = 'Copy did not work. Select the results and copy them manually.';
+          } catch (error) {
+            copyStatus.textContent = 'Copy did not work. Select the results and copy them manually.';
+          }
+          area.setAttribute('aria-hidden', 'true');
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(resultText).then(copied).catch(fallback);
+        } else {
+          fallback();
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

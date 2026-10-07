@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Tax-Loss Harvesting Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#0b0e14;--surface:#131923;--surface-2:#1c2531;--ink:#f5f5f5;--muted:#aab5c2;--line:#2d3947;--line-strong:#526171;--blue:#6490c4;--blue-soft:#182d43;--orange:#f7931a;--orange-ink:#181108;--orange-soft:#392816;--green:#39ff14;--green-soft:#17351b;--red:#ff7379;--shadow:0 20px 58px rgba(0,0,0,.3);--r-lg:22px;--r-md:12px}
+    @media(prefers-color-scheme:dark){:root{--bg:#080b10;--surface:#111720;--surface-2:#1a222d;--ink:#f5f7f9;--muted:#aab5c2;--line:#2d3947;--line-strong:#4c5b68;--blue:#77a8dd;--blue-soft:#172d43;--orange:#f7931a;--orange-ink:#181108;--orange-soft:#3a2916;--green:#39ff14;--green-soft:#17351b;--red:#ff7379;--shadow:0 20px 58px rgba(0,0,0,.3)}}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:linear-gradient(90deg,transparent 0 74%,color-mix(in srgb,var(--blue) 5%,transparent) 74% 74.15%,transparent 74.15%),var(--bg);color:var(--ink);font:16px/1.5 Manrope,sans-serif;-webkit-font-smoothing:antialiased}button,input{font:inherit;-webkit-tap-highlight-color:transparent}.home-link{position:fixed;z-index:20;top:max(10px,env(safe-area-inset-top));left:max(12px,env(safe-area-inset-left));display:inline-flex;align-items:center;min-height:36px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);box-shadow:0 5px 18px rgba(11,14,20,.12);color:var(--blue);font-size:.75rem;font-weight:800;text-decoration:none}.home-link:hover{background:var(--blue-soft)}.home-link:focus-visible,.calculate:focus-visible,.action:focus-visible,.explain-button:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 36%,transparent);outline-offset:2px}
+    .page{width:min(1160px,calc(100% - 40px));margin:0 auto;padding:68px 0 66px}.intro{display:grid;grid-template-columns:1.32fr .68fr;gap:44px;align-items:end;margin-bottom:26px}.intro h1{margin:0;max-width:780px;font-size:clamp(2.7rem,6vw,5.8rem);line-height:.94;letter-spacing:-.064em;font-weight:800}.intro h1 span{color:var(--green)}.intro-copy{margin:0 0 7px;max-width:37ch;color:var(--muted);font-size:1.04rem}.kicker{display:block;margin-bottom:8px;font:500 .72rem DM Mono,monospace;color:var(--orange);letter-spacing:.04em}.disclaimer{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;margin:0 0 24px;padding:15px 17px;border:1px solid color-mix(in srgb,var(--orange) 55%,var(--line));border-radius:10px;background:var(--orange-soft);color:var(--muted);font-size:.75rem}.disclaimer svg{width:20px;color:var(--orange)}.disclaimer strong{color:var(--ink)}
+    .workspace{display:grid;grid-template-columns:minmax(330px,420px) minmax(0,1fr);gap:22px;align-items:start}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:24px;border-radius:var(--r-lg) 6px var(--r-lg) var(--r-lg);position:sticky;top:18px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem DM Mono,monospace;color:var(--orange)}.field{margin-bottom:16px}.field label{display:block;margin:0 0 6px;color:var(--muted);font-size:.73rem;font-weight:800}.input-shell{display:flex;align-items:center;min-height:48px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg);transition:border-color .15s,box-shadow .15s}.input-shell:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 22%,transparent)}.affix{padding-left:11px;color:var(--muted);font:500 .8rem DM Mono,monospace}.affix.end{padding:0 11px 0 0}.input-shell input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);padding:11px 9px;font-weight:700;font-variant-numeric:tabular-nums}.input-shell input::-webkit-inner-spin-button{-webkit-appearance:none}.input-shell input::placeholder{color:color-mix(in srgb,var(--muted) 58%,transparent);font-weight:500}.micro{display:block;margin-top:5px;color:var(--muted);font-size:.66rem;line-height:1.42}.calculate{width:100%;border:0;border-radius:10px;margin-top:7px;padding:14px 18px;background:var(--orange);color:var(--orange-ink);font-weight:800;cursor:pointer;box-shadow:0 7px 0 color-mix(in srgb,var(--orange) 52%,#442000);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(4px);box-shadow:0 3px 0 color-mix(in srgb,var(--orange) 52%,#442000)}.privacy{margin:16px 2px 0;color:var(--muted);font-size:.69rem}.hidden{display:none!important}.error{margin:0 0 12px;padding:12px 14px;border-radius:10px;background:color-mix(in srgb,var(--red) 12%,var(--surface));color:var(--red);font-size:.82rem;font-weight:700}
+    .empty{min-height:530px;display:grid;place-items:center;text-align:center;border:1px dashed var(--line);border-radius:6px var(--r-lg) var(--r-lg) var(--r-lg);background:color-mix(in srgb,var(--surface) 74%,transparent);padding:38px}.empty svg{width:102px;color:var(--blue);margin-bottom:18px}.empty h2{margin:0 0 8px;font-size:1.55rem;letter-spacing:-.04em}.empty p{margin:0 auto;max-width:38ch;color:var(--muted);font-size:.92rem}.headline{position:relative;overflow:hidden;padding:30px;border-radius:6px var(--r-lg) var(--r-lg) var(--r-lg);background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.headline{background:#eff3f6;color:#0b0e14}}.headline:after{content:"";position:absolute;width:158px;height:158px;right:-63px;bottom:-73px;border:24px solid var(--green);border-radius:50%}.eyebrow{margin:0 0 9px;font:500 .71rem DM Mono,monospace;opacity:.65}.savings-total{position:relative;z-index:1;margin:0;font:500 clamp(2.65rem,6vw,5.2rem)/.96 DM Mono,monospace;letter-spacing:-.07em}.headline-note{position:relative;z-index:1;margin:10px 0 0;font-size:.86rem;opacity:.72}.hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;z-index:1;margin-top:26px;padding-top:19px;border-top:1px solid rgba(127,140,150,.38)}.hero-meta span{display:block;font-size:.66rem;opacity:.64;font-weight:700}.hero-meta strong{display:block;margin-top:4px;font:500 .9rem DM Mono,monospace}
+    .explain-control{margin:10px 0}.explain-button{display:flex;width:100%;align-items:center;justify-content:space-between;gap:16px;border:1px solid var(--blue);border-radius:var(--r-md);background:var(--surface);color:var(--blue);padding:13px 16px;cursor:pointer;text-align:left;font-weight:800}.explain-button:hover{background:var(--blue-soft)}.toggle-mark{display:grid;place-items:center;flex:0 0 24px;height:24px;border-radius:50%;background:var(--blue-soft);font:500 1.05rem/1 DM Mono,monospace;transition:transform .18s}.explain-button[aria-expanded="true"] .toggle-mark{transform:rotate(45deg)}.explanation{margin-top:7px;padding:17px 18px;border-radius:var(--r-md);background:var(--blue-soft);color:var(--ink)}.explanation p{margin:0;font-size:.82rem;line-height:1.64}
+    .comparison{margin:10px 0;padding:22px;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line)}.comparison-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:16px}.comparison h2{margin:0;font-size:1.06rem;letter-spacing:-.025em}.comparison-head p{margin:0;color:var(--muted);font-size:.69rem}.bar-row{display:grid;grid-template-columns:94px minmax(0,1fr) 96px;align-items:center;gap:10px;margin:12px 0}.bar-label{font-size:.7rem;font-weight:800}.bar-value{text-align:right;font:500 .75rem DM Mono,monospace}.bar-track{height:15px;background:var(--surface-2);border-radius:4px;overflow:hidden}.bar-fill{display:block;height:100%;background:var(--blue);border-radius:4px}.bar-fill.after{background:var(--green)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}.stat{padding:17px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-md)}.stat span{display:block;color:var(--muted);font-size:.67rem;font-weight:800;margin-bottom:6px}.stat strong{display:block;font:500 clamp(.96rem,2vw,1.3rem) DM Mono,monospace;letter-spacing:-.035em}.stat em{display:block;margin-top:6px;color:var(--muted);font-size:.64rem;font-style:normal}.breakdown{padding:22px;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.breakdown-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}.breakdown h2{margin:0;font-size:1.06rem;letter-spacing:-.025em}.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.action{display:inline-flex;justify-content:center;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:9px 12px;text-decoration:none;cursor:pointer;font-size:.7rem;font-weight:800;white-space:nowrap}.action.email{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}.rows{border-top:1px solid var(--line)}.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;padding:13px 2px;border-bottom:1px solid var(--line)}.row-name strong{display:block;font-size:.82rem}.row-name small{display:block;color:var(--muted);font-size:.65rem;margin-top:2px}.amount{font:500 .8rem DM Mono,monospace;text-align:right}.row.total-row{color:var(--green)}.note{margin-top:15px;padding:15px 17px;border-radius:10px;background:var(--orange-soft);color:var(--muted);font-size:.71rem;line-height:1.55}.note strong{color:var(--ink)}.method{margin-top:10px;padding:15px 17px;border-radius:10px;background:var(--blue-soft);color:var(--muted);font-size:.7rem}.method strong{color:var(--ink)}
+    .footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.69rem}.footer p{margin:0;max-width:95ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.page{width:min(100% - 28px,690px);padding-top:68px}.intro{grid-template-columns:1fr;gap:15px;margin-bottom:22px}.intro-copy{max-width:51ch}.workspace{grid-template-columns:1fr}.inputs{position:static;border-radius:var(--r-lg)}.headline,.empty{border-radius:var(--r-lg)}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px);padding:68px 0 52px}.intro h1{font-size:clamp(2.35rem,13vw,3.85rem)}.intro-copy{font-size:.94rem}.disclaimer{font-size:.7rem}.inputs,.headline,.breakdown,.comparison{padding:19px}.hero-meta{grid-template-columns:1fr 1fr}.hero-meta>div:last-child{grid-column:1/-1}.stats{grid-template-columns:1fr}.breakdown-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.bar-row{grid-template-columns:80px minmax(0,1fr)}.bar-value{grid-column:2;text-align:left;margin-top:-7px}.savings-total{font-size:clamp(2.25rem,12vw,3.4rem)}.comparison-head{align-items:flex-start;flex-direction:column;gap:4px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <h1>Put an investment loss to <span>work.</span></h1>
+    <div><span class="kicker">TAX OFFSET ESTIMATE</span><p class="intro-copy">Match available losses against realized gains and estimate how much tax the offset could save.</p></div>
+  </header>
+
+  <aside class="disclaimer" aria-label="Important tax disclaimer">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z" stroke="currentColor" stroke-width="2"/><path d="M12 9v5m0 3h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <div><strong>Estimate only — not tax advice.</strong> This tool uses the tax rate you enter and assumes the harvested loss can offset the gains entered. Actual results depend on holding periods, netting rules, account type, state law, and your full tax return.</div>
+  </aside>
+
+  <section class="workspace" aria-label="Tax-loss harvesting calculator">
+    <form class="panel inputs" id="harvestForm" novalidate>
+      <div class="section-head"><h2>Enter your numbers</h2><span class="step">3 INPUTS</span></div>
+      <div class="field">
+        <label for="gains">Realized capital gains</label>
+        <div class="input-shell"><span class="affix">$</span><input id="gains" type="number" min="0" step="0.01" inputmode="decimal" placeholder="10,000"></div>
+        <small class="micro">Gains already realized this tax year that a harvested loss could offset.</small>
+      </div>
+      <div class="field">
+        <label for="losses">Available losses to harvest</label>
+        <div class="input-shell"><span class="affix">$</span><input id="losses" type="number" min="0" step="0.01" inputmode="decimal" placeholder="4,000"></div>
+        <small class="micro">Enter the positive dollar amount of losses you may realize.</small>
+      </div>
+      <div class="field">
+        <label for="taxRate">Estimated tax rate on the gains</label>
+        <div class="input-shell"><input id="taxRate" type="number" min="0" max="100" step="0.1" inputmode="decimal" placeholder="15"><span class="affix end">%</span></div>
+        <small class="micro">Use the rate you expect on the gains being offset. Add state tax only if you want it reflected.</small>
+      </div>
+      <button class="calculate" type="submit">Estimate tax savings</button>
+      <p class="privacy">Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div>
+          <svg viewBox="0 0 120 92" fill="none" aria-hidden="true"><path d="M16 74h88" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M28 63V28m22 35V42m22 21V20m22 43V35" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path d="m21 18 16 13 17-17 18 13 25-19" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h2>See the offset.</h2>
+          <p>Enter gains, available losses, and your estimated tax rate to compare the tax before and after harvesting.</p>
+        </div>
+      </div>
+
+      <div id="resultState" class="hidden" aria-live="polite">
+        <div class="error hidden" id="errorBox"></div>
+        <div id="resultContent" class="hidden">
+          <section class="headline">
+            <p class="eyebrow">ESTIMATED TAX SAVINGS</p>
+            <p class="savings-total" id="savingsTotal">—</p>
+            <p class="headline-note" id="headlineNote">—</p>
+            <div class="hero-meta">
+              <div><span>LOSS USED</span><strong id="lossUsed">—</strong></div>
+              <div><span>GAIN LEFT</span><strong id="gainLeft">—</strong></div>
+              <div><span>RATE ENTERED</span><strong id="rateUsed">—</strong></div>
+            </div>
+          </section>
+
+          <div class="explain-control">
+            <button class="explain-button" id="explainResults" type="button" aria-expanded="false" aria-controls="resultExplanation"><span class="explain-label">Explain these results</span><span class="toggle-mark" aria-hidden="true">+</span></button>
+            <div class="explanation" id="resultExplanation" hidden><p id="explanationText"></p></div>
+          </div>
+
+          <section class="comparison">
+            <div class="comparison-head"><h2>Estimated tax on these gains</h2><p id="reductionLabel">—</p></div>
+            <div class="bar-row"><span class="bar-label">No harvest</span><div class="bar-track"><span class="bar-fill" id="beforeBar"></span></div><strong class="bar-value" id="taxBefore">—</strong></div>
+            <div class="bar-row"><span class="bar-label">After harvest</span><div class="bar-track"><span class="bar-fill after" id="afterBar"></span></div><strong class="bar-value" id="taxAfter">—</strong></div>
+          </section>
+
+          <div class="stats">
+            <article class="stat"><span>GAIN OFFSET</span><strong id="offsetAmount">—</strong><em>matched dollar for dollar</em></article>
+            <article class="stat"><span>GAIN STILL TAXABLE</span><strong id="taxableGain">—</strong><em>after the estimated offset</em></article>
+            <article class="stat"><span>UNUSED LOSS</span><strong id="unusedLoss">—</strong><em>not assigned a tax value here</em></article>
+          </div>
+
+          <section class="breakdown">
+            <div class="breakdown-head"><h2>Harvesting breakdown</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:" aria-label="Email these tax-loss harvesting results">Email my results</a><button type="button" class="action" id="copyResults" aria-live="polite">Copy results</button></div></div>
+            <div class="rows" id="breakdownRows"></div>
+            <div class="note"><strong>Watch the wash-sale rule.</strong> A loss can be disallowed for now if you buy the same or a substantially identical investment within 30 days before or after the sale. Purchases in another account, including some retirement accounts, can matter too. Consider the full 61-day window before trading.</div>
+            <div class="method"><strong>Method:</strong> Loss used = the smaller of realized gains and available losses. Estimated savings = loss used × entered tax rate. This simplified result does not value losses beyond the gains entered, apply the annual ordinary-income deduction, separate short- and long-term netting, or model carryforwards.</div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><p><strong>Before acting:</strong> Confirm the lot, cost basis, holding period, replacement-investment plan, and wash-sale exposure. Tax-loss harvesting can reduce taxes, but taxes should not be the only reason to change an investment.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('harvestForm'),lastResult=null;
+  function id(x){return document.getElementById(x)}
+  function readNumber(x){var raw=id(x).value.trim();return raw===''?null:Number(raw)}
+  function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(n===0?0:n)}
+  function percent(n){return new Intl.NumberFormat('en-US',{style:'percent',minimumFractionDigits:1,maximumFractionDigits:1}).format(n)}
+  function inputs(){return{gains:readNumber('gains'),losses:readNumber('losses'),rate:readNumber('taxRate')}}
+  function validate(x){if(x.gains===null||!Number.isFinite(x.gains)||x.gains<0)return'Enter realized capital gains of zero or more.';if(x.losses===null||!Number.isFinite(x.losses)||x.losses<0)return'Enter available losses of zero or more.';if(x.rate===null||!Number.isFinite(x.rate)||x.rate<0||x.rate>100)return'Enter an estimated tax rate from 0% to 100%.';return''}
+  function calculate(e){if(e)e.preventDefault();var x=inputs(),error=validate(x);id('emptyState').classList.add('hidden');id('resultState').classList.remove('hidden');if(error){id('errorBox').textContent=error;id('errorBox').classList.remove('hidden');id('resultContent').classList.add('hidden');lastResult=null;return}id('errorBox').classList.add('hidden');id('resultContent').classList.remove('hidden');var rate=x.rate/100,used=Math.min(x.gains,x.losses),gainLeft=Math.max(0,x.gains-used),unused=Math.max(0,x.losses-used),taxBefore=x.gains*rate,taxAfter=gainLeft*rate,savings=taxBefore-taxAfter;lastResult={x:x,rate:rate,used:used,gainLeft:gainLeft,unused:unused,taxBefore:taxBefore,taxAfter:taxAfter,savings:savings};render(lastResult)}
+  function row(name,note,value,cls){return'<div class="row '+(cls||'')+'"><div class="row-name"><strong>'+name+'</strong><small>'+note+'</small></div><span class="amount">'+money(value)+'</span></div>'}
+  function render(r){
+    id('savingsTotal').textContent=money(r.savings);id('lossUsed').textContent=money(r.used);id('gainLeft').textContent=money(r.gainLeft);id('rateUsed').textContent=percent(r.rate);id('offsetAmount').textContent=money(r.used);id('taxableGain').textContent=money(r.gainLeft);id('unusedLoss').textContent=money(r.unused);id('taxBefore').textContent=money(r.taxBefore);id('taxAfter').textContent=money(r.taxAfter);
+    var reduction=r.taxBefore>0?r.savings/r.taxBefore:0;id('reductionLabel').textContent=r.taxBefore>0?percent(reduction)+' lower on the gains entered':'No estimated tax before harvesting';id('headlineNote').textContent=r.used>0?'By offsetting '+money(r.used)+' of realized gains at the rate entered.':'No gain was matched with a harvested loss.';
+    id('beforeBar').style.width=r.taxBefore>0?'100%':'0%';id('afterBar').style.width=r.taxBefore>0?(r.taxAfter/r.taxBefore*100)+'%':'0%';
+    id('breakdownRows').innerHTML=row('Realized capital gains','Before any harvested loss',r.x.gains)+row('Available losses','Potential losses entered',-r.x.losses)+row('Loss applied to gains','Limited to the gains entered',-r.used)+row('Gain remaining','Estimated amount still exposed to the entered rate',r.gainLeft)+row('Estimated tax without harvesting','Realized gains × entered rate',r.taxBefore)+row('Estimated tax after harvesting','Remaining gain × entered rate',r.taxAfter)+row('Estimated tax savings','Difference between the two tax estimates',r.savings,'total-row');
+    updateExplanation(r);updateEmail(r)
+  }
+  function updateExplanation(r){var text;if(r.used===0){if(r.x.gains===0&&r.x.losses>0){text='You entered no realized capital gains, so this calculator has no gains to match with the '+money(r.x.losses)+' of available losses. That makes the estimated savings '+money(0)+' here. The losses may still have tax value elsewhere on your return, but this simplified estimate does not value ordinary-income deductions or future carryforwards.'}else if(r.x.losses===0&&r.x.gains>0){text='You entered '+money(r.x.gains)+' of realized gains but no losses to harvest. At the '+percent(r.rate)+' rate entered, the estimated tax stays '+money(r.taxBefore)+'. Add a potential loss amount to see how an offset would change it.'}else{text='There is no gain-and-loss match in the amounts entered, so this estimate shows no tax savings. The calculator values only losses that directly offset the realized gains entered.'}}else{text='You entered '+money(r.x.gains)+' of realized gains and '+money(r.x.losses)+' of losses that may be available to harvest. The calculator matches '+money(r.used)+' of those losses against the gains, leaving '+money(r.gainLeft)+' of gain. At the '+percent(r.rate)+' rate entered, the estimated tax falls from '+money(r.taxBefore)+' to '+money(r.taxAfter)+', a difference of '+money(r.savings)+'.'+(r.unused>0?' The remaining '+money(r.unused)+' of loss is not assigned a tax value here; its treatment depends on the rest of your return and future gains.':' All of the entered loss is used in this estimate.')+' This assumes the loss is allowed and does not run into the wash-sale rule.'}id('explanationText').textContent=text}
+  function summary(r){return['Tax-Loss Harvesting Calculator','', 'Realized capital gains: '+money(r.x.gains),'Available losses to harvest: '+money(r.x.losses),'Estimated tax rate: '+percent(r.rate),'','Loss applied to gains: '+money(r.used),'Gain remaining: '+money(r.gainLeft),'Unused loss: '+money(r.unused),'Estimated tax without harvesting: '+money(r.taxBefore),'Estimated tax after harvesting: '+money(r.taxAfter),'Estimated tax savings: '+money(r.savings),'','Estimate only, not tax advice. This assumes the harvested loss is allowed. Review the wash-sale rule and your full tax situation before acting.'].join('\n')}
+  function updateEmail(r){id('emailResults').href='mailto:?subject='+encodeURIComponent('My tax-loss harvesting estimate')+'&body='+encodeURIComponent(summary(r))}
+  function copy(){if(!lastResult)return;var button=id('copyResults'),text=summary(lastResult),done=function(){button.textContent='Copied';clearTimeout(button._t);button._t=setTimeout(function(){button.textContent='Copy results'},1600)},fallback=function(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{if(document.execCommand('copy'))done()}finally{area.remove()}};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done).catch(fallback)}else{fallback()}}
+  function toggleExplanation(){var button=id('explainResults'),panel=id('resultExplanation'),open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));panel.hidden=!open;button.querySelector('.explain-label').textContent=open?'Hide explanation':'Explain these results'}
+  form.addEventListener('submit',calculate);id('copyResults').addEventListener('click',copy);id('explainResults').addEventListener('click',toggleExplanation);
+})();
+</script>
+</body>
+</html>
