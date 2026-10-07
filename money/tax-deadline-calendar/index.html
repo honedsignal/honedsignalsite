@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Key federal filing, extension, estimated-tax, IRA, and HSA deadlines for tax years 2026 and 2027." />
+  <link rel="icon" href="data:," />
+  <title>Tax Deadline Calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap" rel="stylesheet">
+  <style>
+    :root { --surface:#f5f5f5; --panel:#fff; --panel-2:#ebedf0; --text:#10141c; --muted:#505a67; --line:#cfd4da; --blue:#416f9f; --blue-soft:#dbe9f6; --orange:#d86e00; --orange-soft:#ffe7ce; --green:#167b27; --green-soft:#dcefdc; --shadow:0 18px 48px rgba(11,14,20,.11); }
+    @media (prefers-color-scheme: dark) { :root { --surface:#0b0e14; --panel:#131821; --panel-2:#1a202a; --text:#f5f5f5; --muted:#aab4c2; --line:#2d3745; --blue:#7aa6d4; --blue-soft:#172c42; --orange:#f7931a; --orange-soft:#3a2816; --green:#39ff14; --green-soft:#15351a; --shadow:0 18px 48px rgba(0,0,0,.28); } }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; padding-top:calc(43px + env(safe-area-inset-top)); background:var(--surface); color:var(--text); font-family:"IBM Plex Sans",sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; }
+    .money-home { position:fixed; inset:0 0 auto; z-index:100; padding-top:env(safe-area-inset-top); background:color-mix(in srgb,var(--panel) 96%,transparent); border-bottom:1px solid var(--line); }
+    .money-home-inner { width:min(1120px,calc(100% - 40px)); min-height:43px; margin:0 auto; display:flex; align-items:center; }
+    .money-home a { color:var(--muted); font-size:.86rem; font-weight:700; text-decoration:none; }
+    .money-home a:hover { color:var(--orange); }
+    a:focus-visible { outline:2px solid var(--orange); outline-offset:4px; }
+    .shell { width:min(1120px,calc(100% - 40px)); margin:0 auto; }
+    .topline { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:19px 0; border-bottom:1px solid var(--line); color:var(--muted); font-size:.86rem; }
+    .stamp { display:inline-flex; align-items:center; gap:9px; font-weight:600; }
+    .stamp::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 4px var(--green-soft); }
+    .year-jump { display:flex; gap:16px; }
+    .year-jump a { color:var(--muted); text-decoration:none; font-weight:600; }
+    .year-jump a:hover { color:var(--orange); }
+    .hero { display:grid; grid-template-columns:1.2fr .8fr; gap:clamp(30px,6vw,76px); align-items:end; padding:clamp(54px,9vw,98px) 0 58px; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { margin-bottom:0; font-family:"Newsreader",serif; font-size:clamp(3.5rem,8.4vw,7.2rem); line-height:.88; letter-spacing:-.06em; font-weight:650; max-width:760px; }
+    h1 em { color:var(--orange); font-style:normal; }
+    .hero-copy { max-width:440px; }
+    .hero-copy p { margin-bottom:20px; color:var(--muted); font-size:clamp(1.03rem,2vw,1.22rem); }
+    .scope { display:flex; gap:12px; align-items:flex-start; padding-top:19px; border-top:1px solid var(--line); color:var(--muted); font-size:.89rem; }
+    .scope svg { flex:0 0 auto; color:var(--orange); margin-top:2px; }
+    .rule-band { display:grid; grid-template-columns:.9fr 1.1fr; overflow:hidden; border-radius:22px 7px 22px 7px; background:#0b0e14; color:#f5f5f5; box-shadow:var(--shadow); }
+    .rule-band>div { padding:30px 34px; }
+    .rule-band .rule-lead { border-right:1px solid #2d3745; }
+    .rule-band small { display:block; color:#9dadbf; font-weight:700; margin-bottom:8px; }
+    .rule-band strong { display:block; font-family:"Newsreader",serif; font-size:clamp(1.8rem,4vw,2.9rem); line-height:1; font-weight:650; }
+    .rule-band p { margin:0; color:#bcc6d2; }
+    section { padding:82px 0; }
+    .year-section { scroll-margin-top:62px; }
+    .year-header { display:grid; grid-template-columns:210px 1fr; gap:36px; align-items:end; margin-bottom:30px; }
+    .year-mark { font-family:"Newsreader",serif; font-size:clamp(4.2rem,8vw,7rem); line-height:.82; letter-spacing:-.055em; color:var(--orange); font-weight:650; }
+    .year-intro { max-width:680px; }
+    .year-intro h2 { margin-bottom:8px; font-family:"Newsreader",serif; font-size:clamp(2rem,4vw,3.25rem); line-height:1; letter-spacing:-.035em; font-weight:650; }
+    .year-intro p { margin-bottom:0; color:var(--muted); }
+    .timeline { border-top:1px solid var(--line); }
+    .deadline { display:grid; grid-template-columns:178px 1fr auto; gap:28px; align-items:start; padding:25px 0; border-bottom:1px solid var(--line); }
+    .date { display:grid; grid-template-columns:42px 1fr; gap:12px; align-items:center; }
+    .month { display:grid; place-items:center; min-height:34px; border-radius:6px; background:var(--orange-soft); color:var(--orange); font-size:.73rem; font-weight:800; letter-spacing:.04em; }
+    .dayline { line-height:1.1; }
+    .dayline strong { display:block; font-size:1.22rem; }
+    .dayline span { color:var(--muted); font-size:.78rem; }
+    .event h3 { margin-bottom:5px; font-size:1.08rem; line-height:1.3; }
+    .event p { margin-bottom:0; color:var(--muted); font-size:.92rem; max-width:650px; }
+    .tag { display:inline-flex; align-items:center; min-height:26px; padding:4px 9px; border-radius:999px; background:var(--blue-soft); color:var(--blue); font-size:.71rem; font-weight:800; white-space:nowrap; }
+    .tag.file { background:var(--orange-soft); color:var(--orange); }
+    .tag.save { background:var(--green-soft); color:var(--green); }
+    .shift-note { display:grid; grid-template-columns:42px 1fr; gap:14px; margin-top:26px; padding:21px 22px; background:var(--panel-2); border-radius:7px 20px 7px 20px; }
+    .shift-note svg { color:var(--orange); margin-top:2px; }
+    .shift-note strong { display:block; margin-bottom:4px; }
+    .shift-note p { margin-bottom:0; color:var(--muted); font-size:.91rem; }
+    .plain-guide { padding-top:14px; }
+    .guide-heading { display:grid; grid-template-columns:.7fr 1.3fr; gap:40px; margin-bottom:32px; }
+    .guide-heading h2 { margin-bottom:0; font-family:"Newsreader",serif; font-size:clamp(2.4rem,5vw,4.7rem); line-height:.94; letter-spacing:-.045em; font-weight:650; }
+    .guide-heading p { margin:7px 0 0; color:var(--muted); max-width:630px; }
+    .guide-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .guide-item { padding-top:22px; border-top:3px solid var(--blue); }
+    .guide-item:nth-child(2) { border-top-color:var(--orange); }
+    .guide-item:nth-child(3) { border-top-color:var(--green); }
+    .guide-item h3 { margin-bottom:8px; font-size:1.05rem; }
+    .guide-item p { margin-bottom:0; color:var(--muted); font-size:.9rem; }
+    .verification { margin-top:78px; padding:40px; background:var(--panel); border:1px solid var(--line); border-radius:22px 7px 22px 7px; }
+    .verification h2 { margin-bottom:10px; font-family:"Newsreader",serif; font-size:clamp(2rem,4vw,3rem); line-height:1; letter-spacing:-.03em; }
+    .verification>p { color:var(--muted); max-width:790px; }
+    .source-list { display:grid; gap:0; margin-top:24px; border-top:1px solid var(--line); }
+    .source-list a { display:grid; grid-template-columns:38px 1fr auto; gap:14px; align-items:center; padding:15px 0; border-bottom:1px solid var(--line); text-decoration:none; }
+    .source-list a:hover .source-name { color:var(--orange); }
+    .source-num { color:var(--muted); font-size:.78rem; font-weight:700; }
+    .source-name { font-weight:700; }
+    .source-desc { color:var(--muted); font-size:.84rem; text-align:right; }
+    footer { margin-top:78px; padding:28px 0 46px; border-top:1px solid var(--line); color:var(--muted); font-size:.84rem; }
+    footer strong { color:var(--text); }
+    @media (max-width:820px) { .hero,.rule-band,.year-header,.guide-heading { grid-template-columns:1fr; } .hero { gap:30px; } .rule-band .rule-lead { border-right:0; border-bottom:1px solid #2d3745; } .year-header { gap:14px; } .year-mark { font-size:4.6rem; } .deadline { grid-template-columns:160px 1fr; gap:20px; } .deadline .tag { grid-column:2; justify-self:start; margin-top:-10px; } .guide-grid { grid-template-columns:1fr; } }
+    @media (max-width:600px) { .shell,.money-home-inner { width:min(100% - 28px,1120px); } .topline { align-items:flex-start; } .year-jump { display:none; } .hero { padding:50px 0 44px; } h1 { font-size:clamp(3.25rem,17vw,5rem); } .rule-band>div { padding:25px 22px; } section { padding:64px 0; } .deadline { grid-template-columns:1fr; gap:13px; padding:22px 0; } .date { grid-template-columns:42px 1fr; } .deadline .tag { grid-column:1; margin-top:0; } .shift-note { grid-template-columns:32px 1fr; padding:18px; } .verification { margin-top:62px; padding:28px 22px; } .source-list a { grid-template-columns:30px 1fr; } .source-desc { grid-column:2; text-align:left; } footer { margin-top:62px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <nav class="money-home" aria-label="Honed Money"><div class="money-home-inner"><a href="/money/">← Honed Money</a></div></nav>
+  <main class="shell">
+    <div class="topline"><span class="stamp">Reviewed October 7, 2026</span><nav class="year-jump" aria-label="Jump to tax year"><a href="#tax-year-2026">2026 tax year</a><a href="#tax-year-2027">2027 tax year</a></nav></div>
+    <header class="hero">
+      <h1>Federal tax <em>deadlines.</em></h1>
+      <div class="hero-copy"><p>A clear calendar for individual, calendar-year filers—covering returns, extensions, estimated payments, and IRA/HSA contribution cutoffs.</p><div class="scope"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/><path d="M12 10v6m0-10h.01"/></svg><span>These are federal dates. State deadlines and special rules may differ.</span></div></div>
+    </header>
+    <aside class="rule-band" aria-label="Extension rule"><div class="rule-lead"><small>The rule that matters</small><strong>More time to file is not more time to pay.</strong></div><div><p>If you request an extension, estimate and pay any federal tax due by the regular April filing deadline. The extension only moves the date for sending the return.</p></div></aside>
+
+    <section class="year-section" id="tax-year-2026" aria-labelledby="heading-2026">
+      <div class="year-header"><div class="year-mark" aria-hidden="true">2026</div><div class="year-intro"><h2 id="heading-2026">Tax year 2026</h2><p>Income earned January through December 2026. The return is generally filed in 2027.</p></div></div>
+      <div class="timeline" aria-label="2026 tax year deadlines">
+        <article class="deadline"><time class="date" datetime="2026-04-15"><span class="month">APR</span><span class="dayline"><strong>15, 2026</strong><span>Wednesday</span></span></time><div class="event"><h3>Estimated tax — first payment</h3><p>Covers income received January 1 through March 31.</p></div><span class="tag">Estimated</span></article>
+        <article class="deadline"><time class="date" datetime="2026-06-15"><span class="month">JUN</span><span class="dayline"><strong>15, 2026</strong><span>Monday</span></span></time><div class="event"><h3>Estimated tax — second payment</h3><p>Covers income received April 1 through May 31.</p></div><span class="tag">Estimated</span></article>
+        <article class="deadline"><time class="date" datetime="2026-09-15"><span class="month">SEP</span><span class="dayline"><strong>15, 2026</strong><span>Tuesday</span></span></time><div class="event"><h3>Estimated tax — third payment</h3><p>Covers income received June 1 through August 31.</p></div><span class="tag">Estimated</span></article>
+        <article class="deadline"><time class="date" datetime="2027-01-15"><span class="month">JAN</span><span class="dayline"><strong>15, 2027</strong><span>Friday</span></span></time><div class="event"><h3>Estimated tax — fourth payment</h3><p>The final 2026 installment, covering income received September 1 through December 31.</p></div><span class="tag">Estimated</span></article>
+        <article class="deadline"><time class="date" datetime="2027-04-15"><span class="month">APR</span><span class="dayline"><strong>15, 2027</strong><span>Thursday</span></span></time><div class="event"><h3>File, pay, or request an extension</h3><p>File the 2026 federal return and pay any balance due. This is also the deadline to request the automatic filing extension.</p></div><span class="tag file">File + pay</span></article>
+        <article class="deadline"><time class="date" datetime="2027-04-15"><span class="month">APR</span><span class="dayline"><strong>15, 2027</strong><span>Thursday</span></span></time><div class="event"><h3>IRA and HSA contribution deadline</h3><p>Last day for most eligible filers to make a contribution designated for tax year 2026. A filing extension does not move this cutoff.</p></div><span class="tag save">IRA + HSA</span></article>
+        <article class="deadline"><time class="date" datetime="2027-10-15"><span class="month">OCT</span><span class="dayline"><strong>15, 2027</strong><span>Friday</span></span></time><div class="event"><h3>Extended return due</h3><p>Deadline to file the 2026 federal return if a valid extension was requested. Any tax owed was still due in April.</p></div><span class="tag file">Extension</span></article>
+      </div>
+    </section>
+
+    <section class="year-section" id="tax-year-2027" aria-labelledby="heading-2027">
+      <div class="year-header"><div class="year-mark" aria-hidden="true">2027</div><div class="year-intro"><h2 id="heading-2027">Tax year 2027</h2><p>Income earned January through December 2027. The return is generally filed in 2028.</p></div></div>
+      <div class="timeline" aria-label="2027 tax year deadlines">
+        <article class="deadline"><time class="date" datetime="2027-04-15"><span class="month">APR</span><span class="dayline"><strong>15, 2027</strong><span>Thursday</span></span></time><div class="event"><h3>Estimated tax — first payment</h3><p>Covers income received January 1 through March 31.</p></div><span class="tag">Estimated</span></article>
+        <article class="deadline"><time class="date" datetime="2027-06-15"><span class="month">JUN</span><span class="dayline"><strong>15, 2027</strong><span>Tuesday</span></span></time><div class="event"><h3>Estimated tax — second payment</h3><p>Covers income received April 1 through May 31.</p></div><span class="tag">Estimated</span></article>
+        <article class="deadline"><time class="date" datetime="2027-09-15"><span class="month">SEP</span><span class="dayline"><strong>15, 2027</strong><span>Wednesday</span></span></time><div class="event"><h3>Estimated tax — third payment</h3><p>Covers income received June 1 through August 31.</p></div><span class="tag">Estimated</span></article>
+        <article class="deadline"><time class="date" datetime="2028-01-18"><span class="month">JAN</span><span class="dayline"><strong>18, 2028</strong><span>Tuesday</span></span></time><div class="event"><h3>Estimated tax — fourth payment</h3><p>The usual January 15 date falls on Saturday; Monday is the federal Martin Luther King Jr. holiday, so the deadline moves to Tuesday.</p></div><span class="tag">Shifted</span></article>
+        <article class="deadline"><time class="date" datetime="2028-04-18"><span class="month">APR</span><span class="dayline"><strong>18, 2028</strong><span>Tuesday</span></span></time><div class="event"><h3>File, pay, or request an extension</h3><p>April 15 falls on Saturday, and DC Emancipation Day is observed Monday, April 17. The nationwide filing and payment date moves to Tuesday.</p></div><span class="tag file">Shifted</span></article>
+        <article class="deadline"><time class="date" datetime="2028-04-18"><span class="month">APR</span><span class="dayline"><strong>18, 2028</strong><span>Tuesday</span></span></time><div class="event"><h3>IRA and HSA contribution deadline</h3><p>Last day for most eligible filers to make a contribution designated for tax year 2027. It follows the unextended federal filing deadline.</p></div><span class="tag save">IRA + HSA</span></article>
+        <article class="deadline"><time class="date" datetime="2028-10-16"><span class="month">OCT</span><span class="dayline"><strong>16, 2028</strong><span>Monday</span></span></time><div class="event"><h3>Extended return due</h3><p>October 15 falls on Sunday, so the extended filing deadline moves to Monday. Any tax owed was still due in April.</p></div><span class="tag file">Shifted</span></article>
+      </div>
+      <aside class="shift-note"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z"/><path d="m9 15 2 2 4-4"/></svg><div><strong>Why some 2028 dates move</strong><p>IRS deadlines roll forward when the usual date lands on a weekend or legal holiday. The January payment and April filing dates each cross more than one non-business day.</p></div></aside>
+    </section>
+
+    <section class="plain-guide" aria-labelledby="guide-title">
+      <div class="guide-heading"><h2 id="guide-title">Before you rely on a date</h2><p>This calendar is built for the common case. A few circumstances can change your federal deadline.</p></div>
+      <div class="guide-grid"><article class="guide-item"><h3>Disaster relief</h3><p>The IRS may postpone deadlines for people and businesses in federally declared disaster areas.</p></article><article class="guide-item"><h3>Living or serving abroad</h3><p>Taxpayers outside the United States and qualifying military personnel can have different filing rules.</p></article><article class="guide-item"><h3>Fiscal-year filers</h3><p>These dates assume a January–December tax year. A different tax year produces different due dates.</p></article></div>
+      <div class="verification" aria-labelledby="sources-title">
+        <h2 id="sources-title">How these dates were checked</h2>
+        <p>The 2026 schedule uses the IRS’s published 2026 guidance. The 2027 planning dates apply the IRS’s standing due-date rules to the verified 2027–2028 weekend and federal-holiday calendar. Recheck for later IRS relief or calendar updates before filing.</p>
+        <div class="source-list">
+          <a href="https://www.irs.gov/publications/p509" target="_blank" rel="noopener noreferrer"><span class="source-num">01</span><span class="source-name">IRS Publication 509</span><span class="source-desc">filing and weekend/holiday rules</span></a>
+          <a href="https://www.irs.gov/faqs/estimated-tax/individuals/individuals-2" target="_blank" rel="noopener noreferrer"><span class="source-num">02</span><span class="source-name">IRS estimated-tax FAQ</span><span class="source-desc">quarterly payment dates</span></a>
+          <a href="https://www.irs.gov/publications/p590a" target="_blank" rel="noopener noreferrer"><span class="source-num">03</span><span class="source-name">IRS Publication 590-A</span><span class="source-desc">IRA contribution timing</span></a>
+          <a href="https://www.irs.gov/instructions/i8889" target="_blank" rel="noopener noreferrer"><span class="source-num">04</span><span class="source-name">IRS Form 8889 instructions</span><span class="source-desc">HSA contribution timing</span></a>
+          <a href="https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/" target="_blank" rel="noopener noreferrer"><span class="source-num">05</span><span class="source-name">U.S. Office of Personnel Management</span><span class="source-desc">2027–2028 federal holidays</span></a>
+          <a href="https://www.dor.sc.gov/index.php/income-tax-emancipation-day-holiday-impact-filing-deadlines-payments-and-claims-refund" target="_blank" rel="noopener noreferrer"><span class="source-num">06</span><span class="source-name">Government guidance on DC Emancipation Day</span><span class="source-desc">nationwide April deadline shift</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="shell"><strong>Informational purposes only.</strong> This reference does not constitute tax advice. Tax rules and relief provisions can change; confirm the date that applies to your situation with the IRS or a qualified tax professional.</div></footer>
+</body>
+</html>

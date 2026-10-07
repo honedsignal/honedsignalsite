@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Mortgage Payment Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:dark;
+      --paper:#080b10;--surface:#111720;--surface-2:#1a222d;--ink:#f4f7f9;--muted:#adb8c4;
+      --line:#2d3947;--line-strong:#4a5969;--blue:#77a8dd;--blue-soft:#172d43;
+      --orange:#f7931a;--orange-ink:#0b0e14;--orange-soft:#3a2916;--green:#39ff14;
+      --red:#ff6a70;--grid:rgba(119,168,221,.055);--shadow:0 24px 70px rgba(0,0,0,.38);
+    }
+    @media(prefers-color-scheme:dark){:root{color-scheme:dark}}
+    @media(prefers-color-scheme:light){:root{color-scheme:dark}}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-width:320px;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    button,input,a,summary{-webkit-tap-highlight-color:transparent}button,input{font:inherit}
+    .home-link{display:inline-block;margin-bottom:14px;color:var(--ink);font-size:.78rem;font-weight:700;text-decoration:none}
+    .home-link:hover{color:var(--blue)}
+    .page{width:min(1180px,calc(100% - 40px));margin:0 auto;padding:24px 0 64px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:42px;align-items:end;padding:14px 0 34px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:780px;font-size:clamp(2.55rem,6vw,5.8rem);line-height:.95;letter-spacing:-.06em;font-weight:800}
+    h1 span{color:var(--orange)}
+    .intro p{margin:0 0 7px;max-width:37ch;color:var(--muted);font-size:clamp(1rem,1.7vw,1.16rem)}
+    .workbench{display:grid;grid-template-columns:minmax(320px,410px) minmax(0,1fr);margin-top:28px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .input-panel{padding:28px;border-right:1px solid var(--line)}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:21px}
+    .section-head h2{margin:0;font-size:1rem;letter-spacing:-.025em}.section-head span{font:500 .68rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:17px}
+    label{display:block;margin-bottom:6px;color:var(--muted);font-size:.78rem;font-weight:700}
+    .control{display:flex;align-items:center;min-height:48px;border:1px solid var(--line-strong);border-radius:5px;background:var(--paper);transition:border-color .15s,box-shadow .15s}
+    .control:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 22%,transparent)}
+    .affix{padding-left:12px;color:var(--muted);font:500 .82rem "DM Mono",monospace;white-space:nowrap}.affix.end{padding:0 12px 0 0}
+    input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);padding:11px 9px;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}input::placeholder{color:color-mix(in srgb,var(--muted) 58%,transparent);font-weight:500}
+    .field-help{margin:5px 1px 0;color:var(--muted);font-size:.69rem}
+    .calculate{width:100%;min-height:50px;margin-top:4px;padding:13px 17px;border:1px solid var(--orange);border-radius:5px;background:var(--orange);color:var(--orange-ink);font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--orange) 48%,#3b2109);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--orange) 48%,#3b2109)}
+    .error{display:none;margin:14px 0 0;padding:11px 12px;border:1px solid color-mix(in srgb,var(--red) 55%,var(--line));border-radius:5px;background:color-mix(in srgb,var(--red) 10%,var(--surface));color:var(--red);font-size:.78rem;font-weight:700}.error.show{display:block}
+    .results-panel{min-width:0;padding:clamp(28px,4vw,48px)}
+    .empty-state{display:grid;min-height:470px;place-items:center;text-align:center;color:var(--muted)}
+    .empty-state-inner{max-width:390px}.empty-figure{width:150px;margin:0 auto 22px;color:var(--blue)}.empty-figure svg{display:block;width:100%;height:auto}
+    .empty-state h2{margin:0 0 8px;color:var(--ink);font-size:1.5rem;letter-spacing:-.035em}.empty-state p{margin:0;font-size:.9rem}
+    .results[hidden],.empty-state[hidden]{display:none!important}
+    .result-kicker{margin:0 0 7px;color:var(--muted);font-size:.76rem;font-weight:700}
+    .payment{margin:0;color:var(--green);font:500 clamp(2.65rem,6.8vw,5.8rem)/.98 "DM Mono",monospace;letter-spacing:-.06em;overflow-wrap:anywhere}
+    .payment-caption{margin:10px 0 28px;color:var(--muted);font-size:.92rem}
+    .cost-strip{display:grid;grid-template-columns:50% 50%;height:48px;margin:0 0 8px;overflow:hidden;border:1px solid var(--line);border-radius:5px}
+    .cost-strip span{display:flex;align-items:center;justify-content:center;min-width:0;padding:0 10px;font:500 .66rem "DM Mono",monospace;white-space:nowrap;overflow:hidden}.cost-strip .principal{background:var(--blue);color:#07111b}.cost-strip .interest{background:var(--orange);color:var(--orange-ink)}
+    .cost-legend{display:flex;justify-content:space-between;gap:12px;margin-bottom:27px;color:var(--muted);font-size:.7rem}.cost-legend span{display:flex;align-items:center;gap:6px}.dot{width:8px;height:8px;border-radius:50%}
+    .stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .stat{min-width:0;padding:17px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.stat-label{display:block;margin-bottom:6px;color:var(--muted);font-size:.69rem;font-weight:700}.stat-value{display:block;font:500 clamp(.95rem,2vw,1.28rem) "DM Mono",monospace;overflow-wrap:anywhere}.stat-value.interest{color:var(--orange)}
+    .action-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 13px;border:1px solid var(--line-strong);border-radius:5px;background:var(--surface);color:var(--ink);font-size:.75rem;font-weight:800;text-decoration:none;cursor:pointer}.action:hover{border-color:var(--blue);color:var(--blue)}.action.email{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}.action.email:hover{color:var(--orange-ink);filter:brightness(.95)}
+    .copy-status{min-height:19px;margin:7px 0 0;color:var(--muted);font-size:.72rem}
+    .explanation{margin-top:20px;padding:17px 2px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.86rem;line-height:1.7}.explanation[hidden]{display:none!important}.explanation p{margin:0}
+    .method{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;margin-top:28px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.7rem}.method p{margin:0}.method strong{color:var(--ink)}
+    button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 30%,transparent);outline-offset:2px}
+    @media(max-width:840px){.page{width:min(100% - 28px,680px)}.intro{grid-template-columns:1fr;gap:16px;padding-top:6px}.workbench{grid-template-columns:1fr}.input-panel{border-right:0;border-bottom:1px solid var(--line)}.empty-state{min-height:390px}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px);padding-bottom:48px}.intro{padding-bottom:24px}h1{font-size:clamp(2.4rem,14vw,4rem)}.input-panel,.results-panel{padding:21px}.stat-grid{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:1/-1}.action-row{display:grid;grid-template-columns:1fr 1fr}.action:first-child{grid-column:1/-1}.method{grid-template-columns:1fr;gap:10px}.cost-strip span{font-size:.61rem}}
+    @media(max-width:370px){.action-row{grid-template-columns:1fr}.action:first-child{grid-column:auto}.stat-grid{grid-template-columns:1fr}.stat:last-child{grid-column:auto}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+  <header class="intro">
+    <h1>See what the loan <span>really costs.</span></h1>
+    <p>Estimate your monthly principal and interest payment, then see how much interest you would pay over the full loan.</p>
+  </header>
+
+  <section class="workbench" aria-label="Mortgage payment calculator">
+    <form class="input-panel" id="calcForm" novalidate>
+      <div class="section-head"><h2>Your mortgage</h2><span>4 INPUTS</span></div>
+      <div class="field">
+        <label for="homePrice">Home price</label>
+        <div class="control"><span class="affix">$</span><input id="homePrice" name="homePrice" type="number" min="1" step="1000" inputmode="decimal" placeholder="350,000" required></div>
+      </div>
+      <div class="field">
+        <label for="downPayment">Down payment</label>
+        <div class="control"><span class="affix">$</span><input id="downPayment" name="downPayment" type="number" min="0" step="1000" inputmode="decimal" placeholder="70,000" required></div>
+        <p class="field-help">Enter a dollar amount, not a percentage.</p>
+      </div>
+      <div class="field">
+        <label for="interestRate">Annual interest rate</label>
+        <div class="control"><input id="interestRate" name="interestRate" type="number" min="0" max="30" step="0.01" inputmode="decimal" placeholder="6.50" required><span class="affix end">%</span></div>
+      </div>
+      <div class="field">
+        <label for="loanTerm">Loan term</label>
+        <div class="control"><input id="loanTerm" name="loanTerm" type="number" min="1" max="50" step="1" inputmode="numeric" placeholder="30" required><span class="affix end">years</span></div>
+      </div>
+      <button class="calculate" type="submit">Calculate payment</button>
+      <div class="error" id="errorBox" role="alert" aria-live="assertive"></div>
+    </form>
+
+    <section class="results-panel" aria-label="Mortgage calculation results">
+      <div class="empty-state" id="emptyState">
+        <div class="empty-state-inner">
+          <div class="empty-figure" aria-hidden="true">
+            <svg viewBox="0 0 180 122" fill="none">
+              <path d="M12 63 65 18l53 45v48H12V63Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M42 111V78h31v33M126 22h42v88h-42" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M139 41h16M139 57h16M139 73h16M139 89h16" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h2>Start with the four numbers you know.</h2>
+          <p>Your result will separate the amount borrowed from the interest charged over time.</p>
+        </div>
+      </div>
+
+      <div class="results" id="results" hidden aria-live="polite">
+        <p class="result-kicker">ESTIMATED MONTHLY PRINCIPAL &amp; INTEREST</p>
+        <p class="payment" id="monthlyPayment">—</p>
+        <p class="payment-caption" id="paymentCaption">—</p>
+
+        <div class="cost-strip" id="costStrip" aria-label="Share of total loan payments going to principal and interest">
+          <span class="principal" id="principalBar">Principal</span><span class="interest" id="interestBar">Interest</span>
+        </div>
+        <div class="cost-legend">
+          <span><i class="dot" style="background:var(--blue)"></i><b id="principalShare">—</b> principal</span>
+          <span><i class="dot" style="background:var(--orange)"></i><b id="interestShare">—</b> interest</span>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat"><span class="stat-label">LOAN AMOUNT</span><strong class="stat-value" id="loanAmount">—</strong></div>
+          <div class="stat"><span class="stat-label">TOTAL OF PAYMENTS</span><strong class="stat-value" id="totalPaid">—</strong></div>
+          <div class="stat"><span class="stat-label">TOTAL INTEREST</span><strong class="stat-value interest" id="totalInterest">—</strong></div>
+        </div>
+
+        <div class="action-row">
+          <button class="action" type="button" id="explainButton" aria-expanded="false" aria-controls="explanation">Explain these results</button>
+          <a class="action email" id="emailResults" href="mailto:" aria-label="Email my mortgage results">Email my results</a>
+          <button class="action" type="button" id="copyResults">Copy results</button>
+        </div>
+        <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+
+        <section class="explanation" id="explanation" hidden aria-label="Plain-English explanation">
+          <p id="explanationText"></p>
+        </section>
+      </div>
+    </section>
+  </section>
+
+  <footer class="method">
+    <p><strong>Method:</strong> The standard fixed-rate mortgage formula spreads the borrowed amount across equal monthly payments. Each payment includes principal—the amount borrowed—and interest—the lender’s charge.</p>
+    <p><strong>What is excluded:</strong> Property taxes, homeowners insurance, mortgage insurance, homeowners association fees, closing costs, rate changes, and extra payments. This estimate is for informational and educational purposes only.</p>
+  </footer>
+</main>
+<script>
+(function(){
+  'use strict';
+  var form=document.getElementById('calcForm');
+  var errorBox=document.getElementById('errorBox');
+  var emptyState=document.getElementById('emptyState');
+  var results=document.getElementById('results');
+  var explainButton=document.getElementById('explainButton');
+  var explanation=document.getElementById('explanation');
+  var lastSummary='';
+
+  function value(id){return parseFloat(document.getElementById(id).value)}
+  function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(n)}
+  function moneyWhole(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n)}
+  function percent(n){return n.toFixed(1).replace(/\.0$/,'')+'%'}
+
+  function validate(v){
+    if(!isFinite(v.price)||!isFinite(v.down)||!isFinite(v.rate)||!isFinite(v.term))return'Enter all four numbers to calculate your payment.';
+    if(v.price<=0)return'Home price must be greater than zero.';
+    if(v.down<0)return'Down payment cannot be negative.';
+    if(v.down>=v.price)return'Down payment must be less than the home price.';
+    if(v.rate<0||v.rate>30)return'Interest rate must be between 0% and 30%.';
+    if(v.term<1||v.term>50||Math.floor(v.term)!==v.term)return'Loan term must be a whole number from 1 to 50 years.';
+    return'';
+  }
+
+  function calculate(v){
+    var loan=v.price-v.down;
+    var months=v.term*12;
+    var monthlyRate=v.rate/100/12;
+    var payment;
+    if(monthlyRate===0){payment=loan/months}
+    else{
+      var factor=Math.pow(1+monthlyRate,months);
+      payment=loan*monthlyRate*factor/(factor-1);
+    }
+    var total=payment*months;
+    var interest=Math.max(0,total-loan);
+    return{price:v.price,down:v.down,rate:v.rate,term:v.term,loan:loan,months:months,payment:payment,total:total,interest:interest,downPercent:v.down/v.price*100,principalPercent:loan/total*100,interestPercent:interest/total*100};
+  }
+
+  function summary(r){
+    return [
+      'Mortgage Payment Calculator results','',
+      'Estimated monthly principal and interest: '+money(r.payment),
+      'Home price: '+money(r.price),
+      'Down payment: '+money(r.down)+' ('+percent(r.downPercent)+')',
+      'Loan amount: '+money(r.loan),
+      'Interest rate: '+r.rate.toFixed(2).replace(/\.00$/,'')+'%',
+      'Loan term: '+r.term+' years ('+r.months+' monthly payments)',
+      'Total of principal and interest payments: '+money(r.total),
+      'Total interest over the full loan: '+money(r.interest),'',
+      'Excludes property taxes, insurance, mortgage insurance, HOA fees, closing costs, rate changes, and extra payments.',
+      'For informational and educational purposes only.'
+    ].join('\n');
+  }
+
+  function render(r){
+    errorBox.classList.remove('show');
+    emptyState.hidden=true;
+    results.hidden=false;
+    document.getElementById('monthlyPayment').textContent=money(r.payment);
+    document.getElementById('paymentCaption').textContent='for '+r.months.toLocaleString('en-US')+' monthly payments on a '+moneyWhole(r.loan)+' loan';
+    document.getElementById('loanAmount').textContent=money(r.loan);
+    document.getElementById('totalPaid').textContent=money(r.total);
+    document.getElementById('totalInterest').textContent=money(r.interest);
+    document.getElementById('principalShare').textContent=percent(r.principalPercent);
+    document.getElementById('interestShare').textContent=percent(r.interestPercent);
+    document.getElementById('costStrip').style.gridTemplateColumns=r.principalPercent+'% '+r.interestPercent+'%';
+    document.getElementById('principalBar').textContent=r.principalPercent>=22?'Principal':'';
+    document.getElementById('interestBar').textContent=r.interestPercent>=22?'Interest':'';
+    var rateCopy=r.rate===0?'Because the rate is 0%, none of the payments go to interest.':'Across the full term, '+money(r.interest)+' would go to interest. That is '+percent(r.interestPercent)+' of the total principal-and-interest payments.';
+    document.getElementById('explanationText').textContent='After a '+money(r.down)+' down payment ('+percent(r.downPercent)+' of the home price), you would borrow '+money(r.loan)+'. The estimated payment is '+money(r.payment)+' per month for '+r.months.toLocaleString('en-US')+' months. '+rateCopy+' The full set of payments would total '+money(r.total)+'. Taxes, insurance, mortgage insurance, HOA fees, closing costs, and any extra payments are not included.';
+    explanation.hidden=true;
+    explainButton.setAttribute('aria-expanded','false');
+    explainButton.textContent='Explain these results';
+    lastSummary=summary(r);
+    document.getElementById('emailResults').href='mailto:?subject='+encodeURIComponent('My mortgage payment results')+'&body='+encodeURIComponent(lastSummary);
+    document.getElementById('copyStatus').textContent='';
+  }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v={price:value('homePrice'),down:value('downPayment'),rate:value('interestRate'),term:value('loanTerm')};
+    var message=validate(v);
+    if(message){errorBox.textContent=message;errorBox.classList.add('show');return}
+    render(calculate(v));
+    if(window.matchMedia('(max-width: 840px)').matches)results.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  explainButton.addEventListener('click',function(){
+    var opening=!explanation.hidden;
+    explanation.hidden=opening;
+    explainButton.setAttribute('aria-expanded',opening?'false':'true');
+    explainButton.textContent=opening?'Explain these results':'Hide explanation';
+    if(!opening)explanation.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!lastSummary)return;
+    var status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Results copied to your clipboard.':'Could not copy automatically. Select the results and copy them manually.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(lastSummary).then(function(){done(true)},function(){done(fallbackCopy(lastSummary))})}
+    else done(fallbackCopy(lastSummary));
+  });
+
+  function fallbackCopy(text){
+    var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();var copied=false;try{copied=document.execCommand('copy')}catch(e){copied=false}area.remove();return copied;
+  }
+})();
+</script>
+</body>
+</html>

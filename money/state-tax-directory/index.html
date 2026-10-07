@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>State Tax Directory</title>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --surface: #121722;
+      --surface-2: #181f2c;
+      --text: #f5f5f5;
+      --muted: #aab4c3;
+      --line: #293243;
+      --line-strong: #3a4659;
+      --green: #39ff14;
+      --green-soft: #132b17;
+      --green-line: #2a7434;
+      --orange: #f7931a;
+      --orange-soft: #2b2115;
+      --shadow: 0 22px 70px rgba(0, 0, 0, .34);
+      --radius-lg: 24px;
+      --radius-md: 14px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #080b10;
+        --surface: #111721;
+        --surface-2: #18202c;
+        --text: #f7f8fa;
+        --muted: #adb7c6;
+        --line: #2a3445;
+        --line-strong: #3c495c;
+        --green: #39ff14;
+        --green-soft: #132b17;
+        --green-line: #2a7434;
+        --orange: #f7931a;
+        --orange-soft: #2b2115;
+        --shadow: 0 22px 70px rgba(0, 0, 0, .38);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background:
+        linear-gradient(90deg, transparent 0 49px, color-mix(in srgb, var(--line) 22%, transparent) 50px, transparent 51px) 0 0 / 52px 52px,
+        var(--bg);
+      color: var(--text);
+      font-family: "IBM Plex Sans", sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; border-radius: 4px; }
+    .page { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 18px 0 64px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--orange); }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
+      padding: clamp(28px, 5vw, 64px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .hero::after {
+      content: "50";
+      position: absolute;
+      right: clamp(16px, 5vw, 50px);
+      top: 50%;
+      transform: translateY(-54%);
+      color: color-mix(in srgb, var(--text) 5%, transparent);
+      font: 700 clamp(9rem, 22vw, 19rem)/.8 "IBM Plex Sans", sans-serif;
+      pointer-events: none;
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--orange);
+      font: 600 .78rem/1.2 "IBM Plex Mono", monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.35rem, 7vw, 5.35rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+    .lead {
+      position: relative;
+      z-index: 1;
+      max-width: 690px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 2vw, 1.2rem);
+    }
+    .stats { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .stat {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      min-height: 42px;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font: inherit;
+      font-size: .88rem;
+      line-height: 1.25;
+      text-align: left;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .stat:hover { border-color: var(--line-strong); color: var(--text); }
+    .stat:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+    .stat b { color: var(--text); font: 600 1rem/1 "IBM Plex Mono", monospace; }
+    .stat.no-tax { border-color: var(--green-line); background: var(--green-soft); color: var(--green); }
+    .stat.no-tax b { color: var(--green); }
+    .stat[aria-pressed="true"] {
+      border-color: var(--orange);
+      background: var(--orange-soft);
+      color: var(--text);
+      box-shadow: inset 0 0 0 1px var(--orange);
+    }
+    .stat.no-tax[aria-pressed="true"] {
+      border-color: var(--green);
+      background: var(--green-soft);
+      color: var(--green);
+      box-shadow: inset 0 0 0 1px var(--green);
+    }
+    .stat[aria-pressed="true"]::after {
+      content: "";
+      flex: 0 0 auto;
+      width: 6px;
+      height: 6px;
+      margin-left: 2px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .definition {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: 20px;
+      margin: 22px 0 42px;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+    }
+    .definition h2 { margin: 0; font-size: 1.08rem; letter-spacing: -.015em; }
+    .definition p { margin: 0; color: var(--muted); }
+    .definition strong { color: var(--text); }
+    .directory-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
+    .directory-head h2 { margin: 0; font-size: clamp(1.75rem, 4vw, 2.75rem); letter-spacing: -.035em; }
+    .reviewed { flex: 0 0 auto; margin: 0 0 4px; color: var(--muted); font: 500 .78rem/1.4 "IBM Plex Mono", monospace; }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 16px; color: var(--muted); font-size: .82rem; }
+    .legend span { display: inline-flex; align-items: center; gap: 8px; }
+    .legend i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); }
+    .legend .green { background: var(--green); box-shadow: 0 0 0 3px var(--green-soft); }
+    .states { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; scroll-margin-top: 14px; }
+    .state[hidden] { display: none !important; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .state {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      min-height: 72px;
+      padding: 13px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+    }
+    .state-code {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font: 600 .88rem/1 "IBM Plex Mono", monospace;
+    }
+    .state-name { min-width: 0; font-weight: 650; letter-spacing: -.01em; }
+    .status { max-width: 160px; color: var(--muted); font-size: .78rem; line-height: 1.25; text-align: right; }
+    .state.no-tax { border-color: var(--green-line); background: linear-gradient(100deg, var(--green-soft), var(--surface) 64%); }
+    .state.no-tax .state-code { background: var(--green); color: #061006; }
+    .state.no-tax .state-name { color: var(--green); }
+    .state.no-tax .status { color: var(--green); font-weight: 650; }
+    .notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 26px; }
+    .note { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+    .note h3 { margin: 0 0 8px; font-size: 1rem; }
+    .note p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .note strong { color: var(--text); }
+    .fine-print { margin-top: 42px; padding-top: 26px; border-top: 1px solid var(--line); }
+    .fine-print h2 { margin: 0 0 10px; font-size: 1.05rem; }
+    .fine-print p, .fine-print li { color: var(--muted); font-size: .86rem; }
+    .fine-print ul { display: grid; gap: 6px; margin: 12px 0 22px; padding-left: 20px; }
+    .fine-print a { text-underline-offset: 3px; text-decoration-color: var(--line-strong); }
+    .fine-print a:hover { color: var(--orange); }
+    .disclaimer { margin: 0; padding: 16px 18px; border-radius: 10px; background: var(--orange-soft); color: var(--muted); }
+    @media (max-width: 760px) {
+      .page { width: min(100% - 22px, 620px); padding-top: 10px; }
+      .hero { padding: 28px 22px 30px; border-radius: 18px; }
+      .hero::after { right: 8px; top: 38px; transform: none; font-size: 9rem; }
+      .lead { margin-top: 18px; }
+      .stats { margin-top: 24px; }
+      .definition { grid-template-columns: 1fr; gap: 8px; margin: 16px 0 34px; padding: 18px; }
+      .directory-head { align-items: start; flex-direction: column; gap: 5px; }
+      .states { grid-template-columns: 1fr; }
+      .notes { grid-template-columns: 1fr; }
+      .state { grid-template-columns: 40px minmax(0, 1fr); min-height: 68px; }
+      .state-code { width: 40px; height: 40px; }
+      .status { grid-column: 2; max-width: none; margin-top: -9px; text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">2026 state-by-state reference</p>
+      <h1 id="page-title">Does your state tax personal income?</h1>
+      <p class="lead">A plain-English directory of all 50 states. The green entries do not have a broad-based individual income tax on wages and salaries.</p>
+      <div class="stats" aria-label="Filter state directory">
+        <button class="stat" type="button" data-filter="all" aria-pressed="true"><b>50</b> states reviewed</button>
+        <button class="stat no-tax" type="button" data-filter="no-tax" aria-pressed="false"><b>9</b> without a broad-based tax</button>
+        <button class="stat" type="button" data-filter="tax" aria-pressed="false"><b>41</b> with a broad-based tax</button>
+      </div>
+    </section>
+    <section class="definition" aria-labelledby="meaning-title">
+      <h2 id="meaning-title">What “broad-based” means</h2>
+      <p>It means the state generally taxes personal income such as wages and salaries. <strong>“No” does not mean tax-free:</strong> a state may still collect sales, property, business, local, or special taxes.</p>
+    </section>
+    <section aria-labelledby="directory-title">
+      <div class="directory-head">
+        <h2 id="directory-title">All 50 states</h2>
+        <p class="reviewed">Reviewed October 7, 2026</p>
+      </div>
+      <div class="legend" aria-label="Status legend">
+        <span><i class="green"></i>No broad-based individual income tax</span>
+        <span><i></i>Broad-based individual income tax</span>
+      </div>
+      <p class="sr-only" id="filter-status" aria-live="polite"></p>
+      <div class="states" role="list" aria-describedby="filter-status">
+        <article class="state" role="listitem"><span class="state-code">AL</span><span class="state-name">Alabama</span><span class="status">Broad-based tax</span></article>
+        <article class="state no-tax" role="listitem"><span class="state-code">AK</span><span class="state-name">Alaska</span><span class="status">No broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">AZ</span><span class="state-name">Arizona</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">AR</span><span class="state-name">Arkansas</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">CA</span><span class="state-name">California</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">CO</span><span class="state-name">Colorado</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">CT</span><span class="state-name">Connecticut</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">DE</span><span class="state-name">Delaware</span><span class="status">Broad-based tax</span></article>
+        <article class="state no-tax" role="listitem"><span class="state-code">FL</span><span class="state-name">Florida</span><span class="status">No broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">GA</span><span class="state-name">Georgia</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">HI</span><span class="state-name">Hawaii</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">ID</span><span class="state-name">Idaho</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">IL</span><span class="state-name">Illinois</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">IN</span><span class="state-name">Indiana</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">IA</span><span class="state-name">Iowa</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">KS</span><span class="state-name">Kansas</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">KY</span><span class="state-name">Kentucky</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">LA</span><span class="state-name">Louisiana</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">ME</span><span class="state-name">Maine</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">MD</span><span class="state-name">Maryland</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">MA</span><span class="state-name">Massachusetts</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">MI</span><span class="state-name">Michigan</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">MN</span><span class="state-name">Minnesota</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">MS</span><span class="state-name">Mississippi</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">MO</span><span class="state-name">Missouri</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">MT</span><span class="state-name">Montana</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">NE</span><span class="state-name">Nebraska</span><span class="status">Broad-based tax</span></article>
+        <article class="state no-tax" role="listitem"><span class="state-code">NV</span><span class="state-name">Nevada</span><span class="status">No broad-based tax</span></article>
+        <article class="state no-tax" role="listitem"><span class="state-code">NH</span><span class="state-name">New Hampshire</span><span class="status">No broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">NJ</span><span class="state-name">New Jersey</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">NM</span><span class="state-name">New Mexico</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">NY</span><span class="state-name">New York</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">NC</span><span class="state-name">North Carolina</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">ND</span><span class="state-name">North Dakota</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">OH</span><span class="state-name">Ohio</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">OK</span><span class="state-name">Oklahoma</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">OR</span><span class="state-name">Oregon</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">PA</span><span class="state-name">Pennsylvania</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">RI</span><span class="state-name">Rhode Island</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">SC</span><span class="state-name">South Carolina</span><span class="status">Broad-based tax</span></article>
+        <article class="state no-tax" role="listitem"><span class="state-code">SD</span><span class="state-name">South Dakota</span><span class="status">No broad-based tax</span></article>
+        <article class="state no-tax" role="listitem"><span class="state-code">TN</span><span class="state-name">Tennessee</span><span class="status">No broad-based tax</span></article>
+        <article class="state no-tax" role="listitem"><span class="state-code">TX</span><span class="state-name">Texas</span><span class="status">No broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">UT</span><span class="state-name">Utah</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">VT</span><span class="state-name">Vermont</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">VA</span><span class="state-name">Virginia</span><span class="status">Broad-based tax</span></article>
+        <article class="state no-tax" role="listitem"><span class="state-code">WA</span><span class="state-name">Washington</span><span class="status">No broad-based tax*</span></article>
+        <article class="state" role="listitem"><span class="state-code">WV</span><span class="state-name">West Virginia</span><span class="status">Broad-based tax</span></article>
+        <article class="state" role="listitem"><span class="state-code">WI</span><span class="state-name">Wisconsin</span><span class="status">Broad-based tax</span></article>
+        <article class="state no-tax" role="listitem"><span class="state-code">WY</span><span class="state-name">Wyoming</span><span class="status">No broad-based tax</span></article>
+      </div>
+    </section>
+    <section class="notes" aria-label="Important state notes">
+      <article class="note">
+        <h3>* Washington</h3>
+        <p>Washington does not tax wages or salaries through a broad-based personal income tax. It does impose an excise tax on certain long-term capital gains.</p>
+      </article>
+      <article class="note">
+        <h3>New Hampshire changed in 2025</h3>
+        <p>New Hampshire’s tax on interest and dividends was repealed for tax periods beginning on or after January 1, 2025.</p>
+      </article>
+    </section>
+    <section class="fine-print" aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources and scope</h2>
+      <p>This directory classifies whether each state has a broad-based individual income tax on wages and salaries. It does not compare tax rates, local taxes, retirement-income rules, deductions, credits, residency, or filing requirements.</p>
+      <ul>
+        <li><a href="https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/" target="_blank" rel="noopener noreferrer">Tax Foundation — 2026 State Income Tax Rates and Brackets</a></li>
+        <li><a href="https://www.revenue.nh.gov/news-and-media/repeal-nh-interest-and-dividends-tax-now-effect" target="_blank" rel="noopener noreferrer">New Hampshire Department of Revenue Administration — interest and dividends tax repeal</a></li>
+        <li><a href="https://fiscal.wa.gov/Revenue/RevenueOverview" target="_blank" rel="noopener noreferrer">Washington State Fiscal Information — state revenue overview</a></li>
+      </ul>
+      <p class="disclaimer"><strong>Starting point only.</strong> State rules vary by income type and can change. Check your state revenue department or a qualified tax professional for your situation. This page is for informational and educational purposes only and is not tax advice.</p>
+    </section>
+  </main>
+  <script>
+    (function () {
+      var filterButtons = Array.prototype.slice.call(document.querySelectorAll('.stat[data-filter]'));
+      var stateList = document.querySelector('.states');
+      var states = Array.prototype.slice.call(document.querySelectorAll('.state'));
+      var filterStatus = document.getElementById('filter-status');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      function applyFilter(requestedFilter) {
+        var activeButton = document.querySelector('.stat[data-filter][aria-pressed="true"]');
+        var activeFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+        var nextFilter = requestedFilter === 'all' || requestedFilter === activeFilter ? 'all' : requestedFilter;
+        var visibleCount = 0;
+
+        filterButtons.forEach(function (button) {
+          button.setAttribute('aria-pressed', button.getAttribute('data-filter') === nextFilter ? 'true' : 'false');
+        });
+
+        states.forEach(function (state) {
+          var hasNoBroadTax = state.classList.contains('no-tax');
+          var shouldShow = nextFilter === 'all' ||
+            (nextFilter === 'no-tax' && hasNoBroadTax) ||
+            (nextFilter === 'tax' && !hasNoBroadTax);
+          state.hidden = !shouldShow;
+          if (shouldShow) visibleCount += 1;
+        });
+
+        filterStatus.textContent = nextFilter === 'all'
+          ? 'Showing all 50 states.'
+          : 'Showing ' + visibleCount + (nextFilter === 'no-tax'
+            ? ' states without a broad-based individual income tax.'
+            : ' states with a broad-based individual income tax.');
+
+        window.requestAnimationFrame(function () {
+          stateList.scrollIntoView({
+            behavior: reduceMotion.matches ? 'auto' : 'smooth',
+            block: 'start'
+          });
+        });
+      }
+
+      filterButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          applyFilter(button.getAttribute('data-filter'));
+        });
+      });
+    }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Mortgage Affordability Calculator</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f4f6f8;
+      --muted: #aab4bf;
+      --paper: #0b0e14;
+      --panel: #141920;
+      --field: #0f1319;
+      --line: #2b343f;
+      --line-strong: #53606d;
+      --orange: #f7931a;
+      --orange-ink: #130c02;
+      --green: #65d28a;
+      --green-soft: #12311f;
+      --amber: #ffc46c;
+      --amber-soft: #37240c;
+      --red: #ff7379;
+      --shadow: 0 22px 60px rgba(0, 0, 0, .28);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: dark;
+        --ink: #f7f8fa;
+        --muted: #b3bcc6;
+        --paper: #10151c;
+        --panel: #191f27;
+        --field: #10151b;
+        --line: #343e49;
+        --line-strong: #64717f;
+        --green: #73db96;
+        --green-soft: #163624;
+        --amber: #ffd084;
+        --amber-soft: #3e2a0e;
+        --red: #ff7f85;
+        --shadow: 0 20px 54px rgba(0, 0, 0, .30);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 280px;
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--orange) 8%, transparent) 1px, transparent 1px) 0 0 / 72px 72px,
+        var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+      line-height: 1.5;
+    }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+    .page { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 20px 0 64px; }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 44px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+    .home-link:hover, .home-link:focus-visible { color: var(--orange); }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(250px, .65fr);
+      gap: 28px;
+      align-items: end;
+      padding: 36px 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 { margin: 0; max-width: 760px; font-size: clamp(2.15rem, 5vw, 4.8rem); line-height: .98; letter-spacing: -.055em; }
+    .intro p { margin: 0; color: var(--muted); font-size: 1.05rem; max-width: 42ch; }
+    .rule-chip { color: var(--orange); font-family: "IBM Plex Mono", monospace; font-size: .79rem; font-weight: 600; margin-bottom: 12px; }
+    .workspace { display: grid; grid-template-columns: minmax(330px, .88fr) minmax(420px, 1.12fr); gap: 24px; padding-top: 28px; align-items: start; }
+    .panel { background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .form-panel { padding: 28px; position: sticky; top: 16px; }
+    .panel-head { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; margin-bottom: 22px; }
+    h2 { font-size: 1.2rem; margin: 0; letter-spacing: -.02em; }
+    .required-note { color: var(--muted); font-size: .76rem; }
+    .fields { display: grid; gap: 18px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    label { display: block; font-size: .87rem; font-weight: 600; margin-bottom: 7px; }
+    .input-wrap { position: relative; }
+    .affix { position: absolute; top: 50%; transform: translateY(-50%); color: var(--muted); font-family: "IBM Plex Mono", monospace; pointer-events: none; }
+    .prefix { left: 13px; }
+    .suffix { right: 13px; }
+    input, select {
+      width: 100%; min-height: 48px; border: 1px solid var(--line); background: var(--field); color: var(--ink); border-radius: 4px; padding: 11px 13px; outline: none;
+    }
+    input.with-prefix { padding-left: 31px; }
+    input.with-suffix { padding-right: 34px; }
+    input::placeholder { color: color-mix(in srgb, var(--muted) 72%, transparent); opacity: 1; }
+    input:focus, select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) 20%, transparent); }
+    input[aria-invalid="true"] { border-color: var(--red); }
+    .hint { display: block; margin-top: 5px; color: var(--muted); font-size: .75rem; }
+    .assumptions { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .assumptions summary, .explain summary { cursor: pointer; font-weight: 600; color: var(--ink); min-height: 36px; display: flex; align-items: center; }
+    .assumptions p { margin: 7px 0 0; color: var(--muted); font-size: .82rem; }
+    .calculate { width: 100%; margin-top: 22px; min-height: 52px; border: 0; border-radius: 4px; background: var(--orange); color: var(--orange-ink); font-weight: 700; cursor: pointer; }
+    .calculate:hover { filter: brightness(1.06); }
+    .calculate:active { transform: translateY(1px); }
+    .error { display: none; margin: 14px 0 0; padding: 10px 12px; color: var(--red); border: 1px solid color-mix(in srgb, var(--red) 45%, var(--line)); background: color-mix(in srgb, var(--red) 8%, var(--panel)); font-size: .84rem; }
+    .error.show { display: block; }
+    .results-shell { min-height: 620px; }
+    .empty-state { padding: 52px 36px; min-height: 420px; display: grid; align-content: center; }
+    .empty-number { font-family: "IBM Plex Mono", monospace; color: var(--orange); font-size: clamp(4rem, 12vw, 8rem); line-height: .8; font-weight: 600; opacity: .5; }
+    .empty-state h2 { font-size: 1.5rem; margin: 28px 0 8px; }
+    .empty-state p { color: var(--muted); max-width: 48ch; margin: 0; }
+    .results { display: none; }
+    .results.visible { display: block; }
+    .hero-result { padding: 30px; border-bottom: 1px solid var(--line); }
+    .result-label { font-size: .8rem; color: var(--muted); font-weight: 600; }
+    .price { font-family: "IBM Plex Mono", monospace; font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 1; letter-spacing: -.06em; margin: 8px 0 14px; overflow-wrap: anywhere; }
+    .verdict { display: inline-flex; align-items: center; gap: 8px; padding: 7px 10px; background: var(--amber-soft); color: var(--amber); font-size: .82rem; font-weight: 700; }
+    .verdict::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+    .comfort-band { padding: 22px 30px; border-bottom: 1px solid var(--line); }
+    .band-track { height: 9px; background: var(--field); overflow: hidden; margin: 13px 0 9px; display: flex; }
+    .band-comfort { background: var(--green); width: 72%; }
+    .band-stretch { background: var(--orange); flex: 1; }
+    .band-labels { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); font-size: .78rem; }
+    .band-labels strong { display: block; color: var(--ink); font-family: "IBM Plex Mono", monospace; font-size: .94rem; }
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .metric { padding: 21px 24px; border-bottom: 1px solid var(--line); }
+    .metric:nth-child(odd) { border-right: 1px solid var(--line); }
+    .metric-value { font-family: "IBM Plex Mono", monospace; font-size: 1.25rem; font-weight: 600; margin-top: 3px; }
+    .metric-note { color: var(--muted); font-size: .74rem; margin-top: 2px; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 24px 30px 0; }
+    .action { min-height: 46px; display: inline-flex; justify-content: center; align-items: center; text-decoration: none; border: 1px solid var(--line-strong); border-radius: 4px; color: var(--ink); background: transparent; font-weight: 700; cursor: pointer; }
+    .action.email { background: var(--orange); color: var(--orange-ink); border-color: var(--orange); }
+    .action:hover { filter: brightness(1.07); }
+    .copy-status { grid-column: 1 / -1; min-height: 20px; text-align: center; color: var(--green); font-size: .78rem; }
+    .explain { margin: 18px 30px 30px; border-top: 1px solid var(--line); padding-top: 12px; }
+    .explain-body { color: var(--muted); font-size: .9rem; }
+    .explain-body p { margin: 10px 0; }
+    .explain-body strong { color: var(--ink); }
+    .method { margin-top: 24px; padding: 22px 24px; border: 1px solid var(--line); background: color-mix(in srgb, var(--panel) 70%, transparent); }
+    .method h2 { margin-bottom: 12px; }
+    .method p { margin: 8px 0; color: var(--muted); font-size: .84rem; }
+    .method strong { color: var(--ink); }
+    .legal { margin: 22px 0 0; color: var(--muted); font-size: .76rem; max-width: 92ch; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 860px) {
+      .intro { grid-template-columns: 1fr; align-items: start; padding-top: 24px; }
+      .workspace { grid-template-columns: 1fr; }
+      .form-panel { position: static; }
+      .results-shell { min-height: 0; }
+    }
+    @media (max-width: 560px) {
+      .page { width: min(100% - 24px, 1180px); padding-bottom: 42px; }
+      .intro { gap: 16px; padding-bottom: 24px; }
+      h1 { font-size: clamp(2.2rem, 13vw, 3.3rem); }
+      .workspace { gap: 16px; padding-top: 18px; }
+      .form-panel { padding: 20px 17px; }
+      .field-row { grid-template-columns: 1fr; }
+      .hero-result, .comfort-band { padding-left: 20px; padding-right: 20px; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .metric:nth-child(odd) { border-right: 0; }
+      .actions { grid-template-columns: 1fr; padding-left: 20px; padding-right: 20px; }
+      .copy-status { grid-column: auto; }
+      .explain { margin-left: 20px; margin-right: 20px; }
+      .empty-state { padding: 38px 22px; }
+      .band-labels { font-size: .71rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <div class="rule-chip">28 / 36 GUIDELINE</div>
+        <h1 id="page-title">How much house fits your budget?</h1>
+      </div>
+      <p>Estimate a comfortable range and an upper guideline using your income, existing monthly debts, and financing details.</p>
+    </section>
+
+    <section class="workspace">
+      <form class="panel form-panel" id="calculator" novalidate>
+        <div class="panel-head">
+          <h2>Your numbers</h2>
+          <span class="required-note">All fields required</span>
+        </div>
+        <div class="fields">
+          <div>
+            <label for="income">Annual household income</label>
+            <div class="input-wrap"><span class="affix prefix">$</span><input class="with-prefix" id="income" name="income" type="number" min="1" step="1000" inputmode="decimal" placeholder="85,000" required /></div>
+            <span class="hint">Gross income before taxes</span>
+          </div>
+          <div>
+            <label for="debts">Monthly debt payments</label>
+            <div class="input-wrap"><span class="affix prefix">$</span><input class="with-prefix" id="debts" name="debts" type="number" min="0" step="25" inputmode="decimal" placeholder="650" required /></div>
+            <span class="hint">Car, cards, student loans, support</span>
+          </div>
+          <div>
+            <label for="down">Down payment</label>
+            <div class="input-wrap"><span class="affix prefix">$</span><input class="with-prefix" id="down" name="down" type="number" min="0" step="1000" inputmode="decimal" placeholder="30,000" required /></div>
+          </div>
+          <div class="field-row">
+            <div>
+              <label for="rate">Interest rate</label>
+              <div class="input-wrap"><input class="with-suffix" id="rate" name="rate" type="number" min="0" max="30" step="0.01" inputmode="decimal" placeholder="6.50" required /><span class="affix suffix">%</span></div>
+            </div>
+            <div>
+              <label for="term">Loan term</label>
+              <select id="term" name="term" required>
+                <option value="" selected disabled>Select years</option>
+                <option value="10">10 years</option>
+                <option value="15">15 years</option>
+                <option value="20">20 years</option>
+                <option value="30">30 years</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <details class="assumptions">
+          <summary>What this estimate assumes</summary>
+          <p>It sets aside 1.2% of the home price each year for property tax and 0.35% for homeowners insurance. It excludes mortgage insurance, HOA dues, closing costs, maintenance, and utilities.</p>
+        </details>
+
+        <button class="calculate" type="submit">Estimate my range</button>
+        <div class="error" id="error" role="alert"></div>
+      </form>
+
+      <div class="results-shell" aria-live="polite">
+        <section class="panel empty-state" id="empty-state">
+          <div class="empty-number">28/36</div>
+          <h2>Your range will appear here</h2>
+          <p>The 28/36 guideline keeps housing near 28% of gross monthly income and all monthly debts near 36%.</p>
+        </section>
+
+        <section class="panel results" id="results" aria-labelledby="result-heading">
+          <div class="hero-result">
+            <div class="result-label" id="result-heading">Upper home-price guideline</div>
+            <div class="price" id="upper-price">—</div>
+            <div class="verdict" id="verdict">Stretching above the comfortable range</div>
+          </div>
+          <div class="comfort-band">
+            <div class="result-label">Estimated buying range</div>
+            <div class="band-track" aria-hidden="true"><div class="band-comfort"></div><div class="band-stretch"></div></div>
+            <div class="band-labels">
+              <span><strong id="comfortable-price">—</strong>Comfortable target</span>
+              <span style="text-align:right"><strong id="band-upper">—</strong>Upper guideline</span>
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><div class="result-label">Monthly housing cap</div><div class="metric-value" id="housing-cap">—</div><div class="metric-note">Mortgage, estimated tax + insurance</div></div>
+            <div class="metric"><div class="result-label">Estimated mortgage</div><div class="metric-value" id="loan-amount">—</div><div class="metric-note">Home price minus down payment</div></div>
+            <div class="metric"><div class="result-label">Principal + interest</div><div class="metric-value" id="pi-payment">—</div><div class="metric-note">At the rate and term entered</div></div>
+            <div class="metric"><div class="result-label">Tax + insurance estimate</div><div class="metric-value" id="escrow-payment">—</div><div class="metric-note">Uses the assumptions above</div></div>
+          </div>
+          <div class="actions">
+            <a class="action email" id="email-results" href="#">Email my results</a>
+            <button class="action" id="copy-results" type="button">Copy results</button>
+            <div class="copy-status" id="copy-status" role="status"></div>
+          </div>
+          <details class="explain" id="explain">
+            <summary>Explain these results</summary>
+            <div class="explain-body" id="explain-body"></div>
+          </details>
+        </section>
+      </div>
+    </section>
+
+    <section class="method" aria-labelledby="method-heading">
+      <h2 id="method-heading">How the estimate works</h2>
+      <p><strong>Upper guideline:</strong> the lower of 28% of gross monthly income for housing or 36% for all debt after subtracting current monthly debts.</p>
+      <p><strong>Comfortable target:</strong> a little more breathing room—the lower of 25% for housing or 33% for all debt after current monthly debts.</p>
+      <p><strong>Important:</strong> lender approval can use different ratios and considers credit, taxes, insurance, reserves, loan type, and other details. A preapproval and a full monthly budget are better guides before shopping.</p>
+    </section>
+    <p class="legal">For informational and educational purposes only. This estimate is not lending, tax, legal, or investment advice, and it is not a loan offer or approval.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+      var form = document.getElementById("calculator");
+      var emptyState = document.getElementById("empty-state");
+      var results = document.getElementById("results");
+      var error = document.getElementById("error");
+      var emailLink = document.getElementById("email-results");
+      var copyButton = document.getElementById("copy-results");
+      var copyStatus = document.getElementById("copy-status");
+      var lastSummary = "";
+
+      function money(value) {
+        return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
+      }
+      function monthlyMoney(value) {
+        return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value) + "/mo";
+      }
+      function getNumber(id) { return Number(document.getElementById(id).value); }
+      function paymentFactor(annualRate, years) {
+        var months = years * 12;
+        var monthlyRate = annualRate / 100 / 12;
+        if (monthlyRate === 0) return 1 / months;
+        var growth = Math.pow(1 + monthlyRate, months);
+        return monthlyRate * growth / (growth - 1);
+      }
+      function priceFromCap(cap, down, factor, carryingRate) {
+        return Math.max(0, (cap + down * factor) / (factor + carryingRate));
+      }
+      function markInvalid(id, invalid) {
+        document.getElementById(id).setAttribute("aria-invalid", invalid ? "true" : "false");
+      }
+      function showError(message, invalidIds) {
+        error.textContent = message;
+        error.classList.add("show");
+        ["income", "debts", "down", "rate", "term"].forEach(function (id) { markInvalid(id, invalidIds.indexOf(id) !== -1); });
+      }
+      function clearError() {
+        error.textContent = "";
+        error.classList.remove("show");
+        ["income", "debts", "down", "rate", "term"].forEach(function (id) { markInvalid(id, false); });
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        clearError();
+        copyStatus.textContent = "";
+
+        var income = getNumber("income");
+        var debts = getNumber("debts");
+        var down = getNumber("down");
+        var rate = getNumber("rate");
+        var term = getNumber("term");
+        var invalid = [];
+        if (!Number.isFinite(income) || income <= 0) invalid.push("income");
+        if (!Number.isFinite(debts) || debts < 0 || document.getElementById("debts").value === "") invalid.push("debts");
+        if (!Number.isFinite(down) || down < 0 || document.getElementById("down").value === "") invalid.push("down");
+        if (!Number.isFinite(rate) || rate < 0 || rate > 30 || document.getElementById("rate").value === "") invalid.push("rate");
+        if (!Number.isFinite(term) || term <= 0) invalid.push("term");
+        if (invalid.length) {
+          showError("Enter a valid number in every field before calculating.", invalid);
+          return;
+        }
+
+        var monthlyIncome = income / 12;
+        var upperCap = Math.min(monthlyIncome * 0.28, monthlyIncome * 0.36 - debts);
+        var comfortCap = Math.min(monthlyIncome * 0.25, monthlyIncome * 0.33 - debts);
+        if (upperCap <= 0) {
+          showError("Current monthly debts leave no room under the 36% guideline. A lender may use different rules, but this calculator cannot estimate a positive range.", ["debts"]);
+          return;
+        }
+        comfortCap = Math.max(0, comfortCap);
+
+        var factor = paymentFactor(rate, term);
+        var carryingRate = (0.012 + 0.0035) / 12;
+        var upperPrice = priceFromCap(upperCap, down, factor, carryingRate);
+        var comfortPrice = priceFromCap(comfortCap, down, factor, carryingRate);
+        if (upperPrice < down) upperPrice = down;
+        if (comfortPrice < down) comfortPrice = down;
+        var loan = Math.max(0, upperPrice - down);
+        var principalInterest = loan * factor;
+        var escrow = upperPrice * carryingRate;
+        var downPct = upperPrice > 0 ? down / upperPrice * 100 : 0;
+        var limitingRule = monthlyIncome * 0.28 <= monthlyIncome * 0.36 - debts ? "the 28% housing guideline" : "the 36% total-debt guideline";
+        var pmiNote = downPct < 20 && loan > 0 ? " Because the down payment is under 20% of this estimate, mortgage insurance may add to the real payment and lower the affordable price." : "";
+
+        document.getElementById("upper-price").textContent = money(upperPrice);
+        document.getElementById("comfortable-price").textContent = money(comfortPrice);
+        document.getElementById("band-upper").textContent = money(upperPrice);
+        document.getElementById("housing-cap").textContent = monthlyMoney(upperCap);
+        document.getElementById("loan-amount").textContent = money(loan);
+        document.getElementById("pi-payment").textContent = monthlyMoney(principalInterest);
+        document.getElementById("escrow-payment").textContent = monthlyMoney(escrow);
+        document.getElementById("verdict").textContent = "Stretching above " + money(comfortPrice);
+
+        document.getElementById("explain-body").innerHTML =
+          "<p>With <strong>" + money(income) + "</strong> in annual income and <strong>" + monthlyMoney(debts) + "</strong> in existing debts, the tighter limit is <strong>" + limitingRule + "</strong>.</p>" +
+          "<p>A price around <strong>" + money(comfortPrice) + "</strong> leaves more breathing room. The upper guideline is about <strong>" + money(upperPrice) + "</strong>, which uses nearly all of the housing room allowed by the rule and may feel stretching once maintenance, utilities, and other ownership costs are included.</p>" +
+          "<p>The upper estimate assumes a <strong>" + money(down) + "</strong> down payment, a <strong>" + rate.toFixed(2) + "%</strong> rate, and a <strong>" + term + "-year</strong> loan. It sets aside about <strong>" + monthlyMoney(escrow) + "</strong> for property tax and homeowners insurance." + pmiNote + "</p>";
+
+        lastSummary = [
+          "Mortgage affordability estimate",
+          "Annual income: " + money(income),
+          "Monthly debts: " + monthlyMoney(debts),
+          "Down payment: " + money(down),
+          "Interest rate: " + rate.toFixed(2) + "%",
+          "Loan term: " + term + " years",
+          "",
+          "Comfortable target: " + money(comfortPrice),
+          "Upper guideline: " + money(upperPrice),
+          "Monthly housing cap: " + monthlyMoney(upperCap),
+          "Estimated mortgage: " + money(loan),
+          "Principal and interest: " + monthlyMoney(principalInterest),
+          "Estimated property tax and insurance: " + monthlyMoney(escrow),
+          "",
+          "Method: 25/33 for the comfortable target and 28/36 for the upper guideline. Assumes 1.2% annual property tax and 0.35% annual homeowners insurance. Excludes PMI, HOA dues, closing costs, maintenance, and utilities.",
+          "For informational and educational purposes only; not a loan offer or approval."
+        ].join("\n");
+        emailLink.href = "mailto:?subject=" + encodeURIComponent("My mortgage affordability estimate") + "&body=" + encodeURIComponent(lastSummary);
+        emptyState.style.display = "none";
+        results.classList.add("visible");
+        if (window.innerWidth < 861) results.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      copyButton.addEventListener("click", function () {
+        if (!lastSummary) return;
+        function success() {
+          copyStatus.textContent = "Results copied.";
+          window.setTimeout(function () { copyStatus.textContent = ""; }, 2500);
+        }
+        function fallback() {
+          var area = document.createElement("textarea");
+          area.value = lastSummary;
+          area.setAttribute("readonly", "");
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          try { document.execCommand("copy"); success(); }
+          catch (e) { copyStatus.textContent = "Copy failed. Select the results and copy manually."; }
+          document.body.removeChild(area);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastSummary).then(success).catch(fallback);
+        } else { fallback(); }
+      });
+
+      emailLink.addEventListener("click", function (event) {
+        if (!lastSummary) event.preventDefault();
+      });
+    }());
+  </script>
+</body>
+</html>

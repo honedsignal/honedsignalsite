@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Property Tax Estimator</title>
+  <meta name="description" content="Estimate annual and monthly property tax from a home value and local effective tax rate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#0b0e14;--surface:#121820;--surface-2:#1a232d;--ink:#f5f5f5;--muted:#adb7c1;
+      --line:#2c3743;--line-strong:#4c5966;--orange:#f7931a;--orange-ink:#1a1106;
+      --orange-soft:#362513;--blue:#79a8d3;--blue-soft:#172b3e;--green:#39ff14;
+      --red:#ff747b;--red-soft:#3b1c22;--shadow:0 28px 78px rgba(0,0,0,.42);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#0b0e14;--surface:#121820;--surface-2:#1a232d;--ink:#f5f5f5;--muted:#adb7c1;
+      --line:#2c3743;--line-strong:#4c5966;--orange:#f7931a;--orange-ink:#1a1106;
+      --orange-soft:#362513;--blue:#79a8d3;--blue-soft:#172b3e;--green:#39ff14;
+      --red:#ff747b;--red-soft:#3b1c22;--shadow:0 28px 78px rgba(0,0,0,.42);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;overflow-x:hidden;background:var(--bg);color:var(--ink);font:16px/1.5 Manrope,sans-serif;-webkit-font-smoothing:antialiased}button,input{font:inherit;color:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.page{width:min(1160px,100%);margin:0 auto;padding:0 clamp(14px,4vw,46px) max(50px,env(safe-area-inset-bottom))}.home-nav{position:sticky;top:0;z-index:20;padding:max(10px,env(safe-area-inset-top)) 0 9px;background:color-mix(in srgb,var(--bg) 93%,transparent);backdrop-filter:blur(10px)}.home-link{display:inline-flex;align-items:center;min-height:34px;color:var(--muted);font-size:.75rem;font-weight:800;text-decoration:none}.home-link:hover{color:var(--orange)}
+    .intro{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.7fr);gap:clamp(25px,6vw,74px);align-items:end;padding:8px 0 clamp(26px,4vw,40px);border-bottom:1px solid var(--line)}.kicker{margin:0 0 10px;color:var(--orange);font:600 .7rem "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase}.intro h1{margin:0;max-width:760px;font-size:clamp(2.5rem,6.4vw,5.8rem);line-height:.93;letter-spacing:-.062em}.intro h1 span{color:var(--orange)}.intro-copy{margin:0;max-width:39ch;color:var(--muted);font-size:clamp(1rem,1.7vw,1.16rem)}
+    .workbench{display:grid;grid-template-columns:minmax(320px,410px) minmax(0,1fr);margin-top:22px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}.inputs{padding:clamp(21px,3vw,32px);border-right:1px solid var(--line)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:24px}.section-head h2{margin:0;font-size:1rem;letter-spacing:-.02em}.step{color:var(--orange);font:600 .66rem "IBM Plex Mono",monospace;letter-spacing:.06em}.field{margin-bottom:19px}label{display:block;margin-bottom:7px;color:var(--muted);font-size:.77rem;font-weight:800}.control{display:flex;align-items:center;min-height:52px;background:var(--bg);border:1px solid var(--line-strong);transition:border-color .15s,box-shadow .15s}.control:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px color-mix(in srgb,var(--orange) 18%,transparent)}.control input{width:100%;min-width:0;border:0;outline:0;background:transparent;padding:12px;font:600 1rem "IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}.control input::placeholder{color:color-mix(in srgb,var(--muted) 48%,transparent);font-weight:500}.control input::-webkit-inner-spin-button{-webkit-appearance:none}.affix{padding-left:14px;color:var(--muted);font:600 .84rem "IBM Plex Mono",monospace}.affix.end{padding:0 14px 0 0}.field-note{display:block;margin-top:6px;color:var(--muted);font-size:.68rem;line-height:1.45}.calculate{width:100%;min-height:52px;margin-top:6px;border:0;padding:13px 17px;background:var(--orange);color:var(--orange-ink);font-weight:800;cursor:pointer;box-shadow:0 5px 0 color-mix(in srgb,var(--orange) 56%,#000);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 2px 0 color-mix(in srgb,var(--orange) 56%,#000)}.privacy{margin:15px 0 0;color:var(--muted);font-size:.66rem}.error{margin:0 0 15px;padding:13px 14px;background:var(--red-soft);color:var(--red);border:1px solid color-mix(in srgb,var(--red) 38%,transparent);font-size:.8rem;font-weight:800}.hidden{display:none!important}
+    .results{min-width:0;padding:clamp(18px,3.4vw,36px);background:linear-gradient(135deg,color-mix(in srgb,var(--surface-2) 70%,transparent),transparent 62%)}.empty{min-height:510px;display:grid;place-items:center;text-align:center}.empty-graphic{width:178px;height:132px;margin:0 auto 23px;position:relative}.empty-graphic svg{display:block;width:100%;height:100%}.empty h2{margin:0 0 8px;font-size:1.55rem;letter-spacing:-.035em}.empty p{margin:0 auto;max-width:42ch;color:var(--muted);font-size:.88rem}.result-lead{position:relative;overflow:hidden;padding:clamp(24px,4vw,39px);background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-lead{background:#f2f5f7;color:#0b0e14}}.result-lead::after{content:"";position:absolute;right:-45px;bottom:-58px;width:154px;height:154px;border:22px solid var(--orange);border-radius:50%}.eyebrow{position:relative;z-index:1;margin:0 0 9px;font:600 .66rem "IBM Plex Mono",monospace;letter-spacing:.08em;opacity:.64}.big-number{position:relative;z-index:1;margin:0;font:600 clamp(2.75rem,7vw,5.4rem)/.92 "IBM Plex Mono",monospace;letter-spacing:-.075em}.lead-note{position:relative;z-index:1;margin:12px 0 0;font-weight:700}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1px;background:var(--line)}.metric{min-width:0;padding:19px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.63rem;font-weight:800}.metric strong{display:block;margin-top:6px;font:600 clamp(1.05rem,2.3vw,1.4rem) "IBM Plex Mono",monospace;letter-spacing:-.03em;overflow-wrap:anywhere}.metric small{display:block;margin-top:6px;color:var(--muted);font-size:.66rem}.rate-card{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;margin-top:14px;padding:18px 20px;background:var(--surface);border:1px solid var(--line)}.rate-mark{display:grid;place-items:center;width:58px;height:58px;background:var(--blue-soft);color:var(--blue);font:600 .8rem "IBM Plex Mono",monospace;border-radius:50%}.rate-card p{margin:0;color:var(--muted);font-size:.79rem;line-height:1.6}.rate-card strong{color:var(--ink)}
+    .explain{margin-top:14px;border:1px solid var(--line);background:var(--blue-soft)}.explain-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;border:0;background:transparent;padding:15px 17px;cursor:pointer;text-align:left;font-weight:800}.explain-toggle:hover{background:color-mix(in srgb,var(--blue) 9%,transparent)}.plus{flex:0 0 auto;color:var(--blue);font:600 1rem "IBM Plex Mono",monospace}.explain-toggle[aria-expanded="true"] .plus{transform:rotate(45deg)}.explain-copy{margin:0;padding:0 17px 18px;color:var(--muted);font-size:.83rem;line-height:1.7}.explain-copy strong{color:var(--ink)}.explain-copy[hidden]{display:none}.share{margin-top:14px;padding:18px 20px;background:var(--surface);border:1px solid var(--line)}.share-head{display:flex;align-items:center;justify-content:space-between;gap:18px}.share h2{margin:0;font-size:.95rem}.actions{display:flex;gap:8px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 12px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;font-size:.7rem;font-weight:800}.action.email{background:var(--orange);border-color:var(--orange);color:var(--orange-ink)}.notice{min-height:18px;margin:8px 0 0;color:var(--muted);font-size:.69rem}.method{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;margin-top:27px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.69rem}.method p{margin:0}.method strong{color:var(--ink)}.disclaimer{margin-top:13px;padding:14px 16px;background:var(--orange-soft);color:var(--ink);font-size:.72rem;font-weight:600}.calculate:focus-visible,.action:focus-visible,.explain-toggle:focus-visible,.home-link:focus-visible{outline:3px solid color-mix(in srgb,var(--orange) 46%,transparent);outline-offset:3px}
+    @media(max-width:830px){.intro{grid-template-columns:1fr;gap:15px}.intro-copy{max-width:55ch}.workbench{grid-template-columns:1fr}.inputs{border-right:0;border-bottom:1px solid var(--line)}.empty{min-height:360px}}
+    @media(max-width:560px){.page{padding-left:12px;padding-right:12px}.intro h1{font-size:clamp(2.4rem,12.7vw,3.85rem)}.results{padding:12px}.result-lead{padding:22px 19px}.big-number{font-size:clamp(2.55rem,13.5vw,3.9rem)}.metrics{grid-template-columns:1fr}.metric{padding:16px 18px}.share-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.action{flex:1}.method{grid-template-columns:1fr;gap:9px}.rate-card{grid-template-columns:1fr}.rate-mark{width:48px;height:48px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <nav class="home-nav" aria-label="Honed Money"><a class="home-link" href="/money/">← Honed Money</a></nav>
+
+  <header class="intro">
+    <div><p class="kicker">Housing · Annual cost</p><h1>Turn a tax rate into a <span>real bill.</span></h1></div>
+    <p class="intro-copy">Estimate annual and monthly property tax using your home value and local effective tax rate.</p>
+  </header>
+
+  <section class="workbench" aria-label="Property tax estimator">
+    <form class="inputs" id="taxForm" novalidate>
+      <div class="section-head"><h2>Your local numbers</h2><span class="step">2 INPUTS</span></div>
+      <div class="error hidden" id="errorBox" role="alert"></div>
+      <div class="field">
+        <label for="homeValue">Home value</label>
+        <div class="control"><span class="affix">$</span><input id="homeValue" type="number" min="0.01" max="1000000000" step="1000" inputmode="decimal" placeholder="350,000" autocomplete="off" required /></div>
+        <small class="field-note">Use a current market-value estimate. This input pairs with an effective rate based on property value.</small>
+      </div>
+      <div class="field">
+        <label for="taxRate">Local effective property tax rate</label>
+        <div class="control"><input id="taxRate" type="number" min="0" max="25" step="0.01" inputmode="decimal" placeholder="1.80" autocomplete="off" required /><span class="affix end">%</span></div>
+        <small class="field-note">Effective rate = annual property tax ÷ property value × 100. Rates vary widely by location.</small>
+      </div>
+      <button class="calculate" type="submit">Estimate property tax</button>
+      <p class="privacy">Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div>
+          <div class="empty-graphic" aria-hidden="true">
+            <svg viewBox="0 0 178 132" fill="none">
+              <path d="M28 60 79 18l51 42v57H28V60Z" stroke="var(--blue)" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M59 117V82h39v35" stroke="var(--blue)" stroke-width="5"/>
+              <path d="M119 47h36v62h-29" stroke="var(--line-strong)" stroke-width="4" stroke-linejoin="round"/>
+              <path d="M130 65h14M130 79h14M130 93h9" stroke="var(--orange)" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h2>Two numbers. One clearer budget.</h2>
+          <p>Enter a home value and local rate to translate the percentage into yearly and monthly dollars.</p>
+        </div>
+      </div>
+
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-lead">
+          <p class="eyebrow">ESTIMATED ANNUAL PROPERTY TAX</p>
+          <p class="big-number" id="annualTax">—</p>
+          <p class="lead-note" id="leadNote">—</p>
+        </section>
+        <div class="metrics" aria-label="Estimated payment breakdown">
+          <article class="metric"><span>PER MONTH</span><strong id="monthlyTax">—</strong><small>annual estimate ÷ 12</small></article>
+          <article class="metric"><span>PER QUARTER</span><strong id="quarterlyTax">—</strong><small>annual estimate ÷ 4</small></article>
+          <article class="metric"><span>PER WEEK</span><strong id="weeklyTax">—</strong><small>annual estimate ÷ 52</small></article>
+        </div>
+        <section class="rate-card">
+          <div class="rate-mark">$100</div>
+          <p id="rateMeaning">—</p>
+        </section>
+        <section class="explain">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results <span class="plus" aria-hidden="true">+</span></button>
+          <p class="explain-copy" id="explainCopy" hidden></p>
+        </section>
+        <section class="share">
+          <div class="share-head">
+            <h2>Take the estimate with you</h2>
+            <div class="actions">
+              <a class="action email" id="emailResults" href="mailto:">Email my results</a>
+              <button class="action" id="copyResults" type="button">Copy results</button>
+            </div>
+          </div>
+          <p class="notice" id="copyNotice" aria-live="polite"></p>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="method" aria-label="Method and limitations">
+    <p><strong>Method:</strong> Annual tax = home value × (effective property tax rate ÷ 100). Monthly, quarterly, and weekly figures evenly divide that annual estimate. This does not model changing values or rates.</p>
+    <p><strong>Assessment matters:</strong> Local bills may apply a separate tax or millage rate to taxable assessed value after exemptions. That is a different calculation from this market-value effective-rate estimate.</p>
+  </section>
+  <p class="disclaimer">For informational and educational purposes only. This estimate is not tax, legal, or financial advice and is not a quote from a tax authority or mortgage lender.</p>
+</main>
+<script>
+(function(){
+  'use strict';
+  var form=document.getElementById('taxForm');
+  var homeValue=document.getElementById('homeValue');
+  var taxRate=document.getElementById('taxRate');
+  var errorBox=document.getElementById('errorBox');
+  var emptyState=document.getElementById('emptyState');
+  var resultState=document.getElementById('resultState');
+  var explainToggle=document.getElementById('explainToggle');
+  var explainCopy=document.getElementById('explainCopy');
+  var emailResults=document.getElementById('emailResults');
+  var copyResults=document.getElementById('copyResults');
+  var copyNotice=document.getElementById('copyNotice');
+  var lastSummary='';
+
+  function money(value){
+    return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
+  }
+  function moneyWhole(value){
+    return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(value);
+  }
+  function number(value){
+    return new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(value);
+  }
+  function rateText(value){
+    return Number(value).toFixed(2).replace(/\.00$/,'').replace(/(\.\d)0$/,'$1')+'%';
+  }
+  function showError(message){
+    errorBox.textContent=message;
+    errorBox.classList.remove('hidden');
+  }
+  function clearError(){errorBox.classList.add('hidden');errorBox.textContent='';}
+
+  form.addEventListener('submit',function(event){
+    event.preventDefault();
+    clearError();
+    var value=parseFloat(homeValue.value);
+    var rate=parseFloat(taxRate.value);
+    if(!Number.isFinite(value)||value<=0||value>1000000000||!Number.isFinite(rate)||rate<0||rate>25){
+      showError('Enter a home value greater than $0 and an effective rate from 0% to 25%.');
+      resultState.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      return;
+    }
+    var annual=value*(rate/100);
+    var monthly=annual/12;
+    var quarterly=annual/4;
+    var weekly=annual/52;
+    var perHundred=rate;
+
+    document.getElementById('annualTax').textContent=money(annual);
+    document.getElementById('monthlyTax').textContent=money(monthly);
+    document.getElementById('quarterlyTax').textContent=money(quarterly);
+    document.getElementById('weeklyTax').textContent=money(weekly);
+    document.getElementById('leadNote').textContent='About '+money(monthly)+' per month for a '+moneyWhole(value)+' home.';
+    document.getElementById('rateMeaning').innerHTML='<strong>At '+rateText(rate)+', about '+money(perHundred)+' of every $100 in home value becomes annual property tax.</strong> This is an estimate, not a local tax bill.';
+    explainCopy.innerHTML='For a home value of <strong>'+moneyWhole(value)+'</strong>, a <strong>'+rateText(rate)+'</strong> effective rate produces an estimated <strong>'+money(annual)+'</strong> annual tax bill, or <strong>'+money(monthly)+'</strong> per month. This calculation uses market value and an effective rate based on property value. Your actual bill may instead apply a local tax or millage rate to a taxable assessed value after exemptions; do not substitute those separate figures into this effective-rate estimate. Confirm both the value basis and rate with your local appraisal or tax office.';
+    explainCopy.hidden=true;
+    explainToggle.setAttribute('aria-expanded','false');
+    copyNotice.textContent='';
+
+    lastSummary='Property Tax Estimate\n\nHome value: '+money(value)+'\nEffective property tax rate: '+rateText(rate)+'\n\nEstimated annual property tax: '+money(annual)+'\nEstimated monthly property tax: '+money(monthly)+'\nEstimated quarterly property tax: '+money(quarterly)+'\nEstimated weekly property tax: '+money(weekly)+'\n\nMethod: home value × effective property tax rate. Actual bills may use taxable assessed value after exemptions, and local rates vary.\n\nFor informational and educational purposes only.';
+    emailResults.href='mailto:?subject='+encodeURIComponent('My property tax estimate')+'&body='+encodeURIComponent(lastSummary);
+    emptyState.classList.add('hidden');
+    resultState.classList.remove('hidden');
+  });
+
+  explainToggle.addEventListener('click',function(){
+    var open=explainToggle.getAttribute('aria-expanded')==='true';
+    explainToggle.setAttribute('aria-expanded',String(!open));
+    explainCopy.hidden=open;
+  });
+
+  copyResults.addEventListener('click',function(){
+    if(!lastSummary){return;}
+    function success(){copyNotice.textContent='Results copied.';}
+    function fallback(){
+      var area=document.createElement('textarea');
+      area.value=lastSummary;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';
+      document.body.appendChild(area);area.select();
+      try{document.execCommand('copy');success();}catch(error){copyNotice.textContent='Copy was unavailable. Select the results above instead.';}
+      document.body.removeChild(area);
+    }
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(lastSummary).then(success).catch(fallback);}else{fallback();}
+  });
+
+  [homeValue,taxRate].forEach(function(input){
+    input.addEventListener('input',function(){
+      clearError();
+      if(!resultState.classList.contains('hidden')){
+        resultState.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        lastSummary='';
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

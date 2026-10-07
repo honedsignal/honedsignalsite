@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Extra Mortgage Payment Calculator</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #0b0e14;
+      --surface: #141922;
+      --surface-2: #1b222d;
+      --field: #0f131a;
+      --text: #f5f5f5;
+      --muted: #abb4c2;
+      --soft: #7d8998;
+      --line: #313b49;
+      --line-strong: #485569;
+      --blue: #6490c4;
+      --orange: #f7931a;
+      --orange-ink: #17100a;
+      --green: #39ff14;
+      --green-soft: #b8ffab;
+      --red: #ff767a;
+      --shadow: 0 18px 56px rgba(0,0,0,.3);
+      --radius: 18px;
+      --max: 1120px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --ink: #0b0e14;
+        --surface: #161c25;
+        --surface-2: #1e2632;
+        --field: #10151d;
+        --text: #f5f5f5;
+        --muted: #b4bdc9;
+        --soft: #8995a5;
+        --line: #354150;
+        --line-strong: #536177;
+        --blue: #79a5d6;
+        --orange: #f7931a;
+        --orange-ink: #17100a;
+        --green: #39ff14;
+        --green-soft: #bdffb1;
+        --red: #ff7d81;
+        --shadow: 0 18px 56px rgba(0,0,0,.32);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { min-width: 0; background: var(--ink); }
+    body {
+      margin: 0;
+      min-width: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, color-mix(in srgb, var(--blue) 8%, transparent), transparent 260px),
+        var(--ink);
+      color: var(--text);
+      font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 36px)); margin: 0 auto; }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 18px 0 26px;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      min-height: 36px;
+    }
+    .home-link:hover, .home-link:focus-visible { color: var(--text); }
+    .home-link:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--blue) 65%, transparent);
+      outline-offset: 3px;
+    }
+    .intro { max-width: 760px; margin-bottom: 30px; }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 4.35rem);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      font-weight: 700;
+    }
+    .intro p {
+      max-width: 650px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
+    .accent-rule { width: 70px; height: 4px; margin: 22px 0 0; background: var(--orange); }
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(290px, 390px) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 34px;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .form-panel { border-radius: var(--radius) 6px var(--radius) var(--radius); padding: 24px; }
+    .panel-title { margin: 0 0 20px; font-size: 1.05rem; letter-spacing: -.01em; }
+    .field { margin-bottom: 17px; }
+    label { display: block; margin-bottom: 7px; color: var(--text); font-size: .9rem; font-weight: 600; }
+    .input-shell { position: relative; }
+    .prefix, .suffix {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--soft);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .92rem;
+      pointer-events: none;
+    }
+    .prefix { left: 14px; }
+    .suffix { right: 14px; }
+    input {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
+      background: var(--field);
+      color: var(--text);
+      padding: 11px 48px 11px 14px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    input.has-prefix { padding-left: 31px; }
+    input::placeholder { color: var(--soft); opacity: .74; }
+    input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 22%, transparent); outline: none; }
+    input.invalid { border-color: var(--red); }
+    .hint { margin: 6px 0 0; color: var(--soft); font-size: .77rem; }
+    .calculate {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 5px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .calculate:hover { filter: brightness(1.07); }
+    .form-error { min-height: 22px; margin: 10px 0 0; color: var(--red); font-size: .83rem; }
+    .result-panel { min-height: 470px; border-radius: 6px var(--radius) var(--radius) var(--radius); overflow: hidden; }
+    .empty-state {
+      min-height: 470px;
+      display: grid;
+      place-items: center;
+      padding: 48px;
+      text-align: center;
+    }
+    .empty-inner { max-width: 380px; }
+    .empty-mark {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+    .empty-state h2 { margin: 0; font-size: 1.2rem; }
+    .empty-state p { margin: 9px 0 0; color: var(--muted); }
+    .results { display: none; }
+    .results.visible { display: block; }
+    .results-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: start;
+      padding: 24px 26px 21px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-2);
+    }
+    .results-head p { margin: 0 0 4px; color: var(--muted); font-size: .82rem; font-weight: 600; }
+    .results-head h2 { margin: 0; font-size: clamp(1.35rem, 3vw, 2rem); letter-spacing: -.03em; }
+    .payment-note { color: var(--muted); font-size: .83rem; text-align: right; }
+    .payment-note strong { display: block; color: var(--text); font-family: "IBM Plex Mono", monospace; font-size: 1.02rem; }
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); }
+    .metric { padding: 25px 26px; }
+    .metric + .metric { border-left: 1px solid var(--line); }
+    .metric-label { margin: 0 0 8px; color: var(--muted); font-size: .82rem; font-weight: 600; }
+    .metric-value { margin: 0; font-family: "IBM Plex Mono", monospace; font-size: clamp(1.55rem, 4vw, 2.35rem); line-height: 1.05; letter-spacing: -.04em; color: var(--green-soft); }
+    .metric-sub { margin: 8px 0 0; color: var(--muted); font-size: .84rem; }
+    .comparison { padding: 24px 26px 10px; }
+    .comparison h3 { margin: 0 0 17px; font-size: 1rem; }
+    .compare-row {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr) auto;
+      gap: 13px;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .compare-label { color: var(--muted); font-size: .83rem; }
+    .bar-track { height: 9px; overflow: hidden; background: var(--field); border: 1px solid var(--line); border-radius: 999px; }
+    .bar { height: 100%; width: 0; transition: width .35s ease; }
+    .bar.standard { background: var(--blue); }
+    .bar.extra { background: var(--green); }
+    .compare-value { min-width: 104px; color: var(--text); font-family: "IBM Plex Mono", monospace; font-size: .8rem; text-align: right; }
+    .results-actions { display: flex; flex-wrap: wrap; gap: 10px; padding: 16px 26px 22px; }
+    .action-btn {
+      min-height: 43px;
+      border-radius: 8px;
+      padding: 10px 15px;
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      color: var(--text);
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .action-btn:hover { background: var(--surface-2); }
+    .action-btn.email { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .action-btn.email:hover { filter: brightness(1.07); }
+    .copy-status { align-self: center; min-height: 20px; color: var(--green-soft); font-size: .8rem; }
+    details { margin: 0 26px 26px; border-top: 1px solid var(--line); }
+    summary {
+      padding: 17px 0 8px;
+      color: var(--text);
+      font-weight: 650;
+      cursor: pointer;
+    }
+    details p { margin: 7px 0 0; color: var(--muted); font-size: .93rem; }
+    .method {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 15px;
+      margin: 0 0 46px;
+      padding: 20px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .method-tag {
+      margin-top: 2px;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .74rem;
+      font-weight: 600;
+    }
+    .method p { margin: 0; color: var(--muted); font-size: .84rem; }
+    .disclaimer { padding-bottom: 28px; color: var(--soft); font-size: .76rem; }
+    .noscript { margin: 18px; padding: 14px; background: var(--surface); color: var(--text); border: 1px solid var(--line); }
+    @media (max-width: 780px) {
+      .wrap { width: min(100% - 28px, 620px); }
+      .home-link { margin-bottom: 19px; }
+      .intro { margin-bottom: 23px; }
+      .workspace { grid-template-columns: 1fr; gap: 15px; }
+      .form-panel, .result-panel { border-radius: 14px; }
+      .form-panel { padding: 20px; }
+      .empty-state { min-height: 280px; padding: 34px 24px; }
+      .result-panel { min-height: 0; }
+      .results-head { padding: 21px; }
+      .metric { padding: 21px; }
+      .comparison { padding: 22px 21px 8px; }
+      .results-actions { padding: 16px 21px 20px; }
+      details { margin: 0 21px 23px; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 2.2rem; }
+      .results-head { display: block; }
+      .payment-note { margin-top: 13px; text-align: left; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .metric + .metric { border-left: 0; border-top: 1px solid var(--line); }
+      .compare-row { grid-template-columns: 1fr auto; gap: 7px 10px; }
+      .bar-track { grid-column: 1 / -1; grid-row: 2; }
+      .compare-value { min-width: 0; }
+      .action-btn { flex: 1 1 145px; }
+      .method { grid-template-columns: 1fr; gap: 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <noscript><div class="noscript">This calculator needs JavaScript enabled to run the mortgage math.</div></noscript>
+  <main class="wrap">
+    <a class="home-link" href="/money/" aria-label="Back to Honed Money">← <span>Honed Money</span></a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">What can one extra payment change?</h1>
+      <div class="accent-rule" aria-hidden="true"></div>
+      <p>Compare your current mortgage schedule with a steady extra principal payment. See the time and interest you could keep.</p>
+    </section>
+
+    <section class="workspace" aria-label="Mortgage calculator">
+      <form class="panel form-panel" id="mortgage-form" novalidate>
+        <h2 class="panel-title">Your remaining mortgage</h2>
+
+        <div class="field">
+          <label for="balance">Loan balance</label>
+          <div class="input-shell">
+            <span class="prefix">$</span>
+            <input class="has-prefix" id="balance" name="balance" type="number" inputmode="decimal" min="0.01" step="100" placeholder="250,000" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="rate">Interest rate</label>
+          <div class="input-shell">
+            <input id="rate" name="rate" type="number" inputmode="decimal" min="0" max="50" step="0.01" placeholder="6.50" autocomplete="off" />
+            <span class="suffix">%</span>
+          </div>
+          <p class="hint">Your annual rate, not APR</p>
+        </div>
+
+        <div class="field">
+          <label for="term">Remaining term</label>
+          <div class="input-shell">
+            <input id="term" name="term" type="number" inputmode="decimal" min="0.0833" max="50" step="0.0833" placeholder="25" autocomplete="off" />
+            <span class="suffix">years</span>
+          </div>
+          <p class="hint">Decimals are converted to the nearest month</p>
+        </div>
+
+        <div class="field">
+          <label for="extra">Extra principal each month</label>
+          <div class="input-shell">
+            <span class="prefix">$</span>
+            <input class="has-prefix" id="extra" name="extra" type="number" inputmode="decimal" min="0" step="10" placeholder="200" autocomplete="off" />
+          </div>
+        </div>
+
+        <button class="calculate" type="submit">Compare payoff plans</button>
+        <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
+      </form>
+
+      <section class="panel result-panel" aria-live="polite" aria-label="Calculation results">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-inner">
+            <div class="empty-mark" aria-hidden="true">$</div>
+            <h2>Your comparison will appear here</h2>
+            <p>Enter your mortgage details to see how an extra monthly payment changes the payoff.</p>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <header class="results-head">
+            <div>
+              <p>With the extra payment</p>
+              <h2 id="new-payoff">—</h2>
+            </div>
+            <div class="payment-note">Total monthly principal + interest<strong id="new-payment">—</strong></div>
+          </header>
+
+          <div class="metric-grid">
+            <div class="metric">
+              <p class="metric-label">Time saved</p>
+              <p class="metric-value" id="time-saved">—</p>
+              <p class="metric-sub" id="time-context">—</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Interest saved</p>
+              <p class="metric-value" id="interest-saved">—</p>
+              <p class="metric-sub" id="interest-context">—</p>
+            </div>
+          </div>
+
+          <div class="comparison">
+            <h3>Payoff comparison</h3>
+            <div class="compare-row">
+              <span class="compare-label">Current schedule</span>
+              <div class="bar-track" aria-hidden="true"><div class="bar standard" id="standard-bar"></div></div>
+              <span class="compare-value" id="standard-duration">—</span>
+            </div>
+            <div class="compare-row">
+              <span class="compare-label">With extra</span>
+              <div class="bar-track" aria-hidden="true"><div class="bar extra" id="extra-bar"></div></div>
+              <span class="compare-value" id="extra-duration">—</span>
+            </div>
+          </div>
+
+          <div class="results-actions">
+            <button class="action-btn email" id="email-results" type="button">Email my results</button>
+            <button class="action-btn" id="copy-results" type="button">Copy results</button>
+            <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+          </div>
+
+          <details id="explanation">
+            <summary>Explain these results</summary>
+            <p id="explanation-text"></p>
+          </details>
+        </div>
+      </section>
+    </section>
+
+    <section class="method" aria-label="How this estimate works">
+      <div class="method-tag">METHOD</div>
+      <p>This estimate uses a fixed-rate monthly amortization schedule. Extra money is applied directly to principal every month. It assumes on-time payments and no change to the rate; taxes, insurance, fees, escrow, and prepayment penalties are excluded.</p>
+    </section>
+    <footer class="disclaimer">For informational and educational purposes only. Results are estimates and are not financial advice. Confirm how your loan servicer applies extra payments before changing your payment plan.</footer>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("mortgage-form");
+      var fields = ["balance", "rate", "term", "extra"].map(function (id) { return document.getElementById(id); });
+      var errorBox = document.getElementById("form-error");
+      var emptyState = document.getElementById("empty-state");
+      var results = document.getElementById("results");
+      var copyStatus = document.getElementById("copy-status");
+      var lastSummary = "";
+      var lastSubject = "";
+
+      function money(value, digits) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: digits,
+          maximumFractionDigits: digits
+        }).format(value);
+      }
+
+      function duration(months) {
+        var whole = Math.max(0, Math.round(months));
+        var years = Math.floor(whole / 12);
+        var remaining = whole % 12;
+        if (!years) return remaining + (remaining === 1 ? " month" : " months");
+        if (!remaining) return years + (years === 1 ? " year" : " years");
+        return years + (years === 1 ? " year " : " years ") + remaining + (remaining === 1 ? " month" : " months");
+      }
+
+      function schedule(principal, monthlyRate, payment, maxMonths) {
+        var balance = principal;
+        var interestTotal = 0;
+        var months = 0;
+        var safety = Math.max(maxMonths + 12, 24);
+
+        while (balance > 0.005 && months < safety) {
+          var interest = balance * monthlyRate;
+          var principalPaid = Math.min(balance, Math.max(0, payment - interest));
+          if (principalPaid <= 0) return null;
+          interestTotal += interest;
+          balance -= principalPaid;
+          months += 1;
+        }
+        return { months: months, interest: interestTotal };
+      }
+
+      function clearInvalid() {
+        fields.forEach(function (field) { field.classList.remove("invalid"); field.removeAttribute("aria-invalid"); });
+        errorBox.textContent = "";
+      }
+
+      function markError(field, message) {
+        field.classList.add("invalid");
+        field.setAttribute("aria-invalid", "true");
+        errorBox.textContent = message;
+        field.focus();
+      }
+
+      function valuesAreValid(balance, annualRate, years, extra) {
+        clearInvalid();
+        if (!Number.isFinite(balance) || balance <= 0) { markError(fields[0], "Enter a loan balance greater than $0."); return false; }
+        if (!Number.isFinite(annualRate) || annualRate < 0 || annualRate > 50) { markError(fields[1], "Enter an interest rate from 0% to 50%."); return false; }
+        if (!Number.isFinite(years) || years < (1 / 12) || years > 50) { markError(fields[2], "Enter a remaining term from 1 month to 50 years."); return false; }
+        if (!Number.isFinite(extra) || extra < 0) { markError(fields[3], "Enter an extra payment of $0 or more."); return false; }
+        return true;
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        copyStatus.textContent = "";
+
+        var balance = Number(fields[0].value);
+        var annualRate = Number(fields[1].value);
+        var years = Number(fields[2].value);
+        var extra = Number(fields[3].value);
+        if (!valuesAreValid(balance, annualRate, years, extra)) return;
+
+        var totalMonths = Math.max(1, Math.round(years * 12));
+        var monthlyRate = annualRate / 100 / 12;
+        var standardPayment = monthlyRate === 0
+          ? balance / totalMonths
+          : balance * monthlyRate / (1 - Math.pow(1 + monthlyRate, -totalMonths));
+
+        var standard = schedule(balance, monthlyRate, standardPayment, totalMonths);
+        var accelerated = schedule(balance, monthlyRate, standardPayment + extra, totalMonths);
+        if (!standard || !accelerated) {
+          errorBox.textContent = "These inputs could not produce a payoff schedule. Please check the values.";
+          return;
+        }
+
+        var monthsSaved = Math.max(0, standard.months - accelerated.months);
+        var interestSaved = Math.max(0, standard.interest - accelerated.interest);
+        var standardInterest = standard.interest;
+        var interestPercent = standardInterest > 0 ? (interestSaved / standardInterest * 100) : 0;
+
+        document.getElementById("new-payoff").textContent = duration(accelerated.months);
+        document.getElementById("new-payment").textContent = money(standardPayment + extra, 2);
+        document.getElementById("time-saved").textContent = duration(monthsSaved);
+        document.getElementById("time-context").textContent = "off the remaining " + duration(standard.months);
+        document.getElementById("interest-saved").textContent = money(interestSaved, 0);
+        document.getElementById("interest-context").textContent = standardInterest > 0
+          ? interestPercent.toFixed(1) + "% less interest"
+          : "No interest at a 0% rate";
+        document.getElementById("standard-duration").textContent = duration(standard.months);
+        document.getElementById("extra-duration").textContent = duration(accelerated.months);
+        document.getElementById("standard-bar").style.width = "100%";
+        document.getElementById("extra-bar").style.width = Math.max(2, accelerated.months / standard.months * 100).toFixed(1) + "%";
+
+        var explanation = "Your estimated regular principal-and-interest payment is " + money(standardPayment, 2) + ". Adding " + money(extra, 2) + " each month makes the total " + money(standardPayment + extra, 2) + ". At that pace, the remaining balance would be paid in " + duration(accelerated.months) + " instead of " + duration(standard.months) + ", saving about " + duration(monthsSaved) + " and " + money(interestSaved, 0) + " in interest. The estimate assumes your rate stays fixed and your servicer applies every extra dollar to principal.";
+        document.getElementById("explanation-text").textContent = explanation;
+
+        lastSubject = "My extra mortgage payment estimate";
+        lastSummary = [
+          "Extra mortgage payment estimate",
+          "",
+          "Remaining balance: " + money(balance, 2),
+          "Interest rate: " + annualRate.toFixed(3).replace(/0+$/, "").replace(/\.$/, "") + "%",
+          "Remaining term: " + duration(totalMonths),
+          "Regular principal + interest: " + money(standardPayment, 2) + "/month",
+          "Extra principal: " + money(extra, 2) + "/month",
+          "Total monthly payment: " + money(standardPayment + extra, 2),
+          "",
+          "Estimated payoff with extra: " + duration(accelerated.months),
+          "Time saved: " + duration(monthsSaved),
+          "Interest on current schedule: " + money(standardInterest, 2),
+          "Interest with extra: " + money(accelerated.interest, 2),
+          "Estimated interest saved: " + money(interestSaved, 2),
+          "",
+          "Estimate assumes a fixed rate and monthly payments, with extra money applied to principal. Taxes, insurance, fees, escrow, and prepayment penalties are excluded.",
+          "For informational and educational purposes only."
+        ].join("\n");
+
+        emptyState.style.display = "none";
+        results.classList.add("visible");
+      });
+
+      fields.forEach(function (field) {
+        field.addEventListener("input", function () {
+          field.classList.remove("invalid");
+          field.removeAttribute("aria-invalid");
+          if (errorBox.textContent) errorBox.textContent = "";
+        });
+      });
+
+      document.getElementById("email-results").addEventListener("click", function () {
+        if (!lastSummary) return;
+        var mailLink = document.createElement("a");
+        mailLink.href = "mailto:?subject=" + encodeURIComponent(lastSubject) + "&body=" + encodeURIComponent(lastSummary);
+        mailLink.click();
+      });
+
+      document.getElementById("copy-results").addEventListener("click", function () {
+        if (!lastSummary) return;
+        copyStatus.textContent = "";
+        function copied() { copyStatus.textContent = "Results copied."; }
+        function fallback() {
+          var area = document.createElement("textarea");
+          area.value = lastSummary;
+          area.setAttribute("readonly", "");
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          try { document.execCommand("copy"); copied(); }
+          catch (error) { copyStatus.textContent = "Copy unavailable on this device."; }
+          document.body.removeChild(area);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastSummary).then(copied).catch(fallback);
+        } else {
+          fallback();
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

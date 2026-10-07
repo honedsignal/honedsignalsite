@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>2026 Federal Tax Bracket Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#0b0e14;--surface:#141a23;--surface-2:#202936;--ink:#f5f7f9;--muted:#b3bec9;
+      --line:#344150;--line-strong:#596878;--blue:#78a9dc;--blue-soft:#1a3148;
+      --orange:#f7931a;--orange-ink:#181108;--orange-soft:#3c2a15;--green:#39ff14;--green-soft:#19391d;
+      --shadow:0 18px 50px rgba(11,14,20,.12);--r-lg:22px;--r-md:12px;
+    }
+    @media(prefers-color-scheme:dark){
+      :root{--bg:#080b10;--surface:#111720;--surface-2:#1a222d;--ink:#f5f7f9;--muted:#aab5c2;--line:#2d3947;--line-strong:#536170;--blue:#78a9dc;--blue-soft:#172d43;--orange:#f7931a;--orange-ink:#181108;--orange-soft:#3a2916;--green:#39ff14;--green-soft:#17351b;--shadow:0 20px 58px rgba(0,0,0,.3)}
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-width:320px;background:linear-gradient(90deg,transparent 0 72%,color-mix(in srgb,var(--orange) 6%,transparent) 72% 72.16%,transparent 72.16%),var(--bg);color:var(--ink);font:16px/1.5 Manrope,sans-serif;-webkit-font-smoothing:antialiased}
+    button,input,select{font:inherit;-webkit-tap-highlight-color:transparent}
+    .page{width:min(1180px,calc(100% - 40px));margin:0 auto;padding:12px 0 72px}
+    .home-nav{position:sticky;top:max(8px,env(safe-area-inset-top));z-index:20;width:fit-content;margin:0 0 26px}
+    .home-link{display:inline-flex;align-items:center;min-height:38px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);box-shadow:0 8px 22px rgba(0,0,0,.14);color:var(--blue);text-decoration:none;font-size:.75rem;font-weight:800}
+    .home-link:hover{border-color:var(--blue);color:var(--ink)}
+    .home-link:focus-visible,.calculate:focus-visible,.action:focus-visible,.explain-toggle:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 50%,transparent);outline-offset:3px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.65fr);gap:42px;align-items:end;margin-bottom:28px}
+    .intro h1{margin:0;max-width:760px;font-size:clamp(2.55rem,5.4vw,5.25rem);line-height:.94;letter-spacing:-.062em;font-weight:800}
+    .intro h1 span{color:var(--orange)}
+    .intro-copy{padding:0 0 5px}
+    .intro-copy p{margin:0;color:var(--muted);font-size:1.02rem;max-width:39ch}
+    .year-tag{display:inline-flex;align-items:center;gap:8px;margin:0 0 11px;color:var(--ink);font:500 .72rem DM Mono,monospace}
+    .year-tag:before{content:"";width:28px;height:3px;background:var(--orange)}
+    .notice{display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start;margin:0 0 22px;padding:14px 17px;border:1px solid color-mix(in srgb,var(--orange) 52%,var(--line));background:var(--orange-soft);border-radius:10px;color:var(--muted);font-size:.78rem}
+    .notice svg{width:20px;color:var(--orange);margin-top:1px}
+    .notice strong{color:var(--ink)}
+    .workspace{display:grid;grid-template-columns:minmax(320px,410px) minmax(0,1fr);gap:22px;align-items:start}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:24px;border-radius:var(--r-lg) 6px var(--r-lg) var(--r-lg);position:sticky;top:18px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .69rem DM Mono,monospace;color:var(--orange)}
+    .field{margin-bottom:16px}
+    .field label{display:block;margin:0 0 6px;color:var(--muted);font-size:.72rem;font-weight:800}
+    .input-shell{display:flex;align-items:center;min-height:49px;border:1px solid var(--line-strong);border-radius:9px;background:var(--bg);transition:border-color .15s,box-shadow .15s}
+    .input-shell:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 23%,transparent)}
+    .affix{padding-left:12px;color:var(--muted);font:500 .82rem DM Mono,monospace}
+    .input-shell input,.input-shell select{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);padding:12px 10px;font-weight:700;font-variant-numeric:tabular-nums}
+    .input-shell select{padding-right:12px}
+    .input-shell input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .input-shell input::placeholder{color:color-mix(in srgb,var(--muted) 60%,transparent);font-weight:500}
+    .micro{display:block;margin-top:6px;color:var(--muted);font-size:.67rem;line-height:1.45}
+    .calculate{width:100%;border:0;border-radius:10px;margin-top:6px;padding:14px 18px;background:var(--orange);color:var(--orange-ink);font-weight:800;cursor:pointer;box-shadow:0 7px 0 color-mix(in srgb,var(--orange) 48%,#4d2500);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(4px);box-shadow:0 3px 0 color-mix(in srgb,var(--orange) 48%,#4d2500)}
+    .privacy{margin:16px 2px 0;color:var(--muted);font-size:.69rem}
+    .error{margin:0 0 12px;padding:12px 14px;border-radius:10px;background:#4a2024;color:#ff9aa0;font-size:.82rem;font-weight:700}
+    @media(prefers-color-scheme:light){.error{background:#fde4e6;color:#8d2028}}
+    .hidden{display:none!important}
+    .empty{min-height:495px;display:grid;place-items:center;text-align:center;border:1px dashed var(--line-strong);border-radius:6px var(--r-lg) var(--r-lg) var(--r-lg);background:color-mix(in srgb,var(--surface) 78%,transparent);padding:40px}
+    .empty svg{width:94px;color:var(--blue);margin-bottom:18px}
+    .empty h2{margin:0 0 8px;font-size:1.55rem;letter-spacing:-.04em}
+    .empty p{margin:0 auto;max-width:42ch;color:var(--muted);font-size:.91rem}
+    .verdict{position:relative;overflow:hidden;padding:29px;border-radius:6px var(--r-lg) var(--r-lg) var(--r-lg);background:var(--ink);color:var(--bg)}
+    @media(prefers-color-scheme:dark){.verdict{background:#eef2f5;color:#0b0e14}}
+    .verdict:after{content:"";position:absolute;width:168px;height:168px;right:-71px;bottom:-73px;border:24px solid var(--orange);border-radius:50%}
+    .eyebrow{margin:0 0 10px;font:500 .7rem DM Mono,monospace;opacity:.65}
+    .rate-lockup{display:flex;align-items:flex-end;gap:15px;position:relative;z-index:1}
+    .big-rate{margin:0;font:500 clamp(4rem,9vw,7rem)/.8 DM Mono,monospace;letter-spacing:-.085em}
+    .rate-copy{max-width:26ch;margin:0 0 5px;font-weight:800;font-size:.94rem;line-height:1.25}
+    .verdict-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative;z-index:1;margin-top:28px;padding-top:18px;border-top:1px solid rgba(127,140,150,.36)}
+    .verdict-grid span{display:block;font-size:.62rem;opacity:.64;font-weight:800}
+    .verdict-grid strong{display:block;margin-top:5px;font:500 .84rem DM Mono,monospace}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+    .stat{padding:17px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-md)}
+    .stat span{display:block;color:var(--muted);font-size:.66rem;font-weight:800;margin-bottom:6px}
+    .stat strong{display:block;font:500 clamp(.95rem,2vw,1.25rem) DM Mono,monospace;letter-spacing:-.035em}
+    .stat em{display:block;margin-top:6px;color:var(--muted);font-size:.63rem;font-style:normal}
+    .explain{margin:10px 0;border:1px solid var(--line);border-radius:var(--r-md);background:var(--blue-soft);overflow:hidden}
+    .explain-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;border:0;background:transparent;color:var(--ink);padding:15px 17px;cursor:pointer;text-align:left;font-weight:800}
+    .explain-toggle:hover{background:color-mix(in srgb,var(--blue) 9%,transparent)}
+    .explain-toggle svg{width:18px;flex:0 0 auto;color:var(--blue);transition:transform .18s}
+    .explain-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+    .explain-copy{margin:0;padding:0 17px 17px;color:var(--muted);font-size:.84rem;line-height:1.68}
+    .explain-copy strong{color:var(--ink)}
+    .explain-copy[hidden]{display:none}
+    .breakdown{padding:22px;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .breakdown-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:15px}
+    .breakdown h2{margin:0;font-size:1.06rem;letter-spacing:-.025em}
+    .actions{display:flex;gap:7px}
+    .action{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);color:var(--ink);padding:8px 11px;text-decoration:none;cursor:pointer;font-size:.69rem;font-weight:800}
+    .action.email{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}
+    .ladder{display:grid;gap:7px}
+    .band{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:var(--bg)}
+    .band.current{border-color:var(--orange);background:var(--orange-soft)}
+    .band-rate{font:500 .83rem DM Mono,monospace}
+    .band-range strong{display:block;font-size:.78rem}
+    .band-range small{display:block;color:var(--muted);font-size:.62rem;margin-top:2px}
+    .band-tax{text-align:right}
+    .band-tax strong{display:block;font:500 .76rem DM Mono,monospace}
+    .band-tax small{display:block;color:var(--muted);font-size:.59rem;margin-top:2px}
+    .method{margin-top:12px;padding:15px 16px;border-radius:10px;background:var(--orange-soft);color:var(--muted);font-size:.7rem}
+    .method strong{color:var(--ink)}
+    .footer{display:grid;grid-template-columns:1fr auto;gap:24px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:88ch}.footer a{color:var(--blue);text-underline-offset:3px}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.page{width:min(100% - 28px,690px);padding-top:10px}.home-nav{margin-bottom:22px}.intro{grid-template-columns:1fr;gap:16px;margin-bottom:22px}.intro-copy p{max-width:52ch}.workspace{grid-template-columns:1fr}.inputs{position:static;border-radius:var(--r-lg)}.verdict{border-radius:var(--r-lg)}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px);padding:10px 0 52px}.intro h1{font-size:clamp(2.35rem,12.8vw,3.7rem)}.intro-copy p{font-size:.93rem}.notice{padding:13px}.inputs,.verdict,.breakdown{padding:19px}.rate-lockup{align-items:flex-start;flex-direction:column;gap:12px}.big-rate{font-size:4.4rem}.verdict-grid{grid-template-columns:1fr;gap:11px}.stats{grid-template-columns:1fr}.breakdown-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.action{flex:1;min-height:42px}.band{grid-template-columns:48px minmax(0,1fr)}.band-tax{grid-column:2;text-align:left;padding-top:3px}.footer{grid-template-columns:1fr;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <nav class="home-nav" aria-label="Honed Money navigation"><a class="home-link" href="/money/">← Honed Money</a></nav>
+
+  <header class="intro">
+    <h1>Your income isn't taxed at <span>one rate.</span></h1>
+    <div class="intro-copy">
+      <div class="year-tag">TAX YEAR 2026</div>
+      <p>Enter taxable income—not salary—to find your federal ordinary-income bracket and see how the progressive brackets stack up.</p>
+    </div>
+  </header>
+
+  <aside class="notice" aria-label="Important tax note">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <div><strong>Use taxable income from your return or a reasonable estimate.</strong> This is income after deductions, not gross pay. The calculator covers 2026 federal ordinary-income brackets; returns for this tax year are generally filed in 2027.</div>
+  </aside>
+
+  <section class="workspace" aria-label="2026 federal tax bracket calculator">
+    <form class="panel inputs" id="bracketForm" novalidate>
+      <div class="section-head"><h2>Your tax details</h2><span class="step">2026 FEDERAL</span></div>
+      <div class="field">
+        <label for="filingStatus">Filing status</label>
+        <div class="input-shell">
+          <select id="filingStatus" aria-describedby="statusHint">
+            <option value="single">Single</option>
+            <option value="joint">Married filing jointly</option>
+            <option value="separate">Married filing separately</option>
+            <option value="head">Head of household</option>
+            <option value="surviving">Qualifying surviving spouse</option>
+          </select>
+        </div>
+        <small class="micro" id="statusHint">Choose the status you expect to use on your federal return.</small>
+      </div>
+      <div class="field">
+        <label for="taxableIncome">Taxable income</label>
+        <div class="input-shell"><span class="affix">$</span><input id="taxableIncome" type="number" min="0" max="1000000000000" step="100" inputmode="decimal" placeholder="Example: 75,000" autocomplete="off" aria-describedby="incomeHint"></div>
+        <small class="micro" id="incomeHint">Usually found on Form 1040 after adjustments and deductions. Do not enter gross income here.</small>
+      </div>
+      <button class="calculate" type="submit">Find my bracket</button>
+      <p class="privacy">Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div>
+          <svg viewBox="0 0 108 92" fill="none" aria-hidden="true"><path d="M16 78h76M22 68h17V51H22v17Zm24 0h17V35H46v33Zm24 0h17V18H70v50Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="m22 35 19-13 16 7L82 8" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="m74 8h8v8" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h2>Find the rate on your next dollar.</h2>
+          <p>Enter your 2026 taxable income to see your marginal bracket, estimated ordinary income tax, and the amount taxed inside each bracket.</p>
+        </div>
+      </div>
+
+      <div id="resultState" class="hidden" aria-live="polite">
+        <div class="error hidden" id="errorBox"></div>
+        <section class="verdict" id="verdictCard">
+          <p class="eyebrow">YOUR 2026 MARGINAL FEDERAL RATE</p>
+          <div class="rate-lockup"><p class="big-rate" id="marginalRate">—</p><p class="rate-copy" id="rateCopy">—</p></div>
+          <div class="verdict-grid">
+            <div><span>TAXABLE INCOME</span><strong id="incomeOut">—</strong></div>
+            <div><span>FILING STATUS</span><strong id="statusOut">—</strong></div>
+            <div><span>NEXT BRACKET</span><strong id="nextBracket">—</strong></div>
+          </div>
+        </section>
+
+        <div class="stats">
+          <article class="stat"><span>ESTIMATED ORDINARY INCOME TAX</span><strong id="estimatedTax">—</strong><em>before credits and other taxes</em></article>
+          <article class="stat"><span>EFFECTIVE RATE</span><strong id="effectiveRate">—</strong><em>estimated tax ÷ taxable income</em></article>
+          <article class="stat"><span>ROOM IN CURRENT BRACKET</span><strong id="roomLeft">—</strong><em id="roomNote">before the next rate begins</em></article>
+        </div>
+
+        <section class="explain" aria-label="Plain-English results explanation">
+          <button type="button" class="explain-toggle" id="explainToggle" aria-expanded="false" aria-controls="explainCopy"><span>Explain these results</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <p class="explain-copy" id="explainCopy" hidden></p>
+        </section>
+
+        <section class="breakdown">
+          <div class="breakdown-head"><h2>How the brackets stack</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:" aria-label="Email these tax bracket results">Email my results</a><button type="button" class="action" id="copyResults" aria-live="polite">Copy results</button></div></div>
+          <div class="ladder" id="bracketLadder"></div>
+          <div class="method"><strong>What is included:</strong> the 2026 federal ordinary-income rate schedule for the filing status selected. This simplified estimate does not include deductions, tax credits, capital gains rates, self-employment tax, the alternative minimum tax, the net investment income tax, or state taxes.</div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p><strong>Method:</strong> Taxable income is divided across the seven 2026 federal brackets. Each slice is multiplied by its bracket rate, then the slices are added. Figures are rounded to the nearest cent.</p>
+    <p><a href="https://www.irs.gov/publications/p505" target="_blank" rel="noopener">IRS 2026 tax rate schedules</a><br>Source reviewed Oct. 7, 2026 · Informational purposes only, not tax advice.</p>
+  </footer>
+</main>
+<script>
+(function(){
+  'use strict';
+  var form=document.getElementById('bracketForm');
+  var lastResult=null;
+  var schedules={
+    single:{label:'Single',bands:[[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[Infinity,.37]]},
+    joint:{label:'Married filing jointly',bands:[[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[Infinity,.37]]},
+    separate:{label:'Married filing separately',bands:[[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[384350,.35],[Infinity,.37]]},
+    head:{label:'Head of household',bands:[[17700,.10],[67450,.12],[105700,.22],[201750,.24],[256200,.32],[640600,.35],[Infinity,.37]]},
+    surviving:{label:'Qualifying surviving spouse',bands:[[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[Infinity,.37]]}
+  };
+  function byId(id){return document.getElementById(id)}
+  function money(n,cents){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:cents?2:0,maximumFractionDigits:cents?2:0}).format(n)}
+  function pct(n){return new Intl.NumberFormat('en-US',{style:'percent',minimumFractionDigits:n===0?0:1,maximumFractionDigits:1}).format(n)}
+  function escapeHtml(text){return String(text).replace(/[&<>'"]/g,function(ch){return{'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]})}
+  function calculateSchedule(income,key){
+    var bands=schedules[key].bands,lower=0,total=0,currentIndex=income===0?-1:0,parts=[];
+    for(var i=0;i<bands.length;i++){
+      var upper=bands[i][0],rate=bands[i][1],amount=Math.max(0,Math.min(income,upper)-lower),tax=amount*rate;
+      total+=tax;
+      if(income>lower&&income<=upper)currentIndex=i;
+      parts.push({lower:lower,upper:upper,rate:rate,amount:amount,tax:tax});
+      lower=upper;
+    }
+    var current=currentIndex>=0?parts[currentIndex]:null;
+    return{income:income,key:key,label:schedules[key].label,total:total,effective:income>0?total/income:0,currentIndex:currentIndex,current:current,parts:parts};
+  }
+  function validate(){
+    var raw=byId('taxableIncome').value.trim(),income=byId('taxableIncome').valueAsNumber;
+    if(raw===''||!Number.isFinite(income))return{error:'Enter your 2026 taxable income.'};
+    if(income<0)return{error:'Taxable income cannot be negative.'};
+    if(income>1000000000000)return{error:'Enter taxable income of $1 trillion or less.'};
+    return{income:income,key:byId('filingStatus').value};
+  }
+  function submit(e){
+    e.preventDefault();var values=validate();
+    if(values.error){showError(values.error);return}
+    lastResult=calculateSchedule(values.income,values.key);render(lastResult);
+  }
+  function showError(message){
+    byId('emptyState').classList.add('hidden');byId('resultState').classList.remove('hidden');byId('errorBox').textContent=message;byId('errorBox').classList.remove('hidden');
+    byId('resultState').querySelectorAll('.verdict,.stats,.explain,.breakdown').forEach(function(el){el.classList.add('hidden')});
+  }
+  function rangeText(part,index){
+    if(index===0)return 'Up to '+money(part.upper);
+    if(part.upper===Infinity)return 'Over '+money(part.lower);
+    return 'Over '+money(part.lower)+' to '+money(part.upper);
+  }
+  function nextText(r){
+    if(!r.current)return '10% begins with the first taxable dollar';
+    if(r.current.upper===Infinity)return 'Top bracket';
+    return pct(r.parts[r.currentIndex+1].rate)+' above '+money(r.current.upper);
+  }
+  function rateSentence(r){
+    if(!r.current)return 'No taxable dollars means no marginal bracket applies.';
+    return 'Only the dollars above '+money(r.current.lower)+' fall in this bracket.';
+  }
+  function roomText(r){return !r.current?'—':r.current.upper===Infinity?'No upper limit':money(Math.max(0,r.current.upper-r.income),true)}
+  function explanation(r){
+    if(r.income===0)return 'With '+money(0)+' of taxable income, no federal ordinary-income bracket applies and this estimate shows '+money(0,true)+' of ordinary income tax. Once taxable income is above zero, the first dollars enter the 10% bracket.';
+    var lower=r.current.lower,rate=pct(r.current.rate),currentAmount=Math.max(0,r.income-lower),text='Your '+money(r.income,true)+' of taxable income puts your last taxable dollar in the '+rate+' bracket. That does not mean all '+money(r.income,true)+' is taxed at '+rate+'. ';
+    if(lower===0){text+='All of this taxable income is still inside the first bracket. ';}else{text+=money(currentAmount,true)+' falls inside the '+rate+' bracket; the dollars below '+money(lower)+' are taxed at lower rates. ';}
+    text+='Adding the tax from each bracket produces an estimated '+money(r.total,true)+' of federal ordinary income tax, an effective rate of '+pct(r.effective)+'. ';
+    if(r.current.upper===Infinity){text+='You are in the highest 2026 bracket, so there is no higher ordinary-income bracket above it.';}else{text+='Another '+money(r.current.upper-r.income,true)+' of taxable income can fit before the '+pct(r.parts[r.currentIndex+1].rate)+' bracket begins.';}
+    return text;
+  }
+  function buildLadder(r){
+    return r.parts.map(function(part,index){
+      var current=index===r.currentIndex,used=part.amount>0,detail=used?money(part.amount,true)+' taxed here':'No income in this band',tax=used?money(part.tax,true):'—';
+      return '<div class="band'+(current?' current':'')+'"><div class="band-rate">'+pct(part.rate)+'</div><div class="band-range"><strong>'+escapeHtml(rangeText(part,index))+'</strong><small>'+escapeHtml(detail)+(current?' · your current bracket':'')+'</small></div><div class="band-tax"><strong>'+escapeHtml(tax)+'</strong><small>tax from band</small></div></div>';
+    }).join('');
+  }
+  function render(r){
+    byId('emptyState').classList.add('hidden');byId('resultState').classList.remove('hidden');byId('errorBox').classList.add('hidden');
+    byId('resultState').querySelectorAll('.verdict,.stats,.explain,.breakdown').forEach(function(el){el.classList.remove('hidden')});
+    byId('marginalRate').textContent=r.current?pct(r.current.rate):'0%';byId('rateCopy').textContent=rateSentence(r);byId('incomeOut').textContent=money(r.income,true);byId('statusOut').textContent=r.label;byId('nextBracket').textContent=nextText(r);byId('estimatedTax').textContent=money(r.total,true);byId('effectiveRate').textContent=pct(r.effective);byId('roomLeft').textContent=roomText(r);byId('roomNote').textContent=r.current&&r.current.upper===Infinity?'highest ordinary-income bracket':'before the next rate begins';byId('bracketLadder').innerHTML=buildLadder(r);byId('explainCopy').textContent=explanation(r);byId('explainCopy').hidden=true;byId('explainToggle').setAttribute('aria-expanded','false');updateEmail(r);
+    if(window.matchMedia('(max-width: 880px)').matches){setTimeout(function(){byId('verdictCard').scrollIntoView({behavior:'smooth',block:'start'})},50)}
+  }
+  function summary(r){
+    var lines=['2026 Federal Tax Bracket Calculator results','',r.label,'Taxable income: '+money(r.income,true),'Marginal rate: '+(r.current?pct(r.current.rate):'No bracket at $0'),'Estimated ordinary income tax: '+money(r.total,true),'Effective rate: '+pct(r.effective)];
+    if(r.current&&r.current.upper!==Infinity){lines.push('Room before the next bracket: '+money(r.current.upper-r.income,true));}else if(r.current){lines.push('Current bracket: highest 2026 ordinary-income bracket');}
+    lines.push('','A marginal rate applies only to the dollars inside that bracket, not to all taxable income. Estimate uses the 2026 federal ordinary-income rate schedule. Informational purposes only, not tax advice.');return lines.join('\n');
+  }
+  function updateEmail(r){byId('emailResults').href='mailto:?subject='+encodeURIComponent('My 2026 federal tax bracket')+'&body='+encodeURIComponent(summary(r))}
+  function copyResults(){
+    if(!lastResult)return;var button=byId('copyResults'),text=summary(lastResult);
+    var done=function(){button.textContent='Copied';clearTimeout(button._timer);button._timer=setTimeout(function(){button.textContent='Copy results'},1600)};
+    var fallback=function(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{if(document.execCommand('copy'))done();else button.textContent='Select and copy'}catch(e){button.textContent='Copy unavailable'}finally{area.remove()}};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done).catch(fallback)}else{fallback()}
+  }
+  function toggleExplanation(){var button=byId('explainToggle'),copy=byId('explainCopy'),willOpen=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',willOpen?'true':'false');copy.hidden=!willOpen}
+  form.addEventListener('submit',submit);byId('copyResults').addEventListener('click',copyResults);byId('explainToggle').addEventListener('click',toggleExplanation);
+})();
+</script>
+</body>
+</html>

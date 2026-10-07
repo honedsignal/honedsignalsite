@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>HELOC vs. Home Equity Loan Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #f2f5f7; --muted: #b5bec6; --paper: #0d1118; --surface: #151c25; --surface-2: #1d2630;
+      --line: #303b47; --line-strong: #4a5662; --blue: #76a8d9; --blue-strong: #a0c6ea;
+      --orange: #f7931a; --orange-ink: #0b0e14; --green: #39ff14; --danger: #ff747b; --focus: #83b7e7;
+      --shadow: 0 22px 65px rgba(0, 0, 0, .35);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #f2f5f7; --muted: #aeb8c0; --paper: #0b0e14; --surface: #121821; --surface-2: #1a222c;
+        --line: #2d3742; --line-strong: #47525e; --blue: #77a6d6; --blue-strong: #9ac2e9;
+        --orange: #f7931a; --orange-ink: #0b0e14; --green: #39ff14; --danger: #ff747b; --focus: #83b7e7;
+        --shadow: 0 22px 65px rgba(0, 0, 0, .38);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 0; background: var(--paper); color: var(--ink); font-family: "IBM Plex Sans", sans-serif; font-size: 16px; line-height: 1.48; -webkit-font-smoothing: antialiased; }
+    button, input { font: inherit; -webkit-tap-highlight-color: transparent; }
+    .home-strip { position: sticky; top: 0; z-index: 20; background: var(--paper); border-bottom: 1px solid var(--line); }
+    .home-link { display: block; width: min(1220px, 100%); margin: 0 auto; padding: 10px clamp(16px, 3.6vw, 44px); color: var(--blue); font-size: .82rem; font-weight: 600; text-decoration: none; }
+    .home-link:hover { color: var(--blue-strong); text-decoration: underline; text-underline-offset: 3px; }
+    .home-link:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+    .page { width: min(1220px, 100%); margin: 0 auto; padding: clamp(24px, 4vw, 52px) clamp(16px, 3.6vw, 44px) 72px; }
+    .intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 410px); gap: 34px; align-items: end; padding: 12px 0 34px; border-bottom: 1px solid var(--line); }
+    h1 { margin: 0; max-width: 850px; font-size: clamp(2.35rem, 6vw, 5.4rem); line-height: .96; letter-spacing: -.055em; font-weight: 700; }
+    h1 span { color: var(--green); }
+    .intro p { margin: 0 0 4px; max-width: 38ch; color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.15rem); }
+    .workbench { display: grid; grid-template-columns: minmax(300px, 390px) minmax(0, 1fr); margin-top: 34px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .inputs { padding: 28px; border-right: 1px solid var(--line); }
+    .results { min-width: 0; padding: 28px; background: var(--surface); }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; margin-bottom: 22px; }
+    .section-head h2 { margin: 0; font-size: .86rem; line-height: 1; letter-spacing: .08em; text-transform: uppercase; }
+    .reset { border: 0; padding: 3px 0; background: transparent; color: var(--blue); font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+    .reset:hover { color: var(--blue-strong); }
+    .field { margin-bottom: 19px; }
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    label { display: block; margin-bottom: 7px; color: var(--muted); font-size: .84rem; font-weight: 600; }
+    .control { position: relative; display: flex; align-items: center; }
+    .prefix, .suffix { position: absolute; z-index: 1; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: .9rem; pointer-events: none; }
+    .prefix { left: 13px; } .suffix { right: 13px; }
+    input { width: 100%; min-height: 48px; border: 1px solid var(--line-strong); border-radius: 3px; background: var(--paper); color: var(--ink); outline: none; padding: 10px 13px; font-variant-numeric: tabular-nums; }
+    input.with-prefix { padding-left: 31px; } input.with-suffix { padding-right: 46px; }
+    input::placeholder { color: var(--muted); opacity: .7; }
+    input:focus { border-color: var(--focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 20%, transparent); }
+    input[aria-invalid="true"] { border-color: var(--danger); }
+    .group-title { margin: 26px 0 13px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .96rem; }
+    .hint { margin: -7px 0 18px; color: var(--muted); font-size: .79rem; line-height: 1.42; }
+    .error { display: none; margin: 0 0 14px; color: var(--danger); font-size: .83rem; font-weight: 600; }
+    .error.show { display: block; }
+    .calculate { width: 100%; min-height: 51px; border: 1px solid var(--green); border-radius: 3px; background: var(--green); color: #071006; font-weight: 700; cursor: pointer; }
+    .calculate:hover, .action:hover { filter: brightness(.94); }
+    .calculate:focus-visible, .action:focus-visible, summary:focus-visible { outline: 3px solid color-mix(in srgb, var(--focus) 32%, transparent); outline-offset: 3px; }
+    .empty { min-height: 480px; display: grid; place-items: center; text-align: center; color: var(--muted); border: 1px dashed var(--line-strong); padding: 34px; }
+    .empty svg { width: 62px; height: 62px; color: var(--blue); margin-bottom: 16px; }
+    .empty strong { display: block; color: var(--ink); font-size: 1.1rem; margin-bottom: 5px; }
+    .empty p { margin: 0; max-width: 36ch; }
+    .result-content[hidden] { display: none; }
+    .comparison-note { margin: 0 0 22px; padding: 14px 16px; border-left: 4px solid var(--orange); background: color-mix(in srgb, var(--orange) 8%, var(--surface)); color: var(--muted); font-size: .9rem; }
+    .comparison-note strong { color: var(--ink); }
+    .loan-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .loan-card { min-width: 0; padding: 20px; border: 1px solid var(--line); background: var(--paper); }
+    .loan-card.heloc { border-top: 4px solid var(--blue); } .loan-card.equity { border-top: 4px solid var(--green); }
+    .loan-type { margin: 0 0 3px; font-size: 1.15rem; line-height: 1.2; }
+    .loan-sub { margin: 0 0 22px; color: var(--muted); font-size: .82rem; }
+    .hero-number { margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+    .hero-number span { display: block; color: var(--muted); font-size: .78rem; font-weight: 600; }
+    .hero-number strong { display: block; margin-top: 4px; font-family: "IBM Plex Mono", monospace; font-size: clamp(1.7rem, 4vw, 2.45rem); line-height: 1.1; letter-spacing: -.04em; overflow-wrap: anywhere; }
+    .metric-list { margin: 0; }
+    .metric-row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+    .metric-row:last-child { border-bottom: 0; }
+    .metric-row dt { color: var(--muted); font-size: .82rem; }
+    .metric-row dd { margin: 0; text-align: right; font-family: "IBM Plex Mono", monospace; font-size: .86rem; font-weight: 600; }
+    .tradeoff { margin: 17px 0 0; padding-top: 15px; border-top: 1px solid var(--line); color: var(--muted); font-size: .84rem; }
+    .tradeoff strong { color: var(--ink); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .action { min-height: 43px; border-radius: 3px; padding: 10px 16px; font-weight: 700; cursor: pointer; }
+    .email { border: 1px solid var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .copy { border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); }
+    .toast { min-height: 24px; margin: 8px 0 0; color: var(--green); font-size: .82rem; font-weight: 600; }
+    details { margin-top: 20px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; padding: 16px 3px; color: var(--blue); font-weight: 700; }
+    .explanation { padding: 0 3px 18px; color: var(--muted); }
+    .explanation p { margin: 0 0 12px; } .explanation p:last-child { margin-bottom: 0; } .explanation strong { color: var(--ink); }
+    .method { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 34px; padding-top: 30px; border-top: 1px solid var(--line); }
+    .method h2 { margin: 0 0 10px; font-size: 1.05rem; }
+    .method p, .method ul { margin: 0; color: var(--muted); font-size: .9rem; }
+    .method ul { padding-left: 18px; } .method li + li { margin-top: 7px; }
+    footer { margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+    @media (max-width: 860px) { .intro { grid-template-columns: 1fr; gap: 16px; align-items: start; } .workbench { grid-template-columns: 1fr; } .inputs { border-right: 0; border-bottom: 1px solid var(--line); } .empty { min-height: 320px; } }
+    @media (max-width: 600px) { .page { padding-top: 24px; } .intro { padding-bottom: 25px; } h1 { font-size: clamp(2.15rem, 13vw, 3.35rem); } .workbench { margin-left: -1px; margin-right: -1px; } .inputs, .results { padding: 20px 16px; } .field-grid, .loan-grid, .method { grid-template-columns: 1fr; } .loan-card { padding: 18px 16px; } .hero-number strong { font-size: 1.8rem; } .actions { display: grid; grid-template-columns: 1fr; } .action { width: 100%; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="home-strip"><a class="home-link" href="/money/">← Honed Money</a></div>
+  <main class="page">
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">HELOC <span>vs.</span> home equity loan</h1>
+      <p>Compare the payment shape, estimated interest, and flexibility of borrowing against your home in two different ways.</p>
+    </section>
+    <section class="workbench" aria-label="Loan comparison calculator">
+      <form class="inputs" id="calc-form" novalidate>
+        <div class="section-head"><h2>Your comparison</h2><button class="reset" type="button" id="reset-button">Reset</button></div>
+        <div class="field"><label for="amount">Amount you need</label><div class="control"><span class="prefix">$</span><input class="with-prefix" id="amount" name="amount" type="number" inputmode="decimal" min="1" step="100" placeholder="50,000" autocomplete="off" /></div></div>
+        <h3 class="group-title">HELOC</h3>
+        <p class="hint">Interest-only payments during the draw period, followed by principal-and-interest payments. The estimate holds the entered rate steady; actual HELOC rates usually change.</p>
+        <div class="field-grid">
+          <div class="field"><label for="heloc-rate">Current rate</label><div class="control"><input class="with-suffix" id="heloc-rate" name="helocRate" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="8.25" autocomplete="off" /><span class="suffix">%</span></div></div>
+          <div class="field"><label for="draw-years">Draw period</label><div class="control"><input class="with-suffix" id="draw-years" name="drawYears" type="number" inputmode="decimal" min="0.1" max="30" step="0.5" placeholder="10" autocomplete="off" /><span class="suffix">years</span></div></div>
+          <div class="field"><label for="repay-years">Repayment period</label><div class="control"><input class="with-suffix" id="repay-years" name="repayYears" type="number" inputmode="decimal" min="0.1" max="40" step="0.5" placeholder="20" autocomplete="off" /><span class="suffix">years</span></div></div>
+        </div>
+        <h3 class="group-title">Home equity loan</h3>
+        <p class="hint">This estimate models one lump-sum loan with a fixed rate and equal monthly payments.</p>
+        <div class="field-grid">
+          <div class="field"><label for="loan-rate">Fixed rate</label><div class="control"><input class="with-suffix" id="loan-rate" name="loanRate" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="7.50" autocomplete="off" /><span class="suffix">%</span></div></div>
+          <div class="field"><label for="loan-years">Loan term</label><div class="control"><input class="with-suffix" id="loan-years" name="loanYears" type="number" inputmode="decimal" min="0.1" max="40" step="0.5" placeholder="15" autocomplete="off" /><span class="suffix">years</span></div></div>
+        </div>
+        <p class="error" id="form-error" role="alert"></p>
+        <button class="calculate" type="submit">Compare my options</button>
+      </form>
+      <div class="results" aria-live="polite">
+        <div class="section-head"><h2>Side-by-side estimate</h2></div>
+        <div class="empty" id="empty-state"><div>
+          <svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30 32 10l24 20"/><path d="M14 27v27h36V27"/><path d="M25 54V38h14v16"/><path d="M6 20h14M44 44h14"/><path d="m15 15 5 5-5 5M49 39l-5 5 5 5"/></svg>
+          <strong>Start with your numbers</strong><p>Enter the amount, rates, and time periods to see how the two borrowing paths differ.</p>
+        </div></div>
+        <div class="result-content" id="result-content" hidden>
+          <p class="comparison-note"><strong>Rate assumption:</strong> the HELOC estimate holds your entered rate steady through both phases so the full borrowing path can be compared. Actual HELOC rates usually change.</p>
+          <div class="loan-grid">
+            <article class="loan-card heloc"><h3 class="loan-type">HELOC</h3><p class="loan-sub">Reusable credit line · changing rate</p><div class="hero-number"><span>Monthly payment during draw</span><strong id="heloc-payment">—</strong></div><dl class="metric-list"><div class="metric-row"><dt>Payment after draw</dt><dd id="heloc-repay-payment">—</dd></div><div class="metric-row"><dt>Total interest</dt><dd id="heloc-interest">—</dd></div><div class="metric-row"><dt>Full payoff time</dt><dd id="heloc-time">—</dd></div><div class="metric-row"><dt>Total of payments</dt><dd id="heloc-total">—</dd></div></dl><p class="tradeoff"><strong>Flexibility:</strong> borrow, repay, and often borrow again during the draw period. The trade-off is a rate and payment that can rise.</p></article>
+            <article class="loan-card equity"><h3 class="loan-type">Home equity loan</h3><p class="loan-sub">One lump sum · fixed payment</p><div class="hero-number"><span>Estimated monthly principal + interest</span><strong id="loan-payment">—</strong></div><dl class="metric-list"><div class="metric-row"><dt>Interest over full term</dt><dd id="loan-interest">—</dd></div><div class="metric-row"><dt>Original principal</dt><dd id="loan-principal">—</dd></div><div class="metric-row"><dt>Total of payments</dt><dd id="loan-total">—</dd></div></dl><p class="tradeoff"><strong>Predictability:</strong> one fixed monthly payment pays the balance down to zero. The trade-off is less flexibility—you receive the money once.</p></article>
+          </div>
+          <div class="actions"><button class="action email" id="email-results" type="button">Email my results</button><button class="action copy" id="copy-results" type="button">Copy results</button></div>
+          <p class="toast" id="toast" role="status"></p>
+          <details id="explain-results"><summary>Explain these results</summary><div class="explanation" id="explanation"></div></details>
+        </div>
+      </div>
+    </section>
+    <section class="method" aria-label="Method and limits">
+      <div><h2>How the estimate works</h2><p>The HELOC side uses simple monthly interest during the draw period, then the standard fixed-payment formula during repayment, holding the entered rate constant. The home equity loan side uses the fixed-payment formula for its full term. Dollar results are rounded to cents.</p></div>
+      <div><h2>What is not included</h2><ul><li>Closing costs, appraisal fees, annual fees, or early-closure charges</li><li>Future HELOC rate changes or additional borrowing</li><li>Minimum-draw rules, rate floors, or lender-specific payment rules</li><li>Tax effects, property value, or lender qualification rules</li></ul></div>
+    </section>
+    <footer>For informational and educational purposes only. This calculator is not financial, tax, or legal advice and does not guarantee loan terms or approval. Review the lender’s full disclosures before borrowing against your home.</footer>
+  </main>
+  <script>
+    (function () {
+      "use strict";
+      var form = document.getElementById("calc-form");
+      var errorBox = document.getElementById("form-error");
+      var emptyState = document.getElementById("empty-state");
+      var resultContent = document.getElementById("result-content");
+      var toast = document.getElementById("toast");
+      var lastResult = null;
+      var fields = { amount: document.getElementById("amount"), helocRate: document.getElementById("heloc-rate"), drawYears: document.getElementById("draw-years"), repayYears: document.getElementById("repay-years"), loanRate: document.getElementById("loan-rate"), loanYears: document.getElementById("loan-years") };
+      var money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      function valueOf(field) { return Number(field.value); }
+      function setError(message, invalidKeys) { errorBox.textContent = message; errorBox.classList.add("show"); Object.keys(fields).forEach(function (key) { fields[key].setAttribute("aria-invalid", invalidKeys.indexOf(key) !== -1 ? "true" : "false"); }); }
+      function clearError() { errorBox.textContent = ""; errorBox.classList.remove("show"); Object.keys(fields).forEach(function (key) { fields[key].setAttribute("aria-invalid", "false"); }); }
+      function validate(data) {
+        var missing = [];
+        Object.keys(data).forEach(function (key) { if (fields[key].value.trim() === "" || !Number.isFinite(data[key])) missing.push(key); });
+        if (missing.length) { setError("Enter all six values to compare the loans.", missing); fields[missing[0]].focus(); return false; }
+        if (data.amount <= 0) { setError("The amount needed must be greater than $0.", ["amount"]); fields.amount.focus(); return false; }
+        if (data.helocRate < 0 || data.helocRate > 100 || data.loanRate < 0 || data.loanRate > 100) { var rates = []; if (data.helocRate < 0 || data.helocRate > 100) rates.push("helocRate"); if (data.loanRate < 0 || data.loanRate > 100) rates.push("loanRate"); setError("Use an interest rate from 0% to 100%.", rates); fields[rates[0]].focus(); return false; }
+        if (data.drawYears <= 0 || data.drawYears > 30 || data.repayYears <= 0 || data.repayYears > 40 || data.loanYears <= 0 || data.loanYears > 40) { var terms = []; if (data.drawYears <= 0 || data.drawYears > 30) terms.push("drawYears"); if (data.repayYears <= 0 || data.repayYears > 40) terms.push("repayYears"); if (data.loanYears <= 0 || data.loanYears > 40) terms.push("loanYears"); setError("Use a HELOC draw period up to 30 years and repayment terms up to 40 years.", terms); fields[terms[0]].focus(); return false; }
+        clearError(); return true;
+      }
+      function payment(principal, annualRate, months) { if (annualRate === 0) return principal / months; var monthlyRate = annualRate / 100 / 12; return principal * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months)); }
+      function years(value) { return Number.isInteger(value) ? String(value) : value.toFixed(1).replace(/\.0$/, ""); }
+      function calculate(data) {
+        var helocMonths = Math.round(data.drawYears * 12); var repayMonths = Math.round(data.repayYears * 12); var loanMonths = Math.round(data.loanYears * 12);
+        var helocMonthly = data.amount * (data.helocRate / 100 / 12); var drawInterest = helocMonthly * helocMonths;
+        var helocRepayPayment = payment(data.amount, data.helocRate, repayMonths); var repayTotal = helocRepayPayment * repayMonths;
+        var helocTotal = drawInterest + repayTotal; var helocInterest = Math.max(0, helocTotal - data.amount);
+        var loanMonthly = payment(data.amount, data.loanRate, loanMonths); var loanTotal = loanMonthly * loanMonths; var loanInterest = Math.max(0, loanTotal - data.amount);
+        return { amount: data.amount, helocRate: data.helocRate, drawYears: data.drawYears, repayYears: data.repayYears, loanRate: data.loanRate, loanYears: data.loanYears, helocMonths: helocMonths, repayMonths: repayMonths, loanMonths: loanMonths, helocMonthly: helocMonthly, helocRepayPayment: helocRepayPayment, helocInterest: helocInterest, helocTotal: helocTotal, loanMonthly: loanMonthly, loanInterest: loanInterest, loanTotal: loanTotal };
+      }
+      function render(r) {
+        document.getElementById("heloc-payment").textContent = money.format(r.helocMonthly); document.getElementById("heloc-repay-payment").textContent = money.format(r.helocRepayPayment); document.getElementById("heloc-interest").textContent = money.format(r.helocInterest); document.getElementById("heloc-time").textContent = years(r.drawYears + r.repayYears) + " years"; document.getElementById("heloc-total").textContent = money.format(r.helocTotal);
+        document.getElementById("loan-payment").textContent = money.format(r.loanMonthly); document.getElementById("loan-interest").textContent = money.format(r.loanInterest); document.getElementById("loan-principal").textContent = money.format(r.amount); document.getElementById("loan-total").textContent = money.format(r.loanTotal);
+        var rateWarning = r.helocRate === 0 ? "At the rate entered, the HELOC estimate shows no interest during the draw period." : "If the HELOC rate changes, its payment and total interest will change too.";
+        var difference = Math.abs(r.loanMonthly - r.helocMonthly); var comparison = r.loanMonthly >= r.helocMonthly ? "The fixed home equity loan payment is " + money.format(difference) + " more per month than the HELOC's interest-only payment." : "The HELOC's interest-only payment is " + money.format(difference) + " more per month than the fixed home equity loan payment at the rates entered.";
+        document.getElementById("explanation").innerHTML = "<p><strong>What the HELOC number means:</strong> Borrowing " + money.format(r.amount) + " at " + r.helocRate.toFixed(2) + "% creates an estimated interest-only payment of <strong>" + money.format(r.helocMonthly) + " per month</strong> for " + years(r.drawYears) + " years. Then the payment rises to about <strong>" + money.format(r.helocRepayPayment) + " per month</strong> for " + years(r.repayYears) + " years as the balance is paid off.</p><p><strong>What the home equity loan number means:</strong> Borrowing the same amount at " + r.loanRate.toFixed(2) + "% over " + years(r.loanYears) + " years creates an estimated fixed payment of <strong>" + money.format(r.loanMonthly) + " per month</strong>. Each payment includes interest and pays down part of the balance.</p><p><strong>How to read the choice:</strong> " + comparison + " A smaller HELOC draw-period payment does not automatically mean it is cheaper; it postpones principal repayment. A home equity loan is less flexible, but its payment and payoff date are known from the start.</p><p><strong>Rate reminder:</strong> " + rateWarning + " This estimate uses that same entered rate during HELOC repayment. Fees are not included on either side.</p>";
+        emptyState.hidden = true; resultContent.hidden = false; toast.textContent = "";
+      }
+      function buildText(r) { return ["HELOC vs. Home Equity Loan Estimate", "", "Amount needed: " + money.format(r.amount), "", "HELOC (" + r.helocRate.toFixed(2) + "% rate held constant, " + years(r.drawYears) + "-year draw + " + years(r.repayYears) + "-year repayment)", "Monthly payment during draw: " + money.format(r.helocMonthly), "Monthly payment during repayment: " + money.format(r.helocRepayPayment), "Total interest: " + money.format(r.helocInterest), "Total of payments: " + money.format(r.helocTotal), "", "Home equity loan (" + r.loanRate.toFixed(2) + "% fixed rate, " + years(r.loanYears) + "-year term)", "Estimated monthly principal + interest: " + money.format(r.loanMonthly), "Interest over full term: " + money.format(r.loanInterest), "Total of payments: " + money.format(r.loanTotal), "", "Important: The HELOC estimate assumes interest-only payments during the draw, then full amortization during repayment, with the entered rate held constant throughout. Actual HELOC rates usually change. Fees and tax effects are excluded.", "", "For informational and educational purposes only."].join("\n"); }
+      function fallbackCopy(text) { var area = document.createElement("textarea"); area.value = text; area.setAttribute("readonly", ""); area.style.position = "fixed"; area.style.opacity = "0"; document.body.appendChild(area); area.select(); var ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; } document.body.removeChild(area); return ok; }
+      form.addEventListener("submit", function (event) { event.preventDefault(); var data = { amount: valueOf(fields.amount), helocRate: valueOf(fields.helocRate), drawYears: valueOf(fields.drawYears), repayYears: valueOf(fields.repayYears), loanRate: valueOf(fields.loanRate), loanYears: valueOf(fields.loanYears) }; if (!validate(data)) return; lastResult = calculate(data); render(lastResult); });
+      document.getElementById("reset-button").addEventListener("click", function () { form.reset(); clearError(); lastResult = null; resultContent.hidden = true; emptyState.hidden = false; document.getElementById("explain-results").open = false; toast.textContent = ""; fields.amount.focus(); });
+      document.getElementById("email-results").addEventListener("click", function () { if (!lastResult) return; var mail = document.createElement("a"); mail.href = "mailto:?subject=" + encodeURIComponent("My HELOC vs. home equity loan estimate") + "&body=" + encodeURIComponent(buildText(lastResult)); mail.click(); });
+      document.getElementById("copy-results").addEventListener("click", function () { if (!lastResult) return; var text = buildText(lastResult); if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { toast.textContent = "Results copied."; }).catch(function () { toast.textContent = fallbackCopy(text) ? "Results copied." : "Copy was blocked. Select the results on screen instead."; }); } else { toast.textContent = fallbackCopy(text) ? "Results copied." : "Copy was blocked. Select the results on screen instead."; } });
+    })();
+  </script>
+</body>
+</html>

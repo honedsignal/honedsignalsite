@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>W-4 Withholding Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+    :root {
+      --ink: #f4f6f8;
+      --muted: #aeb7c2;
+      --subtle: #7e8997;
+      --bg: #090c10;
+      --panel: #11161d;
+      --panel-2: #171d25;
+      --line: #2a333e;
+      --line-strong: #3b4654;
+      --orange: #f7931a;
+      --orange-ink: #171006;
+      --green: #39ff14;
+      --green-soft: rgba(57,255,20,.12);
+      --red: #ff696f;
+      --focus: #7fb6f1;
+      --shadow: 0 22px 60px rgba(0,0,0,.28);
+      --radius: 16px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --ink: #f7f9fb;
+        --muted: #b7c0ca;
+        --subtle: #8d99a6;
+        --bg: #10141a;
+        --panel: #171d24;
+        --panel-2: #1f2731;
+        --line: #303a46;
+        --line-strong: #465361;
+        --orange-ink: #171006;
+        --green: #4cff2d;
+        --green-soft: rgba(76,255,45,.11);
+        --red: #ff7479;
+        --focus: #8bc2fb;
+        --shadow: 0 18px 48px rgba(0,0,0,.25);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        var(--bg);
+      background-size: 52px 52px;
+      background-position: -1px -1px;
+      color: var(--ink);
+      font-family: "DM Sans", system-ui, sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+    .page {
+      width: min(1140px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 20px 0 64px;
+    }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .92rem;
+      font-weight: 700;
+    }
+    .home-link:hover { color: var(--orange); }
+
+    .intro {
+      max-width: 810px;
+      padding: 34px 0 28px;
+    }
+    .year-line {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+      color: var(--orange);
+      font: 600 .82rem/1.2 "IBM Plex Mono", monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .year-line::before { content: ""; width: 28px; height: 3px; background: var(--orange); }
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(2.35rem, 7vw, 5.35rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    .lede {
+      margin: 22px 0 0;
+      max-width: 710px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.19rem);
+    }
+    .plain-note {
+      margin: 18px 0 0;
+      padding-left: 16px;
+      border-left: 3px solid var(--orange);
+      color: var(--ink);
+      font-size: .96rem;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .card-head h2 { margin: 0; font-size: 1.18rem; letter-spacing: -.02em; }
+    .card-head span { color: var(--subtle); font: 500 .76rem "IBM Plex Mono", monospace; }
+
+    form { padding: 22px; }
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; }
+    .field { min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+    label { display: block; margin-bottom: 7px; font-size: .88rem; font-weight: 700; }
+    .optional { color: var(--subtle); font-weight: 500; }
+    .input-wrap { position: relative; }
+    .prefix {
+      position: absolute;
+      inset: 0 auto 0 13px;
+      display: grid;
+      place-items: center;
+      color: var(--subtle);
+      pointer-events: none;
+    }
+    input, select {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
+      background: var(--panel-2);
+      color: var(--ink);
+      padding: 11px 13px;
+    }
+    input.with-prefix { padding-left: 30px; }
+    input::placeholder { color: var(--subtle); opacity: .82; }
+    input:focus, select:focus { border-color: var(--focus); }
+    .help { display: block; margin-top: 6px; color: var(--subtle); font-size: .76rem; line-height: 1.4; }
+    .separator { height: 1px; background: var(--line); margin: 22px 0; }
+
+    .primary {
+      width: 100%;
+      min-height: 51px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 800;
+      box-shadow: 0 7px 0 #9d5600;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .primary:hover { transform: translateY(-1px); box-shadow: 0 8px 0 #9d5600; }
+    .primary:active { transform: translateY(5px); box-shadow: 0 2px 0 #9d5600; }
+    .form-error {
+      display: none;
+      margin: 15px 0 0;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: rgba(229,72,77,.12);
+      color: var(--red);
+      font-weight: 700;
+      font-size: .88rem;
+    }
+    .form-error.show { display: block; }
+
+    .results-empty {
+      min-height: 460px;
+      display: grid;
+      align-content: center;
+      padding: 42px;
+      color: var(--muted);
+    }
+    .empty-mark {
+      width: 76px;
+      height: 92px;
+      border: 2px solid var(--line-strong);
+      border-radius: 8px;
+      position: relative;
+      margin-bottom: 25px;
+    }
+    .empty-mark::before, .empty-mark::after {
+      content: "";
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      height: 2px;
+      background: var(--line-strong);
+    }
+    .empty-mark::before { top: 28px; box-shadow: 0 13px 0 var(--line-strong), 0 26px 0 var(--line-strong); }
+    .empty-mark::after { width: 16px; height: 16px; left: auto; right: -8px; bottom: -8px; background: var(--orange); border-radius: 50%; }
+    .results-empty h2 { margin: 0 0 8px; color: var(--ink); font-size: 1.45rem; }
+    .results-empty p { margin: 0; max-width: 420px; }
+
+    .results { display: none; padding: 22px; }
+    .results.show { display: block; }
+    .result-eyebrow { color: var(--muted); font-size: .85rem; font-weight: 700; }
+    .big-number {
+      margin: 4px 0 2px;
+      font: 600 clamp(2.7rem, 8vw, 5rem)/1 "IBM Plex Mono", monospace;
+      letter-spacing: -.055em;
+      color: var(--ink);
+    }
+    .big-caption { color: var(--muted); font-size: .92rem; }
+    .target-strip {
+      margin: 20px 0;
+      padding: 17px 18px;
+      background: var(--green-soft);
+      border-left: 4px solid var(--green);
+    }
+    .target-strip strong { display: block; color: var(--green); font-size: 1.05rem; }
+    .target-strip p { margin: 3px 0 0; font-size: .88rem; }
+
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .metric { padding: 14px; background: var(--panel-2); border-radius: 9px; }
+    .metric span { display: block; color: var(--subtle); font-size: .75rem; }
+    .metric strong { display: block; margin-top: 3px; font: 600 1.05rem "IBM Plex Mono", monospace; }
+
+    .w4-guide { margin-top: 22px; border-top: 1px solid var(--line); padding-top: 21px; }
+    .w4-guide h3 { margin: 0 0 12px; font-size: 1rem; }
+    .step { display: grid; grid-template-columns: 62px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .step:last-child { border-bottom: 0; }
+    .step-code { color: var(--orange); font: 600 .78rem "IBM Plex Mono", monospace; }
+    .step strong { display: block; font-size: .91rem; }
+    .step p { margin: 2px 0 0; color: var(--muted); font-size: .82rem; }
+
+    .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+    .action {
+      min-height: 46px;
+      border-radius: 8px;
+      border: 1px solid var(--line-strong);
+      background: var(--panel-2);
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-grid;
+      place-items: center;
+      text-align: center;
+      padding: 9px 12px;
+    }
+    .action.email { background: var(--orange); color: var(--orange-ink); border-color: var(--orange); }
+    .copy-status { min-height: 20px; margin: 8px 0 0; color: var(--green); font-size: .78rem; text-align: center; }
+
+    details { margin-top: 15px; border-top: 1px solid var(--line); padding-top: 15px; }
+    summary { cursor: pointer; font-weight: 800; }
+    .explain { color: var(--muted); font-size: .89rem; }
+    .explain p { margin: 11px 0 0; }
+
+    .verification {
+      margin-top: 20px;
+      padding: 20px 22px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .verification h2 { margin: 0 0 6px; font-size: 1.05rem; }
+    .verification p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .verification a { color: var(--orange); font-weight: 800; }
+
+    .method {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+    }
+    .method section { padding-top: 14px; border-top: 3px solid var(--line-strong); }
+    .method h2 { margin: 0 0 7px; font-size: .95rem; }
+    .method p { margin: 0; color: var(--muted); font-size: .82rem; }
+    .method a { color: var(--orange); }
+    footer { margin-top: 35px; color: var(--subtle); font-size: .75rem; }
+
+    @media (max-width: 820px) {
+      .workspace { grid-template-columns: 1fr; }
+      .results-empty { min-height: 280px; }
+      .method { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .page { width: min(100% - 22px, 1140px); padding-top: 8px; }
+      .intro { padding: 24px 4px 22px; }
+      .field-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      form, .results { padding: 18px; }
+      .card-head { padding: 17px 18px; }
+      .metrics, .action-row { grid-template-columns: 1fr; }
+      .results-empty { padding: 30px 22px; }
+      .big-number { font-size: clamp(2.5rem, 14vw, 4rem); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .primary { transition: none; }
+    }
+    @media print {
+      body { background: #fff; color: #000; }
+      .home-link, form, .action-row, .copy-status { display: none !important; }
+      .workspace { display: block; }
+      .results-card { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <header class="intro">
+      <div class="year-line">2026 federal estimate</div>
+      <h1>Dial in your paycheck withholding.</h1>
+      <p class="lede">Estimate your annual federal income tax, a per-paycheck withholding target, and the entries that may belong on a new W-4.</p>
+      <p class="plain-note"><strong>One important update:</strong> today’s Form W-4 does not use “allowances.” It uses filing status, dependent credits, other income or deductions, and an optional extra dollar amount.</p>
+    </header>
+
+    <div class="workspace">
+      <section class="card" aria-labelledby="inputs-title">
+        <div class="card-head">
+          <h2 id="inputs-title">Your numbers</h2>
+          <span>Annual view</span>
+        </div>
+        <form id="calc-form" novalidate>
+          <div class="field-grid">
+            <div class="field full">
+              <label for="salary">Annual salary</label>
+              <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="salary" type="number" min="1" step="100" inputmode="decimal" placeholder="For example, 72,000" required /></div>
+              <span class="help">Your expected W-2 wages before taxes.</span>
+            </div>
+
+            <div class="field full">
+              <label for="status">Filing status</label>
+              <select id="status" required>
+                <option value="" selected disabled>Choose your filing status</option>
+                <option value="single">Single</option>
+                <option value="mfj">Married filing jointly</option>
+                <option value="mfs">Married filing separately</option>
+                <option value="hoh">Head of household</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="children">Qualifying children under 17 <span class="optional">(optional)</span></label>
+              <input id="children" type="number" min="0" max="30" step="1" inputmode="numeric" placeholder="For example, 2" />
+              <span class="help">Estimated at up to $2,200 each.</span>
+            </div>
+            <div class="field">
+              <label for="other-dependents">Other dependents <span class="optional">(optional)</span></label>
+              <input id="other-dependents" type="number" min="0" max="30" step="1" inputmode="numeric" placeholder="For example, 1" />
+              <span class="help">Estimated at up to $500 each.</span>
+            </div>
+
+            <div class="field full">
+              <label for="pretax">Annual pre-tax payroll deductions <span class="optional">(optional)</span></label>
+              <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="pretax" type="number" min="0" step="100" inputmode="decimal" placeholder="401(k), HSA, pre-tax insurance" /></div>
+            </div>
+          </div>
+
+          <div class="separator"></div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="frequency">Pay frequency</label>
+              <select id="frequency" required>
+                <option value="" selected disabled>Choose frequency</option>
+                <option value="52">Weekly · 52 checks</option>
+                <option value="26">Every two weeks · 26 checks</option>
+                <option value="24">Twice a month · 24 checks</option>
+                <option value="12">Monthly · 12 checks</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="current">Federal tax withheld per check <span class="optional">(optional)</span></label>
+              <div class="input-wrap"><span class="prefix">$</span><input class="with-prefix" id="current" type="number" min="0" step="1" inputmode="decimal" placeholder="From your pay stub" /></div>
+            </div>
+          </div>
+
+          <div class="separator"></div>
+          <button class="primary" type="submit">Estimate my withholding</button>
+          <p id="form-error" class="form-error" role="alert"></p>
+        </form>
+      </section>
+
+      <section class="card results-card" aria-live="polite">
+        <div id="results-empty" class="results-empty">
+          <div class="empty-mark" aria-hidden="true"></div>
+          <h2>Your W-4 snapshot will appear here.</h2>
+          <p>Enter your own numbers to see an estimate. Nothing is calculated until you press the button.</p>
+        </div>
+
+        <div id="results" class="results">
+          <div class="result-eyebrow">Estimated 2026 federal income tax</div>
+          <div id="annual-tax" class="big-number">$0</div>
+          <div class="big-caption">after the standard deduction and estimated dependent credits</div>
+
+          <div class="target-strip">
+            <strong id="per-check">Target: $0 per paycheck</strong>
+            <p id="adjustment-line">Use this as your simple whole-year withholding target.</p>
+          </div>
+
+          <div class="metrics">
+            <div class="metric"><span>Taxable income</span><strong id="taxable-income">$0</strong></div>
+            <div class="metric"><span>Estimated dependent credits</span><strong id="credit-total">$0</strong></div>
+            <div class="metric"><span>Effective federal rate</span><strong id="effective-rate">0%</strong></div>
+            <div class="metric"><span>Standard deduction</span><strong id="standard-deduction">$0</strong></div>
+          </div>
+
+          <div class="w4-guide">
+            <h3>How this maps to a 2026 W-4</h3>
+            <div class="step">
+              <div class="step-code">Step 1(c)</div>
+              <div><strong id="w4-status">—</strong><p>Use the filing status that matches how you expect to file.</p></div>
+            </div>
+            <div class="step">
+              <div class="step-code">Step 3</div>
+              <div><strong id="w4-credit">—</strong><p>Estimated dependent credit. Confirm that each dependent qualifies.</p></div>
+            </div>
+            <div class="step">
+              <div class="step-code">Step 4(c)</div>
+              <div><strong id="w4-extra">—</strong><p id="w4-extra-note">Optional extra withholding per paycheck.</p></div>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <a id="email-results" class="action email" href="#">Email my results</a>
+            <button id="copy-results" class="action" type="button">Copy results</button>
+          </div>
+          <p id="copy-status" class="copy-status" role="status"></p>
+
+          <details>
+            <summary>Explain these results</summary>
+            <div id="explanation" class="explain"></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <aside class="verification">
+      <h2>Before you hand in a new W-4</h2>
+      <p>This calculator is a simple one-job estimate. Verify the result with the <a href="https://www.irs.gov/individuals/tax-withholding-estimator" target="_blank" rel="noopener">IRS Tax Withholding Estimator</a>—especially if you have multiple jobs, a working spouse, bonuses, itemized deductions, retirement income, tips, overtime, or investment income.</p>
+    </aside>
+
+    <div class="method">
+      <section>
+        <h2>What’s included</h2>
+        <p>2026 federal ordinary-income brackets, the 2026 standard deduction, pre-tax payroll deductions, and estimated child/other-dependent credits.</p>
+      </section>
+      <section>
+        <h2>What’s excluded</h2>
+        <p>Payroll taxes, state tax, EITC, AMT, itemized deductions, special OBBB deductions, spouse or second-job income, investment income, and tax already withheld earlier this year.</p>
+      </section>
+      <section>
+        <h2>Sources & review</h2>
+        <p>Reviewed October 7, 2026. Built from <a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill" target="_blank" rel="noopener">IRS 2026 inflation adjustments</a>, <a href="https://www.irs.gov/publications/p15t" target="_blank" rel="noopener">Publication 15-T</a>, and <a href="http://www.irs.gov/credits-deductions/individuals/child-tax-credit" target="_blank" rel="noopener">IRS dependent-credit guidance</a>.</p>
+      </section>
+    </div>
+
+    <footer>This calculator is for informational and educational purposes only and is not tax advice. Tax outcomes depend on your full situation.</footer>
+  </main>
+
+  <script>
+    (function () {
+      var standardDeductions = { single: 16100, mfj: 32200, mfs: 16100, hoh: 24150 };
+      var statusLabels = { single: "Single", mfj: "Married filing jointly", mfs: "Married filing separately", hoh: "Head of household" };
+      var brackets = {
+        single: [[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[Infinity,.37]],
+        mfj: [[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[Infinity,.37]],
+        mfs: [[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[384350,.35],[Infinity,.37]],
+        hoh: [[17700,.10],[67450,.12],[105700,.22],[201750,.24],[256200,.32],[640600,.35],[Infinity,.37]]
+      };
+
+      var form = document.getElementById('calc-form');
+      var results = document.getElementById('results');
+      var empty = document.getElementById('results-empty');
+      var error = document.getElementById('form-error');
+      var email = document.getElementById('email-results');
+      var copyButton = document.getElementById('copy-results');
+      var copyStatus = document.getElementById('copy-status');
+      var currentSummary = '';
+
+      function money(value) {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Math.round(value));
+      }
+      function moneyCents(value) {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+      }
+      function readOptional(id) {
+        var raw = document.getElementById(id).value.trim();
+        return raw === '' ? 0 : Number(raw);
+      }
+      function progressiveTax(income, status) {
+        var rows = brackets[status];
+        var tax = 0;
+        var floor = 0;
+        for (var i = 0; i < rows.length; i++) {
+          var ceiling = rows[i][0];
+          var rate = rows[i][1];
+          if (income > floor) tax += (Math.min(income, ceiling) - floor) * rate;
+          if (income <= ceiling) break;
+          floor = ceiling;
+        }
+        return tax;
+      }
+      function dependentCredit(salary, status, children, other) {
+        var base = children * 2200 + other * 500;
+        var threshold = status === 'mfj' ? 400000 : 200000;
+        var phaseout = salary > threshold ? Math.ceil((salary - threshold) / 1000) * 50 : 0;
+        return Math.max(0, base - phaseout);
+      }
+      function fail(message) {
+        error.textContent = message;
+        error.classList.add('show');
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        error.classList.remove('show');
+        copyStatus.textContent = '';
+
+        var salary = Number(document.getElementById('salary').value);
+        var status = document.getElementById('status').value;
+        var children = readOptional('children');
+        var other = readOptional('other-dependents');
+        var pretax = readOptional('pretax');
+        var frequency = Number(document.getElementById('frequency').value);
+        var currentRaw = document.getElementById('current').value.trim();
+        var current = currentRaw === '' ? null : Number(currentRaw);
+
+        if (!Number.isFinite(salary) || salary <= 0) return fail('Enter an annual salary greater than $0.');
+        if (!status) return fail('Choose a filing status.');
+        if (!Number.isInteger(children) || children < 0 || children > 30 || !Number.isInteger(other) || other < 0 || other > 30) return fail('Dependent counts must be whole numbers from 0 to 30.');
+        if (!Number.isFinite(pretax) || pretax < 0 || pretax >= salary) return fail('Pre-tax deductions must be $0 or more and less than your salary.');
+        if (!frequency) return fail('Choose how often you are paid.');
+        if (current !== null && (!Number.isFinite(current) || current < 0)) return fail('Current withholding must be $0 or more.');
+
+        var adjustedIncome = Math.max(0, salary - pretax);
+        var deduction = standardDeductions[status];
+        var taxable = Math.max(0, adjustedIncome - deduction);
+        var taxBeforeCredits = progressiveTax(taxable, status);
+        var credit = Math.min(taxBeforeCredits, dependentCredit(adjustedIncome, status, children, other));
+        var annualTax = Math.max(0, taxBeforeCredits - credit);
+        var perCheck = annualTax / frequency;
+        var effective = salary > 0 ? annualTax / salary * 100 : 0;
+        var extra = current === null ? null : Math.max(0, perCheck - current);
+
+        document.getElementById('annual-tax').textContent = money(annualTax);
+        document.getElementById('per-check').textContent = 'Target: ' + moneyCents(perCheck) + ' per paycheck';
+        document.getElementById('taxable-income').textContent = money(taxable);
+        document.getElementById('credit-total').textContent = money(credit);
+        document.getElementById('effective-rate').textContent = effective.toFixed(1) + '%';
+        document.getElementById('standard-deduction').textContent = money(deduction);
+        document.getElementById('w4-status').textContent = statusLabels[status];
+        document.getElementById('w4-credit').textContent = credit > 0 ? 'Enter about ' + money(credit) : 'Leave blank if you expect no qualifying credits';
+
+        var adjustmentLine;
+        var extraText;
+        var extraNote;
+        if (current === null) {
+          adjustmentLine = 'Compare this target with the federal income tax line on your pay stub.';
+          extraText = 'Compare with your pay stub';
+          extraNote = 'If your current federal withholding is below ' + moneyCents(perCheck) + ', the difference is a starting point for Step 4(c).';
+        } else if (extra > 0.005) {
+          adjustmentLine = 'That is ' + moneyCents(extra) + ' more than your current ' + moneyCents(current) + ' per check.';
+          extraText = 'Consider ' + moneyCents(extra) + ' extra per paycheck';
+          extraNote = 'This simple comparison assumes the same withholding for every paycheck in a full year.';
+        } else {
+          adjustmentLine = 'Your current ' + moneyCents(current) + ' per check meets or exceeds this simple target.';
+          extraText = 'No extra withholding suggested';
+          extraNote = 'Do not enter a negative amount. Use the IRS estimator to see whether another W-4 entry should reduce withholding.';
+        }
+        document.getElementById('adjustment-line').textContent = adjustmentLine;
+        document.getElementById('w4-extra').textContent = extraText;
+        document.getElementById('w4-extra-note').textContent = extraNote;
+
+        var dependentPhrase = children + ' qualifying ' + (children === 1 ? 'child' : 'children') + ' under 17 and ' + other + ' other ' + (other === 1 ? 'dependent' : 'dependents');
+        var currentSentence = current === null
+          ? 'You did not enter current withholding, so this result gives you a target to compare with your pay stub rather than a specific adjustment.'
+          : extra > 0.005
+            ? 'Because you entered ' + moneyCents(current) + ' of current federal withholding per check, the gap to the target is about ' + moneyCents(extra) + ' per check.'
+            : 'Your entered withholding of ' + moneyCents(current) + ' per check is already at or above the simple target; the IRS estimator can show whether your W-4 should reduce it.';
+
+        document.getElementById('explanation').innerHTML =
+          '<p>We started with ' + money(salary) + ' of salary, subtracted ' + money(pretax) + ' of pre-tax payroll deductions and the ' + money(deduction) + ' standard deduction, leaving about ' + money(taxable) + ' of taxable income.</p>' +
+          '<p>The 2026 tax brackets produce about ' + money(taxBeforeCredits) + ' before credits. Based on ' + dependentPhrase + ', this estimate applies ' + money(credit) + ' of dependent credits, for a final estimate of ' + money(annualTax) + '.</p>' +
+          '<p>Spread across ' + frequency + ' paychecks, that is about ' + moneyCents(perCheck) + ' per check. ' + currentSentence + '</p>';
+
+        currentSummary = [
+          '2026 W-4 withholding estimate',
+          'Filing status: ' + statusLabels[status],
+          'Annual salary: ' + money(salary),
+          'Estimated taxable income: ' + money(taxable),
+          'Estimated dependent credits: ' + money(credit),
+          'Estimated annual federal income tax: ' + money(annualTax),
+          'Target federal withholding per paycheck: ' + moneyCents(perCheck),
+          'W-4 Step 3 estimate: ' + (credit > 0 ? money(credit) : '$0'),
+          'W-4 Step 4(c): ' + extraText,
+          '',
+          'Simple one-job estimate. Verify with the IRS Tax Withholding Estimator: https://www.irs.gov/individuals/tax-withholding-estimator',
+          'Informational and educational purposes only; not tax advice.'
+        ].join('\n');
+
+        email.href = 'mailto:?subject=' + encodeURIComponent('My 2026 W-4 withholding estimate') + '&body=' + encodeURIComponent(currentSummary);
+        empty.style.display = 'none';
+        results.classList.add('show');
+        results.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      });
+
+      copyButton.addEventListener('click', function () {
+        if (!currentSummary) return;
+        function success() {
+          copyStatus.textContent = 'Results copied.';
+          window.setTimeout(function () { copyStatus.textContent = ''; }, 2600);
+        }
+        function fallback() {
+          var area = document.createElement('textarea');
+          area.value = currentSummary;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.opacity = '0';
+          document.body.appendChild(area);
+          area.select();
+          var copied = false;
+          try { copied = document.execCommand('copy'); } catch (e) { copied = false; }
+          document.body.removeChild(area);
+          copyStatus.textContent = copied ? 'Results copied.' : 'Copy failed. Select the results and copy them manually.';
+        }
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(currentSummary).then(success).catch(fallback);
+        else fallback();
+      });
+
+      email.addEventListener('click', function (event) {
+        if (!currentSummary) event.preventDefault();
+      });
+    }());
+  </script>
+</body>
+</html>

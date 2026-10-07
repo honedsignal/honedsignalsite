@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Down Payment vs. Investment Calculator</title>
+  <style>
+    :root {
+      --ink: #0b0e14;
+      --paper: #0b0e14;
+      --surface: #141922;
+      --surface-2: #1d2430;
+      --text: #f5f5f5;
+      --muted: #aab4c0;
+      --line: #303a47;
+      --orange: #f7931a;
+      --orange-ink: #160f07;
+      --green: #39ff14;
+      --green-soft: #14351b;
+      --blue: #80a9d5;
+      --danger: #ff7277;
+      --shadow: 0 20px 60px rgba(0,0,0,.36);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #080b10;
+        --surface: #111721;
+        --surface-2: #1a222e;
+        --text: #ffffff;
+        --muted: #b4bec9;
+        --line: #35414f;
+        --blue: #8db6e0;
+        --shadow: 0 20px 64px rgba(0,0,0,.52);
+      }
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--text);
+      font-family: "Aptos", "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: max(16px, env(safe-area-inset-top)) 0 max(48px, env(safe-area-inset-bottom));
+    }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .back:hover, .back:focus-visible { color: var(--orange); }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+      gap: 40px;
+      align-items: end;
+      padding: 46px 0 38px;
+      border-bottom: 1px solid var(--line);
+    }
+    .kicker {
+      margin: 0 0 10px;
+      color: var(--orange);
+      font: 800 .78rem/1.2 "Aptos", "Segoe UI", sans-serif;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.35rem, 6vw, 4.8rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+      font-weight: 700;
+    }
+    .intro p {
+      margin: 0;
+      max-width: 34rem;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(290px, .78fr) minmax(0, 1.22fr);
+      gap: 24px;
+      padding-top: 28px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .inputs { padding: 26px; }
+    .panel h2 {
+      margin: 0 0 6px;
+      font-size: 1.18rem;
+      line-height: 1.25;
+    }
+    .panel-note {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .field { margin-bottom: 18px; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: .9rem;
+      font-weight: 750;
+    }
+    .input-wrap { position: relative; }
+    .unit {
+      position: absolute;
+      inset: 0 auto 0 14px;
+      display: flex;
+      align-items: center;
+      color: var(--muted);
+      font-weight: 700;
+      pointer-events: none;
+    }
+    .unit.end { left: auto; right: 14px; }
+    input {
+      width: 100%;
+      height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--paper);
+      color: var(--text);
+      padding: 0 42px 0 34px;
+      outline: none;
+    }
+    input.no-prefix { padding-left: 14px; }
+    input::placeholder { color: var(--muted); opacity: .72; }
+    input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) 24%, transparent); }
+    .hint {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.35;
+    }
+    .calculate {
+      width: 100%;
+      min-height: 50px;
+      margin-top: 4px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .calculate:hover { filter: brightness(1.06); }
+    .calculate:focus-visible, .action:focus-visible, summary:focus-visible, .back:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .error {
+      display: none;
+      margin: 14px 0 0;
+      color: var(--danger);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+    .error.show { display: block; }
+    .results {
+      min-height: 540px;
+      padding: 30px;
+    }
+    .empty {
+      min-height: 474px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-mark {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      color: var(--orange);
+    }
+    .empty strong { display: block; color: var(--text); font-size: 1.08rem; margin-bottom: 6px; }
+    #output[hidden] { display: none; }
+    .verdict {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .verdict-label { margin: 0 0 4px; color: var(--muted); font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+    .verdict h2 { margin: 0; max-width: 540px; font: 700 clamp(1.7rem, 4vw, 2.75rem)/1.05 Georgia, serif; letter-spacing: -.025em; }
+    .difference { text-align: right; flex: 0 0 auto; }
+    .difference strong { display: block; color: var(--green); font-size: 1.45rem; }
+    .difference span { color: var(--muted); font-size: .78rem; }
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .result-card {
+      padding: 20px;
+      background: var(--surface-2);
+      border-radius: 8px;
+    }
+    .result-card.winner { box-shadow: inset 0 0 0 2px var(--green); }
+    .result-card .eyebrow { margin: 0 0 8px; color: var(--muted); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+    .big-number { margin: 0; font-size: clamp(1.75rem, 4vw, 2.45rem); line-height: 1; font-weight: 850; letter-spacing: -.04em; }
+    .result-card .sub { margin: 8px 0 0; color: var(--muted); font-size: .82rem; }
+    .breakdown {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .breakdown li { display: flex; justify-content: space-between; gap: 12px; padding-top: 10px; font-size: .83rem; }
+    .breakdown span { color: var(--muted); }
+    .bars { margin: 26px 0 22px; }
+    .bar-row { display: grid; grid-template-columns: 108px 1fr auto; gap: 10px; align-items: center; margin: 11px 0; font-size: .8rem; }
+    .track { height: 12px; overflow: hidden; background: var(--surface-2); border-radius: 3px; }
+    .fill { height: 100%; width: 0; background: var(--blue); transition: width .55s ease; }
+    .fill.invest { background: var(--orange); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .action {
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 5px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .action.email { background: var(--orange); color: var(--orange-ink); border-color: var(--orange); }
+    .copy-status { align-self: center; min-height: 1.2em; color: var(--muted); font-size: .82rem; }
+    details {
+      margin-top: 22px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+    summary { cursor: pointer; font-weight: 850; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--orange); font-size: 1.25rem; }
+    details[open] summary::after { content: "−"; }
+    .explanation { color: var(--muted); font-size: .92rem; }
+    .explanation p { margin: 12px 0 0; }
+    .method {
+      margin-top: 24px;
+      padding: 18px 0 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .78rem;
+    }
+    .method strong { color: var(--text); }
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .76rem;
+      max-width: 780px;
+    }
+    @media (max-width: 780px) {
+      .page { width: min(100% - 22px, 620px); }
+      .intro { grid-template-columns: 1fr; gap: 18px; padding: 32px 0 28px; }
+      .layout { grid-template-columns: 1fr; }
+      .inputs, .results { padding: 20px; }
+      .results { min-height: 0; }
+      .empty { min-height: 250px; }
+      .verdict { display: block; }
+      .difference { margin-top: 14px; text-align: left; }
+      .compare { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 90px 1fr; }
+      .bar-row strong { grid-column: 2; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .fill { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="kicker">Housing decision</p>
+        <h1 id="page-title">Down payment or investment?</h1>
+      </div>
+      <p>Compare the potential value of putting extra cash into a home with investing that same amount. Add any monthly private mortgage insurance (PMI) you expect the larger down payment to eliminate.</p>
+    </section>
+
+    <div class="layout">
+      <form class="panel inputs" id="calculator" novalidate>
+        <h2>Your scenario</h2>
+        <p class="panel-note">Enter estimates to see both paths side by side.</p>
+
+        <div class="field">
+          <label for="amount">Extra down payment</label>
+          <div class="input-wrap"><span class="unit">$</span><input id="amount" name="amount" type="number" inputmode="decimal" min="1" step="100" placeholder="25,000" required /></div>
+        </div>
+
+        <div class="field">
+          <label for="mortgageRate">Mortgage interest rate</label>
+          <div class="input-wrap"><input class="no-prefix" id="mortgageRate" name="mortgageRate" type="number" inputmode="decimal" min="0" max="30" step="0.01" placeholder="6.5" required /><span class="unit end">%</span></div>
+        </div>
+
+        <div class="field">
+          <label for="investmentRate">Expected annual investment return</label>
+          <div class="input-wrap"><input class="no-prefix" id="investmentRate" name="investmentRate" type="number" inputmode="decimal" min="-100" max="50" step="0.1" placeholder="7" required /><span class="unit end">%</span></div>
+          <small class="hint">Use a long-term estimate, not a guaranteed return.</small>
+        </div>
+
+        <div class="field">
+          <label for="years">Comparison period</label>
+          <div class="input-wrap"><input class="no-prefix" id="years" name="years" type="number" inputmode="numeric" min="1" max="50" step="1" placeholder="10" required /><span class="unit end">years</span></div>
+        </div>
+
+        <div class="field">
+          <label for="pmi">Monthly PMI eliminated <span style="color:var(--muted);font-weight:500">(optional)</span></label>
+          <div class="input-wrap"><span class="unit">$</span><input id="pmi" name="pmi" type="number" inputmode="decimal" min="0" step="1" placeholder="150" /></div>
+          <small class="hint">Enter $0 or leave blank if the extra down payment would not remove PMI.</small>
+        </div>
+
+        <button class="calculate" type="submit">Compare my options</button>
+        <p class="error" id="error" role="alert"></p>
+      </form>
+
+      <section class="panel results" aria-live="polite" aria-labelledby="results-title">
+        <div class="empty" id="empty">
+          <div>
+            <div class="empty-mark" aria-hidden="true">$</div>
+            <strong>Your comparison will appear here</strong>
+            <span>Fill in the four required fields to compare the two paths.</span>
+          </div>
+        </div>
+
+        <div id="output" hidden>
+          <div class="verdict">
+            <div>
+              <p class="verdict-label">Estimated outcome</p>
+              <h2 id="results-title"></h2>
+            </div>
+            <div class="difference"><strong id="difference"></strong><span>estimated difference</span></div>
+          </div>
+
+          <div class="compare">
+            <article class="result-card" id="downCard">
+              <p class="eyebrow">Larger down payment</p>
+              <p class="big-number" id="downTotal"></p>
+              <p class="sub">estimated value after the comparison period</p>
+              <ul class="breakdown">
+                <li><span>Starting equity</span><strong id="equity"></strong></li>
+                <li><span>Interest avoided</span><strong id="interestSaved"></strong></li>
+                <li><span>PMI avoided</span><strong id="pmiSaved"></strong></li>
+              </ul>
+            </article>
+
+            <article class="result-card" id="investCard">
+              <p class="eyebrow">Invest the cash</p>
+              <p class="big-number" id="investTotal"></p>
+              <p class="sub">estimated account value after the comparison period</p>
+              <ul class="breakdown">
+                <li><span>Amount invested</span><strong id="principal"></strong></li>
+                <li><span>Investment growth</span><strong id="investGrowth"></strong></li>
+                <li><span>Assumed return</span><strong id="rateUsed"></strong></li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="bars" aria-label="Visual comparison">
+            <div class="bar-row"><span>Down payment</span><div class="track"><div class="fill" id="downBar"></div></div><strong id="downBarValue"></strong></div>
+            <div class="bar-row"><span>Investment</span><div class="track"><div class="fill invest" id="investBar"></div></div><strong id="investBarValue"></strong></div>
+          </div>
+
+          <div class="actions">
+            <button class="action email" id="email" type="button">Email my results</button>
+            <button class="action" id="copy" type="button">Copy results</button>
+            <span class="copy-status" id="copyStatus" role="status"></span>
+          </div>
+
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+
+          <div class="method">
+            <strong>How this estimate works:</strong> The down-payment path treats the extra cash as immediate home equity, compounds the avoided mortgage interest monthly, and adds the PMI entered for each month. The investment path compounds the same cash monthly at your expected return. It does not include taxes, fees, changing property values, investment volatility, mortgage payoff timing, or the possible investment of monthly savings.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>This calculator is for informational and educational purposes only and does not constitute investment advice. Results are estimates, not guarantees. Consider liquidity, risk, taxes, and your full financial situation before deciding.</footer>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('calculator');
+      var output = document.getElementById('output');
+      var empty = document.getElementById('empty');
+      var error = document.getElementById('error');
+      var lastText = '';
+
+      function money(value) {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+      }
+
+      function setText(id, value) { document.getElementById(id).textContent = value; }
+
+      function showError(message) {
+        error.textContent = message;
+        error.classList.add('show');
+      }
+
+      function calculate(event) {
+        event.preventDefault();
+        error.classList.remove('show');
+        document.getElementById('copyStatus').textContent = '';
+
+        var amount = Number(document.getElementById('amount').value);
+        var mortgageRate = Number(document.getElementById('mortgageRate').value);
+        var investmentRate = Number(document.getElementById('investmentRate').value);
+        var years = Number(document.getElementById('years').value);
+        var pmiRaw = document.getElementById('pmi').value;
+        var pmi = pmiRaw === '' ? 0 : Number(pmiRaw);
+
+        if (!Number.isFinite(amount) || amount <= 0) return showError('Enter an extra down payment greater than $0.');
+        if (!Number.isFinite(mortgageRate) || mortgageRate < 0 || mortgageRate > 30) return showError('Enter a mortgage rate from 0% to 30%.');
+        if (!Number.isFinite(investmentRate) || investmentRate < -100 || investmentRate > 50) return showError('Enter an expected return from −100% to 50%.');
+        if (!Number.isFinite(years) || years < 1 || years > 50 || Math.floor(years) !== years) return showError('Enter a whole comparison period from 1 to 50 years.');
+        if (!Number.isFinite(pmi) || pmi < 0) return showError('Monthly PMI avoided cannot be negative.');
+
+        var months = years * 12;
+        var mortgageFactor = Math.pow(1 + (mortgageRate / 100) / 12, months);
+        var investmentFactor = Math.pow(1 + (investmentRate / 100) / 12, months);
+        var interestSaved = amount * mortgageFactor - amount;
+        var pmiSaved = pmi * months;
+        var downTotal = amount + interestSaved + pmiSaved;
+        var investTotal = amount * investmentFactor;
+        var investGrowth = investTotal - amount;
+        var diff = Math.abs(downTotal - investTotal);
+        var downWins = downTotal > investTotal;
+        var tie = Math.abs(downTotal - investTotal) < 1;
+
+        empty.hidden = true;
+        output.hidden = false;
+
+        var headline = tie ? 'The two paths are nearly even.' : (downWins ? 'The larger down payment comes out ahead.' : 'Investing comes out ahead.');
+        setText('results-title', headline);
+        setText('difference', money(diff));
+        setText('downTotal', money(downTotal));
+        setText('investTotal', money(investTotal));
+        setText('equity', money(amount));
+        setText('interestSaved', money(interestSaved));
+        setText('pmiSaved', money(pmiSaved));
+        setText('principal', money(amount));
+        setText('investGrowth', money(investGrowth));
+        setText('rateUsed', investmentRate.toFixed(1).replace('.0','') + '%');
+        setText('downBarValue', money(downTotal));
+        setText('investBarValue', money(investTotal));
+
+        document.getElementById('downCard').classList.toggle('winner', downWins && !tie);
+        document.getElementById('investCard').classList.toggle('winner', !downWins && !tie);
+        var maxValue = Math.max(downTotal, investTotal, 1);
+        document.getElementById('downBar').style.width = Math.max(0, downTotal / maxValue * 100) + '%';
+        document.getElementById('investBar').style.width = Math.max(0, investTotal / maxValue * 100) + '%';
+
+        var pmiSentence = pmi > 0 ? ' You also estimated ' + money(pmiSaved) + ' of PMI savings.' : ' No PMI savings were included.';
+        var explanation = document.getElementById('explanation');
+        explanation.innerHTML = '<p>You are comparing the same <strong>' + money(amount) + '</strong> over <strong>' + years + ' years</strong>. Putting it toward the home is estimated to create <strong>' + money(downTotal) + '</strong> of value: the original equity plus ' + money(interestSaved) + ' in avoided interest.' + pmiSentence + '</p>' +
+          '<p>Investing the cash at an assumed <strong>' + investmentRate.toFixed(1).replace('.0','') + '% annual return</strong> is estimated to grow to <strong>' + money(investTotal) + '</strong>. That makes ' + (tie ? 'the two estimates effectively even.' : (downWins ? 'the down-payment path higher by <strong>' + money(diff) + '</strong>.' : 'the investment path higher by <strong>' + money(diff) + '</strong>.')) + '</p>' +
+          '<p>The higher estimate is not automatically the better personal choice. A larger down payment offers a more predictable benefit but ties cash up in the home. Investing keeps the money more accessible but exposes it to market gains and losses.</p>';
+
+        lastText = 'Down Payment vs. Investment Calculator\n\n' +
+          'Extra cash: ' + money(amount) + '\n' +
+          'Mortgage rate: ' + mortgageRate.toFixed(2).replace(/\.00$/, '') + '%\n' +
+          'Expected investment return: ' + investmentRate.toFixed(2).replace(/\.00$/, '') + '%\n' +
+          'Comparison period: ' + years + ' years\n' +
+          'Monthly PMI avoided: ' + money(pmi) + '\n\n' +
+          'Larger down payment value: ' + money(downTotal) + '\n' +
+          '  Starting equity: ' + money(amount) + '\n' +
+          '  Interest avoided: ' + money(interestSaved) + '\n' +
+          '  PMI avoided: ' + money(pmiSaved) + '\n' +
+          'Investment value: ' + money(investTotal) + '\n' +
+          '  Investment growth: ' + money(investGrowth) + '\n\n' +
+          headline + ' Estimated difference: ' + money(diff) + '.\n\n' +
+          'Informational and educational purposes only; not investment advice. Estimates are not guarantees.';
+
+        if (window.innerWidth < 781) output.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      form.addEventListener('submit', calculate);
+
+      document.getElementById('email').addEventListener('click', function () {
+        if (!lastText) return;
+        var mailLink = document.createElement('a');
+        mailLink.href = 'mailto:?subject=' + encodeURIComponent('My down payment vs. investment results') + '&body=' + encodeURIComponent(lastText);
+        mailLink.style.display = 'none';
+        document.body.appendChild(mailLink);
+        mailLink.click();
+        document.body.removeChild(mailLink);
+      });
+
+      document.getElementById('copy').addEventListener('click', function () {
+        if (!lastText) return;
+        var status = document.getElementById('copyStatus');
+        function done(ok) { status.textContent = ok ? 'Copied.' : 'Select and copy the results manually.'; }
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(lastText).then(function () { done(true); }).catch(function () { fallback(); });
+        } else { fallback(); }
+        function fallback() {
+          var area = document.createElement('textarea');
+          area.value = lastText;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.opacity = '0';
+          document.body.appendChild(area);
+          area.select();
+          var ok = false;
+          try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+          document.body.removeChild(area);
+          done(ok);
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

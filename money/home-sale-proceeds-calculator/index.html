@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Home Sale Proceeds Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --paper:#f3f5f7;--surface:#ffffff;--surface-2:#e8edf1;--ink:#0b0e14;--muted:#566270;
+      --line:#cbd3dc;--line-strong:#9daab8;--blue:#4777ad;--blue-soft:#dbe9f5;
+      --orange:#d96d00;--orange-ink:#181108;--orange-soft:#ffead3;--green:#117f31;--green-soft:#ddf2e3;
+      --red:#bd3941;--red-soft:#fbe3e5;--shadow:0 22px 60px rgba(11,14,20,.10);--grid:rgba(71,119,173,.065)
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --paper:#080b10;--surface:#111720;--surface-2:#19222c;--ink:#f5f7f9;--muted:#adb8c4;
+      --line:#2c3946;--line-strong:#4a5969;--blue:#77a8dd;--blue-soft:#172e44;
+      --orange:#f7931a;--orange-ink:#181108;--orange-soft:#3a2916;--green:#39ff14;--green-soft:#17351b;
+      --red:#ff6a70;--red-soft:#3a1d23;--shadow:0 24px 70px rgba(0,0,0,.38);--grid:rgba(119,168,221,.055)
+    }}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-width:320px;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .home-link{display:inline-block;margin-bottom:36px;color:var(--ink);font-size:.78rem;font-weight:700;text-decoration:none}
+    .home-link:hover{color:var(--blue);text-decoration:underline}
+    .page{width:min(1160px,calc(100% - 40px));margin:0 auto;padding:26px 0 66px}
+    .intro{display:grid;grid-template-columns:1.2fr .8fr;gap:42px;align-items:end;margin-bottom:28px;padding-bottom:29px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:750px;font-size:clamp(2.55rem,5.5vw,5.25rem);line-height:.96;letter-spacing:-.055em;font-weight:800}
+    .accent{color:var(--orange)}
+    .intro p{max-width:37ch;margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.6vw,1.15rem)}
+    .workspace{display:grid;grid-template-columns:minmax(330px,420px) minmax(0,1fr);gap:20px;align-items:start}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{position:sticky;top:18px;padding:24px;border-radius:22px 6px 22px 22px}
+    .panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+    .panel-head h2{margin:0;font-size:1.05rem;letter-spacing:-.025em}
+    .panel-head span{color:var(--orange);font:500 .68rem "DM Mono",monospace}
+    .field{margin-bottom:15px}
+    label{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 6px;color:var(--muted);font-size:.72rem;font-weight:700}
+    label small{font:400 .62rem "DM Mono",monospace;color:var(--muted)}
+    .control{display:flex;align-items:center;min-height:49px;border:1px solid var(--line-strong);border-radius:9px;background:var(--paper);transition:border-color .15s,box-shadow .15s}
+    .control:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 22%,transparent)}
+    .affix{padding-left:12px;color:var(--muted);font:500 .8rem "DM Mono",monospace;white-space:nowrap}.affix.end{padding:0 12px 0 0}
+    input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);padding:11px 10px;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    input::placeholder{color:color-mix(in srgb,var(--muted) 52%,transparent);font-weight:500}
+    .form-note{margin:2px 2px 18px;color:var(--muted);font-size:.69rem}
+    .error{margin:0 0 13px;padding:11px 13px;border-radius:9px;background:var(--red-soft);color:var(--red);font-size:.76rem;font-weight:700}
+    .form-actions{display:grid;grid-template-columns:1fr auto;gap:9px}
+    .calculate,.clear{min-height:48px;border-radius:10px;font-weight:800;cursor:pointer}
+    .calculate{border:0;background:var(--orange);color:var(--orange-ink);box-shadow:0 6px 0 color-mix(in srgb,var(--orange) 52%,#3d2109);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--orange) 52%,#3d2109)}
+    .clear{padding:0 16px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+    .results{min-width:0}
+    .empty{min-height:536px;display:grid;place-items:center;padding:42px;text-align:center;background:color-mix(in srgb,var(--surface) 84%,transparent);border:1px dashed var(--line-strong);border-radius:6px 22px 22px 22px}
+    .empty-figure{width:124px;height:97px;margin:0 auto 23px;color:var(--blue)}
+    .empty-figure svg{display:block;width:100%;height:100%}
+    .empty h2{margin:0 0 8px;font-size:1.55rem;letter-spacing:-.035em}
+    .empty p{max-width:42ch;margin:0;color:var(--muted);font-size:.9rem}
+    .hidden{display:none!important}
+    .result-shell{overflow:hidden;border-radius:6px 22px 22px 22px}
+    .hero-result{position:relative;overflow:hidden;padding:31px 31px 29px;background:var(--ink);color:var(--paper)}
+    @media(prefers-color-scheme:dark){.hero-result{background:#edf2f7;color:#0b0e14}}
+    .hero-result:after{content:"";position:absolute;right:-42px;bottom:-58px;width:150px;height:150px;border:22px solid var(--orange);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .67rem "DM Mono",monospace;opacity:.62}
+    .net-value{position:relative;z-index:1;margin:0;font:500 clamp(2.7rem,7vw,5.4rem)/.95 "DM Mono",monospace;letter-spacing:-.06em}
+    .net-label{position:relative;z-index:1;max-width:52ch;margin:13px 0 0;font-size:.84rem;opacity:.72}
+    .status-negative{color:var(--red)}
+    .action-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--surface)}
+    .status-line{margin:0;color:var(--muted);font-size:.72rem;font-weight:700}
+    .actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
+    .text-btn{display:inline-flex;align-items:center;justify-content:center;min-height:37px;padding:8px 11px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:.69rem;font-weight:700;text-decoration:none;cursor:pointer}
+    .text-btn:hover{border-color:var(--blue);color:var(--blue)}
+    #emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}
+    .explanation{padding:18px 21px;border-bottom:1px solid var(--line);background:var(--orange-soft)}
+    .explanation p{margin:0;color:var(--ink);font-size:.84rem;line-height:1.65}
+    .explain-mark{display:inline-block;width:1em;margin-left:5px;color:var(--orange);font:500 .85rem "DM Mono",monospace}
+    .receipt{padding:24px;background:var(--surface)}
+    .receipt-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:16px}
+    .receipt-head h2{margin:0;font-size:1.12rem;letter-spacing:-.03em}.receipt-head span{color:var(--muted);font:400 .65rem "DM Mono",monospace}
+    .ledger{margin:0}
+    .ledger-row{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:20px;padding:13px 0;border-bottom:1px solid var(--line)}
+    .ledger-row:first-child{border-top:1px solid var(--line)}
+    .ledger dt{color:var(--muted);font-size:.78rem}.ledger dd{margin:0;font:500 .88rem "DM Mono",monospace;text-align:right}
+    .ledger-row.deduction dd{color:var(--red)}
+    .ledger-row.total{margin-top:4px;border-bottom:0}.ledger-row.total dt{color:var(--ink);font-size:.92rem;font-weight:800}.ledger-row.total dd{color:var(--green);font-size:1.08rem}
+    .bar-card{padding:0 24px 25px;background:var(--surface)}
+    .bar-title{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:9px;color:var(--muted);font-size:.67rem;font-weight:700}
+    .bar-title strong{color:var(--ink);font:500 .68rem "DM Mono",monospace}
+    .cash-bar{display:flex;width:100%;height:16px;overflow:hidden;border-radius:4px;background:var(--surface-2)}
+    .cash-bar span{display:block;height:100%;min-width:0}.bar-net{background:var(--green)}.bar-payoff{background:var(--blue)}.bar-commission{background:var(--orange)}.bar-costs{background:var(--red)}
+    .legend{display:flex;flex-wrap:wrap;gap:8px 15px;margin-top:11px;color:var(--muted);font-size:.64rem;font-weight:700}
+    .dot{display:inline-block;width:8px;height:8px;margin-right:5px;border-radius:2px}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+    .metric{padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:13px}
+    .metric span{display:block;margin-bottom:6px;color:var(--muted);font-size:.67rem;font-weight:700}.metric strong{display:block;font:500 clamp(1.05rem,2vw,1.35rem) "DM Mono",monospace;line-height:1.1}.metric small{display:block;margin-top:7px;color:var(--muted);font-size:.64rem}
+    .method{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin-top:31px;padding-top:19px;border-top:1px solid var(--line);color:var(--muted);font-size:.69rem}
+    .method p{margin:0}.method strong{color:var(--ink)}
+    button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 35%,transparent);outline-offset:2px}
+    @media(max-width:860px){.page{width:min(100% - 28px,700px);padding-top:22px}.intro{grid-template-columns:1fr;gap:15px}.intro p{max-width:52ch}.workspace{grid-template-columns:1fr}.inputs{position:static;border-radius:22px}.empty,.result-shell{border-radius:22px}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px);padding:18px 0 50px}.home-link{margin-bottom:30px}.intro{padding-bottom:23px}h1{font-size:clamp(2.4rem,13vw,3.7rem)}.inputs{padding:19px}.empty{min-height:380px;padding:29px}.hero-result{padding:27px 21px}.action-row{align-items:stretch;flex-direction:column}.actions{justify-content:stretch}.text-btn{flex:1}.receipt{padding:21px 18px}.bar-card{padding:0 18px 21px}.quick-grid{grid-template-columns:1fr}.method{grid-template-columns:1fr;gap:9px}}
+    @media(max-width:380px){.form-actions{grid-template-columns:1fr}.clear{min-height:42px}.actions{display:grid;grid-template-columns:1fr}.ledger-row{gap:10px}.ledger dt{font-size:.72rem}.ledger dd{font-size:.78rem}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+  <header class="intro">
+    <h1>What will you actually <span class="accent">walk away with?</span></h1>
+    <p>Estimate the cash left from a home sale after the mortgage payoff, agent commission, and other selling costs.</p>
+  </header>
+
+  <section class="workspace" aria-label="Home sale proceeds calculator">
+    <form class="panel inputs" id="calcForm" novalidate>
+      <div class="panel-head"><h2>Sale details</h2><span>01 / INPUTS</span></div>
+      <div class="field">
+        <label for="salePrice"><span>Expected sale price</span><small>before deductions</small></label>
+        <div class="control"><span class="affix">$</span><input id="salePrice" type="number" min="1" step="1000" inputmode="decimal" placeholder="350,000" required></div>
+      </div>
+      <div class="field">
+        <label for="mortgagePayoff"><span>Mortgage payoff</span><small>amount owed at closing</small></label>
+        <div class="control"><span class="affix">$</span><input id="mortgagePayoff" type="number" min="0" step="1000" inputmode="decimal" placeholder="210,000" required></div>
+      </div>
+      <div class="field">
+        <label for="commissionRate"><span>Agent commission</span><small>percent of sale price</small></label>
+        <div class="control"><input id="commissionRate" type="number" min="0" max="20" step="0.1" inputmode="decimal" placeholder="5.5" required><span class="affix end">%</span></div>
+      </div>
+      <div class="field">
+        <label for="otherCosts"><span>Other selling costs</span><small>total dollars</small></label>
+        <div class="control"><span class="affix">$</span><input id="otherCosts" type="number" min="0" step="100" inputmode="decimal" placeholder="8,500" required></div>
+      </div>
+      <p class="form-note">Other costs can include seller-paid closing costs, repairs, concessions, taxes, or fees. Use the total you expect.</p>
+      <p class="error hidden" id="formError" role="alert"></p>
+      <div class="form-actions">
+        <button class="calculate" type="submit">Estimate my proceeds</button>
+        <button class="clear" type="reset">Clear</button>
+      </div>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div>
+          <div class="empty-figure" aria-hidden="true">
+            <svg viewBox="0 0 124 97" fill="none"><path d="M11 43 48 13l37 30v42H11V43Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M33 85V58h23v27M75 34h37v48H75M84 45h19M84 56h19" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="94" cy="70" r="4" fill="currentColor"/></svg>
+          </div>
+          <h2>Turn the sale price into a take-home estimate.</h2>
+          <p>Enter the four amounts on the left. You’ll get an itemized breakdown, your estimated proceeds, and the share of the sale price you keep.</p>
+        </div>
+      </div>
+
+      <div class="result-shell panel hidden" id="resultState" aria-live="polite">
+        <section class="hero-result">
+          <p class="eyebrow">ESTIMATED NET PROCEEDS</p>
+          <p class="net-value" id="netValue">—</p>
+          <p class="net-label" id="netLabel"></p>
+        </section>
+        <div class="action-row">
+          <p class="status-line" id="statusLine"></p>
+          <div class="actions">
+            <button class="text-btn" type="button" id="explainResults" aria-expanded="false" aria-controls="resultsExplanation">Explain these results <span class="explain-mark" aria-hidden="true">+</span></button>
+            <a class="text-btn" id="emailResults" href="mailto:" aria-label="Email these home sale proceeds results">Email my results</a>
+            <button class="text-btn" type="button" id="copyResults" aria-label="Copy these home sale proceeds results">Copy results</button>
+          </div>
+        </div>
+        <section class="explanation hidden" id="resultsExplanation" aria-label="Plain-English explanation"><p id="explanationText"></p></section>
+        <section class="receipt">
+          <div class="receipt-head"><h2>Sale breakdown</h2><span id="receiptCaption">ESTIMATE</span></div>
+          <dl class="ledger">
+            <div class="ledger-row"><dt>Expected sale price</dt><dd id="salePriceOut">—</dd></div>
+            <div class="ledger-row deduction"><dt>Mortgage payoff</dt><dd id="payoffOut">—</dd></div>
+            <div class="ledger-row deduction"><dt id="commissionLabel">Agent commission</dt><dd id="commissionOut">—</dd></div>
+            <div class="ledger-row deduction"><dt>Other selling costs</dt><dd id="costsOut">—</dd></div>
+            <div class="ledger-row total"><dt>Estimated net proceeds</dt><dd id="netOut">—</dd></div>
+          </dl>
+        </section>
+        <section class="bar-card" aria-label="Share of sale price">
+          <div class="bar-title"><span>WHERE THE SALE PRICE GOES</span><strong id="barShare">—</strong></div>
+          <div class="cash-bar" aria-hidden="true"><span class="bar-net" id="barNet"></span><span class="bar-payoff" id="barPayoff"></span><span class="bar-commission" id="barCommission"></span><span class="bar-costs" id="barCosts"></span></div>
+          <div class="legend"><span><i class="dot" style="background:var(--green)"></i>Proceeds</span><span><i class="dot" style="background:var(--blue)"></i>Mortgage</span><span><i class="dot" style="background:var(--orange)"></i>Commission</span><span><i class="dot" style="background:var(--red)"></i>Other costs</span></div>
+        </section>
+      </div>
+      <div class="quick-grid hidden" id="quickGrid" aria-live="polite">
+        <article class="metric"><span>TOTAL DEDUCTIONS</span><strong id="deductionsMetric">—</strong><small>payoff plus selling costs</small></article>
+        <article class="metric"><span>KEEP RATE</span><strong id="keepMetric">—</strong><small>share of sale price left</small></article>
+        <article class="metric"><span>SELLING COSTS</span><strong id="sellingMetric">—</strong><small>commission plus other costs</small></article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="method">
+    <p><strong>Method:</strong> Estimated net proceeds equal sale price minus mortgage payoff, agent commission, and other selling costs. Commission is calculated as a percentage of the expected sale price.</p>
+    <p>For informational and educational purposes only. This estimate is not financial, tax, or legal advice and may not match a final closing statement.</p>
+  </footer>
+</main>
+<script>
+(function(){
+  'use strict';
+  var form=document.getElementById('calcForm');
+  var errorBox=document.getElementById('formError');
+  var emptyState=document.getElementById('emptyState');
+  var resultState=document.getElementById('resultState');
+  var quickGrid=document.getElementById('quickGrid');
+  var lastResult=null;
+
+  function readNumber(id){return Number(document.getElementById(id).value)}
+  function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n)}
+  function moneyExact(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(n)}
+  function percent(n){return new Intl.NumberFormat('en-US',{maximumFractionDigits:1,minimumFractionDigits:n%1?1:0}).format(n)+'%'}
+  function signedDeduction(n){return '−'+money(n)}
+
+  function readInputs(){
+    return{salePrice:readNumber('salePrice'),payoff:readNumber('mortgagePayoff'),commissionRate:readNumber('commissionRate'),otherCosts:readNumber('otherCosts')};
+  }
+  function validate(v){
+    if(!isFinite(v.salePrice)||!isFinite(v.payoff)||!isFinite(v.commissionRate)||!isFinite(v.otherCosts))return 'Complete all four fields with valid numbers.';
+    if(v.salePrice<=0)return 'Expected sale price must be greater than zero.';
+    if(v.payoff<0||v.otherCosts<0)return 'Mortgage payoff and other selling costs cannot be negative.';
+    if(v.commissionRate<0||v.commissionRate>20)return 'Agent commission must be between 0% and 20%.';
+    if(v.salePrice>1000000000||v.payoff>1000000000||v.otherCosts>1000000000)return 'Enter amounts below $1 billion.';
+    return '';
+  }
+  function calculate(v){
+    var commission=v.salePrice*v.commissionRate/100;
+    var sellingCosts=commission+v.otherCosts;
+    var deductions=v.payoff+sellingCosts;
+    var net=v.salePrice-deductions;
+    var keepRate=net/v.salePrice*100;
+    return{input:v,commission:commission,sellingCosts:sellingCosts,deductions:deductions,net:net,keepRate:keepRate};
+  }
+  function setExplanation(open){
+    var panel=document.getElementById('resultsExplanation');
+    var button=document.getElementById('explainResults');
+    panel.classList.toggle('hidden',!open);
+    button.setAttribute('aria-expanded',open?'true':'false');
+    button.querySelector('.explain-mark').textContent=open?'−':'+';
+  }
+  function summary(r){
+    var v=r.input;
+    return[
+      'Home Sale Proceeds Calculator results','',
+      'Expected sale price: '+moneyExact(v.salePrice),
+      'Mortgage payoff: '+moneyExact(v.payoff),
+      'Agent commission ('+percent(v.commissionRate)+'): '+moneyExact(r.commission),
+      'Other selling costs: '+moneyExact(v.otherCosts),
+      'Total deductions: '+moneyExact(r.deductions),
+      'Estimated net proceeds: '+moneyExact(r.net),
+      'Share of sale price left: '+percent(r.keepRate),'',
+      'For informational and educational purposes only. This estimate may not match a final closing statement.'
+    ].join('\n');
+  }
+  function updateBars(r){
+    var price=r.input.salePrice;
+    var parts=[Math.max(0,r.net),r.input.payoff,r.commission,r.input.otherCosts];
+    var total=parts.reduce(function(a,b){return a+b},0);
+    var denominator=Math.max(price,total,1);
+    ['barNet','barPayoff','barCommission','barCosts'].forEach(function(id,i){
+      document.getElementById(id).style.width=(parts[i]/denominator*100).toFixed(3)+'%';
+    });
+    document.getElementById('barShare').textContent=(r.net>=0?percent(Math.max(0,r.keepRate))+' left':'Costs exceed price');
+  }
+  function render(r){
+    var v=r.input,positive=r.net>=0;
+    errorBox.classList.add('hidden');
+    emptyState.classList.add('hidden');
+    resultState.classList.remove('hidden');
+    quickGrid.classList.remove('hidden');
+    setExplanation(false);
+    document.getElementById('netValue').textContent=money(r.net);
+    document.getElementById('netValue').classList.toggle('status-negative',!positive);
+    document.getElementById('netLabel').textContent=positive?'Estimated cash remaining before any taxes that may apply.':'Your entered payoff and selling costs are greater than the expected sale price.';
+    document.getElementById('statusLine').textContent=positive?'You keep about '+percent(r.keepRate)+' of the sale price.':'Estimated shortfall: '+money(Math.abs(r.net))+'.';
+    document.getElementById('salePriceOut').textContent=money(v.salePrice);
+    document.getElementById('payoffOut').textContent=signedDeduction(v.payoff);
+    document.getElementById('commissionLabel').textContent='Agent commission ('+percent(v.commissionRate)+')';
+    document.getElementById('commissionOut').textContent=signedDeduction(r.commission);
+    document.getElementById('costsOut').textContent=signedDeduction(v.otherCosts);
+    document.getElementById('netOut').textContent=money(r.net);
+    document.getElementById('netOut').classList.toggle('status-negative',!positive);
+    document.getElementById('deductionsMetric').textContent=money(r.deductions);
+    document.getElementById('keepMetric').textContent=percent(r.keepRate);
+    document.getElementById('sellingMetric').textContent=money(r.sellingCosts);
+    document.getElementById('explanationText').textContent=positive?
+      'Start with the '+money(v.salePrice)+' expected sale price. Paying off the mortgage uses '+money(v.payoff)+'. The '+percent(v.commissionRate)+' commission is '+money(r.commission)+', and you entered '+money(v.otherCosts)+' in other selling costs. After subtracting all '+money(r.deductions)+' of deductions, the estimated amount left is '+money(r.net)+'. That is about '+percent(r.keepRate)+' of the sale price.':
+      'Start with the '+money(v.salePrice)+' expected sale price. Your mortgage payoff and selling costs total '+money(r.deductions)+', which is '+money(Math.abs(r.net))+' more than the expected price. In this estimate, you would need that amount from another source to complete the sale. A lender or closing professional can provide an exact payoff and settlement estimate.';
+    var text=summary(r);
+    document.getElementById('emailResults').href='mailto:?subject='+encodeURIComponent('My home sale proceeds estimate')+'&body='+encodeURIComponent(text);
+    updateBars(r);
+  }
+  function fallbackCopy(text){
+    var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();var copied=false;try{copied=document.execCommand('copy')}catch(e){copied=false}area.remove();return copied;
+  }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=readInputs(),message=validate(v);
+    if(message){errorBox.textContent=message;errorBox.classList.remove('hidden');return}
+    lastResult=calculate(v);render(lastResult);
+    if(window.matchMedia('(max-width: 860px)').matches)resultState.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  form.addEventListener('reset',function(){
+    window.setTimeout(function(){lastResult=null;errorBox.classList.add('hidden');resultState.classList.add('hidden');quickGrid.classList.add('hidden');emptyState.classList.remove('hidden');setExplanation(false)},0);
+  });
+  document.getElementById('explainResults').addEventListener('click',function(){setExplanation(this.getAttribute('aria-expanded')!=='true')});
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!lastResult)return;
+    var button=this,text=summary(lastResult);
+    function done(ok){button.textContent=ok?'Copied':'Copy failed';button.setAttribute('aria-label',ok?'Results copied to clipboard':'Results could not be copied');window.setTimeout(function(){button.textContent='Copy results';button.setAttribute('aria-label','Copy these home sale proceeds results')},1800)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(fallbackCopy(text))})}else{done(fallbackCopy(text))}
+  });
+})();
+</script>
+</body>
+</html>

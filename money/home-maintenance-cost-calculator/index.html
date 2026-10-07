@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Home Maintenance Cost Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --paper:#10151c;--surface:#171e27;--surface-2:#202a35;--ink:#f5f7f9;--muted:#b0bbc5;
+      --line:#34414e;--line-strong:#566675;--blue:#83b2df;--blue-soft:#1a3349;
+      --orange:#f7931a;--orange-ink:#0b0e14;--green:#39ff14;--red:#ff7379;
+      --shadow:0 24px 70px rgba(0,0,0,.34);--grid:rgba(131,178,223,.055)
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --paper:#0b0e14;--surface:#121821;--surface-2:#1a232d;--ink:#f5f7f9;--muted:#aeb9c4;
+      --line:#2d3946;--line-strong:#4c5b69;--blue:#76a6d6;--blue-soft:#172d43;
+      --orange:#f7931a;--orange-ink:#0b0e14;--green:#39ff14;--red:#ff7379;
+      --shadow:0 24px 70px rgba(0,0,0,.42);--grid:rgba(118,166,214,.055)
+    }}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-width:320px;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;color:var(--ink);font:16px/1.5 Manrope,sans-serif;-webkit-font-smoothing:antialiased}
+    button,input{font:inherit}a,button,input{-webkit-tap-highlight-color:transparent}
+    .home-link{display:inline-block;margin-bottom:27px;color:var(--ink);font-size:.78rem;font-weight:700;text-decoration:none}
+    .home-link:hover{color:var(--blue);text-decoration:underline}
+    .page{width:min(1180px,calc(100% - 40px));margin:0 auto;padding:26px 0 68px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);gap:46px;align-items:end;padding:18px 0 32px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:830px;font-size:clamp(2.5rem,6vw,5.75rem);line-height:.95;letter-spacing:-.06em;font-weight:800}
+    h1 .accent{color:var(--orange)}
+    .intro p{margin:0 0 8px;max-width:39ch;color:var(--muted);font-size:clamp(1rem,1.5vw,1.16rem)}
+    .workspace{display:grid;grid-template-columns:minmax(320px,410px) minmax(0,1fr);gap:20px;align-items:start;margin-top:28px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{position:sticky;top:18px;padding:26px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:20px}
+    .section-head h2{margin:0;font-size:1.05rem;letter-spacing:-.025em}
+    .section-head span{color:var(--orange);font:600 .68rem "IBM Plex Mono",monospace}
+    .field{margin-bottom:17px}
+    label{display:block;margin-bottom:6px;color:var(--muted);font-size:.76rem;font-weight:700}
+    .control{display:flex;align-items:center;min-height:50px;border:1px solid var(--line-strong);border-radius:9px;background:var(--paper);transition:border-color .15s,box-shadow .15s}
+    .control:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 24%,transparent)}
+    .affix{padding-left:13px;color:var(--muted);font:600 .78rem "IBM Plex Mono",monospace;white-space:nowrap}
+    .affix.end{padding:0 12px 0 0}
+    input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);padding:12px 10px;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    input::placeholder{color:color-mix(in srgb,var(--muted) 52%,transparent);font-weight:500}
+    .field-note{margin:6px 2px 0;color:var(--muted);font-size:.68rem}
+    .calculate{width:100%;margin-top:5px;padding:14px 18px;border:0;border-radius:10px;background:var(--orange);color:var(--orange-ink);font-weight:800;cursor:pointer;box-shadow:0 7px 0 color-mix(in srgb,var(--orange) 50%,#3d2109);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(4px);box-shadow:0 3px 0 color-mix(in srgb,var(--orange) 50%,#3d2109)}
+    .privacy{margin:16px 2px 0;color:var(--muted);font-size:.69rem}
+    .results{min-width:0}
+    .empty{min-height:438px;display:grid;place-items:center;padding:44px;text-align:center;border:1px dashed var(--line-strong);border-radius:6px 22px 22px 22px;background:color-mix(in srgb,var(--surface) 82%,transparent)}
+    .empty-icon{width:122px;height:88px;margin:0 auto 22px;color:var(--blue)}.empty-icon svg{display:block;width:100%;height:100%}
+    .empty h2{margin:0 0 8px;font-size:1.55rem;letter-spacing:-.035em}.empty p{max-width:40ch;margin:0;color:var(--muted);font-size:.9rem}
+    .hidden{display:none!important}
+    .alert{margin-bottom:12px;padding:13px 15px;border-radius:10px;background:color-mix(in srgb,var(--red) 12%,var(--surface));color:var(--red);font-size:.82rem;font-weight:700}
+    .hero-result{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--paper)}
+    @media(prefers-color-scheme:dark){.hero-result{background:#edf2f7;color:#0b0e14}}
+    .hero-result:after{content:"";position:absolute;right:-56px;bottom:-68px;width:166px;height:166px;border:23px solid var(--orange);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:600 .68rem "IBM Plex Mono",monospace;opacity:.62}
+    .hero-result h2{position:relative;z-index:1;margin:0 0 8px;font:600 clamp(2.35rem,5vw,4.5rem)/1 "IBM Plex Mono",monospace;letter-spacing:-.055em}
+    .hero-result p:last-child{position:relative;z-index:1;max-width:54ch;margin:0;font-size:.86rem;opacity:.74}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+    .metric{padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:13px}
+    .metric span{display:block;margin-bottom:7px;color:var(--muted);font-size:.67rem;font-weight:700}.metric strong{display:block;font:600 clamp(1.05rem,2.3vw,1.45rem) "IBM Plex Mono",monospace;line-height:1.1}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}
+    .reserve-card{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;padding:24px;border-radius:18px;margin-bottom:10px}.reserve-card h3{margin:0 0 8px;font-size:1.08rem;letter-spacing:-.025em}.reserve-card p{margin:0;color:var(--muted);font-size:.82rem}.factor-box{padding-left:22px;border-left:1px solid var(--line)}.factor-box span{display:block;color:var(--muted);font-size:.68rem;font-weight:700}.factor-box strong{display:block;margin:5px 0;font:600 1.55rem "IBM Plex Mono",monospace}.factor-box small{color:var(--muted);font-size:.67rem}
+    .actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-bottom:10px}.text-btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:.7rem;font-weight:700;text-decoration:none;cursor:pointer}.text-btn:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}
+    .explanation{margin:0 0 10px;padding:20px 22px;border:1px solid var(--line);border-top:3px solid var(--orange);border-radius:13px;background:var(--surface)}.explanation p{margin:0;color:var(--ink);font-size:.86rem;line-height:1.7}.explain-mark{display:inline-block;width:1em;margin-left:5px;color:var(--orange);font:600 .86rem "IBM Plex Mono",monospace}
+    .coverage{margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}.coverage h2{margin:0 0 15px;font-size:1.15rem;letter-spacing:-.03em}.coverage-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.coverage-item{display:flex;align-items:flex-start;gap:11px;padding:14px 15px;background:var(--surface);border:1px solid var(--line);border-radius:11px}.coverage-item svg{width:20px;height:20px;flex:0 0 20px;color:var(--orange)}.coverage-item strong{display:block;margin-bottom:2px;font-size:.78rem}.coverage-item span{display:block;color:var(--muted);font-size:.68rem}
+    .method{display:grid;grid-template-columns:1.2fr .8fr;gap:26px;margin-top:30px;padding-top:21px;border-top:1px solid var(--line);color:var(--muted);font-size:.7rem}.method p{margin:0}.method strong{color:var(--ink)}
+    button:focus-visible,a:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 32%,transparent);outline-offset:2px}
+    @media(max-width:850px){.page{width:min(100% - 28px,700px);padding-top:24px}.home-link{margin-bottom:24px}.intro{grid-template-columns:1fr;gap:16px}.workspace{grid-template-columns:1fr}.inputs{position:static;border-radius:22px}.empty,.hero-result{border-radius:22px}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px);padding:22px 0 50px}.home-link{margin-bottom:22px}.intro{padding-bottom:24px}h1{font-size:clamp(2.4rem,13vw,3.65rem)}.inputs{padding:20px}.empty{min-height:360px;padding:28px 22px}.metric-grid,.reserve-card,.coverage-grid,.method{grid-template-columns:1fr}.hero-result{padding:24px}.metric{padding:16px}.reserve-card{gap:16px;padding:20px}.factor-box{padding:15px 0 0;border-left:0;border-top:1px solid var(--line)}.actions{justify-content:stretch}.text-btn{flex:1 1 auto}.method{gap:10px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+  <header class="intro">
+    <h1>Give your home a <span class="accent">repair budget.</span></h1>
+    <p>Estimate a yearly and monthly maintenance reserve using the 1% rule, with a practical adjustment for the home’s age.</p>
+  </header>
+
+  <section class="workspace" aria-label="Home maintenance cost calculator">
+    <form class="panel inputs" id="calcForm" novalidate>
+      <div class="section-head"><h2>Your home</h2><span>01 / ESTIMATE</span></div>
+      <div class="field">
+        <label for="homeValue">Current home value</label>
+        <div class="control"><span class="affix">$</span><input id="homeValue" type="number" min="1" max="100000000" step="1000" inputmode="decimal" placeholder="350,000" required></div>
+        <p class="field-note">Use a recent market estimate, not the original purchase price.</p>
+      </div>
+      <div class="field">
+        <label for="homeAge">Home age</label>
+        <div class="control"><input id="homeAge" type="number" min="0" max="300" step="1" inputmode="numeric" placeholder="18" required><span class="affix end">years</span></div>
+        <p class="field-note">For a new build, enter 0.</p>
+      </div>
+      <button class="calculate" type="submit">Estimate maintenance budget</button>
+      <p class="privacy">Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div>
+          <div class="empty-icon" aria-hidden="true">
+            <svg viewBox="0 0 122 88" fill="none"><path d="M7 47 43 16l36 31v33H7V47Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M27 80V57h21v23" stroke="currentColor" stroke-width="4"/><path d="m81 19 10 10-29 29-14 4 4-14 29-29Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="m77 23 10 10" stroke="currentColor" stroke-width="4"/></svg>
+          </div>
+          <h2>Plan for the repair before it arrives.</h2>
+          <p>Enter your home’s value and age. You’ll get a planning reserve—not a prediction of what will break.</p>
+        </div>
+      </div>
+
+      <div id="resultState" class="hidden" aria-live="polite">
+        <div class="alert hidden" id="alertBox"></div>
+        <div id="resultContent" class="hidden">
+          <section class="hero-result">
+            <p class="eyebrow">SUGGESTED ANNUAL RESERVE</p>
+            <h2 id="annualResult">—</h2>
+            <p id="headlineNote">A planning target for routine maintenance, repairs, and future wear—not a bill you should expect every year.</p>
+          </section>
+          <div class="metric-grid">
+            <article class="metric"><span>MONTHLY SET-ASIDE</span><strong id="monthlyResult">—</strong><em>smooths out uneven costs</em></article>
+            <article class="metric"><span>BASE 1% RULE</span><strong id="baseResult">—</strong><em>before age adjustment</em></article>
+            <article class="metric"><span>AGE CUSHION</span><strong id="ageResult">—</strong><em id="ageNote">added for older systems</em></article>
+          </div>
+          <div class="actions"><button class="text-btn" type="button" id="explainResults" aria-expanded="false" aria-controls="resultsExplanation">Explain these results <span class="explain-mark" aria-hidden="true">+</span></button><a class="text-btn" id="emailResults" href="mailto:" aria-label="Email these home maintenance results">Email my results</a><button class="text-btn" type="button" id="copyResults" aria-label="Copy these home maintenance results">Copy results</button></div>
+          <section class="explanation hidden" id="resultsExplanation" aria-label="Plain-English explanation"><p id="explanationText"></p></section>
+          <section class="panel reserve-card">
+            <div><h3 id="bandTitle">—</h3><p id="bandCopy">—</p></div>
+            <div class="factor-box"><span>PLANNING RATE USED</span><strong id="rateResult">—</strong><small>of current home value per year</small></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="coverage" aria-labelledby="coverageTitle">
+    <h2 id="coverageTitle">What this reserve is meant to cover</h2>
+    <div class="coverage-grid">
+      <div class="coverage-item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10 12 4l8 6v10H4V10Z" stroke="currentColor" stroke-width="2"/><path d="M8 20v-6h8v6" stroke="currentColor" stroke-width="2"/></svg><div><strong>Roof and exterior</strong><span>Roofing, siding, paint, gutters, windows, and weather-related wear.</span></div></div>
+      <div class="coverage-item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><div><strong>Heating and cooling</strong><span>Service, repairs, and eventual replacement of major HVAC equipment.</span></div></div>
+      <div class="coverage-item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4v6a5 5 0 0 0 10 0V4M5 4h4M15 4h4M12 15v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><div><strong>Plumbing and electrical</strong><span>Leaks, fixtures, outlets, panels, wiring, and other working systems.</span></div></div>
+      <div class="coverage-item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 3h14v18H5V3Z" stroke="currentColor" stroke-width="2"/><path d="M8 7h8M8 12h8M8 17h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><div><strong>Routine upkeep</strong><span>Small repairs, preventive service, and replacement of worn home components.</span></div></div>
+    </div>
+  </section>
+
+  <footer class="method">
+    <p><strong>Method:</strong> The calculator starts with 1% of current home value per year, then uses 1.00% for homes 0–5 years old, 1.10% for 6–15 years, 1.25% for 16–30 years, 1.50% for 31–50 years, and 1.75% for homes over 50 years. These are planning assumptions, not inspection findings.</p>
+    <p><strong>Keep separate:</strong> This estimate does not include mortgage payments, property tax, homeowners insurance, utilities, renovations, or damage covered by insurance. Informational purposes only.</p>
+  </footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('calcForm');
+  var emptyState=document.getElementById('emptyState');
+  var resultState=document.getElementById('resultState');
+  var resultContent=document.getElementById('resultContent');
+  var alertBox=document.getElementById('alertBox');
+  var lastResult=null;
+  function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n)}
+  function getPlan(age){
+    if(age<=5)return{rate:1,label:'Newer home',copy:'The base 1% rule is used without an added age cushion. Even newer homes still need routine service and small repairs.'};
+    if(age<=15)return{rate:1.10,label:'Established home',copy:'A small cushion is added as finishes, appliances, and mechanical parts move beyond their earliest years.'};
+    if(age<=30)return{rate:1.25,label:'Mid-life home',copy:'A larger cushion reflects the growing chance that major systems or exterior components will need work.'};
+    if(age<=50)return{rate:1.50,label:'Mature home',copy:'More of the home may be approaching a repair or replacement cycle, so the plan adds a stronger reserve.'};
+    return{rate:1.75,label:'Older home',copy:'The highest cushion is used because several major systems may be at different stages of repair or replacement.'};
+  }
+  function readInputs(){return{value:parseFloat(document.getElementById('homeValue').value),age:parseFloat(document.getElementById('homeAge').value)}}
+  function validate(v){if(!isFinite(v.value)||!isFinite(v.age))return'Enter a home value and the home’s age.';if(v.value<=0||v.value>100000000)return'Home value must be greater than $0 and no more than $100 million.';if(v.age<0||v.age>300||Math.floor(v.age)!==v.age)return'Home age must be a whole number from 0 to 300.';return''}
+  function calculate(v){var plan=getPlan(v.age),base=v.value*.01,annual=v.value*plan.rate/100;return{value:v.value,age:v.age,rate:plan.rate,base:base,annual:annual,monthly:annual/12,cushion:annual-base,label:plan.label,copy:plan.copy}}
+  function setExplanation(open){var panel=document.getElementById('resultsExplanation'),button=document.getElementById('explainResults'),mark=button.querySelector('.explain-mark');panel.classList.toggle('hidden',!open);button.setAttribute('aria-expanded',open?'true':'false');mark.textContent=open?'−':'+'}
+  function summary(r){return['Home Maintenance Cost Calculator results','', 'Home value: '+money(r.value),'Home age: '+r.age+' years','Planning rate: '+r.rate.toFixed(2)+'% of home value','Suggested annual reserve: '+money(r.annual),'Suggested monthly set-aside: '+money(r.monthly),'Base 1% amount: '+money(r.base),'Age cushion: '+money(r.cushion),'','This planning estimate is for routine upkeep, repairs, and future wear. It excludes mortgage payments, property tax, homeowners insurance, utilities, renovations, and insured damage. Informational purposes only.'].join('\n')}
+  function render(r){
+    emptyState.classList.add('hidden');resultState.classList.remove('hidden');resultContent.classList.remove('hidden');alertBox.classList.add('hidden');setExplanation(false);
+    document.getElementById('annualResult').textContent=money(r.annual);
+    document.getElementById('monthlyResult').textContent=money(r.monthly);
+    document.getElementById('baseResult').textContent=money(r.base);
+    document.getElementById('ageResult').textContent=r.cushion>0?money(r.cushion):'$0';
+    document.getElementById('ageNote').textContent=r.cushion>0?'above the base rule':'no age adjustment';
+    document.getElementById('bandTitle').textContent=r.label+' · '+r.age+' year'+(r.age===1?'':'s')+' old';
+    document.getElementById('bandCopy').textContent=r.copy;
+    document.getElementById('rateResult').textContent=r.rate.toFixed(2)+'%';
+    document.getElementById('explanationText').textContent='For a home valued at '+money(r.value)+', the basic 1% rule suggests '+money(r.base)+' per year. Because this home is '+r.age+' year'+(r.age===1?'':'s')+' old, the calculator uses a '+r.rate.toFixed(2)+'% planning rate, bringing the target to '+money(r.annual)+' per year, or about '+money(r.monthly)+' per month. This is money to set aside over time: maintenance rarely arrives in equal monthly bills, and one quiet year can be followed by a large repair. The estimate covers upkeep and normal wear, not remodeling, taxes, insurance premiums, utilities, or damage handled through an insurance claim.';
+    document.getElementById('emailResults').href='mailto:?subject='+encodeURIComponent('My home maintenance budget estimate')+'&body='+encodeURIComponent(summary(r));
+  }
+  function showError(message){emptyState.classList.add('hidden');resultState.classList.remove('hidden');resultContent.classList.add('hidden');alertBox.textContent=message;alertBox.classList.remove('hidden')}
+  form.addEventListener('submit',function(e){e.preventDefault();var v=readInputs(),error=validate(v);if(error){showError(error);return}lastResult=calculate(v);render(lastResult);resultState.scrollIntoView({behavior:'smooth',block:'start'})});
+  document.getElementById('explainResults').addEventListener('click',function(){setExplanation(this.getAttribute('aria-expanded')!=='true')});
+  document.getElementById('copyResults').addEventListener('click',function(){if(!lastResult)return;var button=this,text=summary(lastResult),done=function(ok){button.textContent=ok?'Copied':'Copy failed';button.setAttribute('aria-label',ok?'Results copied to clipboard':'Results could not be copied');window.setTimeout(function(){button.textContent='Copy results';button.setAttribute('aria-label','Copy these home maintenance results')},1800)};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(fallbackCopy(text))})}else{done(fallbackCopy(text))}});
+  function fallbackCopy(text){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();var copied=false;try{copied=document.execCommand('copy')}catch(e){copied=false}area.remove();return copied}
+})();
+</script>
+</body>
+</html>

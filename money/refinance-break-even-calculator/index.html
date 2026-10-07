@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" href="data:," />
+  <title>Refinance Break-Even Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Franklin:wght@700;800&display=swap');
+
+    :root {
+      --ink: #0b0e14;
+      --panel: #121721;
+      --panel-2: #181f2b;
+      --paper: #f5f5f5;
+      --muted: #aeb7c4;
+      --line: #303846;
+      --blue: #6490c4;
+      --orange: #f7931a;
+      --orange-ink: #111318;
+      --neon: #39ff14;
+      --red: #e5484d;
+      --shadow: 0 24px 70px rgba(0,0,0,.34);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --ink: #0b0e14;
+        --panel: #121721;
+        --panel-2: #181f2b;
+        --paper: #f5f5f5;
+        --muted: #b8c0cb;
+        --line: #343d4a;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--ink); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(247,147,26,.035) 1px, transparent 1px),
+        linear-gradient(rgba(247,147,26,.035) 1px, transparent 1px),
+        var(--ink);
+      background-size: 42px 42px;
+      color: var(--paper);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.5;
+    }
+
+    button, input { font: inherit; }
+    a { color: inherit; }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 22px 0 56px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .92rem;
+      font-weight: 700;
+      min-height: 40px;
+    }
+    .back-link:hover, .back-link:focus-visible { color: var(--orange); }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 48px;
+      align-items: end;
+      padding: 54px 0 36px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 16px;
+      color: var(--orange);
+      font-size: .78rem;
+      letter-spacing: .16em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 30px; height: 3px; background: var(--orange); }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      margin-bottom: 18px;
+      max-width: 780px;
+      font: 800 clamp(2.3rem, 5.6vw, 4.8rem)/.98 "Libre Franklin", sans-serif;
+      letter-spacing: -.055em;
+    }
+    .lead {
+      max-width: 660px;
+      margin-bottom: 0;
+      color: #c7ced8;
+      font-size: clamp(1rem, 2vw, 1.16rem);
+    }
+    .intro-note {
+      border-top: 3px solid var(--blue);
+      padding: 18px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .intro-note strong { display: block; margin-bottom: 5px; color: var(--paper); font-size: 1rem; }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: 24px;
+      padding-top: 28px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .form-card { padding: clamp(22px, 4vw, 34px); }
+    .section-head { margin-bottom: 26px; }
+    .section-head h2 { margin-bottom: 6px; font-size: 1.25rem; }
+    .section-head p { margin-bottom: 0; color: var(--muted); font-size: .9rem; }
+
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .field.full { grid-column: 1 / -1; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #dce1e7;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .input-wrap { position: relative; }
+    .prefix, .suffix {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      color: #929dab;
+      pointer-events: none;
+      font-weight: 700;
+    }
+    .prefix { left: 14px; }
+    .suffix { right: 14px; }
+    input {
+      width: 100%;
+      height: 52px;
+      border: 1px solid #46505f;
+      border-radius: 4px;
+      background: #0d1118;
+      color: var(--paper);
+      outline: none;
+      padding: 0 42px 0 14px;
+      font-size: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .has-prefix input { padding-left: 32px; }
+    input::placeholder { color: #687382; opacity: 1; }
+    input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(247,147,26,.15); }
+    input[aria-invalid="true"] { border-color: var(--red); }
+    .hint { margin: 6px 0 0; color: #8792a0; font-size: .76rem; }
+
+    .calculate {
+      width: 100%;
+      margin-top: 24px;
+      min-height: 54px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .calculate:hover { background: #ffa632; }
+    .calculate:focus-visible, .action:focus-visible, summary:focus-visible, .back-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+    .error {
+      display: none;
+      margin: 16px 0 0;
+      padding: 12px 14px;
+      background: rgba(229,72,77,.12);
+      color: #ffb0b3;
+      border-left: 3px solid var(--red);
+      font-size: .88rem;
+    }
+    .error.show { display: block; }
+
+    .result-card {
+      display: none;
+      overflow: hidden;
+    }
+    .result-card.show { display: block; }
+    .result-top { padding: clamp(24px, 4vw, 38px); background: var(--panel-2); }
+    .result-label { margin-bottom: 8px; color: var(--muted); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .verdict {
+      margin: 0;
+      font: 800 clamp(1.55rem, 3vw, 2.35rem)/1.12 "Libre Franklin", sans-serif;
+      letter-spacing: -.035em;
+    }
+    .verdict.good { color: var(--neon); }
+    .verdict.bad { color: #ff777b; }
+    .verdict.neutral { color: var(--paper); }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .metric { padding: 24px 26px; }
+    .metric:nth-child(odd) { border-right: 1px solid var(--line); }
+    .metric:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .metric small { display: block; margin-bottom: 6px; color: var(--muted); font-size: .78rem; font-weight: 700; }
+    .metric strong { font-size: clamp(1.2rem, 3vw, 1.65rem); font-variant-numeric: tabular-nums; }
+    .metric.highlight strong { color: var(--orange); }
+
+    .result-body { padding: clamp(24px, 4vw, 34px); }
+    .plain-summary { margin-bottom: 22px; color: #d4dae2; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .action {
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--paper);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .action.email { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .action:hover { border-color: var(--blue); }
+    .action.email:hover { background: #ffa632; border-color: #ffa632; }
+
+    details {
+      margin-top: 22px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+    summary { cursor: pointer; color: var(--paper); font-weight: 800; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--orange); font-size: 1.25rem; }
+    details[open] summary::after { content: "−"; }
+    .explanation { margin: 16px 0 0; color: var(--muted); font-size: .92rem; }
+    .explanation p:last-child { margin-bottom: 0; }
+
+    .empty-result {
+      min-height: 470px;
+      display: grid;
+      place-content: center;
+      padding: 40px;
+      border: 1px dashed #3b4552;
+      color: var(--muted);
+      text-align: center;
+    }
+    .empty-result .mark {
+      width: 72px; height: 72px;
+      margin: 0 auto 18px;
+      display: grid; place-items: center;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      color: var(--orange);
+      font: 800 1.65rem "Libre Franklin", sans-serif;
+    }
+    .empty-result h2 { margin-bottom: 8px; color: var(--paper); font-size: 1.2rem; }
+    .empty-result p { max-width: 320px; margin-bottom: 0; font-size: .9rem; }
+
+    footer {
+      margin-top: 34px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: #8f99a6;
+      font-size: .76rem;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%; bottom: 24px;
+      transform: translate(-50%, 20px);
+      z-index: 5;
+      padding: 11px 16px;
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 4px;
+      font-size: .85rem;
+      font-weight: 800;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 800px) {
+      .shell { width: min(100% - 28px, 680px); padding-top: 14px; }
+      .intro { grid-template-columns: 1fr; gap: 24px; padding: 34px 0 28px; }
+      .intro-note { max-width: 420px; }
+      .workspace { grid-template-columns: 1fr; }
+      .empty-result { min-height: 300px; }
+    }
+
+    @media (max-width: 470px) {
+      .shell { width: min(100% - 20px, 680px); }
+      h1 { font-size: clamp(2.15rem, 11vw, 3.2rem); }
+      .field-grid { grid-template-columns: 1fr; gap: 15px; }
+      .field.full { grid-column: auto; }
+      .metrics { grid-template-columns: 1fr; }
+      .metric:nth-child(odd) { border-right: 0; }
+      .metric:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
+      .actions { grid-template-columns: 1fr; }
+      .result-top, .result-body, .form-card { padding: 22px 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <a class="back-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <header class="intro">
+      <div>
+        <p class="eyebrow">Housing decision tool</p>
+        <h1>When does a refinance pay for itself?</h1>
+        <p class="lead">Compare the monthly principal-and-interest payment at your current rate with a new rate, then see how long it takes the savings to cover closing costs.</p>
+      </div>
+      <div class="intro-note">
+        <strong>A quick break-even check</strong>
+        Both payments use the new term you enter so the interest-rate change is compared on equal footing.
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="card form-card" aria-labelledby="inputs-title">
+        <div class="section-head">
+          <h2 id="inputs-title">Enter the loan details</h2>
+          <p>Use principal and interest only. Taxes, insurance, and HOA dues are not included.</p>
+        </div>
+
+        <form id="refi-form" novalidate>
+          <div class="field-grid">
+            <div class="field full">
+              <label for="balance">Current loan balance</label>
+              <div class="input-wrap has-prefix">
+                <span class="prefix">$</span>
+                <input id="balance" name="balance" type="number" inputmode="decimal" min="1" step="100" placeholder="250,000" autocomplete="off" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="current-rate">Current interest rate</label>
+              <div class="input-wrap">
+                <input id="current-rate" name="current-rate" type="number" inputmode="decimal" min="0" max="30" step="0.01" placeholder="7.25" autocomplete="off" required />
+                <span class="suffix">%</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="new-rate">New interest rate</label>
+              <div class="input-wrap">
+                <input id="new-rate" name="new-rate" type="number" inputmode="decimal" min="0" max="30" step="0.01" placeholder="6.25" autocomplete="off" required />
+                <span class="suffix">%</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="term">New loan term</label>
+              <div class="input-wrap">
+                <input id="term" name="term" type="number" inputmode="numeric" min="1" max="50" step="1" placeholder="30" autocomplete="off" required />
+                <span class="suffix">years</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="costs">Closing costs</label>
+              <div class="input-wrap has-prefix">
+                <span class="prefix">$</span>
+                <input id="costs" name="costs" type="number" inputmode="decimal" min="0" step="100" placeholder="5,000" autocomplete="off" required />
+              </div>
+              <p class="hint">Include lender and third-party fees you will pay.</p>
+            </div>
+          </div>
+
+          <button class="calculate" type="submit">Calculate break-even</button>
+          <div class="error" id="error" role="alert"></div>
+        </form>
+      </section>
+
+      <section aria-live="polite" aria-atomic="false">
+        <div class="empty-result" id="empty-result">
+          <div>
+            <div class="mark" aria-hidden="true">÷</div>
+            <h2>Your result will appear here</h2>
+            <p>Enter all five figures to compare payments and find the break-even point.</p>
+          </div>
+        </div>
+
+        <article class="card result-card" id="result-card" aria-labelledby="verdict">
+          <div class="result-top">
+            <p class="result-label">Plain-English verdict</p>
+            <h2 class="verdict" id="verdict"></h2>
+          </div>
+
+          <div class="metrics">
+            <div class="metric">
+              <small>Payment at current rate</small>
+              <strong id="current-payment">—</strong>
+            </div>
+            <div class="metric">
+              <small>Payment at new rate</small>
+              <strong id="new-payment">—</strong>
+            </div>
+            <div class="metric highlight">
+              <small>Monthly savings</small>
+              <strong id="monthly-savings">—</strong>
+            </div>
+            <div class="metric highlight">
+              <small>Break-even point</small>
+              <strong id="break-even">—</strong>
+            </div>
+          </div>
+
+          <div class="result-body">
+            <p class="plain-summary" id="plain-summary"></p>
+            <div class="actions">
+              <button class="action email" id="email-results" type="button">Email my results</button>
+              <button class="action" id="copy-results" type="button">Copy results</button>
+            </div>
+
+            <details>
+              <summary>Explain these results</summary>
+              <div class="explanation" id="explanation"></div>
+            </details>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      For informational and educational purposes only. This estimate is not financial advice and does not include taxes, insurance, escrow, prepaid interest, cash-out amounts, points, or changes in the loan balance. Confirm actual costs and loan terms with your lender.
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Results copied</div>
+
+  <script>
+    (function () {
+      var form = document.getElementById('refi-form');
+      var fields = ['balance', 'current-rate', 'new-rate', 'term', 'costs'];
+      var lastResultText = '';
+
+      function money(value, decimals) {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency', currency: 'USD',
+          minimumFractionDigits: decimals || 0,
+          maximumFractionDigits: decimals || 0
+        }).format(value);
+      }
+
+      function payment(principal, annualRate, months) {
+        if (annualRate === 0) return principal / months;
+        var monthlyRate = annualRate / 100 / 12;
+        return principal * monthlyRate * Math.pow(1 + monthlyRate, months) /
+          (Math.pow(1 + monthlyRate, months) - 1);
+      }
+
+      function plural(value, word) {
+        return value + ' ' + word + (value === 1 ? '' : 's');
+      }
+
+      function showError(message, invalidIds) {
+        var box = document.getElementById('error');
+        box.textContent = message;
+        box.classList.add('show');
+        fields.forEach(function (id) {
+          document.getElementById(id).setAttribute('aria-invalid', invalidIds.indexOf(id) !== -1 ? 'true' : 'false');
+        });
+      }
+
+      function clearError() {
+        document.getElementById('error').classList.remove('show');
+        fields.forEach(function (id) { document.getElementById(id).setAttribute('aria-invalid', 'false'); });
+      }
+
+      function showToast(message) {
+        var toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.setTimeout(function () { toast.classList.remove('show'); }, 1800);
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        clearError();
+
+        var balance = Number(document.getElementById('balance').value);
+        var currentRate = Number(document.getElementById('current-rate').value);
+        var newRate = Number(document.getElementById('new-rate').value);
+        var term = Number(document.getElementById('term').value);
+        var costs = Number(document.getElementById('costs').value);
+        var raw = fields.map(function (id) { return document.getElementById(id).value.trim(); });
+        var missing = fields.filter(function (id, index) { return raw[index] === ''; });
+
+        if (missing.length) {
+          showError('Enter a value in every field before calculating.', missing);
+          return;
+        }
+        if (!isFinite(balance) || balance <= 0 || !isFinite(currentRate) || currentRate < 0 || currentRate > 30 ||
+            !isFinite(newRate) || newRate < 0 || newRate > 30 || !isFinite(term) || term < 1 || term > 50 ||
+            Math.floor(term) !== term || !isFinite(costs) || costs < 0) {
+          showError('Check your entries. Use a positive balance, rates from 0% to 30%, a whole-number term from 1 to 50 years, and closing costs of $0 or more.', fields);
+          return;
+        }
+
+        var months = term * 12;
+        var oldPayment = payment(balance, currentRate, months);
+        var newPayment = payment(balance, newRate, months);
+        var savings = oldPayment - newPayment;
+        var breakEven = savings > 0 ? (costs === 0 ? 0 : Math.ceil(costs / savings)) : null;
+        var breakEvenYears = breakEven === null ? null : Math.floor(breakEven / 12);
+        var breakEvenRemainingMonths = breakEven === null ? null : breakEven % 12;
+        var durationText = '';
+
+        if (breakEven === 0) {
+          durationText = 'immediately';
+        } else if (breakEven !== null && breakEven < 12) {
+          durationText = 'in ' + plural(breakEven, 'month');
+        } else if (breakEven !== null) {
+          durationText = 'in ' + plural(breakEvenYears, 'year') + (breakEvenRemainingMonths ? ' and ' + plural(breakEvenRemainingMonths, 'month') : '');
+        }
+
+        var verdict = document.getElementById('verdict');
+        var summary;
+        var explanation;
+
+        if (savings > 0) {
+          verdict.className = 'verdict good';
+          verdict.textContent = breakEven === 0 ? 'The lower rate saves money right away.' : 'The refinance breaks even ' + durationText + '.';
+          summary = 'Your estimated principal-and-interest payment falls by ' + money(savings, 0) + ' a month. If you expect to keep this loan beyond ' + (breakEven === 0 ? 'the start' : plural(breakEven, 'month')) + ', the monthly savings would recover the ' + money(costs, 0) + ' in closing costs.';
+          explanation = '<p>The payment at your current rate is about <strong>' + money(oldPayment, 0) + '</strong> per month. At the new rate, using the same ' + term + '-year term, it is about <strong>' + money(newPayment, 0) + '</strong>. That is a difference of <strong>' + money(savings, 0) + '</strong> each month.</p>' +
+            '<p>We divided your <strong>' + money(costs, 0) + '</strong> closing costs by the monthly savings and rounded up to a whole month. That puts the break-even point ' + durationText + '. Staying in the loan longer than that is where the rate savings begin to exceed the upfront cost.</p>' +
+            '<p>This is a rate-only comparison. Extending your payoff date can lower the payment while increasing total interest, so also compare total interest and the date you would become debt-free before deciding.</p>';
+        } else if (Math.abs(savings) < 0.005) {
+          verdict.className = 'verdict neutral';
+          verdict.textContent = 'There is no monthly-payment savings to recover the costs.';
+          summary = 'The two estimated principal-and-interest payments are effectively the same. Closing costs would not be recovered through monthly payment savings.';
+          explanation = '<p>Both rates produce about the same payment when applied to your ' + term + '-year term and ' + money(balance, 0) + ' balance.</p><p>With no meaningful monthly savings, dividing closing costs by savings does not produce a useful break-even date. A refinance may still change other loan features, but this comparison does not show a payment-based financial benefit.</p>';
+        } else {
+          verdict.className = 'verdict bad';
+          verdict.textContent = 'This refinance does not break even through monthly savings.';
+          summary = 'The new estimated principal-and-interest payment is ' + money(Math.abs(savings), 0) + ' higher per month, before adding ' + money(costs, 0) + ' in closing costs.';
+          explanation = '<p>At your current rate, the estimated payment is <strong>' + money(oldPayment, 0) + '</strong> per month. At the new rate, using the same ' + term + '-year term, it is about <strong>' + money(newPayment, 0) + '</strong> — roughly <strong>' + money(Math.abs(savings), 0) + ' more</strong> each month.</p><p>Because the monthly payment does not fall, there are no monthly savings available to recover the closing costs. Based on these inputs alone, the refinance does not have a payment-based break-even point.</p>';
+        }
+
+        document.getElementById('current-payment').textContent = money(oldPayment, 0) + '/mo';
+        document.getElementById('new-payment').textContent = money(newPayment, 0) + '/mo';
+        document.getElementById('monthly-savings').textContent = savings >= 0 ? money(savings, 0) + '/mo' : '−' + money(Math.abs(savings), 0) + '/mo';
+        document.getElementById('break-even').textContent = breakEven === null ? 'No break-even' : (breakEven === 0 ? 'Immediate' : plural(breakEven, 'month'));
+        document.getElementById('plain-summary').textContent = summary;
+        document.getElementById('explanation').innerHTML = explanation;
+
+        lastResultText = [
+          'Refinance Break-Even Estimate',
+          '',
+          'Current loan balance: ' + money(balance, 0),
+          'Current interest rate: ' + currentRate.toFixed(2) + '%',
+          'New interest rate: ' + newRate.toFixed(2) + '%',
+          'New loan term: ' + plural(term, 'year'),
+          'Closing costs: ' + money(costs, 0),
+          '',
+          'Payment at current rate: ' + money(oldPayment, 0) + '/month',
+          'Payment at new rate: ' + money(newPayment, 0) + '/month',
+          'Monthly savings: ' + (savings >= 0 ? money(savings, 0) : '−' + money(Math.abs(savings), 0)),
+          'Break-even point: ' + (breakEven === null ? 'No payment-based break-even' : (breakEven === 0 ? 'Immediate' : plural(breakEven, 'month'))),
+          '',
+          summary,
+          '',
+          'For informational and educational purposes only. This estimate is not financial advice.'
+        ].join('\n');
+
+        document.getElementById('empty-result').style.display = 'none';
+        document.getElementById('result-card').classList.add('show');
+        if (window.matchMedia('(max-width: 800px)').matches) {
+          document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+
+      document.getElementById('email-results').addEventListener('click', function () {
+        if (!lastResultText) return;
+        var mailLink = document.createElement('a');
+        mailLink.href = 'mailto:?subject=' + encodeURIComponent('My refinance break-even estimate') + '&body=' + encodeURIComponent(lastResultText);
+        mailLink.click();
+      });
+
+      document.getElementById('copy-results').addEventListener('click', function () {
+        if (!lastResultText) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastResultText).then(function () { showToast('Results copied'); }).catch(function () { fallbackCopy(); });
+        } else {
+          fallbackCopy();
+        }
+      });
+
+      function fallbackCopy() {
+        var area = document.createElement('textarea');
+        area.value = lastResultText;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        try {
+          document.execCommand('copy');
+          showToast('Results copied');
+        } catch (error) {
+          showToast('Select and copy the result text');
+        }
+        document.body.removeChild(area);
+      }
+    }());
+  </script>
+</body>
+</html>
