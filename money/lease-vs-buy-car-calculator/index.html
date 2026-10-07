@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <title>Lease vs Buy Car Calculator</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page: #10141c;
+      --surface: #181e28;
+      --surface-2: #202835;
+      --ink: #f5f5f5;
+      --muted: #b3bdca;
+      --line: #3a4554;
+      --blue: #6490c4;
+      --blue-soft: #193048;
+      --orange: #f7931a;
+      --orange-ink: #15100a;
+      --orange-soft: #352414;
+      --green: #39ff14;
+      --green-soft: #153017;
+      --red: #ff777c;
+      --focus: #8ab7e3;
+      --shadow: 0 18px 55px rgba(0, 0, 0, .34);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --page: #0b0e14;
+        --surface: #141922;
+        --surface-2: #1b222d;
+        --ink: #f5f5f5;
+        --muted: #aeb8c5;
+        --line: #343d4b;
+        --blue: #79a8d9;
+        --blue-soft: #162b40;
+        --orange: #f7931a;
+        --orange-ink: #15100a;
+        --orange-soft: #352414;
+        --green: #39ff14;
+        --green-soft: #153017;
+        --red: #f06b70;
+        --focus: #8ab7e3;
+        --shadow: 0 18px 55px rgba(0, 0, 0, .3);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    .page {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 18px clamp(18px, 4vw, 52px) 64px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      margin: 0 0 34px;
+      color: var(--muted);
+      font-weight: 700;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+    .back-link:hover { color: var(--orange); text-decoration: underline; }
+    .back-link:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(250px, 350px);
+      gap: clamp(28px, 6vw, 72px);
+      align-items: end;
+      margin-bottom: 38px;
+    }
+    .kicker {
+      margin: 0 0 10px;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(2.3rem, 7vw, 5.1rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    .intro-copy {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .mini-rule {
+      width: 48px;
+      height: 4px;
+      margin: 0 0 18px;
+      background: var(--orange);
+    }
+
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .input-panel {
+      padding: clamp(22px, 4vw, 40px);
+      border-right: 1px solid var(--line);
+    }
+    .panel-title {
+      margin: 0;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      letter-spacing: -.025em;
+    }
+    .panel-note {
+      margin: 7px 0 26px;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 16px;
+    }
+    .field.full { grid-column: 1 / -1; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .input-wrap { position: relative; }
+    .prefix, .suffix {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .9rem;
+    }
+    .prefix { left: 14px; }
+    .suffix { right: 14px; }
+    input {
+      width: 100%;
+      min-width: 0;
+      height: 50px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--page);
+      color: var(--ink);
+      padding: 0 14px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    input.with-prefix { padding-left: 31px; }
+    input.with-suffix { padding-right: 44px; }
+    input::placeholder { color: var(--muted); opacity: .62; }
+    input:hover { border-color: var(--muted); }
+    input:focus { border-color: var(--focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 18%, transparent); }
+    .input-hint {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.35;
+    }
+    .error {
+      min-height: 22px;
+      margin: 15px 0 0;
+      color: var(--red);
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .button-row { display: flex; gap: 11px; margin-top: 8px; }
+    .primary, .secondary, .action {
+      min-height: 48px;
+      border: 0;
+      border-radius: 7px;
+      padding: 11px 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary { flex: 1; background: var(--ink); color: var(--page); }
+    .primary:hover { opacity: .88; }
+    .secondary { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+    .secondary:hover { color: var(--ink); border-color: var(--muted); }
+
+    .results-panel {
+      position: relative;
+      min-height: 610px;
+      padding: clamp(22px, 4vw, 40px);
+      background: var(--surface-2);
+    }
+    .empty-state {
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-inner { max-width: 330px; }
+    .empty-mark {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      width: 86px;
+      margin: 0 auto 22px;
+    }
+    .empty-mark span { height: 40px; background: var(--line); }
+    .empty-mark span:first-child { background: var(--blue); }
+    .empty-mark span:last-child { background: var(--orange); }
+    .empty-state strong { display: block; color: var(--ink); font-size: 1.15rem; margin-bottom: 6px; }
+    .results[hidden], .empty-state[hidden] { display: none; }
+    .result-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+    .result-head p { margin: 6px 0 0; color: var(--muted); font-size: .9rem; }
+    .verdict {
+      max-width: 210px;
+      margin: 0;
+      text-align: right;
+      color: var(--green);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .option-card {
+      min-width: 0;
+      padding: 21px;
+      background: var(--surface);
+      border-top: 4px solid var(--blue);
+    }
+    .option-card.buy { border-color: var(--orange); }
+    .option-label {
+      margin: 0 0 11px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+    .big-number {
+      margin: 0;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(1.65rem, 4vw, 2.35rem);
+      line-height: 1;
+      letter-spacing: -.05em;
+      overflow-wrap: anywhere;
+    }
+    .big-label { margin: 9px 0 20px; color: var(--muted); font-size: .83rem; }
+    .detail-list { margin: 0; }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      font-size: .85rem;
+    }
+    .detail-row dt { color: var(--muted); }
+    .detail-row dd { margin: 0; font-family: "IBM Plex Mono", monospace; font-weight: 600; text-align: right; }
+    .difference-strip {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin: 13px 0 0;
+      padding: 16px 18px;
+      background: var(--ink);
+      color: var(--page);
+    }
+    .difference-strip span { font-size: .84rem; }
+    .difference-strip strong { font-family: "IBM Plex Mono", monospace; font-size: 1.15rem; text-align: right; }
+    .caveat {
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.5;
+    }
+    details {
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    summary {
+      padding: 15px 2px;
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--orange); font-size: 1.25rem; }
+    details[open] summary::after { content: "−"; }
+    .explanation { padding: 0 2px 16px; color: var(--muted); font-size: .9rem; }
+    .explanation p { margin: 0 0 11px; }
+    .explanation p:last-child { margin-bottom: 0; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .action { text-align: center; text-decoration: none; }
+    .email { background: var(--orange); color: var(--orange-ink); }
+    .copy { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+    .email:hover, .copy:hover { filter: brightness(.94); }
+    .copy-status { min-height: 20px; margin: 8px 0 0; text-align: center; color: var(--green); font-size: .8rem; font-weight: 700; }
+    .disclaimer {
+      max-width: 760px;
+      margin: 24px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    @media (max-width: 820px) {
+      .intro { grid-template-columns: 1fr; gap: 22px; align-items: start; }
+      .intro-copy { max-width: 600px; }
+      .calculator { grid-template-columns: 1fr; }
+      .input-panel { border-right: 0; border-bottom: 1px solid var(--line); }
+      .results-panel { min-height: 0; }
+      .empty-state { min-height: 300px; }
+    }
+    @media (max-width: 540px) {
+      .page { padding-left: 15px; padding-right: 15px; padding-bottom: 40px; }
+      .back-link { margin-bottom: 23px; }
+      .intro { margin-bottom: 26px; }
+      h1 { font-size: clamp(2.6rem, 14vw, 4rem); }
+      .field-grid, .comparison, .actions { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .result-head { display: block; }
+      .verdict { max-width: none; margin-top: 10px; text-align: left; }
+      .difference-strip { align-items: flex-start; }
+      .button-row { flex-direction: column; }
+      .secondary { width: 100%; }
+      .input-panel, .results-panel { padding: 22px 17px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="kicker">Auto decision tool</p>
+        <h1 id="page-title">Lease or buy?</h1>
+      </div>
+      <div>
+        <div class="mini-rule" aria-hidden="true"></div>
+        <p class="intro-copy">Compare the cash you would pay for a lease with the full cost of financing a purchase. Same upfront amount, side by side.</p>
+      </div>
+    </section>
+
+    <section class="calculator" aria-label="Lease versus buy calculator">
+      <form class="input-panel" id="calc-form" novalidate>
+        <h2 class="panel-title">Enter your numbers</h2>
+        <p class="panel-note">Use the advertised lease payment and the loan rate you expect to qualify for.</p>
+
+        <div class="field-grid">
+          <div class="field full">
+            <label for="price">Vehicle price</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input class="with-prefix" id="price" name="price" type="number" inputmode="decimal" min="1" step="0.01" placeholder="38,000" autocomplete="off" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="lease-payment">Lease payment</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input class="with-prefix" id="lease-payment" name="leasePayment" type="number" inputmode="decimal" min="0" step="0.01" placeholder="425" autocomplete="off" required />
+            </div>
+            <div class="input-hint">Monthly advertised payment</div>
+          </div>
+
+          <div class="field">
+            <label for="lease-term">Lease term</label>
+            <div class="input-wrap">
+              <input class="with-suffix" id="lease-term" name="leaseTerm" type="number" inputmode="numeric" min="1" max="120" step="1" placeholder="36" autocomplete="off" required />
+              <span class="suffix">mo.</span>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="down-payment">Upfront payment</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input class="with-prefix" id="down-payment" name="downPayment" type="number" inputmode="decimal" min="0" step="0.01" placeholder="3,000" autocomplete="off" required />
+            </div>
+            <div class="input-hint">Applied to both choices for an even comparison</div>
+          </div>
+
+          <div class="field">
+            <label for="apr">Buy APR</label>
+            <div class="input-wrap">
+              <input class="with-suffix" id="apr" name="apr" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="6.25" autocomplete="off" required />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="buy-term">Buy loan term</label>
+            <div class="input-wrap">
+              <input class="with-suffix" id="buy-term" name="buyTerm" type="number" inputmode="numeric" min="1" max="120" step="1" placeholder="60" autocomplete="off" required />
+              <span class="suffix">mo.</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="error" id="form-error" role="alert" aria-live="polite"></p>
+        <div class="button-row">
+          <button class="primary" type="submit">Compare costs</button>
+          <button class="secondary" id="reset-button" type="button">Clear</button>
+        </div>
+      </form>
+
+      <div class="results-panel" aria-live="polite">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-inner">
+            <div class="empty-mark" aria-hidden="true"><span></span><span></span></div>
+            <strong>Your comparison will appear here</strong>
+            Add all six numbers, then compare the two paths without the sales-pitch math.
+          </div>
+        </div>
+
+        <div class="results" id="results" hidden>
+          <div class="result-head">
+            <div>
+              <h2 class="panel-title">Your comparison</h2>
+              <p id="result-context">Costs over each option’s full term</p>
+            </div>
+            <p class="verdict" id="verdict"></p>
+          </div>
+
+          <div class="comparison">
+            <article class="option-card">
+              <p class="option-label">Lease</p>
+              <p class="big-number" id="lease-total">—</p>
+              <p class="big-label" id="lease-total-label">total paid</p>
+              <dl class="detail-list">
+                <div class="detail-row"><dt>Monthly payment</dt><dd id="lease-monthly">—</dd></div>
+                <div class="detail-row"><dt>Upfront payment</dt><dd id="lease-upfront">—</dd></div>
+                <div class="detail-row"><dt>Term</dt><dd id="lease-months">—</dd></div>
+                <div class="detail-row"><dt>At the end</dt><dd>Return the car</dd></div>
+              </dl>
+            </article>
+
+            <article class="option-card buy">
+              <p class="option-label">Buy</p>
+              <p class="big-number" id="buy-total">—</p>
+              <p class="big-label" id="buy-total-label">total paid</p>
+              <dl class="detail-list">
+                <div class="detail-row"><dt>Estimated payment</dt><dd id="buy-monthly">—</dd></div>
+                <div class="detail-row"><dt>Interest paid</dt><dd id="buy-interest">—</dd></div>
+                <div class="detail-row"><dt>Term</dt><dd id="buy-months">—</dd></div>
+                <div class="detail-row"><dt>At the end</dt><dd>Own the car</dd></div>
+              </dl>
+            </article>
+          </div>
+
+          <div class="difference-strip">
+            <span id="difference-label">Difference in cash paid</span>
+            <strong id="difference-value">—</strong>
+          </div>
+          <p class="caveat">This is a cash-cost comparison, not a prediction of which choice builds more value. Buying leaves you with a vehicle; leasing does not. Taxes, fees, trade-in value, maintenance, mileage charges and lease-end costs are not included.</p>
+
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+
+          <div class="actions">
+            <a class="action email" id="email-results" href="mailto:?subject=My%20lease%20vs%20buy%20comparison">Email my results</a>
+            <button class="action copy" id="copy-results" type="button">Copy results</button>
+          </div>
+          <p class="copy-status" id="copy-status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <p class="disclaimer">For informational and educational purposes only. Estimates may differ from dealer or lender figures and are not financial advice.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("calc-form");
+      var resetButton = document.getElementById("reset-button");
+      var errorBox = document.getElementById("form-error");
+      var emptyState = document.getElementById("empty-state");
+      var results = document.getElementById("results");
+      var copyButton = document.getElementById("copy-results");
+      var copyStatus = document.getElementById("copy-status");
+      var emailLink = document.getElementById("email-results");
+      var resultText = "";
+
+      function money(value, cents) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: cents ? 2 : 0,
+          maximumFractionDigits: cents ? 2 : 0
+        }).format(value);
+      }
+
+      function readNumber(id) {
+        var input = document.getElementById(id);
+        return { input: input, value: Number(input.value) };
+      }
+
+      function showError(message, input) {
+        errorBox.textContent = message;
+        if (input) input.focus();
+      }
+
+      function calculatePayment(principal, annualRate, months) {
+        if (principal === 0) return 0;
+        if (annualRate === 0) return principal / months;
+        var monthlyRate = annualRate / 100 / 12;
+        return principal * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months));
+      }
+
+      function calculate(event) {
+        event.preventDefault();
+        copyStatus.textContent = "";
+        errorBox.textContent = "";
+
+        var price = readNumber("price");
+        var leasePayment = readNumber("lease-payment");
+        var leaseTerm = readNumber("lease-term");
+        var down = readNumber("down-payment");
+        var apr = readNumber("apr");
+        var buyTerm = readNumber("buy-term");
+        var fields = [price, leasePayment, leaseTerm, down, apr, buyTerm];
+
+        for (var i = 0; i < fields.length; i++) {
+          if (fields[i].input.value.trim() === "" || !Number.isFinite(fields[i].value)) {
+            showError("Complete every field to compare your options.", fields[i].input);
+            return;
+          }
+        }
+        if (price.value <= 0) return showError("Vehicle price must be greater than $0.", price.input);
+        if (leasePayment.value < 0) return showError("Lease payment cannot be negative.", leasePayment.input);
+        if (!Number.isInteger(leaseTerm.value) || leaseTerm.value < 1 || leaseTerm.value > 120) return showError("Lease term must be a whole number from 1 to 120 months.", leaseTerm.input);
+        if (down.value < 0) return showError("Upfront payment cannot be negative.", down.input);
+        if (down.value >= price.value) return showError("Upfront payment must be less than the vehicle price.", down.input);
+        if (apr.value < 0 || apr.value > 100) return showError("APR must be between 0% and 100%.", apr.input);
+        if (!Number.isInteger(buyTerm.value) || buyTerm.value < 1 || buyTerm.value > 120) return showError("Buy term must be a whole number from 1 to 120 months.", buyTerm.input);
+
+        var financed = price.value - down.value;
+        var buyMonthly = calculatePayment(financed, apr.value, buyTerm.value);
+        var buyPayments = buyMonthly * buyTerm.value;
+        var buyInterest = buyPayments - financed;
+        var buyTotal = down.value + buyPayments;
+        var leaseTotal = down.value + (leasePayment.value * leaseTerm.value);
+        var difference = Math.abs(buyTotal - leaseTotal);
+        var lower = leaseTotal < buyTotal ? "Leasing" : (buyTotal < leaseTotal ? "Buying" : "Neither option");
+        var verb = leaseTotal === buyTotal ? "costs the same in cash" : "uses less cash over its full term";
+
+        document.getElementById("lease-total").textContent = money(leaseTotal, false);
+        document.getElementById("lease-total-label").textContent = "paid over " + leaseTerm.value + " months";
+        document.getElementById("lease-monthly").textContent = money(leasePayment.value, true);
+        document.getElementById("lease-upfront").textContent = money(down.value, false);
+        document.getElementById("lease-months").textContent = leaseTerm.value + " months";
+
+        document.getElementById("buy-total").textContent = money(buyTotal, false);
+        document.getElementById("buy-total-label").textContent = "paid over " + buyTerm.value + " months";
+        document.getElementById("buy-monthly").textContent = money(buyMonthly, true);
+        document.getElementById("buy-interest").textContent = money(buyInterest, false);
+        document.getElementById("buy-months").textContent = buyTerm.value + " months";
+
+        document.getElementById("verdict").textContent = lower + " " + verb + ".";
+        document.getElementById("difference-label").textContent = leaseTotal === buyTotal ? "Cash paid is equal" : lower + " costs less in cash";
+        document.getElementById("difference-value").textContent = leaseTotal === buyTotal ? money(0, false) : money(difference, false) + " less";
+        document.getElementById("result-context").textContent = "Lease: " + leaseTerm.value + " months · Buy: " + buyTerm.value + " months";
+
+        var explainer = document.getElementById("explanation");
+        var firstSentence = leaseTotal === buyTotal
+          ? "Your entered lease and purchase options require about the same total cash over their full terms."
+          : lower + " requires about " + money(difference, false) + " less cash when each option is measured across its own full term.";
+        explainer.innerHTML = "<p>" + firstSentence + "</p>" +
+          "<p>The purchase payment is estimated from " + money(financed, false) + " financed at " + apr.value.toFixed(2) + "% APR for " + buyTerm.value + " months. About " + money(buyInterest, false) + " of the purchase total is interest.</p>" +
+          "<p>The terms are different, so the totals do not describe the same amount of time. The biggest practical difference is what remains afterward: with a purchase you own the vehicle after the final payment; with a lease you normally return it unless you pay the separate buyout price.</p>";
+
+        resultText = [
+          "LEASE VS BUY CAR COMPARISON",
+          "",
+          "LEASE",
+          "Monthly payment: " + money(leasePayment.value, true),
+          "Upfront payment: " + money(down.value, false),
+          "Term: " + leaseTerm.value + " months",
+          "Total cash paid: " + money(leaseTotal, false),
+          "End result: Return the car",
+          "",
+          "BUY",
+          "Vehicle price: " + money(price.value, false),
+          "Estimated monthly payment: " + money(buyMonthly, true),
+          "Upfront payment: " + money(down.value, false),
+          "APR: " + apr.value.toFixed(2) + "%",
+          "Term: " + buyTerm.value + " months",
+          "Interest paid: " + money(buyInterest, false),
+          "Total cash paid: " + money(buyTotal, false),
+          "End result: Own the car",
+          "",
+          (leaseTotal === buyTotal ? "Cash paid is equal." : lower + " costs " + money(difference, false) + " less in cash over its full term."),
+          "",
+          "Not included: taxes, fees, trade-in value, maintenance, mileage charges, lease-end costs or vehicle resale value.",
+          "For informational and educational purposes only."
+        ].join("\n");
+
+        emailLink.href = "mailto:?subject=" + encodeURIComponent("My lease vs buy comparison") + "&body=" + encodeURIComponent(resultText);
+        emptyState.hidden = true;
+        results.hidden = false;
+        if (window.matchMedia("(max-width: 820px)").matches) {
+          results.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+        }
+      }
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var copied = document.execCommand("copy");
+        document.body.removeChild(area);
+        return copied;
+      }
+
+      function copyResults() {
+        if (!resultText) return;
+        copyStatus.textContent = "";
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(resultText).then(function () {
+            copyStatus.textContent = "Results copied.";
+          }).catch(function () {
+            copyStatus.textContent = fallbackCopy(resultText) ? "Results copied." : "Could not copy. Select and copy the results manually.";
+          });
+        } else {
+          copyStatus.textContent = fallbackCopy(resultText) ? "Results copied." : "Could not copy. Select and copy the results manually.";
+        }
+      }
+
+      function reset() {
+        form.reset();
+        errorBox.textContent = "";
+        copyStatus.textContent = "";
+        resultText = "";
+        results.hidden = true;
+        emptyState.hidden = false;
+        document.getElementById("price").focus();
+      }
+
+      form.addEventListener("submit", calculate);
+      resetButton.addEventListener("click", reset);
+      copyButton.addEventListener("click", copyResults);
+    }());
+  </script>
+</body>
+</html>

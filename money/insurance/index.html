@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5f7" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0e14" />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Insurance &amp; Protection</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #10151d;
+        --surface: #1a212c;
+        --surface-strong: #222c39;
+        --text: #f5f5f5;
+        --muted: #b8c2ce;
+        --border: #394657;
+        --accent: #f7931a;
+        --accent-hover: #ffad47;
+        --accent-text: #0b0e14;
+        --focus: #8bb7e1;
+        --shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0e14;
+          --surface: #141922;
+          --surface-strong: #1b2330;
+          --text: #f5f5f5;
+          --muted: #abb5c1;
+          --border: #303a49;
+          --accent: #f7931a;
+          --accent-hover: #ffab3d;
+          --accent-text: #0b0e14;
+          --focus: #79a7d6;
+          --shadow: 0 20px 48px rgba(0, 0, 0, 0.34);
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      html { min-width: 320px; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 58%, transparent) 0, transparent 290px),
+          var(--bg);
+        color: var(--text);
+        font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: inherit; }
+
+      .page {
+        width: min(1120px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: max(24px, env(safe-area-inset-top)) 0 max(56px, env(safe-area-inset-bottom));
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        margin: 0 0 36px;
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      .back-link:hover { color: var(--accent); text-decoration: underline; }
+
+      .back-link:focus-visible,
+      .open-tool:focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(250px, 360px);
+        gap: 48px;
+        align-items: end;
+        margin-bottom: 36px;
+      }
+
+      h1 {
+        max-width: 720px;
+        margin: 0;
+        font-size: clamp(2.35rem, 6vw, 4.85rem);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+        font-weight: 700;
+      }
+
+      .intro {
+        margin: 0 0 4px;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.6vw, 1.12rem);
+        line-height: 1.55;
+      }
+
+      .rule {
+        height: 3px;
+        width: 76px;
+        margin: 0 0 34px;
+        border: 0;
+        background: var(--accent);
+      }
+
+      .tools {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .tool-card {
+        position: relative;
+        display: flex;
+        min-height: 252px;
+        flex-direction: column;
+        padding: 25px;
+        overflow: hidden;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px 16px 7px 16px;
+        box-shadow: var(--shadow);
+      }
+
+      .tool-number {
+        margin-bottom: 44px;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-variant-numeric: tabular-nums;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+      }
+
+      .tool-card h2 {
+        margin: 0;
+        font-size: 1.27rem;
+        line-height: 1.22;
+        letter-spacing: -0.02em;
+      }
+
+      .tool-card p {
+        margin: 9px 0 25px;
+        color: var(--muted);
+      }
+
+      .open-tool {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        min-height: 46px;
+        margin-top: auto;
+        padding: 0 15px;
+        border-radius: 8px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-weight: 700;
+        text-decoration: none;
+        transition: background-color 150ms ease, color 150ms ease;
+      }
+
+      .open-tool::after {
+        content: "→";
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+
+      .open-tool:hover { background: var(--accent-hover); }
+
+      @media (max-width: 880px) {
+        header {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+        .intro { max-width: 610px; }
+        .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 580px) {
+        .page {
+          width: min(100% - 28px, 1120px);
+          padding-top: max(14px, env(safe-area-inset-top));
+        }
+        .back-link { margin-bottom: 24px; }
+        header { margin-bottom: 24px; }
+        h1 { font-size: clamp(2.45rem, 13vw, 3.45rem); }
+        .rule { margin-bottom: 24px; }
+        .tools { grid-template-columns: 1fr; gap: 14px; }
+        .tool-card { min-height: 224px; padding: 22px; }
+        .tool-number { margin-bottom: 32px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .open-tool { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <a class="back-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+      <header>
+        <h1>Insurance &amp;<br />Protection</h1>
+        <p class="intro">Plan the coverage that protects your income, your home, and the people who depend on you.</p>
+      </header>
+      <hr class="rule" />
+
+      <section class="tools" aria-label="Insurance and protection calculators">
+        <article class="tool-card">
+          <span class="tool-number" aria-hidden="true">01</span>
+          <h2>Life Insurance Needs Calculator</h2>
+          <p>How much coverage do you need?</p>
+          <a class="open-tool" href="/money/life-insurance-needs-calculator/">Open tool</a>
+        </article>
+
+        <article class="tool-card">
+          <span class="tool-number" aria-hidden="true">02</span>
+          <h2>Disability Insurance Needs Calculator</h2>
+          <p>Protect your paycheck.</p>
+          <a class="open-tool" href="/money/disability-insurance-needs-calculator/">Open tool</a>
+        </article>
+
+        <article class="tool-card">
+          <span class="tool-number" aria-hidden="true">03</span>
+          <h2>Term vs. Whole Life</h2>
+          <p>Which policy type fits?</p>
+          <a class="open-tool" href="/money/term-vs-whole-life-insurance-calculator/">Open tool</a>
+        </article>
+
+        <article class="tool-card">
+          <span class="tool-number" aria-hidden="true">04</span>
+          <h2>Auto Insurance Deductible</h2>
+          <p>Pick the right deductible.</p>
+          <a class="open-tool" href="/money/auto-insurance-deductible-calculator/">Open tool</a>
+        </article>
+
+        <article class="tool-card">
+          <span class="tool-number" aria-hidden="true">05</span>
+          <h2>Homeowners Insurance Estimator</h2>
+          <p>Cover your home properly.</p>
+          <a class="open-tool" href="/money/homeowners-insurance-estimator/">Open tool</a>
+        </article>
+
+        <article class="tool-card">
+          <span class="tool-number" aria-hidden="true">06</span>
+          <h2>Umbrella Insurance Calculator</h2>
+          <p>Do you need extra liability?</p>
+          <a class="open-tool" href="/money/umbrella-insurance-calculator/">Open tool</a>
+        </article>
+
+        <article class="tool-card">
+          <span class="tool-number" aria-hidden="true">07</span>
+          <h2>Long-Term Care Cost Calculator</h2>
+          <p>What future care costs.</p>
+          <a class="open-tool" href="/money/long-term-care-cost-calculator/">Open tool</a>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

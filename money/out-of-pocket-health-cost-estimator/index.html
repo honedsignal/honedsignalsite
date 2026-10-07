@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Out-of-Pocket Health Cost Estimator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      color-scheme: light dark;
+      --bg: #10151d;
+      --surface: #19212c;
+      --surface-2: #252f3b;
+      --ink: #f5f5f5;
+      --muted: #b5bfcb;
+      --line: #3a4655;
+      --orange: #f7931a;
+      --orange-hover: #ffad4a;
+      --orange-ink: #161009;
+      --blue: #7eaddc;
+      --green: #51e735;
+      --green-soft: #1d3323;
+      --error: #ff858c;
+      --error-soft: #3a2025;
+      --focus: #87b9e9;
+      --shadow: 0 20px 55px rgba(0, 0, 0, .28);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0e14;
+        --surface: #141922;
+        --surface-2: #1d2530;
+        --ink: #f5f5f5;
+        --muted: #adb7c4;
+        --line: #323d4c;
+        --orange: #f7931a;
+        --orange-hover: #ffab46;
+        --orange-ink: #161009;
+        --blue: #7eaddc;
+        --green: #39ff14;
+        --green-soft: #172a1b;
+        --error: #ff8188;
+        --error-soft: #351d22;
+        --focus: #87b9e9;
+        --shadow: 0 20px 55px rgba(0, 0, 0, .32);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+      line-height: 1.5;
+    }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    .page {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: max(20px, env(safe-area-inset-top)) 0 max(64px, env(safe-area-inset-bottom));
+    }
+    .back-link {
+      display: inline-block;
+      padding: 5px 0;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--orange); }
+    .back-link:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--focus) 55%, transparent);
+      outline-offset: 3px;
+    }
+    header {
+      padding: 44px 0 28px;
+      max-width: 760px;
+    }
+    .section-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--orange);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .section-mark::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      background: var(--orange);
+    }
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(2.35rem, 7vw, 4.85rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    .lede {
+      max-width: 650px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.65;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(330px, .96fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .panel {
+      min-width: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .form-panel { padding: 30px; }
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: baseline;
+      margin-bottom: 25px;
+    }
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -.02em;
+    }
+    .step {
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .76rem;
+      white-space: nowrap;
+    }
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 16px;
+    }
+    .field { min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: .9rem;
+      font-weight: 650;
+    }
+    .input-wrap { position: relative; }
+    .prefix, .suffix {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+      pointer-events: none;
+    }
+    .prefix { left: 14px; }
+    .suffix { right: 14px; }
+    input {
+      width: 100%;
+      height: 50px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0 14px;
+      appearance: textfield;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    input.with-prefix { padding-left: 31px; }
+    input.with-suffix { padding-right: 37px; }
+    input::placeholder { color: var(--muted); opacity: .66; font-family: "IBM Plex Sans", sans-serif; font-weight: 400; }
+    input:hover { border-color: color-mix(in srgb, var(--line) 60%, var(--ink)); }
+    input:focus { border-color: var(--focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 18%, transparent); outline: none; }
+    input[aria-invalid="true"] { border-color: var(--error); }
+    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .hint {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: .76rem;
+      line-height: 1.4;
+    }
+    .form-note {
+      margin: 22px 0 0;
+      padding: 14px 15px;
+      border-left: 3px solid var(--blue);
+      background: color-mix(in srgb, var(--blue) 9%, var(--surface));
+      color: var(--muted);
+      font-size: .84rem;
+    }
+    .primary {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 22px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary:hover { background: var(--orange-hover); }
+    .error-box {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: var(--error-soft);
+      color: var(--error);
+      font-size: .86rem;
+      font-weight: 600;
+    }
+    .error-box.show { display: block; }
+    .result-panel {
+      min-height: 420px;
+      overflow: hidden;
+    }
+    .empty-state {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      padding: 44px;
+      text-align: center;
+    }
+    .empty-figure {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 24px;
+      position: relative;
+      border-radius: 50%;
+      border: 18px solid var(--surface-2);
+      border-top-color: var(--orange);
+      transform: rotate(24deg);
+    }
+    .empty-figure::after {
+      content: "$";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      transform: rotate(-24deg);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .empty-state h2 { font-size: 1.35rem; }
+    .empty-state p { margin: 8px auto 0; max-width: 320px; color: var(--muted); font-size: .92rem; }
+    .results { display: none; }
+    .results.show { display: block; }
+    .result-hero {
+      padding: 30px;
+      background: var(--green-soft);
+      border-bottom: 1px solid var(--line);
+    }
+    .result-label { margin: 0 0 5px; color: var(--muted); font-size: .85rem; font-weight: 600; }
+    .result-number {
+      margin: 0;
+      color: var(--green);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: clamp(2.45rem, 7vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+      overflow-wrap: anywhere;
+    }
+    .result-sub { margin: 11px 0 0; color: var(--muted); font-size: .83rem; }
+    .breakdown { padding: 26px 30px 8px; }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: .9rem;
+    }
+    .row span:first-child { color: var(--muted); }
+    .row strong { font-family: "IBM Plex Mono", monospace; text-align: right; }
+    .cap-note {
+      display: none;
+      margin: 18px 30px 0;
+      padding: 13px 14px;
+      background: color-mix(in srgb, var(--green) 10%, var(--surface));
+      color: var(--ink);
+      font-size: .84rem;
+    }
+    .cap-note.show { display: block; }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 22px 30px 24px;
+    }
+    .action {
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .action:hover { background: var(--surface-2); }
+    .action.email { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .action.email:hover { background: var(--orange-hover); }
+    .copy-status {
+      grid-column: 1 / -1;
+      min-height: 19px;
+      color: var(--green);
+      text-align: center;
+      font-size: .78rem;
+      font-weight: 600;
+    }
+    details {
+      margin: 0 30px 30px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    summary {
+      padding: 17px 0;
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; float: right; color: var(--orange); font-family: "IBM Plex Mono", monospace; font-size: 1.25rem; }
+    details[open] summary::after { content: "−"; }
+    .explanation { padding: 0 0 18px; color: var(--muted); font-size: .9rem; }
+    .explanation p { margin: 0 0 12px; }
+    .explanation ul { margin: 0; padding-left: 20px; }
+    .explanation li + li { margin-top: 9px; }
+    footer {
+      max-width: 760px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 800px) {
+      .page { width: min(100% - 28px, 620px); }
+      header { padding-top: 34px; }
+      .layout { grid-template-columns: 1fr; }
+      .result-panel { min-height: 0; }
+      .empty-state { min-height: 300px; }
+    }
+    @media (max-width: 500px) {
+      .page { width: min(100% - 22px, 500px); padding-top: 14px; }
+      header { padding: 28px 2px 22px; }
+      h1 { font-size: clamp(2.2rem, 12vw, 3.35rem); }
+      .form-panel { padding: 22px 18px; }
+      .field-grid { grid-template-columns: 1fr; gap: 17px; }
+      .field.full { grid-column: auto; }
+      .result-hero { padding: 24px 20px; }
+      .breakdown { padding: 20px 20px 4px; }
+      .row { gap: 10px; font-size: .85rem; }
+      .cap-note { margin: 16px 20px 0; }
+      .actions { grid-template-columns: 1fr; padding: 20px; }
+      .copy-status { grid-column: auto; }
+      details { margin: 0 20px 24px; }
+      .empty-state { padding: 34px 22px; }
+      .empty-figure { width: 110px; height: 110px; border-width: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+    @media print {
+      .back-link, .form-panel, .actions { display: none !important; }
+      .page { width: 100%; padding: 0; }
+      header { padding-top: 0; }
+      .layout { display: block; }
+      .result-panel { box-shadow: none; }
+      details { display: block; }
+      details > * { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <header>
+      <p class="section-mark">Health costs</p>
+      <h1>What could this care cost you?</h1>
+      <p class="lede">Estimate your share of a medical bill after your deductible and coinsurance, without losing sight of your plan’s annual out-of-pocket limit.</p>
+    </header>
+
+    <div class="layout">
+      <section class="panel form-panel" aria-labelledby="cost-heading">
+        <div class="panel-head">
+          <h2 id="cost-heading">Enter your numbers</h2>
+          <span class="step">01 / Estimate</span>
+        </div>
+
+        <form id="estimator" novalidate>
+          <div class="field-grid">
+            <div class="field full">
+              <label for="careCost">Procedure or bill amount</label>
+              <div class="input-wrap">
+                <span class="prefix">$</span>
+                <input class="with-prefix" id="careCost" name="careCost" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="e.g., 2,500" autocomplete="off" />
+              </div>
+              <span class="hint">Use your plan’s allowed amount if you know it. The provider’s sticker price can be higher.</span>
+            </div>
+
+            <div class="field">
+              <label for="deductible">Annual deductible</label>
+              <div class="input-wrap">
+                <span class="prefix">$</span>
+                <input class="with-prefix" id="deductible" name="deductible" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g., 1,500" autocomplete="off" />
+              </div>
+              <span class="hint">What you pay before the plan starts sharing many costs.</span>
+            </div>
+
+            <div class="field">
+              <label for="coinsurance">Your coinsurance</label>
+              <div class="input-wrap">
+                <input class="with-suffix" id="coinsurance" name="coinsurance" type="number" inputmode="decimal" min="0" max="100" step="0.1" placeholder="e.g., 20" autocomplete="off" />
+                <span class="suffix">%</span>
+              </div>
+              <span class="hint">Your percentage after the deductible, not the plan’s.</span>
+            </div>
+
+            <div class="field">
+              <label for="oopMax">Annual out-of-pocket max</label>
+              <div class="input-wrap">
+                <span class="prefix">$</span>
+                <input class="with-prefix" id="oopMax" name="oopMax" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g., 6,000" autocomplete="off" />
+              </div>
+              <span class="hint">Your ceiling for covered, in-network care this plan year.</span>
+            </div>
+
+            <div class="field">
+              <label for="spent">Eligible amount paid this year</label>
+              <div class="input-wrap">
+                <span class="prefix">$</span>
+                <input class="with-prefix" id="spent" name="spent" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g., 800" autocomplete="off" />
+              </div>
+              <span class="hint">The amount your insurer shows toward your out-of-pocket max.</span>
+            </div>
+          </div>
+
+          <p class="form-note">For a simple estimate, this assumes the eligible amount you already paid also counted toward your deductible, up to the deductible amount.</p>
+          <button class="primary" type="submit">Estimate my cost</button>
+          <div class="error-box" id="errorBox" role="alert" aria-live="assertive"></div>
+        </form>
+      </section>
+
+      <section class="panel result-panel" aria-live="polite" aria-labelledby="result-heading">
+        <div class="empty-state" id="emptyState">
+          <div>
+            <div class="empty-figure" aria-hidden="true"></div>
+            <h2>See your share, step by step</h2>
+            <p>Fill in all five fields to see the deductible portion, coinsurance portion, and out-of-pocket cap.</p>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <div class="result-hero">
+            <p class="result-label" id="result-heading">Estimated amount you pay</p>
+            <p class="result-number" id="youPay">$0.00</p>
+            <p class="result-sub" id="remainingText"></p>
+          </div>
+
+          <div class="breakdown">
+            <div class="row"><span>Applied to remaining deductible</span><strong id="deductiblePart">$0.00</strong></div>
+            <div class="row"><span>Your coinsurance after deductible</span><strong id="coinsurancePart">$0.00</strong></div>
+            <div class="row"><span>Estimated plan share</span><strong id="planShare">$0.00</strong></div>
+            <div class="row"><span>Out-of-pocket room before this care</span><strong id="oopRoom">$0.00</strong></div>
+          </div>
+
+          <p class="cap-note" id="capNote"></p>
+
+          <div class="actions">
+            <button class="action email" id="emailBtn" type="button">Email my results</button>
+            <button class="action" id="copyBtn" type="button">Copy results</button>
+            <div class="copy-status" id="copyStatus" aria-live="polite"></div>
+          </div>
+
+          <details>
+            <summary>Explain these results</summary>
+            <div class="explanation" id="explanation"></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      This estimate is for informational purposes only. Actual costs depend on your insurer’s allowed amount, network rules, copays, exclusions, and claim processing. Check your plan documents or ask your insurer for a pre-service estimate before making a care decision.
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("estimator");
+      var inputs = Array.prototype.slice.call(form.querySelectorAll("input"));
+      var emptyState = document.getElementById("emptyState");
+      var results = document.getElementById("results");
+      var errorBox = document.getElementById("errorBox");
+      var copyStatus = document.getElementById("copyStatus");
+      var lastSummary = "";
+      var lastMailBody = "";
+
+      var money = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+      function valueOf(id) {
+        return Number(document.getElementById(id).value);
+      }
+
+      function clearErrors() {
+        inputs.forEach(function (input) { input.setAttribute("aria-invalid", "false"); });
+        errorBox.classList.remove("show");
+        errorBox.textContent = "";
+      }
+
+      function showError(message, input) {
+        errorBox.textContent = message;
+        errorBox.classList.add("show");
+        if (input) {
+          input.setAttribute("aria-invalid", "true");
+          input.focus();
+        }
+      }
+
+      function setText(id, text) {
+        document.getElementById(id).textContent = text;
+      }
+
+      function calculate(event) {
+        event.preventDefault();
+        clearErrors();
+        copyStatus.textContent = "";
+
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].value.trim() === "") {
+            showError("Please fill in every field before estimating.", inputs[i]);
+            return;
+          }
+        }
+
+        var careCost = valueOf("careCost");
+        var deductible = valueOf("deductible");
+        var coinsuranceRate = valueOf("coinsurance");
+        var oopMax = valueOf("oopMax");
+        var spent = valueOf("spent");
+
+        if (!Number.isFinite(careCost) || careCost <= 0) {
+          showError("Enter a procedure or bill amount greater than $0.", document.getElementById("careCost"));
+          return;
+        }
+        if (![deductible, coinsuranceRate, oopMax, spent].every(function (n) { return Number.isFinite(n) && n >= 0; })) {
+          showError("Use zero or a positive number in each plan field.");
+          return;
+        }
+        if (coinsuranceRate > 100) {
+          showError("Coinsurance cannot be more than 100%.", document.getElementById("coinsurance"));
+          return;
+        }
+        if (oopMax < deductible) {
+          showError("The out-of-pocket maximum is usually at least as large as the deductible. Check those two numbers.", document.getElementById("oopMax"));
+          return;
+        }
+        if (spent > oopMax) {
+          showError("The amount already paid cannot be higher than the out-of-pocket maximum.", document.getElementById("spent"));
+          return;
+        }
+
+        var remainingOop = Math.max(0, oopMax - spent);
+        var remainingDeductible = Math.max(0, deductible - Math.min(spent, deductible));
+        var deductiblePartBeforeCap = Math.min(careCost, remainingDeductible);
+        var postDeductibleAmount = Math.max(0, careCost - deductiblePartBeforeCap);
+        var coinsuranceBeforeCap = postDeductibleAmount * (coinsuranceRate / 100);
+        var uncappedYouPay = deductiblePartBeforeCap + coinsuranceBeforeCap;
+        var youPay = Math.min(careCost, uncappedYouPay, remainingOop);
+
+        var deductiblePart = Math.min(deductiblePartBeforeCap, youPay);
+        var coinsurancePart = Math.max(0, youPay - deductiblePart);
+        var planShare = Math.max(0, careCost - youPay);
+        var remainingAfter = Math.max(0, remainingOop - youPay);
+        var capApplied = uncappedYouPay > remainingOop;
+
+        setText("youPay", money.format(youPay));
+        setText("deductiblePart", money.format(deductiblePart));
+        setText("coinsurancePart", money.format(coinsurancePart));
+        setText("planShare", money.format(planShare));
+        setText("oopRoom", money.format(remainingOop));
+        setText("remainingText", remainingAfter === 0
+          ? "This would bring you to the annual out-of-pocket maximum."
+          : money.format(remainingAfter) + " would remain before reaching your annual out-of-pocket maximum.");
+
+        var capNote = document.getElementById("capNote");
+        if (capApplied) {
+          capNote.textContent = "Your out-of-pocket maximum lowered this estimate by " + money.format(uncappedYouPay - youPay) + ".";
+          capNote.classList.add("show");
+        } else {
+          capNote.textContent = "";
+          capNote.classList.remove("show");
+        }
+
+        var explanation = document.getElementById("explanation");
+        explanation.innerHTML =
+          "<p><strong>Here’s the plain-English version:</strong> your deductible is the part you generally pay first. After that, coinsurance means you and the plan split the remaining covered cost by percentage.</p>" +
+          "<ul>" +
+          "<li>You had " + money.format(remainingDeductible) + " of deductible left before this care. This estimate applies " + money.format(deductiblePart) + " to it.</li>" +
+          "<li>Your " + coinsuranceRate.toLocaleString("en-US", { maximumFractionDigits: 1 }) + "% share applies only to the covered amount left after the deductible portion.</li>" +
+          "<li>Your annual out-of-pocket maximum limits what you pay for covered, in-network care. It usually does not include premiums, out-of-network bills, or services the plan excludes.</li>" +
+          "</ul>";
+
+        lastSummary = [
+          "Out-of-Pocket Health Cost Estimate",
+          "Procedure or bill amount: " + money.format(careCost),
+          "Estimated amount I pay: " + money.format(youPay),
+          "Applied to remaining deductible: " + money.format(deductiblePart),
+          "My coinsurance portion: " + money.format(coinsurancePart),
+          "Estimated plan share: " + money.format(planShare),
+          "Out-of-pocket room before this care: " + money.format(remainingOop),
+          "Out-of-pocket room after this care: " + money.format(remainingAfter),
+          "",
+          "This estimate is for informational purposes only. Actual costs depend on the insurer's allowed amount, network rules, copays, exclusions, and claim processing."
+        ].join("\n");
+        lastMailBody = lastSummary;
+
+        emptyState.style.display = "none";
+        results.classList.add("show");
+
+        if (window.matchMedia("(max-width: 800px)").matches) {
+          results.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+        }
+      }
+
+      function copyFallback(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(area);
+        return ok;
+      }
+
+      function copyResults() {
+        if (!lastSummary) return;
+        copyStatus.textContent = "";
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastSummary).then(function () {
+            copyStatus.textContent = "Results copied.";
+          }).catch(function () {
+            copyStatus.textContent = copyFallback(lastSummary) ? "Results copied." : "Select and copy the results from your email draft.";
+          });
+        } else {
+          copyStatus.textContent = copyFallback(lastSummary) ? "Results copied." : "Select and copy the results from your email draft.";
+        }
+      }
+
+      function emailResults() {
+        if (!lastMailBody) return;
+        var subject = encodeURIComponent("My out-of-pocket health cost estimate");
+        var body = encodeURIComponent(lastMailBody);
+        var mailLink = document.createElement("a");
+        mailLink.href = "mailto:?subject=" + subject + "&body=" + body;
+        mailLink.style.display = "none";
+        document.body.appendChild(mailLink);
+        mailLink.click();
+        document.body.removeChild(mailLink);
+      }
+
+      form.addEventListener("submit", calculate);
+      inputs.forEach(function (input) {
+        input.addEventListener("input", function () {
+          input.setAttribute("aria-invalid", "false");
+          if (errorBox.classList.contains("show")) {
+            errorBox.classList.remove("show");
+            errorBox.textContent = "";
+          }
+        });
+      });
+      document.getElementById("copyBtn").addEventListener("click", copyResults);
+      document.getElementById("emailBtn").addEventListener("click", emailResults);
+    })();
+  </script>
+</body>
+</html>

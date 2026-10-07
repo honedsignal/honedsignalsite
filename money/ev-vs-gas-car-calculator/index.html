@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0B0E14" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#F5F5F5" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <title>EV vs Gas Car Calculator</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --page: #f5f5f5;
+      --surface: #ffffff;
+      --surface-2: #e9ebee;
+      --ink: #0b0e14;
+      --muted: #505967;
+      --line: #c7cdd5;
+      --orange: #d76f00;
+      --orange-ink: #ffffff;
+      --green: #167d1b;
+      --green-soft: #e4f2e5;
+      --red: #bb2430;
+      --red-soft: #f8e5e7;
+      --blue: #3f6fa5;
+      --blue-soft: #e5edf7;
+      --shadow: 0 18px 45px rgba(11, 14, 20, 0.10);
+      --focus: #315f94;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page: #0b0e14;
+        --surface: #131820;
+        --surface-2: #1c232d;
+        --ink: #f5f5f5;
+        --muted: #acb6c3;
+        --line: #333d4b;
+        --orange: #f7931a;
+        --orange-ink: #0b0e14;
+        --green: #39ff14;
+        --green-soft: #16311c;
+        --red: #ff6b70;
+        --red-soft: #351c21;
+        --blue: #82afe0;
+        --blue-soft: #17283b;
+        --shadow: 0 22px 52px rgba(0, 0, 0, 0.35);
+        --focus: #9ac5f4;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--page); scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      min-height: 100vh;
+      background: var(--page);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    button,
+    input { font: inherit; }
+
+    button,
+    a { -webkit-tap-highlight-color: transparent; }
+
+    .shell {
+      width: min(1160px, 100%);
+      margin: 0 auto;
+      padding: max(16px, env(safe-area-inset-top)) clamp(18px, 4.5vw, 64px) max(60px, env(safe-area-inset-bottom));
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      margin-bottom: clamp(28px, 5vw, 58px);
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 600;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 5px;
+    }
+
+    .back-link:hover { color: var(--ink); }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+      gap: clamp(24px, 5vw, 70px);
+      align-items: end;
+      padding-bottom: clamp(28px, 4.5vw, 50px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Barlow Condensed", sans-serif;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3.1rem, 8.7vw, 6.6rem);
+      line-height: 0.89;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+
+    .intro-copy {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.7vw, 1.14rem);
+      line-height: 1.62;
+    }
+
+    .accent-rule {
+      display: block;
+      width: 76px;
+      height: 6px;
+      margin-top: 24px;
+      background: var(--orange);
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(24px, 4vw, 50px);
+      align-items: start;
+      margin-top: clamp(30px, 5vw, 54px);
+    }
+
+    .panel {
+      min-width: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .form-panel { padding: clamp(22px, 3.6vw, 38px); }
+
+    .panel-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: baseline;
+      margin-bottom: 26px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 3.6vw, 2.8rem);
+      line-height: 1;
+      letter-spacing: -0.025em;
+    }
+
+    .step-label {
+      color: var(--orange);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    fieldset + fieldset {
+      margin-top: 30px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    legend {
+      width: 100%;
+      margin: 0 0 16px;
+      padding: 0;
+      color: var(--ink);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field { min-width: 0; }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .input-wrap { position: relative; }
+
+    .input-wrap .prefix,
+    .input-wrap .suffix {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 0.95rem;
+      pointer-events: none;
+    }
+
+    .prefix { left: 14px; }
+    .suffix { right: 14px; }
+
+    input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      outline: none;
+      background: var(--page);
+      color: var(--ink);
+      font-size: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    input.has-prefix { padding-left: 30px; }
+    input.has-suffix { padding-right: 72px; }
+
+    input::placeholder { color: var(--muted); opacity: 0.68; }
+
+    input:hover { border-color: var(--muted); }
+
+    input:focus {
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 25%, transparent);
+    }
+
+    input[aria-invalid="true"] {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 18%, transparent);
+    }
+
+    .hint {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .form-error {
+      display: none;
+      margin: 20px 0 0;
+      padding: 12px 14px;
+      background: var(--red-soft);
+      color: var(--red);
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .form-error.show { display: block; }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.93rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button-primary {
+      background: var(--orange);
+      color: var(--orange-ink);
+    }
+
+    .button-primary:hover { filter: brightness(1.06); }
+
+    .button-secondary {
+      border-color: var(--line);
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+
+    .button-secondary:hover { border-color: var(--muted); }
+
+    .button:focus-visible,
+    .back-link:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .result-placeholder {
+      display: grid;
+      min-height: 440px;
+      place-items: center;
+      padding: clamp(34px, 6vw, 70px);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--orange) 8%, transparent), transparent 50%),
+        var(--surface);
+      text-align: center;
+    }
+
+    .placeholder-mark {
+      display: grid;
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 22px;
+      place-items: center;
+      border: 2px solid var(--line);
+      border-radius: 50%;
+      color: var(--orange);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .result-placeholder h2 { font-size: clamp(2rem, 4vw, 3rem); }
+
+    .result-placeholder p {
+      max-width: 390px;
+      margin: 12px auto 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .results { display: none; }
+    .results.show { display: block; }
+
+    .results-head {
+      padding: clamp(24px, 3.6vw, 38px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .verdict {
+      display: inline-flex;
+      margin-top: 14px;
+      padding: 7px 10px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .verdict.costlier {
+      background: var(--red-soft);
+      color: var(--red);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      background: var(--line);
+      gap: 1px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric {
+      min-width: 0;
+      padding: clamp(20px, 3vw, 30px);
+      background: var(--surface);
+    }
+
+    .metric-label {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.045em;
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      margin: 0;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      overflow-wrap: anywhere;
+    }
+
+    .metric-note {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .comparison {
+      padding: clamp(24px, 3.6vw, 38px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .comparison h3 {
+      margin: 0 0 18px;
+      font-size: 1.35rem;
+    }
+
+    .bar-row + .bar-row { margin-top: 17px; }
+
+    .bar-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 7px;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .bar-track {
+      height: 12px;
+      overflow: hidden;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0;
+      background: var(--orange);
+      transition: width 320ms ease;
+    }
+
+    .bar-fill.ev { background: var(--blue); }
+
+    .share-area { padding: clamp(24px, 3.6vw, 38px); }
+
+    .share-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .copy-status {
+      min-height: 22px;
+      margin: 12px 0 0;
+      color: var(--green);
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    details {
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+      padding-top: 19px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .explanation {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .explanation p { margin: 0 0 12px; }
+    .explanation p:last-child { margin-bottom: 0; }
+
+    .disclaimer {
+      max-width: 800px;
+      margin: 34px auto 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      .intro,
+      .workspace { grid-template-columns: 1fr; }
+      .intro { align-items: start; }
+      .intro-copy { max-width: 650px; }
+      .result-placeholder { min-height: 310px; }
+    }
+
+    @media (max-width: 560px) {
+      .shell { padding-inline: 16px; }
+      .back-link { margin-bottom: 24px; }
+      h1 { font-size: clamp(3.05rem, 17vw, 5.1rem); }
+      .field-grid,
+      .metrics { grid-template-columns: 1fr; }
+      .form-actions,
+      .share-actions { display: grid; grid-template-columns: 1fr; }
+      .button { width: 100%; }
+      .panel-heading { align-items: flex-start; flex-direction: column-reverse; gap: 8px; }
+      .metric-value { font-size: 2.55rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .bar-fill { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <a class="back-link" href="/money/">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-heading">
+      <div>
+        <h1 id="page-heading">Compare EV and gas running costs.</h1>
+        <span class="accent-rule" aria-hidden="true"></span>
+      </div>
+      <p class="intro-copy">See how yearly energy costs compare and how long lower charging costs could take to cover an EV’s higher purchase price.</p>
+    </section>
+
+    <div class="workspace">
+      <section class="panel form-panel" aria-labelledby="inputs-heading">
+        <div class="panel-heading">
+          <h2 id="inputs-heading">Your numbers</h2>
+          <span class="step-label">Step 1 of 2</span>
+        </div>
+
+        <form id="calculator" novalidate>
+          <fieldset>
+            <legend>Driving and local prices</legend>
+            <div class="field-grid">
+              <div class="field">
+                <label for="miles">Miles driven per year</label>
+                <div class="input-wrap">
+                  <input id="miles" name="miles" type="number" inputmode="decimal" min="1" step="any" placeholder="e.g., 12,000" required />
+                  <span class="suffix">miles</span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="premium">EV price difference</label>
+                <div class="input-wrap">
+                  <span class="prefix">$</span>
+                  <input class="has-prefix" id="premium" name="premium" type="number" inputmode="decimal" step="any" placeholder="e.g., 6,000" required />
+                </div>
+                <p class="hint">Positive if the EV costs more; negative if it costs less.</p>
+              </div>
+
+              <div class="field">
+                <label for="gasPrice">Gas price per gallon</label>
+                <div class="input-wrap">
+                  <span class="prefix">$</span>
+                  <input class="has-prefix" id="gasPrice" name="gasPrice" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g., 3.10" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="electricityPrice">Electricity price per kWh</label>
+                <div class="input-wrap">
+                  <span class="prefix">$</span>
+                  <input class="has-prefix" id="electricityPrice" name="electricityPrice" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g., 0.16" required />
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Vehicle efficiency</legend>
+            <div class="field-grid">
+              <div class="field">
+                <label for="mpg">Gas car fuel economy</label>
+                <div class="input-wrap">
+                  <input class="has-suffix" id="mpg" name="mpg" type="number" inputmode="decimal" min="0.1" step="any" placeholder="e.g., 30" required />
+                  <span class="suffix">MPG</span>
+                </div>
+                <p class="hint">Use the combined city/highway rating.</p>
+              </div>
+
+              <div class="field">
+                <label for="evEfficiency">EV energy use</label>
+                <div class="input-wrap">
+                  <input class="has-suffix" id="evEfficiency" name="evEfficiency" type="number" inputmode="decimal" min="0.1" step="any" placeholder="e.g., 29" required />
+                  <span class="suffix">kWh/100 mi</span>
+                </div>
+                <p class="hint">Find this on the EV’s efficiency label or spec sheet.</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <div id="formError" class="form-error" role="alert"></div>
+
+          <div class="form-actions">
+            <button class="button button-primary" type="submit">Compare costs</button>
+            <button class="button button-secondary" id="clearButton" type="button">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" aria-live="polite">
+        <div class="result-placeholder" id="resultPlaceholder">
+          <div>
+            <div class="placeholder-mark" aria-hidden="true">$</div>
+            <h2>Results will appear here</h2>
+            <p>Enter both vehicles’ efficiency, your annual mileage, local energy prices, and the purchase-price difference.</p>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <div class="results-head">
+            <span class="step-label">Step 2 of 2</span>
+            <h2 id="resultsHeading" tabindex="-1">Your cost comparison</h2>
+            <div class="verdict" id="verdict"></div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric">
+              <p class="metric-label">Gas fuel per year</p>
+              <p class="metric-value" id="gasAnnual">—</p>
+              <p class="metric-note" id="gasMonthly">—</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">EV charging per year</p>
+              <p class="metric-value" id="evAnnual">—</p>
+              <p class="metric-note" id="evMonthly">—</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label" id="differenceLabel">Annual energy savings</p>
+              <p class="metric-value" id="annualDifference">—</p>
+              <p class="metric-note" id="differenceNote">—</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">EV premium payback</p>
+              <p class="metric-value" id="payback">—</p>
+              <p class="metric-note" id="paybackNote">—</p>
+            </div>
+          </div>
+
+          <div class="comparison" aria-label="Annual energy cost comparison">
+            <h3>Annual energy cost</h3>
+            <div class="bar-row">
+              <div class="bar-meta"><span>Gas car</span><span id="gasBarValue">—</span></div>
+              <div class="bar-track"><div class="bar-fill" id="gasBar"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-meta"><span>EV</span><span id="evBarValue">—</span></div>
+              <div class="bar-track"><div class="bar-fill ev" id="evBar"></div></div>
+            </div>
+          </div>
+
+          <div class="share-area">
+            <div class="share-actions">
+              <a class="button button-primary" id="emailButton" href="#">Email my results</a>
+              <button class="button button-secondary" id="copyButton" type="button">Copy results</button>
+            </div>
+            <p class="copy-status" id="copyStatus" role="status"></p>
+
+            <details>
+              <summary>Explain these results</summary>
+              <div class="explanation" id="explanation"></div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <p class="disclaimer">For informational purposes only. This estimate compares purchase-price difference and energy use only. Actual costs vary by vehicle, driving, charging losses, local prices, taxes, incentives, financing, insurance, maintenance, and home-charger needs.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("calculator");
+      var inputs = Array.prototype.slice.call(form.querySelectorAll("input"));
+      var formError = document.getElementById("formError");
+      var placeholder = document.getElementById("resultPlaceholder");
+      var results = document.getElementById("results");
+      var resultsHeading = document.getElementById("resultsHeading");
+      var emailButton = document.getElementById("emailButton");
+      var copyButton = document.getElementById("copyButton");
+      var copyStatus = document.getElementById("copyStatus");
+      var clearButton = document.getElementById("clearButton");
+      var currentSummary = "";
+
+      function money(value, cents) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: cents ? 2 : 0,
+          maximumFractionDigits: cents ? 2 : 0
+        }).format(value);
+      }
+
+      function number(value, digits) {
+        return new Intl.NumberFormat("en-US", {
+          maximumFractionDigits: digits
+        }).format(value);
+      }
+
+      function valueOf(id) {
+        return Number(document.getElementById(id).value);
+      }
+
+      function setText(id, text) {
+        document.getElementById(id).textContent = text;
+      }
+
+      function showError(message, badInputs) {
+        formError.textContent = message;
+        formError.classList.add("show");
+        inputs.forEach(function (input) {
+          input.setAttribute("aria-invalid", badInputs.indexOf(input) !== -1 ? "true" : "false");
+        });
+        if (badInputs.length) badInputs[0].focus();
+      }
+
+      function clearError() {
+        formError.textContent = "";
+        formError.classList.remove("show");
+        inputs.forEach(function (input) { input.removeAttribute("aria-invalid"); });
+      }
+
+      function paybackText(premium, savings) {
+        if (premium <= 0) {
+          return {
+            main: "Immediate",
+            note: premium < 0 ? "The EV also starts " + money(Math.abs(premium), false) + " cheaper." : "The vehicles start at the same price."
+          };
+        }
+        if (savings <= 0) {
+          return {
+            main: "No payback",
+            note: "Energy savings do not recover the EV premium with these inputs."
+          };
+        }
+
+        var years = premium / savings;
+        var months = Math.ceil(years * 12);
+        var display;
+        if (months < 12) {
+          display = months + (months === 1 ? " month" : " months");
+        } else {
+          display = number(years, 1) + (Math.abs(years - 1) < 0.05 ? " year" : " years");
+        }
+        return {
+          main: display,
+          note: "About " + number(months, 0) + " months at the same mileage and prices."
+        };
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        copyStatus.textContent = "";
+
+        var badInputs = inputs.filter(function (input) {
+          if (input.value.trim() === "") return true;
+          var n = Number(input.value);
+          if (!Number.isFinite(n)) return true;
+          if (input.id === "premium") return false;
+          if (input.id === "gasPrice" || input.id === "electricityPrice") return n < 0;
+          return n <= 0;
+        });
+
+        if (badInputs.length) {
+          showError("Complete every field with a valid number. Mileage and efficiency must be above zero; energy prices cannot be negative.", badInputs);
+          return;
+        }
+
+        clearError();
+
+        var miles = valueOf("miles");
+        var premium = valueOf("premium");
+        var gasPrice = valueOf("gasPrice");
+        var electricityPrice = valueOf("electricityPrice");
+        var mpg = valueOf("mpg");
+        var evEfficiency = valueOf("evEfficiency");
+
+        var gallons = miles / mpg;
+        var annualKwh = miles * evEfficiency / 100;
+        var gasAnnual = gallons * gasPrice;
+        var evAnnual = annualKwh * electricityPrice;
+        var savings = gasAnnual - evAnnual;
+        var payback = paybackText(premium, savings);
+        var evLower = savings >= 0;
+
+        setText("gasAnnual", money(gasAnnual, false));
+        setText("gasMonthly", money(gasAnnual / 12, false) + " per month");
+        setText("evAnnual", money(evAnnual, false));
+        setText("evMonthly", money(evAnnual / 12, false) + " per month");
+        setText("differenceLabel", evLower ? "Annual energy savings" : "Extra EV energy cost");
+        setText("annualDifference", money(Math.abs(savings), false));
+        setText("differenceNote", evLower ? "Less per year to power the EV." : "More per year to power the EV.");
+        setText("payback", payback.main);
+        setText("paybackNote", payback.note);
+        setText("gasBarValue", money(gasAnnual, false));
+        setText("evBarValue", money(evAnnual, false));
+
+        var verdict = document.getElementById("verdict");
+        verdict.textContent = evLower
+          ? "EV energy costs are " + money(Math.abs(savings), false) + " lower per year"
+          : "EV energy costs are " + money(Math.abs(savings), false) + " higher per year";
+        verdict.classList.toggle("costlier", !evLower);
+
+        var maxCost = Math.max(gasAnnual, evAnnual, 1);
+        document.getElementById("gasBar").style.width = Math.max(2, (gasAnnual / maxCost) * 100) + "%";
+        document.getElementById("evBar").style.width = Math.max(2, (evAnnual / maxCost) * 100) + "%";
+
+        var explanationLead;
+        if (savings > 0) {
+          explanationLead = "At your mileage and prices, the EV uses about " + money(savings, false) + " less energy per year. ";
+        } else if (savings < 0) {
+          explanationLead = "At your mileage and prices, the EV uses about " + money(Math.abs(savings), false) + " more energy per year. ";
+        } else {
+          explanationLead = "At your mileage and prices, the two vehicles have the same estimated yearly energy cost. ";
+        }
+
+        var premiumExplanation;
+        if (premium > 0 && savings > 0) {
+          premiumExplanation = "Dividing the " + money(premium, false) + " higher EV purchase price by those yearly savings gives a payback of about " + payback.main + ".";
+        } else if (premium > 0) {
+          premiumExplanation = "Because the EV does not save money on energy in this comparison, energy savings alone do not recover its " + money(premium, false) + " higher purchase price.";
+        } else if (premium < 0) {
+          premiumExplanation = "The EV starts " + money(Math.abs(premium), false) + " cheaper, so there is no higher EV price to earn back.";
+        } else {
+          premiumExplanation = "The vehicles start at the same price, so there is no EV price premium to earn back.";
+        }
+
+        document.getElementById("explanation").innerHTML =
+          "<p>" + explanationLead + premiumExplanation + "</p>" +
+          "<p>The gas estimate is annual miles ÷ MPG × gas price. The EV estimate is annual miles × kWh per 100 miles ÷ 100 × electricity price.</p>" +
+          "<p>This is an energy-cost comparison, not a full ownership-cost forecast. Check incentives, charger installation, insurance, maintenance, financing, and resale value separately before deciding.</p>";
+
+        currentSummary = [
+          "EV vs. Gas Car Cost Comparison",
+          "",
+          "Inputs",
+          "Annual miles: " + number(miles, 0),
+          "Gas price: " + money(gasPrice, true) + " per gallon",
+          "Electricity price: " + money(electricityPrice, true) + " per kWh",
+          "Gas car efficiency: " + number(mpg, 1) + " MPG",
+          "EV efficiency: " + number(evEfficiency, 1) + " kWh per 100 miles",
+          "EV price difference: " + money(premium, false),
+          "",
+          "Results",
+          "Gas fuel per year: " + money(gasAnnual, false),
+          "EV charging per year: " + money(evAnnual, false),
+          (evLower ? "Annual EV energy savings: " : "Extra EV energy cost per year: ") + money(Math.abs(savings), false),
+          "EV premium payback: " + payback.main,
+          "",
+          "Informational purposes only. Actual ownership costs vary."
+        ].join("\n");
+
+        emailButton.href = "mailto:?subject=" + encodeURIComponent("My EV vs. gas car comparison") + "&body=" + encodeURIComponent(currentSummary);
+
+        placeholder.style.display = "none";
+        results.classList.add("show");
+
+        if (window.matchMedia("(max-width: 820px)").matches) {
+          resultsHeading.focus({ preventScroll: true });
+          results.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      copyButton.addEventListener("click", function () {
+        if (!currentSummary) return;
+
+        function copied() {
+          copyStatus.textContent = "Results copied to your clipboard.";
+          window.setTimeout(function () { copyStatus.textContent = ""; }, 3500);
+        }
+
+        function fallbackCopy() {
+          var area = document.createElement("textarea");
+          area.value = currentSummary;
+          area.setAttribute("readonly", "");
+          area.style.position = "fixed";
+          area.style.opacity = "0";
+          document.body.appendChild(area);
+          area.select();
+          var success = document.execCommand("copy");
+          document.body.removeChild(area);
+          copyStatus.textContent = success ? "Results copied to your clipboard." : "Copy was blocked. Select the results text and copy it manually.";
+          if (success) window.setTimeout(function () { copyStatus.textContent = ""; }, 3500);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(currentSummary).then(copied).catch(fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      });
+
+      clearButton.addEventListener("click", function () {
+        form.reset();
+        clearError();
+        currentSummary = "";
+        copyStatus.textContent = "";
+        results.classList.remove("show");
+        placeholder.style.display = "grid";
+        document.getElementById("gasBar").style.width = "0";
+        document.getElementById("evBar").style.width = "0";
+        inputs[0].focus();
+      });
+
+      inputs.forEach(function (input) {
+        input.addEventListener("input", function () {
+          input.removeAttribute("aria-invalid");
+          if (formError.classList.contains("show")) clearError();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

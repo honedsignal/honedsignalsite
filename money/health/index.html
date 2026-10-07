@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Honed Money Health</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --ink: #0b0e14;
+        --paper: #111722;
+        --surface: #1a2230;
+        --surface-raised: #222c3b;
+        --text: #f5f5f5;
+        --muted: #c2cad4;
+        --line: #3a4555;
+        --blue: #79a8d9;
+        --blue-soft: #22364c;
+        --orange: #f7931a;
+        --orange-soft: #3b2813;
+        --green: #39ff14;
+        --green-soft: #183a16;
+        --button-text: #0b0e14;
+        --shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #0b0e14;
+          --surface: #141922;
+          --surface-raised: #1c2330;
+          --text: #f5f5f5;
+          --muted: #b9c1ca;
+          --line: #323b49;
+          --blue: #83b4e6;
+          --blue-soft: #182a3d;
+          --orange: #f7931a;
+          --orange-soft: #36230f;
+          --green: #39ff14;
+          --green-soft: #153111;
+          --shadow: 0 22px 50px rgba(0, 0, 0, 0.34);
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      html { min-height: 100%; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(90deg, transparent 0 49.9%, color-mix(in srgb, var(--line) 23%, transparent) 50%, transparent 50.1%) center / min(100% - 32px, 1180px) 100% no-repeat,
+          var(--paper);
+        color: var(--text);
+        font-family: "Source Sans 3", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: inherit; }
+
+      .page {
+        width: min(100% - 32px, 1180px);
+        margin: 0 auto;
+        padding: max(22px, env(safe-area-inset-top)) 0 max(44px, env(safe-area-inset-bottom));
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        color: var(--muted);
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      .back-link:hover,
+      .back-link:focus-visible {
+        color: var(--text);
+        text-decoration: underline;
+      }
+
+      .back-link:focus-visible,
+      .tool-link:focus-visible {
+        outline: 3px solid var(--orange);
+        outline-offset: 4px;
+      }
+
+      .intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
+        gap: clamp(34px, 7vw, 90px);
+        align-items: end;
+        padding: clamp(46px, 8vw, 92px) 0 clamp(38px, 6vw, 70px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-label {
+        margin: 0 0 12px;
+        color: var(--orange);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin: 0;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(3.2rem, 8vw, 6.8rem);
+        font-weight: 700;
+        line-height: 0.88;
+        letter-spacing: -0.025em;
+      }
+
+      .intro-copy {
+        margin: 0 0 5px;
+        color: var(--muted);
+        font-size: clamp(1.08rem, 2vw, 1.3rem);
+        line-height: 1.5;
+      }
+
+      .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        padding: 30px 0 24px;
+      }
+
+      .tool-card {
+        position: relative;
+        display: flex;
+        min-height: 360px;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px 10px 28px 10px;
+        box-shadow: var(--shadow);
+      }
+
+      .tool-card::before {
+        content: "";
+        height: 7px;
+        background: var(--accent);
+      }
+
+      .tool-card:nth-child(1) { --accent: var(--blue); --icon-bg: var(--blue-soft); }
+      .tool-card:nth-child(2) { --accent: var(--orange); --icon-bg: var(--orange-soft); }
+      .tool-card:nth-child(3) { --accent: var(--green); --icon-bg: var(--green-soft); }
+
+      .card-inner {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 24px;
+      }
+
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 44px;
+      }
+
+      .step {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .icon {
+        display: grid;
+        width: 52px;
+        height: 52px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--icon-bg);
+        color: var(--accent);
+      }
+
+      .icon svg {
+        width: 26px;
+        height: 26px;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.8;
+      }
+
+      h2 {
+        margin: 0;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(2rem, 3.2vw, 2.65rem);
+        line-height: 0.98;
+        letter-spacing: -0.01em;
+      }
+
+      .description {
+        margin: 14px 0 28px;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.45;
+      }
+
+      .tool-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        width: 100%;
+        min-height: 52px;
+        margin-top: auto;
+        padding: 12px 16px;
+        border-radius: 6px;
+        background: var(--accent);
+        color: var(--button-text);
+        font-weight: 700;
+        text-decoration: none;
+        transition: filter 150ms ease, transform 150ms ease;
+      }
+
+      .tool-link:hover { filter: brightness(1.08); }
+      .tool-link:active { transform: translateY(1px); }
+
+      .arrow {
+        font-size: 1.35rem;
+        line-height: 1;
+      }
+
+      .note {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        max-width: 760px;
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .note-mark {
+        flex: 0 0 auto;
+        width: 8px;
+        height: 8px;
+        margin-top: 8px;
+        border-radius: 50%;
+        background: var(--orange);
+      }
+
+      @media (max-width: 820px) {
+        .intro {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          align-items: start;
+        }
+
+        .intro-copy { max-width: 600px; }
+        .tool-grid { grid-template-columns: 1fr; }
+        .tool-card { min-height: 0; }
+        .card-top { margin-bottom: 30px; }
+      }
+
+      @media (max-width: 480px) {
+        .page { width: min(100% - 24px, 1180px); }
+        .intro { padding: 38px 0 34px; }
+        h1 { font-size: clamp(3.25rem, 17vw, 4.7rem); }
+        .tool-grid { gap: 14px; padding-top: 20px; }
+        .card-inner { padding: 20px; }
+        .card-top { margin-bottom: 26px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .tool-link { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <a class="back-link" href="/money/" target="_top" aria-label="Back to Honed Money">← <span>Honed Money</span></a>
+
+      <header class="intro">
+        <div>
+          <p class="section-label">Health costs</p>
+          <h1>Plan for the cost of care.</h1>
+        </div>
+        <p class="intro-copy">Compare coverage choices, estimate what comes out of your pocket, and make the trade-offs easier to see.</p>
+      </header>
+
+      <section class="tool-grid" aria-label="Health calculators">
+        <article class="tool-card">
+          <div class="card-inner">
+            <div class="card-top">
+              <span class="step">01</span>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 6.5h16v11H4z"/><path d="M8 6.5V4.8h8v1.7M8 11h8M12 8.7v4.6"/></svg>
+              </span>
+            </div>
+            <h2>HDHP vs. PPO Calculator</h2>
+            <p class="description">Which health plan costs less?</p>
+            <a class="tool-link" href="/money/hdhp-vs-ppo-calculator/" target="_top">
+              <span>Open tool</span><span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <div class="card-inner">
+            <div class="card-top">
+              <span class="step">02</span>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 3.5h10v17H7z"/><path d="M9.5 7h5M9.5 10.5h5M9.5 14h2M14 14h.01M9.5 17h2M14 17h.01"/></svg>
+              </span>
+            </div>
+            <h2>Out-of-Pocket Cost Estimator</h2>
+            <p class="description">What you'll actually owe.</p>
+            <a class="tool-link" href="/money/out-of-pocket-health-cost-estimator/" target="_top">
+              <span>Open tool</span><span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <div class="card-inner">
+            <div class="card-top">
+              <span class="step">03</span>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.6-2.9 7.9-7 10-4.1-2.1-7-5.4-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+              </span>
+            </div>
+            <h2>COBRA vs. Marketplace</h2>
+            <p class="description">Coverage between jobs.</p>
+            <a class="tool-link" href="/money/cobra-vs-marketplace-calculator/" target="_top">
+              <span>Open tool</span><span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+      </section>
+
+      <p class="note"><span class="note-mark" aria-hidden="true"></span><span>Use these calculators to compare scenarios, then confirm plan details and eligibility with the insurer or marketplace before enrolling.</span></p>
+    </main>
+  </body>
+</html>
