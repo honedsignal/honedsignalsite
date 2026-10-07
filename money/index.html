@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
   <title>Honed Money</title>
-  <meta name="description" content="Eleven straightforward tools for personal and business money decisions, from debt payoff and housing to freelance rates and taxes." />
+  <meta name="description" content="Twelve straightforward tools for personal and business money decisions, from debt payoff and housing to freelance rates, profit margins, and taxes." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -198,7 +198,7 @@
     .tool:nth-child(2), .tool:nth-child(5), .tool:nth-child(8) { --card-accent: var(--blue); }
     .tool:nth-child(3), .tool:nth-child(7) { --card-accent: var(--red); }
     .tool:nth-child(4), .tool:nth-child(6), .tool:nth-child(9) { --card-accent: var(--green); }
-    .tools-business .tool { grid-column: span 6; }
+    .tools-business .tool { grid-column: span 4; }
     .tool::after {
       content: "";
       position: absolute;
@@ -313,7 +313,7 @@
       </div>
       <div class="intro-copy">
         <p>Clear answers for the money decisions that show up in real life—income, debt, savings, housing, and the bills in between.</p>
-        <div class="tool-count"><strong>11</strong><span>free money tools</span></div>
+        <div class="tool-count"><strong>12</strong><span>free money tools</span></div>
       </div>
     </header>
 
@@ -442,7 +442,7 @@
       <section class="tool-group" aria-labelledby="business-tools-title">
         <div class="group-head">
           <h3 id="business-tools-title">Business</h3>
-          <p>Price your work and prepare for self-employment taxes.</p>
+          <p>Price your work, understand margins, and prepare for self-employment taxes.</p>
         </div>
         <div class="tools tools-business">
           <a class="tool" href="/money/self-employment-tax-estimator/">
@@ -466,6 +466,18 @@
             </div>
             <h3>Freelance Rate Calculator</h3>
             <p>Turn an income goal, expenses, and billable hours into a practical hourly rate.</p>
+            <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
+          </a>
+
+          <a class="tool" href="/money/profit-margin-calculator/">
+            <div class="card-top">
+              <span class="index">03 / PROFITABILITY</span>
+              <span class="glyph" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 19h16M6 16l4-4 3 2 5-7"/><path d="M14 7h4v4"/></svg>
+              </span>
+            </div>
+            <h3>Profit Margin Calculator</h3>
+            <p>Compare revenue and costs to see gross profit, margin, and markup.</p>
             <span class="open">Open tool <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg></span>
           </a>
         </div>
