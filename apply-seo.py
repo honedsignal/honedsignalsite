@@ -223,6 +223,10 @@ def main():
 
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    # trust pages (not section tools, so not picked up above)
+    for slug in ("legal", "privacy", "about", "contact"):
+        if os.path.exists(os.path.join(MONEY, slug, "index.html")):
+            sitemap_urls.append(BASE + f"/money/{slug}/")
     for u in sorted(set(sitemap_urls)):
         sm.append("  <url><loc>" + u + "</loc><lastmod>" + TODAY + "</lastmod></url>")
     sm.append("</urlset>")
