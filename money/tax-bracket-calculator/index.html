@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
@@ -342,5 +348,12 @@
 <style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
 <div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/take-home-pay-calculator/"><span class="arr">→</span>Estimate take-home pay</a></li><li><a href="/money/roth-vs-traditional-calculator/"><span class="arr">→</span>Roth vs traditional</a></li></ul></div>
 <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
 </body>
 </html>
