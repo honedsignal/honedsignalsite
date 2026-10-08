@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Will I Keep My Scholarship? | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #10141b;
+      --surface: #191f29;
+      --surface-2: #242b36;
+      --ink: #f5f5f5;
+      --muted: #b4bdc9;
+      --line: #353e4b;
+      --line-strong: #505c6b;
+      --blue: #75a2d2;
+      --orange: #f7931a;
+      --orange-ink: #171006;
+      --green: #39ff14;
+      --green-soft: #16301a;
+      --yellow: #ffd23f;
+      --yellow-soft: #332a10;
+      --danger: #ff7379;
+      --danger-soft: #331416;
+      --shadow: 0 22px 60px rgba(0, 0, 0, .34);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0e14;
+        --surface: #151922;
+        --surface-2: #1d222c;
+        --ink: #f5f5f5;
+        --muted: #aeb6c3;
+        --line: #303744;
+        --line-strong: #4a5565;
+        --blue: #6490c4;
+        --orange: #f7931a;
+        --orange-ink: #171006;
+        --green: #39ff14;
+        --green-soft: #132a18;
+        --yellow: #ffd23f;
+        --yellow-soft: #2c240e;
+        --danger: #ff7379;
+        --danger-soft: #2c1214;
+        --shadow: 0 22px 60px rgba(0, 0, 0, .42);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+    .shell {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 18px 0 56px;
+    }
+    .home-link {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .home-link:hover { color: var(--orange); }
+    .home-link:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--orange) 42%, transparent);
+      outline-offset: 2px;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 430px);
+      gap: 28px;
+      align-items: end;
+      padding: 28px 0 30px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.35rem, 7vw, 5.4rem);
+      line-height: .94;
+      letter-spacing: -.06em;
+      font-weight: 700;
+    }
+    h1 span { color: var(--green); }
+    .lede {
+      max-width: 40ch;
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.9vw, 1.15rem);
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr);
+      align-items: start;
+      gap: 22px;
+      padding-top: 24px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .form-panel { padding: 28px; border-radius: 8px 30px 8px 8px; }
+    .results-panel { min-height: 570px; padding: 28px; border-radius: 30px 8px 8px 8px; }
+    .panel-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    h2, h3 { margin: 0; letter-spacing: -.025em; }
+    h2 { font-size: 1.35rem; }
+    h3 { font-size: 1.05rem; }
+    .panel-note, .section-note { margin: 5px 0 0; color: var(--muted); font-size: .9rem; }
+    .mono-label {
+      margin: 4px 0 0;
+      color: var(--blue);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .74rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 6px;
+    }
+    .field-grid .full { grid-column: 1 / -1; }
+    label { display: block; margin-bottom: 7px; font-size: .82rem; font-weight: 700; }
+    .hint { margin: 5px 0 0; color: var(--muted); font-size: .78rem; }
+    .control { position: relative; }
+    input, select {
+      width: 100%;
+      min-width: 0;
+      height: 48px;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      background: var(--surface-2);
+      color: var(--ink);
+      outline: none;
+    }
+    input {
+      padding: 0 46px 0 13px;
+      font-family: "IBM Plex Mono", monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    select { padding: 0 36px 0 13px; cursor: pointer; }
+    input::placeholder { color: var(--muted); opacity: .72; }
+    input:focus, select:focus { border-color: var(--orange); }
+    input[aria-invalid="true"], select[aria-invalid="true"] { border-color: var(--danger); }
+    .prefix {
+      position: absolute;
+      top: 50%;
+      left: 13px;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: .85rem;
+      pointer-events: none;
+      font-family: "IBM Plex Mono", monospace;
+    }
+    .control.has-prefix input { padding-left: 30px; }
+    .suffix {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: .73rem;
+      pointer-events: none;
+    }
+
+    .error {
+      display: none;
+      margin: 16px 0 0;
+      padding: 11px 13px;
+      border: 1px solid var(--danger);
+      border-radius: 7px;
+      color: var(--danger);
+      font-size: .86rem;
+    }
+    .error.show { display: block; }
+    .button-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 24px; }
+    button, .action-link {
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 0 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--ink);
+      background: var(--surface-2);
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    button:hover, .action-link:hover { filter: brightness(1.06); }
+    .primary { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .quiet { background: transparent; }
+
+    .empty {
+      min-height: 500px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-inner { max-width: 315px; }
+    .empty-mark {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 18px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--orange);
+      background: var(--surface-2);
+    }
+    .empty p { margin: 0; }
+    .empty strong { display: block; margin-bottom: 6px; color: var(--ink); }
+    .results { display: none; }
+    .results.active { display: block; }
+
+    .verdict {
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px solid var(--line);
+    }
+    .verdict.safe { background: var(--green-soft); border-color: var(--green); }
+    .verdict.risk { background: var(--yellow-soft); border-color: var(--yellow); }
+    .verdict.below { background: var(--danger-soft); border-color: var(--danger); }
+    .verdict .mono-label { margin: 0 0 6px; }
+    .verdict.safe .mono-label { color: var(--green); }
+    .verdict.risk .mono-label { color: var(--yellow); }
+    .verdict.below .mono-label { color: var(--danger); }
+    .verdict-word {
+      margin: 0;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+    .verdict.safe .verdict-word { color: var(--green); }
+    .verdict.risk .verdict-word { color: var(--yellow); }
+    .verdict.below .verdict-word { color: var(--danger); }
+    .verdict-sub { margin: 8px 0 0; color: var(--ink); font-size: .95rem; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      margin-top: 4px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+    .stat { padding: 16px; background: var(--surface-2); }
+    .stat.full { grid-column: 1 / -1; }
+    .stat span { display: block; color: var(--muted); font-size: .75rem; font-weight: 700; }
+    .stat strong {
+      display: block;
+      margin-top: 5px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.2rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .next-steps {
+      margin: 18px 0 0;
+      padding: 15px 16px;
+      border-radius: 7px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      font-size: .93rem;
+    }
+    .next-steps h3 { margin-bottom: 8px; font-size: .95rem; }
+    .next-steps ul { margin: 0; padding-left: 20px; }
+    .next-steps li { margin-bottom: 6px; }
+    .next-steps li:last-child { margin-bottom: 0; }
+    .share-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .email-button { border-color: var(--orange); background: var(--orange); color: var(--orange-ink); }
+    .copy-state { min-height: 22px; margin: 7px 0 0; color: var(--green); font-size: .78rem; text-align: right; }
+    details { margin-top: 12px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    summary { padding: 15px 0; cursor: pointer; font-weight: 800; }
+    .explanation { padding: 0 0 16px; color: var(--muted); font-size: .9rem; }
+    .explanation p { margin: 0 0 10px; }
+    .explanation p:last-child { margin-bottom: 0; }
+    .formula {
+      padding: 11px 12px;
+      border-radius: 6px;
+      background: var(--surface-2);
+      color: var(--ink);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .78rem;
+      overflow-wrap: anywhere;
+    }
+    .disclaimer { margin: 18px 0 0; color: var(--muted); font-size: .75rem; }
+
+    @media (max-width: 860px) {
+      .intro { grid-template-columns: 1fr; gap: 14px; }
+      .workspace { grid-template-columns: 1fr; }
+      .results-panel { min-height: 430px; border-radius: 8px 24px 8px 8px; }
+      .empty { min-height: 360px; }
+    }
+    @media (max-width: 590px) {
+      .shell { width: min(100% - 28px, 1160px); padding-top: 10px; }
+      .intro { padding: 20px 0 24px; }
+      h1 { font-size: clamp(2.55rem, 15vw, 4.2rem); }
+      .form-panel, .results-panel { padding: 20px; box-shadow: none; }
+      .panel-head { display: block; }
+      .mono-label { margin-top: 8px; }
+      .field-grid, .share-actions { grid-template-columns: 1fr; }
+      .button-row { grid-template-columns: 1fr; }
+      .button-row .quiet { order: 2; }
+      .copy-state { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="Will I keep my scholarship? Enter your GPA, the required GPA, and your award amount to see if your aid is safe, at risk, or below the line — plus what's at stake." />
+<link rel="canonical" href="https://honedsignal.com/money/scholarship-gpa-checker/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Will I Keep My Scholarship?","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/scholarship-gpa-checker/","description":"Will I keep my scholarship? Enter your GPA, the required GPA, and your award amount to see if your aid is safe, at risk, or below the line — plus what's at stake.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <main class="shell">
+    <a class="home-link" href="/money/">← Honed Money</a>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/students.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 id="page-title" class="hs-hero-title">Will I keep my<br><span>scholarship?</span></h1>
+</div>
+      </div>
+      <p class="lede">Most scholarships require a minimum GPA. Enter yours, the requirement, and your award — see where you stand and what's on the line.</p>
+    </section>
+
+    <section class="workspace" aria-label="Scholarship GPA checker">
+      <form class="panel form-panel" id="scholarshipForm" novalidate>
+        <div class="panel-head">
+          <div>
+            <h2>Your numbers</h2>
+            <p class="panel-note">All four fields are required.</p>
+          </div>
+          <p class="mono-label">4.0 scale</p>
+        </div>
+
+        <div class="field-grid">
+          <div>
+            <label for="currentGpa">Your current GPA</label>
+            <div class="control">
+              <input id="currentGpa" type="number" min="0" max="4" step="0.01" inputmode="decimal" placeholder="e.g., 3.10" autocomplete="off" />
+            </div>
+          </div>
+          <div>
+            <label for="requiredGpa">GPA your scholarship requires</label>
+            <div class="control">
+              <input id="requiredGpa" type="number" min="0" max="4" step="0.01" inputmode="decimal" placeholder="e.g., 3.00" autocomplete="off" />
+            </div>
+            <p class="hint">Usually 2.5, 3.0, or 3.5 — check your award letter.</p>
+          </div>
+          <div>
+            <label for="awardAmount">Annual scholarship amount</label>
+            <div class="control has-prefix">
+              <span class="prefix">$</span>
+              <input id="awardAmount" type="number" min="1" max="100000" step="1" inputmode="decimal" placeholder="e.g., 8000" autocomplete="off" />
+            </div>
+          </div>
+          <div>
+            <label for="semestersLeft">Semesters remaining</label>
+            <div class="control">
+              <select id="semestersLeft">
+                <option value="">Select</option>
+                <option value="1">1 semester</option>
+                <option value="2">2 semesters</option>
+                <option value="3">3 semesters</option>
+                <option value="4">4 semesters</option>
+                <option value="5">5 semesters</option>
+                <option value="6">6 semesters</option>
+                <option value="7">7 semesters</option>
+                <option value="8">8 semesters</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="error" id="errorBox" role="alert"></div>
+        <div class="button-row">
+          <button class="primary" type="submit">Check my scholarship</button>
+          <button class="quiet" id="resetButton" type="button">Clear</button>
+        </div>
+      </form>
+
+      <section class="panel results-panel" aria-live="polite" aria-label="Scholarship results">
+        <div class="empty" id="emptyState">
+          <div class="empty-inner">
+            <div class="empty-mark" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5Z"/><path d="M7 10.5V15c2.7 2.1 7.3 2.1 10 0v-4.5"/><path d="M21 9v6"/>
+              </svg>
+            </div>
+            <strong>Your verdict will appear here</strong>
+            <p>Enter your GPA, the requirement, and your award — then check where you stand.</p>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <div class="verdict" id="verdictBox">
+            <p class="mono-label" id="verdictLabel">Status</p>
+            <p class="verdict-word" id="verdictWord">—</p>
+            <p class="verdict-sub" id="verdictSub"></p>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><span>GPA cushion / deficit</span><strong id="statCushion">—</strong></div>
+            <div class="stat"><span>Aid at stake</span><strong id="statAid">—</strong></div>
+            <div class="stat"><span>Your GPA</span><strong id="statGpa">—</strong></div>
+            <div class="stat"><span>Required GPA</span><strong id="statRequired">—</strong></div>
+          </div>
+
+          <div class="next-steps">
+            <h3>Next steps</h3>
+            <ul id="nextStepsList"></ul>
+          </div>
+
+          <div class="share-actions">
+            <a class="action-link email-button" id="emailButton" href="#">Email my results</a>
+            <button type="button" id="copyButton">Copy results</button>
+          </div>
+          <p class="copy-state" id="copyState" role="status"></p>
+
+          <details id="explanation">
+            <summary>Explain these results</summary>
+            <div class="explanation">
+              <p>Your GPA cushion is the gap between your current GPA and the minimum your scholarship requires. A positive cushion means you're above the line; a negative one means you're below it.</p>
+              <p class="formula">Cushion = your GPA − required GPA</p>
+              <p>Aid at stake is your annual award prorated over your remaining semesters — the money you could lose if the scholarship isn't renewed.</p>
+              <p class="formula">Aid at stake = annual award × (semesters remaining ÷ 2)</p>
+              <p>The verdict thresholds: <strong>SAFE</strong> means your cushion is at least 0.25 — comfortable breathing room. <strong>AT RISK</strong> means you're above the line but within 0.25 — one rough semester could drop you. <strong>BELOW</strong> means you're under the requirement right now.</p>
+            </div>
+          </details>
+
+          <p class="disclaimer">For informational purposes only. Scholarship renewal rules vary — confirm your school's GPA requirement, review periods, and appeal process with your financial aid office.</p>
+        </div>
+      </section>
+    </section>
+    <p class="disclaimer">For informational purposes only. Confirm your scholarship's GPA requirement, review schedule, and renewal terms with your school's financial aid office.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("scholarshipForm");
+      var errorBox = document.getElementById("errorBox");
+      var emptyState = document.getElementById("emptyState");
+      var results = document.getElementById("results");
+      var copyState = document.getElementById("copyState");
+      var lastResultText = "";
+
+      function markInvalid(element, isInvalid) {
+        element.setAttribute("aria-invalid", isInvalid ? "true" : "false");
+      }
+
+      function showError(message) {
+        errorBox.textContent = message;
+        errorBox.classList.add("show");
+      }
+
+      function clearError() {
+        errorBox.textContent = "";
+        errorBox.classList.remove("show");
+        var controls = form.querySelectorAll("input, select");
+        for (var i = 0; i < controls.length; i += 1) markInvalid(controls[i], false);
+      }
+
+      function money(n) {
+        return "$" + n.toLocaleString("en-US", { maximumFractionDigits: 0 });
+      }
+
+      function signed(n) {
+        var s = n >= 0 ? "+" : "−";
+        return s + Math.abs(n).toFixed(2);
+      }
+
+      function nextStepsFor(status) {
+        if (status === "safe") {
+          return [
+            "Keep doing what's working — your cushion protects you from one off semester.",
+            "Know your school's review schedule so a dip never surprises you.",
+            "If your award renews yearly, confirm the paperwork deadline with financial aid."
+          ];
+        }
+        if (status === "risk") {
+          return [
+            "Talk to your academic advisor now — tutoring and study resources are free.",
+            "Find out if your school offers grade replacement or academic forgiveness.",
+            "Check whether your scholarship has a probation semester before it's revoked.",
+            "Run the numbers on your toughest courses first — protect the GPA."
+          ];
+        }
+        return [
+          "Contact your financial aid office immediately — ask about probation and appeal options.",
+          "Meet with your academic advisor to build a recovery plan for next semester.",
+          "Look into emergency grants or payment plans in case the award isn't renewed.",
+          "Document any extenuating circumstances — appeals often require them."
+        ];
+      }
+
+      function verdictCopy(status, cushion) {
+        if (status === "safe") {
+          return {
+            word: "SAFE",
+            sub: "You're " + Math.abs(cushion).toFixed(2) + " above the requirement — solid breathing room."
+          };
+        }
+        if (status === "risk") {
+          return {
+            word: "AT RISK",
+            sub: "You're only " + Math.abs(cushion).toFixed(2) + " above the requirement — one rough semester could cost you."
+          };
+        }
+        return {
+          word: "BELOW",
+          sub: "You're " + Math.abs(cushion).toFixed(2) + " below the requirement — act now."
+        };
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        clearError();
+
+        var gpaEl = document.getElementById("currentGpa");
+        var reqEl = document.getElementById("requiredGpa");
+        var amtEl = document.getElementById("awardAmount");
+        var semEl = document.getElementById("semestersLeft");
+
+        var gpa = Number(gpaEl.value.trim());
+        var req = Number(reqEl.value.trim());
+        var amt = Number(amtEl.value.trim());
+        var sems = Number(semEl.value);
+
+        if (!Number.isFinite(gpa) || gpa < 0 || gpa > 4) {
+          markInvalid(gpaEl, true);
+          showError("Enter your current GPA between 0.00 and 4.00.");
+          return;
+        }
+        if (!Number.isFinite(req) || req < 0 || req > 4) {
+          markInvalid(reqEl, true);
+          showError("Enter the required GPA between 0.00 and 4.00.");
+          return;
+        }
+        if (!Number.isFinite(amt) || amt < 1 || amt > 100000) {
+          markInvalid(amtEl, true);
+          showError("Enter your annual scholarship amount between $1 and $100,000.");
+          return;
+        }
+        if (!Number.isFinite(sems) || sems < 1 || sems > 8) {
+          markInvalid(semEl, true);
+          showError("Select how many semesters you have remaining.");
+          return;
+        }
+
+        var cushion = gpa - req;
+        var status = cushion >= 0.25 ? "safe" : (cushion >= 0 ? "risk" : "below");
+        var aidAtStake = Math.round(amt * (sems / 2));
+
+        var box = document.getElementById("verdictBox");
+        box.className = "verdict " + status;
+        var copy = verdictCopy(status, cushion);
+        document.getElementById("verdictLabel").textContent = "Scholarship status";
+        document.getElementById("verdictWord").textContent = copy.word;
+        document.getElementById("verdictSub").textContent = copy.sub;
+
+        document.getElementById("statCushion").textContent = signed(cushion);
+        document.getElementById("statAid").textContent = money(aidAtStake);
+        document.getElementById("statGpa").textContent = gpa.toFixed(2);
+        document.getElementById("statRequired").textContent = req.toFixed(2);
+
+        var steps = nextStepsFor(status);
+        var listHtml = "";
+        for (var i = 0; i < steps.length; i += 1) {
+          listHtml += "<li>" + steps[i] + "</li>";
+        }
+        document.getElementById("nextStepsList").innerHTML = listHtml;
+
+        lastResultText = "Will I Keep My Scholarship? — Results\n\n" +
+          "Your GPA: " + gpa.toFixed(2) + "\n" +
+          "Required GPA: " + req.toFixed(2) + "\n" +
+          "GPA cushion/deficit: " + signed(cushion) + "\n" +
+          "Annual award: " + money(amt) + "\n" +
+          "Semesters remaining: " + sems + "\n\n" +
+          "Status: " + copy.word + "\n" +
+          copy.sub + "\n" +
+          "Aid at stake: " + money(aidAtStake) + "\n\n" +
+          "Next steps:\n- " + steps.join("\n- ") + "\n\n" +
+          "For informational purposes only. Confirm renewal terms with your financial aid office.";
+
+        document.getElementById("emailButton").href = "mailto:?subject=" + encodeURIComponent("Will I keep my scholarship?") + "&body=" + encodeURIComponent(lastResultText);
+        copyState.textContent = "";
+        document.getElementById("explanation").open = false;
+        emptyState.style.display = "none";
+        results.classList.add("active");
+
+        if (window.innerWidth < 861) {
+          document.querySelector(".results-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      document.getElementById("resetButton").addEventListener("click", function () {
+        form.reset();
+        clearError();
+        lastResultText = "";
+        results.classList.remove("active");
+        emptyState.style.display = "grid";
+        copyState.textContent = "";
+        document.getElementById("explanation").open = false;
+        document.getElementById("verdictBox").className = "verdict";
+        var first = document.getElementById("currentGpa");
+        if (first) first.focus();
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(area);
+        return ok;
+      }
+
+      document.getElementById("copyButton").addEventListener("click", function () {
+        if (!lastResultText) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(lastResultText).then(function () {
+            copyState.textContent = "Results copied.";
+          }).catch(function () {
+            copyState.textContent = fallbackCopy(lastResultText) ? "Results copied." : "Copy failed. Select and copy the results manually.";
+          });
+        } else {
+          copyState.textContent = fallbackCopy(lastResultText) ? "Results copied." : "Copy failed. Select and copy the results manually.";
+        }
+      });
+    }());
+  </script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0 16px;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/student-loan-payoff-calculator/"><span class="arr">→</span>Student Loan Payoff Calculator</a></li><li><a href="/money/50-30-20-budget-calculator/"><span class="arr">→</span>50/30/20 Budget Calculator</a></li><li><a href="/money/students/"><span class="arr">→</span>More Students calculators</a></li><li><a href="/money/decide/"><span class="arr">→</span>Guided decision paths</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+</body>
+</html>
