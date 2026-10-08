@@ -58,6 +58,20 @@ Do not sample. Do not spot-check a few and extrapolate. Touch everything in scop
 If the scope is the full site, that means all 115+ calculators. Budget your work accordingly
 and report progress if you can't finish in one pass — but don't silently skip pages.
 
+## 6. Feature and gap ideas
+
+After the audit, step back and think like a product person. Based on everything you touched:
+
+- **Missing tools:** Are there obvious calculators that should exist but don't? (e.g. a section has 3 tools but competitors cover 8)
+- **Thin sections:** Any section that feels underbuilt compared to the others?
+- **Missing features:** Anything the site itself should do but doesn't? (e.g. comparison mode, saved results, print-friendly output)
+- **Content gaps:** Glossary terms that should exist but don't? Decision paths that should exist but don't?
+- **UX improvements:** Anything that would make the tools easier to find, use, or share?
+
+For each idea, give one sentence on what it is and one sentence on why it matters.
+Separate these clearly from the bug report — they're suggestions, not defects.
+Be opinionated. If you think something's a bad idea, say so and why.
+
 ---
 
 ## Appendix: Site structure reference
