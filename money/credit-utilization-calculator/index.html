@@ -671,8 +671,11 @@
         document.getElementById('currentRate').textContent = percent(result.currentRate);
         document.getElementById('projectedRate').textContent = percent(result.projectedRate);
         var difference = result.currentRate - result.projectedRate;
+        var currentBand = band(result.currentRate), projectedBand = band(result.projectedRate);
         document.getElementById('summaryCopy').textContent = result.totalPayment > 0
-          ? 'Planned payments move your combined rate from ' + band(result.currentRate) + ' to ' + band(result.projectedRate) + ', a drop of ' + difference.toFixed(1) + ' percentage points.'
+          ? (currentBand === projectedBand
+            ? 'Planned payments bring your combined rate down ' + difference.toFixed(1) + ' percentage points, staying ' + currentBand + '.'
+            : 'Planned payments move your combined rate from ' + currentBand + ' to ' + projectedBand + ', a drop of ' + difference.toFixed(1) + ' percentage points.')
           : 'No planned payments were entered. Add one to a card and calculate again to preview the change.';
         document.getElementById('balanceMetric').textContent = money(result.totalBalance);
         document.getElementById('balanceAfterMetric').textContent = result.totalPayment > 0 ? money(result.projectedBalance) + ' after payments' : 'no payment change entered';

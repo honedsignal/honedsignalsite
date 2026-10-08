@@ -605,8 +605,8 @@
         document.getElementById("scoreRange").textContent = lowScore + "–" + highScore;
         document.getElementById("rangeCaption").textContent = "A possible landing range, " + band(Math.round((lowScore + highScore) / 2)) + ".";
         document.getElementById("meterFill").style.width = clamp(((highScore - 300) / 550) * 100, 0, 100) + "%";
-        document.getElementById("utilImpact").textContent = "+" + util.low + "–" + util.high;
-        document.getElementById("paymentImpact").textContent = "+" + pay.low + "–" + pay.high;
+        document.getElementById("utilImpact").textContent = "+" + Math.round(util.low * .78) + "–" + Math.round(util.high * .9);
+        document.getElementById("paymentImpact").textContent = "+" + Math.round(pay.low * .78) + "–" + Math.round(pay.high * .9);
         document.getElementById("utilSummary").textContent = target < current ? "From " + current + "% to " + target + "% utilization." : "No utilization change in this scenario.";
         document.getElementById("paymentSummary").textContent = months > 0 ? months + " months of added positive history." : "No new payment history in this scenario.";
         document.getElementById("explanation").innerHTML =
