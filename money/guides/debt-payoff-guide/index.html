@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="A plain-English guide to listing your debts, choosing the avalanche or snowball method, evaluating balance transfers and consolidation, and building a life after debt." />
+  <link rel="canonical" href="https://honedsignal.com/money/guides/debt-payoff-guide/" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <title>How to Pay Off Debt: A Plain-English Guide | Honed Money</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Pay Off Debt: A Plain-English Guide",
+    "description": "A practical, plain-English guide to organizing debt, choosing a payoff method, evaluating balance transfers and consolidation, and deciding what to do after the debt is gone.",
+    "dateModified": "2026-10-08",
+    "datePublished": "2026-10-08",
+    "mainEntityOfPage": "https://honedsignal.com/money/guides/debt-payoff-guide/",
+    "author": {"@type": "Organization", "name": "Honed Money"},
+    "publisher": {"@type": "Organization", "name": "Honed Money"}
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0e14;
+      --surface: #121722;
+      --surface-2: #181f2c;
+      --text: #f5f5f5;
+      --muted: #b7c0ce;
+      --faint: #828c9c;
+      --line: #293242;
+      --accent: #f7931a;
+      --accent-soft: #3a2712;
+      --teal: #62d8c7;
+      --green: #8de969;
+      --red: #ff7478;
+      --max: 1120px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: light;
+        --bg: #0b0e14;
+        --surface: #151b26;
+        --surface-2: #1b2330;
+        --text: #fffdfa;
+        --muted: #c6cdd8;
+        --faint: #929cac;
+        --line: #313b4b;
+        --accent-soft: #3d2912;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-underline-offset: .2em; text-decoration-thickness: 1px; }
+    a:hover { color: #ffae4b; }
+    a:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; border-radius: 2px; }
+    .topbar {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px 24px 0;
+    }
+    .back-link { color: var(--text); text-decoration: none; font-weight: 600; font-size: .95rem; }
+    .back-link:hover { color: var(--accent); }
+    .hero {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: clamp(62px, 10vw, 118px) 24px 70px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(280px, .65fr);
+      gap: clamp(40px, 8vw, 96px);
+      align-items: end;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--accent);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(2.8rem, 7vw, 5.9rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 700;
+    }
+    h1 span { display: block; color: var(--muted); font-size: .46em; letter-spacing: -.025em; margin-top: 18px; line-height: 1.08; }
+    .hero-side { padding-bottom: 6px; }
+    .dek { margin: 0 0 24px; color: var(--muted); font-size: 1.08rem; line-height: 1.62; }
+    .reviewed { margin: 0; color: var(--faint); font-size: .84rem; font-family: "IBM Plex Mono", monospace; }
+    .layout {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 70px 24px 100px;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 720px);
+      gap: clamp(44px, 8vw, 92px);
+      align-items: start;
+    }
+    .toc { position: sticky; top: 28px; }
+    .toc h2 { margin: 0 0 16px; color: var(--faint); font: 600 .76rem/1.3 "IBM Plex Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; border-top: 1px solid var(--line); }
+    .toc li { counter-increment: toc; border-bottom: 1px solid var(--line); }
+    .toc a { display: grid; grid-template-columns: 28px 1fr; gap: 8px; padding: 12px 0; color: var(--muted); text-decoration: none; font-size: .88rem; line-height: 1.35; }
+    .toc a::before { content: "0" counter(toc); color: var(--accent); font-family: "IBM Plex Mono", monospace; font-size: .72rem; padding-top: 2px; }
+    .toc a:hover { color: var(--text); }
+    article { min-width: 0; }
+    .lead { font-size: 1.25rem; line-height: 1.65; color: var(--text); margin: 0 0 56px; }
+    section { scroll-margin-top: 28px; margin: 0 0 76px; }
+    .section-no { display: block; margin-bottom: 10px; color: var(--accent); font: 600 .8rem/1.2 "IBM Plex Mono", monospace; letter-spacing: .08em; }
+    h2 { margin: 0 0 22px; font-size: clamp(1.75rem, 4vw, 2.55rem); line-height: 1.13; letter-spacing: -.035em; }
+    h3 { margin: 36px 0 10px; font-size: 1.14rem; line-height: 1.35; }
+    p { margin: 0 0 19px; color: var(--muted); }
+    strong { color: var(--text); }
+    .inventory {
+      margin: 28px 0;
+      border-top: 1px solid var(--line);
+    }
+    .inventory-row {
+      display: grid;
+      grid-template-columns: 145px 1fr;
+      gap: 22px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .inventory-row dt { color: var(--text); font-weight: 700; }
+    .inventory-row dd { margin: 0; color: var(--muted); }
+    .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 30px 0; background: var(--line); border: 1px solid var(--line); }
+    .method { background: var(--surface); padding: 30px; }
+    .method .tag { color: var(--accent); font: 600 .72rem/1 "IBM Plex Mono", monospace; letter-spacing: .07em; text-transform: uppercase; }
+    .method h3 { margin: 14px 0 10px; font-size: 1.42rem; }
+    .method p:last-child { margin-bottom: 0; }
+    .takeaway {
+      margin: 30px 0;
+      padding: 25px 28px;
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+    }
+    .takeaway p { color: var(--text); margin: 0; }
+    .example {
+      margin: 34px 0;
+      padding: clamp(26px, 5vw, 42px);
+      background: var(--surface);
+      border-top: 4px solid var(--accent);
+    }
+    .example-title { margin: 0 0 22px; color: var(--muted); font-size: .95rem; }
+    .numbers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .number b { display: block; color: var(--text); font: 600 clamp(1.45rem, 4vw, 2.15rem)/1.1 "IBM Plex Mono", monospace; letter-spacing: -.05em; }
+    .number span { display: block; margin-top: 8px; color: var(--faint); font-size: .8rem; line-height: 1.35; }
+    .good-bad { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 28px 0; }
+    .signal { padding: 25px; background: var(--surface); }
+    .signal h3 { margin: 0 0 12px; font-size: 1rem; }
+    .signal.good h3 { color: var(--green); }
+    .signal.bad h3 { color: var(--red); }
+    .signal ul, .steps { margin: 0; padding-left: 1.2rem; color: var(--muted); }
+    .signal li, .steps li { margin: 0 0 10px; padding-left: 4px; }
+    .signal li:last-child, .steps li:last-child { margin-bottom: 0; }
+    .tool-link {
+      display: block;
+      margin: 26px 0 0;
+      padding: 18px 20px;
+      background: var(--surface-2);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .tool-link span { color: var(--accent); margin-left: 6px; }
+    .tool-link:hover { background: #202937; color: var(--text); }
+    .after-list { counter-reset: after; list-style: none; padding: 0; margin: 30px 0; }
+    .after-list li { counter-increment: after; position: relative; padding: 20px 0 20px 54px; border-top: 1px solid var(--line); color: var(--muted); }
+    .after-list li:last-child { border-bottom: 1px solid var(--line); }
+    .after-list li::before { content: counter(after); position: absolute; left: 0; top: 20px; color: var(--accent); font: 600 1rem "IBM Plex Mono", monospace; }
+    .next-guides { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+    .next-guides a { padding: 22px; background: var(--surface); color: var(--text); text-decoration: none; font-weight: 700; line-height: 1.35; }
+    .next-guides small { display: block; margin-top: 8px; color: var(--faint); font-weight: 400; line-height: 1.45; }
+    footer { max-width: var(--max); margin: 0 auto; padding: 34px 24px 54px; border-top: 1px solid var(--line); }
+    footer p { max-width: 800px; margin: 0; font-size: .83rem; line-height: 1.6; color: var(--faint); }
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; padding-top: 58px; gap: 32px; }
+      .layout { grid-template-columns: 1fr; padding-top: 45px; }
+      .toc { position: static; }
+      .toc ol { display: grid; grid-template-columns: 1fr 1fr; }
+      .toc li:nth-child(odd) { padding-right: 14px; }
+      .toc li:nth-child(even) { padding-left: 14px; }
+    }
+    @media (max-width: 590px) {
+      body { font-size: 16px; line-height: 1.68; }
+      .topbar { padding: 18px 18px 0; }
+      .hero { padding: 48px 18px 48px; }
+      h1 { font-size: clamp(2.65rem, 15vw, 4rem); }
+      .layout { padding: 38px 18px 70px; gap: 44px; }
+      .toc ol, .method-grid, .good-bad, .next-guides, .numbers { grid-template-columns: 1fr; }
+      .toc li:nth-child(n) { padding: 0; }
+      .inventory-row { grid-template-columns: 1fr; gap: 4px; }
+      .method { padding: 24px 21px; }
+      .numbers { gap: 20px; }
+      .number { padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+      .number:last-child { padding-bottom: 0; border-bottom: 0; }
+      section { margin-bottom: 60px; }
+      footer { padding: 28px 18px 42px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <nav class="topbar" aria-label="Back to Honed Money">
+    <a class="back-link" href="/money/">← Honed Money</a>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Debt payoff field guide</p>
+      <h1>How to pay off debt<span>A plain-English guide</span></h1>
+    </div>
+    <div class="hero-side">
+      <p class="dek">A practical way to see what you owe, choose a strategy you can stick with, and stop interest from quietly taking over your budget.</p>
+      <p class="reviewed">Last reviewed: October 2026.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <nav class="toc" aria-label="Guide sections">
+      <h2>In this guide</h2>
+      <ol>
+        <li><a href="#list">List every debt</a></li>
+        <li><a href="#strategy">Choose a method</a></li>
+        <li><a href="#minimums">Escape minimums</a></li>
+        <li><a href="#transfer">Balance transfers</a></li>
+        <li><a href="#consolidation">Consolidation</a></li>
+        <li><a href="#plan">Build your plan</a></li>
+        <li><a href="#after">After the debt</a></li>
+      </ol>
+    </nav>
+
+    <article>
+      <p class="lead">Debt payoff is not one clever trick. It is a short chain of clear decisions: know the numbers, protect the minimums, aim every extra dollar at one target, and repeat. You do not need a finance background. You need an honest list and a method that fits how you actually behave.</p>
+
+      <section id="list">
+        <span class="section-no">01</span>
+        <h2>Start by putting every debt in one place</h2>
+        <p>It is hard to make a plan when the numbers are scattered across five apps and a stack of statements. Build one simple list. Include credit cards, personal loans, auto loans, medical payment plans, student loans, and any buy-now-pay-later balances. Do not leave out a debt because it is small or embarrassing. The list is a tool, not a judgment.</p>
+        <p>For each debt, gather these three numbers:</p>
+        <dl class="inventory">
+          <div class="inventory-row"><dt>Balance</dt><dd>What you owe today. On a credit card statement, look for “new balance” or “statement balance.” The current balance in the app may be slightly different because it includes newer purchases or payments.</dd></div>
+          <div class="inventory-row"><dt>APR</dt><dd>The annual percentage rate: the yearly price of borrowing, written as a percentage. On a card statement, find the “interest charge calculation” or “APR” box. A card can show separate rates for purchases, cash advances, and balance transfers; use the rate that applies to the balance you carry.</dd></div>
+          <div class="inventory-row"><dt>Minimum payment</dt><dd>The smallest amount the lender requires this month. It appears near the due date on a credit card statement. For an installment loan—one with scheduled payments, such as a car loan—use the regular monthly payment shown in the loan portal.</dd></div>
+        </dl>
+        <h3>Where do I find a debt I forgot about?</h3>
+        <p>Check your loan servicer portals and recent bank statements for automatic payments. You can also review your free credit reports from the three major credit bureaus. A credit report is a record of credit accounts reported in your name. It may catch an old account or collection, but it will not necessarily show every medical plan, family loan, or very new account. Use it as a cross-check, not as your only list.</p>
+        <p>Add the minimum payments. That total is your monthly floor—the amount you must cover before putting extra money toward a target. Then choose a realistic extra amount. A smaller amount you can repeat every month is more useful than an ambitious number that forces you to use the card again for groceries.</p>
+      </section>
+
+      <section id="strategy">
+        <span class="section-no">02</span>
+        <h2>Choose your order: avalanche or snowball</h2>
+        <p>Both methods work the same basic way: pay the minimum on every debt, send all extra money to one target, and move that target’s old payment to the next debt when it is gone. The only difference is which debt goes first.</p>
+        <div class="method-grid">
+          <div class="method">
+            <span class="tag">Cheapest mathematically</span>
+            <h3>Debt avalanche</h3>
+            <p>Target the debt with the <strong>highest APR</strong> first, regardless of its balance. This stops your most expensive interest first, so it usually produces the lowest total interest cost and the shortest payoff time for a fixed monthly payment.</p>
+          </div>
+          <div class="method">
+            <span class="tag">Fastest early win</span>
+            <h3>Debt snowball</h3>
+            <p>Target the debt with the <strong>smallest balance</strong> first, regardless of its APR. Clearing an account quickly can create momentum and free one minimum payment sooner. You may pay more interest, but the visible progress helps some people stay consistent.</p>
+          </div>
+        </div>
+        <div class="takeaway"><p><strong>Plain answer:</strong> either method beats drifting along with minimum payments. Pick the avalanche if saving the most money motivates you. Pick the snowball if early wins will keep you in the plan. A mathematically perfect plan you abandon is not better than a good plan you finish.</p></div>
+        <p>If two debts have similar balances and rates, do not overthink the tiebreaker. Choose one and start. You can compare both schedules with the <a href="/money/debt-payoff-strategy-comparison/">debt payoff strategy comparison</a>, then <a href="/money/credit-card-payoff-analyzer/">use the credit card payoff analyzer to run your numbers</a> with the monthly payment you can actually afford.</p>
+      </section>
+
+      <section id="minimums">
+        <span class="section-no">03</span>
+        <h2>Why minimum payments keep you stuck</h2>
+        <p>A minimum payment is designed to keep an account current, not to get you out quickly. On a high-rate credit card, much of an early payment goes to interest instead of reducing the balance. Interest is what the lender charges for letting you use its money. As the balance falls, the interest charge falls too—but minimum-only progress can be painfully slow.</p>
+        <div class="example" aria-label="Worked minimum payment example">
+          <p class="example-title"><strong>Worked example:</strong> $5,000 balance at 24% APR, paying $120 each month</p>
+          <div class="numbers">
+            <div class="number"><b>≈ 90</b><span>months to pay off<br />(about 7½ years)</span></div>
+            <div class="number"><b>≈ $10,860</b><span>total paid</span></div>
+            <div class="number"><b>≈ $5,860</b><span>interest alone</span></div>
+          </div>
+        </div>
+        <p>That means the interest costs more than the original purchase. The exact result on a real statement can vary because card issuers calculate daily interest, minimums can change, and new fees or purchases alter the balance. The lesson does not change: paying more than the minimum is what bends the timeline.</p>
+        <p>Even before you have a large extra amount, stop adding new charges to the target card. If your budget allows, schedule the minimum automatically to avoid a late fee, then make a second payment for the extra amount after payday. Automation protects the floor; the second payment drives the payoff.</p>
+      </section>
+
+      <section id="transfer">
+        <span class="section-no">04</span>
+        <h2>When a 0% balance transfer makes sense</h2>
+        <p>A balance transfer moves debt from one credit card to another. Some cards offer a temporary 0% promotional APR, meaning no interest is charged on the transferred balance during the stated window. This can create breathing room—but only if you can pay off the balance inside that window.</p>
+        <p>First count the fee. Balance transfer fees are typically <strong>3% to 5%</strong> of the amount moved. A 5% fee on $5,000 is $250, added immediately. Compare that cost with the interest you would otherwise pay. Then divide the transferred balance plus the fee by the number of promotional months. That is the monthly payment needed to finish on time.</p>
+        <p>When the promotion expires, any remaining balance begins charging the card’s regular APR. That rate may be high. New purchases may also follow different rules, and carrying them can complicate the interest-free benefit. Read the offer’s rate, fee, end date, and late-payment terms before applying.</p>
+        <div class="good-bad">
+          <div class="signal good"><h3>It can help when…</h3><ul><li>The monthly payoff amount fits your budget.</li><li>The transfer fee is lower than the interest avoided.</li><li>You stop charging new purchases.</li></ul></div>
+          <div class="signal bad"><h3>It can backfire when…</h3><ul><li>You plan around the minimum instead of the promo deadline.</li><li>The fee wipes out most of the savings.</li><li>The old card gets run back up.</li></ul></div>
+        </div>
+        <a class="tool-link" href="/money/balance-transfer-calculator/">Use the balance transfer calculator to compare the fee and savings <span>→</span></a>
+      </section>
+
+      <section id="consolidation">
+        <span class="section-no">05</span>
+        <h2>Consolidation helps only when the math and habits improve</h2>
+        <p>Debt consolidation means replacing several debts with one new loan or account. One payment can be simpler, but simpler does not automatically mean cheaper. Look at the new APR, any origination fee—a charge for making the loan—the monthly payment, and the total amount paid over the full term.</p>
+        <p>Consolidation can help when it lowers your rate, gives you a clear payoff date, and you stop adding new debt. It can hurt when it merely stretches the loan across more years. A lower monthly payment can hide a higher total cost if you pay interest for much longer.</p>
+        <p>The biggest risk is behavioral: paying off cards with the new loan, then filling the cards again. You would have the consolidation loan <em>and</em> new card balances. Before consolidating, make a plan for the spending problem that created the balance. That may mean removing saved card numbers, moving subscriptions, or keeping one card available for a narrow purpose while the others stay unused.</p>
+        <a class="tool-link" href="/money/debt-consolidation-calculator/">Compare the old debts with a new loan in the debt consolidation calculator <span>→</span></a>
+      </section>
+
+      <section id="plan">
+        <span class="section-no">06</span>
+        <h2>Turn the method into a plan you can repeat</h2>
+        <ol class="steps">
+          <li><strong>Protect the basics first.</strong> Keep housing, food, utilities, transportation, insurance, and required minimums current. Falling behind on necessities to make an impressive card payment usually creates a new emergency.</li>
+          <li><strong>Keep a small cash buffer.</strong> Without any savings, one tire, prescription, or repair can go right back on the card. The right starter amount depends on your life; it is not a moral test.</li>
+          <li><strong>Choose one target and one monthly extra.</strong> Put minimums on the rest. Mark the target clearly. Review the plan once a month, not every day.</li>
+          <li><strong>Send irregular money deliberately.</strong> A tax refund, bonus, gift, or sale of unused items can shorten the plan. Decide how much goes to debt before the money lands. The <a href="/money/windfall-planner-calculator/">windfall planner can help you split a lump sum</a> among debt, savings, and other priorities.</li>
+          <li><strong>Roll payments forward.</strong> When one debt ends, keep paying the same total monthly amount. Its old payment joins the extra going to the next target. That is how momentum builds.</li>
+        </ol>
+        <p>If you miss a month, the plan is not ruined. Cover the minimums, figure out what changed, and restart the extra payment next month. Progress is measured by a falling balance and fewer expensive interest charges—not by an unbroken streak.</p>
+      </section>
+
+      <section id="after">
+        <span class="section-no">07</span>
+        <h2>When the debt is gone, keep the payment</h2>
+        <p>The month after payoff is a powerful decision point. Your budget already knows how to live without that money. Redirect the old payment automatically into savings or investing before lifestyle spending absorbs it. Start with an emergency fund if an unexpected bill would otherwise return you to a credit card. Then choose longer-term goals that fit your situation.</p>
+        <ol class="after-list">
+          <li><strong>Move the money, not just the intention.</strong> Schedule an automatic transfer for the same day the debt payment used to leave your account.</li>
+          <li><strong>Keep your oldest credit card open</strong> if it has no annual fee and you can use it safely. Account age can support your credit history. A small recurring charge paid in full is enough to keep it active.</li>
+          <li><strong>Do not close everything at once.</strong> Closing cards can reduce your available credit and raise credit utilization—the percentage of your credit limits currently in use. That can affect credit scores. If a fee-bearing card is not worth keeping, ask about changing to a no-fee version before closing it.</li>
+          <li><strong>Pay statement balances in full going forward.</strong> That usually avoids purchase interest and turns a card back into a payment tool instead of a long-term loan.</li>
+        </ol>
+        <p>Debt payoff creates options. The next step might be a stronger cash reserve, a home goal, or retirement contributions. Keep the same clear-number habit: define the goal, find the monthly amount, and automate it.</p>
+        <div class="next-guides">
+          <a href="/money/guides/home-affordability-guide/">Read the home affordability guide<small>Understand the full monthly cost before choosing a price range.</small></a>
+          <a href="/money/guides/retirement-planning-guide/">Read the retirement planning guide<small>Turn today’s savings into a practical long-term plan.</small></a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>This guide is for informational and educational purposes only and does not constitute financial, tax, legal, investment, or insurance advice.</p>
+  </footer>
+</body>
+</html>

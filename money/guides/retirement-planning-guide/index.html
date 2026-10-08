@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:,">
+  <title>Retirement Planning in Plain English | Honed Money</title>
+  <meta name="description" content="A plain-English retirement planning guide covering savings targets, Social Security, health costs, required withdrawals, catch-up contributions, and practical steps for the final 10 years.">
+  <link rel="canonical" href="https://honedsignal.com/money/guides/retirement-planning-guide/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Retirement Planning in Plain English",
+    "description": "A plain-English guide to retirement savings targets, Social Security, health costs, required withdrawals, and the final years before retirement.",
+    "dateModified": "2026-10-01",
+    "datePublished": "2026-10-01",
+    "mainEntityOfPage": "https://honedsignal.com/money/guides/retirement-planning-guide/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Honed Money"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0b0e14;
+      --surface: #121722;
+      --surface-2: #171e2a;
+      --text: #f5f5f5;
+      --muted: #b5bfcc;
+      --line: #2a3342;
+      --accent: #f7931a;
+      --accent-soft: #37220d;
+      --teal: #52b8ad;
+      --teal-soft: #102a2a;
+      --link: #ffb45a;
+      --shadow: rgba(0,0,0,.22);
+      --measure: 720px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #0b0e14;
+        --surface: #121722;
+        --surface-2: #171e2a;
+        --text: #f5f5f5;
+        --muted: #b5bfcc;
+        --line: #2a3342;
+        --accent: #f7931a;
+        --accent-soft: #37220d;
+        --teal: #52b8ad;
+        --teal-soft: #102a2a;
+        --link: #ffb45a;
+        --shadow: rgba(0,0,0,.22);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Avenir Next", Avenir, "Segoe UI", Helvetica, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+    p { margin: 0 0 1.1rem; }
+    h1, h2, h3 { line-height: 1.12; letter-spacing: -.025em; }
+    h1 { margin: 0; max-width: 820px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.65rem, 7vw, 5.5rem); font-weight: 700; }
+    h2 { margin: 0 0 1rem; font-size: clamp(1.65rem, 4vw, 2.25rem); }
+    h3 { margin: 1.8rem 0 .65rem; font-size: 1.15rem; letter-spacing: -.01em; }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: calc(18px + env(safe-area-inset-top)) 0 72px;
+    }
+    .back {
+      display: inline-block;
+      margin: 0 0 34px;
+      color: var(--muted);
+      font-weight: 650;
+      text-decoration: none;
+    }
+    .back:hover { color: var(--text); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(30px, 7vw, 70px) clamp(24px, 7vw, 72px);
+      background: var(--surface);
+      border-top: 5px solid var(--accent);
+      box-shadow: 0 18px 60px var(--shadow);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: -100px;
+      width: 300px;
+      height: 300px;
+      border: 34px solid var(--accent);
+      border-radius: 50%;
+      opacity: .12;
+      pointer-events: none;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .label {
+      margin: 0 0 15px;
+      color: var(--accent);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .dek { max-width: 720px; margin: 24px 0 0; color: var(--muted); font-size: clamp(1.08rem, 2.2vw, 1.3rem); line-height: 1.55; }
+    .reviewed { margin: 28px 0 0; color: var(--muted); font-size: .9rem; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 250px minmax(0, var(--measure));
+      gap: clamp(40px, 7vw, 84px);
+      justify-content: center;
+      align-items: start;
+      margin-top: 54px;
+    }
+    .toc {
+      position: sticky;
+      top: 22px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .toc strong { display: block; margin-bottom: 11px; font-size: .88rem; }
+    .toc ol { margin: 0; padding: 0; list-style: none; counter-reset: guide; }
+    .toc li { counter-increment: guide; display: flex; gap: 9px; margin: 8px 0; font-size: .86rem; line-height: 1.35; }
+    .toc li::before { content: counter(guide, decimal-leading-zero); color: var(--accent); font-variant-numeric: tabular-nums; }
+    .toc a { color: var(--muted); text-decoration: none; }
+    .toc a:hover { color: var(--text); }
+
+    article { min-width: 0; }
+    .intro {
+      padding: 0 0 38px;
+      border-bottom: 1px solid var(--line);
+      font-size: 1.08rem;
+    }
+    section { padding: 50px 0; border-bottom: 1px solid var(--line); }
+    .section-number { display: block; margin-bottom: 10px; color: var(--accent); font-weight: 800; font-size: .82rem; letter-spacing: .08em; }
+    .rule {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 14px;
+      margin: 28px 0;
+      padding: 24px;
+      background: var(--surface);
+      border-top: 3px solid var(--accent);
+      text-align: center;
+    }
+    .rule .big { display: block; color: var(--accent); font-size: clamp(1.55rem, 5vw, 2.4rem); font-weight: 850; line-height: 1.05; }
+    .rule .small { display: block; margin-top: 7px; color: var(--muted); font-size: .82rem; line-height: 1.3; }
+    .rule .times { color: var(--muted); font-size: 1.4rem; }
+
+    .callout {
+      margin: 28px 0;
+      padding: 22px 24px;
+      background: var(--teal-soft);
+      border-left: 4px solid var(--teal);
+    }
+    .callout strong { color: var(--teal); }
+    .callout p:last-child { margin-bottom: 0; }
+    .note { color: var(--muted); font-size: .91rem; }
+
+    .bands { display: grid; gap: 10px; margin: 24px 0; }
+    .band {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 18px;
+      padding: 15px 17px;
+      background: var(--surface);
+    }
+    .band strong { color: var(--accent); }
+
+    .example {
+      margin: 32px 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: 10px 10px 0 var(--accent-soft);
+    }
+    .example-head { padding: 18px 22px; background: var(--accent); color: #111; font-weight: 850; }
+    .example-body { padding: 24px; }
+    .math-line {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .math-line:last-child { border-bottom: 0; }
+    .math-line strong { color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    .checklist { margin: 24px 0 0; padding: 0; list-style: none; }
+    .checklist li { position: relative; padding: 0 0 18px 34px; }
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .38em;
+      width: 13px;
+      height: 13px;
+      border: 2px solid var(--accent);
+    }
+    .checklist strong { display: block; color: var(--text); }
+    .checklist span { color: var(--muted); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
+    .plan-card { padding: 24px; background: var(--surface); border-top: 3px solid var(--accent); }
+    .plan-card h3 { margin-top: 0; }
+
+    .source-list { margin: 20px 0 0; padding-left: 20px; }
+    .source-list li { margin: 9px 0; }
+    .next-guides { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 22px; }
+    .next-guides a { display: block; padding: 18px; background: var(--surface); font-weight: 750; text-decoration: none; }
+    .next-guides a:hover { background: var(--surface-2); }
+
+    .disclaimer {
+      margin-top: 44px;
+      padding: 22px 24px;
+      color: var(--muted);
+      background: var(--surface-2);
+      font-size: .9rem;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; gap: 34px; }
+      .toc { position: static; columns: 2; column-gap: 24px; }
+      .toc strong { column-span: all; }
+      .toc li { break-inside: avoid; }
+    }
+    @media (max-width: 620px) {
+      body { font-size: 16px; }
+      .page { width: min(100% - 24px, 1180px); padding-bottom: 46px; }
+      .back { margin-bottom: 20px; }
+      .hero { padding: 28px 20px 32px; }
+      .layout { margin-top: 36px; }
+      .toc { columns: 1; }
+      section { padding: 38px 0; }
+      .rule { grid-template-columns: 1fr; gap: 8px; }
+      .rule .times { transform: rotate(90deg); }
+      .band { grid-template-columns: 1fr; gap: 3px; }
+      .two-col, .next-guides { grid-template-columns: 1fr; }
+      .math-line { grid-template-columns: 1fr; gap: 2px; }
+      .math-line strong { white-space: normal; }
+      .example { box-shadow: 6px 6px 0 var(--accent-soft); }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="back" href="/money/">← Honed Money</a>
+
+    <header class="hero">
+      <p class="label">A practical guide</p>
+      <h1>Retirement Planning in Plain English</h1>
+      <p class="dek">Retirement planning is not about guessing the perfect stock or predicting exactly how long you will live. It is about turning the life you want into a spending target, then building enough dependable income and savings to support it.</p>
+      <p class="reviewed">Last reviewed: October 2026.</p>
+    </header>
+
+    <div class="layout">
+      <nav class="toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <ol>
+          <li><a href="#starting-point">Start with spending</a></li>
+          <li><a href="#four-percent">The 4% rule</a></li>
+          <li><a href="#social-security">Social Security</a></li>
+          <li><a href="#savings-rate">Savings rate first</a></li>
+          <li><a href="#after-50">After age 50</a></li>
+          <li><a href="#health-costs">Health costs</a></li>
+          <li><a href="#rmds">RMDs after 73</a></li>
+          <li><a href="#timeline">10 years vs. 1 year</a></li>
+          <li><a href="#sources">Sources and next steps</a></li>
+        </ol>
+      </nav>
+
+      <article>
+        <div class="intro" id="starting-point">
+          <p><strong>Begin with spending, not a giant mystery number.</strong> Estimate what one year of retirement might cost. Include housing, food, transportation, travel, taxes, insurance, health care and room for surprises. Then subtract income that may arrive without selling investments, such as Social Security or a pension. The gap is what your savings must cover.</p>
+          <p>Where do you find the inputs? Your checking and credit-card statements show real monthly spending. A pay stub shows current income and payroll deductions. Your latest 401(k), 403(b) or individual retirement account statement shows what you have already saved. A 401(k) is a workplace retirement plan; an IRA is an individual retirement account you open yourself.</p>
+          <p>Once you have those numbers, <a href="/money/retirement-income-gap-calculator/">check whether you are on track with the retirement income-gap calculator</a>. A rough answer today is more useful than a “perfect” answer you never calculate.</p>
+        </div>
+
+        <section id="four-percent">
+          <span class="section-number">01 / HOW MUCH YOU NEED</span>
+          <h2>The 4% rule turns spending into a target</h2>
+          <p>The 4% rule is a simple starting point: in the first year of retirement, withdraw about 4% of your invested savings. In later years, raise that dollar amount with inflation, meaning the general rise in prices over time. Turning that around, you would save roughly 25 times the amount your portfolio needs to provide each year.</p>
+
+          <div class="rule" aria-label="Annual spending from savings multiplied by 25 equals a rough portfolio target">
+            <div><span class="big">Annual gap</span><span class="small">spending your savings must cover</span></div>
+            <span class="times">×</span>
+            <div><span class="big">25</span><span class="small">rough portfolio target</span></div>
+          </div>
+
+          <p>This is a rule of thumb, not a guarantee. The research behind it generally assumes a retirement lasting about 30 years and a diversified mix of investments. A diversified portfolio spreads money across different investments rather than depending on one company or market. Real markets do not rise steadily, and poor returns early in retirement can do more damage because you are withdrawing while values are down.</p>
+          <p>If you expect to retire very early, want to spend more in the first decade, or have little flexibility to reduce spending after a bad market, use a more cautious withdrawal rate. If you have strong pension income or can trim optional spending, you may have more room. <a href="/money/retirement-savings-projector/">Model how your savings could grow with the retirement savings projector</a>, then test several return and spending assumptions rather than trusting one forecast.</p>
+
+          <div class="example">
+            <div class="example-head">Worked example: a $60,000 retirement income goal</div>
+            <div class="example-body">
+              <div class="math-line"><span>$60,000 desired annual income × 25</span><strong>About $1.5 million</strong></div>
+              <div class="math-line"><span>$60,000 goal − $24,000 Social Security</span><strong>$36,000 annual gap</strong></div>
+              <div class="math-line"><span>$36,000 savings-funded gap × 25</span><strong>About $900,000</strong></div>
+            </div>
+          </div>
+          <p class="note">This example uses the stated annual amounts before considering taxes, other income, timing differences or future inflation. Your personal Social Security benefit and spending target may be very different.</p>
+        </section>
+
+        <section id="social-security">
+          <span class="section-number">02 / THE FOUNDATION</span>
+          <h2>Social Security is the foundation, not the whole house</h2>
+          <p>Social Security replaces roughly 40% of pre-retirement earnings for an average earner, according to the Social Security Administration (SSA). That is meaningful, but it also means the remaining spending must come from savings, a pension, work or another source. Higher earners generally receive a smaller replacement percentage.</p>
+          <p>Your benefit depends on your earnings history and the age when you claim. Claiming means starting your monthly payments. Starting earlier generally produces a smaller monthly check; waiting longer, up to the program’s maximum delay age, generally produces a larger one. The right timing depends on health, other income, cash needs, marital situation and how long you expect retirement to last.</p>
+          <div class="callout">
+            <p><strong>Where do I find my number?</strong></p>
+            <p>Get your personal estimate at <strong>ssa.gov/myaccount</strong>. Your Social Security Statement lists estimates at different claiming ages and shows whether your earnings record is complete. Use that estimate in the <a href="/money/social-security-estimator/">Social Security estimator</a> instead of relying on an average.</p>
+          </div>
+          <p>Remember that retirement withdrawals can affect taxes. For 2026, the single standard deduction is $16,100 under IRS Revenue Procedure 2025-32. A standard deduction is the amount many taxpayers can subtract from income before federal income tax is calculated. It is only one part of the tax picture: some Social Security benefits may be taxable, and traditional retirement-account withdrawals usually count as taxable income.</p>
+        </section>
+
+        <section id="savings-rate">
+          <span class="section-number">03 / WHAT MOVES THE NEEDLE</span>
+          <h2>Early on, your savings rate matters most</h2>
+          <p>Your savings rate is the percentage of income you direct to retirement. When the balance is still small, an extra dollar saved often matters more than squeezing out a slightly better investment return. Investment selection matters, but saving consistently, using a diversified low-cost approach and avoiding panic decisions give compounding more money and time to work. Compounding means your returns can begin earning returns of their own.</p>
+          <p>These plain-language benchmarks are starting points, not judgments:</p>
+          <div class="bands">
+            <div class="band"><strong>20s and 30s</strong><span>Aim for about 10% to 15% of gross pay, including any employer match. Gross pay means income before taxes and deductions.</span></div>
+            <div class="band"><strong>40s</strong><span>If you started later or are behind, work toward 15% to 20%. Raise the rate when a loan ends or your pay increases.</span></div>
+            <div class="band"><strong>50s and 60s</strong><span>Use the catch-up years. A 20% or higher rate can be reasonable if retirement is close and your budget allows it.</span></div>
+          </div>
+          <p>If those percentages feel impossible, start lower and automate a small increase each year. First contribute enough to capture your full employer match if one is offered; the match is money your employer adds when you contribute. <a href="/money/401k-match-calculator/">See how much employer money may be available with the 401(k) match calculator</a>. Your pay stub and benefits portal show your current contribution rate, while your plan’s summary document explains the match formula.</p>
+        </section>
+
+        <section id="after-50">
+          <span class="section-number">04 / THE CATCH-UP YEARS</span>
+          <h2>After 50, tax rules give you more room to save</h2>
+          <p>IRS rules allow people age 50 and older to make catch-up contributions—extra deposits above the normal annual limit—to workplace plans such as 401(k)s and to IRAs. Some workplace plans also have a larger catch-up window for certain older ages under current law. The exact limits can change from year to year, so check the IRS limit for the year you contribute and confirm what your plan allows.</p>
+          <p>You do not have to fill every available dollar for the rule to help. A catch-up contribution can be as simple as directing part of a raise, bonus or paid-off car payment into retirement. If high-interest debt is consuming your budget, compare the guaranteed interest you avoid by paying it down with the benefit of saving more. The goal is a sustainable plan, not a contribution that forces you to borrow again.</p>
+        </section>
+
+        <section id="health-costs">
+          <span class="section-number">05 / THE COST MANY PLANS MISS</span>
+          <h2>Plan for health care separately</h2>
+          <p>Medicare is federal health insurance generally available beginning at age 65, but it is not free and it does not cover everything. Retirees may pay Medicare premiums, deductibles, copayments, prescription costs, dental and vision expenses, supplemental coverage and long-term care. A premium is the regular price of insurance; a deductible is what you may pay before coverage begins paying its share.</p>
+          <p>These expenses can become a six-figure lifetime cost for a retired household. Health prices may also rise faster than general inflation, so simply hiding health care inside one broad spending estimate can understate the need. Build a separate health budget, test higher inflation and keep room for out-of-pocket costs—the portion insurance does not pay.</p>
+          <p><a href="/money/medicare-retiree-health-cost-estimator/">Estimate Medicare and retiree health costs separately</a>. For current numbers, look at your employer’s retiree-benefit materials, your Medicare coverage documents if you are enrolled, and actual pharmacy and medical statements. If you will retire before 65, price the bridge from employer coverage to Medicare rather than assuming today’s workplace premium continues.</p>
+        </section>
+
+        <section id="rmds">
+          <span class="section-number">06 / WITHDRAWALS AFTER 73</span>
+          <h2>RMDs are withdrawals the tax code requires</h2>
+          <p>RMD stands for required minimum distribution. Starting at age 73 for many current retirees, the IRS generally requires annual withdrawals from traditional retirement accounts, including traditional IRAs and many workplace plans. “Traditional” means contributions may have received a tax break earlier, so the withdrawal is generally taxed as ordinary income later.</p>
+          <p>The amount is based mainly on the account balance at the end of the previous year and an IRS life-expectancy factor. You can withdraw more than the minimum, but not less without risking a penalty. Roth IRAs generally do not require lifetime distributions from the original owner, although inherited-account rules are different.</p>
+          <p><a href="/money/rmd-calculator/">Estimate a required withdrawal with the RMD calculator</a>, and verify the account balance on your December 31 statement. RMD and tax rules depend on account type and birth year, so check current IRS guidance before acting.</p>
+        </section>
+
+        <section id="timeline">
+          <span class="section-number">07 / TURN THE PLAN INTO ACTION</span>
+          <h2>What to do 10 years out versus 1 year out</h2>
+          <div class="two-col">
+            <div class="plan-card">
+              <h3>About 10 years before retirement</h3>
+              <ul class="checklist">
+                <li><strong>Raise the savings rate.</strong><span>Increase workplace-plan contributions when pay rises and use catch-up room after 50.</span></li>
+                <li><strong>Run a real projection.</strong><span>Use current balances from every retirement statement, not a round-number guess.</span></li>
+                <li><strong>List dependable income.</strong><span>Download your Social Security Statement and request a pension estimate if one applies.</span></li>
+                <li><strong>Plan the health-coverage bridge.</strong><span>If retiring before Medicare eligibility, price employer retiree coverage, a spouse’s plan or marketplace insurance.</span></li>
+                <li><strong>Reduce expensive debt.</strong><span>High-interest payments reduce the monthly cash flow available in retirement.</span></li>
+              </ul>
+            </div>
+            <div class="plan-card">
+              <h3>About 1 year before retirement</h3>
+              <ul class="checklist">
+                <li><strong>Nail down the budget.</strong><span>Practice living on the planned amount and separate essential from optional spending.</span></li>
+                <li><strong>Decide Social Security timing.</strong><span>Compare monthly benefits at different claiming ages with your savings and health in mind.</span></li>
+                <li><strong>Line up health insurance.</strong><span>Know enrollment deadlines, premiums, drug coverage and what happens on your final day of work.</span></li>
+                <li><strong>Choose your first withdrawals.</strong><span>Plan which account will fund spending and set aside cash so a bad market does not force a rushed sale.</span></li>
+                <li><strong>Review pension choices.</strong><span>If offered a one-time payment or monthly income, <a href="/money/pension-lump-sum-vs-annuity-calculator/">compare a pension lump sum with an annuity</a>. An annuity is a stream of payments over time.</span></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="sources">
+          <span class="section-number">08 / CHECK THE INPUTS</span>
+          <h2>Documents to gather and references to trust</h2>
+          <p>You do not need a thick binder. Collect your latest 401(k), 403(b), IRA and pension statements; a recent pay stub; your Social Security Statement; one year of bank and credit-card transactions; and current health-insurance documents. Those pages hold the balances, contribution rates, employer match, income estimates and premiums a useful projection needs.</p>
+          <ul class="source-list">
+            <li><strong>Social Security Administration (SSA.gov)</strong> — personal benefit estimates, claiming rules and the guideline that benefits replace roughly 40% of pre-retirement earnings for an average earner.</li>
+            <li><strong>Internal Revenue Service, Revenue Procedure 2025-32</strong> — the 2026 single standard deduction of $16,100.</li>
+            <li><strong>Internal Revenue Service</strong> — annual contribution limits, catch-up rules and required minimum distribution guidance. Check the current tax year before making a decision.</li>
+          </ul>
+
+          <h3>Keep building the full money plan</h3>
+          <div class="next-guides">
+            <a href="/money/guides/debt-payoff-guide/">Make a debt payoff plan →</a>
+            <a href="/money/guides/home-affordability-guide/">Understand home affordability →</a>
+          </div>
+        </section>
+
+        <p class="disclaimer">This guide is for informational and educational purposes only and does not constitute financial, tax, legal, investment, or insurance advice.</p>
+      </article>
+    </div>
+  </div>
+</body>
+</html>

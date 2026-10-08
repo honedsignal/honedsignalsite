@@ -227,6 +227,10 @@ def main():
     for slug in ("legal", "privacy", "about", "contact", "glossary"):
         if os.path.exists(os.path.join(MONEY, slug, "index.html")):
             sitemap_urls.append(BASE + f"/money/{slug}/")
+    # guide pages
+    for d in sorted(glob.glob(os.path.join(MONEY, "guides", "*", "index.html"))):
+        gslug = d.split(os.sep)[-2]
+        sitemap_urls.append(BASE + f"/money/guides/{gslug}/")
     for u in sorted(set(sitemap_urls)):
         sm.append("  <url><loc>" + u + "</loc><lastmod>" + TODAY + "</lastmod></url>")
     sm.append("</urlset>")

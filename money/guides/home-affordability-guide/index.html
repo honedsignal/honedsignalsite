@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="icon" href="data:," />
+  <title>How Much House Can You Afford? A Plain-English Guide | Honed Money</title>
+  <meta name="description" content="Learn how income, debt, down payment, taxes, insurance, maintenance and closing costs shape a realistic home-buying budget—without the mortgage jargon." />
+  <link rel="canonical" href="https://honedsignal.com/money/guides/home-affordability-guide/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How Much House Can You Afford? A Plain-English Guide",
+    "description": "A practical guide to setting a home-buying budget using income, debt, down payment and the full cost of ownership.",
+    "dateModified": "2026-10-01",
+    "datePublished": "2026-10-01",
+    "author": {"@type": "Organization", "name": "Honed Money"},
+    "publisher": {"@type": "Organization", "name": "Honed Signal"},
+    "mainEntityOfPage": "https://honedsignal.com/money/guides/home-affordability-guide/"
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #0b0e14;
+      --surface: #111722;
+      --surface-2: #171f2c;
+      --text: #f5f5f5;
+      --muted: #b7c0cc;
+      --line: #2d3746;
+      --orange: #f7931a;
+      --orange-soft: #3a250e;
+      --teal: #65c9bd;
+      --green: #39ff14;
+      --max: 1120px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #0d1118;
+        --surface: #151b25;
+        --surface-2: #1b2431;
+        --text: #fafafa;
+        --muted: #c1c9d3;
+        --line: #344052;
+        --orange-soft: #402811;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Aptos", "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-size: 17px;
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--orange); text-underline-offset: .2em; text-decoration-thickness: .08em; }
+    a:hover { color: #ffb14d; }
+    a:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; border-radius: 2px; }
+    p { margin: 0 0 1.15rem; }
+    strong { color: #fff; }
+
+    .site-link {
+      display: inline-block;
+      margin: 22px 0 18px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .site-link:hover { color: var(--orange); }
+
+    .shell { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: clamp(32px, 6vw, 76px);
+      align-items: end;
+      padding: 34px 0 54px;
+      border-bottom: 1px solid var(--line);
+    }
+    .kicker { margin: 0 0 12px; color: var(--orange); font-size: .84rem; font-weight: 800; letter-spacing: .05em; }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.12; text-wrap: balance; }
+    h1 { margin: 0; max-width: 760px; font-size: clamp(2.65rem, 7vw, 5.6rem); font-weight: 700; letter-spacing: -.045em; }
+    .title-tail { display: block; margin-top: 14px; color: var(--orange); font-family: "Aptos", "Segoe UI", system-ui, sans-serif; font-size: .32em; line-height: 1.25; letter-spacing: .01em; }
+    .dek { max-width: 680px; margin: 24px 0 0; color: var(--muted); font-size: clamp(1.08rem, 2vw, 1.3rem); line-height: 1.55; }
+    .review { margin: 0; color: var(--muted); font-size: .92rem; }
+    .hero-note {
+      border-top: 3px solid var(--orange);
+      padding-top: 18px;
+    }
+    .hero-note strong { display: block; margin-bottom: 7px; font-size: 1.08rem; }
+    .hero-note p { margin: 0; color: var(--muted); font-size: .96rem; }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 230px minmax(0, 720px);
+      gap: clamp(40px, 7vw, 88px);
+      align-items: start;
+      padding: 54px 0 84px;
+    }
+    .toc { position: sticky; top: 24px; }
+    .toc h2 { margin: 0 0 14px; font-family: inherit; font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    .toc ol { list-style: none; padding: 0; margin: 0; border-left: 1px solid var(--line); }
+    .toc li { margin: 0; }
+    .toc a { display: block; padding: 7px 0 7px 17px; color: var(--muted); text-decoration: none; font-size: .92rem; line-height: 1.35; }
+    .toc a:hover { color: var(--text); border-left: 2px solid var(--orange); margin-left: -1px; }
+
+    article section { scroll-margin-top: 28px; margin: 0 0 58px; }
+    h2 { margin: 0 0 18px; font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -.025em; }
+    h3 { margin: 30px 0 10px; font-size: 1.35rem; }
+    .lead { color: #e5e8ed; font-size: 1.12rem; }
+    .rule-line { width: 58px; height: 4px; background: var(--orange); margin: 0 0 20px; }
+
+    .plain-box, .example, .checklist, .cost-list {
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .plain-box { padding: 24px 26px; margin: 26px 0; border-radius: 4px; }
+    .plain-box h3 { margin-top: 0; }
+    .plain-box p:last-child { margin-bottom: 0; }
+    .label { color: var(--orange); font-size: .79rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+
+    .formula {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: stretch;
+      margin: 28px 0;
+    }
+    .formula-card { background: var(--surface-2); padding: 24px; border-top: 3px solid var(--orange); }
+    .formula-card .number { display: block; color: var(--orange); font: 700 clamp(2.4rem, 5vw, 3.8rem)/1 Georgia, serif; }
+    .formula-card span:last-child { color: var(--muted); }
+    .or { align-self: center; color: var(--muted); font-weight: 700; }
+
+    .example { margin: 32px 0; padding: clamp(24px, 5vw, 38px); border-radius: 4px; box-shadow: inset 5px 0 0 var(--orange); }
+    .example h3 { margin: 0 0 18px; font-size: 1.65rem; }
+    .math-row { display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 15px 0; border-top: 1px solid var(--line); }
+    .math-row:last-of-type { border-bottom: 1px solid var(--line); }
+    .math-row .result { color: var(--orange); font-weight: 800; text-align: right; }
+    .example small { display: block; margin-top: 16px; color: var(--muted); line-height: 1.5; }
+
+    .factor-list, .cost-list, .checklist { list-style: none; padding: 0; margin: 24px 0; }
+    .factor-list li { display: grid; grid-template-columns: 32px 1fr; gap: 14px; margin: 0 0 18px; }
+    .factor-list .count { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; background: var(--orange); color: #15100a; font-weight: 900; font-size: .85rem; }
+    .factor-list strong, .cost-list strong, .checklist strong { display: block; margin-bottom: 3px; }
+    .factor-list p, .cost-list p, .checklist p { margin: 0; color: var(--muted); }
+
+    .loan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 25px 0; background: var(--line); border: 1px solid var(--line); }
+    .loan { background: var(--surface); padding: 22px; }
+    .loan h3 { margin: 0 0 7px; font-family: inherit; font-size: 1rem; color: var(--orange); }
+    .loan p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+    .cost-list li, .checklist li { padding: 18px 22px; border-bottom: 1px solid var(--line); }
+    .cost-list li:last-child, .checklist li:last-child { border-bottom: 0; }
+    .doc-tag { display: inline-block; margin-top: 8px; color: var(--teal); font-size: .88rem; font-weight: 700; }
+
+    .versus { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 26px 0; }
+    .versus > div { background: var(--surface); padding: 25px; border-top: 3px solid var(--teal); }
+    .versus > div:last-child { border-top-color: var(--orange); }
+    .versus h3 { margin: 0 0 12px; }
+    .versus ul { margin: 0; padding-left: 20px; }
+    .versus li { margin-bottom: 9px; color: var(--muted); }
+
+    .next-steps { background: var(--orange); color: #170f07; padding: clamp(28px, 5vw, 42px); border-radius: 4px; }
+    .next-steps h2, .next-steps strong { color: #170f07; }
+    .next-steps p { color: #2b1a08; }
+    .next-steps a { color: #170f07; font-weight: 800; }
+    .link-list { columns: 2; column-gap: 40px; margin: 20px 0 0; padding-left: 20px; }
+    .link-list li { break-inside: avoid; margin: 0 0 12px; }
+
+    footer { border-top: 1px solid var(--line); padding: 34px 0 52px; color: var(--muted); font-size: .9rem; }
+    footer p { max-width: 780px; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 16px 24px; margin-top: 24px; }
+
+    @media (max-width: 780px) {
+      .shell { width: min(calc(100% - 28px), var(--max)); }
+      .hero { grid-template-columns: 1fr; gap: 30px; padding-top: 22px; }
+      h1 { font-size: clamp(2.65rem, 13vw, 4.2rem); }
+      .page-grid { grid-template-columns: 1fr; padding-top: 36px; }
+      .toc { position: static; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+      .toc ol { columns: 2; column-gap: 24px; }
+      .toc li { break-inside: avoid; }
+      .formula, .loan-grid, .versus { grid-template-columns: 1fr; }
+      .or { text-align: center; }
+      .math-row { grid-template-columns: 1fr; gap: 5px; }
+      .math-row .result { text-align: left; }
+    }
+
+    @media (max-width: 480px) {
+      body { font-size: 16px; }
+      .toc ol, .link-list { columns: 1; }
+      .plain-box, .loan, .versus > div { padding: 20px; }
+      .example { box-shadow: inset 4px 0 0 var(--orange); }
+    }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      :root { --bg: #fff; --surface: #fff; --surface-2: #f4f4f4; --text: #111; --muted: #444; --line: #bbb; --orange: #b65b00; }
+      .toc { display: none; }
+      .page-grid { display: block; }
+      a { color: #111; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <a class="site-link" href="/money/">← Honed Money</a>
+
+    <header class="hero">
+      <div>
+        <p class="kicker">Home buying, without the guesswork</p>
+        <h1>How Much House Can You Afford? <span class="title-tail">A Plain-English Guide</span></h1>
+        <p class="dek">A plain-English guide to choosing a payment that works in real life—not merely the largest loan a lender may approve.</p>
+      </div>
+      <div class="hero-note">
+        <strong>Affordability is a monthly budget question.</strong>
+        <p>The home price is only the headline. Your income, existing debt, cash on hand, taxes, insurance and upkeep determine the honest answer.</p>
+      </div>
+    </header>
+    <p class="review">Last reviewed: October 2026.</p>
+
+    <div class="page-grid">
+      <nav class="toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#starting-point">Start with the 28/36 rule</a></li>
+          <li><a href="#example">See an $80,000 example</a></li>
+          <li><a href="#lenders">What lenders check</a></li>
+          <li><a href="#down-payment">Down payment realities</a></li>
+          <li><a href="#hidden-costs">Costs people miss</a></li>
+          <li><a href="#rent-buy">Rent or buy?</a></li>
+          <li><a href="#gather">Gather your numbers</a></li>
+          <li><a href="#next">Run your numbers</a></li>
+        </ol>
+      </nav>
+
+      <article>
+        <section id="starting-point">
+          <div class="rule-line"></div>
+          <h2>Start with the 28/36 rule</h2>
+          <p class="lead">The 28/36 rule is a quick budget check. It is not a law, and it is not a guarantee that a particular lender will approve you. It is a useful way to keep a home payment from crowding out the rest of your life.</p>
+          <div class="formula" aria-label="The 28/36 rule">
+            <div class="formula-card">
+              <span class="number">28%</span>
+              <span>of gross monthly income for housing</span>
+            </div>
+            <div class="or">and</div>
+            <div class="formula-card">
+              <span class="number">36%</span>
+              <span>of gross monthly income for all debt</span>
+            </div>
+          </div>
+          <p><strong>Gross income</strong> means income before taxes and other paycheck deductions. Under the first part of the rule, you would aim to spend no more than 28% of gross monthly income on <strong>PITI</strong>: principal, interest, taxes and insurance.</p>
+          <div class="plain-box">
+            <span class="label">PITI, translated</span>
+            <h3>The four basic parts of a monthly housing payment</h3>
+            <p><strong>Principal</strong> pays down the amount borrowed. <strong>Interest</strong> is the lender’s charge for the loan. <strong>Property taxes</strong> go to local government. <strong>Homeowners insurance</strong> helps cover certain damage and liability. Lenders often collect taxes and insurance with the mortgage payment, then pay those bills for you.</p>
+          </div>
+          <p>The second part says all required monthly debt payments—including PITI, car loans, student loans, credit-card minimums and other loans—should total no more than 36% of gross monthly income. That percentage is a form of <strong>debt-to-income ratio</strong>, or DTI: the share of gross monthly income already committed to debt payments.</p>
+          <p>Use the smaller limit. If the housing limit says $1,900 but existing debts leave only $1,450 under the all-debt limit, $1,450 is the safer starting ceiling. Even then, adjust down if childcare, medical costs, saving goals or an irregular income make the result uncomfortable.</p>
+        </section>
+
+        <section id="example">
+          <div class="rule-line"></div>
+          <h2>A worked example: $80,000 household income</h2>
+          <p>Suppose a household earns $80,000 a year before taxes. Here is the math, using the figures exactly as stated:</p>
+          <div class="example">
+            <h3>The 28% housing limit</h3>
+            <div class="math-row">
+              <span>$80,000 × 28%</span>
+              <span class="result">$22,400 per year</span>
+            </div>
+            <div class="math-row">
+              <span>$22,400 ÷ 12 months</span>
+              <span class="result">about $1,867 per month for PITI</span>
+            </div>
+            <h3>The 36% all-debt limit</h3>
+            <div class="math-row">
+              <span>$80,000 × 36%</span>
+              <span class="result">$28,800 per year</span>
+            </div>
+            <div class="math-row">
+              <span>$28,800 ÷ 12 months</span>
+              <span class="result">$2,400 per month for all debts, including housing</span>
+            </div>
+            <small>If this household has $600 in monthly car, student-loan and credit-card payments, the 36% limit would leave $1,800 for housing—slightly below the $1,867 housing limit. That makes $1,800 the tighter starting point.</small>
+          </div>
+          <p>A maximum monthly payment does not translate to one fixed home price. Mortgage interest rates, the loan length, down payment, taxes and insurance all change the price that fits. Use the <a href="/money/mortgage-affordability-calculator/">mortgage affordability calculator to run your own numbers</a>, then use the <a href="/money/mortgage-payment-calculator/">mortgage payment calculator to test a specific price and rate</a>.</p>
+        </section>
+
+        <section id="lenders">
+          <div class="rule-line"></div>
+          <h2>What lenders actually look at</h2>
+          <p class="lead">A lender is asking two different questions: “Can this borrower reliably repay the loan?” and “How much risk would we take by approving it?” These factors help answer both.</p>
+          <ol class="factor-list">
+            <li><span class="count">1</span><div><strong>Income stability</strong><p>Lenders want income that is documented and likely to continue. Regular paychecks are simple to verify. Self-employed or variable income may require tax returns and a longer history so the lender can calculate a dependable average.</p></div></li>
+            <li><span class="count">2</span><div><strong>Debt-to-income ratio</strong><p>Your DTI compares required monthly debt payments with gross monthly income. Lower usually means more room for a mortgage. Approval rules vary by lender and loan program, so 36% is a planning guide rather than a universal cutoff.</p></div></li>
+            <li><span class="count">3</span><div><strong>Credit score and credit history</strong><p>A credit score is a three-digit estimate of how likely you are to repay borrowed money. Scores generally run from 300 to 850; higher scores can improve approval odds and interest rates. Lenders also review the report behind the score for late payments, balances and recent applications.</p></div></li>
+            <li><span class="count">4</span><div><strong>Down payment size</strong><p>The down payment is cash you put toward the price upfront. More money down means a smaller loan and more ownership from day one, but draining every dollar to reach 20% can leave you unprepared for repairs or job changes.</p></div></li>
+            <li><span class="count">5</span><div><strong>Cash reserves</strong><p>Reserves are savings left after the down payment and closing costs. They show that you can keep paying if income pauses or a major expense arrives. Lenders may measure reserves in months of mortgage payments.</p></div></li>
+          </ol>
+          <p>The number a lender approves is a ceiling, not a spending target. A lender does not see every priority in your life. You do.</p>
+        </section>
+
+        <section id="down-payment">
+          <div class="rule-line"></div>
+          <h2>You may not need 20% down</h2>
+          <p>Twenty percent can reduce borrowing and often avoids mortgage insurance, but it is not the standard entry ticket many people assume. Lower-down-payment options exist:</p>
+          <div class="loan-grid">
+            <div class="loan"><h3>Conventional loan</h3><p>A mortgage that is not backed by a government agency; some programs allow a down payment as low as 3% for qualified borrowers.</p></div>
+            <div class="loan"><h3>FHA loan</h3><p>A mortgage insured by the Federal Housing Administration that can allow a smaller down payment and more flexible credit requirements, with mortgage insurance.</p></div>
+            <div class="loan"><h3>VA loan</h3><p>A Department of Veterans Affairs–backed mortgage for eligible service members, veterans and some surviving spouses that may require no down payment.</p></div>
+            <div class="loan"><h3>USDA loan</h3><p>A U.S. Department of Agriculture–backed mortgage for eligible buyers and homes in qualifying areas that may require no down payment.</p></div>
+          </div>
+          <p>The honest trade-off is cost. With a small down payment, you borrow more and may pay <strong>mortgage insurance</strong>—coverage that protects the lender, not you, if the loan is not repaid. The rules and duration differ by loan type. VA and USDA loans can also have program-specific fees. Compare the full monthly payment and upfront charges, not only the advertised down-payment percentage.</p>
+          <p>If you are deciding whether to put more cash into the house or keep some invested, <a href="/money/down-payment-vs-investment-calculator/">compare a larger down payment with investing the difference</a>. Keep uncertainty in mind: investment returns are not guaranteed, while a smaller loan reduces a known cost.</p>
+        </section>
+
+        <section id="hidden-costs">
+          <div class="rule-line"></div>
+          <h2>The payment is not the whole cost</h2>
+          <p class="lead">A mortgage quote can look manageable and still leave the monthly budget stretched. Add these often-forgotten line items before choosing a price.</p>
+          <ul class="cost-list">
+            <li><strong>Property taxes</strong><p>Local taxes can change by city, county, school district and home value. They may rise over time even if your mortgage’s principal and interest stay fixed.</p><span class="doc-tag">Where to find it: the property listing, county appraisal or tax office record, and lender estimate.</span></li>
+            <li><strong>Homeowners insurance</strong><p>Premiums depend on the property, coverage, location and insurer. Flood or other separate coverage may be needed and is not automatically included.</p><span class="doc-tag">Where to find it: request real quotes for the address before committing.</span></li>
+            <li><strong>Maintenance and repairs</strong><p>A common rule of thumb is to budget about 1% of the home’s value per year. That is $4,000 a year on a $400,000 home, or about $333 a month. Actual costs are uneven: some years are quiet, while a roof, air conditioner or plumbing repair can be expensive.</p><span class="doc-tag">Where to find it: inspection findings, the home’s age and your own repair history.</span></li>
+            <li><strong>HOA dues</strong><p>A homeowners association, or HOA, charges owners for shared services or community upkeep. Dues can rise, and an HOA can impose a special assessment—a separate charge for a large project.</p><span class="doc-tag">Where to find it: the listing and the HOA’s budget, fee schedule and meeting records.</span></li>
+            <li><strong>Closing costs</strong><p>These are one-time costs for arranging and completing the purchase, such as lender charges, appraisal, title services, prepaid taxes and insurance. They are separate from the down payment.</p><span class="doc-tag">Where to find it: the lender’s Loan Estimate; test a range with the closing cost calculator.</span></li>
+          </ul>
+          <p><a href="/money/closing-cost-calculator/">Estimate cash needed for closing costs</a> before treating your savings as available for a down payment. If a lender offers “points,” use the <a href="/money/mortgage-discount-points-calculator/">mortgage discount points calculator to find the break-even point</a>. A discount point is an upfront fee paid in exchange for a lower mortgage rate; the break-even point is how long monthly savings take to recover that fee.</p>
+        </section>
+
+        <section id="rent-buy">
+          <div class="rule-line"></div>
+          <h2>Renting versus buying: neither always wins</h2>
+          <p>Buying can build equity—your ownership value in the home—as the loan balance falls and the property value changes. But buying also adds transaction costs, repair risk and responsibility. Renting buys flexibility and transfers most major repair work to a landlord, but it does not build home equity.</p>
+          <div class="versus">
+            <div>
+              <h3>Renting may fit better when…</h3>
+              <ul>
+                <li>You may move within a few years.</li>
+                <li>Home prices are high compared with local rents.</li>
+                <li>You value flexibility for work, family or location.</li>
+                <li>Buying would empty your emergency savings.</li>
+                <li>You do not want maintenance responsibility.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Buying may fit better when…</h3>
+              <ul>
+                <li>You expect to stay long enough to spread out closing and selling costs.</li>
+                <li>The full monthly cost fits without sacrificing other goals.</li>
+                <li>You have cash for closing and emergencies.</li>
+                <li>You want control over the space.</li>
+                <li>You accept repair costs and less mobility.</li>
+              </ul>
+            </div>
+          </div>
+          <p>Do not compare rent only with mortgage principal and interest. Compare rent with the full ownership cost, then consider how long you expect to stay. The <a href="/money/rent-vs-buy-calculator/">rent-versus-buy calculator can compare both paths over time</a>.</p>
+        </section>
+
+        <section id="gather">
+          <div class="rule-line"></div>
+          <h2>Gather these numbers before house-hunting</h2>
+          <p class="lead">A realistic search begins with documents, not open houses. Here is what to collect—and exactly where the numbers usually live.</p>
+          <ul class="checklist">
+            <li><strong>Income</strong><p>Use recent pay stubs for current gross pay. If income varies or you are self-employed, use recent tax returns and year-to-date business records. A W-2 shows wages from an employer for a past tax year; a 1099 reports certain nonemployee or other income.</p><span class="doc-tag">Look for: gross pay before deductions and the frequency of each paycheck.</span></li>
+            <li><strong>Monthly debt payments</strong><p>Use the required monthly amount—not the total balance—for car loans, student loans, personal loans and credit cards. Include co-signed debt that still appears as your obligation.</p><span class="doc-tag">Look for: the “minimum payment due” on each latest statement and your credit report.</span></li>
+            <li><strong>Savings</strong><p>Separate money available for the down payment from money needed for closing, moving, immediate repairs and an emergency fund. An emergency fund is cash reserved for unexpected expenses or income loss.</p><span class="doc-tag">Look for: current balances on bank and other liquid savings statements.</span></li>
+            <li><strong>Credit report</strong><p>Review the accounts, payment history and errors in your credit files before a lender does. A credit report is the detailed record; a credit score is the number calculated from report information.</p><span class="doc-tag">Look for: balances, payment status, unfamiliar accounts and incorrect late payments.</span></li>
+            <li><strong>Property-specific costs</strong><p>Once you have an address, replace broad estimates with local taxes, an insurance quote, HOA dues and inspection findings.</p><span class="doc-tag">Look for: the listing, county records, insurer quote, HOA documents and seller disclosures.</span></li>
+          </ul>
+          <p>Keep a margin for change. Taxes, insurance and HOA dues can rise. Repairs arrive on their own schedule. A price that works only when every estimate is perfect is probably too high.</p>
+        </section>
+
+        <section id="next" class="next-steps">
+          <h2>Turn the guide into your number</h2>
+          <p>Start with a comfortable monthly budget, then work backward to a price. Test more than one interest rate and keep money outside the purchase for repairs and emergencies.</p>
+          <ul class="link-list">
+            <li><a href="/money/mortgage-affordability-calculator/">Run your numbers in the affordability calculator</a></li>
+            <li><a href="/money/mortgage-payment-calculator/">Estimate a full monthly mortgage payment</a></li>
+            <li><a href="/money/rent-vs-buy-calculator/">Compare renting with buying</a></li>
+            <li><a href="/money/down-payment-vs-investment-calculator/">Compare down payment versus investing</a></li>
+            <li><a href="/money/closing-cost-calculator/">Estimate closing costs</a></li>
+            <li><a href="/money/mortgage-discount-points-calculator/">Test whether mortgage points pay off</a></li>
+          </ul>
+        </section>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    <div class="shell">
+      <p><strong>Important:</strong> This guide is for informational and educational purposes only and does not constitute financial, tax, legal, investment, or insurance advice.</p>
+      <nav aria-label="Related guides">
+        <a href="/money/guides/debt-payoff-guide/">Read the plain-English debt payoff guide</a>
+        <a href="/money/guides/retirement-planning-guide/">Read the plain-English retirement planning guide</a>
+        <a href="/money/">Browse all Honed Money tools</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
