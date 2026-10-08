@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0e14">
+  <meta name="description" content="Contact Honed Money to report a calculator error, suggest a new financial tool, or ask a question about the site.">
+  <link rel="canonical" href="https://honedsignal.com/money/contact/">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+  <title>Contact | Honed Money</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Contact | Honed Money",
+    "description": "Contact Honed Money to report a calculator error, suggest a new financial tool, or ask a question about the site.",
+    "url": "https://honedsignal.com/money/contact/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Honed Money",
+      "url": "https://honedsignal.com/money/"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page: #0b0e14;
+      --surface: #121720;
+      --text: #f5f7fa;
+      --muted: #b8c0cb;
+      --quiet: #87919e;
+      --line: #303844;
+      --orange: #f7931a;
+      --orange-soft: #ffb65c;
+      --focus: #ffd39e;
+      --max: 1120px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page: #0b0e14;
+        --surface: #121720;
+        --text: #f5f7fa;
+        --muted: #b8c0cb;
+        --quiet: #87919e;
+        --line: #303844;
+        --orange: #f7931a;
+        --orange-soft: #ffb65c;
+        --focus: #ffd39e;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { background: var(--page); }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      min-height: 100vh;
+      background: var(--page);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    .page {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+      padding: calc(28px + env(safe-area-inset-top)) 0 calc(40px + env(safe-area-inset-bottom));
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--orange-soft);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-underline-offset: 0.22em;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(290px, 0.78fr);
+      gap: clamp(48px, 8vw, 112px);
+      align-items: end;
+      padding: clamp(64px, 11vw, 132px) 0 clamp(64px, 9vw, 104px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1, h2 {
+      font-family: "Source Serif 4", Georgia, serif;
+      color: var(--orange);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      font-size: clamp(3rem, 7.5vw, 6.7rem);
+    }
+
+    .hero-copy {
+      margin: 24px 0 0;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2vw, 1.28rem);
+      line-height: 1.55;
+    }
+
+    .contact-block {
+      padding: 28px 0 2px;
+      border-top: 5px solid var(--orange);
+    }
+
+    .contact-label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .email-link {
+      display: inline;
+      color: var(--text);
+      font-size: clamp(1.18rem, 2.3vw, 1.65rem);
+      font-weight: 700;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+      text-decoration-color: var(--orange);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.24em;
+    }
+
+    .email-link:hover { color: var(--orange-soft); }
+
+    .contact-note {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: clamp(48px, 8vw, 112px);
+      padding: clamp(60px, 9vw, 100px) 0;
+    }
+
+    .section-heading { font-size: clamp(2rem, 4vw, 3.2rem); }
+
+    .section-intro {
+      margin: 20px 0 0;
+      max-width: 430px;
+      color: var(--muted);
+    }
+
+    .reason-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .reason-list li {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .number {
+      color: var(--orange);
+      font-variant-numeric: tabular-nums;
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+    }
+
+    .include-note {
+      grid-column: 1 / -1;
+      margin-top: 0;
+      padding: clamp(24px, 4vw, 34px);
+      background: var(--surface);
+      border-left: 4px solid var(--orange);
+    }
+
+    .include-note strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--orange-soft);
+      font-size: 1rem;
+    }
+
+    .include-note p { margin: 0; color: var(--muted); }
+
+    .faq {
+      padding: clamp(60px, 9vw, 100px) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.58fr) minmax(0, 1.42fr);
+      gap: clamp(48px, 9vw, 128px);
+      align-items: start;
+    }
+
+    .faq-list { margin: 0; }
+
+    .faq-item {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.75fr) minmax(0, 1.25fr);
+      gap: 32px;
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .faq-item:last-child { border-bottom: 1px solid var(--line); }
+
+    .faq-item dt {
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .faq-item dd { margin: 0; color: var(--muted); }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      align-items: flex-start;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      color: var(--quiet);
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    .disclaimer { max-width: 780px; margin: 0; }
+    .reviewed { flex: 0 0 auto; margin: 0; white-space: nowrap; }
+
+    @media (max-width: 760px) {
+      .page { width: min(100% - 32px, var(--max)); }
+
+      .hero,
+      .content-grid,
+      .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .hero {
+        padding: 56px 0 64px;
+        align-items: start;
+      }
+
+      h1 { font-size: clamp(2.9rem, 15vw, 4.5rem); }
+      .content-grid { padding: 64px 0; }
+      .include-note { grid-column: auto; }
+      .faq { padding: 64px 0; }
+
+      .faq-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 24px 0;
+      }
+
+      footer { flex-direction: column; gap: 14px; }
+      .reviewed { white-space: normal; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav aria-label="Back to Honed Money">
+      <a class="back-link" href="/money/">← Honed Money</a>
+    </nav>
+
+    <section class="hero" aria-labelledby="contact-heading">
+      <div>
+        <h1 id="contact-heading">Tell us what could be better.</h1>
+        <p class="hero-copy">Found something that needs attention—or have an idea worth building? Send us a note. We read every message.</p>
+      </div>
+
+      <div class="contact-block">
+        <span class="contact-label">Email Honed Money</span>
+        <a class="email-link" href="mailto:contact@honedsignal.com">contact@honedsignal.com</a>
+        <p class="contact-note">This link opens your email app. There’s no contact form, and this page doesn’t collect anything you type.</p>
+      </div>
+    </section>
+
+    <section class="content-grid" aria-labelledby="write-about-heading">
+      <div>
+        <h2 class="section-heading" id="write-about-heading">What to write about</h2>
+        <p class="section-intro">A quick note is enough. These are the messages that help most.</p>
+      </div>
+
+      <ul class="reason-list">
+        <li><span class="number">01</span><span>Report a calculator error</span></li>
+        <li><span class="number">02</span><span>Suggest a new tool</span></li>
+        <li><span class="number">03</span><span>Ask a question</span></li>
+      </ul>
+
+      <aside class="include-note" aria-label="What to include when reporting an error">
+        <strong>Reporting an error?</strong>
+        <p>Tell us which calculator page you were on, what numbers you entered, and what looked wrong.</p>
+      </aside>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-heading">
+      <div class="faq-layout">
+        <h2 class="section-heading" id="faq-heading">A couple of quick answers</h2>
+
+        <dl class="faq-list">
+          <div class="faq-item">
+            <dt>Do you give financial advice?</dt>
+            <dd>No. Everything on the site is informational and educational only—not financial, tax, legal, investment, or insurance advice.</dd>
+          </div>
+          <div class="faq-item">
+            <dt>Is my data saved?</dt>
+            <dd>No. Every calculator runs entirely in your browser. Nothing you type is sent to or stored by us.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <footer>
+      <p class="disclaimer">This page is for informational and educational purposes only and does not constitute financial, tax, legal, investment, or insurance advice.</p>
+      <p class="reviewed">Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+</body>
+</html>

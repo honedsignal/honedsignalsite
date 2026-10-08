@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0b0e14" />
+    <meta
+      name="description"
+      content="Plain-English legal disclosure for Honed Money calculators, including estimates, 2026 tax rules, accuracy, liability, and privacy-friendly analytics."
+    />
+    <link rel="canonical" href="https://honedsignal.com/money/legal/" />
+    <link rel="icon" href="data:," />
+    <title>Legal Disclosure | Honed Money</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Legal Disclosure | Honed Money",
+        "description": "Plain-English legal disclosure for Honed Money calculators, including estimates, 2026 tax rules, accuracy, liability, and privacy-friendly analytics.",
+        "url": "https://honedsignal.com/money/legal/",
+        "inLanguage": "en-US",
+        "dateModified": "2026-10"
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --page: #0b0e14;
+        --surface: #121722;
+        --surface-strong: #171d29;
+        --text: #f4f6f8;
+        --muted: #b9c0ca;
+        --faint: #7f8896;
+        --line: #29313d;
+        --accent: #f7931a;
+        --accent-soft: rgba(247, 147, 26, 0.12);
+        --max: 820px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --page: #0b0e14;
+          --surface: #121722;
+          --surface-strong: #171d29;
+          --text: #f7f8fa;
+          --muted: #c1c7d0;
+          --faint: #8c95a2;
+          --line: #303947;
+          --accent: #f7931a;
+          --accent-soft: rgba(247, 147, 26, 0.14);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--page);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--page);
+        color: var(--text);
+        font-family: "Aptos", "Segoe UI", Helvetica, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration-color: rgba(247, 147, 26, 0.5);
+        text-underline-offset: 0.22em;
+      }
+
+      a:hover {
+        text-decoration-color: var(--accent);
+      }
+
+      a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 5px;
+        border-radius: 2px;
+      }
+
+      .page {
+        width: min(calc(100% - 40px), var(--max));
+        margin: 0 auto;
+        padding: max(24px, env(safe-area-inset-top)) 0 max(56px, env(safe-area-inset-bottom));
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-bottom: 70px;
+        font-size: 0.94rem;
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+        text-underline-offset: 0.28em;
+      }
+
+      header {
+        margin-bottom: 48px;
+      }
+
+      h1,
+      h2 {
+        font-family: Georgia, "Times New Roman", serif;
+        text-wrap: balance;
+      }
+
+      h1 {
+        margin: 0 0 22px;
+        max-width: 700px;
+        font-size: clamp(2.55rem, 7vw, 4.8rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+        font-weight: 700;
+      }
+
+      .lede {
+        max-width: 670px;
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1.08rem, 2.2vw, 1.25rem);
+        line-height: 1.65;
+      }
+
+      .notice {
+        position: relative;
+        margin: 0 0 54px;
+        padding: 25px 28px 26px 30px;
+        background: var(--accent-soft);
+        border-top: 1px solid rgba(247, 147, 26, 0.45);
+        border-bottom: 1px solid rgba(247, 147, 26, 0.28);
+      }
+
+      .notice::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 3px;
+        background: var(--accent);
+      }
+
+      .notice strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--accent);
+        font-size: 0.96rem;
+      }
+
+      .notice p {
+        margin: 0;
+        color: var(--text);
+      }
+
+      .sections {
+        border-top: 1px solid var(--line);
+      }
+
+      section {
+        display: grid;
+        grid-template-columns: 50px minmax(0, 1fr);
+        gap: 20px;
+        padding: 36px 0 38px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .number {
+        padding-top: 5px;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 750;
+        letter-spacing: 0.1em;
+        font-variant-numeric: tabular-nums;
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-size: clamp(1.45rem, 3vw, 1.85rem);
+        line-height: 1.2;
+        letter-spacing: -0.018em;
+      }
+
+      section p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      section p + p {
+        margin-top: 13px;
+      }
+
+      .source-list {
+        margin: 15px 0 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        list-style: none;
+      }
+
+      .source-list li {
+        padding: 4px 10px 5px;
+        border: 1px solid var(--line);
+        color: var(--text);
+        font-size: 0.84rem;
+        line-height: 1.4;
+      }
+
+      footer {
+        padding-top: 42px;
+      }
+
+      .footer-disclaimer {
+        margin: 0;
+        max-width: 700px;
+        color: var(--text);
+        font-size: 0.93rem;
+        line-height: 1.6;
+      }
+
+      .reviewed {
+        margin: 18px 0 0;
+        color: var(--faint);
+        font-size: 0.86rem;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          font-size: 16px;
+        }
+
+        .page {
+          width: min(calc(100% - 32px), var(--max));
+          padding-top: max(19px, env(safe-area-inset-top));
+        }
+
+        .back-link {
+          margin-bottom: 52px;
+        }
+
+        header {
+          margin-bottom: 36px;
+        }
+
+        h1 {
+          font-size: clamp(2.6rem, 15vw, 3.7rem);
+        }
+
+        .notice {
+          margin-left: -16px;
+          margin-right: -16px;
+          padding: 22px 22px 23px 25px;
+        }
+
+        section {
+          grid-template-columns: 1fr;
+          gap: 7px;
+          padding: 29px 0 31px;
+        }
+
+        .number {
+          padding-top: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      @media print {
+        :root {
+          --page: #ffffff;
+          --text: #111111;
+          --muted: #333333;
+          --faint: #555555;
+          --line: #d2d2d2;
+          --accent: #9a4e00;
+          --accent-soft: #fff4e6;
+        }
+
+        body {
+          background: #ffffff;
+        }
+
+        .page {
+          width: 100%;
+          max-width: none;
+          padding: 0;
+        }
+
+        .back-link {
+          display: none;
+        }
+
+        section {
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <a class="back-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+
+      <header>
+        <h1>Legal Disclosure</h1>
+        <p class="lede">
+          Honed Money makes financial questions easier to explore. It does not replace guidance from a qualified professional who knows your full situation.
+        </p>
+      </header>
+
+      <aside class="notice" aria-label="Important disclaimer">
+        <strong>The short version</strong>
+        <p>
+          Use these calculators to learn and compare possibilities—not as the only basis for an important financial decision.
+        </p>
+      </aside>
+
+      <div class="sections">
+        <section aria-labelledby="not-advice">
+          <div class="number" aria-hidden="true">01</div>
+          <div>
+            <h2 id="not-advice">Information, not advice</h2>
+            <p>
+              Honed Money is for informational and educational purposes only. Nothing on the site is financial, tax, legal, investment, or insurance advice. A result is not a recommendation to buy, sell, borrow, invest, file, claim, or choose any product or strategy.
+            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="no-relationship">
+          <div class="number" aria-hidden="true">02</div>
+          <div>
+            <h2 id="no-relationship">No professional relationship</h2>
+            <p>
+              Using the site does not create an advisor-client, attorney-client, accountant-client, insurance-agent, fiduciary, or other professional relationship. Honed Money does not know your complete finances, goals, eligibility, or obligations.
+            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="estimates">
+          <div class="number" aria-hidden="true">03</div>
+          <div>
+            <h2 id="estimates">Every result is an estimate</h2>
+            <p>
+              Calculators use the numbers you enter and the assumptions explained on each page. A small change in an input, rate, date, fee, or rule can change the result. Estimates may be rounded and may not include every cost or exception that applies to you.
+            </p>
+            <p>
+              Before acting, verify important figures with primary sources and official documents. Depending on the topic, that may include IRS.gov, SSA.gov, VA.gov, your plan documents, lender disclosures, policy forms, or a qualified professional.
+            </p>
+            <ul class="source-list" aria-label="Examples of primary sources">
+              <li>IRS.gov</li>
+              <li>SSA.gov</li>
+              <li>VA.gov</li>
+            </ul>
+          </div>
+        </section>
+
+        <section aria-labelledby="tax-year">
+          <div class="number" aria-hidden="true">04</div>
+          <div>
+            <h2 id="tax-year">2026 tax figures</h2>
+            <p>
+              Tax-related figures on the site reflect 2026 federal law and published 2026 rules unless a calculator clearly says otherwise. Tax rules, thresholds, deductions, credits, and contribution limits can change every year. State and local rules may also differ.
+            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="as-is">
+          <div class="number" aria-hidden="true">05</div>
+          <div>
+            <h2 id="as-is">Provided “as is”</h2>
+            <p>
+              We work to make the site useful and understandable, but we do not promise that every calculation, explanation, or figure is complete, accurate, current, or suitable for your situation. The site may contain errors or become outdated.
+            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="decisions">
+          <div class="number" aria-hidden="true">06</div>
+          <div>
+            <h2 id="decisions">Your decisions remain yours</h2>
+            <p>
+              You are responsible for checking the information and deciding what to do with it. To the fullest extent allowed by law, Honed Money and Honed Signal are not responsible for losses, costs, missed benefits, tax consequences, or other outcomes from decisions made using the site or from being unable to use it.
+            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="analytics">
+          <div class="number" aria-hidden="true">07</div>
+          <div>
+            <h2 id="analytics">Privacy-friendly analytics</h2>
+            <p>
+              The site uses privacy-friendly Cloudflare analytics to understand overall traffic and site performance. This helps identify which pages are useful and where the site needs improvement.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        <p class="footer-disclaimer">
+          This page is for informational and educational purposes only and does not constitute financial, tax, legal, investment, or insurance advice.
+        </p>
+        <p class="reviewed">Last reviewed: October 2026.</p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0e14">
+  <meta name="description" content="Learn about Honed Money, a free collection of 115 plain-English finance calculators across budgeting, debt, housing, investing, retirement, taxes, insurance, and more.">
+  <link rel="canonical" href="https://honedsignal.com/money/about/">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <title>About | Honed Money</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "About Honed Money",
+    "url": "https://honedsignal.com/money/about/",
+    "description": "Honed Money is a free collection of 115 finance calculators from Honed Signal, with plain-English explanations across 21 money topics.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Honed Money",
+      "url": "https://honedsignal.com/money/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Honed Signal",
+      "url": "https://honedsignal.com/"
+    },
+    "dateReviewed": "2026-10"
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page: #0b0e14;
+      --surface: #111722;
+      --surface-strong: #171f2c;
+      --ink: #f3f5f7;
+      --muted: #b7c0cc;
+      --quiet: #8994a3;
+      --line: #2a3341;
+      --accent: #f7931a;
+      --accent-soft: #ffc77f;
+      --measure: 68rem;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: dark;
+        --page: #0b0e14;
+        --surface: #111722;
+        --surface-strong: #171f2c;
+        --ink: #f3f5f7;
+        --muted: #b7c0cc;
+        --quiet: #8994a3;
+        --line: #2a3341;
+        --accent: #f7931a;
+        --accent-soft: #ffc77f;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--page); scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+    a:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    .page {
+      width: min(100% - 2.5rem, var(--measure));
+      margin-inline: auto;
+      padding: max(1.25rem, env(safe-area-inset-top)) 0 max(2.5rem, env(safe-area-inset-bottom));
+    }
+
+    .back {
+      display: inline-block;
+      margin: 0 0 clamp(3.5rem, 10vw, 7rem);
+      color: var(--muted);
+      font-weight: 500;
+      text-decoration: none;
+      text-underline-offset: 0.22em;
+    }
+    .back:hover { color: var(--accent); text-decoration: underline; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(15rem, 0.55fr);
+      gap: clamp(3rem, 9vw, 7rem);
+      align-items: end;
+      padding-bottom: clamp(4rem, 9vw, 7rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 1.25rem;
+      color: var(--accent);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 11ch;
+      margin-bottom: 1.4rem;
+      font-size: clamp(2.75rem, 7vw, 5.5rem);
+      font-weight: 600;
+      letter-spacing: -0.055em;
+      line-height: 0.98;
+    }
+    .lede {
+      max-width: 39rem;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+      line-height: 1.55;
+    }
+    .lede strong { color: var(--ink); font-weight: 500; }
+
+    .promise {
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--accent);
+    }
+    .promise p { margin: 0; }
+    .promise-title {
+      color: var(--accent-soft);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .promise-copy { color: var(--muted); }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      margin: 0;
+      padding: 1px;
+      background: var(--line);
+    }
+    .fact {
+      min-width: 0;
+      padding: clamp(2rem, 5vw, 3.5rem);
+      background: var(--page);
+    }
+    .fact dt {
+      margin-bottom: 0.4rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .fact dd {
+      margin: 0;
+      color: var(--accent);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 600;
+      letter-spacing: -0.06em;
+      line-height: 1;
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: minmax(11rem, 0.55fr) minmax(0, 1.45fr);
+      gap: clamp(2rem, 8vw, 7rem);
+      padding: clamp(4rem, 9vw, 7rem) 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .section h2 {
+      margin-bottom: 0;
+      color: var(--accent-soft);
+      font-size: clamp(1.5rem, 3vw, 2.15rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+    }
+    .copy { max-width: 43rem; }
+    .copy > p { color: var(--muted); font-size: 1.08rem; }
+    .copy > p:last-child { margin-bottom: 0; }
+    .copy strong { color: var(--ink); }
+
+    .topic-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin: 1.8rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .topic-list li {
+      padding: 0.45rem 0.75rem;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem;
+      margin-top: 2.4rem;
+    }
+    .feature { position: relative; padding-top: 1.1rem; }
+    .feature::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 2.25rem;
+      height: 2px;
+      background: var(--accent);
+    }
+    .feature h3 {
+      margin-bottom: 0.55rem;
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .feature p { margin: 0; color: var(--muted); }
+
+    .verification {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .verification-item {
+      display: grid;
+      grid-template-columns: 1.6rem minmax(0, 1fr);
+      gap: 0.8rem;
+      align-items: start;
+    }
+    .mark {
+      color: var(--accent);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-weight: 600;
+      line-height: 1.65;
+    }
+    .verification-item p { margin: 0; color: var(--muted); }
+    .verification-item strong { color: var(--ink); }
+
+    .cta {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2rem;
+      align-items: center;
+      margin: clamp(4rem, 9vw, 7rem) 0;
+      padding: clamp(2rem, 5vw, 3.5rem);
+      background: var(--surface);
+    }
+    .cta h2 {
+      margin-bottom: 0.55rem;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+    .cta p { margin-bottom: 0; color: var(--muted); }
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.25rem;
+      padding: 0.8rem 1.15rem;
+      background: var(--accent);
+      color: #0b0e14;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .cta-link:hover { background: #ffae4d; }
+
+    footer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+      color: var(--quiet);
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+    footer p { margin: 0; }
+    .reviewed { white-space: nowrap; }
+
+    @media (max-width: 720px) {
+      .page { width: min(100% - 2rem, var(--measure)); }
+      .back { margin-bottom: 3.5rem; }
+      .hero, .section, .cta, footer { grid-template-columns: 1fr; }
+      .hero { gap: 2.5rem; }
+      .promise { max-width: 28rem; }
+      .section { gap: 1.5rem; }
+      .features { grid-template-columns: 1fr; gap: 1.8rem; }
+      .cta { align-items: start; }
+      .cta-link { width: 100%; white-space: normal; text-align: center; }
+      footer { gap: 0.8rem; }
+      .reviewed { white-space: normal; }
+    }
+
+    @media (max-width: 420px) {
+      .facts { grid-template-columns: 1fr; }
+      h1 { font-size: clamp(2.5rem, 15vw, 3.65rem); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="/money/">← Honed Money</a>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">From Honed Signal</p>
+        <h1 id="page-title">Money questions, answered in plain English.</h1>
+        <p class="lede">Honed Money is a <strong>free collection of finance calculators</strong> built to help you understand the choices in front of you—without turning the answer into a sales pitch.</p>
+      </div>
+      <div class="promise" aria-label="Our promise">
+        <p class="promise-title">No accounts. No signup. No hype.</p>
+        <p class="promise-copy">Choose a tool, enter the numbers, and get a useful answer.</p>
+      </div>
+    </section>
+
+    <dl class="facts" aria-label="Honed Money by the numbers">
+      <div class="fact">
+        <dt>Free calculators</dt>
+        <dd>115</dd>
+      </div>
+      <div class="fact">
+        <dt>Money topics</dt>
+        <dd>21</dd>
+      </div>
+    </dl>
+
+    <section class="section" aria-labelledby="coverage-title">
+      <h2 id="coverage-title">Built for the questions that come up in real life</h2>
+      <div class="copy">
+        <p>The tools cover everyday decisions and longer-term plans, from working out a monthly budget to comparing debt payoff strategies or estimating retirement income.</p>
+        <ul class="topic-list" aria-label="Example calculator topics">
+          <li>Budgeting</li>
+          <li>Debt</li>
+          <li>Housing</li>
+          <li>Investing</li>
+          <li>Retirement</li>
+          <li>Taxes</li>
+          <li>Insurance</li>
+          <li>And 14 more</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="ways-title">
+      <h2 id="ways-title">More than a calculator list</h2>
+      <div class="copy">
+        <p>Sometimes you know the exact calculation you need. Sometimes you only know the question. Honed Money supports both.</p>
+        <div class="features">
+          <article class="feature">
+            <h3>Decision Center</h3>
+            <p>Guided decision paths walk through real-life money questions step by step, then point you to the tools that can help.</p>
+          </article>
+          <article class="feature">
+            <h3>What-If mode</h3>
+            <p>Compare different scenarios side by side so you can see how changing one choice may affect the result.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="approach-title">
+      <h2 id="approach-title">How we approach the numbers</h2>
+      <div class="copy">
+        <p>A calculator is only useful if you can understand its answer and trust the math behind it.</p>
+        <div class="verification">
+          <div class="verification-item">
+            <span class="mark" aria-hidden="true">01</span>
+            <p><strong>Results explained plainly.</strong> Every calculator includes a clear explanation of what the result means—not just a number on a screen.</p>
+          </div>
+          <div class="verification-item">
+            <span class="mark" aria-hidden="true">02</span>
+            <p><strong>Math checked against primary sources.</strong> When a calculation relies on official rules or figures, it is verified against sources such as the IRS, Social Security Administration, and U.S. Department of Veterans Affairs.</p>
+          </div>
+          <div class="verification-item">
+            <span class="mark" aria-hidden="true">03</span>
+            <p><strong>Reviewed October 2026.</strong> The calculator content and figures were reviewed in October 2026.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" aria-labelledby="explore-title">
+      <div>
+        <h2 id="explore-title">Find the tool for your question.</h2>
+        <p>Browse the full collection by topic.</p>
+      </div>
+      <a class="cta-link" href="/money/browse/">Explore all 115 calculators →</a>
+    </section>
+
+    <footer>
+      <p>This page is for informational and educational purposes only and does not constitute financial, tax, legal, investment, or insurance advice.</p>
+      <p class="reviewed">Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+</body>
+</html>
