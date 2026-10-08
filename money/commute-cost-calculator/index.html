@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commute Cost Calculator | Honed Money</title>
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Commute Cost Calculator | Honed Money">
+<meta property="og:description" content="See what your drive to work really costs you each year — in fuel, per mile, and per month.">
+<meta property="og:url" content="https://honedsignal.com/money/commute-cost-calculator/">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Commute Cost Calculator",
+  "url": "https://honedsignal.com/money/commute-cost-calculator/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "description": "Estimate annual fuel cost, cost per mile, and monthly fuel spend for a gas or electric vehicle commute, plus savings from driving 10% less.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<style>
+  :root { --ink:#0b0e14; --orange:#f7931a; --paper:#f5f5f5; --surface:#141a26; --border:#2a3346; --muted:#9aa3b5; --gray-btn:#3a4356; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--ink); color:var(--paper); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; }
+  a { color:var(--orange); }
+  .topbar { max-width:760px; margin:0 auto; padding:14px 18px 0; }
+  .topbar a { text-decoration:none; font-weight:600; }
+  .hero { margin-top:12px; background:linear-gradient(rgba(11,14,20,.78),rgba(11,14,20,.78)), url('/money/images/auto.webp') center/cover no-repeat; min-height:220px; display:flex; align-items:center; justify-content:center; text-align:center; padding:48px 18px; }
+  .hero h1 { margin:0; font-size:clamp(1.7rem,5vw,2.6rem); color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.7); }
+  .wrap { max-width:760px; margin:0 auto; padding:20px 18px 40px; }
+  .lede { font-size:1.1rem; color:var(--paper); margin:18px 0 24px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:20px; }
+  .field { margin-bottom:16px; }
+  .field label { display:block; font-weight:600; margin-bottom:6px; }
+  .field label .unit { color:var(--muted); font-weight:400; font-size:.9rem; }
+  .field input { width:100%; padding:12px 14px; font-size:1rem; background:#0e1320; border:1px solid var(--border); border-radius:8px; color:var(--paper); }
+  .field input::placeholder { color:#6b7488; }
+  .field input:focus { outline:2px solid var(--orange); outline-offset:1px; border-color:var(--orange); }
+  .toggle { display:flex; background:#0e1320; border:1px solid var(--border); border-radius:10px; padding:4px; margin-bottom:16px; }
+  .toggle button { flex:1; padding:12px; border:none; border-radius:7px; background:transparent; color:var(--paper); font-size:1rem; font-weight:600; cursor:pointer; }
+  .toggle button.active { background:var(--orange); color:#0b0e14; }
+  .calc-btn { width:100%; padding:14px; font-size:1.1rem; font-weight:700; background:var(--orange); color:#0b0e14; border:none; border-radius:10px; cursor:pointer; }
+  .calc-btn:hover { filter:brightness(1.08); }
+  .errors { display:none; background:#2a1215; border:1px solid #e5484d; border-radius:10px; padding:14px 16px; margin-bottom:16px; color:#ffb4b8; }
+  .errors ul { margin:6px 0 0; padding-left:20px; }
+  .results { display:none; }
+  .results h2 { margin-top:0; color:var(--orange); }
+  .stat { display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid var(--border); }
+  .stat:last-of-type { border-bottom:none; }
+  .stat .val { font-weight:700; font-size:1.15rem; text-align:right; }
+  .save-line { background:rgba(247,147,26,.14); border:1px solid var(--orange); border-radius:10px; padding:14px 16px; margin-top:16px; font-weight:600; }
+  .btnrow { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .btnrow button, .btnrow a.btn { padding:12px 18px; border-radius:10px; font-size:1rem; font-weight:600; cursor:pointer; border:none; text-decoration:none; display:inline-block; }
+  .btn-email { background:var(--orange); color:#0b0e14; }
+  .btn-copy { background:var(--gray-btn); color:var(--paper); }
+  .btn-explain { background:transparent; color:var(--orange); border:1px solid var(--orange); }
+  .btnrow button:disabled, .btnrow a.btn:disabled { opacity:.45; cursor:not-allowed; }
+  .explain { display:none; margin-top:16px; padding:16px; border-left:4px solid var(--orange); background:#101625; border-radius:0 10px 10px 0; }
+  .crosslink { margin:18px 0; font-size:1.02rem; }
+  footer.method, footer.excluded { font-size:.95rem; color:var(--muted); margin-top:26px; }
+  footer h3 { color:var(--paper); font-size:1.05rem; margin-bottom:8px; }
+  footer ul { padding-left:20px; margin:8px 0; }
+  .disclaimer { margin-top:30px; padding-top:16px; border-top:1px solid var(--border); font-size:.85rem; color:var(--muted); }
+  @media (max-width:480px) { .hero { min-height:170px; padding:36px 14px; } .stat .val { font-size:1.05rem; } }
+</style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="What your drive to work really costs. Free commute cost calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/commute-cost-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Commute Cost Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/commute-cost-calculator/","description":"What your drive to work really costs. Free commute cost calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+
+<div class="topbar">
+  <a href="/money/">&larr; Honed Money</a>
+</div>
+
+<header class="hero">
+  <h1>Commute / Fuel Cost Calculator</h1>
+</header>
+
+<main class="wrap">
+
+  <p class="lede">See what your daily drive to work really costs you each year &mdash; in fuel, per mile, and per month.</p>
+
+  <div class="card" id="inputCard">
+    <div class="field">
+      <label for="rtMiles">Round-trip miles <span class="unit">(miles per day)</span></label>
+      <input type="number" id="rtMiles" placeholder="e.g. 40" min="0" step="any" inputmode="decimal">
+    </div>
+    <div class="field">
+      <label for="daysWeek">Days per week commuting <span class="unit">(1&ndash;7)</span></label>
+      <input type="number" id="daysWeek" placeholder="e.g. 5" min="1" max="7" step="any" inputmode="decimal">
+    </div>
+    <div class="field">
+      <label for="weeksYear">Weeks per year <span class="unit">(1&ndash;52)</span></label>
+      <input type="number" id="weeksYear" placeholder="e.g. 48" min="1" max="52" step="any" inputmode="decimal">
+    </div>
+
+    <div class="field">
+      <label>Vehicle type</label>
+      <div class="toggle" role="group" aria-label="Vehicle type">
+        <button type="button" id="gasBtn" class="active" onclick="setVehicle('gas')" aria-pressed="true">Gas</button>
+        <button type="button" id="evBtn" onclick="setVehicle('ev')" aria-pressed="false">Electric</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="eff"><span id="effLabel">Fuel efficiency</span> <span class="unit" id="effUnit">(MPG)</span></label>
+      <input type="number" id="eff" placeholder="e.g. 30" min="0" step="any" inputmode="decimal">
+    </div>
+    <div class="field">
+      <label for="price"><span id="priceLabel">Fuel price</span> <span class="unit" id="priceUnit">($ per gallon)</span></label>
+      <input type="number" id="price" placeholder="e.g. 3.50" min="0" step="any" inputmode="decimal">
+    </div>
+
+    <div class="errors" id="errors" role="alert"></div>
+
+    <button type="button" class="calc-btn" id="calcBtn" onclick="calculate()">Calculate</button>
+  </div>
+
+  <div class="card results" id="results">
+    <h2>Your commute costs</h2>
+    <div class="stat"><span>Annual fuel cost</span><span class="val" id="outAnnual">$0.00</span></div>
+    <div class="stat"><span>Annual miles driven</span><span class="val" id="outMiles">0</span></div>
+    <div class="stat"><span>Fuel cost per mile</span><span class="val" id="outPerMile">$0.00</span></div>
+    <div class="stat"><span>Monthly fuel cost</span><span class="val" id="outMonthly">$0.00</span></div>
+    <div class="save-line" id="outSave"></div>
+
+    <div class="btnrow">
+      <a class="btn btn-email" id="emailBtn" href="#">Email my results</a>
+      <button type="button" class="btn-copy" id="copyBtn" onclick="copyResults()">Copy results</button>
+      <button type="button" class="btn-explain" id="explainBtn" onclick="toggleExplain()" aria-expanded="false">Explain these results</button>
+    </div>
+    <div class="explain" id="explain">
+      <p><strong>Fuel is only part of owning a car.</strong> This calculator counts just the fuel (or electricity) for your commute &mdash; it leaves out depreciation, insurance, maintenance and repairs, tolls, parking, and financing (see &ldquo;What is excluded&rdquo; below). Your true cost per mile of driving is higher.</p>
+      <p>Small per-mile amounts compound fast over a commute: a few cents per mile, times hundreds of miles a week, becomes thousands of dollars a year. That&rsquo;s why even a 10% cut in driving &mdash; one carpool day, one work-from-home day &mdash; shows up as real money.</p>
+    </div>
+
+    <p class="crosslink">Thinking about switching vehicles? Compare properly: <a href="/money/ev-vs-gas-car-calculator/">EV vs Gas Car Calculator</a></p>
+  </div>
+
+  <footer class="method">
+    <h3>Method</h3>
+    <ul>
+      <li><strong>Annual miles</strong> = round-trip miles &times; days per week &times; weeks per year.</li>
+      <li><strong>Gas:</strong> gallons used = annual miles &divide; MPG; annual fuel cost = gallons &times; price per gallon.</li>
+      <li><strong>Electric:</strong> kWh used = annual miles &divide; miles-per-kWh; annual cost = kWh &times; price per kWh.</li>
+      <li><strong>Cost per mile</strong> = annual fuel cost &divide; annual miles.</li>
+      <li><strong>Monthly cost</strong> = annual fuel cost &divide; 12.</li>
+      <li><strong>Drive-10%-less savings</strong> = annual fuel cost &times; 0.10.</li>
+    </ul>
+    <p>Money values are rounded to two decimals; miles to whole numbers.</p>
+  </footer>
+
+  <footer class="excluded">
+    <h3>What is excluded</h3>
+    <p>This calculator covers fuel or electricity only. It does not include depreciation, insurance, maintenance and repairs, tolls, parking, or financing costs.</p>
+  </footer>
+
+  <div class="disclaimer">
+    <p>This page is for informational purposes only and is not financial, tax, legal, investment, or insurance advice.</p>
+    <p>Last reviewed: October 2026.</p>
+  </div>
+
+</main>
+
+<script>
+(function () {
+  var vehicle = 'gas';
+  var last = null;
+
+  window.setVehicle = function (v) {
+    vehicle = v;
+    document.getElementById('gasBtn').classList.toggle('active', v === 'gas');
+    document.getElementById('evBtn').classList.toggle('active', v === 'ev');
+    document.getElementById('gasBtn').setAttribute('aria-pressed', v === 'gas' ? 'true' : 'false');
+    document.getElementById('evBtn').setAttribute('aria-pressed', v === 'ev' ? 'true' : 'false');
+    if (v === 'gas') {
+      document.getElementById('effLabel').textContent = 'Fuel efficiency';
+      document.getElementById('effUnit').textContent = '(MPG)';
+      document.getElementById('eff').placeholder = 'e.g. 30';
+      document.getElementById('priceLabel').textContent = 'Fuel price';
+      document.getElementById('priceUnit').textContent = '($ per gallon)';
+      document.getElementById('price').placeholder = 'e.g. 3.50';
+    } else {
+      document.getElementById('effLabel').textContent = 'Efficiency';
+      document.getElementById('effUnit').textContent = '(miles per kWh)';
+      document.getElementById('eff').placeholder = 'e.g. 3.5';
+      document.getElementById('priceLabel').textContent = 'Electricity price';
+      document.getElementById('priceUnit').textContent = '($ per kWh)';
+      document.getElementById('price').placeholder = 'e.g. 0.16';
+    }
+    // Clear stale results: vehicle type changed, old numbers no longer apply.
+    last = null;
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('explain').style.display = 'none';
+    document.getElementById('explainBtn').setAttribute('aria-expanded', 'false');
+    document.getElementById('emailBtn').href = '#';
+  };
+
+  function money(n) {
+    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function miles(n) {
+    return Math.round(n).toLocaleString('en-US');
+  }
+  function num(id) {
+    var v = parseFloat(document.getElementById(id).value);
+    return (isFinite(v) ? v : NaN);
+  }
+
+  window.calculate = function () {
+    var rt = num('rtMiles'), d = num('daysWeek'), w = num('weeksYear');
+    var eff = num('eff'), p = num('price');
+    var effName = (vehicle === 'gas') ? 'fuel efficiency (MPG)' : 'efficiency (miles per kWh)';
+    var priceName = (vehicle === 'gas') ? 'fuel price ($ per gallon)' : 'electricity price ($ per kWh)';
+    var errs = [];
+    if (!isFinite(rt) || rt <= 0) errs.push('Round-trip miles: please enter a number greater than 0.');
+    if (!isFinite(d) || d <= 0 || d > 7) errs.push('Days per week: please enter a number between 1 and 7.');
+    if (!isFinite(w) || w <= 0 || w > 52) errs.push('Weeks per year: please enter a number between 1 and 52.');
+    if (!isFinite(eff) || eff <= 0) errs.push('Vehicle ' + effName + ': please enter a number greater than 0.');
+    if (!isFinite(p) || p <= 0) errs.push(priceName.charAt(0).toUpperCase() + priceName.slice(1) + ': please enter a number greater than 0.');
+
+    var box = document.getElementById('errors');
+    if (errs.length) {
+      box.style.display = 'block';
+      box.innerHTML = '<strong>Almost there &mdash; please fix:</strong><ul><li>' + errs.join('</li><li>') + '</li></ul>';
+      document.getElementById('results').style.display = 'none';
+      last = null;
+      return;
+    }
+    box.style.display = 'none';
+    box.innerHTML = '';
+
+    var annualMiles = rt * d * w;
+    var units, annualCost;
+    if (vehicle === 'gas') {
+      units = annualMiles / eff;
+      annualCost = units * p;
+    } else {
+      units = annualMiles / eff;
+      annualCost = units * p;
+    }
+    var costPerMile = annualCost / annualMiles;
+    var monthly = annualCost / 12;
+    var save10 = annualCost * 0.10;
+
+    document.getElementById('outAnnual').textContent = money(annualCost);
+    document.getElementById('outMiles').textContent = miles(annualMiles);
+    document.getElementById('outPerMile').textContent = money(costPerMile);
+    document.getElementById('outMonthly').textContent = money(monthly);
+    document.getElementById('outSave').textContent = 'Drive 10% less and you\u2019d save about ' + money(save10) + ' per year.';
+    document.getElementById('results').style.display = 'block';
+
+    var vLabel = (vehicle === 'gas') ? 'Gas (' + eff + ' MPG)' : 'Electric (' + eff + ' mi/kWh)';
+    last = {
+      vehicle: vLabel,
+      rt: rt, days: d, weeks: w,
+      annualMiles: annualMiles, annualCost: annualCost,
+      costPerMile: costPerMile, monthly: monthly, save10: save10
+    };
+    var body = 'My commute cost results (Honed Money Commute Cost Calculator)\n\n'
+      + 'Vehicle: ' + vLabel + '\n'
+      + 'Annual miles: ' + miles(annualMiles) + '\n'
+      + 'Annual fuel cost: ' + money(annualCost) + '\n'
+      + 'Fuel cost per mile: ' + money(costPerMile) + '\n'
+      + 'Monthly fuel cost: ' + money(monthly) + '\n'
+      + 'Drive 10% less and you\u2019d save about ' + money(save10) + ' per year.\n\n'
+      + 'https://honedsignal.com/money/commute-cost-calculator/';
+    document.getElementById('emailBtn').href = 'mailto:?subject='
+      + encodeURIComponent('My commute cost results')
+      + '&body=' + encodeURIComponent(body);
+  };
+
+  window.copyResults = function () {
+    if (!last) return;
+    var text = 'My commute cost results (Honed Money Commute Cost Calculator)\n\n'
+      + 'Vehicle: ' + last.vehicle + '\n'
+      + 'Annual miles: ' + miles(last.annualMiles) + '\n'
+      + 'Annual fuel cost: ' + money(last.annualCost) + '\n'
+      + 'Fuel cost per mile: ' + money(last.costPerMile) + '\n'
+      + 'Monthly fuel cost: ' + money(last.monthly) + '\n'
+      + 'Drive 10% less and you\u2019d save about ' + money(last.save10) + ' per year.\n\n'
+      + 'https://honedsignal.com/money/commute-cost-calculator/';
+    var done = function () {
+      var b = document.getElementById('copyBtn');
+      b.textContent = 'Copied!';
+      setTimeout(function () { b.textContent = 'Copy results'; }, 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
+    } else {
+      fallbackCopy(text, done);
+    }
+  };
+
+  function fallbackCopy(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) { /* clipboard unavailable */ }
+    document.body.removeChild(ta);
+  }
+
+  window.toggleExplain = function () {
+    var p = document.getElementById('explain');
+    var open = p.style.display === 'block';
+    p.style.display = open ? 'none' : 'block';
+    document.getElementById('explainBtn').setAttribute('aria-expanded', open ? 'false' : 'true');
+  };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" href="data:," />
+  <title>I-Bond Calculator | Honed Money</title>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication",
+  "name":"I-Bond Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+  "url":"https://honedsignal.com/money/i-bond-calculator/",
+  "description":"Estimate how an I-Bond (U.S. savings bond) could grow: enter the purchase amount, fixed rate, and inflation rate. Plain-English results, no signup needed.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f5f5f5;
+      --muted: #a7b0bd;
+      --paper: #0b0e14;
+      --surface: #12171f;
+      --surface-2: #1a212c;
+      --line: #2b3542;
+      --line-strong: #45525f;
+      --orange: #f7931a;
+      --orange-ink: #0b0e14;
+      --red: #ff7379;
+      --focus: #f7931a;
+      --shadow: 0 22px 65px rgba(0, 0, 0, .38);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input { font: inherit; }
+    button, input, a { -webkit-tap-highlight-color: transparent; }
+    .home-link {
+      display: block;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 12px clamp(16px, 3.5vw, 42px) 4px;
+      color: var(--orange);
+      font-size: .84rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .home-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .home-link:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 3px solid rgba(247, 147, 26, .45);
+      outline-offset: 3px;
+    }
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: clamp(22px, 4vw, 48px) clamp(16px, 3.5vw, 42px) 68px;
+    }
+    .hs-hero {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      margin: 20px 0 30px;
+      min-height: 230px;
+      display: flex;
+      align-items: flex-end;
+      background: #121720;
+    }
+    .hs-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hs-hero .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,14,20,.08) 0%, rgba(11,14,20,.82) 100%); }
+    .hs-hero h1 {
+      position: relative; z-index: 1;
+      margin: 0;
+      padding: 30px clamp(20px, 4vw, 38px);
+      font-size: clamp(1.7rem, 4.6vw, 2.5rem);
+      line-height: 1.18;
+      color: #f5f5f5;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+    @media(max-width:640px) {
+      .hs-hero { min-height: 165px; margin: 14px 0 22px; }
+      .hs-hero h1 { padding: 22px 20px; }
+    }
+    .leder {
+      margin: -14px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      max-width: 56ch;
+    }
+
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(300px, 390px) minmax(0, 1fr);
+      margin-top: 34px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .controls {
+      padding: clamp(22px, 3vw, 34px);
+      border-right: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .controls h2, .results h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -.02em;
+    }
+    .section-note { margin: 7px 0 22px; color: var(--muted); font-size: .9rem; }
+    .field { margin-top: 17px; }
+    label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 7px;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    label small { color: var(--muted); font-size: .75rem; font-weight: 500; }
+    .input-wrap { position: relative; }
+    .unit {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: .88rem;
+    }
+    .unit.left { left: 14px; }
+    .unit.right { right: 14px; }
+    input {
+      width: 100%;
+      min-height: 49px;
+      border: 1px solid var(--line-strong);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 5px;
+      padding: 11px 42px 11px 14px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+    input.money { padding-left: 31px; }
+    input::placeholder { color: var(--muted); opacity: .62; }
+    input:hover { border-color: var(--orange); }
+    input:focus { border-color: var(--focus); outline: none; box-shadow: 0 0 0 3px rgba(247, 147, 26, .18); }
+    input[aria-invalid="true"] { border-color: var(--red); }
+    .error {
+      min-height: 1.35em;
+      margin: 14px 0 0;
+      color: var(--red);
+      font-size: .84rem;
+      font-weight: 600;
+    }
+    .primary {
+      width: 100%;
+      min-height: 51px;
+      margin-top: 8px;
+      border: 0;
+      border-radius: 5px;
+      padding: 12px 18px;
+      background: var(--orange);
+      color: var(--orange-ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary:hover { filter: brightness(.94); }
+
+    .results {
+      min-width: 0;
+      padding: clamp(22px, 3.5vw, 40px);
+      background: var(--surface);
+    }
+    .empty-state {
+      min-height: 400px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-state-inner { max-width: 33ch; }
+    .empty-mark {
+      display: grid;
+      place-items: center;
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      border: 2px solid var(--line-strong);
+      color: var(--orange);
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+    .empty-state strong { display: block; margin-bottom: 7px; color: var(--ink); font-size: 1.02rem; }
+    .result-content[hidden], .empty-state[hidden], #explanation[hidden] { display: none; }
+
+    .lead-result {
+      padding-bottom: 27px;
+      border-bottom: 1px solid var(--line);
+    }
+    .lead-label { margin: 0 0 8px; color: var(--muted); font-size: .84rem; font-weight: 600; }
+    .lead-value {
+      margin: 0;
+      color: var(--orange);
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: clamp(2.15rem, 5vw, 4.1rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+    .lead-copy { margin: 11px 0 0; color: var(--muted); max-width: 52ch; font-size: .93rem; }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin: 27px 0;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .metric { min-width: 0; padding: 18px; background: var(--surface); }
+    .metric span { display: block; color: var(--muted); font-size: .78rem; line-height: 1.3; }
+    .metric strong {
+      display: block;
+      margin-top: 7px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: clamp(1.05rem, 2.2vw, 1.55rem);
+      letter-spacing: -.04em;
+      overflow-wrap: anywhere;
+    }
+    .metric.rate strong { color: var(--ink); }
+    .metric.value strong { color: var(--orange); }
+    .metric.interest strong { color: var(--ink); }
+
+    .penalty-callout {
+      margin: 0 0 28px;
+      padding: 17px;
+      background: rgba(247, 147, 26, .08);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--orange);
+      border-radius: 4px;
+    }
+    .penalty-callout[hidden] { display: none; }
+    .penalty-callout strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 1.45rem;
+      letter-spacing: -.035em;
+    }
+    .penalty-callout p { margin: 0; color: var(--muted); font-size: .88rem; }
+
+    .result-tools {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .tool-button {
+      min-height: 48px;
+      border-radius: 5px;
+      padding: 11px 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .email-button {
+      border: 1px solid var(--orange);
+      background: var(--orange);
+      color: var(--orange-ink);
+    }
+    .email-button:hover { filter: brightness(.94); }
+    .copy-button { border: 1px solid var(--line-strong); background: var(--surface-2); color: var(--ink); }
+    .copy-button:hover { border-color: var(--orange); }
+    .explain-button {
+      grid-column: 1 / -1;
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      color: var(--orange);
+    }
+    .explain-button:hover { border-color: var(--orange); }
+    .copy-status { min-height: 1.3em; margin: 9px 0 0; color: var(--orange); font-size: .8rem; font-weight: 600; text-align: right; }
+    .explanation {
+      margin-top: 14px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--paper);
+      color: var(--muted);
+      font-size: .91rem;
+    }
+    .explanation p { margin: 0 0 11px; }
+    .explanation p:last-child { margin-bottom: 0; }
+    .explanation strong { color: var(--ink); }
+
+    .footers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 34px;
+    }
+    .footer-box {
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+    .footer-box h2 { margin: 0 0 10px; font-size: .95rem; letter-spacing: -.01em; }
+    .footer-box p, .footer-box ul { margin: 0; color: var(--muted); font-size: .85rem; }
+    .footer-box ul { padding-left: 18px; }
+    .footer-box li { margin-bottom: 6px; }
+    .footer-box li:last-child { margin-bottom: 0; }
+
+    .disclaimer {
+      max-width: 900px;
+      margin: 27px 0 0 auto;
+      color: var(--muted);
+      font-size: .78rem;
+      text-align: right;
+    }
+    .reviewed {
+      margin: 8px 0 0 auto;
+      color: var(--muted);
+      font-size: .78rem;
+      text-align: right;
+    }
+
+    @media (max-width: 820px) {
+      .workbench { grid-template-columns: 1fr; }
+      .controls { border-right: 0; border-bottom: 1px solid var(--line); }
+      .empty-state { min-height: 270px; }
+      .footers { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .page { padding-top: 18px; padding-bottom: 46px; }
+      .workbench { margin-top: 24px; }
+      .controls, .results { padding: 20px; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .metric { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+      .metric strong { margin-top: 0; text-align: right; }
+      .result-tools { grid-template-columns: 1fr; }
+      .copy-status { text-align: left; }
+      .disclaimer, .reviewed { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="Inflation-protected savings bonds. Free i-bond calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/i-bond-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"I-Bond Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/i-bond-calculator/","description":"Inflation-protected savings bonds. Free i-bond calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <a class="home-link" href="/money/">← Honed Money</a>
+
+  <main class="page">
+    <div class="hs-hero">
+      <img src="/money/images/investing.webp" alt="" aria-hidden="true" />
+      <div class="shade"></div>
+      <h1 id="page-title">I-Bond Calculator</h1>
+    </div>
+    <p class="leder">See how an I-Bond — a U.S. savings bond that pairs a fixed rate with inflation protection — could grow over time.</p>
+
+    <section class="workbench" aria-label="I-Bond calculator">
+      <form class="controls" id="calculator" novalidate>
+        <h2>Your calculation</h2>
+        <p class="section-note">Enter the bond details you want to test. All fields are required.</p>
+
+        <div class="field">
+          <label for="principal">Purchase amount <small>dollars</small></label>
+          <div class="input-wrap">
+            <span class="unit left">$</span>
+            <input class="money" id="principal" name="principal" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 1,000" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="fixed-rate">Fixed rate <small>annual %</small></label>
+          <div class="input-wrap">
+            <input id="fixed-rate" name="fixed-rate" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="e.g. 1.30" autocomplete="off" />
+            <span class="unit right">%</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="inflation-rate">Current inflation (variable) rate <small>annual %</small></label>
+          <div class="input-wrap">
+            <input id="inflation-rate" name="inflation-rate" type="number" inputmode="decimal" min="-10" max="100" step="0.01" placeholder="e.g. 2.40" autocomplete="off" />
+            <span class="unit right">%</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="years">Years held <small>whole or part years</small></label>
+          <div class="input-wrap">
+            <input id="years" name="years" type="number" inputmode="decimal" min="0" max="30" step="0.1" placeholder="e.g. 5" autocomplete="off" />
+            <span class="unit right">yrs</span>
+          </div>
+        </div>
+
+        <p class="error" id="form-error" role="alert" aria-live="polite"></p>
+        <button class="primary" type="submit">Calculate</button>
+      </form>
+
+      <section class="results" aria-labelledby="results-title">
+        <h2 id="results-title" hidden>Results</h2>
+        <div class="empty-state" id="empty-state">
+          <div class="empty-state-inner">
+            <div class="empty-mark" aria-hidden="true">%</div>
+            <strong>Your estimate will appear here</strong>
+            <span>Fill in the purchase amount, rates, and years held, then calculate to see the composite rate and projected value.</span>
+          </div>
+        </div>
+
+        <div class="result-content" id="result-content" hidden>
+          <div class="lead-result">
+            <p class="lead-label">Projected value after <span id="lead-years"></span></p>
+            <p class="lead-value" id="projected-value">$0.00</p>
+            <p class="lead-copy" id="lead-copy"></p>
+          </div>
+
+          <div class="metric-grid" aria-label="Estimate summary">
+            <div class="metric rate">
+              <span>Current composite rate</span>
+              <strong id="composite-rate">0.00%</strong>
+            </div>
+            <div class="metric value">
+              <span>Projected value</span>
+              <strong id="value-summary">$0.00</strong>
+            </div>
+            <div class="metric interest">
+              <span>Total interest earned</span>
+              <strong id="interest-earned">$0.00</strong>
+            </div>
+          </div>
+
+          <div class="penalty-callout" id="penalty-callout" hidden>
+            <strong id="penalty-value">$0.00</strong>
+            <p id="penalty-note"></p>
+          </div>
+
+          <div class="result-tools">
+            <button class="tool-button email-button" id="email-results" type="button">Email my results</button>
+            <button class="tool-button copy-button" id="copy-results" type="button">Copy results</button>
+            <button class="tool-button explain-button" id="explain-toggle" type="button" aria-expanded="false">Explain these results</button>
+          </div>
+          <p class="copy-status" id="copy-status" aria-live="polite"></p>
+
+          <div class="explanation" id="explanation" hidden>
+            <p><strong>I-Bonds pay you in two parts.</strong> The fixed rate is set when you buy and stays with the bond for its whole life. The inflation (variable) rate is reset every 6 months based on inflation, and the Treasury combines the two into a single composite rate — that is what your money actually grows by.</p>
+            <p><strong>The inflation part protects your purchasing power.</strong> When prices rise, the inflation component rises too, so the bond's interest keeps up with the cost of living. That is why people call I-Bonds inflation-protected savings.</p>
+            <p><strong>Two rules come from the U.S. Treasury.</strong> You cannot cash out in the first 12 months at all, and if you cash out before 5 years, you give up the last 3 months of interest. You buy I-Bonds electronically through TreasuryDirect, up to $10,000 per person per calendar year.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <div class="footers">
+      <div class="footer-box">
+        <h2>Method</h2>
+        <p>Composite annual rate = fixed rate + 2 × inflation rate + (fixed rate × inflation rate), with all rates as decimals. Value = principal × (1 + composite / 2)<sup>2 × years</sup> (compounded semiannually). Total interest = value − principal. For holdings under 5 years, the early-redemption value subtracts roughly the last 3 months of interest: value ÷ (1 + composite / 8).</p>
+      </div>
+      <div class="footer-box">
+        <h2>What is excluded</h2>
+        <ul>
+          <li><strong>Taxes:</strong> interest is subject to federal income tax (deferred until you redeem or the bond matures) and is exempt from state and local income taxes.</li>
+          <li><strong>Purchase limits:</strong> electronic I-Bonds bought through TreasuryDirect are limited to $10,000 per person per calendar year.</li>
+          <li><strong>Rate resets:</strong> the inflation (variable) rate changes every 6 months, so the composite rate used here may not hold for the full holding period.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="disclaimer">This page is for informational purposes only and is not financial, tax, legal, investment, or insurance advice.</p>
+    <p class="reviewed">Last reviewed: October 2026.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var form = document.getElementById("calculator");
+      var principalInput = document.getElementById("principal");
+      var fixedInput = document.getElementById("fixed-rate");
+      var inflationInput = document.getElementById("inflation-rate");
+      var yearsInput = document.getElementById("years");
+      var errorBox = document.getElementById("form-error");
+      var emptyState = document.getElementById("empty-state");
+      var resultContent = document.getElementById("result-content");
+      var copyButton = document.getElementById("copy-results");
+      var emailButton = document.getElementById("email-results");
+      var explainToggle = document.getElementById("explain-toggle");
+      var explanation = document.getElementById("explanation");
+      var copyStatus = document.getElementById("copy-status");
+      var penaltyCallout = document.getElementById("penalty-callout");
+      var latestSummary = "";
+
+      var money = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+      function readNumber(input) {
+        var raw = input.value.trim();
+        if (raw === "") return NaN;
+        return Number(raw);
+      }
+
+      function clearInvalid() {
+        [principalInput, fixedInput, inflationInput, yearsInput].forEach(function (input) {
+          input.removeAttribute("aria-invalid");
+        });
+      }
+
+      function invalidate(input, message) {
+        input.setAttribute("aria-invalid", "true");
+        errorBox.textContent = message;
+        input.focus();
+      }
+
+      function validate(values) {
+        clearInvalid();
+        errorBox.textContent = "";
+
+        if (!Number.isFinite(values.principal) || values.principal <= 0) {
+          invalidate(principalInput, "Enter a purchase amount above $0.");
+          return false;
+        }
+        if (!Number.isFinite(values.fixed) || values.fixed < 0 || values.fixed > 100) {
+          invalidate(fixedInput, "Enter a fixed rate from 0% to 100%.");
+          return false;
+        }
+        if (!Number.isFinite(values.inflation) || values.inflation < -10 || values.inflation > 100) {
+          invalidate(inflationInput, "Enter an inflation rate from -10% to 100%.");
+          return false;
+        }
+        if (!Number.isFinite(values.years) || values.years <= 0) {
+          invalidate(yearsInput, "Enter the years held above 0.");
+          return false;
+        }
+        if (values.years < 1) {
+          invalidate(yearsInput, "I-Bonds cannot be redeemed in the first 12 months — enter 1 year or more.");
+          return false;
+        }
+        if (values.years > 30) {
+          invalidate(yearsInput, "I-Bonds stop earning interest after 30 years — enter 30 years or less.");
+          return false;
+        }
+        return true;
+      }
+
+      function calculate(values) {
+        var fixed = values.fixed / 100;
+        var inflation = values.inflation / 100;
+        var composite = fixed + 2 * inflation + fixed * inflation;
+        var value = values.principal * Math.pow(1 + composite / 2, 2 * values.years);
+        var interest = value - values.principal;
+        var penalizedValue = value / (1 + composite / 8);
+        return {
+          composite: composite,
+          value: value,
+          interest: interest,
+          penalizedValue: penalizedValue
+        };
+      }
+
+      function pluralYears(years) {
+        return years === 1 ? "1 year" : years + " years";
+      }
+
+      function render(values, result) {
+        document.getElementById("lead-years").textContent = pluralYears(values.years);
+        document.getElementById("projected-value").textContent = money.format(result.value);
+        document.getElementById("composite-rate").textContent = (result.composite * 100).toFixed(2) + "%";
+        document.getElementById("value-summary").textContent = money.format(result.value);
+        document.getElementById("interest-earned").textContent = money.format(result.interest);
+        document.getElementById("lead-copy").textContent =
+          "A " + money.format(values.principal) + " purchase at a " + (result.composite * 100).toFixed(2) +
+          "% composite rate earns " + money.format(result.interest) + " over " + pluralYears(values.years) + ".";
+
+        if (values.years < 5) {
+          document.getElementById("penalty-value").textContent = money.format(result.penalizedValue);
+          document.getElementById("penalty-note").textContent =
+            "Value after the early-redemption penalty: cashing out before 5 years forfeits the last 3 months of interest (" +
+            money.format(result.value - result.penalizedValue) + ").";
+          penaltyCallout.hidden = false;
+        } else {
+          penaltyCallout.hidden = true;
+        }
+
+        latestSummary = [
+          "I-Bond Estimate",
+          "Purchase amount: " + money.format(values.principal),
+          "Fixed rate: " + values.fixed.toFixed(2) + "%",
+          "Inflation (variable) rate: " + values.inflation.toFixed(2) + "%",
+          "Years held: " + values.years,
+          "",
+          "Composite annual rate: " + (result.composite * 100).toFixed(2) + "%",
+          "Projected value: " + money.format(result.value),
+          "Total interest earned: " + money.format(result.interest)
+        ];
+        if (values.years < 5) {
+          latestSummary.push(
+            "Value after early-redemption penalty (before 5 years): " + money.format(result.penalizedValue),
+            "Penalty note: cashing out before 5 years forfeits the last 3 months of interest."
+          );
+        }
+        latestSummary.push(
+          "",
+          "1-year lockup: I-Bonds cannot be redeemed in the first 12 months.",
+          "Assumes the composite rate stays fixed and interest compounds semiannually. For informational purposes only."
+        );
+        latestSummary = latestSummary.join("\n");
+
+        copyStatus.textContent = "";
+        explanation.hidden = true;
+        explainToggle.setAttribute("aria-expanded", "false");
+        emptyState.hidden = true;
+        resultContent.hidden = false;
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var values = {
+          principal: readNumber(principalInput),
+          fixed: readNumber(fixedInput),
+          inflation: readNumber(inflationInput),
+          years: readNumber(yearsInput)
+        };
+        if (!validate(values)) return;
+        render(values, calculate(values));
+      });
+
+      explainToggle.addEventListener("click", function () {
+        var open = explanation.hidden;
+        explanation.hidden = !open;
+        explainToggle.setAttribute("aria-expanded", String(open));
+      });
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var copied = false;
+        try { copied = document.execCommand("copy"); } catch (error) { copied = false; }
+        document.body.removeChild(area);
+        return copied;
+      }
+
+      copyButton.addEventListener("click", function () {
+        if (!latestSummary) return;
+        function success() {
+          copyStatus.textContent = "Results copied.";
+          copyButton.textContent = "Copied";
+          window.setTimeout(function () { copyButton.textContent = "Copy results"; }, 1800);
+        }
+        function fallback() {
+          if (fallbackCopy(latestSummary)) success();
+          else copyStatus.textContent = "Copying was blocked. Select and copy the results instead.";
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latestSummary).then(success).catch(fallback);
+        } else {
+          fallback();
+        }
+      });
+
+      emailButton.addEventListener("click", function () {
+        if (!latestSummary) return;
+        var subject = encodeURIComponent("My I-Bond calculation");
+        var body = encodeURIComponent(latestSummary);
+        var emailLink = document.createElement("a");
+        emailLink.href = "mailto:?subject=" + subject + "&body=" + body;
+        emailLink.style.display = "none";
+        document.body.appendChild(emailLink);
+        emailLink.click();
+        document.body.removeChild(emailLink);
+      });
+
+      [principalInput, fixedInput, inflationInput, yearsInput].forEach(function (input) {
+        input.addEventListener("input", function () {
+          input.removeAttribute("aria-invalid");
+          errorBox.textContent = "";
+        });
+      });
+    }());
+  </script>
+</body>
+</html>

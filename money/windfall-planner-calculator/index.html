@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Windfall Planner | Honed Money</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0e14;
+      --surface: #141a23;
+      --surface-2: #1b2330;
+      --ink: #f5f5f5;
+      --muted: #acb7c4;
+      --line: #2b3645;
+      --orange: #f7931a;
+      --orange-hover: #ffad4d;
+      --orange-soft: #342313;
+      --teal: #47c9c2;
+      --teal-soft: #123432;
+      --green: #39d98a;
+      --green-soft: #11352a;
+      --gold: #e8c14b;
+      --gold-soft: #3a2f14;
+      --danger: #ff7b82;
+      --shadow: 0 22px 70px rgba(0, 0, 0, .34);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 17px;
+      line-height: 1.55;
+    }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+    .page { width: min(1120px, calc(100% - 36px)); margin: 0 auto; padding: 18px 0 64px; }
+    .back {
+      display: inline-block;
+      padding: 6px 0;
+      color: var(--muted);
+      font-family: "Manrope", sans-serif;
+      font-size: .86rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .back:hover { color: var(--orange); }
+    .hs-hero {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      margin: 20px 0 22px;
+      min-height: 230px;
+      display: flex;
+      align-items: flex-end;
+      background: #121720;
+    }
+    .hs-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hs-hero .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,14,20,.08) 0%, rgba(11,14,20,.85) 100%); }
+    .hs-hero h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding: 30px clamp(20px, 4vw, 38px);
+      font-size: clamp(1.9rem, 5.2vw, 2.9rem);
+      line-height: 1.15;
+      color: #f5f5f5;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      font-family: "Manrope", sans-serif;
+    }
+    .lede { max-width: 680px; margin: 0 0 30px; color: var(--muted); font-size: 1.12rem; }
+    .calculator {
+      display: grid;
+      grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+      align-items: start;
+      gap: 28px;
+    }
+    .input-panel, .results-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .input-panel { border-radius: 20px 8px 20px 8px; padding: 28px; }
+    .panel-title { margin-bottom: 7px; font-size: 1.4rem; letter-spacing: -.025em; font-family: "Manrope", sans-serif; }
+    .panel-note { margin: 0 0 25px; color: var(--muted); font-size: .94rem; }
+    .field { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 7px; font-family: "Manrope", sans-serif; font-size: .9rem; font-weight: 700; }
+    .input-wrap { position: relative; }
+    .prefix { position: absolute; top: 50%; transform: translateY(-50%); left: 15px; color: var(--muted); pointer-events: none; font-weight: 600; }
+    input, select {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--surface-2);
+      color: var(--ink);
+      padding: 12px 15px;
+      outline: none;
+      font-family: "Manrope", sans-serif;
+      font-weight: 700;
+    }
+    input { padding-left: 34px; }
+    input::placeholder { color: var(--muted); opacity: .62; font-weight: 500; }
+    input:focus, select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(247, 147, 26, .22); }
+    select { cursor: pointer; }
+    select option { background: var(--surface-2); }
+    .hint { margin: 6px 0 0; color: var(--muted); font-size: .81rem; }
+    .error { min-height: 23px; margin: -5px 0 12px; color: var(--danger); font-size: .87rem; font-weight: 600; }
+    .calculate {
+      width: 100%;
+      min-height: 53px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--orange);
+      color: #171009;
+      cursor: pointer;
+      font-family: "Manrope", sans-serif;
+      font-weight: 800;
+    }
+    .calculate:hover { background: var(--orange-hover); }
+    .privacy-note { margin: 14px 0 0; text-align: center; color: var(--muted); font-size: .78rem; }
+    .results-panel { min-height: 510px; border-radius: 8px 20px 8px 20px; padding: 30px; }
+    .empty { min-height: 446px; display: grid; place-items: center; text-align: center; color: var(--muted); }
+    .empty-inner { max-width: 360px; }
+    .empty-mark {
+      display: grid; place-items: center;
+      width: 62px; height: 62px; margin: 0 auto 16px;
+      border-radius: 50%; background: var(--surface-2); color: var(--orange);
+      font-family: "Manrope", sans-serif; font-size: 1.6rem; font-weight: 800;
+    }
+    .empty strong { display: block; margin-bottom: 7px; color: var(--ink); font-family: "Manrope", sans-serif; font-size: 1.15rem; }
+    .results { display: none; }
+    .results.visible { display: block; }
+    .results-head h2 { margin: 0 0 20px; font-size: 1.55rem; font-family: "Manrope", sans-serif; }
+    .bar {
+      display: flex;
+      height: 56px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      border: 1px solid var(--line);
+    }
+    .bar span { display: block; height: 100%; min-width: 0; transition: width .4s ease; }
+    .bar .seg-debt { background: var(--orange); }
+    .bar .seg-buffer { background: var(--teal); }
+    .bar .seg-invest { background: var(--green); }
+    .bar .seg-fun { background: var(--gold); }
+    .buckets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .bucket {
+      padding: 16px 17px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--orange);
+      border-radius: 10px;
+      background: var(--surface-2);
+    }
+    .bucket.buffer { border-left-color: var(--teal); }
+    .bucket.invest { border-left-color: var(--green); }
+    .bucket.fun { border-left-color: var(--gold); }
+    .bucket h3 { margin: 0 0 5px; font-size: .95rem; font-family: "Manrope", sans-serif; }
+    .bucket .amount { display: block; margin-bottom: 6px; font-family: "Manrope", sans-serif; font-size: 1.45rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .bucket p { margin: 0; color: var(--muted); font-size: .84rem; }
+    .walkthrough {
+      margin-bottom: 24px;
+      padding: 20px 22px;
+      background: var(--teal-soft);
+      border-radius: 4px 14px 14px 4px;
+    }
+    .walkthrough-label { display: block; margin-bottom: 5px; color: var(--teal); font-family: "Manrope", sans-serif; font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .walkthrough p { margin: 0; font-size: 1.02rem; }
+    .crosslinks { margin: 0 0 8px; padding: 16px 18px; border: 1px dashed var(--line); border-radius: 10px; }
+    .crosslinks p { margin: 0 0 6px; color: var(--muted); font-size: .9rem; }
+    .crosslinks a { color: var(--orange); font-weight: 700; text-decoration: none; }
+    .crosslinks a:hover { text-decoration: underline; }
+    .crosslinks a + a { margin-left: 18px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .action {
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 9px 15px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-family: "Manrope", sans-serif;
+      font-size: .86rem;
+      font-weight: 800;
+    }
+    .action.email { border-color: var(--orange); background: var(--orange); color: #171009; }
+    .action:hover { border-color: var(--orange); }
+    details { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
+    summary { cursor: pointer; color: var(--ink); font-family: "Manrope", sans-serif; font-weight: 800; }
+    .explain { color: var(--muted); }
+    .explain p { margin: 12px 0 0; }
+    .method {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 36px;
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+    }
+    .method h2 { grid-column: 1 / -1; margin-bottom: 0; font-size: 1.5rem; font-family: "Manrope", sans-serif; }
+    .method article h3 { margin-bottom: 6px; font-size: 1rem; font-family: "Manrope", sans-serif; }
+    .method article p { margin: 0; color: var(--muted); font-size: .94rem; }
+    footer { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: .81rem; }
+    .toast {
+      position: fixed; left: 50%; bottom: 22px; z-index: 10;
+      transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+      padding: 10px 15px; border-radius: 7px; background: var(--ink); color: var(--bg);
+      font-weight: 700; transition: opacity .18s ease, transform .18s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    @media (max-width: 820px) {
+      .calculator { grid-template-columns: 1fr; }
+      .results-panel { min-height: 0; }
+      .empty { min-height: 260px; }
+    }
+    @media (max-width: 600px) {
+      .page { width: min(100% - 24px, 1120px); padding-top: 10px; }
+      .hs-hero { min-height: 165px; margin: 14px 0 18px; }
+      .hs-hero h1 { padding: 22px 20px; }
+      .input-panel, .results-panel { padding: 22px 18px; }
+      .buckets { grid-template-columns: 1fr; }
+      .method { grid-template-columns: 1fr; }
+      .method h2 { grid-column: auto; }
+      .actions { flex-direction: column; }
+      .action { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .toast { transition: none; } }
+  </style>
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="Got a bonus? Allocate it smart. Free windfall planner from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/windfall-planner-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Windfall Planner","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/windfall-planner-calculator/","description":"Got a bonus? Allocate it smart. Free windfall planner from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="/money/">← Honed Money</a>
+
+    <div class="hs-hero">
+      <img src="/money/images/personal.webp" alt="" aria-hidden="true">
+      <div class="shade"></div>
+      <h1>Windfall / Bonus Planner</h1>
+    </div>
+    <p class="lede">A bonus, inheritance, or tax refund is easy to waste — here is a priority order that puts it to work.</p>
+
+    <section class="calculator" aria-label="Windfall allocation calculator">
+      <form class="input-panel" id="calculatorForm" novalidate>
+        <h2 class="panel-title">Your windfall</h2>
+        <p class="panel-note">Enter your numbers below. Nothing is saved — the plan appears when you hit Calculate.</p>
+
+        <div class="field">
+          <label for="windfall">Windfall amount</label>
+          <div class="input-wrap"><span class="prefix">$</span><input id="windfall" name="windfall" type="number" inputmode="decimal" min="1" max="10000000" step="1" placeholder="e.g. 5,000" autocomplete="off"></div>
+          <p class="hint">Your bonus, tax refund, inheritance — the total before tax or fees.</p>
+        </div>
+
+        <div class="field">
+          <label for="debt">High-interest debt balance</label>
+          <div class="input-wrap"><span class="prefix">$</span><input id="debt" name="debt" type="number" inputmode="decimal" min="0" max="10000000" step="1" placeholder="e.g. 2,500 — enter 0 if none" autocomplete="off"></div>
+          <p class="hint">Credit cards or other high-rate balances. Enter 0 if you have none.</p>
+        </div>
+
+        <div class="field">
+          <label for="expenses">Monthly essential expenses</label>
+          <div class="input-wrap"><span class="prefix">$</span><input id="expenses" name="expenses" type="number" inputmode="decimal" min="1" max="1000000" step="1" placeholder="e.g. 3,200" autocomplete="off"></div>
+          <p class="hint">Housing, food, transport, minimum bills — the must-pays each month.</p>
+        </div>
+
+        <div class="field">
+          <label for="retirement">Retirement-savings status</label>
+          <select id="retirement" name="retirement">
+            <option value="" selected disabled>Choose one…</option>
+            <option value="behind">Behind on retirement savings</option>
+            <option value="ontrack">Roughly on track</option>
+            <option value="ahead">Ahead of schedule</option>
+          </select>
+          <p class="hint">Informational only — it shapes the walkthrough, not the math.</p>
+        </div>
+
+        <div class="error" id="error" role="status" aria-live="polite"></div>
+        <button class="calculate" type="submit">Calculate my plan</button>
+        <p class="privacy-note">Calculations stay in this tab.</p>
+      </form>
+
+      <section class="results-panel" aria-live="polite">
+        <div class="empty" id="emptyState">
+          <div class="empty-inner"><div class="empty-mark">$</div><strong>Give every dollar a job</strong><span>Enter your numbers, hit Calculate, and see your windfall split into four priority buckets.</span></div>
+        </div>
+        <div class="results" id="results">
+          <div class="results-head"><h2>Your windfall plan</h2></div>
+          <div class="bar" id="bar" aria-hidden="true"></div>
+          <div class="buckets" id="buckets"></div>
+          <div class="walkthrough">
+            <span class="walkthrough-label">The walkthrough</span>
+            <p id="walkthroughText"></p>
+          </div>
+          <div class="crosslinks">
+            <p>Keep refining the plan:</p>
+            <a href="/money/debt-payoff-strategy-comparison/">Compare payoff strategies</a>
+            <a href="/money/emergency-fund-calculator/">Size your emergency fund</a>
+          </div>
+          <div class="actions">
+            <button class="action email" id="emailBtn" type="button">Email my results</button>
+            <button class="action" id="copyBtn" type="button">Copy results</button>
+            <button class="action" id="explainToggle" type="button" aria-expanded="false">Explain these results</button>
+          </div>
+          <div class="explain" id="explainPanel" hidden>
+            <p><strong>High-interest debt comes first</strong> because paying it off is a guaranteed return equal to the interest rate you were being charged. If a card was costing you roughly 25% a year, wiping it out with the windfall is like earning 25% on that money with zero risk.</p>
+            <p><strong>The emergency buffer comes second</strong> because one surprise — a car repair, a medical bill — shouldn't send you right back into the debt cycle. Three months of essential expenses is a solid cushion for most households.</p>
+            <p><strong>Most of the rest goes to investing</strong> because money you don't need for years should have time to grow. <strong>A little is set aside for guilt-free fun</strong> because a plan you enjoy is a plan you stick with — spending some on purpose beats blowing it on nothing in particular.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="method">
+      <h2>Method</h2>
+      <article><h3>Priority waterfall</h3><p>The windfall fills each bucket in order: (1) high-interest debt payoff, up to the full balance; (2) emergency buffer top-up, up to three months of your essential expenses; (3) whatever remains is split between investing and fun money.</p></article>
+      <article><h3>The 90/10 split</h3><p>After debt and the buffer are covered, 90% of the remainder is earmarked for investing and 10% for guilt-free fun spending. Amounts are rounded to whole dollars.</p></article>
+    </section>
+
+    <section class="method" style="margin-top:0;padding-top:0;border-top:0;">
+      <h2>What is excluded</h2>
+      <article><h3>Taxes on the windfall</h3><p>Cash bonuses are typically withheld before they reach you; inheritances and gifts vary widely by state and situation. This planner uses the amount you enter as-is.</p></article>
+      <article><h3>Employer 401(k) match and investment picks</h3><p>Matching contributions, asset allocation, and specific investments are outside this planner — the investing bucket is a dollar amount, not advice on what to buy.</p></article>
+    </section>
+
+    <footer>
+      <p>This page is for informational purposes only and is not financial, tax, legal, investment, or insurance advice.</p>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      'use strict';
+      var form = document.getElementById('calculatorForm');
+      var error = document.getElementById('error');
+      var emptyState = document.getElementById('emptyState');
+      var resultsEl = document.getElementById('results');
+      var latestText = '';
+      var latestSubject = 'My windfall plan';
+
+      var RETIREMENT_TEXT = {
+        behind: 'Behind on retirement savings',
+        ontrack: 'Roughly on track',
+        ahead: 'Ahead of schedule'
+      };
+
+      function money(value) {
+        var v = Number(value);
+        if (!Number.isFinite(v)) v = 0;
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Math.round(v));
+      }
+
+      function showToast(message) {
+        var toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.setTimeout(function () { toast.classList.remove('show'); }, 1900);
+      }
+
+      function bucketHtml(key, title, amount, note, cls) {
+        return '<article class="bucket ' + cls + '"><h3>' + title + '</h3><span class="amount">' + money(amount) + '</span><p>' + note + '</p></article>';
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        error.textContent = '';
+
+        var windfallRaw = document.getElementById('windfall').value;
+        var debtRaw = document.getElementById('debt').value;
+        var expensesRaw = document.getElementById('expenses').value;
+        var retirement = document.getElementById('retirement').value;
+
+        var windfall = Number(windfallRaw);
+        var debt = Number(debtRaw);
+        var expenses = Number(expensesRaw);
+
+        if (windfallRaw === '' || !Number.isFinite(windfall) || windfall <= 0) {
+          error.textContent = 'Enter your windfall amount — a positive dollar number.';
+          document.getElementById('windfall').focus();
+          return;
+        }
+        if (debtRaw === '' || !Number.isFinite(debt) || debt < 0) {
+          error.textContent = 'Enter your high-interest debt balance — use 0 if you have none.';
+          document.getElementById('debt').focus();
+          return;
+        }
+        if (expensesRaw === '' || !Number.isFinite(expenses) || expenses <= 0) {
+          error.textContent = 'Enter your monthly essential expenses — a positive dollar number.';
+          document.getElementById('expenses').focus();
+          return;
+        }
+        if (!retirement) {
+          error.textContent = 'Pick your retirement-savings status — it only shapes the walkthrough.';
+          document.getElementById('retirement').focus();
+          return;
+        }
+        if (windfall > 10000000) {
+          error.textContent = 'That windfall is beyond this planner\u2019s range — try an amount up to $10,000,000.';
+          return;
+        }
+
+        var remaining = windfall;
+        var b1 = Math.round(Math.min(remaining, debt));
+        remaining -= b1;
+        var b2 = Math.round(Math.min(remaining, 3 * expenses));
+        remaining -= b2;
+        var rem = Math.round(remaining);
+        var invest = Math.round(rem * 0.9);
+        var fun = rem - invest;
+
+        var b1Note = b1 > 0
+          ? (b1 >= debt ? 'Wipes out the full balance.' : 'Pays it down; keep attacking the rest with your monthly budget.')
+          : 'No high-interest debt entered — nothing allocated here.';
+        var b2Note = b2 > 0
+          ? (b2 >= Math.round(3 * expenses) ? 'Covers three months of essentials.' : 'Tops up the buffer with what the windfall allows.')
+          : (3 * expenses === 0 ? 'No monthly expenses entered — nothing allocated here.' : 'No windfall left after the debt payoff — the buffer waits for next time.');
+        var investNote = invest > 0
+          ? 'The growth engine for the long run.'
+          : 'No windfall left to invest after debt and the buffer.';
+        var funNote = fun > 0
+          ? 'Guilt-free: spend it on something you\u2019ll actually enjoy.'
+          : 'No windfall left for fun money this time — the plan still holds.';
+
+        var buckets = document.getElementById('buckets');
+        buckets.innerHTML =
+          bucketHtml('debt', '1 · Kill high-interest debt', b1, b1Note, 'debt') +
+          bucketHtml('buffer', '2 · Emergency buffer top-up', b2, b2Note, 'buffer') +
+          bucketHtml('invest', '3 · Invest the rest', invest, investNote, 'invest') +
+          bucketHtml('fun', '4 · Guilt-free fun money', fun, funNote, 'fun');
+
+        var bar = document.getElementById('bar');
+        var total = b1 + b2 + invest + fun;
+        if (total > 0) {
+          bar.innerHTML =
+            '<span class="seg-debt" style="width:' + (b1 / total * 100) + '%"></span>' +
+            '<span class="seg-buffer" style="width:' + (b2 / total * 100) + '%"></span>' +
+            '<span class="seg-invest" style="width:' + (invest / total * 100) + '%"></span>' +
+            '<span class="seg-fun" style="width:' + (fun / total * 100) + '%"></span>';
+        } else {
+          bar.innerHTML = '';
+        }
+
+        var retireLabel = RETIREMENT_TEXT[retirement] || '';
+        var walk = [];
+        walk.push('Of your ' + money(windfall) + ' windfall, ');
+        var parts = [];
+        if (b1 > 0) {
+          parts.push(money(b1) + ' wipes out the high-interest debt first, because paying off a card charging high interest is a guaranteed return equal to that rate');
+        }
+        if (b2 > 0) {
+          parts.push(money(b2) + ' goes next to the emergency buffer, toward three months of your ' + money(expenses) + '-a-month essentials, so one surprise doesn\u2019t restart the debt cycle');
+        }
+        if (rem > 0) {
+          parts.push('the remaining ' + money(rem) + ' is split into ' + money(invest) + ' for investing and ' + money(fun) + ' for guilt-free fun money');
+        }
+        if (parts.length === 0) {
+          walk.push('the whole amount is available, so the waterfall applies directly.');
+        } else {
+          walk.push(parts.join('; ') + '.');
+        }
+        walk.push(' Your retirement status — "' + retireLabel + '" — is informational only here: it doesn\u2019t change the math, it just reminds you where this plan fits in the bigger picture.');
+        if (b1 === 0 && b2 === 0 && rem > 0) {
+          walk.push(' With no high-interest debt or buffer need entered, nearly everything goes toward investing — the windfall is already working.');
+        }
+        document.getElementById('walkthroughText').textContent = walk.join(' ');
+
+        var lines = [
+          'My windfall plan',
+          'Windfall: ' + money(windfall),
+          'High-interest debt balance: ' + money(debt),
+          'Monthly essential expenses: ' + money(expenses),
+          'Retirement status: ' + retireLabel + ' (informational only)',
+          '',
+          '1. Kill high-interest debt: ' + money(b1),
+          '2. Emergency buffer top-up: ' + money(b2),
+          '3. Invest the rest: ' + money(invest),
+          '4. Guilt-free fun money: ' + money(fun),
+          '',
+          walk.join(' '),
+          '',
+          'Method: debt payoff first, then up to a 3-month emergency buffer, then the remainder split 90% investing / 10% fun.',
+          'This page is for informational purposes only and is not financial, tax, legal, investment, or insurance advice.'
+        ];
+        latestText = lines.join('\n');
+
+        emptyState.style.display = 'none';
+        resultsEl.classList.add('visible');
+        document.getElementById('explainPanel').hidden = true;
+        document.getElementById('explainToggle').setAttribute('aria-expanded', 'false');
+        resultsEl.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+      });
+
+      document.getElementById('emailBtn').addEventListener('click', function () {
+        if (!latestText) return;
+        var mailLink = document.createElement('a');
+        mailLink.href = 'mailto:?subject=' + encodeURIComponent(latestSubject) + '&body=' + encodeURIComponent(latestText);
+        mailLink.click();
+      });
+
+      document.getElementById('copyBtn').addEventListener('click', function () {
+        if (!latestText) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(latestText).then(function () { showToast('Results copied'); }, function () { fallbackCopy(); });
+        } else { fallbackCopy(); }
+      });
+      function fallbackCopy() {
+        var area = document.createElement('textarea');
+        area.value = latestText;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(area);
+        showToast(ok ? 'Results copied' : 'Select and copy your results manually');
+      }
+
+      document.getElementById('explainToggle').addEventListener('click', function () {
+        var panel = document.getElementById('explainPanel');
+        var open = panel.hidden;
+        panel.hidden = !open;
+        this.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      });
+    }());
+  </script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+</body>
+</html>
