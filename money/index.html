@@ -266,6 +266,29 @@
       color: var(--muted);
       font-size: .92rem;
     }
+    .view-toggle {
+      display: inline-flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .view-toggle-btn {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: .92rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    a.view-toggle-btn:hover { border-color: var(--accent); }
+    .view-toggle-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0b0e14;
+    }
     .topic-links {
       display: flex;
       flex-wrap: wrap;
@@ -407,6 +430,10 @@
       <div class="topics-header">
         <h2 id="topics-title">Choose a topic</h2>
         <p>Go straight to the tools you need.</p>
+        <div class="view-toggle" role="group" aria-label="Browse view">
+          <span class="view-toggle-btn view-toggle-active" aria-current="true">Topic list</span>
+          <a class="view-toggle-btn" href="/money/browse/">Picture cards</a>
+        </div>
       </div>
       <ul class="topic-links">
         <li><a href="/money/auto/">Auto</a></li>
@@ -446,7 +473,6 @@
         <li><a href="/money/fire/">FIRE</a></li>
         <li><a href="/money/side-hustles/">Side Hustles</a></li>
       </ul>
-      <a class="visual-link" href="/money/browse/">Prefer pictures? Browse all sections visually <span aria-hidden="true">→</span></a>
     </nav>
 
     <footer>
