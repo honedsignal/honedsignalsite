@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Quarterly Estimated Tax Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}.field .money-input input{text-align:left}.months-label{display:flex;align-items:center;justify-content:space-between;margin:18px 0 9px}.months-label label{font-size:.75rem;font-weight:700;color:var(--muted)}.months-label output{font:500 .75rem "DM Mono",monospace;color:var(--orange)}.months{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.month-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}.month-btn:hover{border-color:var(--blue)}.month-btn.active{background:var(--orange);border-color:var(--orange);color:#171009;font-weight:700}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.jar{position:absolute;left:20px;right:20px;bottom:0;height:73px;border:4px solid var(--blue);border-radius:10px 10px 22px 22px;overflow:hidden}.jar:before{content:"";position:absolute;left:17px;right:17px;top:-12px;height:15px;border:4px solid var(--blue);border-radius:5px}.coin{position:absolute;width:22px;height:22px;border:4px solid var(--orange);border-radius:50%}.coin.one{left:11px;top:3px}.coin.two{right:10px;top:17px}.fill{position:absolute;left:0;right:0;bottom:0;height:28%;background:var(--green-soft);border-top:2px solid var(--green)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.milestone{padding:13px;border-top:2px solid var(--line);background:var(--bg)}.milestone.done{border-color:var(--green)}.milestone small{display:block;color:var(--muted);font-size:.61rem;font-weight:800}.milestone strong{display:block;margin-top:5px;font:500 .8rem "DM Mono",monospace}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.goal-fields,.metric-grid,.milestones{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  
+  </style>
+<!-- honed-seo-start -->
+<meta name="description" content="Estimate quarterly tax payments on freelance income. Free 2026 calculator — federal income tax plus self-employment tax, in plain English." />
+<link rel="canonical" href="https://honedsignal.com/money/quarterly-estimated-tax/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Quarterly Estimated Tax Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/quarterly-estimated-tax/","description":"Estimate quarterly tax payments on freelance income. Free 2026 calculator — federal income tax plus self-employment tax, in plain English.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+  <link rel="stylesheet" href="/money/print.css" media="print">
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+<style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/taxes.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Don't let quarterly taxes <span class="accent">surprise</span> you.</h1>
+</div>
+    <p>Enter your expected self-employment income for the year. The calculator estimates federal income tax (2026 brackets) plus 15.3% self-employment tax, then splits it into four quarterly payments.</p>
+  </header>
+
+  <section class="workbench" aria-label="Quarterly Estimated Tax Calculator">
+    <form class="panel inputs" id="calcForm" novalidate>
+      <div class="section-head"><h2>Your income</h2><span class="step">01 / DETAILS</span></div><div class="expense-list"><div class="expense"><label for="seIncome">Self-employment net income</label><div class="money-input"><span>$</span><input id="seIncome" type="number" min="0" step="1" inputmode="decimal" placeholder="60000" aria-label="Self-employment net income"></div></div><div class="expense"><label for="otherIncome">Other income (W-2, etc.)</label><div class="money-input"><span>$</span><input id="otherIncome" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Other income (W-2, etc.)"></div></div><div class="expense"><label for="filingStatus">Filing status</label><div class="money-input"><select id="filingStatus" aria-label="Filing status" style="width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 10px;font-weight:700;appearance:auto"><option value="single">Single</option><option value="married">Married filing jointly</option></select></div></div></div>
+      <button class="calculate" type="submit">Estimate my quarterly payment</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><i class="coin one"></i><i class="coin two"></i><div class="jar"><i class="fill"></i></div></div><h2>Plan the payments.</h2><p>Enter the purchase price, how many payments, and any fees or interest. The calculator shows what you actually pay — and flags it when the plan is expensive credit in disguise.</p></div>
+      </div>
+
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">ESTIMATED QUARTERLY PAYMENT</p><p class="target" id="totalPaid">$0</p><p class="target-note" id="totalNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>EST. ANNUAL TAX</span><strong id="perPay">—</strong><em id="perPayNote">—</em></article>
+          <article class="metric"><span>SELF-EMPLOYMENT TAX</span><strong id="extra">—</strong><em id="extraNote">—</em></article>
+          <article class="metric"><span>FEDERAL INCOME TAX</span><strong id="markup">—</strong><em id="markupNote">—</em></article>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download breakdown</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Assumptions:</strong> ROUGH ESTIMATE ONLY — uses 2026 federal brackets and the 2026 standard deduction ($16,100 single / $32,200 married filing jointly). SE tax is 15.3% of 92.35% of net SE income. Excludes state tax, credits, deductions beyond the standard deduction, and the 0.9% additional Medicare tax over $200k/$250k. Not tax advice — verify with IRS.gov or a tax professional.</p><p>Educational estimate, not financial advice.</p></footer>
+</main>
+<script>
+
+(function(){'use strict';
+  var form=document.getElementById('calcForm'),last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var el=document.getElementById(id);if(!el)return 0;var v=parseFloat(el.value);return isFinite(v)&&v>=0?v:0}
+  function fmt(n){return money0.format(n)}
+  var BR={single:[[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[1e15,.37]],married:[[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[1e15,.37]]};
+  var STD={single:16100,married:32200};
+  function bracketTax(t,filing){var b=BR[filing]||BR.single,tax=0,prev=0;for(var i=0;i<b.length;i++){var cap=b[i][0],r=b[i][1];if(t>prev){tax+=(Math.min(t,cap)-prev)*r;prev=cap}else break}return tax}
+  function getData(){
+    var se=num('seIncome'),other=num('otherIncome'),fs=(document.getElementById('filingStatus')||{}).value||'single';
+    var seTaxable=se*0.9235,seTax=seTaxable*0.153,agi=se+other,taxable=Math.max(0,agi-STD[fs]);
+    var incTax=bracketTax(taxable,fs),total=incTax+seTax,quarterly=total/4;
+    return{se:se,other:other,fs:fs,seTax:seTax,incTax:incTax,total:total,quarterly:quarterly,taxable:taxable};
+  }
+  function emailBody(d){
+    return ['Quarterly Estimated Tax Calculator results (2026 estimate)','',
+      'Self-employment net income: '+money0.format(d.se),
+      'Other income: '+money0.format(d.other),
+      'Filing status: '+(d.fs==='married'?'Married filing jointly':'Single'),
+      'Est. annual federal tax: '+money2.format(d.total),
+      'Quarterly payment: '+money2.format(d.quarterly),'',
+      'ROUGH ESTIMATE ONLY — not tax advice. Verify with IRS.gov or a tax pro.'].join('\n');
+  }
+  function csvRows(d){
+    return [['Quarterly Estimated Tax (2026)','Value'],
+      ['SE net income',d.se.toFixed(2)],['Other income',d.other.toFixed(2)],
+      ['Income tax',d.incTax.toFixed(2)],['SE tax',d.seTax.toFixed(2)],
+      ['Annual total',d.total.toFixed(2)],['Quarterly payment',d.quarterly.toFixed(2)]];
+  }
+  function verdictText(d){
+    return 'Roughly '+money2.format(d.quarterly)+' per quarter, or '+money2.format(d.total)+' for the year. 2026 estimated due dates: April 15, June 15, September 15, 2026, and January 15, 2027.';
+  }
+  function explanationText(d){
+    return 'Self-employment tax is 15.3% on 92.35% of your net SE income = '+money2.format(d.seTax)+'. Federal income tax applies 2026 brackets to taxable income of '+money0.format(d.taxable)+' (income minus the '+(d.fs==='married'?'$32,200 married':'$16,100 single')+' standard deduction) = '+money2.format(d.incTax)+'. Total '+money2.format(d.total)+' divided by 4 = '+money2.format(d.quarterly)+' per quarter.';
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('totalPaid').textContent=money2.format(d.quarterly);
+    document.getElementById('totalNote').textContent=verdictText(d);
+    document.getElementById('perPay').textContent=fmt(d.total);
+    document.getElementById('perPayNote').textContent='for the year';
+    document.getElementById('extra').textContent=fmt(d.seTax);
+    document.getElementById('extraNote').textContent='SE tax (15.3%)';
+    document.getElementById('markup').textContent=fmt(d.incTax);
+    document.getElementById('markupNote').textContent='income tax';
+    document.getElementById('explainCopy').textContent=explanationText(d);
+  }
+  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My estimated quarterly taxes')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.se<=0&&d.other<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d);enableActions(d)}
+  form.addEventListener('submit',calculate);
+  ['seIncome','otherIncome','filingStatus'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',function(){if(last)render(getData())});if(el&&el.tagName==='SELECT')el.addEventListener('change',function(){if(last)render(getData())})});
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var rows=csvRows(getData());var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='quarterly-estimated-tax.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+})();
+
+
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/freelance-hourly-rate/"><span class="arr">→</span>Set your freelance rate</a></li><li><a href="/money/sep-vs-solo-401k/"><span class="arr">→</span>Compare SEP-IRA vs Solo 401(k)</a></li></ul>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+<script src="/money/recent-tools.js" defer></script>
+  <script src="/money/input-hints.js" defer></script>
+<script src="/money/share-result.js" defer></script>
+</body>
+</html>

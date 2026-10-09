@@ -302,7 +302,44 @@
         'annual income': 'The income your family would need to replace.',
         'years to replace': 'How many years of income the payout should cover — often until kids are grown.',
         'existing life insurance coverage': 'Any policies already in place, including through work.'
-      }
+      },
+
+      'freelance-hourly-rate': {
+        'target annual take': 'The pay you want to take home for the year, after taxes — like the salary you would accept as an employee.',
+        'annual business expenses': 'Software, equipment, insurance, home office, and other costs of running your freelance work.',
+        'billable hours per week': 'Only hours you can bill to clients. Most freelancers bill 20-30 of a 40-hour week — the rest is admin and finding work.',
+        'weeks worked per year': 'Subtract vacations and holidays. 48 is common for full-time freelancers.',
+        'tax set aside': 'Freelancers often set aside 25-30% of income for federal, state, and self-employment taxes.'
+      },
+
+      'quarterly-estimated-tax': {
+        'self employment net income': 'Your freelance profit for the year: revenue minus business expenses (what goes on Schedule C).',
+        'other income': 'W-2 wages, interest, or anything else — it all counts toward the same annual tax bill.',
+        'filing status': 'Married filing jointly usually lowers the bill thanks to wider brackets and a bigger standard deduction.'
+      },
+
+      'nanny-vs-daycare': {
+        'number of children': 'How many children need care — nanny cost stays flat while daycare multiplies per child.',
+        'daycare cost per child': 'Monthly tuition per child. Infant care often runs $1,000-1,500/month depending on your city.',
+        'registration': 'One-time enrollment or annual fees the daycare charges on top of tuition.',
+        'nanny hourly rate': 'What you pay the nanny per hour. U.S. averages often run $20-30/hour depending on your city.',
+        'hours per week': 'Scheduled nanny hours each week — full-time is usually 40-50 hours.',
+        'weeks per year': 'Use 52 for year-round care, fewer if care pauses in summer.',
+        'employer tax rate': 'When you hire a nanny directly you owe employer payroll taxes — often around 10% on top of wages.'
+      },
+
+      'medical-bill-payment-plan': {
+        'bill total': 'The full balance on the bill or statement — before any payment plan starts.',
+        'monthly payment': 'What you can reliably pay each month. Even small steady payments beat sporadic big ones.',
+        'interest rate': 'Most provider payment plans charge 0% interest — always ask. Enter 0 unless the plan states a rate.'
+      },
+
+
+      'state-tax-move-comparison': {
+        'annual income': 'Your gross yearly income — the comparison scales with it.',
+        'current state': 'The state where you live and file now.',
+        'new state': 'The state you are considering moving to.'
+      },
 
     };
 

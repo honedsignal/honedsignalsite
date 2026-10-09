@@ -1991,7 +1991,8 @@
   "d": "Which childcare option costs less for your family?",
   "u": "/money/nanny-vs-daycare/",
   "tags": [
-   "Family"
+   "Family",
+   "Life Events"
   ],
   "kind": "tool"
  },
@@ -2636,6 +2637,46 @@
   "u": "/money/car-repair-vs-replace/",
   "tags": [
    "Auto"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Freelance Hourly Rate Calculator",
+  "d": "What hourly rate should you charge as a freelancer? Work backward from your income target.",
+  "u": "/money/freelance-hourly-rate/",
+  "tags": [
+   "Side Hustles",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Quarterly Estimated Tax Calculator",
+  "d": "How much should you pay in quarterly estimated taxes on freelance or side-hustle income?",
+  "u": "/money/quarterly-estimated-tax/",
+  "tags": [
+   "Taxes",
+   "Side Hustles"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Medical Bill Payment Plan Calculator",
+  "d": "How long will it take to pay off a medical bill at a set monthly payment?",
+  "u": "/money/medical-bill-payment-plan/",
+  "tags": [
+   "Medical Debt",
+   "Debt"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "State Tax Move Comparison",
+  "d": "How much more or less state income tax would you pay if you moved states?",
+  "u": "/money/state-tax-move-comparison/",
+  "tags": [
+   "Taxes",
+   "Life Events"
   ],
   "kind": "tool"
  }
