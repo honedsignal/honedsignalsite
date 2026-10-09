@@ -56,9 +56,18 @@
       padding: clamp(24px, 4vw, 52px) clamp(16px, 4vw, 48px) max(42px, env(safe-area-inset-bottom));
     }
 
+    .back {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .back:hover { color: var(--ink); }
     .masthead {
-      display: flex;
-      align-items: flex-end;
+      display: flex;      align-items: flex-end;
       justify-content: space-between;
       gap: 30px;
       padding: 8px 0 clamp(28px, 4vw, 44px);
@@ -308,6 +317,7 @@
 <body>
   <main class="page">
     <header class="masthead">
+      <a class="back" href="/money/">← Honed Money</a>
       <div class="brand">
         <h1>Honed Money<span>.</span></h1>
         <p class="byline">by Honed Signal</p>
