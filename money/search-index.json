@@ -653,7 +653,7 @@
   },
   {
     "t": "Mortgage Scenario Comparison",
-    "d": "Keep, refinance, or pay extra — compared",
+    "d": "Keep, refinance, or pay extra \u2014 compared",
     "u": "/money/mortgage-scenario-comparison/",
     "tags": [
       "Housing"
@@ -1264,7 +1264,7 @@
     "kind": "tool"
   },
   {
-    "t": "Effective vs. Marginal Tax Rate Calculator — 2026",
+    "t": "Effective vs. Marginal Tax Rate Calculator \u2014 2026",
     "d": "What you really pay.",
     "u": "/money/effective-vs-marginal-tax-rate-calculator/",
     "tags": [
@@ -1294,7 +1294,7 @@
     "kind": "tool"
   },
   {
-    "t": "HSA Tax Savings Calculator — 2026",
+    "t": "HSA Tax Savings Calculator \u2014 2026",
     "d": "The triple tax advantage.",
     "u": "/money/hsa-tax-savings-calculator/",
     "tags": [
@@ -1325,7 +1325,7 @@
   },
   {
     "t": "Tax Deadline Calendar",
-    "d": "Key dates, 2026–2027.",
+    "d": "Key dates, 2026\u20132027.",
     "u": "/money/tax-deadline-calendar/",
     "tags": [
       "Taxes"
@@ -1421,7 +1421,7 @@
     "kind": "tool"
   },
   {
-    "t": "Decision Center — What Are You Trying to Decide?",
+    "t": "Decision Center \u2014 What Are You Trying to Decide?",
     "d": "Pick your question; we'll walk you through the calculators that answer it.",
     "u": "/money/decide/",
     "tags": [
@@ -1599,7 +1599,7 @@
   },
   {
     "t": "QCD Calculator",
-    "d": "Qualified Charitable Distributions from your IRA — give and skip the tax.",
+    "d": "Qualified Charitable Distributions from your IRA \u2014 give and skip the tax.",
     "u": "/money/qcd-calculator/",
     "tags": [
       "Giving",
@@ -1622,7 +1622,7 @@
   },
   {
     "t": "Rental Property Analyzer",
-    "d": "Cash flow, cap rate, cash-on-cash return — is this rental a deal?",
+    "d": "Cash flow, cap rate, cash-on-cash return \u2014 is this rental a deal?",
     "u": "/money/rental-property-analyzer/",
     "tags": [
       "Real Estate",
@@ -1642,7 +1642,7 @@
   },
   {
     "t": "BRRRR Calculator",
-    "d": "Buy, rehab, rent, refinance, repeat — recycle your capital.",
+    "d": "Buy, rehab, rent, refinance, repeat \u2014 recycle your capital.",
     "u": "/money/brrrr-calculator/",
     "tags": [
       "Real Estate",
@@ -1672,7 +1672,7 @@
   },
   {
     "t": "Baby's First Year Cost Calculator",
-    "d": "Diapers, daycare, gear — what does year one really cost?",
+    "d": "Diapers, daycare, gear \u2014 what does year one really cost?",
     "u": "/money/baby-first-year-cost-calculator/",
     "tags": [
       "Family",
@@ -1723,7 +1723,7 @@
   },
   {
     "t": "Aircraft Cost Calculator",
-    "d": "Purchase, hangar, fuel, maintenance — what does a private plane cost per flight hour?",
+    "d": "Purchase, hangar, fuel, maintenance \u2014 what does a private plane cost per flight hour?",
     "u": "/money/aircraft-cost-calculator/",
     "tags": [
       "Vehicles",
@@ -1762,7 +1762,7 @@
   },
   {
     "t": "Will I Keep My Scholarship?",
-    "d": "What GPA keeps your award — and what losing it costs.",
+    "d": "What GPA keeps your award \u2014 and what losing it costs.",
     "u": "/money/will-i-keep-my-scholarship/",
     "tags": [
       "Scholarships",
@@ -2264,5 +2264,132 @@
       "Side Hustles"
     ],
     "kind": "section"
+  },
+  {
+    "t": "Gas vs Hybrid Car Cost Calculator",
+    "d": "Does a hybrid actually save money?",
+    "u": "/money/gas-vs-hybrid/",
+    "tags": [
+      "Vehicles"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Used Car: Loan vs Cash Calculator",
+    "d": "Finance a used car or pay cash?",
+    "u": "/money/used-car-loan-vs-cash/",
+    "tags": [
+      "Vehicles"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Trade-In vs Private Sale Calculator",
+    "d": "Trade in your car or sell it yourself?",
+    "u": "/money/trade-in-vs-private-sale/",
+    "tags": [
+      "Vehicles"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Zero-Based Budget Calculator",
+    "d": "Give every dollar a job.",
+    "u": "/money/zero-based-budget/",
+    "tags": [
+      "Budget"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Sinking Fund Calculator",
+    "d": "Save monthly for big expenses.",
+    "u": "/money/sinking-funds/",
+    "tags": [
+      "Budget"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Biweekly Paycheck Budget Calculator",
+    "d": "Budget on a biweekly paycheck.",
+    "u": "/money/biweekly-paycheck-budget/",
+    "tags": [
+      "Paycheck",
+      "Budget"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Divorce Home Buyout Calculator",
+    "d": "Can you afford to keep the house?",
+    "u": "/money/divorce-home-buyout/",
+    "tags": [
+      "Divorce"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "QDRO Retirement Split Calculator",
+    "d": "How a QDRO splits the retirement account.",
+    "u": "/money/qdro-split/",
+    "tags": [
+      "Divorce"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Sequence of Returns Risk Calculator",
+    "d": "What if the market crashes after you retire?",
+    "u": "/money/sequence-of-returns/",
+    "tags": [
+      "Retirement"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Mega Backdoor Roth Calculator",
+    "d": "How much extra can you get into Roth?",
+    "u": "/money/mega-backdoor-roth/",
+    "tags": [
+      "Investing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Expense Ratio Impact Calculator",
+    "d": "What fund fees cost you over time.",
+    "u": "/money/expense-ratio-impact/",
+    "tags": [
+      "Investing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Fix-and-Flip Profit Calculator",
+    "d": "Will this flip make money?",
+    "u": "/money/fix-and-flip/",
+    "tags": [
+      "Real Estate"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Airbnb Profitability Calculator",
+    "d": "Will a short-term rental make money?",
+    "u": "/money/airbnb-profitability/",
+    "tags": [
+      "Real Estate"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "AMT Estimator",
+    "d": "Will you owe the alternative minimum tax?",
+    "u": "/money/amt-estimator/",
+    "tags": [
+      "Taxes"
+    ],
+    "kind": "tool"
   }
 ]

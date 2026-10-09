@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>AMT Estimator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}.field .money-input input{text-align:left}.months-label{display:flex;align-items:center;justify-content:space-between;margin:18px 0 9px}.months-label label{font-size:.75rem;font-weight:700;color:var(--muted)}.months-label output{font:500 .75rem "DM Mono",monospace;color:var(--orange)}.months{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.month-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}.month-btn:hover{border-color:var(--blue)}.month-btn.active{background:var(--orange);border-color:var(--orange);color:#171009;font-weight:700}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.jar{position:absolute;left:20px;right:20px;bottom:0;height:73px;border:4px solid var(--blue);border-radius:10px 10px 22px 22px;overflow:hidden}.jar:before{content:"";position:absolute;left:17px;right:17px;top:-12px;height:15px;border:4px solid var(--blue);border-radius:5px}.coin{position:absolute;width:22px;height:22px;border:4px solid var(--orange);border-radius:50%}.coin.one{left:11px;top:3px}.coin.two{right:10px;top:17px}.fill{position:absolute;left:0;right:0;bottom:0;height:28%;background:var(--green-soft);border-top:2px solid var(--green)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.milestone{padding:13px;border-top:2px solid var(--line);background:var(--bg)}.milestone.done{border-color:var(--green)}.milestone small{display:block;color:var(--muted);font-size:.61rem;font-weight:800}.milestone strong{display:block;margin-top:5px;font:500 .8rem "DM Mono",monospace}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.goal-fields,.metric-grid,.milestones{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="Will you owe the alternative minimum tax? Free 2026 AMT estimator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/amt-estimator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"AMT Estimator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/amt-estimator/","description":"Will you owe the alternative minimum tax? Free 2026 AMT estimator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/taxes.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Will the <span class="accent">alternative minimum tax</span> catch you?</h1>
+</div>
+    <p>Enter your income and the items AMT adds back — incentive stock options, state and local taxes, and other preferences — and compare your regular tax against the tentative minimum tax.</p>
+  </header>
+
+  <section class="workbench" aria-label="AMT estimator">
+    <form class="panel inputs" id="fundForm" novalidate>
+      <div class="section-head"><h2>Your income</h2><span class="step">01 / INCOME</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="agi">Adjusted gross income (AGI)</label><div class="money-input"><span>$</span><input id="agi" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Adjusted gross income"></div></div>
+      </div>
+      <div class="months-label"><label>Filing status</label><output id="monthsOutput">Single</output></div>
+      <div class="months" role="group" aria-label="Filing status">
+        <button type="button" class="month-btn active" data-status="single">Single</button>
+        <button type="button" class="month-btn" data-status="hoh">Head of hh.</button>
+        <button type="button" class="month-btn" data-status="mfj">Married joint</button>
+      </div>
+      <div class="section-head" style="margin-top:22px"><h2>AMT add-backs</h2><span class="step">02 / PREFERENCES</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="iso">Incentive stock option bargain element</label><div class="money-input"><span>$</span><input id="iso" data-pref="ISO bargain element" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Incentive stock option bargain element"></div></div>
+        <div class="expense"><label for="salt">State &amp; local tax deductions (SALT)</label><div class="money-input"><span>$</span><input id="salt" data-pref="SALT deductions" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="State and local tax deductions"></div></div>
+        <div class="expense"><label for="other">Other preference items</label><div class="money-input"><span>$</span><input id="other" data-pref="Other preference items" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Other AMT preference items"></div></div>
+      </div>
+      <div class="subtotal"><span>Total AMT add-backs</span><strong id="expenseTotal">$0</strong></div>
+      <p class="hint" style="margin:0 1px 2px">State and local tax deductions are disallowed under AMT — the full amount you deduct on your regular return gets added back. ISO bargain elements are the most common AMT trigger.</p>
+      <button class="calculate" type="submit">Check my AMT exposure</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these AMT results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate your estimate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><i class="coin one"></i><i class="coin two"></i><div class="jar"><i class="fill"></i></div></div><h2>Give the parallel tax a number.</h2><p>Enter your AGI and the items AMT adds back — ISOs, SALT, and other preferences — to compare the two taxes.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">YOUR ALTERNATIVE MINIMUM TAX</p><p class="target" id="target">$0</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>TENTATIVE MINIMUM TAX</span><strong id="coverage">—</strong><em id="coverageNote">—</em></article>
+          <article class="metric"><span>REGULAR TAX</span><strong id="gap">—</strong><em id="gapNote">—</em></article>
+          <article class="metric"><span>AMT EXEMPTION USED</span><strong id="finish">—</strong><em id="finishNote">—</em></article>
+        </div>
+        <section class="panel roadmap">
+          <div class="road-head"><div><h2>Two taxes, one winner</h2><p>You pay whichever is higher: your regular tax or the tentative minimum tax.</p></div><span class="coverage-badge" id="percentBadge">—</span></div>
+          <div class="track" role="img" id="progressTrack" aria-label="AMT comparison"><div class="track-fill" id="trackFill"></div></div>
+          <div class="track-labels"><span id="savedLabel">$0 regular</span><span id="targetLabel">$0 tentative AMT</span></div>
+          <div class="milestones" id="milestones"></div>
+        </section>
+        <div class="plan">
+          <section class="plan-block"><h3>Estimate details</h3><dl><dt>Adjusted gross income</dt><dd id="detailExpense">—</dd><dt>AMT add-backs</dt><dd id="detailMonths">—</dd><dt>Alternative minimum taxable income</dt><dd id="detailContribution">—</dd><dt>AMT exemption (after phaseout)</dt><dd id="detailTime">—</dd></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">No AMT in sight</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download estimate</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Planning note:</strong> This estimator uses 2026 figures from Rev. Proc. 2025-32: AMT exemptions of $90,100 (single/head of household) and $140,200 (married filing jointly), with the exemption phasing out at 50 cents per dollar of AMTI above $500,000 ($1,000,000 joint). The 26%/28% rate breakpoint is $239,100 ($119,550 married filing separately); confirm against the 2026 Form 6251 instructions when the IRS publishes them. The regular-tax comparison uses the 2026 standard deduction and brackets, all ordinary income, and no credits. ISO exercises may qualify for the minimum tax credit on Form 8801 in later years.</p><p>Educational estimate, not tax advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('fundForm'),prefInputs=Array.prototype.slice.call(document.querySelectorAll('[data-pref]')),status='single',last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  // 2026 figures per Rev. Proc. 2025-32. Bracket entries are [top of bracket, rate]; 37% applies above the last.
+  var PARAMS={
+    single:{label:'Single',std:16100,exempt:90100,phase:500000,br:[[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35]]},
+    hoh:{label:'Head of household',std:24150,exempt:90100,phase:500000,br:[[17700,.10],[67450,.12],[105700,.22],[201775,.24],[256200,.32],[640600,.35]]},
+    mfj:{label:'Married filing jointly',std:32200,exempt:140200,phase:1000000,br:[[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35]]}
+  };
+  var AMT_BREAK=239100; // 26%/28% breakpoint (2025 figure; see footer disclosure)
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function totalPrefs(){return prefInputs.reduce(function(sum,input){var v=parseFloat(input.value);return sum+(isFinite(v)&&v>=0?v:0)},0)}
+  function fmt(n){return money0.format(n)}
+  function regularTax(taxable,br){var tax=0,prev=0;for(var i=0;i<br.length;i++){var top=br[i][0],rate=br[i][1];if(taxable<=prev)break;tax+=(Math.min(taxable,top)-prev)*rate;prev=top}if(taxable>prev)tax+=(taxable-prev)*.37;return tax}
+  function amtTentative(base){if(base<=0)return 0;if(base<=AMT_BREAK)return base*.26;return base*.28-(AMT_BREAK*.02)}
+  function getData(){var p=PARAMS[status],agi=num('agi'),prefs=totalPrefs(),amti=agi+prefs,taxable=Math.max(0,agi-p.std),reg=regularTax(taxable,p.br),phaseout=Math.max(0,(amti-p.phase)*.5),exemption=Math.max(0,p.exempt-phaseout),base=Math.max(0,amti-exemption),tentative=amtTentative(base),amt=Math.max(0,tentative-reg);return{statusLabel:p.label,agi:agi,prefs:prefs,amti:amti,taxable:taxable,reg:reg,phaseout:phaseout,exemption:exemption,base:base,tentative:tentative,amt:amt}}
+  function updateSubtotal(){document.getElementById('expenseTotal').textContent=fmt(totalPrefs())}
+  function renderMilestones(d){var rows=[['Tentative minimum tax',d.tentative],['Regular tax',d.reg],['Extra AMT owed',d.amt]];document.getElementById('milestones').innerHTML=rows.map(function(r){return'<div class="milestone '+(r[1]>0?'done':'')+'"><small>'+r[0].toUpperCase()+'</small><strong>'+fmt(r[1])+'</strong></div>'}).join('')}
+  function emailBody(d){var lines=['AMT Estimator results (2026)','',
+    'Filing status: '+d.statusLabel,
+    'Adjusted gross income: '+money2.format(d.agi),
+    'AMT add-backs: '+money2.format(d.prefs),
+    'Alternative minimum taxable income: '+money2.format(d.amti),
+    'AMT exemption (after phaseout): '+money2.format(d.exemption),
+    'Tentative minimum tax: '+money2.format(d.tentative),
+    'Regular tax: '+money2.format(d.reg),
+    'AMT owed: '+money2.format(d.amt)];
+    prefInputs.forEach(function(input){lines.push('- '+input.dataset.pref+': '+money2.format(parseFloat(input.value)||0))});
+    lines.push('','Educational estimate, not tax advice.');return lines.join('\n')}
+  function explanationText(d){var parts=['The AMT runs a parallel tax computation alongside your regular return. First, this estimator adds your AMT add-backs ('+fmt(d.prefs)+') to your adjusted gross income ('+fmt(d.agi)+') to get alternative minimum taxable income (AMTI) of '+fmt(d.amti)+'.'];
+    parts.push(d.phaseout>0?('Your AMTI is above the phaseout threshold, so the exemption shrinks by '+fmt(d.phaseout)+', leaving '+fmt(d.exemption)+'.'):('Your AMTI is below the phaseout threshold, so you keep the full '+d.statusLabel.toLowerCase()+' exemption of '+fmt(d.exemption)+'.'));
+    parts.push('Subtracting the exemption from AMTI leaves an AMT base of '+fmt(d.base)+', taxed at 26% on the first $239,100 and 28% above — a tentative minimum tax of '+fmt(d.tentative)+'. Your regular tax of '+fmt(d.reg)+' is figured on '+fmt(d.taxable)+' of taxable income using the 2026 standard deduction and brackets, all ordinary income, no credits. ');
+    if(d.amt>0){parts.push('Because the tentative minimum tax is higher, you owe an extra '+fmt(d.amt)+' in AMT on top of your regular tax — your total federal tax would be '+fmt(d.tentative)+'.')}
+    else{parts.push('Because your regular tax is higher, the tentative minimum tax does not apply and you owe no AMT.')}
+    return parts.join(' ')}
+  function render(d){last=d;document.getElementById('emptyState').classList.add('hidden');document.getElementById('resultState').classList.remove('hidden');document.getElementById('target').textContent=fmt(d.amt);document.getElementById('targetNote').textContent=d.amt>0?('Your tentative minimum tax ('+fmt(d.tentative)+') exceeds your regular tax ('+fmt(d.reg)+') — the difference is the extra tax you owe.'):('Your regular tax ('+fmt(d.reg)+') exceeds the tentative minimum tax ('+fmt(d.tentative)+'), so no AMT is due.');document.getElementById('coverage').textContent=fmt(d.tentative);document.getElementById('coverageNote').textContent='26% / 28% on '+fmt(d.base)+' of AMT base';document.getElementById('gap').textContent=fmt(d.reg);document.getElementById('gapNote').textContent=d.statusLabel+', 2026 brackets';document.getElementById('finish').textContent=fmt(d.exemption);document.getElementById('finishNote').textContent=d.phaseout>0?(fmt(d.phaseout)+' phased out'):'full exemption kept';var pct=(d.tentative+d.reg)>0?Math.min(100,d.tentative/(d.tentative+d.reg)*100):0;document.getElementById('percentBadge').textContent=d.amt>0?'AMT applies':'No AMT';document.getElementById('trackFill').style.width=pct+'%';document.getElementById('progressTrack').setAttribute('aria-label','Tentative minimum tax is '+pct.toFixed(0)+' percent of the combined tax comparison');document.getElementById('savedLabel').textContent=fmt(d.reg)+' regular';document.getElementById('targetLabel').textContent=fmt(d.tentative)+' tentative AMT';document.getElementById('detailExpense').textContent=fmt(d.agi);document.getElementById('detailMonths').textContent=fmt(d.prefs);document.getElementById('detailContribution').textContent=fmt(d.amti);document.getElementById('detailTime').textContent=fmt(d.exemption);renderMilestones(d);
+    var title=document.getElementById('nudgeTitle'),text=document.getElementById('nudgeText'),strong=document.getElementById('nudgeStrong'),foot=document.getElementById('nudgeFoot');
+    if(d.amt>0){title.textContent='You likely owe AMT';text.textContent='The tentative minimum tax beats your regular tax. Your estimated extra tax is:';strong.textContent=fmt(d.amt);foot.textContent='ISO exercises are timing items: AMT paid on ISOs can become a minimum tax credit (Form 8801) in later years. Run this again before exercising more options or prepaying SALT.'}
+    else if(d.tentative>0&&d.tentative>=d.reg*.9){title.textContent='Close call';text.textContent='The tentative minimum tax is within 10% of your regular tax. One more add-back — a larger ISO exercise, for example — could tip you into AMT. The cushion is:';strong.textContent=fmt(d.reg-d.tentative);foot.textContent='Model timing decisions (ISO exercises, bonus deferrals) with this estimator first.'}
+    else{title.textContent='No AMT in sight';text.textContent='Your regular tax is comfortably above the tentative minimum tax, so the parallel system does not apply. The cushion is:';strong.textContent=fmt(d.reg-d.tentative);foot.textContent='Keep an eye on ISO exercises and large SALT payments — those are the classic triggers.'}
+    document.getElementById('explainCopy').textContent=explanationText(d);var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My AMT estimate')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.agi<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  prefInputs.concat([document.getElementById('agi')]).forEach(function(input){input.addEventListener('input',function(){updateSubtotal();if(last&&num('agi')>0)render(getData())})});
+  document.querySelectorAll('.month-btn').forEach(function(btn){btn.addEventListener('click',function(){status=btn.dataset.status;document.querySelectorAll('.month-btn').forEach(function(b){b.classList.toggle('active',b===btn)});document.getElementById('monthsOutput').textContent=PARAMS[status].label;if(last&&num('agi')>0)render(getData())})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,statusEl=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;statusEl.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';statusEl.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var d=getData(),rows=[['AMT Estimate (2026)','Value'],['Filing status',d.statusLabel],['Adjusted gross income',d.agi.toFixed(2)],['AMT add-backs',d.prefs.toFixed(2)],['Alternative minimum taxable income',d.amti.toFixed(2)],['AMT exemption (after phaseout)',d.exemption.toFixed(2)],['AMT base',d.base.toFixed(2)],['Tentative minimum tax',d.tentative.toFixed(2)],['Regular tax',d.reg.toFixed(2)],['AMT owed',d.amt.toFixed(2)],[],['Add-back','Amount']];prefInputs.forEach(function(input){rows.push([input.dataset.pref,(parseFloat(input.value)||0).toFixed(2)])});var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='amt-estimate.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+  updateSubtotal();
+})();
+
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/equity-compensation/"><span class="arr">→</span>Model your ISO exercise timing</a></li><li><a href="/money/crypto-tax/"><span class="arr">→</span>Estimate your crypto tax bill</a></li><li><a href="/money/taxes/"><span class="arr">→</span>Browse all tax calculators</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

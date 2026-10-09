@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Biweekly Paycheck Budget Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.date-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.date-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.date-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:700;font-variant-numeric:tabular-nums}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.calendar{position:absolute;left:14px;right:14px;bottom:0;height:73px;border:4px solid var(--blue);border-radius:10px;overflow:hidden}.calendar:before{content:"";position:absolute;left:0;right:0;top:0;height:20px;border-bottom:4px solid var(--blue);background:var(--blue-soft)}.cal-check{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--orange)}.cal-check.one{left:14px;bottom:12px}.cal-check.two{left:40px;bottom:12px}.cal-check.three{left:66px;bottom:12px;background:var(--green)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.milestone{padding:13px;border-top:2px solid var(--line);background:var(--bg)}.milestone.done{border-color:var(--green)}.milestone small{display:block;color:var(--muted);font-size:.61rem;font-weight:800}.milestone strong{display:block;margin-top:5px;font:500 .8rem "DM Mono",monospace}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.metric-grid,.milestones{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  </style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="How do I budget on a biweekly paycheck?. Free biweekly paycheck budget calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/biweekly-paycheck-budget/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Biweekly Paycheck Budget Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/biweekly-paycheck-budget/","description":"How do I budget on a biweekly paycheck?. Free biweekly paycheck budget calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/paycheck.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Budget by the paycheck, <span class="accent">not the month.</span></h1>
+</div>
+    <p>Split your monthly bills in half for each check, spend what is left — then find your two bonus-paycheck months every year.</p>
+  </header>
+
+  <section class="workbench" aria-label="Biweekly paycheck budget calculator">
+    <form class="panel inputs" id="payForm" novalidate>
+      <div class="section-head"><h2>Your pay</h2><span class="step">01 / PAY</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="takehome">Take-home pay per check</label><div class="money-input"><span>$</span><input id="takehome" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Take-home pay per paycheck"></div></div>
+        <div class="expense"><label for="firstPay">Next payday</label><div class="date-input"><input id="firstPay" type="date" aria-label="Your next payday"></div></div>
+      </div>
+      <div class="section-head" style="margin-top:22px"><h2>Your bills</h2><span class="step">02 / BILLS</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="bills">Total monthly bills</label><div class="money-input"><span>$</span><input id="bills" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Total monthly bills"></div></div>
+      </div>
+      <div class="subtotal"><span>Bills to set aside per check</span><strong id="perCheckSubtotal">$0</strong></div>
+      <button class="calculate" type="submit">Build my paycheck plan</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these biweekly paycheck budget results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate your plan to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><div class="calendar"><i class="cal-check one"></i><i class="cal-check two"></i><i class="cal-check three"></i></div></div><h2>Two bonus checks a year.</h2><p>Enter your take-home per check and your monthly bills — we will split your budget by the paycheck and find your three-paycheck months.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">SPENDING MONEY PER CHECK</p><p class="target" id="target">$0</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>SET ASIDE PER CHECK</span><strong id="perCheck">—</strong><em id="perCheckNote">—</em></article>
+          <article class="metric"><span>THREE-PAYCHECK MONTHS</span><strong id="bonusMonths">—</strong><em id="bonusMonthsNote">—</em></article>
+          <article class="metric"><span>BONUS CHECKS / YEAR</span><strong id="bonusAnnual">—</strong><em id="bonusAnnualNote">—</em></article>
+        </div>
+        <section class="panel roadmap">
+          <div class="road-head"><div><h2>Where each check goes</h2><p>Bills come out first — half of the monthly total from every check.</p></div><span class="coverage-badge" id="splitBadge">—</span></div>
+          <div class="track" role="img" id="splitTrack" aria-label="Paycheck split"><div class="track-fill" id="trackFill"></div></div>
+          <div class="track-labels"><span id="billsLabel">$0 bills</span><span id="spendingLabel">$0 yours</span></div>
+          <div class="milestones" id="calendarGrid"></div>
+        </section>
+        <div class="plan">
+          <section class="plan-block"><h3>Plan details</h3><dl><dt>Take-home per check</dt><dd id="detailPay">—</dd><dt>Monthly bills</dt><dd id="detailBills">—</dd><dt>Set aside per check</dt><dd id="detailPerCheck">—</dd><dt>Spending per check</dt><dd id="detailSpending">—</dd><dt>Checks per year</dt><dd id="detailChecks">—</dd><dt>Three-paycheck months</dt><dd id="detailBonus">—</dd><dt>Annual take-home</dt><dd id="detailAnnual">—</dd></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">Your two bonus checks</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download plan</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Planning note:</strong> Paid every two weeks means 26 paychecks a year. Budgeting 24 of them — two per month — covers a full year of bills, and the leftover checks are pure bonus. This plan assumes steady take-home pay; if your income varies, budget from your lowest typical check.</p><p>Educational estimate, not financial advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('payForm'),last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function fmt(n){return money0.format(n)}
+  function payDate(){var el=document.getElementById('firstPay'),v=el.value;if(!v)return null;var p=v.split('-');if(p.length!==3)return null;return new Date(parseInt(p[0],10),parseInt(p[1],10)-1,parseInt(p[2],10))}
+  function updateSubtotal(){document.getElementById('perCheckSubtotal').textContent=fmt(num('bills')/2)}
+  function buildCalendar(start){
+    if(!start)return null;
+    var year=start.getFullYear()+(start.getMonth()>=9?1:0),jan1=new Date(year,0,1),d=new Date(start),i;
+    while(d>jan1){d=new Date(d.getTime()-14*86400000)}
+    while(d<jan1){d=new Date(d.getTime()+14*86400000)}
+    var months=[];
+    for(i=0;i<12;i++){months.push({label:new Date(year,i,1).toLocaleDateString('en-US',{month:'short',year:'numeric'}),checks:0})}
+    var end=new Date(year+1,0,1);
+    while(d<end){months[d.getMonth()].checks++;d=new Date(d.getTime()+14*86400000)}
+    return{year:year,months:months};
+  }
+  function getData(){
+    var pay=num('takehome'),bills=num('bills'),start=payDate();
+    var perCheck=bills/2,spending=pay-perCheck;
+    var cal=buildCalendar(start),calYear=cal?cal.year:null,calMonths=cal?cal.months:[];
+    var bonus=calMonths.filter(function(m){return m.checks===3});
+    var bonusAnnual=pay*bonus.length;
+    var totalChecks=calMonths.reduce(function(s,m){return s+m.checks},0);
+    return{pay:pay,bills:bills,start:start,perCheck:perCheck,spending:spending,calYear:calYear,calMonths:calMonths,bonus:bonus,bonusAnnual:bonusAnnual,checksPerYear:totalChecks,annualTakeHome:pay*totalChecks};
+  }
+  function renderCalendar(d){
+    if(!d.calMonths.length){
+      document.getElementById('calendarGrid').innerHTML='<div class="milestone"><small>ADD YOUR PAYDAY</small><strong>Enter your next payday to see the calendar.</strong></div>';
+      return;
+    }
+    document.getElementById('calendarGrid').innerHTML=d.calMonths.map(function(m){
+      var done=m.checks===3;
+      return'<div class="milestone '+(done?'done':'')+'"><small>'+(done?'BONUS MONTH':m.checks+' PAYCHECKS')+'</small><strong>'+m.label+'</strong></div>';
+    }).join('');
+  }
+  function emailBody(d){
+    var lines=['Biweekly Paycheck Budget Calculator results','',
+      'Take-home per check: '+money2.format(d.pay),
+      'Monthly bills: '+money2.format(d.bills),
+      'Set aside per check for bills: '+money2.format(d.perCheck),
+      'Spending money per check: '+money2.format(d.spending),
+      'Annual take-home ('+d.checksPerYear+' checks): '+money2.format(d.annualTakeHome),''];
+    if(d.calMonths.length){
+      lines.push('Your '+d.calYear+' paycheck calendar:');
+      d.calMonths.forEach(function(m){lines.push('- '+m.label+': '+m.checks+' paychecks'+(m.checks===3?' — BONUS MONTH':''))});
+      lines.push('','Bonus checks this year: '+d.bonus.length+' × '+money2.format(d.pay)+' = '+money2.format(d.bonusAnnual));
+    }else{
+      lines.push('Add a payday to find your three-paycheck months.');
+      lines.push('Estimated bonus checks: 2 × '+money2.format(d.pay)+' = '+money2.format(d.pay*2));
+    }
+    lines.push('','Educational estimate, not financial advice.');
+    return lines.join('\n');
+  }
+  function explanationText(d){
+    var parts=['You get paid every two weeks, so 26 paychecks land each year. The half-month method budgets 24 of them — two checks per month — against your full year of bills. From every '+fmt(d.pay)+' check, you set aside '+fmt(d.perCheck)+' (half of '+fmt(d.bills)+' in monthly bills), leaving '+fmt(d.spending)+' as spending money for the next two weeks.'];
+    if(d.bonus.length){
+      var names=d.bonus.map(function(m){return m.label}).join(' and ');
+      parts.push('In '+d.calYear+', your paydays land across the 12 months below. Because your paydays land the way they do, '+names+(d.bonus.length===1?' gets':' get')+' three paychecks: the bills are already covered by the first two checks, so each whole third check — '+fmt(d.pay)+' — is free to point at savings or debt. Those bonus checks add up to '+fmt(d.bonusAnnual)+'.');
+    }else{
+      parts.push('Enter your next payday and the calculator will map your paydays across a full calendar year and name your three-paycheck months — worth '+fmt(d.pay*2)+'.');
+    }
+    if(d.spending<0){parts.push('Right now the math does not close: half your monthly bills ('+fmt(d.perCheck)+') is more than one check ('+fmt(d.pay)+'). That is a signal to trim bills, raise income, or budget from a full-month view until the numbers fit.')}
+    return parts.join(' ');
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('target').textContent=fmt(d.spending);
+    document.getElementById('targetNote').textContent=d.spending>=0?'What is left from each '+fmt(d.pay)+' check after '+fmt(d.perCheck)+' goes to bills.':'Your half-month bills exceed one check — see the plan below.';
+    document.getElementById('perCheck').textContent=fmt(d.perCheck);
+    document.getElementById('perCheckNote').textContent='half of '+fmt(d.bills)+' monthly';
+    document.getElementById('bonusMonths').textContent=d.bonus.length?d.bonus.map(function(m){return m.label}).join(', '):(d.calMonths.length?'None this year':'Add payday');
+    document.getElementById('bonusMonthsNote').textContent=d.calMonths.length?(d.bonus.length+' bonus month'+(d.bonus.length===1?'':'s')+' in '+d.calYear):'enter next payday';
+    document.getElementById('bonusAnnual').textContent=fmt(d.bonus.length?d.bonusAnnual:d.pay*2);
+    document.getElementById('bonusAnnualNote').textContent=d.calMonths.length?(d.bonus.length+' × '+fmt(d.pay)+' in '+d.calYear):'typical two bonus checks';
+    var share=d.pay>0?Math.min(100,Math.max(0,d.perCheck/d.pay*100)):0;
+    document.getElementById('splitBadge').textContent=share.toFixed(0)+'% to bills';
+    document.getElementById('trackFill').style.width=share+'%';
+    document.getElementById('splitTrack').setAttribute('aria-label','Each paycheck: '+share.toFixed(0)+' percent to bills, the rest spending money');
+    document.getElementById('billsLabel').textContent=fmt(d.perCheck)+' bills';
+    document.getElementById('spendingLabel').textContent=fmt(Math.max(0,d.spending))+' yours';
+    renderCalendar(d);
+    document.getElementById('detailPay').textContent=fmt(d.pay);
+    document.getElementById('detailBills').textContent=fmt(d.bills);
+    document.getElementById('detailPerCheck').textContent=fmt(d.perCheck);
+    document.getElementById('detailSpending').textContent=fmt(d.spending);
+    document.getElementById('detailChecks').textContent=String(d.checksPerYear);
+    document.getElementById('detailBonus').textContent=d.calMonths.length?(d.bonus.length?d.bonus.map(function(m){return m.label}).join(', '):'None in '+d.calYear):'Add your next payday';
+    document.getElementById('detailAnnual').textContent=fmt(d.annualTakeHome);
+    var title=document.getElementById('nudgeTitle'),text=document.getElementById('nudgeText'),strong=document.getElementById('nudgeStrong'),foot=document.getElementById('nudgeFoot');
+    if(d.spending<0){
+      title.textContent='Bills exceed your paychecks';
+      text.textContent='Half of your monthly bills is more than one check covers. Close the gap first:';
+      strong.textContent=fmt(-d.spending)+' short per check';
+      foot.textContent='Cut a bill, or budget from two full monthly paychecks instead of the half-month split until the numbers fit.';
+    }else if(!d.calMonths.length){
+      title.textContent='Find your bonus months';
+      text.textContent='Enter your next payday above and the calculator will name your three-paycheck months. A biweekly schedule delivers about:';
+      strong.textContent=fmt(d.pay*2)+' a year in bonus checks';
+      foot.textContent='Point both at your emergency fund first — then at high-interest debt.';
+    }else{
+      var bn=d.bonus.length;
+      title.textContent='Your bonus check'+(bn===1?'':'s');
+      text.textContent='In '+d.bonus.map(function(m){return m.label}).join(' and ')+', the whole third check skips bills entirely. Point it at your biggest priority:';
+      strong.textContent=fmt(d.bonusAnnual)+' in '+d.calYear;
+      foot.textContent=bn>=2?'One classic move: first bonus check tops up the emergency fund, the rest attack your highest-interest debt.':'Even one bonus check is a free head start — point it at your emergency fund.';
+    }
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('My biweekly paycheck budget plan')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
+  }
+  function calculate(e){
+    if(e)e.preventDefault();
+    var d=getData();
+    if(d.pay<=0||d.bills<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}
+    render(d);
+  }
+  ['takehome','bills'].forEach(function(id){
+    document.getElementById(id).addEventListener('input',function(){updateSubtotal();if(last&&num('takehome')>0&&num('bills')>0)render(getData())});
+  });
+  document.getElementById('firstPay').addEventListener('change',function(){if(last&&num('takehome')>0&&num('bills')>0)render(getData())});
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    if(!last)return;var d=getData();
+    var rows=[['Biweekly Paycheck Budget Plan','Value'],
+      ['Take-home per check',d.pay.toFixed(2)],
+      ['Monthly bills',d.bills.toFixed(2)],
+      ['Set aside per check',d.perCheck.toFixed(2)],
+      ['Spending money per check',d.spending.toFixed(2)],
+      ['Checks per year',d.checksPerYear],
+      ['Annual take-home',d.annualTakeHome.toFixed(2)],
+      ['Bonus checks this year',d.bonus.length],
+      ['Bonus check total',d.bonusAnnual.toFixed(2)],
+      [],
+      ['Month','Paychecks']];
+    if(d.calMonths.length){d.calMonths.forEach(function(m){rows.push([m.label,m.checks])})}
+    else{rows.push(['(add your next payday to build the calendar)',''])}
+    var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),
+      blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),
+      url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='biweekly-paycheck-budget-plan.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  });
+  (function defaultPayday(){
+    var el=document.getElementById('firstPay'),t=new Date();
+    t.setDate(t.getDate()+((5-t.getDay()+7)%7||7));
+    el.value=t.toISOString().slice(0,10);
+  })();
+  updateSubtotal();
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/irregular-income-budget/"><span class="arr">→</span>Budget with irregular income</a></li><li><a href="/money/emergency-fund-calculator/"><span class="arr">→</span>Build your emergency fund</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
