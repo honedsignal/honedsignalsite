@@ -341,6 +341,42 @@
         'new state': 'The state you are considering moving to.'
       },
 
+
+      'final-exam-calculator': {
+        'current grade': 'Your grade in the class right now, before the final.',
+        'desired final grade': 'The course grade you are aiming for.',
+        'final exam weight': 'What percent of your grade the final is worth — check your syllabus.'
+      },
+
+      'can-i-still-pass': {
+        'current grade': 'Your average on completed work so far.',
+        'grade weight still remaining': 'What percent of the total grade is not yet graded.',
+        'target final grade': 'The minimum course grade you need.'
+      },
+
+      'study-planner': {
+        'study hours available per day': 'Realistic hours, not ideal ones — consistency beats cramming.'
+      },
+
+      'absence-tracker': {
+        'total class sessions': 'How many times the class meets all term.',
+        'absences allowed': 'Your school or professor\u2019s limit before penalties kick in.',
+        'absences used so far': 'How many you have already missed.'
+      },
+
+      'reading-time-estimator': {
+        'number of pages': 'Pages you need to read.',
+        'words per page': 'About 250-300 for a typical paperback, 500+ for dense textbooks.',
+        'your reading speed': 'Average adult reads 200-250 words per minute; technical material is slower.'
+      },
+
+      'citation-formatter': {
+        'author': 'Last name, first initial — e.g. Smith, J.',
+        'year': 'Year of publication.',
+        'title': 'Title of the book or article.',
+        'source / publisher': 'Publisher or website name.'
+      }
+
     };
 
     var page = HINTS[SLUG];
