@@ -1914,7 +1914,7 @@
   "u": "/money/safe-withdrawal-rate/",
   "tags": [
    "Retirement",
-   "FIRE"
+   "Early Retirement (FIRE)"
   ],
   "kind": "tool"
  },
@@ -2033,7 +2033,7 @@
   "tags": [
    "Investing",
    "Retirement",
-   "FIRE"
+   "Early Retirement (FIRE)"
   ],
   "kind": "tool"
  },
@@ -2192,7 +2192,7 @@
   "d": "What savings rate gets you to early retirement?",
   "u": "/money/fire-savings-rate/",
   "tags": [
-   "FIRE",
+   "Early Retirement (FIRE)",
    "Investing",
    "Retirement"
   ],
@@ -2203,7 +2203,7 @@
   "d": "Have you saved enough to stop saving and still retire on time?",
   "u": "/money/coast-fire/",
   "tags": [
-   "FIRE",
+   "Early Retirement (FIRE)",
    "Investing",
    "Retirement"
   ],
@@ -2252,7 +2252,7 @@
   "d": "Financial independence, retire early. Find your number.",
   "u": "/money/fire/",
   "tags": [
-   "FIRE"
+   "Early Retirement (FIRE)"
   ],
   "kind": "section"
  },
