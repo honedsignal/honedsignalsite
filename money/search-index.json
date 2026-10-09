@@ -1544,5 +1544,34 @@
       "Paycheck"
     ],
     "kind": "section"
+  },
+  {
+    "t": "Emergency Fund Money Calculators",
+    "d": "Your safety net, built right. How much you need, where to keep it, and the debt tradeoff.",
+    "u": "/money/emergency-fund/",
+    "tags": [
+      "Emergency Fund"
+    ],
+    "kind": "section"
+  },
+  {
+    "t": "Where to Park Your Emergency Fund",
+    "d": "Compare HYSA, CD, Treasury bills, and money market accounts after taxes.",
+    "u": "/money/emergency-fund-parking-calculator/",
+    "tags": [
+      "Emergency Fund",
+      "Investing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Emergency Fund vs Debt Payoff",
+    "d": "Fund first, debt first, or split? See the timeline and interest cost of each.",
+    "u": "/money/emergency-fund-vs-debt-calculator/",
+    "tags": [
+      "Emergency Fund",
+      "Debt"
+    ],
+    "kind": "tool"
   }
 ]
