@@ -248,6 +248,60 @@
         'repair cost': 'The quote from the shop, including parts and labor.',
         'current value': 'What the car is worth today — check Kelley Blue Book or similar. If the repair costs more than the car is worth, that is a strong signal to replace.',
         'replacement cost': 'The out-the-door price of the replacement car you would buy.',
+      },
+
+      '50-30-20-budget-calculator': {
+        'monthly income after taxes': 'Your take-home pay — what actually lands in your account each month, not your salary.'
+      },
+
+      'monthly-budget-planner': {
+        'take-home income': 'Total monthly income after taxes from all sources.',
+        'housing': 'Rent or mortgage plus insurance, taxes, and utilities if you want the full picture.',
+        'debt payments': 'Minimum payments on credit cards, loans, and anything else you owe.',
+        'savings': 'What is left for savings goals and investing after everything else.'
+      },
+
+      'net-worth-calculator': {
+        'cash and savings': 'Checking, savings, and cash on hand.',
+        'investments and retirement': '401(k), IRA, brokerage, and HSA balances combined.',
+        'home value': 'A realistic sale price today, not what you paid.',
+        'mortgage balance': 'What you still owe on the home loan, from your latest statement.'
+      },
+
+      'social-security-benefit': {
+        'year of birth': 'Your birth year sets your full retirement age — 67 for anyone born 1960 or later.',
+        'avg. indexed monthly earnings': 'Your average monthly earnings over your 35 highest-earning years, adjusted for wage growth. Find your record at ssa.gov/myaccount.',
+        'claim': 'Claiming at 62 cuts benefits about 30%; waiting until 70 adds about 24% versus full retirement age.'
+      },
+
+      'fafsa-aid-estimator': {
+        'parent total income': 'Adjusted gross income from the tax return — the FAFSA uses prior-prior year taxes.',
+        'parent assets': 'Savings, investments, and business assets. Retirement accounts and your home do not count.',
+        'household size': 'Everyone the parents support, including the student.'
+      },
+
+      'currency-converter': {
+        'amount': 'How much you want to convert.',
+        'manual rate': 'Optional — leave blank to use the live rate. Enter your own if your bank or card gives you a different one.'
+      },
+
+      'w-4-withholding-calculator': {
+        'annual salary': 'Gross yearly pay before taxes and deductions.',
+        'filing status': 'Usually matches your tax return: single, married filing jointly, or head of household.',
+        'qualifying children under 17': 'Each qualifying child is worth a $2,000 child tax credit in 2026.',
+        'pay frequency': 'How often you get paid — this sets how the annual numbers split per check.'
+      },
+
+      'capital-gains-tax-calculator': {
+        'sale proceeds': 'What you sold it for, before fees.',
+        'cost basis': 'What you originally paid, plus improvements for property. Keep records — the IRS will ask.',
+        'holding period': 'Over a year usually means lower long-term rates (0%, 15%, or 20%); a year or less is taxed like wages.'
+      },
+
+      'life-insurance-needs-calculator': {
+        'annual income': 'The income your family would need to replace.',
+        'years to replace': 'How many years of income the payout should cover — often until kids are grown.',
+        'existing life insurance coverage': 'Any policies already in place, including through work.'
       }
 
     };
