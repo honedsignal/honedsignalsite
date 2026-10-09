@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>HSA vs Cash for Medical Bills Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}.field .money-input input{text-align:left}.months-label{display:flex;align-items:center;justify-content:space-between;margin:18px 0 9px}.months-label label{font-size:.75rem;font-weight:700;color:var(--muted)}.months-label output{font:500 .75rem "DM Mono",monospace;color:var(--orange)}.months{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.month-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}.month-btn:hover{border-color:var(--blue)}.month-btn.active{background:var(--orange);border-color:var(--orange);color:#171009;font-weight:700}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.jar{position:absolute;left:20px;right:20px;bottom:0;height:73px;border:4px solid var(--blue);border-radius:10px 10px 22px 22px;overflow:hidden}.jar:before{content:"";position:absolute;left:17px;right:17px;top:-12px;height:15px;border:4px solid var(--blue);border-radius:5px}.coin{position:absolute;width:22px;height:22px;border:4px solid var(--orange);border-radius:50%}.coin.one{left:11px;top:3px}.coin.two{right:10px;top:17px}.fill{position:absolute;left:0;right:0;bottom:0;height:28%;background:var(--green-soft);border-top:2px solid var(--green)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.milestone{padding:13px;border-top:2px solid var(--line);background:var(--bg)}.milestone.done{border-color:var(--green)}.milestone small{display:block;color:var(--muted);font-size:.61rem;font-weight:800}.milestone strong{display:block;margin-top:5px;font:500 .8rem "DM Mono",monospace}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.goal-fields,.metric-grid,.milestones{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  </style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="Should you pay a medical bill with your HSA or with cash? Free HSA vs cash calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/hsa-vs-cash-medical/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"HSA vs Cash for Medical Bills Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/hsa-vs-cash-medical/","description":"Should you pay a medical bill with your HSA or with cash? Free HSA vs cash calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/health.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Your HSA is the best <span class="accent">retirement account</span> you own.</h1>
+</div>
+    <p>Enter the bill, your balances, and your timeline. The math will tell you whether to spend the HSA or guard it.</p>
+  </header>
+
+  <section class="workbench" aria-label="HSA vs cash calculator">
+    <form class="panel inputs" id="hsaForm" novalidate>
+      <div class="section-head"><h2>The bill</h2><span class="step">01 / BILL</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="bill">Medical bill amount</label><div class="money-input"><span>$</span><input id="bill" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Medical bill amount"></div></div>
+        <div class="expense"><label for="taxRate">Your marginal tax rate</label><div class="money-input"><span>%</span><input id="taxRate" type="number" min="0" max="60" step="0.5" inputmode="decimal" placeholder="22" aria-label="Your marginal tax rate percent"></div></div>
+      </div>
+      <p class="hint">Use your federal + state marginal rate combined. 22% is a common middle bracket; add your state rate on top.</p>
+      <div class="section-head" style="margin-top:22px"><h2>Your funds</h2><span class="step">02 / FUNDS</span></div>
+      <div class="goal-fields">
+        <div class="field"><label for="hsaBalance">HSA balance</label><div class="money-input"><span>$</span><input id="hsaBalance" type="number" min="0" step="1" inputmode="decimal" placeholder="0"></div></div>
+        <div class="field"><label for="cashAvail">Cash available</label><div class="money-input"><span>$</span><input id="cashAvail" type="number" min="0" step="1" inputmode="decimal" placeholder="0"></div></div>
+      </div>
+      <div class="section-head" style="margin-top:22px"><h2>The long game</h2><span class="step">03 / GROWTH</span></div>
+      <div class="goal-fields">
+        <div class="field"><label for="years">Years until retirement</label><div class="money-input"><span></span><input id="years" type="number" min="0" max="50" step="1" inputmode="decimal" placeholder="20" style="text-align:right"></div></div>
+        <div class="field"><label for="ret">Expected annual return</label><div class="money-input"><span>%</span><input id="ret" type="number" min="0" max="30" step="0.5" inputmode="decimal" placeholder="7" aria-label="Expected annual return percent"></div></div>
+      </div>
+      <p class="hint">7% is a common long-run stock market assumption. The longer the timeline, the more the HSA's tax-free growth is worth.</p>
+      <button class="calculate" type="submit">Run the comparison</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these HSA vs cash results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate your plan to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><i class="coin one"></i><i class="coin two"></i><div class="jar"><i class="fill"></i></div></div><h2>Guard it or spend it?</h2><p>Enter the medical bill, your HSA and cash balances, and how far retirement is. The math picks a side.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">OUR RECOMMENDATION</p><p class="target" id="target">$0</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>HSA ROUTE: TAX SAVINGS</span><strong id="mTax">—</strong><em id="mTaxNote">—</em></article>
+          <article class="metric"><span>CASH ROUTE: HSA FUTURE VALUE</span><strong id="mGrow">—</strong><em id="mGrowNote">—</em></article>
+          <article class="metric"><span>WINNER'S EDGE</span><strong id="mEdge">—</strong><em id="mEdgeNote">—</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>Route details</h3><dl><dt>Medical bill</dt><dd id="detailBill">—</dd><dt>Paying with HSA costs</dt><dd id="detailHsaCost">—</dd><dt>Paying with cash costs</dt><dd id="detailCashCost">—</dd><dt>Growth given up if HSA spent</dt><dd id="detailGrowth">—</dd><dt>Tax saved if HSA used</dt><dd id="detailTax">—</dd></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">The pro move</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download plan</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Planning note:</strong> The HSA's triple tax advantage — tax-deductible contributions, tax-free growth, tax-free withdrawals for qualified medical expenses — makes it the only triple-tax-advantaged account in the tax code. Growth figures assume a steady average return; real markets vary. After age 65, HSA money can be withdrawn for any reason and taxed like a Traditional IRA, with no penalty.</p><p>Educational estimate, not financial advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('hsaForm'),last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function fmt(n){return money0.format(n)}
+  function pct(n){return (n*100).toFixed(1)+'%'}
+  function getData(){
+    var bill=num('bill'),t=Math.min(60,num('taxRate'))/100,hsa=num('hsaBalance'),cash=num('cashAvail'),
+        years=Math.min(50,num('years')),r=Math.min(30,num('ret'))/100;
+    var taxSave=bill*t;
+    var future=bill*Math.pow(1+r,years);
+    var growthGivenUp=future-bill;
+    var canHSA=hsa>=bill,canCash=cash>=bill;
+    var winner,reason;
+    if(!canHSA&&!canCash){
+      winner='shortfall';
+      reason='Neither your HSA ('+fmt(hsa)+') nor your cash ('+fmt(cash)+') covers the '+fmt(bill)+' bill on its own.';
+    }else if(canCash&&(!canHSA||growthGivenUp>taxSave)){
+      winner='cash';
+      reason=canHSA
+        ?'Paying cash keeps '+fmt(bill)+' invested in your HSA. The '+fmt(growthGivenUp)+' of tax-free growth beats the '+fmt(taxSave)+' tax savings of spending it now.'
+        :'Your HSA cannot cover the bill, so cash is the move.';
+    }else{
+      winner='hsa';
+      reason=!canCash
+        ?'Cash cannot cover the bill, so the HSA is the move — and you still save '+fmt(taxSave)+' in taxes versus after-tax dollars.'
+        :'The '+fmt(taxSave)+' tax savings beats the '+fmt(growthGivenUp)+' of growth over '+years+(years===1?' year':' years')+'. Spend the HSA.';
+    }
+    return{bill:bill,t:t,hsa:hsa,cash:cash,years:years,r:r,taxSave:taxSave,future:future,growthGivenUp:growthGivenUp,canHSA:canHSA,canCash:canCash,winner:winner,reason:reason};
+  }
+  function emailBody(d){
+    var route=d.winner==='cash'?'Pay with cash, keep the HSA growing':(d.winner==='hsa'?'Pay with the HSA':'Split / payment plan needed');
+    var lines=['HSA vs Cash for Medical Bills results','',
+    'Medical bill: '+money2.format(d.bill),
+    'HSA balance: '+money2.format(d.hsa),
+    'Cash available: '+money2.format(d.cash),
+    'Marginal tax rate: '+(d.t*100).toFixed(1)+'%',
+    'Years until retirement: '+d.years,
+    'Expected annual return: '+(d.r*100).toFixed(1)+'%','',
+    'Recommendation: '+route,
+    'Why: '+d.reason,'',
+    'Tax savings of HSA route: '+money2.format(d.taxSave),
+    'HSA future value if kept invested ('+d.years+' yrs): '+money2.format(d.future),
+    'Growth given up by spending HSA now: '+money2.format(d.growthGivenUp),'',
+    'Educational estimate, not financial advice.'];
+    return lines.join('\n');
+  }
+  function explanationText(d){
+    var parts=['Your bill is '+fmt(d.bill)+'. Paying it from your HSA uses pre-tax dollars, which saves about '+fmt(d.taxSave)+' in taxes at your '+(d.t*100).toFixed(1)+'% marginal rate, versus paying with after-tax cash.'];
+    parts.push('But every dollar you spend from the HSA is a dollar that stops compounding tax-free. Kept invested at '+(d.r*100).toFixed(1)+'% for '+d.years+(d.years===1?' year':' years')+', '+fmt(d.bill)+' becomes '+fmt(d.future)+' — that is '+fmt(d.growthGivenUp)+' of growth you give up by spending it today.');
+    parts.push('The HSA is the only account with a triple tax advantage: contributions are tax-deductible, growth is tax-free, and withdrawals for qualified medical expenses are tax-free. That is why financial planners treat it as a stealth retirement account, not a spending account.');
+    if(d.winner==='cash'){parts.push('The math favors paying cash here: the growth beats the tax savings. Pro move: pay cash now, save the receipt — there is no deadline to reimburse yourself from your HSA later, so you can let it compound for years and still pull the money out tax-free.')}
+    else if(d.winner==='hsa'){parts.push('The math favors the HSA here: the tax savings outweigh the growth, or cash simply cannot cover the bill. Spend the HSA with a clear conscience.')}
+    else{parts.push('Neither balance covers the full bill alone. Consider a hospital payment plan for the remainder — many are interest-free — and ask about a prompt-pay discount before you commit.')}
+    return parts.join(' ');
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    var headline=d.winner==='cash'?'Pay cash — grow the HSA':(d.winner==='hsa'?'Use the HSA':'Split the bill');
+    document.getElementById('target').textContent=headline;
+    document.getElementById('targetNote').textContent=d.reason;
+    document.getElementById('mTax').textContent=fmt(d.taxSave);
+    document.getElementById('mTaxNote').textContent='at '+(d.t*100).toFixed(1)+'% marginal rate';
+    document.getElementById('mGrow').textContent=fmt(d.future);
+    document.getElementById('mGrowNote').textContent=fmt(d.bill)+' kept invested '+d.years+' yrs';
+    var edge=d.winner==='cash'?d.growthGivenUp-d.taxSave:(d.winner==='hsa'?d.taxSave-d.growthGivenUp:0);
+    document.getElementById('mEdge').textContent=d.winner==='shortfall'?'—':fmt(edge);
+    document.getElementById('mEdgeNote').textContent=d.winner==='shortfall'?'no full-cover route':(d.winner==='cash'?'cash route wins by this':'HSA route wins by this');
+    document.getElementById('detailBill').textContent=fmt(d.bill);
+    document.getElementById('detailHsaCost').textContent=fmt(d.bill)+' pre-tax';
+    document.getElementById('detailCashCost').textContent=fmt(d.bill)+' after-tax';
+    document.getElementById('detailGrowth').textContent=fmt(d.growthGivenUp);
+    document.getElementById('detailTax').textContent=fmt(d.taxSave);
+    var title=document.getElementById('nudgeTitle'),text=document.getElementById('nudgeText'),strong=document.getElementById('nudgeStrong'),foot=document.getElementById('nudgeFoot');
+    if(d.winner==='cash'){
+      title.textContent='The pro move';
+      text.textContent='Pay cash today, save the receipt. There is no deadline to reimburse yourself from an HSA, so the money can compound for years and still come out tax-free later.';
+      strong.textContent=fmt(d.future)+' by retirement';
+      foot.textContent='Keep receipts and EOBs — you will need them if the IRS ever asks.';
+    }else if(d.winner==='hsa'){
+      title.textContent='Spend it well';
+      text.textContent='The HSA exists for exactly this. Pay the bill from it and keep your cash cushion intact for everything else life throws at you.';
+      strong.textContent=fmt(d.taxSave)+' in tax savings';
+      foot.textContent='If cash frees up later, you can rebuild the HSA with new contributions up to the annual limit.';
+    }else{
+      title.textContent='Cover the gap';
+      strong.textContent=fmt(Math.max(0,d.bill-Math.max(d.hsa,d.cash)))+' still uncovered';
+      text.textContent='Use the larger balance first, then ask the provider about a payment plan for the rest — many hospital plans charge no interest.';
+      foot.textContent='Always ask for an itemized bill and a prompt-pay discount before agreeing to terms.';
+    }
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('My HSA vs cash results')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
+  }
+  function calculate(e){
+    if(e)e.preventDefault();
+    var d=getData();
+    if(d.bill<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}
+    render(d);
+  }
+  ['bill','taxRate','hsaBalance','cashAvail','years','ret'].forEach(function(id){
+    document.getElementById(id).addEventListener('input',function(){if(last&&num('bill')>0)render(getData())});
+  });
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    if(!last)return;
+    var d=getData(),route=d.winner==='cash'?'Pay with cash, keep HSA growing':(d.winner==='hsa'?'Pay with the HSA':'Split / payment plan needed');
+    var rows=[['HSA vs Cash for Medical Bills','Value'],['Medical bill',d.bill.toFixed(2)],['Marginal tax rate',(d.t*100).toFixed(1)+'%'],['HSA balance',d.hsa.toFixed(2)],['Cash available',d.cash.toFixed(2)],['Years until retirement',d.years],['Expected annual return',(d.r*100).toFixed(1)+'%'],['Recommendation',route],['Tax savings of HSA route',d.taxSave.toFixed(2)],['HSA future value if kept invested',d.future.toFixed(2)],['Growth given up by spending HSA now',d.growthGivenUp.toFixed(2)],['HSA covers full bill',d.canHSA?'Yes':'No'],['Cash covers full bill',d.canCash?'Yes':'No']];
+    var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='hsa-vs-cash-plan.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)
+  });
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/medical-bill-planner/"><span class="arr">→</span>Plan a medical bill payment</a></li><li><a href="/money/hsa-tax-savings-calculator/"><span class="arr">→</span>HSA tax savings calculator</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

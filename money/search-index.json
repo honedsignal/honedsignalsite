@@ -121,7 +121,8 @@
     "u": "/money/freelance-rate-calculator/",
     "tags": [
       "Business",
-      "Career"
+      "Career",
+      "Side Hustles"
     ],
     "kind": "tool"
   },
@@ -652,7 +653,7 @@
   },
   {
     "t": "Mortgage Scenario Comparison",
-    "d": "Keep, refinance, or pay extra \u2014 compared",
+    "d": "Keep, refinance, or pay extra — compared",
     "u": "/money/mortgage-scenario-comparison/",
     "tags": [
       "Housing"
@@ -1263,7 +1264,7 @@
     "kind": "tool"
   },
   {
-    "t": "Effective vs. Marginal Tax Rate Calculator \u2014 2026",
+    "t": "Effective vs. Marginal Tax Rate Calculator — 2026",
     "d": "What you really pay.",
     "u": "/money/effective-vs-marginal-tax-rate-calculator/",
     "tags": [
@@ -1293,7 +1294,7 @@
     "kind": "tool"
   },
   {
-    "t": "HSA Tax Savings Calculator \u2014 2026",
+    "t": "HSA Tax Savings Calculator — 2026",
     "d": "The triple tax advantage.",
     "u": "/money/hsa-tax-savings-calculator/",
     "tags": [
@@ -1324,7 +1325,7 @@
   },
   {
     "t": "Tax Deadline Calendar",
-    "d": "Key dates, 2026\u20132027.",
+    "d": "Key dates, 2026–2027.",
     "u": "/money/tax-deadline-calendar/",
     "tags": [
       "Taxes"
@@ -1420,7 +1421,7 @@
     "kind": "tool"
   },
   {
-    "t": "Decision Center \u2014 What Are You Trying to Decide?",
+    "t": "Decision Center — What Are You Trying to Decide?",
     "d": "Pick your question; we'll walk you through the calculators that answer it.",
     "u": "/money/decide/",
     "tags": [
@@ -1598,7 +1599,7 @@
   },
   {
     "t": "QCD Calculator",
-    "d": "Qualified Charitable Distributions from your IRA \u2014 give and skip the tax.",
+    "d": "Qualified Charitable Distributions from your IRA — give and skip the tax.",
     "u": "/money/qcd-calculator/",
     "tags": [
       "Giving",
@@ -1621,7 +1622,7 @@
   },
   {
     "t": "Rental Property Analyzer",
-    "d": "Cash flow, cap rate, cash-on-cash return \u2014 is this rental a deal?",
+    "d": "Cash flow, cap rate, cash-on-cash return — is this rental a deal?",
     "u": "/money/rental-property-analyzer/",
     "tags": [
       "Real Estate",
@@ -1641,7 +1642,7 @@
   },
   {
     "t": "BRRRR Calculator",
-    "d": "Buy, rehab, rent, refinance, repeat \u2014 recycle your capital.",
+    "d": "Buy, rehab, rent, refinance, repeat — recycle your capital.",
     "u": "/money/brrrr-calculator/",
     "tags": [
       "Real Estate",
@@ -1671,7 +1672,7 @@
   },
   {
     "t": "Baby's First Year Cost Calculator",
-    "d": "Diapers, daycare, gear \u2014 what does year one really cost?",
+    "d": "Diapers, daycare, gear — what does year one really cost?",
     "u": "/money/baby-first-year-cost-calculator/",
     "tags": [
       "Family",
@@ -1722,7 +1723,7 @@
   },
   {
     "t": "Aircraft Cost Calculator",
-    "d": "Purchase, hangar, fuel, maintenance \u2014 what does a private plane cost per flight hour?",
+    "d": "Purchase, hangar, fuel, maintenance — what does a private plane cost per flight hour?",
     "u": "/money/aircraft-cost-calculator/",
     "tags": [
       "Vehicles",
@@ -1761,7 +1762,7 @@
   },
   {
     "t": "Will I Keep My Scholarship?",
-    "d": "What GPA keeps your award \u2014 and what losing it costs.",
+    "d": "What GPA keeps your award — and what losing it costs.",
     "u": "/money/will-i-keep-my-scholarship/",
     "tags": [
       "Scholarships",
@@ -1912,7 +1913,8 @@
     "d": "How much you can withdraw yearly in retirement without running out.",
     "u": "/money/safe-withdrawal-rate/",
     "tags": [
-      "Retirement"
+      "Retirement",
+      "FIRE"
     ],
     "kind": "tool"
   },
@@ -1921,7 +1923,8 @@
     "d": "Budget when your income changes every month.",
     "u": "/money/irregular-income-budget/",
     "tags": [
-      "Budget"
+      "Budget",
+      "Side Hustles"
     ],
     "kind": "tool"
   },
@@ -1959,7 +1962,8 @@
     "u": "/money/side-hustle-profitability/",
     "tags": [
       "Business",
-      "Career"
+      "Career",
+      "Side Hustles"
     ],
     "kind": "tool"
   },
@@ -2006,7 +2010,8 @@
     "d": "Pay a medical bill upfront or use a payment plan?",
     "u": "/money/medical-bill-planner/",
     "tags": [
-      "Health"
+      "Health",
+      "Medical Debt"
     ],
     "kind": "tool"
   },
@@ -2027,7 +2032,8 @@
     "u": "/money/fire-number/",
     "tags": [
       "Investing",
-      "Retirement"
+      "Retirement",
+      "FIRE"
     ],
     "kind": "tool"
   },
@@ -2069,5 +2075,194 @@
       "Travel"
     ],
     "kind": "tool"
+  },
+  {
+    "t": "Medical Debt Interest Cost Calculator",
+    "d": "How much will I pay if I finance a medical bill?",
+    "u": "/money/medical-debt-interest/",
+    "tags": [
+      "Medical Debt",
+      "Health"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Medical Bill Negotiation Savings Calculator",
+    "d": "How much could you save by negotiating a hospital bill?",
+    "u": "/money/medical-bill-negotiation/",
+    "tags": [
+      "Medical Debt",
+      "Health"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "HSA vs Cash for Medical Bills Calculator",
+    "d": "Should you pay a medical bill with your HSA or with cash?",
+    "u": "/money/hsa-vs-cash-medical/",
+    "tags": [
+      "Medical Debt",
+      "Health",
+      "Taxes"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Elder Care Monthly Cost Calculator",
+    "d": "How much does it cost to care for an elderly parent?",
+    "u": "/money/elder-care-cost/",
+    "tags": [
+      "Caregiving",
+      "Family"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "In-Home Care vs Assisted Living Calculator",
+    "d": "Is assisted living cheaper than in-home care?",
+    "u": "/money/home-care-vs-assisted-living/",
+    "tags": [
+      "Caregiving",
+      "Family"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Family Caregiver Cost Sharing Calculator",
+    "d": "How much should each sibling contribute to aging parents' care?",
+    "u": "/money/caregiver-cost-sharing/",
+    "tags": [
+      "Caregiving",
+      "Family"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Caregiver Lost Income Calculator",
+    "d": "Can you afford to cut back work to care for a parent?",
+    "u": "/money/caregiver-lost-income/",
+    "tags": [
+      "Caregiving",
+      "Career"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Checking Account Fee Calculator",
+    "d": "How much am I paying in checking account fees?",
+    "u": "/money/checking-fee-calculator/",
+    "tags": [
+      "Banking",
+      "Personal"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Overdraft Fee Cost Calculator",
+    "d": "What are overdraft fees really costing you?",
+    "u": "/money/overdraft-cost/",
+    "tags": [
+      "Banking",
+      "Personal"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Bank Bonus Break-Even Calculator",
+    "d": "Is that bank account bonus worth the switch?",
+    "u": "/money/bank-bonus-break-even/",
+    "tags": [
+      "Banking",
+      "Personal"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "High-Yield Savings Interest Calculator",
+    "d": "How much interest will your savings earn this year?",
+    "u": "/money/hysa-interest/",
+    "tags": [
+      "Banking",
+      "Personal"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "FIRE Savings Rate Calculator",
+    "d": "What savings rate gets you to early retirement?",
+    "u": "/money/fire-savings-rate/",
+    "tags": [
+      "FIRE",
+      "Investing",
+      "Retirement"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Coast FIRE Calculator",
+    "d": "Have you saved enough to stop saving and still retire on time?",
+    "u": "/money/coast-fire/",
+    "tags": [
+      "FIRE",
+      "Investing",
+      "Retirement"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Gig Quarterly Tax Estimator",
+    "d": "How much should you set aside for quarterly taxes?",
+    "u": "/money/gig-quarterly-tax/",
+    "tags": [
+      "Side Hustles",
+      "Taxes",
+      "Business"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Medical Debt Calculators",
+    "d": "Hospital bills shouldn't become long-term debt. Negotiate, plan, and pay the smart way.",
+    "u": "/money/medical-debt/",
+    "tags": [
+      "Medical Debt"
+    ],
+    "kind": "section"
+  },
+  {
+    "t": "Caregiving Calculators",
+    "d": "Caring for a parent is hard. The math shouldn't be.",
+    "u": "/money/caregiving/",
+    "tags": [
+      "Caregiving"
+    ],
+    "kind": "section"
+  },
+  {
+    "t": "Everyday Banking Calculators",
+    "d": "Fees, bonuses, and the fine print. Keep more of your money at the bank.",
+    "u": "/money/banking/",
+    "tags": [
+      "Banking"
+    ],
+    "kind": "section"
+  },
+  {
+    "t": "FIRE Calculators",
+    "d": "Financial independence, retire early. Find your number.",
+    "u": "/money/fire/",
+    "tags": [
+      "FIRE"
+    ],
+    "kind": "section"
+  },
+  {
+    "t": "Side Hustle Calculators",
+    "d": "Turn gigs into real income. Price your work, keep the taxes straight.",
+    "u": "/money/side-hustles/",
+    "tags": [
+      "Side Hustles"
+    ],
+    "kind": "section"
   }
 ]
