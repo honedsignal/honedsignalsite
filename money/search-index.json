@@ -1729,5 +1729,64 @@
       "Travel"
     ],
     "kind": "tool"
+  },
+  {
+    "t": "Scholarship Calculators",
+    "d": "Make every award count. Compare offers, keep your aid, and avoid tax surprises.",
+    "u": "/money/scholarships/",
+    "tags": [
+      "Scholarships"
+    ],
+    "kind": "section"
+  },
+  {
+    "t": "College Cost After Scholarships Calculator",
+    "d": "What will college actually cost after your awards?",
+    "u": "/money/college-cost-after-scholarships/",
+    "tags": [
+      "Scholarships",
+      "Students"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Compare Financial Aid Offers",
+    "d": "Which college is actually cheaper after financial aid?",
+    "u": "/money/financial-aid-offer-comparison/",
+    "tags": [
+      "Scholarships",
+      "Students"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Will I Keep My Scholarship?",
+    "d": "What GPA keeps your award \u2014 and what losing it costs.",
+    "u": "/money/will-i-keep-my-scholarship/",
+    "tags": [
+      "Scholarships",
+      "Students"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Will an Outside Scholarship Reduce My Aid?",
+    "d": "Will winning another scholarship actually save you money?",
+    "u": "/money/outside-scholarship-impact/",
+    "tags": [
+      "Scholarships",
+      "Students"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Is My Scholarship Taxable?",
+    "d": "How much of your scholarship is taxable income?",
+    "u": "/money/is-my-scholarship-taxable/",
+    "tags": [
+      "Scholarships",
+      "Taxes"
+    ],
+    "kind": "tool"
   }
 ]
