@@ -1668,5 +1668,56 @@
       "Family"
     ],
     "kind": "section"
+  },
+  {
+    "t": "Baby's First Year Cost Calculator",
+    "d": "Diapers, daycare, gear \u2014 what does year one really cost?",
+    "u": "/money/baby-first-year-cost-calculator/",
+    "tags": [
+      "Family",
+      "Baby"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Cost of Raising a Child Calculator",
+    "d": "Project the total cost of raising a child to age 18.",
+    "u": "/money/cost-of-raising-child-calculator/",
+    "tags": [
+      "Family"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Teen Driver Insurance Calculator",
+    "d": "How much does adding a teen driver raise your premium?",
+    "u": "/money/teen-driver-insurance-calculator/",
+    "tags": [
+      "Vehicles",
+      "Family",
+      "Insurance"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Catch-Up Contributions Calculator",
+    "d": "50 and over? See the extra you can put in 401(k) and IRA.",
+    "u": "/money/catch-up-contributions-calculator/",
+    "tags": [
+      "Retirement",
+      "Taxes"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "College vs Retirement Calculator",
+    "d": "Fund the kid's college or your retirement? See the tradeoff.",
+    "u": "/money/college-vs-retirement-calculator/",
+    "tags": [
+      "Family",
+      "Retirement",
+      "College"
+    ],
+    "kind": "tool"
   }
 ]
