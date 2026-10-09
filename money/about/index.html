@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#0b0e14">
-  <meta name="description" content="Learn about Honed Money, a free collection of 115 plain-English finance calculators across budgeting, debt, housing, investing, retirement, taxes, insurance, and more.">
+  <meta name="description" content="Learn about Honed Money, a free collection of 233 plain-English finance calculators across budgeting, debt, housing, investing, retirement, taxes, insurance, and more.">
   <link rel="canonical" href="https://honedsignal.com/money/about/">
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
     "@type": "WebPage",
     "name": "About Honed Money",
     "url": "https://honedsignal.com/money/about/",
-    "description": "Honed Money is a free collection of 115 finance calculators from Honed Signal, with plain-English explanations across 21 money topics.",
+    "description": "Honed Money is a free collection of 233 finance calculators from Honed Signal, with plain-English explanations across 36 money topics.",
     "isPartOf": {
       "@type": "WebSite",
       "name": "Honed Money",
@@ -166,6 +166,13 @@
       padding: clamp(2rem, 5vw, 3.5rem);
       background: var(--page);
     }
+    a.fact {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    a.fact:hover { background: var(--surface); }
+    a.fact:hover dd { text-decoration: underline; }
     .fact dt {
       margin-bottom: 0.4rem;
       color: var(--muted);
@@ -215,6 +222,12 @@
       color: var(--ink);
       font-size: 0.92rem;
     }
+    .topic-list li a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+    }
+    .topic-list li a:hover { text-decoration: underline; }
 
     .features {
       display: grid;
@@ -344,14 +357,14 @@
     </section>
 
     <dl class="facts" aria-label="Honed Money by the numbers">
-      <div class="fact">
+      <a class="fact" href="/money/browse/">
         <dt>Free calculators</dt>
-        <dd>115</dd>
-      </div>
-      <div class="fact">
+        <dd>233</dd>
+      </a>
+      <a class="fact" href="/money/browse/">
         <dt>Money topics</dt>
-        <dd>21</dd>
-      </div>
+        <dd>36</dd>
+      </a>
     </dl>
 
     <section class="section" aria-labelledby="coverage-title">
@@ -359,14 +372,14 @@
       <div class="copy">
         <p>The tools cover everyday decisions and longer-term plans, from working out a monthly budget to comparing debt payoff strategies or estimating retirement income.</p>
         <ul class="topic-list" aria-label="Example calculator topics">
-          <li>Budgeting</li>
-          <li>Debt</li>
-          <li>Housing</li>
-          <li>Investing</li>
-          <li>Retirement</li>
-          <li>Taxes</li>
-          <li>Insurance</li>
-          <li>And 14 more</li>
+          <li><a href="/money/budget/">Budgeting</a></li>
+          <li><a href="/money/debt/">Debt</a></li>
+          <li><a href="/money/housing/">Housing</a></li>
+          <li><a href="/money/investing/">Investing</a></li>
+          <li><a href="/money/retirement/">Retirement</a></li>
+          <li><a href="/money/taxes/">Taxes</a></li>
+          <li><a href="/money/insurance/">Insurance</a></li>
+          <li><a href="/money/browse/">And 29 more</a></li>
         </ul>
       </div>
     </section>
