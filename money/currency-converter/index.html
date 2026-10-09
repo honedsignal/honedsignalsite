@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Currency Converter | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.select-wrap{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.select-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.select-wrap select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:700;appearance:none;-webkit-appearance:none;cursor:pointer}.select-wrap:after{content:"▾";position:absolute;right:10px;color:var(--muted);pointer-events:none;font-size:.7rem}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}.field .money-input input{text-align:left}.rate-status{display:flex;align-items:center;gap:8px;margin:14px 1px 0;color:var(--muted);font-size:.68rem}.rate-dot{width:9px;height:9px;border-radius:50%;background:var(--orange);flex:0 0 auto}.rate-dot.live{background:var(--green)}.swap-btn{width:100%;margin-top:10px;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font-size:.72rem;font-weight:800}.swap-btn:hover{border-color:var(--blue);color:var(--blue)}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.fx-art{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:500 3rem "DM Mono",monospace;color:var(--blue)}.fx-art .from{color:var(--orange);font-size:1.9rem;margin-right:8px}.fx-art .to{color:var(--green);font-size:1.9rem;margin-left:8px}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.milestone{padding:13px;border-top:2px solid var(--line);background:var(--bg)}.milestone.done{border-color:var(--green)}.milestone small{display:block;color:var(--muted);font-size:.61rem;font-weight:800}.milestone strong{display:block;margin-top:5px;font:500 .8rem "DM Mono",monospace}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.goal-fields,.metric-grid,.milestones{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="What is that in dollars?. Free currency converter from Honed Money — live exchange rates, plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/currency-converter/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Currency Converter","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/currency-converter/","description":"What is that in dollars?. Free currency converter from Honed Money — live exchange rates, plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/travel.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">That price tag in <span class="accent">your money.</span></h1>
+</div>
+    <p>Pick two currencies, enter an amount, and see what it is worth using live exchange rates.</p>
+  </header>
+
+  <section class="workbench" aria-label="Currency converter">
+    <form class="panel inputs" id="fxForm" novalidate>
+      <div class="section-head"><h2>Convert</h2><span class="step">01 / CONVERT</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="amount">Amount</label><div class="money-input"><span id="amountSymbol">€</span><input id="amount" type="number" min="0" step="any" inputmode="decimal" placeholder="0" aria-label="Amount to convert"></div></div>
+        <div class="expense"><label for="fromCur">From currency</label><div class="select-wrap"><select id="fromCur" aria-label="Currency to convert from"></select></div></div>
+        <div class="expense"><label for="toCur">To currency</label><div class="select-wrap"><select id="toCur" aria-label="Currency to convert to"></select></div></div>
+      </div>
+      <button class="swap-btn" id="swapBtn" type="button">⇄ Swap currencies</button>
+      <div class="subtotal"><span id="ratePreviewLabel">Live rate</span><strong id="ratePreview">—</strong></div>
+      <div class="section-head"><h2>Your rate</h2><span class="step">02 / RATE</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="manualRate">Manual rate (optional)</label><div class="money-input"><span>1</span><input id="manualRate" type="number" min="0" step="any" inputmode="decimal" placeholder="auto" aria-label="Manual exchange rate, 1 from currency equals this many to currency"></div></div>
+      </div>
+      <div class="rate-status"><span class="rate-dot" id="rateDot"></span><span id="rateStatusText">Fetching live rates…</span></div>
+      <button class="calculate" type="submit">Convert</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these currency conversion results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved. Live rates are mid-market rates; banks and card networks mark them up.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><div class="fx-art"><span class="from">€</span>⇄<span class="to">$</span></div></div><h2>What is that in dollars?</h2><p>Enter an amount and pick the two currencies. Live rates load automatically — or type your own rate.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow" id="resultEyebrow">CONVERTED AMOUNT</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>EXCHANGE RATE</span><strong id="rateMetric">—</strong><em id="rateMetricNote">—</em></article>
+          <article class="metric"><span>INVERSE RATE</span><strong id="inverseMetric">—</strong><em id="inverseMetricNote">—</em></article>
+          <article class="metric"><span>RATE SOURCE</span><strong id="sourceMetric">—</strong><em id="sourceMetricNote">—</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>Conversion details</h3><dl><dt>Amount entered</dt><dd id="detailAmount">—</dd><dt>From</dt><dd id="detailFrom">—</dd><dt>To</dt><dd id="detailTo">—</dd><dt>Rate used</dt><dd id="detailRate">—</dd><dt>Inverse rate</dt><dd id="detailInverse">—</dd><dt>Rates as of</dt><dd id="detailAsOf">—</dd></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">The real-world rate</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download plan</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Rate note:</strong> Live rates are mid-market exchange rates from a free public feed and are for reference. Your bank, card network, or currency exchange will add a markup (often 1–3%) and may charge a foreign-transaction fee, so what you actually receive will be a bit less. Rates move constantly; double-check near the time of purchase.</p><p>Educational estimate, not financial advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var CURRENCIES=[
+    ['USD','US Dollar'],['EUR','Euro'],['GBP','British Pound'],['JPY','Japanese Yen'],
+    ['CAD','Canadian Dollar'],['AUD','Australian Dollar'],['CHF','Swiss Franc'],['CNY','Chinese Yuan'],
+    ['MXN','Mexican Peso'],['INR','Indian Rupee'],['NZD','New Zealand Dollar'],['SGD','Singapore Dollar'],
+    ['HKD','Hong Kong Dollar'],['SEK','Swedish Krona'],['NOK','Norwegian Krone'],['DKK','Danish Krone'],
+    ['ZAR','South African Rand'],['BRL','Brazilian Real'],['KRW','South Korean Won'],['TWD','Taiwan Dollar'],
+    ['THB','Thai Baht'],['PLN','Polish Zloty'],['CZK','Czech Koruna'],['HUF','Hungarian Forint'],
+    ['ILS','Israeli Shekel'],['AED','UAE Dirham'],['SAR','Saudi Riyal'],['TRY','Turkish Lira'],
+    ['PHP','Philippine Peso'],['IDR','Indonesian Rupiah'],['MYR','Malaysian Ringgit'],['VND','Vietnamese Dong'],
+    ['ARS','Argentine Peso'],['CLP','Chilean Peso'],['COP','Colombian Peso'],['PEN','Peruvian Sol'],
+    ['EGP','Egyptian Pound'],['NGN','Nigerian Naira']
+  ];
+  var SYMBOLS={USD:'$',EUR:'€',GBP:'£',JPY:'¥',CAD:'$',AUD:'$',CHF:'Fr',CNY:'¥',MXN:'$',INR:'₹',KRW:'₩',THB:'฿',PHP:'₱',ILS:'₪',TRY:'₺',RUB:'₽',ZAR:'R',BRL:'R$'};
+  var form=document.getElementById('fxForm'),fromSel=document.getElementById('fromCur'),toSel=document.getElementById('toCur'),last=null;
+  var liveRates=null,liveAsOf=null,liveFailed=false;
+  var moneyPlain=new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:NaN}
+  function curName(code){for(var i=0;i<CURRENCIES.length;i++){if(CURRENCIES[i][0]===code)return CURRENCIES[i][1]}return code}
+  function fmtCurrency(amount,code){try{return new Intl.NumberFormat('en-US',{style:'currency',currency:code,maximumFractionDigits:2}).format(amount)}catch(e){return code+' '+moneyPlain.format(amount)}}
+  function rate(from,to){if(from===to)return 1;if(!liveRates||!isFinite(liveRates[from])||!isFinite(liveRates[to])||liveRates[from]<=0)return NaN;return liveRates[to]/liveRates[from]}
+  function updateSymbol(){document.getElementById('amountSymbol').textContent=SYMBOLS[fromSel.value]||fromSel.value}
+  function updateRatePreview(){var from=fromSel.value,to=toSel.value,label=document.getElementById('ratePreview'),r=rate(from,to);if(from===to){label.textContent='1 '+from+' = 1 '+to}else if(isFinite(r)){label.textContent='1 '+from+' = '+r.toPrecision(6)+' '+to}else{label.textContent='rate unavailable'}}
+  function setStatus(){var dot=document.getElementById('rateDot'),text=document.getElementById('rateStatusText');if(liveRates){dot.classList.add('live');text.textContent='Live rates as of '+(liveAsOf||'today')+'. Enter a manual rate to override.'}else if(liveFailed){dot.classList.remove('live');text.textContent='Live rates unavailable — enter a manual rate below to convert.'}else{dot.classList.remove('live');text.textContent='Fetching live rates…'}}
+  function fetchRates(){
+    if(!window.fetch){liveFailed=true;setStatus();return}
+    fetch('https://open.er-api.com/v6/latest/USD').then(function(resp){if(!resp.ok)throw new Error('bad status');return resp.json()}).then(function(data){
+      if(data&&data.result==='success'&&data.rates){liveRates=data.rates;liveAsOf=data.time_last_update_utc||null;setStatus();updateRatePreview();if(last)calculate()}
+      else{liveFailed=true;setStatus()}
+    }).catch(function(){liveFailed=true;setStatus()});
+  }
+  function getData(){
+    var amount=num('amount'),from=fromSel.value,to=toSel.value,manual=num('manualRate');
+    var r=isFinite(manual)&&manual>0?manual:rate(from,to);
+    var source=isFinite(manual)&&manual>0?'manual':'live';
+    var converted=isFinite(amount)&&isFinite(r)?amount*r:NaN;
+    var inverse=isFinite(r)&&r>0?1/r:NaN;
+    var markup=isFinite(converted)?converted*0.98:NaN;
+    return{amount:amount,from:from,to:to,rate:r,inverse:inverse,source:source,converted:converted,markup:markup,liveAsOf:liveAsOf,liveFailed:liveFailed};
+  }
+  function emailBody(d){var lines=['Currency Converter results','',
+    'Amount: '+moneyPlain.format(d.amount)+' '+d.from+' ('+curName(d.from)+')',
+    'Converted: '+fmtCurrency(d.converted,d.to)+' ('+curName(d.to)+')',
+    'Exchange rate: 1 '+d.from+' = '+d.rate.toPrecision(6)+' '+d.to,
+    'Inverse rate: 1 '+d.to+' = '+d.inverse.toPrecision(6)+' '+d.from,
+    'Rate source: '+d.source+(d.liveAsOf?' (as of '+d.liveAsOf+')':''),
+    'With typical 2% bank markup: ~'+fmtCurrency(d.markup,d.to),'',
+    'Educational estimate, not financial advice. Live rates are mid-market reference rates.'];return lines.join('\n')}
+  function explanationText(d){var parts=['You entered '+moneyPlain.format(d.amount)+' '+d.from+' and converted it to '+d.to+' at 1 '+d.from+' = '+d.rate.toPrecision(6)+' '+d.to+'. Multiplying the amount by that rate gives '+fmtCurrency(d.converted,d.to)+'. The inverse rate tells you what one '+d.to+' buys back: '+d.inverse.toPrecision(6)+' '+d.from+'.'];
+    parts.push(d.source==='live'?'The live rate came from a free mid-market exchange-rate feed'+(d.liveAsOf?' updated '+d.liveAsOf:'')+'.':'You entered this rate manually, so the live feed was not used.');
+    parts.push('Banks, card networks, and exchange booths do not give you the mid-market rate. They add a markup, often 1–3%, plus sometimes a foreign-transaction fee. With a typical 2% markup, the same conversion would land around '+fmtCurrency(d.markup,d.to)+'.');
+    return parts.join(' ')}
+  function render(d){
+    last=d;document.getElementById('emptyState').classList.add('hidden');document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('resultEyebrow').textContent=moneyPlain.format(d.amount)+' '+d.from+' =';
+    document.getElementById('target').textContent=fmtCurrency(d.converted,d.to);
+    document.getElementById('targetNote').textContent='At 1 '+d.from+' = '+d.rate.toPrecision(6)+' '+d.to+' ('+d.source+' rate).';
+    document.getElementById('rateMetric').textContent='1 '+d.from+' = '+d.rate.toPrecision(6)+' '+d.to;
+    document.getElementById('rateMetricNote').textContent=d.source==='live'?'live mid-market':'your manual rate';
+    document.getElementById('inverseMetric').textContent='1 '+d.to+' = '+d.inverse.toPrecision(6)+' '+d.from;
+    document.getElementById('inverseMetricNote').textContent='flip it around';
+    document.getElementById('sourceMetric').textContent=d.source==='live'?'Live rates':'Manual rate';
+    document.getElementById('sourceMetricNote').textContent=d.source==='live'?(d.liveAsOf||'feed up to date'):'you set this';
+    document.getElementById('detailAmount').textContent=moneyPlain.format(d.amount)+' '+d.from;
+    document.getElementById('detailFrom').textContent=d.from+' · '+curName(d.from);
+    document.getElementById('detailTo').textContent=d.to+' · '+curName(d.to);
+    document.getElementById('detailRate').textContent=d.rate.toPrecision(6);
+    document.getElementById('detailInverse').textContent=d.inverse.toPrecision(6);
+    document.getElementById('detailAsOf').textContent=d.source==='live'?(d.liveAsOf||'live feed'):'n/a (manual)';
+    document.getElementById('nudgeTitle').textContent='The real-world rate';
+    document.getElementById('nudgeText').textContent='That mid-market rate is not what your bank gives you. With a typical 2% card markup, you would actually get about';
+    document.getElementById('nudgeStrong').textContent=fmtCurrency(d.markup,d.to);
+    document.getElementById('nudgeFoot').textContent='Travel cards with no foreign-transaction fee still use a marked-up rate — the fee being $0 is not the same as the rate being fair.';
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('Currency conversion result')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
+  }
+  function calculate(e){if(e)e.preventDefault();var d=getData();
+    if(!isFinite(d.amount)||d.amount<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}
+    if(!isFinite(d.rate)||d.rate<=0){document.getElementById('emptyState').classList.remove('hidden');document.getElementById('resultState').classList.add('hidden');document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});setStatus();return}
+    render(d)}
+  function buildSelects(){[fromSel,toSel].forEach(function(sel){CURRENCIES.forEach(function(c){var o=document.createElement('option');o.value=c[0];o.textContent=c[0]+' — '+c[1];sel.appendChild(o)})});fromSel.value='EUR';toSel.value='USD'}
+  buildSelects();updateSymbol();setStatus();updateRatePreview();fetchRates();
+  fromSel.addEventListener('change',function(){updateSymbol();updateRatePreview();if(last)calculate()});
+  toSel.addEventListener('change',function(){updateRatePreview();if(last)calculate()});
+  document.getElementById('swapBtn').addEventListener('click',function(){var t=fromSel.value;fromSel.value=toSel.value;toSel.value=t;updateSymbol();updateRatePreview();if(last)calculate()});
+  ['amount','manualRate'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)calculate()})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var d=getData(),rows=[['Currency Conversion','Value'],['Amount',d.amount.toFixed(2)+' '+d.from],['From currency',d.from+' - '+curName(d.from)],['To currency',d.to+' - '+curName(d.to)],['Converted amount',d.converted.toFixed(2)+' '+d.to],['Exchange rate',d.rate.toPrecision(8)],['Inverse rate',d.inverse.toPrecision(8)],['Rate source',d.source],['Rates as of',d.source==='live'?(d.liveAsOf||'live feed'):'manual rate'],['With 2% bank markup',d.markup.toFixed(2)+' '+d.to]];var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='currency-conversion.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/travel/"><span class="arr">→</span>Browse travel money tools</a></li><li><a href="/money/vacation-budget-calculator/"><span class="arr">→</span>Plan a vacation budget</a></li><li><a href="/money/inflation-calculator/"><span class="arr">→</span>See what inflation does to prices</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

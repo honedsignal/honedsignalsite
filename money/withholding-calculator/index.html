@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Paycheck Withholding Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}.field .money-input input{text-align:left}.months-label{display:flex;align-items:center;justify-content:space-between;margin:18px 0 9px}.months-label label{font-size:.75rem;font-weight:700;color:var(--muted)}.months-label output{font:500 .75rem "DM Mono",monospace;color:var(--orange)}.months{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.month-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}.month-btn:hover{border-color:var(--blue)}.month-btn.active{background:var(--orange);border-color:var(--orange);color:#171009;font-weight:700}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.milestone{padding:13px;border-top:2px solid var(--line);background:var(--bg)}.milestone.done{border-color:var(--green)}.milestone small{display:block;color:var(--muted);font-size:.61rem;font-weight:800}.milestone strong{display:block;margin-top:5px;font:500 .8rem "DM Mono",monospace}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.goal-fields,.metric-grid,.milestones{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  </style>
+<!-- honed-seo-start -->
+<meta name="description" content="Am I having too much (or too little) tax withheld?. Free paycheck withholding calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/withholding-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Paycheck Withholding Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/withholding-calculator/","description":"Am I having too much (or too little) tax withheld?. Free paycheck withholding calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/paycheck.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Get your paycheck <span class="accent">tuned, not taxed twice.</span></h1>
+</div>
+    <p>Compare what your employer withholds each paycheck against what you will actually owe, and dial in the right W-4 setting.</p>
+  </header>
+
+  <section class="workbench" aria-label="Paycheck withholding calculator">
+    <form class="panel inputs" id="whForm" novalidate>
+      <div class="section-head"><h2>Your pay</h2><span class="step">01 / PAY</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="salary">Annual salary (gross)</label><div class="money-input"><span>$</span><input id="salary" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Annual gross salary"></div></div>
+        <div class="expense"><label for="withheld">Federal withheld per paycheck</label><div class="money-input"><span>$</span><input id="withheld" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Federal tax withheld per paycheck"></div></div>
+      </div>
+      <div class="subtotal"><span>Withholding so far this year</span><strong id="withheldTotal">$0</strong></div>
+      <div class="months-label"><label>Pay frequency</label><output id="freqOutput">Biweekly · 26</output></div>
+      <div class="months" role="group" aria-label="Pay frequency">
+        <button type="button" class="month-btn" data-freq="52">Weekly</button>
+        <button type="button" class="month-btn active" data-freq="26">Biweekly</button>
+        <button type="button" class="month-btn" data-freq="24">Semimonthly</button>
+        <button type="button" class="month-btn" data-freq="12">Monthly</button>
+      </div>
+      <div class="section-head" style="margin-top:22px"><h2>Tax picture</h2><span class="step">02 / TAX</span></div>
+      <div class="months-label"><label>Filing status</label><output id="statusOutput">Single</output></div>
+      <div class="months" role="group" aria-label="Filing status" style="grid-template-columns:repeat(3,1fr)">
+        <button type="button" class="month-btn status-btn active" data-status="single">Single</button>
+        <button type="button" class="month-btn status-btn" data-status="hoh">Head of household</button>
+        <button type="button" class="month-btn status-btn" data-status="mfj">Married filing jointly</button>
+      </div>
+      <div class="goal-fields" style="margin-top:16px">
+        <div class="field"><label for="dependents">Children under 17</label><div class="money-input"><input id="dependents" type="number" min="0" step="1" inputmode="numeric" placeholder="0" style="text-align:left"></div></div>
+        <div class="field"><label for="otherCredits">Other credits ($/yr)</label><div class="money-input"><span>$</span><input id="otherCredits" type="number" min="0" step="1" inputmode="decimal" placeholder="0" style="text-align:left"></div></div>
+      </div>
+      <button class="calculate" type="submit">Check my withholding</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these withholding results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><h2>Big refund? Interest-free loan.</h2><p>Enter your salary and what is withheld each paycheck — see whether you owe, get a refund, or are right on target.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">ESTIMATED REFUND OR AMOUNT OWED</p><p class="target" id="target">$0</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>WITHHELD FOR THE YEAR</span><strong id="annualWithheld">—</strong><em id="annualWithheldNote">—</em></article>
+          <article class="metric"><span>PROJECTED TAX OWED</span><strong id="liability">—</strong><em id="liabilityNote">—</em></article>
+          <article class="metric"><span>PER-PAYCHECK FIX</span><strong id="fix">—</strong><em id="fixNote">—</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>How the estimate was built</h3><dl><dt>Annual salary</dt><dd id="dSalary">—</dd><dt>Taxable income</dt><dd id="dTaxable">—</dd><dt>Federal tax before credits</dt><dd id="dTax">—</dd><dt>Credits</dt><dd id="dCredits">—</dd><dt>Net tax liability</dt><dd id="dLiability">—</dd><dt>Annual withholding</dt><dd id="dWithheld">—</dd></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">Tune your W-4</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download plan</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Estimate only:</strong> this uses 2026 federal bracket and standard-deduction planning assumptions. It does not model state tax, Social Security, Medicare, pre-tax deductions (401(k), HSA), or multiple jobs. The <strong>IRS Tax Withholding Estimator</strong> is the authority — check there before filing a new W-4.</p><p>Educational estimate, not tax advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('whForm'),freq=26,status='single',last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  // 2026 planning assumptions — see explainer for sources/limits
+  var BRACKETS={
+    single:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+    hoh:[[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]],
+    mfj:[[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[1252700,.35],[Infinity,.37]]
+  };
+  var STDDED={single:16100,hoh:24150,mfj:32200};
+  var STATUS_NAME={single:'Single',hoh:'Head of household',mfj:'Married filing jointly'};
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function fmt(n){return money0.format(n)}
+  function marginalTax(taxable,s){var t=0,prev=0,br=BRACKETS[s];for(var i=0;i<br.length;i++){var cap=br[i][0],rate=br[i][1];if(taxable<=prev)break;var port=Math.min(taxable,cap)-prev;t+=port*rate;prev=cap}return t}
+  function getData(){
+    var salary=num('salary'),perPay=num('withheld'),deps=Math.floor(num('dependents')),other=num('otherCredits');
+    var annual=perPay*freq;
+    var taxable=Math.max(0,salary-STDDED[status]);
+    var tax=marginalTax(taxable,status);
+    var credits=deps*2000+other;
+    var liability=Math.max(0,tax-credits);
+    var diff=annual-liability; // positive = refund, negative = owed
+    var perPayAdj=(liability-annual)/freq; // positive = need to withhold more per check
+    return{salary:salary,perPay:perPay,deps:deps,other:other,annual:annual,taxable:taxable,tax:tax,credits:credits,liability:liability,diff:diff,perPayAdj:perPayAdj};
+  }
+  function updateSubtotal(){document.getElementById('withheldTotal').textContent=fmt(num('withheld')*freq)}
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    var refund=d.diff>=0;
+    document.getElementById('target').textContent=(refund?'':'−')+money0.format(Math.abs(d.diff));
+    document.getElementById('targetNote').textContent=refund
+      ?'Estimated refund — you are on track to get money back when you file.'
+      :'Estimated balance due — you are on track to owe this at filing time.';
+    document.getElementById('annualWithheld').textContent=fmt(d.annual);
+    document.getElementById('annualWithheldNote').textContent=fmt(d.perPay)+' × '+freq+' paychecks';
+    document.getElementById('liability').textContent=fmt(d.liability);
+    document.getElementById('liabilityNote').textContent='after '+fmt(d.credits)+' in credits';
+    var fixAbs=Math.abs(d.perPayAdj);
+    document.getElementById('fix').textContent=fmt(fixAbs)+'/check';
+    document.getElementById('fixNote').textContent=d.perPayAdj>1?'withhold more':(d.perPayAdj<-1?'withhold less':'dialed in');
+    document.getElementById('dSalary').textContent=fmt(d.salary);
+    document.getElementById('dTaxable').textContent=fmt(d.taxable)+' ('+STATUS_NAME[status]+', −'+fmt(STDDED[status])+' standard deduction)';
+    document.getElementById('dTax').textContent=fmt(d.tax);
+    document.getElementById('dCredits').textContent='−'+fmt(d.credits)+' ('+d.deps+' child × $2,000 + '+fmt(d.other)+' other)';
+    document.getElementById('dLiability').textContent=fmt(d.liability);
+    document.getElementById('dWithheld').textContent=fmt(d.annual);
+    var title=document.getElementById('nudgeTitle'),text=document.getElementById('nudgeText'),strong=document.getElementById('nudgeStrong'),foot=document.getElementById('nudgeFoot');
+    if(Math.abs(d.diff)<100){title.textContent='Right on target';text.textContent='Your withholding is within $100 of your projected liability — that is about as close as it gets.';strong.textContent='No W-4 change needed';foot.textContent='Re-check if your pay, job, or family situation changes.'}
+    else if(refund){title.textContent='Big refund coming';text.textContent='A large refund means you lent the IRS your money interest-free. To put '+fmt(fixAbs)+' more in each paycheck, add to Step 3 on your W-4:';strong.textContent='Claim ~'+fmt(fixAbs)+' more per paycheck in Step 3';foot.textContent='Step 3 (dependents/credits) lowers withholding directly. Or enter '+fmt(fixAbs)+' × '+freq+' = '+fmt(fixAbs*freq)+' in total credits. Re-check with the IRS estimator before filing.'}
+    else{title.textContent='You may owe at filing';text.textContent='To avoid a surprise bill — and a possible underpayment penalty — withhold '+fmt(fixAbs)+' more per paycheck using W-4 Step 4(c):';strong.textContent='Add '+fmt(fixAbs)+' extra withholding per paycheck';foot.textContent='That is Step 4(c), "Extra withholding". If the bill is large, the IRS estimator can also set up estimated payments.'}
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('My withholding check')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
+  }
+  function emailBody(d){var lines=['Paycheck Withholding Calculator results','',
+    'Annual salary: '+money2.format(d.salary),
+    'Filing status: '+STATUS_NAME[status],
+    'Pay frequency: '+freq+' paychecks/year',
+    'Federal withheld per paycheck: '+money2.format(d.perPay),
+    'Projected annual withholding: '+money2.format(d.annual),
+    'Projected federal tax liability: '+money2.format(d.liability),
+    'Estimated '+(d.diff>=0?'refund':'balance due')+': '+money2.format(Math.abs(d.diff)),
+    'Per-paycheck adjustment: '+money2.format(Math.abs(d.perPayAdj)),
+    '',
+    'Educational estimate, not tax advice. The IRS Tax Withholding Estimator is the authority.'];
+    return lines.join('\n')}
+  function explanationText(d){var parts=['Your employer would withhold about '+fmt(d.annual)+' over the year ('+fmt(d.perPay)+' × '+freq+' paychecks). On a '+fmt(d.salary)+' salary filing '+STATUS_NAME[status]+', the standard deduction of '+fmt(STDDED[status])+' leaves '+fmt(d.taxable)+' taxable, which produces about '+fmt(d.tax)+' in federal tax before credits. After '+fmt(d.credits)+' in credits, your projected liability is '+fmt(d.liability)+'.'];if(Math.abs(d.diff)<100){parts.push('Withholding is within $100 of that — essentially perfect.')}else if(d.diff>=0){parts.push('Withholding exceeds liability by '+fmt(d.diff)+', so you would get that back as a refund. Reducing withholding by about '+fmt(Math.abs(d.perPayAdj))+' per paycheck (via W-4 Step 3) would put that money in your checks instead.')}else{parts.push('Withholding falls short by '+fmt(-d.diff)+', so you would owe at filing. Adding about '+fmt(Math.abs(d.perPayAdj))+' per paycheck (W-4 Step 4(c)) closes the gap.')}parts.push('These are 2026 federal planning assumptions — bracket thresholds are approximate, and state tax, Social Security, Medicare, and pre-tax deductions are not modeled. Confirm with the IRS Tax Withholding Estimator before changing your W-4.');return parts.join(' ')}
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.salary<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  document.querySelectorAll('[data-freq]').forEach(function(btn){btn.addEventListener('click',function(){freq=parseInt(btn.dataset.freq,10);document.querySelectorAll('[data-freq]').forEach(function(b){b.classList.toggle('active',b===btn)});var names={52:'Weekly · 52',26:'Biweekly · 26',24:'Semimonthly · 24',12:'Monthly · 12'};document.getElementById('freqOutput').textContent=names[freq];updateSubtotal();if(last&&num('salary')>0)render(getData())})});
+  document.querySelectorAll('[data-status]').forEach(function(btn){btn.addEventListener('click',function(){status=btn.dataset.status;document.querySelectorAll('[data-status]').forEach(function(b){b.classList.toggle('active',b===btn)});document.getElementById('statusOutput').textContent=STATUS_NAME[status];if(last&&num('salary')>0)render(getData())})});
+  ['salary','withheld','dependents','otherCredits'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){updateSubtotal();if(last&&num('salary')>0)render(getData())})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,statusEl=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;statusEl.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';statusEl.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var d=getData(),rows=[['Withholding check','Value'],['Annual salary',d.salary.toFixed(2)],['Filing status',STATUS_NAME[status]],['Pay frequency (per year)',freq],['Federal withheld per paycheck',d.perPay.toFixed(2)],['Projected annual withholding',d.annual.toFixed(2)],['Standard deduction',STDDED[status].toFixed(2)],['Taxable income',d.taxable.toFixed(2)],['Federal tax before credits',d.tax.toFixed(2)],['Credits',d.credits.toFixed(2)],['Projected net liability',d.liability.toFixed(2)],['Estimated refund / amount owed',d.diff.toFixed(2)],['Per-paycheck adjustment',d.perPayAdj.toFixed(2)],['Note','Estimate only — IRS Tax Withholding Estimator is the authority']];var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='withholding-check.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+  updateSubtotal();
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/raise-take-home/"><span class="arr">→</span>See what a raise does to your take-home</a></li><li><a href="/money/bonus-take-home/"><span class="arr">→</span>Estimate take-home on a bonus</a></li><li><a href="/money/paycheck/"><span class="arr">→</span>Browse the paycheck section</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

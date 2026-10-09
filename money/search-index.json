@@ -1,2395 +1,2603 @@
 [
-  {
-    "t": "Vehicle Money Calculators",
-    "d": "Can you afford it? Run the numbers on cars, trucks, motorcycles, RVs, and every vehicle purchase.",
-    "u": "/money/vehicles/",
-    "tags": [
-      "Vehicles"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Auto Loan Calculator: Monthly Payment &amp;amp;amp;amp;amp;amp;amp;amp;amp; Total Interest",
-    "d": "What will the payment be?",
-    "u": "/money/auto-loan-calculator/",
-    "tags": [
-      "Auto",
-      "Credit",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Lease vs Buy Car Calculator",
-    "d": "Lease or buy?",
-    "u": "/money/lease-vs-buy-car-calculator/",
-    "tags": [
-      "Auto",
-      "Credit"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "EV vs Gas Car Calculator: Is Electric Cheaper?",
-    "d": "Does electric pay off?",
-    "u": "/money/ev-vs-gas-car-calculator/",
-    "tags": [
-      "Auto",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Car Ownership Cost Calculator",
-    "d": "The true cost of your car.",
-    "u": "/money/car-ownership-cost-calculator/",
-    "tags": [
-      "Auto",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Commute Cost Calculator",
-    "d": "What your drive to work really costs.",
-    "u": "/money/commute-cost-calculator/",
-    "tags": [
-      "Auto"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Budget Money Calculators",
-    "d": "All budget calculators in one place.",
-    "u": "/money/budget/",
-    "tags": [
-      "Budget"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Monthly Budget Planner",
-    "d": "Every dollar, assigned.",
-    "u": "/money/monthly-budget-planner/",
-    "tags": [
-      "Budget",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "50/30/20 Budget Calculator",
-    "d": "The classic split.",
-    "u": "/money/50-30-20-budget-calculator/",
-    "tags": [
-      "Budget",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Paycheck Budget Planner",
-    "d": "Stretch it to payday.",
-    "u": "/money/paycheck-budget-planner/",
-    "tags": [
-      "Budget",
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Business Money Calculators",
-    "d": "All business calculators in one place.",
-    "u": "/money/business/",
-    "tags": [
-      "Business"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Self-Employment Tax Estimator",
-    "d": "Estimate SE tax and quarterly payments.",
-    "u": "/money/self-employment-tax-estimator/",
-    "tags": [
-      "Business"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Freelance Rate Calculator",
-    "d": "What hourly rate should you charge?",
-    "u": "/money/freelance-rate-calculator/",
-    "tags": [
-      "Business",
-      "Career",
-      "Side Hustles"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Profit Margin Calculator",
-    "d": "Margin vs. markup, finally clear.",
-    "u": "/money/profit-margin-calculator/",
-    "tags": [
-      "Business",
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Break-Even Calculator",
-    "d": "How many sales until you're profitable.",
-    "u": "/money/break-even-calculator/",
-    "tags": [
-      "Business",
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Business Loan Calculator",
-    "d": "Monthly payment and total cost of a loan.",
-    "u": "/money/business-loan-calculator/",
-    "tags": [
-      "Business",
-      "Debt"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Employee Cost Calculator",
-    "d": "What an employee really costs you.",
-    "u": "/money/employee-cost-calculator/",
-    "tags": [
-      "Business",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Cash Runway Calculator",
-    "d": "How many months can you survive?",
-    "u": "/money/cash-runway-calculator/",
-    "tags": [
-      "Business",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Home Office Deduction Estimator",
-    "d": "Simplified vs. actual method, side by side.",
-    "u": "/money/home-office-deduction-estimator/",
-    "tags": [
-      "Business",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Career Money Calculators",
-    "d": "All career calculators in one place.",
-    "u": "/money/career/",
-    "tags": [
-      "Career"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Job Offer Comparison Calculator",
-    "d": "Which offer is really better?",
-    "u": "/money/job-offer-comparison-calculator/",
-    "tags": [
-      "Career",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Salary vs Hourly Calculator",
-    "d": "Convert pay both ways.",
-    "u": "/money/salary-vs-hourly-calculator/",
-    "tags": [
-      "Career",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Relocation Cost Calculator",
-    "d": "Is the move worth it?",
-    "u": "/money/relocation-cost-calculator/",
-    "tags": [
-      "Career",
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Severance Pay Estimator",
-    "d": "What does the package cover?",
-    "u": "/money/severance-pay-estimator/",
-    "tags": [
-      "Career",
-      "Debt"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Credit Money Calculators",
-    "d": "All credit calculators in one place.",
-    "u": "/money/credit/",
-    "tags": [
-      "Credit"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Credit Score Simulator",
-    "d": "TOOL 01",
-    "u": "/money/credit-score-simulator/",
-    "tags": [
-      "Credit",
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Credit Utilization Calculator",
-    "d": "TOOL 02",
-    "u": "/money/credit-utilization-calculator/",
-    "tags": [
-      "Credit",
-      "Debt"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Credit Score Improvement Planner",
-    "d": "TOOL 03",
-    "u": "/money/credit-score-improvement-planner/",
-    "tags": [
-      "Credit",
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Debt Money Calculators",
-    "d": "All debt calculators in one place.",
-    "u": "/money/debt/",
-    "tags": [
-      "Debt"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Debt Snowball vs Avalanche Calculator",
-    "d": "The fastest way out of debt.",
-    "u": "/money/debt-snowball-vs-avalanche-calculator/",
-    "tags": [
-      "Debt",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Debt Consolidation Calculator",
-    "d": "Is one loan cheaper?",
-    "u": "/money/debt-consolidation-calculator/",
-    "tags": [
-      "Debt"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Debt-to-Income Ratio Calculator",
-    "d": "What lenders see.",
-    "u": "/money/debt-to-income-ratio-calculator/",
-    "tags": [
-      "Debt",
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Credit Card Payoff Analyzer",
-    "d": "Your payoff date and interest.",
-    "u": "/money/credit-card-payoff-analyzer/",
-    "tags": [
-      "Debt",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Balance Transfer Calculator",
-    "d": "Is the transfer worth it?",
-    "u": "/money/balance-transfer-calculator/",
-    "tags": [
-      "Debt",
-      "Credit"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Debt Payoff Strategy Comparison",
-    "d": "Minimums vs avalanche vs snowball, side by side",
-    "u": "/money/debt-payoff-strategy-comparison/",
-    "tags": [
-      "Debt"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Divorce Money Calculators",
-    "d": "All divorce calculators in one place.",
-    "u": "/money/divorce/",
-    "tags": [
-      "Divorce"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Divorce Asset Split Calculator",
-    "d": "Who gets what.",
-    "u": "/money/divorce-asset-split-calculator/",
-    "tags": [
-      "Divorce"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Divorce Cost Estimator",
-    "d": "Contested vs. uncontested.",
-    "u": "/money/divorce-cost-estimator/",
-    "tags": [
-      "Divorce",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Alimony Estimator",
-    "d": "A rough monthly range.",
-    "u": "/money/alimony-estimator/",
-    "tags": [
-      "Divorce",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Child Support Estimator",
-    "d": "Estimate monthly support.",
-    "u": "/money/child-support-estimator/",
-    "tags": [
-      "Divorce",
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Estate Planning Money Calculators",
-    "d": "All estate planning calculators in one place.",
-    "u": "/money/estate-planning/",
-    "tags": [
-      "Estate Planning"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Will vs. Trust Cost Calculator",
-    "d": "Which costs less overall?",
-    "u": "/money/will-vs-trust-calculator/",
-    "tags": [
-      "Estate Planning",
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Estate Tax Estimator",
-    "d": "Will the IRS take a cut?",
-    "u": "/money/estate-tax-estimator/",
-    "tags": [
-      "Estate Planning",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Inheritance Split Calculator",
-    "d": "Divide it fairly.",
-    "u": "/money/inheritance-split-calculator/",
-    "tags": [
-      "Estate Planning"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Probate Cost Estimator",
-    "d": "What probate really costs.",
-    "u": "/money/probate-cost-estimator/",
-    "tags": [
-      "Estate Planning"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Funeral Cost Estimator",
-    "d": "Plan the final expenses.",
-    "u": "/money/funeral-cost-estimator/",
-    "tags": [
-      "Estate Planning",
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Family Money Calculators",
-    "d": "All family calculators in one place.",
-    "u": "/money/family/",
-    "tags": [
-      "Family"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Childcare Cost Calculator",
-    "d": "What childcare really costs you.",
-    "u": "/money/childcare-cost-calculator/",
-    "tags": [
-      "Family",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "College Savings Estimator",
-    "d": "Will the 529 cover it?",
-    "u": "/money/college-savings-estimator/",
-    "tags": [
-      "Family",
-      "Students"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Life Insurance Needs Calculator",
-    "d": "How much coverage is enough?",
-    "u": "/money/life-insurance-needs-calculator/",
-    "tags": [
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Health Money Calculators",
-    "d": "All health calculators in one place.",
-    "u": "/money/health/",
-    "tags": [
-      "Health"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "HDHP vs PPO Calculator: Which Health Plan Costs Less?",
-    "d": "Which health plan costs less?",
-    "u": "/money/hdhp-vs-ppo-calculator/",
-    "tags": [
-      "Health",
-      "Insurance"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Out-of-Pocket Health Cost Estimator",
-    "d": "What you'll actually owe.",
-    "u": "/money/out-of-pocket-health-cost-estimator/",
-    "tags": [
-      "Health",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "COBRA vs Marketplace Calculator",
-    "d": "Coverage between jobs.",
-    "u": "/money/cobra-vs-marketplace-calculator/",
-    "tags": [
-      "Health",
-      "Insurance"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "FSA vs HSA Calculator",
-    "d": "Which tax-advantaged account saves more?",
-    "u": "/money/fsa-vs-hsa-calculator/",
-    "tags": [
-      "Health"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Housing Money Calculators",
-    "d": "All housing calculators in one place.",
-    "u": "/money/housing/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Rent vs. Buy Calculator",
-    "d": "Should you rent or buy?",
-    "u": "/money/rent-vs-buy-calculator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Mortgage Payment Calculator",
-    "d": "What will the payment be?",
-    "u": "/money/mortgage-payment-calculator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Mortgage Affordability Calculator",
-    "d": "How much house can you afford?",
-    "u": "/money/mortgage-affordability-calculator/",
-    "tags": [
-      "Housing",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Refinance Break-Even Calculator",
-    "d": "Does refinancing pay off?",
-    "u": "/money/refinance-break-even-calculator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Extra Mortgage Payment Calculator",
-    "d": "What extra payments save you.",
-    "u": "/money/extra-mortgage-payment-calculator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "HELOC vs. Home Equity Loan Calculator",
-    "d": "Which way to tap equity?",
-    "u": "/money/heloc-vs-home-equity-loan-calculator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Closing Cost Calculator",
-    "d": "What you'll pay at closing.",
-    "u": "/money/closing-cost-calculator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Property Tax Estimator",
-    "d": "Estimate your property tax.",
-    "u": "/money/property-tax-estimator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Home Sale Proceeds Calculator",
-    "d": "What you'll walk away with.",
-    "u": "/money/home-sale-proceeds-calculator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Down Payment vs. Investment Calculator",
-    "d": "Bigger down payment or invest?",
-    "u": "/money/down-payment-vs-investment-calculator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Home Maintenance Cost Calculator",
-    "d": "Budget for upkeep.",
-    "u": "/money/home-maintenance-cost-calculator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Solar Panel Payback Calculator",
-    "d": "When do the panels pay off?",
-    "u": "/money/solar-payback-calculator/",
-    "tags": [
-      "Housing",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Mortgage Scenario Comparison",
-    "d": "Keep, refinance, or pay extra \u2014 compared",
-    "u": "/money/mortgage-scenario-comparison/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Mortgage Amortization Schedule Viewer",
-    "d": "Year-by-year principal vs interest breakdown",
-    "u": "/money/mortgage-amortization-schedule-viewer/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Mortgage Discount Points Calculator",
-    "d": "Is buying down your rate worth it?",
-    "u": "/money/mortgage-discount-points-calculator/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Insurance Money Calculators",
-    "d": "All insurance calculators in one place.",
-    "u": "/money/insurance/",
-    "tags": [
-      "Insurance"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Disability Insurance Needs Calculator",
-    "d": "Protect your paycheck.",
-    "u": "/money/disability-insurance-needs-calculator/",
-    "tags": [
-      "Insurance",
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Term vs Whole Life Insurance Calculator",
-    "d": "Which policy type fits?",
-    "u": "/money/term-vs-whole-life-insurance-calculator/",
-    "tags": [
-      "Insurance",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Auto Insurance Deductible Comparison Calculator",
-    "d": "Pick the right deductible.",
-    "u": "/money/auto-insurance-deductible-calculator/",
-    "tags": [
-      "Insurance",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Homeowners Insurance Cost Estimator",
-    "d": "Cover your home properly.",
-    "u": "/money/homeowners-insurance-estimator/",
-    "tags": [
-      "Insurance",
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Umbrella Insurance Calculator: How Much Coverage Do You Need?",
-    "d": "Do you need extra liability?",
-    "u": "/money/umbrella-insurance-calculator/",
-    "tags": [
-      "Insurance",
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Long-Term Care Cost Calculator",
-    "d": "What future care costs.",
-    "u": "/money/long-term-care-cost-calculator/",
-    "tags": [
-      "Insurance",
-      "Health",
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Investing Money Calculators",
-    "d": "All investing calculators in one place.",
-    "u": "/money/investing/",
-    "tags": [
-      "Investing"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Dollar-Cost Averaging Calculator",
-    "d": "Steady investing vs. lump sum.",
-    "u": "/money/dollar-cost-averaging-calculator/",
-    "tags": [
-      "Investing",
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Portfolio Allocation Calculator",
-    "d": "Split your portfolio with purpose.",
-    "u": "/money/portfolio-allocation-calculator/",
-    "tags": [
-      "Investing",
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Investment Fee Calculator",
-    "d": "What fees really cost you.",
-    "u": "/money/investment-fee-calculator/",
-    "tags": [
-      "Investing",
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Dividend Reinvestment Calculator",
-    "d": "DRIP vs. cash dividends.",
-    "u": "/money/dividend-reinvestment-calculator/",
-    "tags": [
-      "Investing",
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Roth vs Traditional IRA Calculator",
-    "d": "Which account wins for you?",
-    "u": "/money/roth-vs-traditional-ira-calculator/",
-    "tags": [
-      "Investing",
-      "Retirement",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Roth Conversion Calculator",
-    "d": "What converting costs now vs. later.",
-    "u": "/money/roth-conversion-calculator/",
-    "tags": [
-      "Investing",
-      "Retirement",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "401(k) Employer Match Calculator",
-    "d": "Don't leave match money behind.",
-    "u": "/money/401k-match-calculator/",
-    "tags": [
-      "Investing",
-      "Retirement",
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Tax-Loss Harvesting Calculator",
-    "d": "Turn losses into tax savings.",
-    "u": "/money/tax-loss-harvesting-calculator/",
-    "tags": [
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Position Size Calculator",
-    "d": "How many shares fit your risk?",
-    "u": "/money/position-size-calculator/",
-    "tags": [
-      "Investing",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Risk/Reward Calculator",
-    "d": "Is this trade worth taking?",
-    "u": "/money/risk-reward-calculator/",
-    "tags": [
-      "Investing",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Compound Interest Calculator",
-    "d": "Watch compounding do the work.",
-    "u": "/money/compound-interest-calculator/",
-    "tags": [
-      "Investing",
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Investment Return Calculator",
-    "d": "What will it grow to?",
-    "u": "/money/investment-return-calculator/",
-    "tags": [
-      "Investing",
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "HSA vs IRA Comparison Calculator",
-    "d": "Which account wins?",
-    "u": "/money/hsa-vs-ira-comparison-calculator/",
-    "tags": [
-      "Investing",
-      "Retirement",
-      "Health"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "I-Bond Calculator",
-    "d": "Inflation-protected savings bonds",
-    "u": "/money/i-bond-calculator/",
-    "tags": [
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "CD / Treasury Ladder Calculator",
-    "d": "Stagger maturities, smooth rate risk",
-    "u": "/money/cd-treasury-ladder-calculator/",
-    "tags": [
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Military Money Calculators",
-    "d": "All military calculators in one place.",
-    "u": "/money/military/",
-    "tags": [
-      "Military"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "VA Disability Pay Calculator",
-    "d": "Monthly tax-free VA compensation by rating.",
-    "u": "/money/va-disability-pay-calculator/",
-    "tags": [
-      "Military",
-      "Health"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "VA Home Loan Calculator",
-    "d": "Funding fee, payment, and PMI savings.",
-    "u": "/money/va-home-loan-calculator/",
-    "tags": [
-      "Military",
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Military Retirement Estimator",
-    "d": "High-3 vs. Blended pension estimate.",
-    "u": "/money/military-retirement-estimator/",
-    "tags": [
-      "Military",
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "PPM Move Profit Estimator",
-    "d": "What you keep on a self-move.",
-    "u": "/money/ppm-move-profit-estimator/",
-    "tags": [
-      "Military",
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Law Enforcement Overtime Calculator",
-    "d": "207(k) overtime, done right.",
-    "u": "/money/law-enforcement-overtime-calculator/",
-    "tags": [
-      "Military",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Personal Money Calculators",
-    "d": "All personal calculators in one place.",
-    "u": "/money/personal/",
-    "tags": [
-      "Personal"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Dividend Calculator",
-    "d": "See what your dividends pay you.",
-    "u": "/money/dividend-calculator/",
-    "tags": [
-      "Personal",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Subscription Cost Analyzer",
-    "d": "Find out what subscriptions really cost.",
-    "u": "/money/subscription-cost-analyzer/",
-    "tags": [
-      "Personal",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Emergency Fund Calculator",
-    "d": "How much safety net do you need?",
-    "u": "/money/emergency-fund-calculator/",
-    "tags": [
-      "Personal",
-      "Insurance"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Take-Home Pay Calculator",
-    "d": "What your paycheck really becomes.",
-    "u": "/money/take-home-pay-calculator/",
-    "tags": [
-      "Personal",
-      "Career",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Capital Gains Tax Calculator",
-    "d": "Estimate tax on investment sales.",
-    "u": "/money/capital-gains-tax-calculator/",
-    "tags": [
-      "Personal",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Tax Refund Estimator",
-    "d": "Will you owe or get a refund?",
-    "u": "/money/tax-refund-estimator/",
-    "tags": [
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Tax Filing Resources",
-    "d": "Free and low-cost ways to file.",
-    "u": "/money/tax-filing-resources/",
-    "tags": [
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Tip Calculator",
-    "d": "Split the bill right.",
-    "u": "/money/tip-calculator/",
-    "tags": [
-      "Personal",
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Inflation Calculator",
-    "d": "What will it cost later?",
-    "u": "/money/inflation-calculator/",
-    "tags": [
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Net Worth Calculator",
-    "d": "What do you actually own?",
-    "u": "/money/net-worth-calculator/",
-    "tags": [
-      "Personal",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Windfall Planner",
-    "d": "Got a bonus? Allocate it smart.",
-    "u": "/money/windfall-planner-calculator/",
-    "tags": [
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Pets Money Calculators",
-    "d": "All pets calculators in one place.",
-    "u": "/money/pets/",
-    "tags": [
-      "Pets"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Dog Ownership Cost Calculator",
-    "d": "The lifetime price of a dog.",
-    "u": "/money/dog-ownership-cost-calculator/",
-    "tags": [
-      "Pets",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Cat Ownership Cost Calculator",
-    "d": "The lifetime price of a cat.",
-    "u": "/money/cat-ownership-cost-calculator/",
-    "tags": [
-      "Pets",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Pet Insurance Calculator",
-    "d": "Worth the premium?",
-    "u": "/money/pet-insurance-calculator/",
-    "tags": [
-      "Pets",
-      "Insurance"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Retirement Money Calculators",
-    "d": "All retirement calculators in one place.",
-    "u": "/money/retirement/",
-    "tags": [
-      "Retirement"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Social Security Benefit Estimator",
-    "d": "Benefits at 62, full age, and 70.",
-    "u": "/money/social-security-estimator/",
-    "tags": [
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Retirement Savings Projector",
-    "d": "What your savings could become.",
-    "u": "/money/retirement-savings-projector/",
-    "tags": [
-      "Retirement",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Retirement Age Comparison",
-    "d": "What 62 vs 65 vs 70 buys you.",
-    "u": "/money/retirement-age-comparison/",
-    "tags": [
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "RMD Calculator",
-    "d": "Your required minimum distribution.",
-    "u": "/money/rmd-calculator/",
-    "tags": [
-      "Retirement",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Am I on track? Retirement Income-Gap Calculator",
-    "d": "Am I on track? Project your nest egg, income, and any shortfall.",
-    "u": "/money/retirement-income-gap-calculator/",
-    "tags": [
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Medicare &amp;amp;amp;amp;amp;amp; Retiree Health Cost Estimator",
-    "d": "Project health costs in retirement and what to save now.",
-    "u": "/money/medicare-retiree-health-cost-estimator/",
-    "tags": [
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Pension Lump Sum vs Monthly Annuity Calculator",
-    "d": "Compare a pension buyout offer against monthly payments.",
-    "u": "/money/pension-lump-sum-vs-annuity-calculator/",
-    "tags": [
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Students Money Calculators",
-    "d": "All students calculators in one place.",
-    "u": "/money/students/",
-    "tags": [
-      "Students"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Student Loan Payoff Calculator",
-    "d": "TOOL 01",
-    "u": "/money/student-loan-payoff-calculator/",
-    "tags": [
-      "Students",
-      "Debt"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "First Apartment Budget Calculator",
-    "d": "TOOL 02",
-    "u": "/money/first-apartment-budget-calculator/",
-    "tags": [
-      "Students",
-      "Housing",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Will I Keep My Scholarship?",
-    "d": "TOOL 03",
-    "u": "/money/scholarship-gpa-checker/",
-    "tags": [
-      "Students"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Student Loan Refinance vs Income-Driven Repayment Calculator",
-    "d": "TOOL 04",
-    "u": "/money/student-loan-refi-vs-idr-calculator/",
-    "tags": [
-      "Students"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Taxes Money Calculators",
-    "d": "All taxes calculators in one place.",
-    "u": "/money/taxes/",
-    "tags": [
-      "Taxes"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "2026 Federal Tax Bracket Calculator",
-    "d": "Which bracket are you in?",
-    "u": "/money/tax-bracket-calculator/",
-    "tags": [
-      "Taxes",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Effective vs. Marginal Tax Rate Calculator \u2014 2026",
-    "d": "What you really pay.",
-    "u": "/money/effective-vs-marginal-tax-rate-calculator/",
-    "tags": [
-      "Taxes",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "W-4 Withholding Calculator",
-    "d": "Get withholding right.",
-    "u": "/money/w-4-withholding-calculator/",
-    "tags": [
-      "Taxes",
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Quarterly Estimated Tax Calculator",
-    "d": "Estimate your quarterly payments.",
-    "u": "/money/quarterly-estimated-tax-calculator/",
-    "tags": [
-      "Taxes",
-      "Business"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "HSA Tax Savings Calculator \u2014 2026",
-    "d": "The triple tax advantage.",
-    "u": "/money/hsa-tax-savings-calculator/",
-    "tags": [
-      "Taxes",
-      "Health",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Charitable Deduction Calculator",
-    "d": "What giving saves you.",
-    "u": "/money/charitable-deduction-calculator/",
-    "tags": [
-      "Taxes",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Standard vs Itemized Deduction Calculator",
-    "d": "Which deduction wins?",
-    "u": "/money/standard-vs-itemized-deduction-calculator/",
-    "tags": [
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Tax Deadline Calendar",
-    "d": "Key dates, 2026\u20132027.",
-    "u": "/money/tax-deadline-calendar/",
-    "tags": [
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "State Tax Directory",
-    "d": "Does your state tax income?",
-    "u": "/money/state-tax-directory/",
-    "tags": [
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Travel Money Calculators",
-    "d": "All travel calculators in one place.",
-    "u": "/money/travel/",
-    "tags": [
-      "Travel"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Vacation Budget Calculator",
-    "d": "Price the whole trip.",
-    "u": "/money/vacation-budget-calculator/",
-    "tags": [
-      "Travel",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Road Trip Cost Calculator",
-    "d": "Fuel, tolls, and lodging.",
-    "u": "/money/road-trip-cost-calculator/",
-    "tags": [
-      "Travel",
-      "Auto"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Points and Miles Value Calculator",
-    "d": "Are your points worth it?",
-    "u": "/money/points-and-miles-value-calculator/",
-    "tags": [
-      "Travel",
-      "Credit"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Wedding Money Calculators",
-    "d": "All wedding calculators in one place.",
-    "u": "/money/wedding/",
-    "tags": [
-      "Wedding"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Wedding Budget Calculator",
-    "d": "The whole big day, itemized.",
-    "u": "/money/wedding-budget-calculator/",
-    "tags": [
-      "Wedding",
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Wedding Guest Cost Calculator",
-    "d": "What attending really costs.",
-    "u": "/money/wedding-guest-cost-calculator/",
-    "tags": [
-      "Wedding",
-      "Travel"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Honeymoon Budget Calculator",
-    "d": "Price the getaway.",
-    "u": "/money/honeymoon-budget-calculator/",
-    "tags": [
-      "Wedding",
-      "Travel",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Decision Center \u2014 What Are You Trying to Decide?",
-    "d": "Pick your question; we'll walk you through the calculators that answer it.",
-    "u": "/money/decide/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decisions"
-  },
-  {
-    "t": "Should I buy or rent?",
-    "d": "A guided path: the calculators that answer this decision, in order.",
-    "u": "/money/decide/buy-or-rent/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decision"
-  },
-  {
-    "t": "Can I afford this car?",
-    "d": "A guided path: the calculators that answer this decision, in order.",
-    "u": "/money/decide/can-i-afford-this-car/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decision"
-  },
-  {
-    "t": "Can I afford this house?",
-    "d": "A guided path: the calculators that answer this decision, in order.",
-    "u": "/money/decide/can-i-afford-this-house/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decision"
-  },
-  {
-    "t": "Can I retire yet?",
-    "d": "A guided path: the calculators that answer this decision, in order.",
-    "u": "/money/decide/can-i-retire/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decision"
-  },
-  {
-    "t": "Should I pay off debt or invest?",
-    "d": "A guided path: the calculators that answer this decision, in order.",
-    "u": "/money/decide/debt-or-invest/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decision"
-  },
-  {
-    "t": "How much insurance do I need?",
-    "d": "A guided path: the calculators that answer this decision, in order.",
-    "u": "/money/decide/how-much-insurance/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decision"
-  },
-  {
-    "t": "How much should I save?",
-    "d": "A guided path: the calculators that answer this decision, in order.",
-    "u": "/money/decide/how-much-to-save/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decision"
-  },
-  {
-    "t": "Should I refinance my mortgage?",
-    "d": "A guided path: the calculators that answer this decision, in order.",
-    "u": "/money/decide/should-i-refinance/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decision"
-  },
-  {
-    "t": "Should I start a business?",
-    "d": "A guided path: the calculators that answer this decision, in order.",
-    "u": "/money/decide/start-a-business/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decision"
-  },
-  {
-    "t": "Should I take this job offer?",
-    "d": "A guided path: the calculators that answer this decision, in order.",
-    "u": "/money/decide/take-this-job/",
-    "tags": [
-      "Decisions"
-    ],
-    "kind": "decision"
-  },
-  {
-    "t": "Refinance Money Calculators",
-    "d": "See if refinancing saves you money, compare rates, and find your break-even point.",
-    "u": "/money/refinance/",
-    "tags": [
-      "Refinance"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Buy or Rent Money Calculators",
-    "d": "Should you buy it or rent it? Run the numbers on homes, cars, and every big lease-vs-buy decision.",
-    "u": "/money/buy-or-rent/",
-    "tags": [
-      "Buy or Rent"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Paycheck Money Calculators",
-    "d": "What you earn, what you keep, and where it goes. Take-home pay, withholding, tips, and overtime.",
-    "u": "/money/paycheck/",
-    "tags": [
-      "Paycheck"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Emergency Fund Money Calculators",
-    "d": "Your safety net, built right. How much you need, where to keep it, and the debt tradeoff.",
-    "u": "/money/emergency-fund/",
-    "tags": [
-      "Emergency Fund"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Where to Park Your Emergency Fund",
-    "d": "Compare HYSA, CD, Treasury bills, and money market accounts after taxes.",
-    "u": "/money/emergency-fund-parking-calculator/",
-    "tags": [
-      "Emergency Fund",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Emergency Fund vs Debt Payoff",
-    "d": "Fund first, debt first, or split? See the timeline and interest cost of each.",
-    "u": "/money/emergency-fund-vs-debt-calculator/",
-    "tags": [
-      "Emergency Fund",
-      "Debt"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Giving Money Calculators",
-    "d": "Give generously and smart. Donation deductions, bunching, and QCDs from your IRA.",
-    "u": "/money/giving/",
-    "tags": [
-      "Giving",
-      "Charity",
-      "Taxes"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Deduction Bunching Calculator",
-    "d": "Bunch two years of charitable giving into one tax year to beat the standard deduction.",
-    "u": "/money/deduction-bunching-calculator/",
-    "tags": [
-      "Giving",
-      "Charity",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "QCD Calculator",
-    "d": "Qualified Charitable Distributions from your IRA \u2014 give and skip the tax.",
-    "u": "/money/qcd-calculator/",
-    "tags": [
-      "Giving",
-      "Charity",
-      "Retirement",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Real Estate Investing Money Calculators",
-    "d": "Run the numbers before you buy. Cash flow, cap rate, and whether the deal actually works.",
-    "u": "/money/real-estate-investing/",
-    "tags": [
-      "Real Estate",
-      "Investing",
-      "Housing"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Rental Property Analyzer",
-    "d": "Cash flow, cap rate, cash-on-cash return \u2014 is this rental a deal?",
-    "u": "/money/rental-property-analyzer/",
-    "tags": [
-      "Real Estate",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "House Hacking Calculator",
-    "d": "Buy a multi-unit, live in one, let tenants cover the mortgage.",
-    "u": "/money/house-hacking-calculator/",
-    "tags": [
-      "Real Estate",
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "BRRRR Calculator",
-    "d": "Buy, rehab, rent, refinance, repeat \u2014 recycle your capital.",
-    "u": "/money/brrrr-calculator/",
-    "tags": [
-      "Real Estate",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Social Security Timing Calculator",
-    "d": "Claim at 62, 67, or 70? See the break-even and lifetime total.",
-    "u": "/money/social-security-timing-calculator/",
-    "tags": [
-      "Retirement",
-      "Social Security"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Life Events Money Guides",
-    "d": "Money follows the big moments. Marriage, baby, first home, new job, divorce, retirement.",
-    "u": "/money/life-events/",
-    "tags": [
-      "Life Events",
-      "Family"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Baby's First Year Cost Calculator",
-    "d": "Diapers, daycare, gear \u2014 what does year one really cost?",
-    "u": "/money/baby-first-year-cost-calculator/",
-    "tags": [
-      "Family",
-      "Baby"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Cost of Raising a Child Calculator",
-    "d": "Project the total cost of raising a child to age 18.",
-    "u": "/money/cost-of-raising-child-calculator/",
-    "tags": [
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Teen Driver Insurance Calculator",
-    "d": "How much does adding a teen driver raise your premium?",
-    "u": "/money/teen-driver-insurance-calculator/",
-    "tags": [
-      "Vehicles",
-      "Family",
-      "Insurance"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Catch-Up Contributions Calculator",
-    "d": "50 and over? See the extra you can put in 401(k) and IRA.",
-    "u": "/money/catch-up-contributions-calculator/",
-    "tags": [
-      "Retirement",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "College vs Retirement Calculator",
-    "d": "Fund the kid's college or your retirement? See the tradeoff.",
-    "u": "/money/college-vs-retirement-calculator/",
-    "tags": [
-      "Family",
-      "Retirement",
-      "College"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Aircraft Cost Calculator",
-    "d": "Purchase, hangar, fuel, maintenance \u2014 what does a private plane cost per flight hour?",
-    "u": "/money/aircraft-cost-calculator/",
-    "tags": [
-      "Vehicles",
-      "Travel"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Scholarship Calculators",
-    "d": "Make every award count. Compare offers, keep your aid, and avoid tax surprises.",
-    "u": "/money/scholarships/",
-    "tags": [
-      "Scholarships"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "College Cost After Scholarships Calculator",
-    "d": "What will college actually cost after your awards?",
-    "u": "/money/college-cost-after-scholarships/",
-    "tags": [
-      "Scholarships",
-      "Students"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Compare Financial Aid Offers",
-    "d": "Which college is actually cheaper after financial aid?",
-    "u": "/money/financial-aid-offer-comparison/",
-    "tags": [
-      "Scholarships",
-      "Students"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Will I Keep My Scholarship?",
-    "d": "What GPA keeps your award \u2014 and what losing it costs.",
-    "u": "/money/will-i-keep-my-scholarship/",
-    "tags": [
-      "Scholarships",
-      "Students"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Will an Outside Scholarship Reduce My Aid?",
-    "d": "Will winning another scholarship actually save you money?",
-    "u": "/money/outside-scholarship-impact/",
-    "tags": [
-      "Scholarships",
-      "Students"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Is My Scholarship Taxable?",
-    "d": "How much of your scholarship is taxable income?",
-    "u": "/money/is-my-scholarship-taxable/",
-    "tags": [
-      "Scholarships",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Modern Nomad Calculators",
-    "d": "Life on the move, money under control. Van, RV, boat, or backpack.",
-    "u": "/money/modern-nomads/",
-    "tags": [
-      "Modern Nomads"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Nomad vs Settled: Is It Actually Cheaper?",
-    "d": "Is van, RV, or boat life cheaper than your apartment?",
-    "u": "/money/nomad-vs-settled/",
-    "tags": [
-      "Modern Nomads",
-      "Travel"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Nomad Life Budget Calculator",
-    "d": "What will it actually cost to live on the road?",
-    "u": "/money/nomad-life-budget/",
-    "tags": [
-      "Modern Nomads",
-      "Travel"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Rig Break-Even Calculator",
-    "d": "When does the van, RV, or boat pay for itself?",
-    "u": "/money/rig-break-even/",
-    "tags": [
-      "Modern Nomads",
-      "Vehicles"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Nomad Domicile Cost Comparison",
-    "d": "Which state should you call home? TX vs SD vs FL.",
-    "u": "/money/nomad-domicile-comparison/",
-    "tags": [
-      "Modern Nomads",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Nomad Health Insurance Estimator",
-    "d": "What will health coverage cost on the road?",
-    "u": "/money/nomad-health-insurance/",
-    "tags": [
-      "Modern Nomads",
-      "Health",
-      "Insurance"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Experience Seeker Calculators",
-    "d": "Collect experiences, not things. Budget the adventures, trips, and bucket-list moments.",
-    "u": "/money/experience-seekers/",
-    "tags": [
-      "Experience Seekers",
-      "Travel"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Minimum Payment Trap Calculator",
-    "d": "Credit cards and payday loans: the true cost of minimum payments.",
-    "u": "/money/minimum-payment-trap/",
-    "tags": [
-      "Debt",
-      "Credit"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "First-Time Homebuyer Cash-to-Close Calculator",
-    "d": "How much cash you actually need upfront to buy a house.",
-    "u": "/money/homebuyer-cash-to-close/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Cost of Living Salary Comparison Calculator",
-    "d": "What salary in another city matches your standard of living?",
-    "u": "/money/cost-of-living-salary/",
-    "tags": [
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Net Pay After a Raise Calculator",
-    "d": "How much more take-home pay a raise actually gives you.",
-    "u": "/money/raise-take-home/",
-    "tags": [
-      "Paycheck",
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Net Worth Projection Calculator",
-    "d": "What your net worth will be in 10, 20, or 30 years.",
-    "u": "/money/net-worth-projection/",
-    "tags": [
-      "Personal",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Safe Withdrawal Rate Calculator",
-    "d": "How much you can withdraw yearly in retirement without running out.",
-    "u": "/money/safe-withdrawal-rate/",
-    "tags": [
-      "Retirement",
-      "FIRE"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Irregular Income Budget Calculator",
-    "d": "Budget when your income changes every month.",
-    "u": "/money/irregular-income-budget/",
-    "tags": [
-      "Budget",
-      "Side Hustles"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Car Depreciation Calculator",
-    "d": "What your car will be worth in 1, 3, 5, or 10 years.",
-    "u": "/money/car-depreciation/",
-    "tags": [
-      "Vehicles"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Bonus Take-Home Calculator",
-    "d": "How much of your work bonus you actually keep.",
-    "u": "/money/bonus-take-home/",
-    "tags": [
-      "Paycheck",
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "S-Corp vs LLC Tax Calculator",
-    "d": "Would electing S-corp status save you taxes?",
-    "u": "/money/scorp-vs-llc/",
-    "tags": [
-      "Business"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Side Hustle Profitability Calculator",
-    "d": "Your true hourly rate after expenses and taxes.",
-    "u": "/money/side-hustle-profitability/",
-    "tags": [
-      "Business",
-      "Career",
-      "Side Hustles"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Stock Options & RSU Value Calculator",
-    "d": "What your equity compensation is worth after taxes.",
-    "u": "/money/equity-compensation/",
-    "tags": [
-      "Career",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Stay-at-Home vs Working Parent Calculator",
-    "d": "Is it cheaper for one parent to stay home?",
-    "u": "/money/stay-at-home-vs-working/",
-    "tags": [
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Nanny vs Daycare Cost Calculator",
-    "d": "Which childcare option costs less for your family?",
-    "u": "/money/nanny-vs-daycare/",
-    "tags": [
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "ACA Subsidy Estimator",
-    "d": "Can you get help paying for Marketplace health insurance?",
-    "u": "/money/aca-subsidy-estimator/",
-    "tags": [
-      "Health",
-      "Insurance"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Medical Bill Payment Plan Calculator",
-    "d": "Pay a medical bill upfront or use a payment plan?",
-    "u": "/money/medical-bill-planner/",
-    "tags": [
-      "Health",
-      "Medical Debt"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Backdoor Roth IRA Feasibility Calculator",
-    "d": "Can you do a backdoor Roth IRA this year?",
-    "u": "/money/backdoor-roth/",
-    "tags": [
-      "Investing",
-      "Retirement",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "FIRE Number Calculator",
-    "d": "How much money you need to retire early.",
-    "u": "/money/fire-number/",
-    "tags": [
-      "Investing",
-      "Retirement",
-      "FIRE"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Crypto Tax Calculator",
-    "d": "How much tax you owe on cryptocurrency gains.",
-    "u": "/money/crypto-tax/",
-    "tags": [
-      "Taxes",
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "PMI Removal Timeline Calculator",
-    "d": "When you can stop paying private mortgage insurance.",
-    "u": "/money/pmi-removal/",
-    "tags": [
-      "Housing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Destination Wedding vs Local Calculator",
-    "d": "Is a destination wedding cheaper than a local one?",
-    "u": "/money/destination-wedding/",
-    "tags": [
-      "Wedding",
-      "Experience Seekers"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Cruise vs Land Vacation Calculator",
-    "d": "Is a cruise cheaper than a land-based vacation?",
-    "u": "/money/cruise-vs-land/",
-    "tags": [
-      "Experience Seekers",
-      "Travel"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Medical Debt Interest Cost Calculator",
-    "d": "How much will I pay if I finance a medical bill?",
-    "u": "/money/medical-debt-interest/",
-    "tags": [
-      "Medical Debt",
-      "Health"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Medical Bill Negotiation Savings Calculator",
-    "d": "How much could you save by negotiating a hospital bill?",
-    "u": "/money/medical-bill-negotiation/",
-    "tags": [
-      "Medical Debt",
-      "Health"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "HSA vs Cash for Medical Bills Calculator",
-    "d": "Should you pay a medical bill with your HSA or with cash?",
-    "u": "/money/hsa-vs-cash-medical/",
-    "tags": [
-      "Medical Debt",
-      "Health",
-      "Taxes"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Elder Care Monthly Cost Calculator",
-    "d": "How much does it cost to care for an elderly parent?",
-    "u": "/money/elder-care-cost/",
-    "tags": [
-      "Caregiving",
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "In-Home Care vs Assisted Living Calculator",
-    "d": "Is assisted living cheaper than in-home care?",
-    "u": "/money/home-care-vs-assisted-living/",
-    "tags": [
-      "Caregiving",
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Family Caregiver Cost Sharing Calculator",
-    "d": "How much should each sibling contribute to aging parents' care?",
-    "u": "/money/caregiver-cost-sharing/",
-    "tags": [
-      "Caregiving",
-      "Family"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Caregiver Lost Income Calculator",
-    "d": "Can you afford to cut back work to care for a parent?",
-    "u": "/money/caregiver-lost-income/",
-    "tags": [
-      "Caregiving",
-      "Career"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Checking Account Fee Calculator",
-    "d": "How much am I paying in checking account fees?",
-    "u": "/money/checking-fee-calculator/",
-    "tags": [
-      "Banking",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Overdraft Fee Cost Calculator",
-    "d": "What are overdraft fees really costing you?",
-    "u": "/money/overdraft-cost/",
-    "tags": [
-      "Banking",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Bank Bonus Break-Even Calculator",
-    "d": "Is that bank account bonus worth the switch?",
-    "u": "/money/bank-bonus-break-even/",
-    "tags": [
-      "Banking",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "High-Yield Savings Interest Calculator",
-    "d": "How much interest will your savings earn this year?",
-    "u": "/money/hysa-interest/",
-    "tags": [
-      "Banking",
-      "Personal"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "FIRE Savings Rate Calculator",
-    "d": "What savings rate gets you to early retirement?",
-    "u": "/money/fire-savings-rate/",
-    "tags": [
-      "FIRE",
-      "Investing",
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Coast FIRE Calculator",
-    "d": "Have you saved enough to stop saving and still retire on time?",
-    "u": "/money/coast-fire/",
-    "tags": [
-      "FIRE",
-      "Investing",
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Gig Quarterly Tax Estimator",
-    "d": "How much should you set aside for quarterly taxes?",
-    "u": "/money/gig-quarterly-tax/",
-    "tags": [
-      "Side Hustles",
-      "Taxes",
-      "Business"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Medical Debt Calculators",
-    "d": "Hospital bills shouldn't become long-term debt. Negotiate, plan, and pay the smart way.",
-    "u": "/money/medical-debt/",
-    "tags": [
-      "Medical Debt"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Caregiving Calculators",
-    "d": "Caring for a parent is hard. The math shouldn't be.",
-    "u": "/money/caregiving/",
-    "tags": [
-      "Caregiving"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Everyday Banking Calculators",
-    "d": "Fees, bonuses, and the fine print. Keep more of your money at the bank.",
-    "u": "/money/banking/",
-    "tags": [
-      "Banking"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "FIRE Calculators",
-    "d": "Financial independence, retire early. Find your number.",
-    "u": "/money/fire/",
-    "tags": [
-      "FIRE"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Side Hustle Calculators",
-    "d": "Turn gigs into real income. Price your work, keep the taxes straight.",
-    "u": "/money/side-hustles/",
-    "tags": [
-      "Side Hustles"
-    ],
-    "kind": "section"
-  },
-  {
-    "t": "Gas vs Hybrid Car Cost Calculator",
-    "d": "Does a hybrid actually save money?",
-    "u": "/money/gas-vs-hybrid/",
-    "tags": [
-      "Vehicles"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Used Car: Loan vs Cash Calculator",
-    "d": "Finance a used car or pay cash?",
-    "u": "/money/used-car-loan-vs-cash/",
-    "tags": [
-      "Vehicles"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Trade-In vs Private Sale Calculator",
-    "d": "Trade in your car or sell it yourself?",
-    "u": "/money/trade-in-vs-private-sale/",
-    "tags": [
-      "Vehicles"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Zero-Based Budget Calculator",
-    "d": "Give every dollar a job.",
-    "u": "/money/zero-based-budget/",
-    "tags": [
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Sinking Fund Calculator",
-    "d": "Save monthly for big expenses.",
-    "u": "/money/sinking-funds/",
-    "tags": [
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Biweekly Paycheck Budget Calculator",
-    "d": "Budget on a biweekly paycheck.",
-    "u": "/money/biweekly-paycheck-budget/",
-    "tags": [
-      "Paycheck",
-      "Budget"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Divorce Home Buyout Calculator",
-    "d": "Can you afford to keep the house?",
-    "u": "/money/divorce-home-buyout/",
-    "tags": [
-      "Divorce"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "QDRO Retirement Split Calculator",
-    "d": "How a QDRO splits the retirement account.",
-    "u": "/money/qdro-split/",
-    "tags": [
-      "Divorce"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Sequence of Returns Risk Calculator",
-    "d": "What if the market crashes after you retire?",
-    "u": "/money/sequence-of-returns/",
-    "tags": [
-      "Retirement"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Mega Backdoor Roth Calculator",
-    "d": "How much extra can you get into Roth?",
-    "u": "/money/mega-backdoor-roth/",
-    "tags": [
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Expense Ratio Impact Calculator",
-    "d": "What fund fees cost you over time.",
-    "u": "/money/expense-ratio-impact/",
-    "tags": [
-      "Investing"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Fix-and-Flip Profit Calculator",
-    "d": "Will this flip make money?",
-    "u": "/money/fix-and-flip/",
-    "tags": [
-      "Real Estate"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "Airbnb Profitability Calculator",
-    "d": "Will a short-term rental make money?",
-    "u": "/money/airbnb-profitability/",
-    "tags": [
-      "Real Estate"
-    ],
-    "kind": "tool"
-  },
-  {
-    "t": "AMT Estimator",
-    "d": "Will you owe the alternative minimum tax?",
-    "u": "/money/amt-estimator/",
-    "tags": [
-      "Taxes"
-    ],
-    "kind": "tool"
-  }
+ {
+  "t": "Vehicle Money Calculators",
+  "d": "Can you afford it? Run the numbers on cars, trucks, motorcycles, RVs, and every vehicle purchase.",
+  "u": "/money/vehicles/",
+  "tags": [
+   "Vehicles"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Auto Loan Calculator: Monthly Payment &amp;amp;amp;amp;amp;amp;amp;amp;amp; Total Interest",
+  "d": "What will the payment be?",
+  "u": "/money/auto-loan-calculator/",
+  "tags": [
+   "Auto",
+   "Credit",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Lease vs Buy Car Calculator",
+  "d": "Lease or buy?",
+  "u": "/money/lease-vs-buy-car-calculator/",
+  "tags": [
+   "Auto",
+   "Credit"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "EV vs Gas Car Calculator: Is Electric Cheaper?",
+  "d": "Does electric pay off?",
+  "u": "/money/ev-vs-gas-car-calculator/",
+  "tags": [
+   "Auto",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Car Ownership Cost Calculator",
+  "d": "The true cost of your car.",
+  "u": "/money/car-ownership-cost-calculator/",
+  "tags": [
+   "Auto",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Commute Cost Calculator",
+  "d": "What your drive to work really costs.",
+  "u": "/money/commute-cost-calculator/",
+  "tags": [
+   "Auto"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Budget Money Calculators",
+  "d": "All budget calculators in one place.",
+  "u": "/money/budget/",
+  "tags": [
+   "Budget"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Monthly Budget Planner",
+  "d": "Every dollar, assigned.",
+  "u": "/money/monthly-budget-planner/",
+  "tags": [
+   "Budget",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "50/30/20 Budget Calculator",
+  "d": "The classic split.",
+  "u": "/money/50-30-20-budget-calculator/",
+  "tags": [
+   "Budget",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Paycheck Budget Planner",
+  "d": "Stretch it to payday.",
+  "u": "/money/paycheck-budget-planner/",
+  "tags": [
+   "Budget",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Business Money Calculators",
+  "d": "All business calculators in one place.",
+  "u": "/money/business/",
+  "tags": [
+   "Business"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Self-Employment Tax Estimator",
+  "d": "Estimate SE tax and quarterly payments.",
+  "u": "/money/self-employment-tax-estimator/",
+  "tags": [
+   "Business"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Freelance Rate Calculator",
+  "d": "What hourly rate should you charge?",
+  "u": "/money/freelance-rate-calculator/",
+  "tags": [
+   "Business",
+   "Career",
+   "Side Hustles"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Profit Margin Calculator",
+  "d": "Margin vs. markup, finally clear.",
+  "u": "/money/profit-margin-calculator/",
+  "tags": [
+   "Business",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Break-Even Calculator",
+  "d": "How many sales until you're profitable.",
+  "u": "/money/break-even-calculator/",
+  "tags": [
+   "Business",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Business Loan Calculator",
+  "d": "Monthly payment and total cost of a loan.",
+  "u": "/money/business-loan-calculator/",
+  "tags": [
+   "Business",
+   "Debt"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Employee Cost Calculator",
+  "d": "What an employee really costs you.",
+  "u": "/money/employee-cost-calculator/",
+  "tags": [
+   "Business",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Cash Runway Calculator",
+  "d": "How many months can you survive?",
+  "u": "/money/cash-runway-calculator/",
+  "tags": [
+   "Business",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Home Office Deduction Estimator",
+  "d": "Simplified vs. actual method, side by side.",
+  "u": "/money/home-office-deduction-estimator/",
+  "tags": [
+   "Business",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Career Money Calculators",
+  "d": "All career calculators in one place.",
+  "u": "/money/career/",
+  "tags": [
+   "Career"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Job Offer Comparison Calculator",
+  "d": "Which offer is really better?",
+  "u": "/money/job-offer-comparison-calculator/",
+  "tags": [
+   "Career",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Salary vs Hourly Calculator",
+  "d": "Convert pay both ways.",
+  "u": "/money/salary-vs-hourly-calculator/",
+  "tags": [
+   "Career",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Relocation Cost Calculator",
+  "d": "Is the move worth it?",
+  "u": "/money/relocation-cost-calculator/",
+  "tags": [
+   "Career",
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Severance Pay Estimator",
+  "d": "What does the package cover?",
+  "u": "/money/severance-pay-estimator/",
+  "tags": [
+   "Career",
+   "Debt"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Credit Money Calculators",
+  "d": "All credit calculators in one place.",
+  "u": "/money/credit/",
+  "tags": [
+   "Credit"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Credit Score Simulator",
+  "d": "TOOL 01",
+  "u": "/money/credit-score-simulator/",
+  "tags": [
+   "Credit",
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Credit Utilization Calculator",
+  "d": "TOOL 02",
+  "u": "/money/credit-utilization-calculator/",
+  "tags": [
+   "Credit",
+   "Debt"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Credit Score Improvement Planner",
+  "d": "TOOL 03",
+  "u": "/money/credit-score-improvement-planner/",
+  "tags": [
+   "Credit",
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Debt Money Calculators",
+  "d": "All debt calculators in one place.",
+  "u": "/money/debt/",
+  "tags": [
+   "Debt"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Debt Snowball vs Avalanche Calculator",
+  "d": "The fastest way out of debt.",
+  "u": "/money/debt-snowball-vs-avalanche-calculator/",
+  "tags": [
+   "Debt",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Debt Consolidation Calculator",
+  "d": "Is one loan cheaper?",
+  "u": "/money/debt-consolidation-calculator/",
+  "tags": [
+   "Debt"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Debt-to-Income Ratio Calculator",
+  "d": "What lenders see.",
+  "u": "/money/debt-to-income-ratio-calculator/",
+  "tags": [
+   "Debt",
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Credit Card Payoff Analyzer",
+  "d": "Your payoff date and interest.",
+  "u": "/money/credit-card-payoff-analyzer/",
+  "tags": [
+   "Debt",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Balance Transfer Calculator",
+  "d": "Is the transfer worth it?",
+  "u": "/money/balance-transfer-calculator/",
+  "tags": [
+   "Debt",
+   "Credit"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Debt Payoff Strategy Comparison",
+  "d": "Minimums vs avalanche vs snowball, side by side",
+  "u": "/money/debt-payoff-strategy-comparison/",
+  "tags": [
+   "Debt"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Divorce Money Calculators",
+  "d": "All divorce calculators in one place.",
+  "u": "/money/divorce/",
+  "tags": [
+   "Divorce"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Divorce Asset Split Calculator",
+  "d": "Who gets what.",
+  "u": "/money/divorce-asset-split-calculator/",
+  "tags": [
+   "Divorce"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Divorce Cost Estimator",
+  "d": "Contested vs. uncontested.",
+  "u": "/money/divorce-cost-estimator/",
+  "tags": [
+   "Divorce",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Alimony Estimator",
+  "d": "A rough monthly range.",
+  "u": "/money/alimony-estimator/",
+  "tags": [
+   "Divorce",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Child Support Estimator",
+  "d": "Estimate monthly support.",
+  "u": "/money/child-support-estimator/",
+  "tags": [
+   "Divorce",
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Estate Planning Money Calculators",
+  "d": "All estate planning calculators in one place.",
+  "u": "/money/estate-planning/",
+  "tags": [
+   "Estate Planning"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Will vs. Trust Cost Calculator",
+  "d": "Which costs less overall?",
+  "u": "/money/will-vs-trust-calculator/",
+  "tags": [
+   "Estate Planning",
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Estate Tax Estimator",
+  "d": "Will the IRS take a cut?",
+  "u": "/money/estate-tax-estimator/",
+  "tags": [
+   "Estate Planning",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Inheritance Split Calculator",
+  "d": "Divide it fairly.",
+  "u": "/money/inheritance-split-calculator/",
+  "tags": [
+   "Estate Planning"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Probate Cost Estimator",
+  "d": "What probate really costs.",
+  "u": "/money/probate-cost-estimator/",
+  "tags": [
+   "Estate Planning"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Funeral Cost Estimator",
+  "d": "Plan the final expenses.",
+  "u": "/money/funeral-cost-estimator/",
+  "tags": [
+   "Estate Planning",
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Family Money Calculators",
+  "d": "All family calculators in one place.",
+  "u": "/money/family/",
+  "tags": [
+   "Family"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Childcare Cost Calculator",
+  "d": "What childcare really costs you.",
+  "u": "/money/childcare-cost-calculator/",
+  "tags": [
+   "Family",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "College Savings Estimator",
+  "d": "Will the 529 cover it?",
+  "u": "/money/college-savings-estimator/",
+  "tags": [
+   "Family",
+   "Students"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Life Insurance Needs Calculator",
+  "d": "How much coverage is enough?",
+  "u": "/money/life-insurance-needs-calculator/",
+  "tags": [
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Health Money Calculators",
+  "d": "All health calculators in one place.",
+  "u": "/money/health/",
+  "tags": [
+   "Health"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "HDHP vs PPO Calculator: Which Health Plan Costs Less?",
+  "d": "Which health plan costs less?",
+  "u": "/money/hdhp-vs-ppo-calculator/",
+  "tags": [
+   "Health",
+   "Insurance"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Out-of-Pocket Health Cost Estimator",
+  "d": "What you'll actually owe.",
+  "u": "/money/out-of-pocket-health-cost-estimator/",
+  "tags": [
+   "Health",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "COBRA vs Marketplace Calculator",
+  "d": "Coverage between jobs.",
+  "u": "/money/cobra-vs-marketplace-calculator/",
+  "tags": [
+   "Health",
+   "Insurance"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "FSA vs HSA Calculator",
+  "d": "Which tax-advantaged account saves more?",
+  "u": "/money/fsa-vs-hsa-calculator/",
+  "tags": [
+   "Health"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Housing Money Calculators",
+  "d": "All housing calculators in one place.",
+  "u": "/money/housing/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Rent vs. Buy Calculator",
+  "d": "Should you rent or buy?",
+  "u": "/money/rent-vs-buy-calculator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Mortgage Payment Calculator",
+  "d": "What will the payment be?",
+  "u": "/money/mortgage-payment-calculator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Mortgage Affordability Calculator",
+  "d": "How much house can you afford?",
+  "u": "/money/mortgage-affordability-calculator/",
+  "tags": [
+   "Housing",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Refinance Break-Even Calculator",
+  "d": "Does refinancing pay off?",
+  "u": "/money/refinance-break-even-calculator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Extra Mortgage Payment Calculator",
+  "d": "What extra payments save you.",
+  "u": "/money/extra-mortgage-payment-calculator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "HELOC vs. Home Equity Loan Calculator",
+  "d": "Which way to tap equity?",
+  "u": "/money/heloc-vs-home-equity-loan-calculator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Closing Cost Calculator",
+  "d": "What you'll pay at closing.",
+  "u": "/money/closing-cost-calculator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Property Tax Estimator",
+  "d": "Estimate your property tax.",
+  "u": "/money/property-tax-estimator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Home Sale Proceeds Calculator",
+  "d": "What you'll walk away with.",
+  "u": "/money/home-sale-proceeds-calculator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Down Payment vs. Investment Calculator",
+  "d": "Bigger down payment or invest?",
+  "u": "/money/down-payment-vs-investment-calculator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Home Maintenance Cost Calculator",
+  "d": "Budget for upkeep.",
+  "u": "/money/home-maintenance-cost-calculator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Solar Panel Payback Calculator",
+  "d": "When do the panels pay off?",
+  "u": "/money/solar-payback-calculator/",
+  "tags": [
+   "Housing",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Mortgage Scenario Comparison",
+  "d": "Keep, refinance, or pay extra \u2014 compared",
+  "u": "/money/mortgage-scenario-comparison/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Mortgage Amortization Schedule Viewer",
+  "d": "Year-by-year principal vs interest breakdown",
+  "u": "/money/mortgage-amortization-schedule-viewer/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Mortgage Discount Points Calculator",
+  "d": "Is buying down your rate worth it?",
+  "u": "/money/mortgage-discount-points-calculator/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Insurance Money Calculators",
+  "d": "All insurance calculators in one place.",
+  "u": "/money/insurance/",
+  "tags": [
+   "Insurance"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Disability Insurance Needs Calculator",
+  "d": "Protect your paycheck.",
+  "u": "/money/disability-insurance-needs-calculator/",
+  "tags": [
+   "Insurance",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Term vs Whole Life Insurance Calculator",
+  "d": "Which policy type fits?",
+  "u": "/money/term-vs-whole-life-insurance-calculator/",
+  "tags": [
+   "Insurance",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Auto Insurance Deductible Comparison Calculator",
+  "d": "Pick the right deductible.",
+  "u": "/money/auto-insurance-deductible-calculator/",
+  "tags": [
+   "Insurance",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Homeowners Insurance Cost Estimator",
+  "d": "Cover your home properly.",
+  "u": "/money/homeowners-insurance-estimator/",
+  "tags": [
+   "Insurance",
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Umbrella Insurance Calculator: How Much Coverage Do You Need?",
+  "d": "Do you need extra liability?",
+  "u": "/money/umbrella-insurance-calculator/",
+  "tags": [
+   "Insurance",
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Long-Term Care Cost Calculator",
+  "d": "What future care costs.",
+  "u": "/money/long-term-care-cost-calculator/",
+  "tags": [
+   "Insurance",
+   "Health",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Investing Money Calculators",
+  "d": "All investing calculators in one place.",
+  "u": "/money/investing/",
+  "tags": [
+   "Investing"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Dollar-Cost Averaging Calculator",
+  "d": "Steady investing vs. lump sum.",
+  "u": "/money/dollar-cost-averaging-calculator/",
+  "tags": [
+   "Investing",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Portfolio Allocation Calculator",
+  "d": "Split your portfolio with purpose.",
+  "u": "/money/portfolio-allocation-calculator/",
+  "tags": [
+   "Investing",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Investment Fee Calculator",
+  "d": "What fees really cost you.",
+  "u": "/money/investment-fee-calculator/",
+  "tags": [
+   "Investing",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Dividend Reinvestment Calculator",
+  "d": "DRIP vs. cash dividends.",
+  "u": "/money/dividend-reinvestment-calculator/",
+  "tags": [
+   "Investing",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Roth vs Traditional IRA Calculator",
+  "d": "Which account wins for you?",
+  "u": "/money/roth-vs-traditional-ira-calculator/",
+  "tags": [
+   "Investing",
+   "Retirement",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Roth Conversion Calculator",
+  "d": "What converting costs now vs. later.",
+  "u": "/money/roth-conversion-calculator/",
+  "tags": [
+   "Investing",
+   "Retirement",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "401(k) Employer Match Calculator",
+  "d": "Don't leave match money behind.",
+  "u": "/money/401k-match-calculator/",
+  "tags": [
+   "Investing",
+   "Retirement",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Tax-Loss Harvesting Calculator",
+  "d": "Turn losses into tax savings.",
+  "u": "/money/tax-loss-harvesting-calculator/",
+  "tags": [
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Position Size Calculator",
+  "d": "How many shares fit your risk?",
+  "u": "/money/position-size-calculator/",
+  "tags": [
+   "Investing",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Risk/Reward Calculator",
+  "d": "Is this trade worth taking?",
+  "u": "/money/risk-reward-calculator/",
+  "tags": [
+   "Investing",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Compound Interest Calculator",
+  "d": "Watch compounding do the work.",
+  "u": "/money/compound-interest-calculator/",
+  "tags": [
+   "Investing",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Investment Return Calculator",
+  "d": "What will it grow to?",
+  "u": "/money/investment-return-calculator/",
+  "tags": [
+   "Investing",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "HSA vs IRA Comparison Calculator",
+  "d": "Which account wins?",
+  "u": "/money/hsa-vs-ira-comparison-calculator/",
+  "tags": [
+   "Investing",
+   "Retirement",
+   "Health"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "I-Bond Calculator",
+  "d": "Inflation-protected savings bonds",
+  "u": "/money/i-bond-calculator/",
+  "tags": [
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "CD / Treasury Ladder Calculator",
+  "d": "Stagger maturities, smooth rate risk",
+  "u": "/money/cd-treasury-ladder-calculator/",
+  "tags": [
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Military Money Calculators",
+  "d": "All military calculators in one place.",
+  "u": "/money/military/",
+  "tags": [
+   "Military"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "VA Disability Pay Calculator",
+  "d": "Monthly tax-free VA compensation by rating.",
+  "u": "/money/va-disability-pay-calculator/",
+  "tags": [
+   "Military",
+   "Health"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "VA Home Loan Calculator",
+  "d": "Funding fee, payment, and PMI savings.",
+  "u": "/money/va-home-loan-calculator/",
+  "tags": [
+   "Military",
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Military Retirement Estimator",
+  "d": "High-3 vs. Blended pension estimate.",
+  "u": "/money/military-retirement-estimator/",
+  "tags": [
+   "Military",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "PPM Move Profit Estimator",
+  "d": "What you keep on a self-move.",
+  "u": "/money/ppm-move-profit-estimator/",
+  "tags": [
+   "Military",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Law Enforcement Overtime Calculator",
+  "d": "207(k) overtime, done right.",
+  "u": "/money/law-enforcement-overtime-calculator/",
+  "tags": [
+   "Military",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Personal Money Calculators",
+  "d": "All personal calculators in one place.",
+  "u": "/money/personal/",
+  "tags": [
+   "Personal"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Dividend Calculator",
+  "d": "See what your dividends pay you.",
+  "u": "/money/dividend-calculator/",
+  "tags": [
+   "Personal",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Subscription Cost Analyzer",
+  "d": "Find out what subscriptions really cost.",
+  "u": "/money/subscription-cost-analyzer/",
+  "tags": [
+   "Personal",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Emergency Fund Calculator",
+  "d": "How much safety net do you need?",
+  "u": "/money/emergency-fund-calculator/",
+  "tags": [
+   "Personal",
+   "Insurance"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Take-Home Pay Calculator",
+  "d": "What your paycheck really becomes.",
+  "u": "/money/take-home-pay-calculator/",
+  "tags": [
+   "Personal",
+   "Career",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Capital Gains Tax Calculator",
+  "d": "Estimate tax on investment sales.",
+  "u": "/money/capital-gains-tax-calculator/",
+  "tags": [
+   "Personal",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Tax Refund Estimator",
+  "d": "Will you owe or get a refund?",
+  "u": "/money/tax-refund-estimator/",
+  "tags": [
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Tax Filing Resources",
+  "d": "Free and low-cost ways to file.",
+  "u": "/money/tax-filing-resources/",
+  "tags": [
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Tip Calculator",
+  "d": "Split the bill right.",
+  "u": "/money/tip-calculator/",
+  "tags": [
+   "Personal",
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Inflation Calculator",
+  "d": "What will it cost later?",
+  "u": "/money/inflation-calculator/",
+  "tags": [
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Net Worth Calculator",
+  "d": "What do you actually own?",
+  "u": "/money/net-worth-calculator/",
+  "tags": [
+   "Personal",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Windfall Planner",
+  "d": "Got a bonus? Allocate it smart.",
+  "u": "/money/windfall-planner-calculator/",
+  "tags": [
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Pets Money Calculators",
+  "d": "All pets calculators in one place.",
+  "u": "/money/pets/",
+  "tags": [
+   "Pets"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Dog Ownership Cost Calculator",
+  "d": "The lifetime price of a dog.",
+  "u": "/money/dog-ownership-cost-calculator/",
+  "tags": [
+   "Pets",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Cat Ownership Cost Calculator",
+  "d": "The lifetime price of a cat.",
+  "u": "/money/cat-ownership-cost-calculator/",
+  "tags": [
+   "Pets",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Pet Insurance Calculator",
+  "d": "Worth the premium?",
+  "u": "/money/pet-insurance-calculator/",
+  "tags": [
+   "Pets",
+   "Insurance"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Retirement Money Calculators",
+  "d": "All retirement calculators in one place.",
+  "u": "/money/retirement/",
+  "tags": [
+   "Retirement"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Social Security Benefit Estimator",
+  "d": "Benefits at 62, full age, and 70.",
+  "u": "/money/social-security-estimator/",
+  "tags": [
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Retirement Savings Projector",
+  "d": "What your savings could become.",
+  "u": "/money/retirement-savings-projector/",
+  "tags": [
+   "Retirement",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Retirement Age Comparison",
+  "d": "What 62 vs 65 vs 70 buys you.",
+  "u": "/money/retirement-age-comparison/",
+  "tags": [
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "RMD Calculator",
+  "d": "Your required minimum distribution.",
+  "u": "/money/rmd-calculator/",
+  "tags": [
+   "Retirement",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Am I on track? Retirement Income-Gap Calculator",
+  "d": "Am I on track? Project your nest egg, income, and any shortfall.",
+  "u": "/money/retirement-income-gap-calculator/",
+  "tags": [
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Medicare &amp;amp;amp;amp;amp;amp; Retiree Health Cost Estimator",
+  "d": "Project health costs in retirement and what to save now.",
+  "u": "/money/medicare-retiree-health-cost-estimator/",
+  "tags": [
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Pension Lump Sum vs Monthly Annuity Calculator",
+  "d": "Compare a pension buyout offer against monthly payments.",
+  "u": "/money/pension-lump-sum-vs-annuity-calculator/",
+  "tags": [
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Students Money Calculators",
+  "d": "All students calculators in one place.",
+  "u": "/money/students/",
+  "tags": [
+   "Students"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Student Loan Payoff Calculator",
+  "d": "TOOL 01",
+  "u": "/money/student-loan-payoff-calculator/",
+  "tags": [
+   "Students",
+   "Debt"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "First Apartment Budget Calculator",
+  "d": "TOOL 02",
+  "u": "/money/first-apartment-budget-calculator/",
+  "tags": [
+   "Students",
+   "Housing",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Will I Keep My Scholarship?",
+  "d": "TOOL 03",
+  "u": "/money/scholarship-gpa-checker/",
+  "tags": [
+   "Students"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Student Loan Refinance vs Income-Driven Repayment Calculator",
+  "d": "TOOL 04",
+  "u": "/money/student-loan-refi-vs-idr-calculator/",
+  "tags": [
+   "Students"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Taxes Money Calculators",
+  "d": "All taxes calculators in one place.",
+  "u": "/money/taxes/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "2026 Federal Tax Bracket Calculator",
+  "d": "Which bracket are you in?",
+  "u": "/money/tax-bracket-calculator/",
+  "tags": [
+   "Taxes",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Effective vs. Marginal Tax Rate Calculator \u2014 2026",
+  "d": "What you really pay.",
+  "u": "/money/effective-vs-marginal-tax-rate-calculator/",
+  "tags": [
+   "Taxes",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "W-4 Withholding Calculator",
+  "d": "Get withholding right.",
+  "u": "/money/w-4-withholding-calculator/",
+  "tags": [
+   "Taxes",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Quarterly Estimated Tax Calculator",
+  "d": "Estimate your quarterly payments.",
+  "u": "/money/quarterly-estimated-tax-calculator/",
+  "tags": [
+   "Taxes",
+   "Business"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "HSA Tax Savings Calculator \u2014 2026",
+  "d": "The triple tax advantage.",
+  "u": "/money/hsa-tax-savings-calculator/",
+  "tags": [
+   "Taxes",
+   "Health",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Charitable Deduction Calculator",
+  "d": "What giving saves you.",
+  "u": "/money/charitable-deduction-calculator/",
+  "tags": [
+   "Taxes",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Standard vs Itemized Deduction Calculator",
+  "d": "Which deduction wins?",
+  "u": "/money/standard-vs-itemized-deduction-calculator/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Tax Deadline Calendar",
+  "d": "Key dates, 2026\u20132027.",
+  "u": "/money/tax-deadline-calendar/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "State Tax Directory",
+  "d": "Does your state tax income?",
+  "u": "/money/state-tax-directory/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Travel Money Calculators",
+  "d": "All travel calculators in one place.",
+  "u": "/money/travel/",
+  "tags": [
+   "Travel"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Vacation Budget Calculator",
+  "d": "Price the whole trip.",
+  "u": "/money/vacation-budget-calculator/",
+  "tags": [
+   "Travel",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Road Trip Cost Calculator",
+  "d": "Fuel, tolls, and lodging.",
+  "u": "/money/road-trip-cost-calculator/",
+  "tags": [
+   "Travel",
+   "Auto"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Points and Miles Value Calculator",
+  "d": "Are your points worth it?",
+  "u": "/money/points-and-miles-value-calculator/",
+  "tags": [
+   "Travel",
+   "Credit"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Wedding Money Calculators",
+  "d": "All wedding calculators in one place.",
+  "u": "/money/wedding/",
+  "tags": [
+   "Wedding"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Wedding Budget Calculator",
+  "d": "The whole big day, itemized.",
+  "u": "/money/wedding-budget-calculator/",
+  "tags": [
+   "Wedding",
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Wedding Guest Cost Calculator",
+  "d": "What attending really costs.",
+  "u": "/money/wedding-guest-cost-calculator/",
+  "tags": [
+   "Wedding",
+   "Travel"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Honeymoon Budget Calculator",
+  "d": "Price the getaway.",
+  "u": "/money/honeymoon-budget-calculator/",
+  "tags": [
+   "Wedding",
+   "Travel",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Decision Center \u2014 What Are You Trying to Decide?",
+  "d": "Pick your question; we'll walk you through the calculators that answer it.",
+  "u": "/money/decide/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decisions"
+ },
+ {
+  "t": "Should I buy or rent?",
+  "d": "A guided path: the calculators that answer this decision, in order.",
+  "u": "/money/decide/buy-or-rent/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "Can I afford this car?",
+  "d": "A guided path: the calculators that answer this decision, in order.",
+  "u": "/money/decide/can-i-afford-this-car/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "Can I afford this house?",
+  "d": "A guided path: the calculators that answer this decision, in order.",
+  "u": "/money/decide/can-i-afford-this-house/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "Can I retire yet?",
+  "d": "A guided path: the calculators that answer this decision, in order.",
+  "u": "/money/decide/can-i-retire/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "Should I pay off debt or invest?",
+  "d": "A guided path: the calculators that answer this decision, in order.",
+  "u": "/money/decide/debt-or-invest/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "How much insurance do I need?",
+  "d": "A guided path: the calculators that answer this decision, in order.",
+  "u": "/money/decide/how-much-insurance/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "How much should I save?",
+  "d": "A guided path: the calculators that answer this decision, in order.",
+  "u": "/money/decide/how-much-to-save/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "Should I refinance my mortgage?",
+  "d": "A guided path: the calculators that answer this decision, in order.",
+  "u": "/money/decide/should-i-refinance/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "Should I start a business?",
+  "d": "A guided path: the calculators that answer this decision, in order.",
+  "u": "/money/decide/start-a-business/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "Should I take this job offer?",
+  "d": "A guided path: the calculators that answer this decision, in order.",
+  "u": "/money/decide/take-this-job/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "Refinance Money Calculators",
+  "d": "See if refinancing saves you money, compare rates, and find your break-even point.",
+  "u": "/money/refinance/",
+  "tags": [
+   "Refinance"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Buy or Rent Money Calculators",
+  "d": "Should you buy it or rent it? Run the numbers on homes, cars, and every big lease-vs-buy decision.",
+  "u": "/money/buy-or-rent/",
+  "tags": [
+   "Buy or Rent"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Paycheck Money Calculators",
+  "d": "What you earn, what you keep, and where it goes. Take-home pay, withholding, tips, and overtime.",
+  "u": "/money/paycheck/",
+  "tags": [
+   "Paycheck"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Emergency Fund Money Calculators",
+  "d": "Your safety net, built right. How much you need, where to keep it, and the debt tradeoff.",
+  "u": "/money/emergency-fund/",
+  "tags": [
+   "Emergency Fund"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Where to Park Your Emergency Fund",
+  "d": "Compare HYSA, CD, Treasury bills, and money market accounts after taxes.",
+  "u": "/money/emergency-fund-parking-calculator/",
+  "tags": [
+   "Emergency Fund",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Emergency Fund vs Debt Payoff",
+  "d": "Fund first, debt first, or split? See the timeline and interest cost of each.",
+  "u": "/money/emergency-fund-vs-debt-calculator/",
+  "tags": [
+   "Emergency Fund",
+   "Debt"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Giving Money Calculators",
+  "d": "Give generously and smart. Donation deductions, bunching, and QCDs from your IRA.",
+  "u": "/money/giving/",
+  "tags": [
+   "Giving",
+   "Charity",
+   "Taxes"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Deduction Bunching Calculator",
+  "d": "Bunch two years of charitable giving into one tax year to beat the standard deduction.",
+  "u": "/money/deduction-bunching-calculator/",
+  "tags": [
+   "Giving",
+   "Charity",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "QCD Calculator",
+  "d": "Qualified Charitable Distributions from your IRA \u2014 give and skip the tax.",
+  "u": "/money/qcd-calculator/",
+  "tags": [
+   "Giving",
+   "Charity",
+   "Retirement",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Real Estate Investing Money Calculators",
+  "d": "Run the numbers before you buy. Cash flow, cap rate, and whether the deal actually works.",
+  "u": "/money/real-estate-investing/",
+  "tags": [
+   "Real Estate",
+   "Investing",
+   "Housing"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Rental Property Analyzer",
+  "d": "Cash flow, cap rate, cash-on-cash return \u2014 is this rental a deal?",
+  "u": "/money/rental-property-analyzer/",
+  "tags": [
+   "Real Estate",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "House Hacking Calculator",
+  "d": "Buy a multi-unit, live in one, let tenants cover the mortgage.",
+  "u": "/money/house-hacking-calculator/",
+  "tags": [
+   "Real Estate",
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "BRRRR Calculator",
+  "d": "Buy, rehab, rent, refinance, repeat \u2014 recycle your capital.",
+  "u": "/money/brrrr-calculator/",
+  "tags": [
+   "Real Estate",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Social Security Timing Calculator",
+  "d": "Claim at 62, 67, or 70? See the break-even and lifetime total.",
+  "u": "/money/social-security-timing-calculator/",
+  "tags": [
+   "Retirement",
+   "Social Security"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Life Events Money Guides",
+  "d": "Money follows the big moments. Marriage, baby, first home, new job, divorce, retirement.",
+  "u": "/money/life-events/",
+  "tags": [
+   "Life Events",
+   "Family"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Baby's First Year Cost Calculator",
+  "d": "Diapers, daycare, gear \u2014 what does year one really cost?",
+  "u": "/money/baby-first-year-cost-calculator/",
+  "tags": [
+   "Family",
+   "Baby"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Cost of Raising a Child Calculator",
+  "d": "Project the total cost of raising a child to age 18.",
+  "u": "/money/cost-of-raising-child-calculator/",
+  "tags": [
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Teen Driver Insurance Calculator",
+  "d": "How much does adding a teen driver raise your premium?",
+  "u": "/money/teen-driver-insurance-calculator/",
+  "tags": [
+   "Vehicles",
+   "Family",
+   "Insurance"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Catch-Up Contributions Calculator",
+  "d": "50 and over? See the extra you can put in 401(k) and IRA.",
+  "u": "/money/catch-up-contributions-calculator/",
+  "tags": [
+   "Retirement",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "College vs Retirement Calculator",
+  "d": "Fund the kid's college or your retirement? See the tradeoff.",
+  "u": "/money/college-vs-retirement-calculator/",
+  "tags": [
+   "Family",
+   "Retirement",
+   "College"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Aircraft Cost Calculator",
+  "d": "Purchase, hangar, fuel, maintenance \u2014 what does a private plane cost per flight hour?",
+  "u": "/money/aircraft-cost-calculator/",
+  "tags": [
+   "Vehicles",
+   "Travel"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Scholarship Calculators",
+  "d": "Make every award count. Compare offers, keep your aid, and avoid tax surprises.",
+  "u": "/money/scholarships/",
+  "tags": [
+   "Scholarships"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "College Cost After Scholarships Calculator",
+  "d": "What will college actually cost after your awards?",
+  "u": "/money/college-cost-after-scholarships/",
+  "tags": [
+   "Scholarships",
+   "Students"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Compare Financial Aid Offers",
+  "d": "Which college is actually cheaper after financial aid?",
+  "u": "/money/financial-aid-offer-comparison/",
+  "tags": [
+   "Scholarships",
+   "Students"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Will I Keep My Scholarship?",
+  "d": "What GPA keeps your award \u2014 and what losing it costs.",
+  "u": "/money/will-i-keep-my-scholarship/",
+  "tags": [
+   "Scholarships",
+   "Students"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Will an Outside Scholarship Reduce My Aid?",
+  "d": "Will winning another scholarship actually save you money?",
+  "u": "/money/outside-scholarship-impact/",
+  "tags": [
+   "Scholarships",
+   "Students"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Is My Scholarship Taxable?",
+  "d": "How much of your scholarship is taxable income?",
+  "u": "/money/is-my-scholarship-taxable/",
+  "tags": [
+   "Scholarships",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Modern Nomad Calculators",
+  "d": "Life on the move, money under control. Van, RV, boat, or backpack.",
+  "u": "/money/modern-nomads/",
+  "tags": [
+   "Modern Nomads"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Nomad vs Settled: Is It Actually Cheaper?",
+  "d": "Is van, RV, or boat life cheaper than your apartment?",
+  "u": "/money/nomad-vs-settled/",
+  "tags": [
+   "Modern Nomads",
+   "Travel"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Nomad Life Budget Calculator",
+  "d": "What will it actually cost to live on the road?",
+  "u": "/money/nomad-life-budget/",
+  "tags": [
+   "Modern Nomads",
+   "Travel"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Rig Break-Even Calculator",
+  "d": "When does the van, RV, or boat pay for itself?",
+  "u": "/money/rig-break-even/",
+  "tags": [
+   "Modern Nomads",
+   "Vehicles"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Nomad Domicile Cost Comparison",
+  "d": "Which state should you call home? TX vs SD vs FL.",
+  "u": "/money/nomad-domicile-comparison/",
+  "tags": [
+   "Modern Nomads",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Nomad Health Insurance Estimator",
+  "d": "What will health coverage cost on the road?",
+  "u": "/money/nomad-health-insurance/",
+  "tags": [
+   "Modern Nomads",
+   "Health",
+   "Insurance"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Experience Seeker Calculators",
+  "d": "Collect experiences, not things. Budget the adventures, trips, and bucket-list moments.",
+  "u": "/money/experience-seekers/",
+  "tags": [
+   "Experience Seekers",
+   "Travel"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Minimum Payment Trap Calculator",
+  "d": "Credit cards and payday loans: the true cost of minimum payments.",
+  "u": "/money/minimum-payment-trap/",
+  "tags": [
+   "Debt",
+   "Credit"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "First-Time Homebuyer Cash-to-Close Calculator",
+  "d": "How much cash you actually need upfront to buy a house.",
+  "u": "/money/homebuyer-cash-to-close/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Cost of Living Salary Comparison Calculator",
+  "d": "What salary in another city matches your standard of living?",
+  "u": "/money/cost-of-living-salary/",
+  "tags": [
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Net Pay After a Raise Calculator",
+  "d": "How much more take-home pay a raise actually gives you.",
+  "u": "/money/raise-take-home/",
+  "tags": [
+   "Paycheck",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Net Worth Projection Calculator",
+  "d": "What your net worth will be in 10, 20, or 30 years.",
+  "u": "/money/net-worth-projection/",
+  "tags": [
+   "Personal",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Safe Withdrawal Rate Calculator",
+  "d": "How much you can withdraw yearly in retirement without running out.",
+  "u": "/money/safe-withdrawal-rate/",
+  "tags": [
+   "Retirement",
+   "FIRE"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Irregular Income Budget Calculator",
+  "d": "Budget when your income changes every month.",
+  "u": "/money/irregular-income-budget/",
+  "tags": [
+   "Budget",
+   "Side Hustles"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Car Depreciation Calculator",
+  "d": "What your car will be worth in 1, 3, 5, or 10 years.",
+  "u": "/money/car-depreciation/",
+  "tags": [
+   "Vehicles"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Bonus Take-Home Calculator",
+  "d": "How much of your work bonus you actually keep.",
+  "u": "/money/bonus-take-home/",
+  "tags": [
+   "Paycheck",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "S-Corp vs LLC Tax Calculator",
+  "d": "Would electing S-corp status save you taxes?",
+  "u": "/money/scorp-vs-llc/",
+  "tags": [
+   "Business"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Side Hustle Profitability Calculator",
+  "d": "Your true hourly rate after expenses and taxes.",
+  "u": "/money/side-hustle-profitability/",
+  "tags": [
+   "Business",
+   "Career",
+   "Side Hustles"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Stock Options & RSU Value Calculator",
+  "d": "What your equity compensation is worth after taxes.",
+  "u": "/money/equity-compensation/",
+  "tags": [
+   "Career",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Stay-at-Home vs Working Parent Calculator",
+  "d": "Is it cheaper for one parent to stay home?",
+  "u": "/money/stay-at-home-vs-working/",
+  "tags": [
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Nanny vs Daycare Cost Calculator",
+  "d": "Which childcare option costs less for your family?",
+  "u": "/money/nanny-vs-daycare/",
+  "tags": [
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "ACA Subsidy Estimator",
+  "d": "Can you get help paying for Marketplace health insurance?",
+  "u": "/money/aca-subsidy-estimator/",
+  "tags": [
+   "Health",
+   "Insurance"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Medical Bill Payment Plan Calculator",
+  "d": "Pay a medical bill upfront or use a payment plan?",
+  "u": "/money/medical-bill-planner/",
+  "tags": [
+   "Health",
+   "Medical Debt"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Backdoor Roth IRA Feasibility Calculator",
+  "d": "Can you do a backdoor Roth IRA this year?",
+  "u": "/money/backdoor-roth/",
+  "tags": [
+   "Investing",
+   "Retirement",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "FIRE Number Calculator",
+  "d": "How much money you need to retire early.",
+  "u": "/money/fire-number/",
+  "tags": [
+   "Investing",
+   "Retirement",
+   "FIRE"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Crypto Tax Calculator",
+  "d": "How much tax you owe on cryptocurrency gains.",
+  "u": "/money/crypto-tax/",
+  "tags": [
+   "Taxes",
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "PMI Removal Timeline Calculator",
+  "d": "When you can stop paying private mortgage insurance.",
+  "u": "/money/pmi-removal/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Destination Wedding vs Local Calculator",
+  "d": "Is a destination wedding cheaper than a local one?",
+  "u": "/money/destination-wedding/",
+  "tags": [
+   "Wedding",
+   "Experience Seekers"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Cruise vs Land Vacation Calculator",
+  "d": "Is a cruise cheaper than a land-based vacation?",
+  "u": "/money/cruise-vs-land/",
+  "tags": [
+   "Experience Seekers",
+   "Travel"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Medical Debt Interest Cost Calculator",
+  "d": "How much will I pay if I finance a medical bill?",
+  "u": "/money/medical-debt-interest/",
+  "tags": [
+   "Medical Debt",
+   "Health"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Medical Bill Negotiation Savings Calculator",
+  "d": "How much could you save by negotiating a hospital bill?",
+  "u": "/money/medical-bill-negotiation/",
+  "tags": [
+   "Medical Debt",
+   "Health"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "HSA vs Cash for Medical Bills Calculator",
+  "d": "Should you pay a medical bill with your HSA or with cash?",
+  "u": "/money/hsa-vs-cash-medical/",
+  "tags": [
+   "Medical Debt",
+   "Health",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Elder Care Monthly Cost Calculator",
+  "d": "How much does it cost to care for an elderly parent?",
+  "u": "/money/elder-care-cost/",
+  "tags": [
+   "Caregiving",
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "In-Home Care vs Assisted Living Calculator",
+  "d": "Is assisted living cheaper than in-home care?",
+  "u": "/money/home-care-vs-assisted-living/",
+  "tags": [
+   "Caregiving",
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Family Caregiver Cost Sharing Calculator",
+  "d": "How much should each sibling contribute to aging parents' care?",
+  "u": "/money/caregiver-cost-sharing/",
+  "tags": [
+   "Caregiving",
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Caregiver Lost Income Calculator",
+  "d": "Can you afford to cut back work to care for a parent?",
+  "u": "/money/caregiver-lost-income/",
+  "tags": [
+   "Caregiving",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Checking Account Fee Calculator",
+  "d": "How much am I paying in checking account fees?",
+  "u": "/money/checking-fee-calculator/",
+  "tags": [
+   "Banking",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Overdraft Fee Cost Calculator",
+  "d": "What are overdraft fees really costing you?",
+  "u": "/money/overdraft-cost/",
+  "tags": [
+   "Banking",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Bank Bonus Break-Even Calculator",
+  "d": "Is that bank account bonus worth the switch?",
+  "u": "/money/bank-bonus-break-even/",
+  "tags": [
+   "Banking",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "High-Yield Savings Interest Calculator",
+  "d": "How much interest will your savings earn this year?",
+  "u": "/money/hysa-interest/",
+  "tags": [
+   "Banking",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "FIRE Savings Rate Calculator",
+  "d": "What savings rate gets you to early retirement?",
+  "u": "/money/fire-savings-rate/",
+  "tags": [
+   "FIRE",
+   "Investing",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Coast FIRE Calculator",
+  "d": "Have you saved enough to stop saving and still retire on time?",
+  "u": "/money/coast-fire/",
+  "tags": [
+   "FIRE",
+   "Investing",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Gig Quarterly Tax Estimator",
+  "d": "How much should you set aside for quarterly taxes?",
+  "u": "/money/gig-quarterly-tax/",
+  "tags": [
+   "Side Hustles",
+   "Taxes",
+   "Business"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Medical Debt Calculators",
+  "d": "Hospital bills shouldn't become long-term debt. Negotiate, plan, and pay the smart way.",
+  "u": "/money/medical-debt/",
+  "tags": [
+   "Medical Debt"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Caregiving Calculators",
+  "d": "Caring for a parent is hard. The math shouldn't be.",
+  "u": "/money/caregiving/",
+  "tags": [
+   "Caregiving"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Everyday Banking Calculators",
+  "d": "Fees, bonuses, and the fine print. Keep more of your money at the bank.",
+  "u": "/money/banking/",
+  "tags": [
+   "Banking"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "FIRE Calculators",
+  "d": "Financial independence, retire early. Find your number.",
+  "u": "/money/fire/",
+  "tags": [
+   "FIRE"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Side Hustle Calculators",
+  "d": "Turn gigs into real income. Price your work, keep the taxes straight.",
+  "u": "/money/side-hustles/",
+  "tags": [
+   "Side Hustles"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Gas vs Hybrid Car Cost Calculator",
+  "d": "Does a hybrid actually save money?",
+  "u": "/money/gas-vs-hybrid/",
+  "tags": [
+   "Vehicles"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Used Car: Loan vs Cash Calculator",
+  "d": "Finance a used car or pay cash?",
+  "u": "/money/used-car-loan-vs-cash/",
+  "tags": [
+   "Vehicles"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Trade-In vs Private Sale Calculator",
+  "d": "Trade in your car or sell it yourself?",
+  "u": "/money/trade-in-vs-private-sale/",
+  "tags": [
+   "Vehicles"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Zero-Based Budget Calculator",
+  "d": "Give every dollar a job.",
+  "u": "/money/zero-based-budget/",
+  "tags": [
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Sinking Fund Calculator",
+  "d": "Save monthly for big expenses.",
+  "u": "/money/sinking-funds/",
+  "tags": [
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Biweekly Paycheck Budget Calculator",
+  "d": "Budget on a biweekly paycheck.",
+  "u": "/money/biweekly-paycheck-budget/",
+  "tags": [
+   "Paycheck",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Divorce Home Buyout Calculator",
+  "d": "Can you afford to keep the house?",
+  "u": "/money/divorce-home-buyout/",
+  "tags": [
+   "Divorce"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "QDRO Retirement Split Calculator",
+  "d": "How a QDRO splits the retirement account.",
+  "u": "/money/qdro-split/",
+  "tags": [
+   "Divorce"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Sequence of Returns Risk Calculator",
+  "d": "What if the market crashes after you retire?",
+  "u": "/money/sequence-of-returns/",
+  "tags": [
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Mega Backdoor Roth Calculator",
+  "d": "How much extra can you get into Roth?",
+  "u": "/money/mega-backdoor-roth/",
+  "tags": [
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Expense Ratio Impact Calculator",
+  "d": "What fund fees cost you over time.",
+  "u": "/money/expense-ratio-impact/",
+  "tags": [
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Fix-and-Flip Profit Calculator",
+  "d": "Will this flip make money?",
+  "u": "/money/fix-and-flip/",
+  "tags": [
+   "Real Estate"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Airbnb Profitability Calculator",
+  "d": "Will a short-term rental make money?",
+  "u": "/money/airbnb-profitability/",
+  "tags": [
+   "Real Estate"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "AMT Estimator",
+  "d": "Will you owe the alternative minimum tax?",
+  "u": "/money/amt-estimator/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Social Security Benefit Estimator",
+  "d": "How much Social Security will I get? Estimate your monthly benefit at 62, full retirement age, or 70 with the real SSA formula.",
+  "u": "/money/social-security-benefit/",
+  "tags": [
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Investment Risk Tolerance Quiz",
+  "d": "What kind of investor am I? 9-question quiz with your profile and stock/bond mix.",
+  "u": "/money/risk-tolerance-quiz/",
+  "tags": [
+   "Investing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Paycheck Withholding Calculator",
+  "d": "Am I having too much (or too little) tax withheld? Compare withholding to your real tax bill.",
+  "u": "/money/withholding-calculator/",
+  "tags": [
+   "Paycheck",
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Financial Health Check",
+  "d": "Where do I actually stand financially? 12 questions, a 0-100 score, and your top 3 priorities.",
+  "u": "/money/financial-health-check/",
+  "tags": [
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Currency Converter",
+  "d": "What is that in dollars? Live exchange rates for 38 currencies.",
+  "u": "/money/currency-converter/",
+  "tags": [
+   "Travel"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "FAFSA Aid Estimator",
+  "d": "How much financial aid could I get? Estimate your Student Aid Index and Pell Grant.",
+  "u": "/money/fafsa-aid-estimator/",
+  "tags": [
+   "Scholarships"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "SEP-IRA vs Solo 401(k) Calculator",
+  "d": "SEP-IRA or Solo 401(k)? Compare max 2026 contributions for your freelance income.",
+  "u": "/money/sep-vs-solo-401k/",
+  "tags": [
+   "Investing",
+   "Business"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Dependent Care FSA Calculator",
+  "d": "Is a dependent care FSA worth it? FSA vs the Child and Dependent Care Credit, side by side.",
+  "u": "/money/dependent-care-fsa/",
+  "tags": [
+   "Family"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Renters Insurance Cost Calculator",
+  "d": "How much renters insurance do I need? Coverage guidance and quote comparison.",
+  "u": "/money/renters-insurance/",
+  "tags": [
+   "Insurance"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "TSP Contribution Optimizer",
+  "d": "How much should I put in my TSP? Make sure you get the full 5% agency match.",
+  "u": "/money/tsp-optimizer/",
+  "tags": [
+   "Military",
+   "Retirement"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "FERS Pension Estimator",
+  "d": "What will my federal pension pay? Estimate your FERS annuity with the OPM formula.",
+  "u": "/money/fers-pension-estimator/",
+  "tags": [
+   "Retirement",
+   "Military"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "FEHB Plan Comparison Calculator",
+  "d": "Which federal health plan is the better deal? Compare total yearly cost at three spending levels.",
+  "u": "/money/fehb-comparison/",
+  "tags": [
+   "Military",
+   "Insurance"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "FEGLI Cost Calculator",
+  "d": "What does federal life insurance cost? Basic plus Options A, B, and C at official OPM rates.",
+  "u": "/money/fegli-cost/",
+  "tags": [
+   "Insurance",
+   "Military"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Federal Employee Take-Home Pay Calculator",
+  "d": "What does a federal salary actually pay after deductions? FERS, TSP, FEHB, and taxes.",
+  "u": "/money/federal-take-home/",
+  "tags": [
+   "Career",
+   "Military"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "License & Certification Cost Tracker",
+  "d": "What does keeping your license cost each year? Track renewal fees and continuing education.",
+  "u": "/money/license-cost-tracker/",
+  "tags": [
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Total Compensation Calculator",
+  "d": "What is my job really worth? Salary plus match, insurance, PTO, and bonuses.",
+  "u": "/money/total-compensation/",
+  "tags": [
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "BAH Comparison Calculator",
+  "d": "Does my BAH cover housing at this duty station? Compare tax-free allowance to real costs.",
+  "u": "/money/bah-comparison/",
+  "tags": [
+   "Military"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Malpractice Insurance Cost Calculator",
+  "d": "What will malpractice insurance cost me? Compare quotes, claims-made vs occurrence.",
+  "u": "/money/malpractice-insurance/",
+  "tags": [
+   "Insurance",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Commission Income Planner",
+  "d": "What will I actually earn on commission? Income at expected, quota, and stretch sales.",
+  "u": "/money/commission-income/",
+  "tags": [
+   "Career",
+   "Business"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "PSLF Progress Tracker",
+  "d": "Track qualifying payments toward Public Service Loan Forgiveness. 120 payments to freedom.",
+  "u": "/money/pslf-tracker/",
+  "tags": [
+   "Students",
+   "Career"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Physician Mortgage Calculator",
+  "d": "Doctor loans: low down payment, no PMI. Run the numbers on a physician mortgage.",
+  "u": "/money/physician-mortgage/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "457(b) Retirement Planner",
+  "d": "Max out your 457(b) alongside your 401(k) or 403(b). Double the tax-advantaged room.",
+  "u": "/money/457b-planner/",
+  "tags": [
+   "Retirement"
+  ],
+  "kind": "tool"
+ }
 ]

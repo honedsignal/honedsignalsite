@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Physician Mortgage Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}.money-input.pct input{text-align:right}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}.field .money-input input{text-align:left}.months-label{display:flex;align-items:center;justify-content:space-between;margin:18px 0 9px}.months-label label{font-size:.75rem;font-weight:700;color:var(--muted)}.months-label output{font:500 .75rem "DM Mono",monospace;color:var(--orange)}.months{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.month-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}.month-btn:hover{border-color:var(--blue)}.month-btn.active{background:var(--orange);border-color:var(--orange);color:#171009;font-weight:700}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.house{position:absolute;left:14px;right:14px;bottom:0;height:64px;border:4px solid var(--blue);border-radius:8px 8px 18px 18px;overflow:hidden}.house:before{content:"";position:absolute;left:50%;top:-30px;width:52px;height:52px;border:4px solid var(--blue);transform:translateX(-50%) rotate(45deg);border-right:0;border-bottom:0}.cross{position:absolute;left:50%;top:22px;width:8px;height:24px;background:var(--orange);transform:translateX(-50%)}.cross:before{content:"";position:absolute;left:-8px;top:6px;width:24px;height:8px;background:var(--orange)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.milestone{padding:13px;border-top:2px solid var(--line);background:var(--bg)}.milestone.done{border-color:var(--green)}.milestone small{display:block;color:var(--muted);font-size:.61rem;font-weight:800}.milestone strong{display:block;margin-top:5px;font:500 .8rem "DM Mono",monospace}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.goal-fields,.metric-grid,.milestones{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="Should you use a doctor loan? Free physician mortgage calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/physician-mortgage/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Physician Mortgage Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/physician-mortgage/","description":"Should you use a doctor loan? Free physician mortgage calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/housing.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">A doctor loan skips the PMI. <span class="accent">Is it worth the rate?</span></h1>
+</div>
+    <p>Compare a physician mortgage against a conventional loan — monthly payment, PMI, total cost, and your debt-to-income ratio.</p>
+  </header>
+
+  <section class="workbench" aria-label="Physician mortgage calculator">
+    <form class="panel inputs" id="fundForm" novalidate>
+      <div class="section-head"><h2>The home</h2><span class="step">01 / HOME</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="price">Home price</label><div class="money-input"><span>$</span><input id="price" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Home price"></div></div>
+        <div class="expense"><label for="downpct">Down payment</label><div class="money-input pct"><input id="downpct" type="number" min="0" max="100" step="0.5" inputmode="decimal" placeholder="0"><span>%</span></div></div>
+      </div>
+      <div class="subtotal"><span>Loan amount</span><strong id="loanTotal">$0</strong></div>
+      <div class="section-head"><h2>The rates</h2><span class="step">02 / RATES</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="docrate">Doctor loan rate (APR)</label><div class="money-input pct"><input id="docrate" type="number" min="0" max="25" step="0.125" inputmode="decimal" placeholder="7"><span>%</span></div></div>
+        <div class="expense"><label for="convrate">Conventional rate (APR)</label><div class="money-input pct"><input id="convrate" type="number" min="0" max="25" step="0.125" inputmode="decimal" placeholder="6.5"><span>%</span></div></div>
+        <div class="expense"><label for="pmi">Monthly PMI (conventional)</label><div class="money-input"><span>$</span><input id="pmi" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly PMI on the conventional loan"></div></div>
+      </div>
+      <p class="hint">PMI applies to the conventional loan only when the down payment is under 20%.</p>
+      <div class="months-label"><label>Loan term</label><output id="termOutput">30 years</output></div>
+      <div class="months" role="group" aria-label="Loan term" style="grid-template-columns:repeat(2,1fr)">
+        <button type="button" class="month-btn active" data-term="30">30 yr</button>
+        <button type="button" class="month-btn" data-term="15">15 yr</button>
+      </div>
+      <div class="section-head" style="margin-top:22px"><h2>You</h2><span class="step">03 / BORROWER</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="income">Annual gross income</label><div class="money-input"><span>$</span><input id="income" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Annual gross income"></div></div>
+        <div class="expense"><label for="student">Student loan payment / mo</label><div class="money-input"><span>$</span><input id="student" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly student loan payment"></div></div>
+        <div class="expense"><label for="otherdebt">Other monthly debts</label><div class="money-input"><span>$</span><input id="otherdebt" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Other monthly debt payments"></div></div>
+      </div>
+      <div class="subtotal"><span>Debt-to-income (doctor loan)</span><strong id="dtiTotal">—</strong></div>
+      <button class="calculate" type="submit">Compare the loans</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these physician mortgage results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate your plan to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><div class="house"><i class="cross"></i></div></div><h2>Doctor loan or conventional?</h2><p>Enter the home price, both rates, and your debts — see which loan costs less each month and over the full term.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">DOCTOR LOAN VS CONVENTIONAL</p><p class="target" id="target">$0</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>DOCTOR LOAN MONTHLY</span><strong id="docMonthly">—</strong><em id="docMonthlyNote">—</em></article>
+          <article class="metric"><span>CONVENTIONAL MONTHLY</span><strong id="convMonthly">—</strong><em id="convMonthlyNote">—</em></article>
+          <article class="metric"><span>DEBT-TO-INCOME</span><strong id="dti">—</strong><em id="dtiNote">—</em></article>
+        </div>
+        <section class="panel roadmap">
+          <div class="road-head"><div><h2>Total cost over the loan</h2><p>Principal + interest + PMI paid across the full term.</p></div><span class="coverage-badge" id="percentBadge">—</span></div>
+          <div class="track" role="img" id="progressTrack" aria-label="Cost comparison"><div class="track-fill" id="trackFill"></div></div>
+          <div class="track-labels"><span id="savedLabel">Doctor loan</span><span id="targetLabel">Conventional</span></div>
+          <div class="milestones" id="milestones"></div>
+        </section>
+        <div class="plan">
+          <section class="plan-block"><h3>Loan details</h3><dl><dt>Home price</dt><dd id="detailPrice">—</dd><dt>Down payment</dt><dd id="detailDown">—</dd><dt>Loan amount</dt><dd id="detailLoan">—</dd><dt>Doctor loan rate</dt><dd id="detailDocRate">—</dd><dt>Conventional rate</dt><dd id="detailConvRate">—</dd><dt>PMI (conventional)</dt><dd id="detailPmi">—</dd><dt>Term</dt><dd id="detailTerm">—</dd><dt>Debt-to-income</dt><dd id="detailDti">—</dd></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">The tradeoff</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download plan</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Planning note:</strong> Doctor loans (physician mortgages) are offered to MDs, DOs, dentists (DDS/DMD), veterinarians (DVM), and often residents and fellows — some lenders also include PAs and NPs. They typically allow 0–10% down with no PMI, but the rate often runs a bit higher than conventional and some are adjustable-rate or have loan caps. Doctor-loan lenders are also more flexible on student-loan debt in the DTI math (deferred loans may be excluded or counted at an income-driven payment). PMI on a conventional loan usually falls off at 20% equity; this comparison keeps it for the full term, so it slightly overstates the conventional cost. Shop both quotes with real lenders.</p><p>Educational estimate, not financial advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('fundForm'),term=30,last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function fmt(n){return money0.format(n)}
+  function pmt(principal,annualRate,n){if(principal<=0||n<=0)return 0;var r=annualRate/100/12;if(r<=0)return principal/n;var f=Math.pow(1+r,n);return principal*r*f/(f-1)}
+  function getData(){
+    var price=num('price'),downpct=Math.min(100,num('downpct')),down=price*downpct/100,loan=Math.max(0,price-down);
+    var docRate=num('docrate'),convRate=num('convrate'),pmi=num('pmi'),n=term*12;
+    var docPI=pmt(loan,docRate,n),convPI=pmt(loan,convRate,n);
+    var pmiApplies=downpct<20&&pmi>0,convMonthly=convPI+(pmiApplies?pmi:0),docMonthly=docPI;
+    var income=num('income'),student=num('student'),other=num('otherdebt'),moIncome=income/12;
+    var dti=moIncome>0?(docMonthly+student+other)/moIncome*100:0;
+    var totalDoc=docMonthly*n+down,totalConv=convMonthly*n+down;
+    var diff=convMonthly-docMonthly;
+    return{price:price,downpct:downpct,down:down,loan:loan,docRate:docRate,convRate:convRate,pmi:pmi,pmiApplies:pmiApplies,n:n,docPI:docPI,convPI:convPI,docMonthly:docMonthly,convMonthly:convMonthly,income:income,student:student,other:otherdebt,dti:dti,totalDoc:totalDoc,totalConv:totalConv,diff:diff};
+  }
+  function updateSubtotals(){var d=getData();document.getElementById('loanTotal').textContent=fmt(d.loan);document.getElementById('dtiTotal').textContent=d.income>0?d.dti.toFixed(1)+'%':'—'}
+  function emailBody(d){var lines=['Physician Mortgage Calculator results','',
+    'Home price: '+money2.format(d.price),
+    'Down payment: '+money2.format(d.down)+' ('+d.downpct.toFixed(1)+'%)',
+    'Loan amount: '+money2.format(d.loan),
+    'Doctor loan rate: '+d.docRate.toFixed(3)+'% — monthly P&I: '+money2.format(d.docPI),
+    'Conventional rate: '+d.convRate.toFixed(3)+'% — monthly P&I: '+money2.format(d.convPI),
+    'Monthly PMI (conventional): '+money2.format(d.pmiApplies?d.pmi:0),
+    'Doctor loan monthly: '+money2.format(d.docMonthly),
+    'Conventional monthly: '+money2.format(d.convMonthly),
+    'Monthly difference: '+money2.format(d.diff),
+    'Total cost — doctor loan: '+money2.format(d.totalDoc),
+    'Total cost — conventional: '+money2.format(d.totalConv),
+    'Term: '+term+' years',
+    'Debt-to-income (doctor loan): '+d.dti.toFixed(1)+'%','','Educational estimate, not financial advice.'];return lines.join('\n')}
+  function explanationText(d){var parts=['A '+fmt(d.price)+' home with '+fmt(d.down)+' down leaves a '+fmt(d.loan)+' loan. On a '+term+'-year term, the doctor loan at '+d.docRate.toFixed(3)+'% costs '+fmt(d.docPI)+' a month in principal and interest with no PMI. The conventional loan at '+d.convRate.toFixed(3)+'% costs '+fmt(d.convPI)+' in principal and interest'+(d.pmiApplies?', plus '+fmt(d.pmi)+' of monthly PMI because the down payment is under 20%':'')+', for '+fmt(d.convMonthly)+' a month.'];
+    if(d.diff>0.005)parts.push('That makes the doctor loan '+fmt(d.diff)+' cheaper each month — the PMI savings outweigh the rate gap.');
+    else if(d.diff<-0.005)parts.push('That makes the conventional loan '+fmt(-d.diff)+' cheaper each month — the lower rate beats the no-PMI benefit.');
+    else parts.push('The two loans cost essentially the same each month.');
+    parts.push('Over the full '+term+' years, the doctor loan totals '+fmt(d.totalDoc)+' and the conventional loan totals '+fmt(d.totalConv)+'.');
+    if(d.income>0)parts.push('Your debt-to-income ratio with the doctor loan payment is '+d.dti.toFixed(1)+'% — most lenders want 43% or less, though doctor-loan lenders are often flexible on student-loan debt.');
+    parts.push('Remember: PMI usually falls off a conventional loan at 20% equity, so this comparison slightly overstates the conventional cost; doctor loans may carry adjustable rates or loan caps — compare real quotes.');return parts.join(' ')}
+  function render(d){last=d;document.getElementById('emptyState').classList.add('hidden');document.getElementById('resultState').classList.remove('hidden');
+    var abs=Math.abs(d.diff);
+    document.getElementById('target').textContent=abs<0.005?'A wash':fmt(abs)+'/mo';
+    document.getElementById('targetNote').textContent=abs<0.005?'The two loans cost essentially the same each month.':(d.diff>0?'The doctor loan costs less each month.':'The conventional loan costs less each month.');
+    document.getElementById('docMonthly').textContent=fmt(d.docMonthly);
+    document.getElementById('docMonthlyNote').textContent='P&I · no PMI';
+    document.getElementById('convMonthly').textContent=fmt(d.convMonthly);
+    document.getElementById('convMonthlyNote').textContent=d.pmiApplies?('P&I + '+fmt(d.pmi)+' PMI'):'P&I · no PMI';
+    document.getElementById('dti').textContent=d.income>0?d.dti.toFixed(1)+'%':'—';
+    document.getElementById('dtiNote').textContent=d.income>0?(d.dti<=43?'within the 43% norm':'above the 43% norm'):'enter income';
+    var maxTotal=Math.max(d.totalDoc,d.totalConv,1),pct=d.totalDoc/maxTotal*100,winner=d.totalDoc<=d.totalConv;
+    document.getElementById('percentBadge').textContent=(winner?'Doctor loan saves ':'Conventional saves ')+fmt(Math.abs(d.totalConv-d.totalDoc))+' total';
+    document.getElementById('trackFill').style.width=pct+'%';
+    document.getElementById('progressTrack').setAttribute('aria-label','Doctor loan total is '+pct.toFixed(0)+' percent of the higher total cost');
+    document.getElementById('savedLabel').textContent='Doctor '+fmt(d.totalDoc);
+    document.getElementById('targetLabel').textContent='Conventional '+fmt(d.totalConv);
+    document.getElementById('milestones').innerHTML=
+      '<div class="milestone '+(d.pmiApplies?'done':'')+'"><small>PMI AVOIDED</small><strong>'+fmt(d.pmiApplies?d.pmi:0)+'/mo</strong></div>'+
+      '<div class="milestone '+(winner?'done':'')+'"><small>DOCTOR TOTAL</small><strong>'+fmt(d.totalDoc)+'</strong></div>'+
+      '<div class="milestone '+(!winner?'done':'')+'"><small>CONVENTIONAL TOTAL</small><strong>'+fmt(d.totalConv)+'</strong></div>';
+    document.getElementById('detailPrice').textContent=fmt(d.price);
+    document.getElementById('detailDown').textContent=fmt(d.down)+' ('+d.downpct.toFixed(1)+'%)';
+    document.getElementById('detailLoan').textContent=fmt(d.loan);
+    document.getElementById('detailDocRate').textContent=d.docRate.toFixed(3)+'%';
+    document.getElementById('detailConvRate').textContent=d.convRate.toFixed(3)+'%';
+    document.getElementById('detailPmi').textContent=d.pmiApplies?fmt(d.pmi)+'/mo':'none';
+    document.getElementById('detailTerm').textContent=term+' years';
+    document.getElementById('detailDti').textContent=d.income>0?d.dti.toFixed(1)+'%':'—';
+    var title=document.getElementById('nudgeTitle'),text=document.getElementById('nudgeText'),strong=document.getElementById('nudgeStrong'),foot=document.getElementById('nudgeFoot');
+    if(d.diff>0.005){title.textContent='The doctor loan wins on price';text.textContent='No PMI plus a workable rate — the classic doctor-loan win. Monthly savings:';strong.textContent=fmt(d.diff)+'/mo';foot.textContent='It also keeps your cash free: many doctor loans allow 0–10% down.'}
+    else if(d.diff<-0.005){title.textContent='Conventional wins on price';text.textContent='The lower rate beats the no-PMI benefit. Monthly savings:';strong.textContent=fmt(-d.diff)+'/mo';foot.textContent='If you can put 20% down and skip PMI, conventional usually wins.'}
+    else{title.textContent='Essentially a wash';text.textContent='Monthly costs are within a few dollars. Choose on flexibility: the doctor loan needs less cash up front; the conventional loan may offer a fixed rate and no loan cap.';strong.textContent=fmt(abs)+'/mo apart';foot.textContent='Get real quotes — small rate moves flip this comparison.'}
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My physician mortgage comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.price<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  Array.prototype.slice.call(document.querySelectorAll('input')).forEach(function(input){input.addEventListener('input',function(){updateSubtotals();if(last&&getData().price>0)render(getData())})});
+  document.querySelectorAll('.month-btn').forEach(function(btn){btn.addEventListener('click',function(){term=parseInt(btn.dataset.term,10);document.querySelectorAll('.month-btn').forEach(function(b){b.classList.toggle('active',b===btn)});document.getElementById('termOutput').textContent=term+' years';updateSubtotals();if(last&&getData().price>0)render(getData())})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var d=getData(),rows=[['Physician Mortgage Comparison','Value'],['Home price',d.price.toFixed(2)],['Down payment',d.down.toFixed(2)],['Down payment %',d.downpct.toFixed(2)],['Loan amount',d.loan.toFixed(2)],['Term (years)',term],['Doctor loan rate %',d.docRate.toFixed(3)],['Conventional rate %',d.convRate.toFixed(3)],['Monthly PMI (conventional)',(d.pmiApplies?d.pmi:0).toFixed(2)],['Doctor loan monthly P&I',d.docPI.toFixed(2)],['Doctor loan monthly total',d.docMonthly.toFixed(2)],['Conventional monthly P&I',d.convPI.toFixed(2)],['Conventional monthly total',d.convMonthly.toFixed(2)],['Monthly difference (conv - doc)',d.diff.toFixed(2)],['Total cost — doctor loan',d.totalDoc.toFixed(2)],['Total cost — conventional',d.totalConv.toFixed(2)],['Annual income',d.income.toFixed(2)],['Student loan payment / mo',d.student.toFixed(2)],['Other monthly debts',d.other.toFixed(2)],['Debt-to-income %',d.dti.toFixed(2)]];var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='physician-mortgage-comparison.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+  updateSubtotals();
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/mortgage-affordability-calculator/"><span class="arr">→</span>How much house can you afford?</a></li><li><a href="/money/pmi-removal/"><span class="arr">→</span>When can PMI come off?</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

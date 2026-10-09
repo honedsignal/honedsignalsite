@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Total Compensation Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}.field .money-input input{text-align:left}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.jar{position:absolute;left:20px;right:20px;bottom:0;height:73px;border:4px solid var(--blue);border-radius:10px 10px 22px 22px;overflow:hidden}.jar:before{content:"";position:absolute;left:17px;right:17px;top:-12px;height:15px;border:4px solid var(--blue);border-radius:5px}.coin{position:absolute;width:22px;height:22px;border:4px solid var(--orange);border-radius:50%}.coin.one{left:11px;top:3px}.coin.two{right:10px;top:17px}.fill{position:absolute;left:0;right:0;bottom:0;height:28%;background:var(--green-soft);border-top:2px solid var(--green)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.milestone{padding:13px;border-top:2px solid var(--line);background:var(--bg)}.milestone.done{border-color:var(--green)}.milestone small{display:block;color:var(--muted);font-size:.61rem;font-weight:800}.milestone strong{display:block;margin-top:5px;font:500 .8rem "DM Mono",monospace}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.goal-fields,.metric-grid,.milestones{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+    .compare-table{width:100%;border-collapse:collapse;font-size:.78rem}.compare-table th,.compare-table td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line)}.compare-table th:first-child,.compare-table td:first-child{text-align:left}.compare-table th{color:var(--muted);font-size:.68rem;font-weight:800;letter-spacing:.02em}.compare-table td{font:500 .78rem "DM Mono",monospace}.compare-table .winner{color:var(--green);font-weight:700}.offer-tag{font:500 .65rem "DM Mono",monospace;color:var(--orange)}
+  </style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="What is your job really worth?. Free total compensation calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/total-compensation/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Total Compensation Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/total-compensation/","description":"What is your job really worth?. Free total compensation calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/career.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Your salary is only <span class="accent">part of the paycheck.</span></h1>
+</div>
+    <p>Add up salary, retirement match, health coverage, paid time off, and the extras to see what a job is really worth — and compare two offers side by side.</p>
+  </header>
+
+  <section class="workbench" aria-label="Total compensation calculator">
+    <form class="panel inputs" id="compForm" novalidate>
+      <div class="section-head"><h2>Offer A — current or first offer</h2><span class="step">01 / OFFER A</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="salaryA">Annual salary</label><div class="money-input"><span>$</span><input id="salaryA" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Offer A annual salary"></div></div>
+        <div class="expense"><label for="matchA">Employer 401(k) match (% of salary)</label><div class="money-input"><span>%</span><input id="matchA" type="number" min="0" max="25" step="0.5" inputmode="decimal" placeholder="0" aria-label="Offer A employer 401k match percent"></div></div>
+        <div class="expense"><label for="healthA">Employer health contribution / year</label><div class="money-input"><span>$</span><input id="healthA" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Offer A employer health insurance contribution per year"></div></div>
+        <div class="expense"><label for="ptoA">Paid time off (days / year)</label><div class="money-input"><span>#</span><input id="ptoA" type="number" min="0" max="60" step="1" inputmode="numeric" placeholder="0" aria-label="Offer A paid time off days per year"></div></div>
+        <div class="expense"><label for="bonusesA">Bonuses / year</label><div class="money-input"><span>$</span><input id="bonusesA" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Offer A annual bonuses"></div></div>
+        <div class="expense"><label for="otherA">Other benefits / year (tuition, HSA…)</label><div class="money-input"><span>$</span><input id="otherA" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Offer A other annual benefits"></div></div>
+      </div>
+      <div class="subtotal"><span>Offer A total compensation</span><strong id="subtotalA">$0</strong></div>
+      <div class="section-head"><h2>Offer B — compare (optional)</h2><span class="step">02 / OFFER B</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="salaryB">Annual salary</label><div class="money-input"><span>$</span><input id="salaryB" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Offer B annual salary"></div></div>
+        <div class="expense"><label for="matchB">Employer 401(k) match (% of salary)</label><div class="money-input"><span>%</span><input id="matchB" type="number" min="0" max="25" step="0.5" inputmode="decimal" placeholder="0" aria-label="Offer B employer 401k match percent"></div></div>
+        <div class="expense"><label for="healthB">Employer health contribution / year</label><div class="money-input"><span>$</span><input id="healthB" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Offer B employer health insurance contribution per year"></div></div>
+        <div class="expense"><label for="ptoB">Paid time off (days / year)</label><div class="money-input"><span>#</span><input id="ptoB" type="number" min="0" max="60" step="1" inputmode="numeric" placeholder="0" aria-label="Offer B paid time off days per year"></div></div>
+        <div class="expense"><label for="bonusesB">Bonuses / year</label><div class="money-input"><span>$</span><input id="bonusesB" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Offer B annual bonuses"></div></div>
+        <div class="expense"><label for="otherB">Other benefits / year (tuition, HSA…)</label><div class="money-input"><span>$</span><input id="otherB" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Offer B other annual benefits"></div></div>
+      </div>
+      <div class="subtotal"><span>Offer B total compensation</span><strong id="subtotalB">$0</strong></div>
+      <div class="section-head"><h2>Your schedule</h2><span class="step">03 / HOURS</span></div>
+      <div class="goal-fields">
+        <div class="field"><label for="hoursA">Hours / week — Offer A</label><div class="money-input"><span>h</span><input id="hoursA" type="number" min="1" max="100" step="1" inputmode="numeric" placeholder="40"></div></div>
+        <div class="field"><label for="hoursB">Hours / week — Offer B</label><div class="money-input"><span>h</span><input id="hoursB" type="number" min="1" max="100" step="1" inputmode="numeric" placeholder="40"></div></div>
+      </div>
+      <button class="calculate" type="submit">Value my offers</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these total compensation results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">401(k) match is the employer's contribution as a percent of your salary (a typical 4% match on $80,000 is $3,200 a year). PTO is valued at your daily salary rate. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><i class="coin one"></i><i class="coin two"></i><div class="jar"><i class="fill"></i></div></div><h2>What is the job really worth?</h2><p>Enter salary and benefits for one offer — or two, to compare them head to head.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">OFFER A TOTAL COMPENSATION</p><p class="target" id="target">$0</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>BENEFITS ON TOP</span><strong id="benefitsValue">—</strong><em id="benefitsNote">—</em></article>
+          <article class="metric"><span>TRUE HOURLY RATE</span><strong id="hourly">—</strong><em id="hourlyNote">—</em></article>
+          <article class="metric"><span>PTO VALUE</span><strong id="ptoValue">—</strong><em id="ptoNote">—</em></article>
+        </div>
+        <section class="panel roadmap">
+          <div class="road-head"><div><h2>Where the money comes from</h2><p>Salary plus each benefit, measured against the total.</p></div><span class="coverage-badge" id="percentBadge">—</span></div>
+          <div class="track" role="img" id="compTrack" aria-label="Benefits share of total compensation"><div class="track-fill" id="trackFill"></div></div>
+          <div class="track-labels"><span id="salaryLabel">$0 salary</span><span id="totalLabel">$0 total</span></div>
+          <div class="milestones" id="milestones"></div>
+        </section>
+        <div id="compareWrap" class="hidden">
+          <div class="plan" style="grid-template-columns:1fr;">
+            <section class="plan-block"><h3>Offer A vs Offer B</h3>
+              <table class="compare-table" id="compareTable">
+                <thead><tr><th>Line item</th><th>Offer A</th><th>Offer B</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </section>
+          </div>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>Compensation details</h3><dl><dt>Base salary</dt><dd id="detailSalary">—</dd><dt>Employer 401(k) match</dt><dd id="detailMatch">—</dd><dt>Employer health contribution</dt><dd id="detailHealth">—</dd><dt>Paid time off value</dt><dd id="detailPto">—</dd><dt>Bonuses</dt><dd id="detailBonuses">—</dd><dt>Other benefits</dt><dd id="detailOther">—</dd><dt>Hours per week</dt><dd id="detailHours">—</dd></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">Read the offer</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download plan</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Planning note:</strong> This adds up the cash value of salary, the employer's retirement match, their health premium contribution, paid time off (valued at your daily salary rate), and other stated benefits. It does not include Social Security/Medicare taxes the employer pays, pension value, equity upside, or taxes you will owe. PTO is valued as salary over 260 workdays; actual value depends on whether you would use every day.</p><p>Educational estimate, not financial advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('compForm'),last=null,WORKDAYS=260;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function fmt(n){return money0.format(n)}
+  function calcOffer(prefix,hoursId){var salary=num('salary'+prefix),match=num('match'+prefix),health=num('health'+prefix),pto=num('pto'+prefix),bonuses=num('bonuses'+prefix),other=num('other'+prefix),hours=parseFloat(document.getElementById(hoursId).value);hours=isFinite(hours)&&hours>0?hours:40;
+    var matchDollars=salary*match/100,daily=salary/WORKDAYS,ptoValue=daily*pto,total=salary+matchDollars+health+ptoValue+bonuses+other,benefits=total-salary,benefitsPct=salary>0?benefits/salary*100:0,hourly=total/(hours*52);
+    return{salary:salary,match:match,matchDollars:matchDollars,health:health,pto:pto,ptoValue:ptoValue,bonuses:bonuses,other:other,hours:hours,total:total,benefits:benefits,benefitsPct:benefitsPct,hourly:hourly}}
+  function getData(){var a=calcOffer('A','hoursA'),b=calcOffer('B','hoursB'),hasB=b.salary>0||b.health>0||b.other>0||b.match>0||b.pto>0||b.bonuses>0;return{a:a,b:b,hasB:hasB}}
+  function updateSubtotals(){var d=getData();document.getElementById('subtotalA').textContent=fmt(d.a.total);document.getElementById('subtotalB').textContent=fmt(d.b.total)}
+  function renderCompare(d){var rows=[['Base salary',d.a.salary,d.b.salary],['401(k) match',d.a.matchDollars,d.b.matchDollars],['Health contribution',d.a.health,d.b.health],['PTO value ('+d.a.pto+' vs '+d.b.pto+' days)',d.a.ptoValue,d.b.ptoValue],['Bonuses',d.a.bonuses,d.b.bonuses],['Other benefits',d.a.other,d.b.other],['Total compensation',d.a.total,d.b.total,true],['True hourly rate',d.a.hourly,d.b.hourly,true,true]];
+    var tbody=document.querySelector('#compareTable tbody');
+    tbody.innerHTML=rows.map(function(r){var label=r[0],va=r[1],vb=r[2],bold=!!r[3],money=!!r[4]||!r[4]&&r[0]!=='True hourly rate';
+      var fa=money?fmt(va):money2.format(va),fb=money?fmt(vb):money2.format(vb),cls='';
+      if(va>vb)cls='A';else if(vb>va)cls='B';
+      return'<tr'+(bold?' style="font-weight:800;border-top:2px solid var(--line-strong)"':'')+'><td>'+label+'</td><td class="'+(cls==='A'?'winner':'')+'">'+fa+'</td><td class="'+(cls==='B'?'winner':'')+'">'+fb+'</td></tr>'}).join('')}
+  function emailBody(d){var lines=['Total Compensation Calculator results','','OFFER A','Base salary: '+money2.format(d.a.salary),'401(k) match: '+money2.format(d.a.matchDollars)+' ('+d.a.match+'% of salary)','Employer health contribution: '+money2.format(d.a.health),'PTO: '+d.a.pto+' days, valued at '+money2.format(d.a.ptoValue),'Annual bonuses: '+money2.format(d.a.bonuses),'Other benefits: '+money2.format(d.a.other),'TOTAL COMPENSATION: '+money2.format(d.a.total),'Benefits as share of salary: '+d.a.benefitsPct.toFixed(1)+'%','True hourly rate ('+d.a.hours+'h/week): '+money2.format(d.a.hourly)];
+    if(d.hasB){lines.push('','OFFER B','Base salary: '+money2.format(d.b.salary),'401(k) match: '+money2.format(d.b.matchDollars),'Employer health contribution: '+money2.format(d.b.health),'PTO: '+d.b.pto+' days, valued at '+money2.format(d.b.ptoValue),'Annual bonuses: '+money2.format(d.b.bonuses),'Other benefits: '+money2.format(d.b.other),'TOTAL COMPENSATION: '+money2.format(d.b.total),'Benefits as share of salary: '+d.b.benefitsPct.toFixed(1)+'%','True hourly rate ('+d.b.hours+'h/week): '+money2.format(d.b.hourly),'','WINNER: '+(d.a.total>=d.b.total?'Offer A by '+money2.format(d.a.total-d.b.total):'Offer B by '+money2.format(d.b.total-d.a.total)))}
+    lines.push('','Educational estimate, not financial advice.');return lines.join('\n')}
+  function explanationText(d){var a=d.a,parts=['Offer A pays a '+fmt(a.salary)+' salary, and the employer adds '+fmt(a.benefits)+' in benefits: '+fmt(a.matchDollars)+' of 401(k) match, '+fmt(a.health)+' toward health coverage, '+fmt(a.ptoValue)+' of paid time off ('+a.pto+' days at '+fmt(a.salary/WORKDAYS)+' a day), '+fmt(a.bonuses)+' in bonuses, and '+fmt(a.other)+' in other benefits. That makes the true annual value '+fmt(a.total)+', which is '+a.benefitsPct.toFixed(1)+'% on top of the salary — or about '+money2.format(a.hourly)+' per hour at '+a.hours+' hours a week.'];
+    if(d.hasB){var b=d.b,gap=Math.abs(a.total-b.total),win=a.total>=b.total?'Offer A':'Offer B';parts.push('Offer B totals '+fmt(b.total)+' ('+b.benefitsPct.toFixed(1)+'% on top of its '+fmt(b.salary)+' salary). '+win+' is ahead by '+fmt(gap)+' in total compensation, even if the salary numbers tell a different story.')}
+    return parts.join(' ')}
+  function render(d){last=d;var a=d.a;document.getElementById('emptyState').classList.add('hidden');document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('target').textContent=fmt(a.total);document.getElementById('targetNote').textContent='A '+fmt(a.salary)+' salary plus '+fmt(a.benefits)+' in employer-paid benefits.';
+    document.getElementById('benefitsValue').textContent=fmt(a.benefits);document.getElementById('benefitsNote').textContent=a.benefitsPct.toFixed(1)+'% on top of salary';
+    document.getElementById('hourly').textContent=money2.format(a.hourly)+'/hr';document.getElementById('hourlyNote').textContent='at '+a.hours+' hours/week';
+    document.getElementById('ptoValue').textContent=fmt(a.ptoValue);document.getElementById('ptoNote').textContent=a.pto+' days at '+fmt(a.salary/WORKDAYS)+'/day';
+    var pct=a.total>0?a.benefits/a.total*100:0;document.getElementById('percentBadge').textContent=pct.toFixed(1)+'% of total is benefits';document.getElementById('trackFill').style.width=pct+'%';document.getElementById('compTrack').setAttribute('aria-label','Benefits are '+pct.toFixed(0)+' percent of total compensation');document.getElementById('salaryLabel').textContent=fmt(a.salary)+' salary';document.getElementById('totalLabel').textContent=fmt(a.total)+' total';
+    var items=[['Salary',a.salary],['401(k) match',a.matchDollars],['Health',a.health],['PTO',a.ptoValue],['Bonuses',a.bonuses],['Other',a.other]];
+    document.getElementById('milestones').innerHTML=items.map(function(it){return'<div class="milestone done"><small>'+it[0].toUpperCase()+'</small><strong>'+fmt(it[1])+'</strong></div>'}).join('');
+    document.getElementById('detailSalary').textContent=fmt(a.salary);document.getElementById('detailMatch').textContent=fmt(a.matchDollars)+' ('+a.match+'%)';document.getElementById('detailHealth').textContent=fmt(a.health);document.getElementById('detailPto').textContent=fmt(a.ptoValue)+' ('+a.pto+' days)';document.getElementById('detailBonuses').textContent=fmt(a.bonuses);document.getElementById('detailOther').textContent=fmt(a.other);document.getElementById('detailHours').textContent=a.hours+'/week';
+    var title=document.getElementById('nudgeTitle'),text=document.getElementById('nudgeText'),strong=document.getElementById('nudgeStrong'),foot=document.getElementById('nudgeFoot');
+    if(d.hasB){var gap=Math.abs(d.a.total-d.b.total),win=d.a.total>=d.b.total?'Offer A':'Offer B';
+      if(gap<1){title.textContent='Dead even';text.textContent='The two offers are worth the same in total compensation.';strong.textContent=fmt(d.a.total)+' each';foot.textContent='Decide on the non-money factors: commute, growth, people.'}
+      else{title.textContent=win+' wins on total pay';text.textContent='The salary gap is '+fmt(Math.abs(d.a.salary-d.b.salary))+', but the total compensation gap is';strong.textContent=fmt(gap)+' in favor of '+win;foot.textContent='Benefits can quietly flip which offer is better — negotiate from the total, not the salary.'}}
+    else if(a.benefitsPct>=30){title.textContent='Rich benefits package';text.textContent='Benefits add nearly a third on top of salary here. Guard them in any negotiation —';strong.textContent=fmt(a.benefits)+' of hidden pay';foot.textContent='A raise elsewhere would need to beat the total, not just the salary.'}
+    else{title.textContent='Salary does the heavy lifting';text.textContent='Most of the value here is in the paycheck itself:';strong.textContent=fmt(a.benefits)+' in benefits';foot.textContent='Ask whether health costs, PTO, or the 401(k) match have room to grow.'}
+    document.getElementById('compareWrap').classList.toggle('hidden',!d.hasB);
+    if(d.hasB)renderCompare(d);
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My total compensation')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.a.salary<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  ['salaryA','matchA','healthA','ptoA','bonusesA','otherA','hoursA','salaryB','matchB','healthB','ptoB','bonusesB','otherB','hoursB'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){updateSubtotals();if(last&&num('salaryA')>0)render(getData())})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var d=getData(),rows=[['Total Compensation','Offer A','Offer B'],['Base salary',d.a.salary.toFixed(2),d.hasB?d.b.salary.toFixed(2):''],['401(k) match %',d.a.match.toFixed(2),d.hasB?d.b.match.toFixed(2):''],['401(k) match $',d.a.matchDollars.toFixed(2),d.hasB?d.b.matchDollars.toFixed(2):''],['Health contribution',d.a.health.toFixed(2),d.hasB?d.b.health.toFixed(2):''],['PTO days',d.a.pto,d.hasB?d.b.pto:''],['PTO value',d.a.ptoValue.toFixed(2),d.hasB?d.b.ptoValue.toFixed(2):''],['Annual bonuses',d.a.bonuses.toFixed(2),d.hasB?d.b.bonuses.toFixed(2):''],['Other benefits',d.a.other.toFixed(2),d.hasB?d.b.other.toFixed(2):''],['Total compensation',d.a.total.toFixed(2),d.hasB?d.b.total.toFixed(2):''],['Benefits % of salary',d.a.benefitsPct.toFixed(2),d.hasB?d.b.benefitsPct.toFixed(2):''],['Hours per week',d.a.hours,d.hasB?d.b.hours:''],['True hourly rate',d.a.hourly.toFixed(2),d.hasB?d.b.hourly.toFixed(2):'']];var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='total-compensation.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+  updateSubtotals();
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/raise-take-home/"><span class="arr">→</span>What a raise is really worth</a></li><li><a href="/money/career/"><span class="arr">→</span>More career calculators</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

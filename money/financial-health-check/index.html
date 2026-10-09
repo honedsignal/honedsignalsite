@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Financial Health Check | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 12px}.section-head:first-child{margin-top:0}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.question{margin-bottom:14px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}.question p{margin:0 0 10px;font-size:.82rem;font-weight:700}.question.flash{border-color:var(--red);box-shadow:0 0 0 2px color-mix(in srgb,var(--red) 30%,transparent)}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.choice-btn{min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer;font:500 .68rem/1.25 Manrope,sans-serif;padding:8px 6px}.choice-btn:hover{border-color:var(--blue)}.choice-btn.active{background:var(--green);border-color:var(--green);color:#071009;font-weight:800}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.cat-row{margin-top:14px}.cat-row .cat-name{display:flex;justify-content:space-between;font-size:.72rem;font-weight:800;color:var(--muted);margin-bottom:6px}.cat-row .cat-name output{font:500 .72rem "DM Mono",monospace;color:var(--ink)}.track{height:14px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.priority{margin-bottom:14px}.priority:last-child{margin-bottom:0}.priority strong{display:block;font-size:.85rem;letter-spacing:-.02em}.priority p{margin:4px 0 6px;color:var(--muted);font-size:.73rem}.priority a{color:var(--blue);font-size:.72rem;font-weight:800;text-decoration:none}.priority a:hover{text-decoration:underline}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.metric-grid{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}.choices{grid-template-columns:1fr}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  </style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="Where do I actually stand financially? Free financial health check from Honed Money — 12 questions, a 0-100 score, and your top 3 priorities. No signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/financial-health-check/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Financial Health Check","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/financial-health-check/","description":"Where do I actually stand financially? Free financial health check from Honed Money — 12 questions, a 0-100 score, and your top 3 priorities. No signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/personal.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Know where you stand. <span class="accent">Plan where you're going.</span></h1>
+</div>
+    <p>Twelve honest questions across savings, debt, insurance, investing, and emergency readiness. Get a score, a grade, and your top three priorities — no judgment, just a starting point.</p>
+  </header>
+
+  <section class="workbench" aria-label="Financial health check">
+    <form class="panel inputs" id="healthForm" novalidate>
+      <div id="questions"></div>
+      <div class="subtotal"><span>Questions answered</span><strong id="answeredCount">0 of 12</strong></div>
+      <button class="calculate" type="submit">Check my financial health</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these financial health results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Answer all 12 questions to activate scoring. Your answers stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><h2>Twelve questions. One honest picture.</h2><p>Answer each question with the option that fits best. There are no trick questions and no wrong answers — only a starting line.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">YOUR FINANCIAL HEALTH SCORE</p><p class="target" id="scoreTarget">0</p><p class="target-note" id="scoreNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>GRADE</span><strong id="grade">—</strong><em id="gradeNote">—</em></article>
+          <article class="metric"><span>STRONGEST AREA</span><strong id="strongest">—</strong><em id="strongestNote">—</em></article>
+          <article class="metric"><span>NEEDS THE MOST WORK</span><strong id="weakest">—</strong><em id="weakestNote">—</em></article>
+        </div>
+        <section class="panel roadmap">
+          <div class="road-head"><div><h2>Score by category</h2><p>Each area scored out of 100 based on your answers.</p></div><span class="coverage-badge" id="questionsBadge">12 of 12 answered</span></div>
+          <div id="catBars"></div>
+        </section>
+        <div class="plan">
+          <section class="plan-block"><h3>Score details</h3><dl><dt>Questions answered</dt><dd id="detailCount">—</dd><dt>Points earned</dt><dd id="detailPoints">—</dd><dt>Points possible</dt><dd id="detailPossible">—</dd><dt>Overall score</dt><dd id="detailScore">—</dd></dl></section>
+          <section class="plan-block nudge"><h3>Your top 3 priorities</h3><p id="nudgeIntro">These are the fixes that would move your score the most.</p><div id="priorities"></div></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download my answers</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>A note on the score:</strong> This is a self-assessment, not a credit score or a professional evaluation. It is meant to be a starting point — the places you scored lowest are simply the places with the most room to improve. Honest answers today beat perfect answers next year.</p><p>Educational estimate, not financial advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var QUESTIONS=[
+    {cat:'Savings',q:'I save money every month — even a little.',opts:[['Yes, automatically',2],['Sometimes',1],['Rarely or never',0]],tip:'Pay yourself first. An automatic transfer on payday beats willpower every time.',link:'/money/hysa-interest/',linkName:'Give savings a place to grow'},
+    {cat:'Savings',q:'I could cover at least one month of essential expenses from savings.',opts:[['Yes, easily',2],['Almost there',1],['Not yet',0]],tip:'One month of expenses is the first real milestone. After that, build toward three to six.',link:'/money/emergency-fund-calculator/',linkName:'Plan an emergency fund'},
+    {cat:'Savings',q:'I know where my money goes each month (a budget or spending tracker).',opts:[['Yes, I track it',2],['Roughly',1],['Not really',0]],tip:'You cannot improve what you do not measure. Start with one honest month of tracking.',link:'/money/zero-based-budget/',linkName:'Try a zero-based budget'},
+    {cat:'Debt',q:'I pay my credit cards in full every month.',opts:[['Yes, in full',2],['Mostly',1],['I carry balances',0]],tip:'Revolving credit-card balances are the single most expensive habit in personal finance.',link:'/money/minimum-payment-trap/',linkName:'See the minimum-payment trap'},
+    {cat:'Debt',q:'My total monthly debt payments are under 36% of my gross income.',opts:[['Yes',2],['Close to it',1],['No, higher than that',0]],tip:'Lenders watch 36% because that is where budgets start to break. Above it, debt payoff is priority one.',link:'/money/debt-payoff-strategy-comparison/',linkName:'Compare payoff strategies'},
+    {cat:'Insurance',q:'I have health insurance (job, marketplace, Medicare, or other).',opts:[['Yes',2],['Had it — it lapsed',1],['No coverage',0]],tip:'One uninsured hospital stay can erase years of progress. Coverage is a financial firewall.',link:'/money/aca-subsidy-estimator/',linkName:'Check ACA subsidies'},
+    {cat:'Insurance',q:'If someone depends on my income, I have life or disability coverage.',opts:[['Yes, covered',2],['Nobody depends on my income',1],['No, and they do',0]],tip:'If a vanished paycheck would hurt someone you love, this is the gap to close first.',link:'/money/life-insurance-needs-calculator/',linkName:'Size your coverage'},
+    {cat:'Investing',q:'I invest for retirement (401(k), IRA, or another account).',opts:[['Yes, regularly',2],['Some, but inconsistent',1],['Not yet',0]],tip:'Time in the market beats timing the market. Starting small today beats starting big someday.',link:'/money/net-worth-projection/',linkName:'Project your net worth'},
+    {cat:'Investing',q:'I capture the full employer 401(k) match, if one is offered.',opts:[['Yes, full match',2],['No match offered',1],['No — leaving money on the table',0]],tip:'A 401(k) match is an instant 100% return. Turning it down is a pay cut you chose.',link:'/money/401k-match-calculator/',linkName:'Check your 401(k) match'},
+    {cat:'Emergency',q:'If I lost my income tomorrow, I could cover 3+ months of basics.',opts:[['Yes, 3+ months',2],['One to two months',1],['Less than a month',0]],tip:'Three months of basics is the classic cushion. It turns a crisis into an inconvenience.',link:'/money/emergency-fund-calculator/',linkName:'Plan an emergency fund'},
+    {cat:'Emergency',q:'I have a will, power of attorney, or at least named beneficiaries on my accounts.',opts:[['Yes',2],['Some of it',1],['None of it',0]],tip:'Beneficiary forms are free, take minutes, and override wills at most banks and brokerages.',link:'/money/estate-planning/',linkName:'Estate planning basics'},
+    {cat:'Emergency',q:'I could handle a $1,000 surprise bill without borrowing.',opts:[['Yes',2],['With difficulty',1],['No',0]],tip:'A $1,000 starter fund is the first firewall between life happening and debt happening.',link:'/money/emergency-fund-calculator/',linkName:'Plan an emergency fund'}
+  ];
+  var CATS=['Savings','Debt','Insurance','Investing','Emergency'];
+  var answers=new Array(QUESTIONS.length).fill(-1),last=null;
+  var qWrap=document.getElementById('questions');
+
+  function buildQuestions(){
+    var html='',catHeads={};
+    CATS.forEach(function(c,i){catHeads[c]=String(i+1).padStart(2,'0')});
+    var lastCat=null;
+    QUESTIONS.forEach(function(qm,i){
+      if(qm.cat!==lastCat){html+='<div class="section-head"><h2>'+qm.cat+'</h2><span class="step">'+catHeads[qm.cat]+' / 05</span></div>';lastCat=qm.cat}
+      html+='<div class="question" id="q'+i+'"><p>'+(i+1)+'. '+qm.q+'</p><div class="choices" role="group" aria-label="'+qm.q.replace(/"/g,'')+'">';
+      qm.opts.forEach(function(o,j){
+        html+='<button type="button" class="choice-btn" data-q="'+i+'" data-j="'+j+'">'+o[0]+'</button>';
+      });
+      html+='</div></div>';
+    });
+    qWrap.innerHTML=html;
+    Array.prototype.forEach.call(qWrap.querySelectorAll('.choice-btn'),function(btn){
+      btn.addEventListener('click',function(){
+        var qi=parseInt(btn.dataset.q,10),jj=parseInt(btn.dataset.j,10);
+        answers[qi]=jj;
+        Array.prototype.forEach.call(qWrap.querySelectorAll('.choice-btn[data-q="'+qi+'"]'),function(b){b.classList.toggle('active',b===btn)});
+        document.getElementById('q'+qi).classList.remove('flash');
+        updateCount();
+        if(last)render(getData());
+      });
+    });
+  }
+  function updateCount(){var n=answers.filter(function(a){return a>=0}).length;document.getElementById('answeredCount').textContent=n+' of '+QUESTIONS.length}
+  function grade(score){
+    if(score>=90)return['A','In great shape — keep it going.'];
+    if(score>=80)return['B','Solid foundation with a few gaps.'];
+    if(score>=70)return['C','Making real progress.'];
+    if(score>=60)return['D','Needs attention — the priorities below are your map.'];
+    return['F','Just getting started — and that is a fine place to start.'];
+  }
+  function getData(){
+    var perCat={},i,qm,pts;
+    CATS.forEach(function(c){perCat[c]={earned:0,possible:0}});
+    var total=0,answered=0,items=[];
+    QUESTIONS.forEach(function(qm,i){
+      var chosen=answers[i];
+      perCat[qm.cat].possible+=2;
+      if(chosen>=0){answered++;pts=qm.opts[chosen][1];total+=pts;perCat[qm.cat].earned+=pts;
+        items.push({i:i,cat:qm.cat,q:qm.q,answer:qm.opts[chosen][0],pts:pts,tip:qm.tip,link:qm.link,linkName:qm.linkName});}
+    });
+    var max=QUESTIONS.length*2,score=max?Math.round(total/max*100):0;
+    var catScores=CATS.map(function(c){var e=perCat[c].earned,p=perCat[c].possible;return{cat:c,pct:p?Math.round(e/p*100):0,earned:e,possible:p}});
+    var ranked=catScores.slice().sort(function(a,b){return b.pct-a.pct});
+    var weak=items.slice().sort(function(a,b){return a.pts-b.pts}).filter(function(it){return it.pts<2}).slice(0,3);
+    return{answered:answered,total:total,max:max,score:score,grade:grade(score),catScores:catScores,strongest:ranked[0],weakest:ranked[ranked.length-1],priorities:weak,items:items};
+  }
+  function renderCatBars(d){
+    document.getElementById('catBars').innerHTML=d.catScores.map(function(c){
+      var color=c.pct>=80?'var(--green)':(c.pct>=60?'var(--orange)':'var(--red)');
+      return'<div class="cat-row"><div class="cat-name"><span>'+c.cat+'</span><output>'+c.pct+'%</output></div><div class="track"><div class="track-fill" style="width:'+c.pct+'%;background:'+color+'"></div></div></div>';
+    }).join('');
+  }
+  function renderPriorities(d){
+    var box=document.getElementById('priorities');
+    if(!d.priorities.length){box.innerHTML='<div class="priority"><strong>Nothing left to fix here</strong><p>You answered everything at the top level. Revisit this checkup whenever your situation changes.</p></div>';return}
+    box.innerHTML=d.priorities.map(function(p,i){
+      return'<div class="priority"><strong>'+(i+1)+'. '+p.q+'</strong><p>'+p.tip+'</p><a href="'+p.link+'">→ '+p.linkName+'</a></div>';
+    }).join('');
+  }
+  function emailBody(d){
+    var lines=['Financial Health Check results','',
+      'Score: '+d.score+' / 100 ('+d.grade[0]+')',
+      d.grade[1],'','Score by category'];
+    d.catScores.forEach(function(c){lines.push('- '+c.cat+': '+c.pct+'% ('+c.earned+' of '+c.possible+' points)')});
+    if(d.priorities.length){lines.push('','Top priorities:');d.priorities.forEach(function(p,i){lines.push((i+1)+'. '+p.q+' — your answer: '+p.answer+'. '+p.tip+' See: https://honedsignal.com'+p.link)})}
+    lines.push('','Educational estimate, not financial advice.');
+    return lines.join('\n');
+  }
+  function explanationText(d){
+    var parts=['You answered '+d.answered+' of '+QUESTIONS.length+' questions. Each answer earns 0, 1, or 2 points, for a maximum of '+d.max+' points. Your score is your points ('+d.total+') divided by '+d.max+', expressed as a percentage: '+d.score+' out of 100.'];
+    parts.push('Your strongest area is '+d.strongest.cat+' at '+d.strongest.pct+'%. The area with the most room to improve is '+d.weakest.cat+' at '+d.weakest.pct+'%.');
+    if(d.priorities.length){parts.push('Your top '+d.priorities.length+' priorities are the lowest-scoring answers — fixing those first would move your score the most.')}
+    parts.push('This is a self-assessment starting point, not a verdict. Scores change as habits change.');
+    return parts.join(' ');
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('scoreTarget').textContent=d.score;
+    document.getElementById('scoreNote').textContent='Grade '+d.grade[0]+' — '+d.grade[1]+' This is a starting point, not a judgment.';
+    document.getElementById('grade').textContent=d.grade[0];
+    document.getElementById('gradeNote').textContent=d.grade[1];
+    document.getElementById('strongest').textContent=d.strongest.cat;
+    document.getElementById('strongestNote').textContent=d.strongest.pct+'% in this area';
+    document.getElementById('weakest').textContent=d.weakest.cat;
+    document.getElementById('weakestNote').textContent=d.weakest.pct+'% — most room to grow';
+    document.getElementById('questionsBadge').textContent=d.answered+' of '+QUESTIONS.length+' answered';
+    renderCatBars(d);
+    document.getElementById('detailCount').textContent=d.answered+' / '+QUESTIONS.length;
+    document.getElementById('detailPoints').textContent=d.total+' pts';
+    document.getElementById('detailPossible').textContent=d.max+' pts';
+    document.getElementById('detailScore').textContent=d.score+' / 100';
+    renderPriorities(d);
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('My financial health check')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
+  }
+  function calculate(e){
+    if(e)e.preventDefault();
+    var first=-1;
+    for(var i=0;i<answers.length;i++){if(answers[i]<0){first=i;break}}
+    if(first>=0){
+      var el=document.getElementById('q'+first);
+      el.classList.add('flash');
+      el.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    render(getData());
+  }
+  buildQuestions();
+  document.getElementById('healthForm').addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    if(!last)return;var d=getData();
+    var rows=[['Financial Health Check',''],['Score (0-100)',d.score],['Grade',d.grade[0]],[],['#','Category','Question','Your answer','Points']];
+    d.items.forEach(function(it,i){rows.push([i+1,it.cat,it.q,it.answer,it.pts])});
+    rows.push([],['Category','Percent','Points earned','Points possible']);
+    d.catScores.forEach(function(c){rows.push([c.cat,c.pct,c.earned,c.possible])});
+    if(d.priorities.length){rows.push([],['Top priorities']);d.priorities.forEach(function(p,i){rows.push([(i+1),p.q,p.answer,p.tip])})}
+    var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='financial-health-check.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+  updateCount();
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/emergency-fund-calculator/"><span class="arr">→</span>Build your emergency fund</a></li><li><a href="/money/net-worth-projection/"><span class="arr">→</span>Project your net worth</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
