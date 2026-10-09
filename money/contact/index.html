@@ -160,6 +160,21 @@
 
     .email-link:hover { color: var(--orange-soft); }
 
+    .copy-email-btn {
+      display: inline-block;
+      margin: 12px 0 0 12px;
+      padding: 10px 18px;
+      min-height: 44px;
+      border: 1px solid var(--line-strong, #46525d);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .copy-email-btn:hover { border-color: var(--orange); }
+
     .contact-note {
       margin: 18px 0 0;
       color: var(--muted);
@@ -323,6 +338,7 @@
       <div class="contact-block">
         <span class="contact-label">Email Honed Money</span>
         <a class="email-link" href="mailto:contact@honedsignal.com">contact@honedsignal.com</a>
+        <button class="copy-email-btn" type="button" id="copy-email">Copy email address</button>
         <p class="contact-note">This link opens your email app. There’s no contact form, and this page doesn’t collect anything you type.</p>
       </div>
     </section>
@@ -367,6 +383,25 @@
       <p class="reviewed">Last reviewed: October 2026.</p>
     </footer>
   </main>
+<script>
+document.getElementById('copy-email').addEventListener('click', function () {
+  var btn = this;
+  function done(msg) {
+    btn.textContent = msg;
+    setTimeout(function () { btn.textContent = 'Copy email address'; }, 2000);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText('contact@honedsignal.com').then(function () { done('Copied!'); }, function () { done('Copy failed'); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = 'contact@honedsignal.com';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done('Copied!'); } catch (e) { done('Copy failed'); }
+    document.body.removeChild(ta);
+  }
+});
+</script>
 <script>
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   window.addEventListener('load', function () {
