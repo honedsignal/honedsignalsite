@@ -1535,5 +1535,14 @@
       "Buy or Rent"
     ],
     "kind": "section"
+  },
+  {
+    "t": "Paycheck Money Calculators",
+    "d": "What you earn, what you keep, and where it goes. Take-home pay, withholding, tips, and overtime.",
+    "u": "/money/paycheck/",
+    "tags": [
+      "Paycheck"
+    ],
+    "kind": "section"
   }
 ]
