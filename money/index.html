@@ -123,6 +123,40 @@
       flex: 1;
       min-width: 0;
     }
+    .install-banner {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      padding: 12px 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    .install-banner.show { display: flex; }
+    .install-banner p {
+      margin: 0;
+      flex: 1;
+      font-size: .9rem;
+      color: var(--ink);
+    }
+    .install-banner button {
+      flex: none;
+      min-height: 44px;
+      padding: 0 18px;
+      border: none;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #0b0e14;
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .install-banner .install-dismiss {
+      background: transparent;
+      color: var(--muted);
+      padding: 0 10px;
+    }
     .sticky-bar {
       position: sticky;
       top: 0;
@@ -504,9 +538,14 @@
       <p class="benefits-line">237 free calculators across 36 topics · No account, no signup · Every result explained in plain English</p>
     </section>
 
+    <div class="install-banner" id="install-banner" role="dialog" aria-label="Install Honed Money">
+      <p id="install-text">Add Honed Money to your home screen for one-tap access.</p>
+      <button type="button" id="install-btn">Install</button>
+      <button type="button" class="install-dismiss" id="install-dismiss" aria-label="Dismiss">✕</button>
+    </div>
+
     <div class="sticky-bar">
-      <a class="sticky-home" href="/money/" aria-label="Honed Money home">← Home</a>
-      <form class="search-form search-prominent" action="/money/search/" method="get" role="search">
+      <a class="sticky-home" href="/money/" aria-label="Honed Money home">← Home</a>      <form class="search-form search-prominent" action="/money/search/" method="get" role="search">
         <label class="search-label" for="calculator-search">Search Honed Money calculators</label>
         <input class="search-input" id="calculator-search" name="q" type="search" placeholder="Search 237 calculators…" autocomplete="off" />
         <button class="search-submit" type="submit" aria-label="Search"><span aria-hidden="true">→</span></button>
@@ -630,6 +669,44 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
     });
     section.hidden = false;
   } catch (e) { /* private mode etc.: section stays hidden */ }
+})();
+</script>
+<script>
+/* Honed Money — "Add to home screen" install prompt. */
+(function () {
+  var KEY = 'hm-install-dismissed';
+  try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+  var banner = document.getElementById('install-banner');
+  var btn = document.getElementById('install-btn');
+  var dismiss = document.getElementById('install-dismiss');
+  var text = document.getElementById('install-text');
+  if (!banner || !btn) return;
+  function hide(permanent) {
+    banner.classList.remove('show');
+    if (permanent) { try { localStorage.setItem(KEY, '1'); } catch (e) {} }
+  }
+  dismiss.addEventListener('click', function () { hide(true); });
+
+  var deferred = null;
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent || '');
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    banner.classList.add('show');
+  });
+  // iOS has no beforeinstallprompt — show manual instructions instead.
+  if (isIOS && !window.navigator.standalone) {
+    text.textContent = 'Add Honed Money to your home screen: tap Share, then "Add to Home Screen".';
+    btn.style.display = 'none';
+    banner.classList.add('show');
+  }
+  btn.addEventListener('click', function () {
+    if (deferred) {
+      deferred.prompt();
+      deferred.userChoice.then(function () { hide(true); });
+      deferred = null;
+    } else { hide(true); }
+  });
 })();
 </script>
 </body>

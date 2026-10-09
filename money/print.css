@@ -1,0 +1,40 @@
+/* Honed Money — print stylesheet. Produces a clean black-on-white printout
+ * of calculator inputs and results. Linked with media="print" so it never
+ * affects the on-screen dark theme. */
+@media print {
+  * {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  body {
+    font-size: 12pt;
+    line-height: 1.45;
+  }
+  /* Chrome/Safari link URLs are noise on paper. */
+  a { color: #000 !important; text-decoration: none !important; }
+  a[href^="http"]:after { content: ""; }
+
+  /* Hide navigation, actions, and legal chrome. */
+  .back, nav, footer, .hs-legal, .site-footer,
+  button, .btn, input[type="submit"],
+  .hm-hint-btn, .hm-hint-box,
+  .share-row, .result-actions,
+  script, style { display: none !important; }
+
+  /* Keep form state readable: show inputs as plain values. */
+  input, select, textarea {
+    border: 1px solid #999 !important;
+    color: #000 !important;
+  }
+
+  /* Avoid splitting result blocks across pages. */
+  .result, .results, .verdict, section { break-inside: avoid; }
+
+  h1, h2, h3 { color: #000 !important; break-after: avoid; }
+  p, li, dt, dd, td, th { color: #000 !important; }
+}
