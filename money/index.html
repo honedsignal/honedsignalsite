@@ -416,7 +416,44 @@
       .benefit-list { grid-template-columns: 1fr; gap: 14px; }
       .decision-banner { grid-template-columns: minmax(0, 1fr) auto; gap: 14px; }
       .topics-header { display: block; }
-      .topics-header p { margin-top: 10px; }
+      .questions { margin: 6px 0 30px; }
+    .questions h2 {
+      margin: 0 0 4px;
+      font-size: 1.25rem;
+      letter-spacing: -.02em;
+    }
+    .questions p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    .question-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .question-links a {
+      display: flex;
+      align-items: center;
+      min-height: 56px;
+      padding: 12px 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: .95rem;
+      font-weight: 600;
+      text-decoration: none;
+      line-height: 1.35;
+    }
+    .question-links a:hover { border-color: var(--accent); }
+    @media (max-width: 560px) {
+      .question-links { grid-template-columns: 1fr; }
+    }
+    .topics-header p { margin-top: 10px; }
       footer { flex-direction: column; gap: 8px; }
     }
     @media (max-width: 390px) {
@@ -486,6 +523,19 @@
     <section class="recent" id="recent-section" aria-labelledby="recent-title" hidden>
       <h3 id="recent-title">Recently used <span>·</span> this device only</h3>
       <ul class="topic-links" id="recent-links"></ul>
+    </section>
+
+    <section class="questions" aria-labelledby="questions-title">
+      <h2 id="questions-title">Common questions</h2>
+      <p>Tap a question to go straight to the calculator that answers it.</p>
+      <ul class="question-links">
+        <li><a href="/money/monthly-budget-planner/">Can I afford this apartment?</a></li>
+        <li><a href="/money/rent-vs-buy-calculator/">Should I rent or buy a home?</a></li>
+        <li><a href="/money/debt-payoff-strategy-comparison/">Should I pay off debt or save?</a></li>
+        <li><a href="/money/credit-card-payoff-analyzer/">How long until my credit card is paid off?</a></li>
+        <li><a href="/money/take-home-pay-calculator/">What will my paycheck actually be?</a></li>
+        <li><a href="/money/auto-loan-calculator/">Can I afford this car?</a></li>
+      </ul>
     </section>
 
     <nav class="topics" aria-labelledby="topics-title">
