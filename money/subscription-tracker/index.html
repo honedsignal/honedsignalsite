@@ -250,8 +250,8 @@
     var totalA=0,top=null;
     for(i=0;i<list.length;i++){var a=annualOf(list[i]);totalA+=a;if(!top||a>annualOf(top))top=list[i]}
     $('mMonthly').textContent=money2.format(totalA/12);
-    $('mMonthlyNote').textContent='That is '+money0.format(totalA)+' a year across '+list.length+' subscription'+(list.length===1?'':'s')+'.';
-    $('mYearly').textContent=money0.format(totalA);
+    $('mMonthlyNote').textContent='That is '+money2.format(totalA)+' a year across '+list.length+' subscription'+(list.length===1?'':'s')+'.';
+    $('mYearly').textContent=money2.format(totalA);
     $('mCount').textContent=list.length;
     $('mTop').textContent=top.name;
     $('mTopNote').textContent=money2.format(annualOf(top))+'/yr';
