@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Subscription Tracker | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}.field .money-input input{text-align:left}.months-label{display:flex;align-items:center;justify-content:space-between;margin:18px 0 9px}.months-label label{font-size:.75rem;font-weight:700;color:var(--muted)}.months-label output{font:500 .75rem "DM Mono",monospace;color:var(--orange)}.months{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.month-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}.month-btn:hover{border-color:var(--blue)}.month-btn.active{background:var(--orange);border-color:var(--orange);color:#171009;font-weight:700}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.jar{position:absolute;left:20px;right:20px;bottom:0;height:73px;border:4px solid var(--blue);border-radius:10px 10px 22px 22px;overflow:hidden}.jar:before{content:"";position:absolute;left:17px;right:17px;top:-12px;height:15px;border:4px solid var(--blue);border-radius:5px}.coin{position:absolute;width:22px;height:22px;border:4px solid var(--orange);border-radius:50%}.coin.one{left:11px;top:3px}.coin.two{right:10px;top:17px}.fill{position:absolute;left:0;right:0;bottom:0;height:28%;background:var(--green-soft);border-top:2px solid var(--green)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}.milestone{padding:13px;border-top:2px solid var(--line);background:var(--bg)}.milestone.done{border-color:var(--green)}.milestone small{display:block;color:var(--muted);font-size:.61rem;font-weight:800}.milestone strong{display:block;margin-top:5px;font:500 .8rem "DM Mono",monospace}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.goal-fields,.metric-grid,.milestones{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  
+  
+    /* ---- Subscription tracker ---- */
+    .tracker-form .field{margin-bottom:14px}
+    .tracker-form .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}
+    .tracker-form .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .tracker-form .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .tracker-form .text-input input,.tracker-form .text-input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600}
+    .tracker-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .form-err{display:none;margin:10px 0 0;color:var(--red);font-size:.72rem;font-weight:700}
+    .form-err.show{display:block}
+    .btn-row{display:flex;gap:8px;margin-top:16px}
+    .btn-row .calculate{margin-top:0;flex:1}
+    .btn-secondary{border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--ink);padding:14px 18px;font-weight:800;cursor:pointer}
+    .btn-secondary:hover{border-color:var(--blue);color:var(--blue)}
+    .sub-list{display:grid;gap:8px;margin-top:10px}
+    .sub-row{display:grid;grid-template-columns:1fr auto;gap:6px 12px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+    .sub-row .s-name{font-weight:800;font-size:.92rem}
+    .sub-row .s-name a{color:var(--blue);font-size:.7rem;font-weight:700;margin-left:8px;text-decoration:none;white-space:nowrap}
+    .sub-row .s-name a:hover{text-decoration:underline}
+    .sub-tag{display:inline-block;margin-top:5px;padding:2px 8px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:.6rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+    .sub-cost{text-align:right;font:500 .95rem "DM Mono",monospace}
+    .sub-cost small{display:block;color:var(--muted);font-size:.62rem}
+    .sub-due{grid-column:1/-1;color:var(--muted);font-size:.7rem;font-weight:700}
+    .sub-due.over{color:var(--red)}
+    .sub-due.soon{color:var(--orange)}
+    .sub-actions{grid-column:1/-1;display:flex;gap:8px}
+    .mini-btn{border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:6px 12px;font-size:.68rem;font-weight:800;cursor:pointer}
+    .mini-btn:hover{border-color:var(--blue);color:var(--blue)}
+    .mini-btn.danger:hover{border-color:var(--red);color:var(--red)}
+    .sort-row{display:flex;align-items:center;gap:8px;margin:16px 0 4px;flex-wrap:wrap}
+    .sort-row>span{color:var(--muted);font-size:.68rem;font-weight:800}
+    .sort-btn{border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);padding:6px 12px;font-size:.68rem;font-weight:800;cursor:pointer}
+    .sort-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+    .due-head{margin:16px 0 0;font-size:.8rem;font-weight:800}
+    .due-list{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+    .due-list li{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--orange-soft);font-size:.75rem}
+    .due-list li.over{background:color-mix(in srgb,var(--red) 10%,var(--surface))}
+    .due-list strong{font-weight:800}
+    .due-list .d{color:var(--muted);font:500 .7rem "DM Mono",monospace;white-space:nowrap}
+    .examples-link{background:none;border:0;color:var(--blue);cursor:pointer;font-size:.82rem;font-weight:700;text-decoration:underline;padding:0}
+    .privacy{margin-top:16px;padding:12px 14px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:.72rem;line-height:1.65}
+    .privacy strong{color:var(--ink)}
+    @media(max-width:560px){.tracker-form .form-row{grid-template-columns:1fr}.sub-row{grid-template-columns:1fr}.sub-cost{text-align:left}}
+
+  </style>
+<!-- honed-seo-start -->
+<meta name="description" content="Track every subscription in one place. See what they really cost per month and year, and catch renewals before they charge you. Free, private, no signup." />
+<link rel="canonical" href="https://honedsignal.com/money/subscription-tracker/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Subscription Tracker","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/subscription-tracker/","description":"Track every subscription in one place. See what they really cost per month and year, and catch renewals before they charge you. Free, private, no signup.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+  <link rel="stylesheet" href="/money/print.css" media="print">
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+<style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/personal.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Every subscription, one <span class="accent">honest</span> total.</h1>
+</div>
+    <p>Add every subscription once. The tracker adds up what they really cost per month and year, flags renewals coming due, and keeps everything on your device — no account, no signup.</p>
+  </header>
+
+  <section class="workbench" aria-label="Subscription Tracker">
+    <div class="panel inputs tracker-form">
+      <form id="subForm" novalidate>
+        <div class="section-head"><h2 id="formTitle">Add a subscription</h2><span class="step">01 / DETAILS</span></div>
+        <div class="field">
+          <label for="subName">Subscription name</label>
+          <div class="text-input"><input id="subName" type="text" autocomplete="off" placeholder="Netflix" maxlength="80"></div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="subAmount">Amount</label>
+            <div class="text-input"><span style="padding-left:10px;color:var(--muted);font:500 .74rem 'DM Mono',monospace">$</span><input id="subAmount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="15.99"></div>
+          </div>
+          <div class="field">
+            <label for="subCycle">Billing cycle</label>
+            <div class="text-input"><select id="subCycle">
+              <option value="weekly">Weekly</option>
+              <option value="monthly" selected>Monthly</option>
+              <option value="quarterly">Quarterly</option>
+              <option value="yearly">Yearly</option>
+            </select></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="subCategory">Category</label>
+            <div class="text-input"><select id="subCategory">
+              <option>Streaming</option><option>Music</option><option>Apps &amp; Software</option>
+              <option>News &amp; Media</option><option>Fitness</option><option>Shopping</option>
+              <option>Finance</option><option>Gaming</option><option selected>Other</option>
+            </select></div>
+          </div>
+          <div class="field">
+            <label for="subRenewal">Next renewal date</label>
+            <div class="text-input"><input id="subRenewal" type="date"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="subUrl">Manage / cancel link <span style="font-weight:400">(optional)</span></label>
+          <div class="text-input"><input id="subUrl" type="url" autocomplete="off" placeholder="https://…" maxlength="300"></div>
+        </div>
+        <p class="form-err" id="formErr" role="alert"></p>
+        <div class="btn-row">
+          <button class="calculate" type="submit" id="submitBtn">Add subscription</button>
+          <button class="btn-secondary hidden" type="button" id="cancelEdit">Cancel</button>
+        </div>
+      </form>
+      <div class="privacy"><strong>Private by design.</strong> Your subscriptions are stored only in this browser (localStorage). Nothing leaves your device. Clearing browser data deletes them — export CSV below to back up.</div>
+    </div>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><i class="coin one"></i><i class="coin two"></i><div class="jar"><i class="fill"></i></div></div><h2>Nothing tracked yet.</h2><p>Add your first subscription on the left — streaming, apps, memberships, all of it. The dashboard appears here once there is something to count.</p><p style="margin-top:12px"><button type="button" class="examples-link" id="loadExamples">Load 3 examples to try it out</button></p></div>
+      </div>
+
+      <div id="dashState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">YOU SPEND PER MONTH</p><p class="target" id="mMonthly">$0</p><p class="target-note" id="mMonthlyNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>PER YEAR</span><strong id="mYearly">—</strong><em id="mYearlyNote">annualized</em></article>
+          <article class="metric"><span>TRACKING</span><strong id="mCount">—</strong><em>subscriptions</em></article>
+          <article class="metric"><span>PRICIEST</span><strong id="mTop" style="font-size:.95rem">—</strong><em id="mTopNote">—</em></article>
+        </div>
+        <h3 class="due-head">Renewing in the next 30 days</h3>
+        <ul class="due-list" id="dueList"></ul>
+        <div class="sort-row"><span>SORT BY</span>
+          <button type="button" class="sort-btn active" id="sortCost">Annual cost</button>
+          <button type="button" class="sort-btn" id="sortRenewal">Renewal date</button>
+        </div>
+        <div class="sub-list" id="subList"></div>
+        <div class="result-actions">
+          <button class="action result-action" id="copySummary" type="button">Copy summary</button>
+          <button class="action result-action" id="downloadCsv" type="button">Download CSV</button>
+          <button class="action result-action" id="printBtn" type="button">Print</button>
+        </div>
+        <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+        <section class="explanation" aria-label="How the math works">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy">Monthly totals are normalized so different billing cycles can be compared fairly: weekly amounts are multiplied by 52 then divided by 12, monthly counts as-is, quarterly is divided by 3, and yearly is divided by 12. So a $15.99/month plan counts as $191.88/year, while a $99/year plan counts as $8.25/month. &ldquo;Days until renewal&rdquo; counts calendar days from today; anything past its date is flagged overdue. The priciest subscription is ranked by annualized cost, not by a single payment.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+        <div class="metric-grid">
+          <article class="metric"><span>EACH PAYMENT</span><strong id="perPay">—</strong><em id="perPayNote">—</em></article>
+          <article class="metric"><span>EXTRA VS CASH</span><strong id="extra">—</strong><em id="extraNote">—</em></article>
+          <article class="metric"><span>EFFECTIVE MARKUP</span><strong id="markup">—</strong><em id="markupNote">—</em></article>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download breakdown</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Assumptions:</strong> Totals are estimates from the prices and billing cycles you enter. Prices change, plans get renamed, and free trials ending are not auto-detected — update an entry when your bill changes.</p><p>Educational estimate, not financial advice.</p></footer>
+</main>
+<script>
+
+(function(){'use strict';
+  var KEY='hm-subscriptions';
+  var CYCLES={weekly:{perYear:52,label:'/week'},monthly:{perYear:12,label:'/month'},quarterly:{perYear:4,label:'/quarter'},yearly:{perYear:1,label:'/yr'}};
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+  var money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  var sortMode='cost',editId=null;
+
+  function $(id){return document.getElementById(id)}
+  function val(id){var el=$(id);return el?el.value:''}
+  function setVal(id,v){var el=$(id);if(el)el.value=v}
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+  function valid(s){return s&&typeof s==='object'&&typeof s.name==='string'&&s.name.trim()&&isFinite(s.amount)&&s.amount>0&&!!CYCLES[s.cycle]}
+  function load(){try{var r=window.localStorage.getItem(KEY);var l=r?JSON.parse(r):[];return Array.isArray(l)?l.filter(valid):[]}catch(e){return[]}}
+  function save(l){try{window.localStorage.setItem(KEY,JSON.stringify(l))}catch(e){/* private mode etc. */}}
+  function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+  function annualOf(s){return s.amount*CYCLES[s.cycle].perYear}
+
+  function parseDate(str){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(str||'');if(!m)return null;var d=new Date(+m[1],+m[2]-1,+m[3]);return isNaN(d.getTime())?null:d}
+  function daysUntil(str){var d=parseDate(str);if(!d)return null;var t=new Date();t.setHours(0,0,0,0);return Math.round((d.getTime()-t.getTime())/86400000)}
+  function fmtDate(str){var d=parseDate(str);if(!d)return '—';return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+
+  function dueLabel(du,str){
+    if(du===null)return{txt:'No renewal date set',cls:''};
+    if(du<0){var n=Math.abs(du);return{txt:'Overdue by '+n+' day'+(n===1?'':'s'),cls:'over'}}
+    if(du===0)return{txt:'Renews today',cls:'soon'};
+    var t='Renews '+fmtDate(str)+' · in '+du+' day'+(du===1?'':'s');
+    return{txt:t,cls:du<=14?'soon':''};
+  }
+
+  function rowHtml(s){
+    var d=dueLabel(daysUntil(s.renewal),s.renewal);
+    var link=s.url?'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">manage \u2197</a>':'';
+    return '<div class="sub-row">'+
+      '<div><div class="s-name">'+esc(s.name)+link+'</div><span class="sub-tag">'+esc(s.category||'Other')+'</span></div>'+
+      '<div class="sub-cost">'+money2.format(s.amount)+CYCLES[s.cycle].label+'<small>'+money2.format(annualOf(s))+'/yr</small></div>'+
+      '<div class="sub-due '+d.cls+'">'+esc(d.txt)+'</div>'+
+      '<div class="sub-actions"><button type="button" class="mini-btn" data-edit="'+esc(s.id)+'">Edit</button>'+
+      '<button type="button" class="mini-btn danger" data-del="'+esc(s.id)+'">Delete</button></div></div>';
+  }
+
+  function render(){
+    var list=load(),i;
+    var empty=list.length===0;
+    $('emptyState').classList.toggle('hidden',!empty);
+    $('dashState').classList.toggle('hidden',empty);
+    if(empty){$('subList').innerHTML='';$('dueList').innerHTML='';return;}
+    var totalA=0,top=null;
+    for(i=0;i<list.length;i++){var a=annualOf(list[i]);totalA+=a;if(!top||a>annualOf(top))top=list[i]}
+    $('mMonthly').textContent=money2.format(totalA/12);
+    $('mMonthlyNote').textContent='That is '+money0.format(totalA)+' a year across '+list.length+' subscription'+(list.length===1?'':'s')+'.';
+    $('mYearly').textContent=money0.format(totalA);
+    $('mCount').textContent=list.length;
+    $('mTop').textContent=top.name;
+    $('mTopNote').textContent=money2.format(annualOf(top))+'/yr';
+    var due=[];
+    for(i=0;i<list.length;i++){var du=daysUntil(list[i].renewal);if(du!==null&&du<=30)due.push({s:list[i],d:du})}
+    due.sort(function(a,b){return a.d-b.d});
+    var dh='';
+    if(!due.length){dh='<li><strong>Nothing renewing soon.</strong><span class="d">all clear</span></li>'}
+    for(i=0;i<due.length;i++){var dl=dueLabel(due[i].d,due[i].s.renewal);dh+='<li class="'+dl.cls+'"><strong>'+esc(due[i].s.name)+'</strong><span class="d">'+esc(dl.txt)+'</span></li>'}
+    $('dueList').innerHTML=dh;
+    var sorted=list.slice();
+    if(sortMode==='cost'){sorted.sort(function(a,b){return annualOf(b)-annualOf(a)})}
+    else{sorted.sort(function(a,b){var x=daysUntil(a.renewal),y=daysUntil(b.renewal);if(x===null&&y===null)return 0;if(x===null)return 1;if(y===null)return -1;return x-y})}
+    var h='';
+    for(i=0;i<sorted.length;i++)h+=rowHtml(sorted[i]);
+    $('subList').innerHTML=h;
+  }
+
+  function showErr(msg){var e=$('formErr');e.textContent=msg;e.classList.add('show')}
+  function clearErr(){$('formErr').classList.remove('show')}
+  function resetFormUI(){
+    $('formTitle').textContent='Add a subscription';
+    $('submitBtn').textContent='Add subscription';
+    $('cancelEdit').classList.add('hidden');
+  }
+
+  $('subForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=val('subName').trim(),amount=parseFloat(val('subAmount'));
+    if(!name){showErr('Give the subscription a name.');$('subName').focus();return}
+    if(!(amount>0)){showErr('Enter an amount greater than $0.');$('subAmount').focus();return}
+    clearErr();
+    var list=load();
+    var entry={id:editId||uid(),name:name,amount:Math.round(amount*100)/100,
+      cycle:val('subCycle')||'monthly',category:val('subCategory')||'Other',
+      renewal:val('subRenewal')||'',url:val('subUrl').trim()};
+    if(!CYCLES[entry.cycle])entry.cycle='monthly';
+    if(editId){for(var i=0;i<list.length;i++){if(list[i].id===editId){list[i]=entry;break}}editId=null}
+    else{list.push(entry)}
+    save(list);this.reset();resetFormUI();render();
+  });
+
+  $('cancelEdit').addEventListener('click',function(){editId=null;$('subForm').reset();resetFormUI();clearErr()});
+
+  $('subList').addEventListener('click',function(e){
+    var t=e.target;
+    var ed=t.getAttribute&&t.getAttribute('data-edit');
+    var del=t.getAttribute&&t.getAttribute('data-del');
+    if(ed){
+      var list=load(),s=null;
+      for(var i=0;i<list.length;i++){if(list[i].id===ed)s=list[i]}
+      if(!s)return;
+      editId=ed;clearErr();
+      setVal('subName',s.name);setVal('subAmount',s.amount);setVal('subCycle',s.cycle);
+      setVal('subCategory',s.category);setVal('subRenewal',s.renewal||'');setVal('subUrl',s.url||'');
+      $('formTitle').textContent='Edit subscription';
+      $('submitBtn').textContent='Save changes';
+      $('cancelEdit').classList.remove('hidden');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }else if(del){
+      var l2=load(),nm='';
+      for(var j=0;j<l2.length;j++){if(l2[j].id===del)nm=l2[j].name}
+      if(!window.confirm('Delete "'+nm+'"? This cannot be undone.'))return;
+      save(l2.filter(function(x){return x.id!==del}));
+      if(editId===del){editId=null;$('subForm').reset();resetFormUI()}
+      render();
+    }
+  });
+
+  $('sortCost').addEventListener('click',function(){$('sortCost').classList.add('active');$('sortRenewal').classList.remove('active');sortMode='cost';render()});
+  $('sortRenewal').addEventListener('click',function(){$('sortRenewal').classList.add('active');$('sortCost').classList.remove('active');sortMode='renewal';render()});
+
+  $('loadExamples').addEventListener('click',function(){
+    function iso(d){return d.toISOString().slice(0,10)}
+    var t=Date.now(),day=86400000;
+    var ex=[
+      {name:'Example: Netflix',amount:15.49,cycle:'monthly',category:'Streaming',renewal:iso(new Date(t+12*day)),url:''},
+      {name:'Example: Spotify',amount:11.99,cycle:'monthly',category:'Music',renewal:iso(new Date(t+20*day)),url:''},
+      {name:'Example: iCloud+',amount:2.99,cycle:'monthly',category:'Apps & Software',renewal:iso(new Date(t+5*day)),url:''}
+    ];
+    ex.forEach(function(s){s.id=uid()});
+    save(ex);render();
+  });
+
+  function csvText(){
+    var list=load();
+    var rows=[['Subscription Tracker','Amount','Cycle','Annualized','Category','Next renewal','Manage link']];
+    list.forEach(function(s){rows.push([s.name,s.amount.toFixed(2),s.cycle,annualOf(s).toFixed(2),s.category||'',s.renewal||'',s.url||''])});
+    return rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+  }
+  $('downloadCsv').addEventListener('click',function(){
+    if(!load().length)return;
+    var blob=new Blob([csvText()],{type:'text/csv;charset=utf-8'});
+    var url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='subscription-tracker.csv';document.body.appendChild(a);a.click();a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  $('printBtn').addEventListener('click',function(){window.print()});
+
+  $('copySummary').addEventListener('click',function(){
+    var list=load();if(!list.length)return;
+    var totalA=list.reduce(function(t,s){return t+annualOf(s)},0);
+    var text='I spend '+money2.format(totalA/12)+'/month ('+money2.format(totalA)+'/year) on '+list.length+' subscription'+(list.length===1?'':'s')+'.';
+    var button=this,status=$('copyStatus'),settled=false;
+    function show(m){if(settled)return;settled=true;button.textContent=m;status.textContent=m==='Copied'?'Summary copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy summary';status.textContent=''},1800)}
+    function fb(){var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}ta.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fb)}else{fb()}
+  });
+
+  $('explainToggle').addEventListener('click',function(){var c=$('explainCopy'),x=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!x));c.classList.toggle('hidden',x)});
+
+  render();
+})();
+
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/monthly-budget-planner/"><span class="arr">→</span>Build a monthly budget</a></li><li><a href="/money/50-30-20-budget-calculator/"><span class="arr">→</span>Try the 50/30/20 budget</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+<script src="/money/recent-tools.js" defer></script>
+  <script src="/money/input-hints.js" defer></script>
+<script src="/money/share-result.js" defer></script>
+</body>
+</html>

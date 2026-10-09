@@ -653,7 +653,7 @@
  },
  {
   "t": "Mortgage Scenario Comparison",
-  "d": "Keep, refinance, or pay extra \u2014 compared",
+  "d": "Keep, refinance, or pay extra — compared",
   "u": "/money/mortgage-scenario-comparison/",
   "tags": [
    "Housing"
@@ -1264,7 +1264,7 @@
   "kind": "tool"
  },
  {
-  "t": "Effective vs. Marginal Tax Rate Calculator \u2014 2026",
+  "t": "Effective vs. Marginal Tax Rate Calculator — 2026",
   "d": "What you really pay.",
   "u": "/money/effective-vs-marginal-tax-rate-calculator/",
   "tags": [
@@ -1294,7 +1294,7 @@
   "kind": "tool"
  },
  {
-  "t": "HSA Tax Savings Calculator \u2014 2026",
+  "t": "HSA Tax Savings Calculator — 2026",
   "d": "The triple tax advantage.",
   "u": "/money/hsa-tax-savings-calculator/",
   "tags": [
@@ -1325,7 +1325,7 @@
  },
  {
   "t": "Tax Deadline Calendar",
-  "d": "Key dates, 2026\u20132027.",
+  "d": "Key dates, 2026–2027.",
   "u": "/money/tax-deadline-calendar/",
   "tags": [
    "Taxes"
@@ -1421,7 +1421,7 @@
   "kind": "tool"
  },
  {
-  "t": "Decision Center \u2014 What Are You Trying to Decide?",
+  "t": "Decision Center — What Are You Trying to Decide?",
   "d": "Pick your question; we'll walk you through the calculators that answer it.",
   "u": "/money/decide/",
   "tags": [
@@ -1599,7 +1599,7 @@
  },
  {
   "t": "QCD Calculator",
-  "d": "Qualified Charitable Distributions from your IRA \u2014 give and skip the tax.",
+  "d": "Qualified Charitable Distributions from your IRA — give and skip the tax.",
   "u": "/money/qcd-calculator/",
   "tags": [
    "Giving",
@@ -1622,7 +1622,7 @@
  },
  {
   "t": "Rental Property Analyzer",
-  "d": "Cash flow, cap rate, cash-on-cash return \u2014 is this rental a deal?",
+  "d": "Cash flow, cap rate, cash-on-cash return — is this rental a deal?",
   "u": "/money/rental-property-analyzer/",
   "tags": [
    "Real Estate",
@@ -1642,7 +1642,7 @@
  },
  {
   "t": "BRRRR Calculator",
-  "d": "Buy, rehab, rent, refinance, repeat \u2014 recycle your capital.",
+  "d": "Buy, rehab, rent, refinance, repeat — recycle your capital.",
   "u": "/money/brrrr-calculator/",
   "tags": [
    "Real Estate",
@@ -1672,7 +1672,7 @@
  },
  {
   "t": "Baby's First Year Cost Calculator",
-  "d": "Diapers, daycare, gear \u2014 what does year one really cost?",
+  "d": "Diapers, daycare, gear — what does year one really cost?",
   "u": "/money/baby-first-year-cost-calculator/",
   "tags": [
    "Family",
@@ -1723,7 +1723,7 @@
  },
  {
   "t": "Aircraft Cost Calculator",
-  "d": "Purchase, hangar, fuel, maintenance \u2014 what does a private plane cost per flight hour?",
+  "d": "Purchase, hangar, fuel, maintenance — what does a private plane cost per flight hour?",
   "u": "/money/aircraft-cost-calculator/",
   "tags": [
    "Vehicles",
@@ -1762,7 +1762,7 @@
  },
  {
   "t": "Will I Keep My Scholarship?",
-  "d": "What GPA keeps your award \u2014 and what losing it costs.",
+  "d": "What GPA keeps your award — and what losing it costs.",
   "u": "/money/will-i-keep-my-scholarship/",
   "tags": [
    "Scholarships",
@@ -2623,7 +2623,7 @@
  },
  {
   "t": "Child Care Cost Calculator",
-  "d": "Work out what child care costs per week, month, and year \u2014 for one child or more.",
+  "d": "Work out what child care costs per week, month, and year — for one child or more.",
   "u": "/money/child-care-cost-calculator/",
   "tags": [
    "Family",
@@ -2677,6 +2677,16 @@
   "tags": [
    "Taxes",
    "Life Events"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Subscription Tracker",
+  "d": "Track every subscription in one place and see what they really cost per month and year.",
+  "u": "/money/subscription-tracker/",
+  "tags": [
+   "Personal",
+   "Budget"
   ],
   "kind": "tool"
  }

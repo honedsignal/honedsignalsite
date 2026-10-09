@@ -375,6 +375,14 @@
         'year': 'Year of publication.',
         'title': 'Title of the book or article.',
         'source / publisher': 'Publisher or website name.'
+      },
+
+      'subscription-tracker': {
+        'subscription name': 'E.g. Netflix, Spotify — as it appears on your statement.',
+        'amount': 'What you pay each billing period, before tax if you want the clean number.',
+        'billing cycle': 'How often you are charged — most subscriptions are monthly.',
+        'next renewal': 'The next date you will be charged. Find it in the app or your email receipts.',
+        'manage / cancel link': 'Optional — paste the cancellation page so future-you can quit in one tap.'
       }
 
     };
