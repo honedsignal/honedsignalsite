@@ -1858,5 +1858,80 @@
       "Travel"
     ],
     "kind": "section"
+  },
+  {
+    "t": "Minimum Payment Trap Calculator",
+    "d": "Credit cards and payday loans: the true cost of minimum payments.",
+    "u": "/money/minimum-payment-trap/",
+    "tags": [
+      "Debt",
+      "Credit"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "First-Time Homebuyer Cash-to-Close Calculator",
+    "d": "How much cash you actually need upfront to buy a house.",
+    "u": "/money/homebuyer-cash-to-close/",
+    "tags": [
+      "Housing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Cost of Living Salary Comparison Calculator",
+    "d": "What salary in another city matches your standard of living?",
+    "u": "/money/cost-of-living-salary/",
+    "tags": [
+      "Career"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Net Pay After a Raise Calculator",
+    "d": "How much more take-home pay a raise actually gives you.",
+    "u": "/money/raise-take-home/",
+    "tags": [
+      "Paycheck",
+      "Career"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Net Worth Projection Calculator",
+    "d": "What your net worth will be in 10, 20, or 30 years.",
+    "u": "/money/net-worth-projection/",
+    "tags": [
+      "Personal",
+      "Investing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Safe Withdrawal Rate Calculator",
+    "d": "How much you can withdraw yearly in retirement without running out.",
+    "u": "/money/safe-withdrawal-rate/",
+    "tags": [
+      "Retirement"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Irregular Income Budget Calculator",
+    "d": "Budget when your income changes every month.",
+    "u": "/money/irregular-income-budget/",
+    "tags": [
+      "Budget"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Car Depreciation Calculator",
+    "d": "What your car will be worth in 1, 3, 5, or 10 years.",
+    "u": "/money/car-depreciation/",
+    "tags": [
+      "Vehicles"
+    ],
+    "kind": "tool"
   }
 ]
