@@ -119,8 +119,39 @@
       font-size: 1rem;
     }
     .search-prominent {
-      margin: 28px 0 18px;
+      margin: 0;
+      flex: 1;
+      min-width: 0;
     }
+    .sticky-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px -16px 18px;
+      padding: 10px 16px;
+      background: color-mix(in srgb, #0b0e14 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid transparent;
+    }
+    .sticky-home {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: .88rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .sticky-home:hover { border-color: var(--accent); }
     .benefit-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -266,6 +297,17 @@
       color: var(--muted);
       font-size: .92rem;
     }
+    .recent { margin: 0 0 22px; }
+    .recent[hidden] { display: none; }
+    .recent h3 {
+      margin: 0 0 10px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .recent h3 span { color: var(--orange); }
     .view-toggle {
       display: inline-flex;
       gap: 8px;
@@ -425,11 +467,14 @@
       <p class="benefits-line">233 free calculators across 36 topics · No account, no signup · Every result explained in plain English</p>
     </section>
 
-    <form class="search-form search-prominent" action="/money/search/" method="get" role="search">
-      <label class="search-label" for="calculator-search">Search Honed Money calculators</label>
-      <input class="search-input" id="calculator-search" name="q" type="search" placeholder="Search 233 calculators… (try 'refinance', 'credit score', 'retirement')" autocomplete="off" />
-      <button class="search-submit" type="submit" aria-label="Search"><span aria-hidden="true">→</span></button>
-    </form>
+    <div class="sticky-bar">
+      <a class="sticky-home" href="/money/" aria-label="Honed Money home">← Home</a>
+      <form class="search-form search-prominent" action="/money/search/" method="get" role="search">
+        <label class="search-label" for="calculator-search">Search Honed Money calculators</label>
+        <input class="search-input" id="calculator-search" name="q" type="search" placeholder="Search 233 calculators…" autocomplete="off" />
+        <button class="search-submit" type="submit" aria-label="Search"><span aria-hidden="true">→</span></button>
+      </form>
+    </div>
     <a class="decision-banner" href="/money/decide/">
       <div>
         <h3>Not sure where to start?</h3>
@@ -437,6 +482,11 @@
       </div>
       <span class="decision-arrow" aria-hidden="true">→</span>
     </a>
+
+    <section class="recent" id="recent-section" aria-labelledby="recent-title" hidden>
+      <h3 id="recent-title">Recently used <span>·</span> this device only</h3>
+      <ul class="topic-links" id="recent-links"></ul>
+    </section>
 
     <nav class="topics" aria-labelledby="topics-title">
       <div class="topics-header">
