@@ -113,6 +113,14 @@
       line-height: 1.2;
       letter-spacing: -.015em;
     }
+    .benefits-line {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .search-prominent {
+      margin: 28px 0 18px;
+    }
     .benefit-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -379,25 +387,21 @@
 
     <section class="benefits" aria-labelledby="benefits-title">
       <h2 class="section-heading" id="benefits-title">What you get:</h2>
-      <ul class="benefit-list">
-        <li>233 free calculators across 36 topics</li>
-        <li>Every result explained in plain English — no jargon</li>
-        <li>Email or copy your results — no account, no signup</li>
-        <li>Built to help you decide, not just calculate</li>
-      </ul>
-      <form class="search-form" action="/money/search/" method="get" role="search">
-        <label class="search-label" for="calculator-search">Search Honed Money calculators</label>
-        <input class="search-input" id="calculator-search" name="q" type="search" placeholder="Search 233 calculators… (try 'refinance', 'credit score', 'retirement')" autocomplete="off" />
-        <button class="search-submit" type="submit" aria-label="Search"><span aria-hidden="true">→</span></button>
-      </form>
-      <a class="decision-banner" href="/money/decide/">
-        <div>
-          <h3>Not sure where to start?</h3>
-          <p>Tell us what you're deciding — we'll walk you through the calculators that answer it.</p>
-        </div>
-        <span class="decision-arrow" aria-hidden="true">→</span>
-      </a>
+      <p class="benefits-line">233 free calculators across 36 topics · No account, no signup · Every result explained in plain English</p>
     </section>
+
+    <form class="search-form search-prominent" action="/money/search/" method="get" role="search">
+      <label class="search-label" for="calculator-search">Search Honed Money calculators</label>
+      <input class="search-input" id="calculator-search" name="q" type="search" placeholder="Search 233 calculators… (try 'refinance', 'credit score', 'retirement')" autocomplete="off" />
+      <button class="search-submit" type="submit" aria-label="Search"><span aria-hidden="true">→</span></button>
+    </form>
+    <a class="decision-banner" href="/money/decide/">
+      <div>
+        <h3>Not sure where to start?</h3>
+        <p>Tell us what you're deciding — we'll walk you through the calculators that answer it.</p>
+      </div>
+      <span class="decision-arrow" aria-hidden="true">→</span>
+    </a>
 
     <nav class="topics" aria-labelledby="topics-title">
       <div class="topics-header">
