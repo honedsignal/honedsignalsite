@@ -1,10 +1,10 @@
 [
   {
-    "t": "Auto Money Calculators",
-    "d": "All auto calculators in one place.",
-    "u": "/money/auto/",
+    "t": "Vehicle Money Calculators",
+    "d": "Can you afford it? Run the numbers on cars, trucks, motorcycles, RVs, and every vehicle purchase.",
+    "u": "/money/vehicles/",
     "tags": [
-      "Auto"
+      "Vehicles"
     ],
     "kind": "section"
   },
