@@ -1526,5 +1526,14 @@
       "Refinance"
     ],
     "kind": "section"
+  },
+  {
+    "t": "Buy or Rent Money Calculators",
+    "d": "Should you buy it or rent it? Run the numbers on homes, cars, and every big lease-vs-buy decision.",
+    "u": "/money/buy-or-rent/",
+    "tags": [
+      "Buy or Rent"
+    ],
+    "kind": "section"
   }
 ]
