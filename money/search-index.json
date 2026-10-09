@@ -1658,5 +1658,15 @@
       "Social Security"
     ],
     "kind": "tool"
+  },
+  {
+    "t": "Life Events Money Guides",
+    "d": "Money follows the big moments. Marriage, baby, first home, new job, divorce, retirement.",
+    "u": "/money/life-events/",
+    "tags": [
+      "Life Events",
+      "Family"
+    ],
+    "kind": "section"
   }
 ]
