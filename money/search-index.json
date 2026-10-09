@@ -1719,5 +1719,15 @@
       "College"
     ],
     "kind": "tool"
+  },
+  {
+    "t": "Aircraft Cost Calculator",
+    "d": "Purchase, hangar, fuel, maintenance \u2014 what does a private plane cost per flight hour?",
+    "u": "/money/aircraft-cost-calculator/",
+    "tags": [
+      "Vehicles",
+      "Travel"
+    ],
+    "kind": "tool"
   }
 ]
