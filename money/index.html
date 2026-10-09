@@ -156,6 +156,20 @@
       color: var(--muted);
       padding: 0 10px;
     }
+    .hm-ac-wrap { position: relative; width: 100%; }
+    .hm-ac-wrap .search-input { width: 100%; }
+    .hm-ac-box {
+      position: absolute; top: 100%; left: 0; right: 0; z-index: 60;
+      display: none; background: var(--surface); border: 1px solid var(--line-strong);
+      border-radius: 12px; margin-top: 6px; overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0,0,0,.5);
+    }
+    .hm-ac-box.open { display: block; }
+    .hm-ac-item { display: block; padding: 10px 16px; text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--line); }
+    .hm-ac-item:last-child { border-bottom: 0; }
+    .hm-ac-item:hover, .hm-ac-item.active { background: #1a2230; }
+    .hm-ac-t { display: block; font-weight: 600; font-size: .95rem; }
+    .hm-ac-d { display: block; color: var(--muted); font-size: .82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .sticky-bar {
       position: sticky;
       top: 0;
@@ -696,6 +710,8 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   } catch (e) { /* private mode etc.: section stays hidden */ }
 })();
 </script>
+<script src="/money/search/fuzzy.js" defer></script>
+<script src="/money/home-autocomplete.js" defer></script>
 <script>
 /* Honed Money — "Add to home screen" install prompt. */
 (function () {
