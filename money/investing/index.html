@@ -278,7 +278,22 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
     }
-  </style>
+  
+    .hs-hero-tool{border:2px solid var(--orange);border-radius:18px;padding:28px clamp(20px,4vw,36px);margin:0 0 32px;background:linear-gradient(135deg,color-mix(in srgb,var(--orange) 8%,var(--surface)),var(--surface));position:relative}
+    .hs-hero-tool .hero-badge{display:inline-block;background:var(--orange);color:var(--orange-on);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+    .hs-hero-tool h2{margin:0 0 8px;font-size:1.5rem}
+    .hs-hero-tool p{color:var(--muted);margin:0 0 16px}
+    .hs-hero-tool .tool-link{display:inline-block;background:var(--orange);color:var(--orange-on);padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:600}
+    .hs-hero-tool .tool-link:hover{filter:brightness(1.08)}
+    .hs-next-steps{margin:0 0 8px}
+    .hs-next-steps h3{font-size:1.05rem;margin:0 0 12px;color:var(--muted);font-weight:600}
+    .hs-next-steps .step-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+    .hs-next-steps .step-link{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;font-size:.92rem;background:var(--surface)}
+    .hs-next-steps .step-link:hover{border-color:var(--orange)}
+    .hs-next-steps .step-link .cue{color:var(--orange);font-weight:600}
+    .hs-all-tools-label{font-size:.95rem;color:var(--muted);margin:0 0 12px;font-weight:600}
+
+    </style>
 
 
 
@@ -328,6 +343,22 @@
       </p>
     </section>
 
+    <section class="hs-hero-tool" aria-label="Start here">
+      <span class="hero-badge">Start here</span>
+      <h2>Compound Interest Calculator</h2>
+      <p>Watch your money grow.</p>
+      <a class="tool-link" href="/money/compound-interest-calculator/">Open tool →</a>
+    </section>
+
+    <div class="hs-next-steps">
+      <h3>Next steps</h3>
+      <div class="step-links">
+      <a class="step-link" href="/money/investment-return-calculator/"><span class="cue">Project returns →</span> Investment Return Calculator</a>
+      <a class="step-link" href="/money/roth-vs-traditional-ira-calculator/"><span class="cue">Pick your IRA →</span> Roth vs Traditional IRA Calculator</a>
+      </div>
+    </div>
+
+    <p class="hs-all-tools-label">All calculators in this section:</p>
     <section class="grid" aria-label="Investing calculators">
       <article class="card">
         <span class="number">01</span>
