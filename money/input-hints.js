@@ -225,6 +225,29 @@
         'starting annual dividend yield': 'The S&P 500\'s dividend yield is often in the 1-2% range; individual stocks vary widely.',
         'annual dividend growth': 'How fast you expect the dividend to grow each year.',
         'years held': 'How long you plan to hold and reinvest.'
+      },
+
+      'unit-price-calculator': {
+        'price': 'The total price on the shelf tag or listing.',
+        'quantity': 'The amount you get — ounces, count, liters, whatever the package states. Use the same unit for both products.',
+      },
+
+      'bnpl-true-cost': {
+        'purchase price': 'The sticker price before any fees or interest.',
+        'number of payments': 'Most buy-now-pay-later plans split into 4 payments over 6 weeks; longer plans often add interest.',
+        'fees': 'Late fees, rescheduling fees, or interest the plan charges. A 0% 4-payment plan with no fees costs exactly the sticker price.'
+      },
+
+      'child-care-cost-calculator': {
+        'rate': 'What the provider charges — the U.S. average for center-based infant care is roughly $300/week, but it varies a lot by state and city.',
+        'days per week': 'How many days each week the child attends.',
+        'weeks per year': '52 for year-round care; use fewer if care pauses in summer.'
+      },
+
+      'car-repair-vs-replace': {
+        'repair cost': 'The quote from the shop, including parts and labor.',
+        'current value': 'What the car is worth today — check Kelley Blue Book or similar. If the repair costs more than the car is worth, that is a strong signal to replace.',
+        'replacement cost': 'The out-the-door price of the replacement car you would buy.',
       }
 
     };

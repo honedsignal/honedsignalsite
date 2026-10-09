@@ -2599,5 +2599,44 @@
    "Retirement"
   ],
   "kind": "tool"
+ },
+ {
+  "t": "Unit Price Calculator",
+  "d": "Compare two package sizes and see which is the better buy per unit.",
+  "u": "/money/unit-price-calculator/",
+  "tags": [
+   "Personal",
+   "Budget"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "BNPL True Cost Calculator",
+  "d": "See what buy-now-pay-later really costs once fees and interest are added.",
+  "u": "/money/bnpl-true-cost/",
+  "tags": [
+   "Debt",
+   "Personal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Child Care Cost Calculator",
+  "d": "Work out what child care costs per week, month, and year \u2014 for one child or more.",
+  "u": "/money/child-care-cost-calculator/",
+  "tags": [
+   "Family",
+   "Life Events"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Repair vs Replace Car Calculator",
+  "d": "Should you fix your car or buy another one? Compare the yearly cost of each path.",
+  "u": "/money/car-repair-vs-replace/",
+  "tags": [
+   "Auto"
+  ],
+  "kind": "tool"
  }
 ]
