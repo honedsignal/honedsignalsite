@@ -1573,5 +1573,39 @@
       "Debt"
     ],
     "kind": "tool"
+  },
+  {
+    "t": "Giving Money Calculators",
+    "d": "Give generously and smart. Donation deductions, bunching, and QCDs from your IRA.",
+    "u": "/money/giving/",
+    "tags": [
+      "Giving",
+      "Charity",
+      "Taxes"
+    ],
+    "kind": "section"
+  },
+  {
+    "t": "Deduction Bunching Calculator",
+    "d": "Bunch two years of charitable giving into one tax year to beat the standard deduction.",
+    "u": "/money/deduction-bunching-calculator/",
+    "tags": [
+      "Giving",
+      "Charity",
+      "Taxes"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "QCD Calculator",
+    "d": "Qualified Charitable Distributions from your IRA \u2014 give and skip the tax.",
+    "u": "/money/qcd-calculator/",
+    "tags": [
+      "Giving",
+      "Charity",
+      "Retirement",
+      "Taxes"
+    ],
+    "kind": "tool"
   }
 ]
