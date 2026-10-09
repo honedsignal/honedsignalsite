@@ -552,5 +552,31 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   });
 }
 </script>
+<script>
+/* Honed Money — "Recently used" rail: reads the hm-recent localStorage list
+ * (written by /money/recent-tools.js on calculator pages) and renders pill
+ * links. The whole section stays hidden when the list is empty. */
+(function () {
+  try {
+    var raw = window.localStorage.getItem("hm-recent");
+    var list = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(list)) list = [];
+    list = list.filter(function (item) { return item && item.title && item.url; });
+    if (!list.length) return;
+    var section = document.getElementById("recent-section");
+    var ul = document.getElementById("recent-links");
+    if (!section || !ul) return;
+    list.forEach(function (item) {
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = item.url;
+      a.textContent = item.title;
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    section.hidden = false;
+  } catch (e) { /* private mode etc.: section stays hidden */ }
+})();
+</script>
 </body>
 </html>
