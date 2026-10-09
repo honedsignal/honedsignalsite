@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Side Hustle Profitability Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}.field .money-input input{text-align:left}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.jar{position:absolute;left:20px;right:20px;bottom:0;height:73px;border:4px solid var(--blue);border-radius:10px 10px 22px 22px;overflow:hidden}.jar:before{content:"";position:absolute;left:17px;right:17px;top:-12px;height:15px;border:4px solid var(--blue);border-radius:5px}.coin{position:absolute;width:22px;height:22px;border:4px solid var(--orange);border-radius:50%}.coin.one{left:11px;top:3px}.coin.two{right:10px;top:17px}.fill{position:absolute;left:0;right:0;bottom:0;height:28%;background:var(--green-soft);border-top:2px solid var(--green)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.goal-fields,.metric-grid,.milestones{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  </style>
+<!-- honed-seo-start -->
+<meta name="description" content="What is your true hourly rate after all expenses? Free side hustle profitability calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/side-hustle-profitability/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Side Hustle Profitability Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/side-hustle-profitability/","description":"What is your true hourly rate after all expenses? Free side hustle profitability calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/business.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Your side hustle has a <span class="accent">real hourly rate.</span></h1>
+</div>
+    <p>Add up what the hustle pays, what it costs, and what taxes take — then see what each hour is actually worth to you.</p>
+  </header>
+
+  <section class="workbench" aria-label="Side hustle profitability calculator">
+    <form class="panel inputs" id="hustleForm" novalidate>
+      <div class="section-head"><h2>Income &amp; time</h2><span class="step">01 / EARNINGS</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="gross">Gross side income</label><div class="money-input"><span>$</span><input id="gross" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Gross side income for the period"></div></div>
+        <div class="expense"><label for="hours">Hours worked</label><div class="money-input"><span>hrs</span><input id="hours" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Hours worked for the period"></div></div>
+      </div>
+      <div class="subtotal"><span>Gross hourly before costs</span><strong id="grossHourlySub">$0</strong></div>
+      <div class="section-head"><h2>Expenses</h2><span class="step">02 / COSTS</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="supplies">Supplies &amp; materials</label><div class="money-input"><span>$</span><input id="supplies" data-expense="Supplies & materials" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Supplies and materials cost"></div></div>
+        <div class="expense"><label for="mileage">Mileage &amp; driving</label><div class="money-input"><span>$</span><input id="mileage" data-expense="Mileage & driving" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Mileage and driving cost"></div></div>
+        <div class="expense"><label for="fees">Platform &amp; app fees</label><div class="money-input"><span>$</span><input id="fees" data-expense="Platform & app fees" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Platform and app fees"></div></div>
+        <div class="expense"><label for="otherCosts">Other costs</label><div class="money-input"><span>$</span><input id="otherCosts" data-expense="Other costs" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Other side hustle costs"></div></div>
+      </div>
+      <div class="subtotal"><span>Total expenses</span><strong id="expenseTotal">$0</strong></div>
+      <div class="section-head"><h2>Taxes &amp; comparison</h2><span class="step">03 / REALITY</span></div>
+      <div class="goal-fields">
+        <div class="field"><label for="taxRate">Estimated tax rate (%)</label><div class="money-input"><span>%</span><input id="taxRate" type="number" min="0" max="100" step="0.5" inputmode="decimal" placeholder="25" aria-label="Estimated combined tax rate percent"></div></div>
+        <div class="field"><label for="altRate">Part-time job rate ($/hr)</label><div class="money-input"><span>$</span><input id="altRate" type="number" min="0" step="0.5" inputmode="decimal" placeholder="18" aria-label="Part-time job hourly rate for comparison"></div></div>
+      </div>
+      <p class="hint">Side income usually faces both income tax and self-employment tax (about 15.3% on net earnings). 25–30% combined is a common starting estimate — use the self-employment tax estimator for a precise number.</p>
+      <button class="calculate" type="submit">Find my true hourly rate</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these side hustle results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate your plan to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><i class="coin one"></i><i class="coin two"></i><div class="jar"><i class="fill"></i></div></div><h2>Is the hustle worth the hours?</h2><p>Enter what you earn, what you spend to earn it, and how many hours it takes.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">YOUR TRUE HOURLY RATE</p><p class="target" id="target">$0/hr</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>PROFIT MARGIN</span><strong id="margin">—</strong><em id="marginNote">—</em></article>
+          <article class="metric"><span>AFTER-TAX PROFIT</span><strong id="profit">—</strong><em id="profitNote">—</em></article>
+          <article class="metric"><span>HOURS LOGGED</span><strong id="hoursOut">—</strong><em id="hoursNote">—</em></article>
+        </div>
+        <section class="panel roadmap">
+          <div class="road-head"><div><h2>True rate vs. a part-time job</h2><p>Your after-tax hourly rate measured against the alternative.</p></div><span class="coverage-badge" id="percentBadge">—</span></div>
+          <div class="track" role="img" id="progressTrack" aria-label="True hourly rate compared to part-time job rate"><div class="track-fill" id="trackFill"></div></div>
+          <div class="track-labels"><span id="trueLabel">$0/hr true rate</span><span id="altLabel">$0/hr part-time job</span></div>
+        </section>
+        <div class="plan">
+          <section class="plan-block"><h3>Profit breakdown</h3><dl><dt>Gross side income</dt><dd id="detailGross">—</dd><dt>Total expenses</dt><dd id="detailExpenses">—</dd><dt>Net revenue</dt><dd id="detailNet">—</dd><dt>Estimated taxes</dt><dd id="detailTaxes">—</dd><dt>After-tax profit</dt><dd id="detailProfit">—</dd><dt>Effective tax drag</dt><dd id="detailDrag">—</dd></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">The verdict</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download plan</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Planning note:</strong> Taxes apply to profit (income minus expenses), not to gross revenue. Self-employment income is generally subject to both income tax and self-employment tax, so a combined rate of 25–30% is a common estimate — your actual rate depends on your total income and filing situation. This tool does not subtract unpaid time such as marketing, admin, or commuting between gigs; the real hourly rate is often lower than shown.</p><p>Educational estimate, not tax advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('hustleForm'),expenseInputs=Array.prototype.slice.call(document.querySelectorAll('[data-expense]')),last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function totalExpenses(){return expenseInputs.reduce(function(sum,input){var v=parseFloat(input.value);return sum+(isFinite(v)&&v>=0?v:0)},0)}
+  function fmt(n){return money0.format(n)}
+  function fmtHr(n){return money2.format(n)+'/hr'}
+  function updateSubtotals(){var g=num('gross'),h=num('hours');document.getElementById('expenseTotal').textContent=fmt(totalExpenses());document.getElementById('grossHourlySub').textContent=h>0?fmtHr(g/h):'$0'}
+  function getData(){
+    var gross=num('gross'),hours=num('hours'),expenses=totalExpenses(),net=gross-expenses,
+        rate=Math.min(100,num('taxRate'))/100,taxes=Math.max(0,net)*rate,profit=net-taxes,
+        hourly=hours>0?profit/hours:0,hourlyBefore=hours>0?net/hours:0,
+        margin=gross>0?(net/gross*100):0,alt=num('altRate');
+    return{gross:gross,hours:hours,expenses:expenses,net:net,taxRate:rate,taxes:taxes,profit:profit,hourly:hourly,hourlyBefore:hourlyBefore,margin:margin,alt:alt}
+  }
+  function emailBody(d){var lines=['Side Hustle Profitability Calculator results','',
+    'Gross side income: '+money2.format(d.gross),
+    'Hours worked: '+d.hours,
+    'Total expenses: '+money2.format(d.expenses),
+    'Net revenue: '+money2.format(d.net),
+    'Estimated tax rate: '+(d.taxRate*100).toFixed(1)+'%',
+    'Estimated taxes: '+money2.format(d.taxes),
+    'After-tax profit: '+money2.format(d.profit),
+    'True hourly rate: '+money2.format(d.hourly)+'/hr',
+    'Profit margin: '+d.margin.toFixed(1)+'%',
+    'Part-time job rate for comparison: '+money2.format(d.alt)+'/hr','','Expenses'];
+    expenseInputs.forEach(function(input){lines.push('- '+input.dataset.expense+': '+money2.format(parseFloat(input.value)||0))});
+    lines.push('','Educational estimate, not tax advice.');return lines.join('\n')}
+  function explanationText(d){var parts=['You brought in '+fmt(d.gross)+' and spent '+fmt(d.expenses)+' to earn it, leaving '+fmt(d.net)+' in net revenue — a '+d.margin.toFixed(1)+'% profit margin. Taxes take an estimated '+fmt(d.taxes)+' (a '+(d.taxRate*100).toFixed(1)+'% rate on profit), so your after-tax profit is '+fmt(d.profit)+'.'];
+    if(d.hours>0){parts.push('Spread over '+d.hours+' hours, that is '+fmtHr(d.hourly)+' per hour after taxes (and '+fmtHr(d.hourlyBefore)+' before taxes).')}else{parts.push('Enter your hours worked to turn that profit into an hourly rate.')}
+    if(d.alt>0&&d.hours>0){if(d.hourly>=d.alt){parts.push('That beats the '+fmtHr(d.alt)+' part-time job rate you entered, so the hustle pays more per hour than the alternative.')}else{parts.push('That trails the '+fmtHr(d.alt)+' part-time job rate by '+fmtHr(d.alt-d.hourly)+' per hour — the job would pay more for the same hours.')}}
+    parts.push('This is a simplified estimate: taxes use one flat rate on net revenue, and unpaid time like marketing, admin, or travel between gigs is not subtracted.');return parts.join(' ')}
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('target').textContent=d.hours>0?fmtHr(d.hourly):'No hours yet';
+    document.getElementById('targetNote').textContent=d.hours>0
+      ?'After '+fmt(d.expenses)+' in expenses and '+fmt(d.taxes)+' in estimated taxes on '+fmt(d.gross)+' earned over '+d.hours+' hours.'
+      :'Enter your hours worked to see your true hourly rate.';
+    document.getElementById('margin').textContent=d.margin.toFixed(1)+'%';
+    document.getElementById('marginNote').textContent=d.net>=0?'of every dollar earned':'costs exceed income';
+    document.getElementById('profit').textContent=fmt(d.profit);
+    document.getElementById('profitNote').textContent='after estimated taxes';
+    document.getElementById('hoursOut').textContent=d.hours;
+    document.getElementById('hoursNote').textContent=d.hourlyBefore>0?fmtHr(d.hourlyBefore)+' before tax':'—';
+    var pct=d.alt>0?Math.min(100,Math.max(0,d.hourly/d.alt*100)):0;
+    document.getElementById('percentBadge').textContent=d.alt>0?(d.hourly>=d.alt?'Beats the job':pct.toFixed(0)+'% of job rate'):'no comparison rate';
+    document.getElementById('trackFill').style.width=(d.alt>0?pct:0)+'%';
+    document.getElementById('progressTrack').setAttribute('aria-label','True hourly rate is '+pct.toFixed(0)+' percent of the part-time job rate');
+    document.getElementById('trueLabel').textContent=fmtHr(d.hourly)+' true rate';
+    document.getElementById('altLabel').textContent=fmtHr(d.alt)+' part-time job';
+    document.getElementById('detailGross').textContent=fmt(d.gross);
+    document.getElementById('detailExpenses').textContent='−'+fmt(d.expenses);
+    document.getElementById('detailNet').textContent=fmt(d.net);
+    document.getElementById('detailTaxes').textContent='−'+fmt(d.taxes);
+    document.getElementById('detailProfit').textContent=fmt(d.profit);
+    document.getElementById('detailDrag').textContent=d.gross>0?(d.taxes/d.gross*100).toFixed(1)+'% of gross':'—';
+    var title=document.getElementById('nudgeTitle'),text=document.getElementById('nudgeText'),strong=document.getElementById('nudgeStrong'),foot=document.getElementById('nudgeFoot');
+    if(d.hours<=0){title.textContent='The verdict';text.textContent='Log your hours to get a verdict.';strong.textContent=fmt(d.profit)+' after-tax profit';foot.textContent='Without hours, there is no hourly rate to judge.'}
+    else if(d.alt<=0){title.textContent='The verdict';text.textContent='Your hustle pays';strong.textContent=fmtHr(d.hourly);foot.textContent='Enter a part-time job rate to compare it against.'}
+    else if(d.hourly>=d.alt){title.textContent='The hustle wins';text.textContent='Your true rate beats the part-time job by';strong.textContent=fmtHr(d.hourly-d.alt);foot.textContent='That is '+fmt(d.profit)+' in your pocket for '+d.hours+' hours — keep doing what works.'}
+    else{title.textContent='The job pays more';text.textContent='A part-time job at your comparison rate would beat the hustle by';strong.textContent=fmtHr(d.alt-d.hourly);foot.textContent='Options: raise prices, cut costs, or put the same hours into higher-paying work.'}
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My side hustle profitability results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.gross<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  expenseInputs.concat([document.getElementById('gross'),document.getElementById('hours'),document.getElementById('taxRate'),document.getElementById('altRate')]).forEach(function(input){input.addEventListener('input',function(){updateSubtotals();if(last&&num('gross')>0)render(getData())})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var d=getData(),rows=[['Side Hustle Profitability Plan','Value'],['Gross side income',d.gross.toFixed(2)],['Hours worked',d.hours],['Total expenses',d.expenses.toFixed(2)],['Net revenue',d.net.toFixed(2)],['Estimated tax rate',((d.taxRate*100).toFixed(1)+'%')],['Estimated taxes',d.taxes.toFixed(2)],['After-tax profit',d.profit.toFixed(2)],['True hourly rate (after tax)',d.hourly.toFixed(2)],['Hourly rate (before tax)',d.hourlyBefore.toFixed(2)],['Profit margin',(d.margin.toFixed(1)+'%')],['Part-time job rate (comparison)',d.alt.toFixed(2)],[],['Expense','Amount']];expenseInputs.forEach(function(input){rows.push([input.dataset.expense,(parseFloat(input.value)||0).toFixed(2)])});var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='side-hustle-profitability-plan.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+  updateSubtotals();
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/freelance-rate-calculator/"><span class="arr">→</span>Set your freelance rate</a></li><li><a href="/money/self-employment-tax-estimator/"><span class="arr">→</span>Estimate self-employment tax</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

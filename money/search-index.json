@@ -1933,5 +1933,141 @@
       "Vehicles"
     ],
     "kind": "tool"
+  },
+  {
+    "t": "Bonus Take-Home Calculator",
+    "d": "How much of your work bonus you actually keep.",
+    "u": "/money/bonus-take-home/",
+    "tags": [
+      "Paycheck",
+      "Career"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "S-Corp vs LLC Tax Calculator",
+    "d": "Would electing S-corp status save you taxes?",
+    "u": "/money/scorp-vs-llc/",
+    "tags": [
+      "Business"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Side Hustle Profitability Calculator",
+    "d": "Your true hourly rate after expenses and taxes.",
+    "u": "/money/side-hustle-profitability/",
+    "tags": [
+      "Business",
+      "Career"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Stock Options & RSU Value Calculator",
+    "d": "What your equity compensation is worth after taxes.",
+    "u": "/money/equity-compensation/",
+    "tags": [
+      "Career",
+      "Investing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Stay-at-Home vs Working Parent Calculator",
+    "d": "Is it cheaper for one parent to stay home?",
+    "u": "/money/stay-at-home-vs-working/",
+    "tags": [
+      "Family"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Nanny vs Daycare Cost Calculator",
+    "d": "Which childcare option costs less for your family?",
+    "u": "/money/nanny-vs-daycare/",
+    "tags": [
+      "Family"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "ACA Subsidy Estimator",
+    "d": "Can you get help paying for Marketplace health insurance?",
+    "u": "/money/aca-subsidy-estimator/",
+    "tags": [
+      "Health",
+      "Insurance"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Medical Bill Payment Plan Calculator",
+    "d": "Pay a medical bill upfront or use a payment plan?",
+    "u": "/money/medical-bill-planner/",
+    "tags": [
+      "Health"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Backdoor Roth IRA Feasibility Calculator",
+    "d": "Can you do a backdoor Roth IRA this year?",
+    "u": "/money/backdoor-roth/",
+    "tags": [
+      "Investing",
+      "Retirement",
+      "Taxes"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "FIRE Number Calculator",
+    "d": "How much money you need to retire early.",
+    "u": "/money/fire-number/",
+    "tags": [
+      "Investing",
+      "Retirement"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Crypto Tax Calculator",
+    "d": "How much tax you owe on cryptocurrency gains.",
+    "u": "/money/crypto-tax/",
+    "tags": [
+      "Taxes",
+      "Investing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "PMI Removal Timeline Calculator",
+    "d": "When you can stop paying private mortgage insurance.",
+    "u": "/money/pmi-removal/",
+    "tags": [
+      "Housing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Destination Wedding vs Local Calculator",
+    "d": "Is a destination wedding cheaper than a local one?",
+    "u": "/money/destination-wedding/",
+    "tags": [
+      "Wedding",
+      "Experience Seekers"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Cruise vs Land Vacation Calculator",
+    "d": "Is a cruise cheaper than a land-based vacation?",
+    "u": "/money/cruise-vs-land/",
+    "tags": [
+      "Experience Seekers",
+      "Travel"
+    ],
+    "kind": "tool"
   }
 ]

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Nanny vs Daycare Cost Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}.field .money-input input{text-align:left}.months-label{display:flex;align-items:center;justify-content:space-between;margin:18px 0 9px}.months-label label{font-size:.75rem;font-weight:700;color:var(--muted)}.months-label output{font:500 .75rem "DM Mono",monospace;color:var(--orange)}.months{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.month-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}.month-btn:hover{border-color:var(--blue)}.month-btn.active{background:var(--orange);border-color:var(--orange);color:#171009;font-weight:700}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.coverage-badge{flex:0 0 auto;border:1px solid var(--blue);border-radius:999px;padding:7px 10px;color:var(--blue);font:500 .67rem "DM Mono",monospace}.track{height:14px;margin:24px 0 11px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}.track-fill{height:100%;width:0;border-radius:inherit;background:var(--green);transition:width .35s ease}.track-fill.danger{background:var(--red)}.track-labels{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font:400 .65rem "DM Mono",monospace}.track-labels span:last-child{text-align:right}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.warn-box{margin-top:10px;padding:19px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.warn-box h3{margin:0 0 8px;font-size:.9rem}.warn-box p{margin:0;color:var(--muted);font-size:.76rem;line-height:1.65}.warn-box strong{color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.goal-fields,.metric-grid{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.coverage-badge{display:inline-block;margin-top:10px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track-fill{transition:none}}
+  </style>
+<!-- honed-seo-start -->
+<meta name="description" content="Is a nanny cheaper than daycare for your family? Free nanny vs daycare cost calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/nanny-vs-daycare/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Nanny vs Daycare Cost Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/nanny-vs-daycare/","description":"Is a nanny cheaper than daycare for your family? Free nanny vs daycare cost calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/family.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Nanny or daycare? <span class="accent">Run the real numbers.</span></h1>
+</div>
+    <p>Enter your children, local daycare rates, and nanny pay — get a side-by-side annual cost and the number of kids where a nanny starts winning.</p>
+  </header>
+
+  <section class="workbench" aria-label="Nanny vs daycare calculator">
+    <form class="panel inputs" id="careForm" novalidate>
+      <div class="section-head"><h2>Your family</h2><span class="step">01 / KIDS</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="kids">Number of children</label><div class="money-input"><span>#</span><input id="kids" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="2" value="2" aria-label="Number of children"></div></div>
+      </div>
+      <div class="subtotal" style="border:0;margin-top:20px;padding-top:0"><span></span><strong></strong></div>
+      <div class="section-head"><h2>Daycare</h2><span class="step">02 / DAYCARE</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="daycareMonthly">Daycare cost per child / month</label><div class="money-input"><span>$</span><input id="daycareMonthly" type="number" min="0" step="1" inputmode="decimal" placeholder="1500" value="1500" aria-label="Daycare cost per child per month"></div></div>
+        <div class="expense"><label for="daycareFees">Registration &amp; fees / year</label><div class="money-input"><span>$</span><input id="daycareFees" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Daycare registration and fees per year"></div></div>
+      </div>
+      <div class="subtotal"><span>Daycare annual total</span><strong id="daycareSubtotal">$0</strong></div>
+      <div class="section-head"><h2>Nanny</h2><span class="step">03 / NANNY</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="nannyRate">Nanny hourly rate</label><div class="money-input"><span>$</span><input id="nannyRate" type="number" min="0" step="0.25" inputmode="decimal" placeholder="22" value="22" aria-label="Nanny hourly rate"></div></div>
+        <div class="expense"><label for="nannyHours">Hours per week</label><div class="money-input"><span>#</span><input id="nannyHours" type="number" min="0" max="80" step="1" inputmode="decimal" placeholder="45" value="45" aria-label="Nanny hours per week"></div></div>
+        <div class="expense"><label for="nannyWeeks">Weeks per year</label><div class="money-input"><span>#</span><input id="nannyWeeks" type="number" min="0" max="52" step="1" inputmode="decimal" placeholder="52" value="52" aria-label="Nanny weeks per year"></div></div>
+        <div class="expense"><label for="nannyTax">Employer tax rate %</label><div class="money-input"><span>%</span><input id="nannyTax" type="number" min="0" max="30" step="0.5" inputmode="decimal" placeholder="10" value="10" aria-label="Household employer tax rate percent"></div></div>
+      </div>
+      <p class="hint">The employer tax rate covers your share of Social Security, Medicare, and unemployment insurance as a household employer — about 10% is typical; some states run higher. This is not optional if you pay a nanny $2,800 or more in a year.</p>
+      <div class="subtotal"><span>Nanny annual total (incl. taxes)</span><strong id="nannySubtotal">$0</strong></div>
+      <button class="calculate" type="submit">Compare nanny vs daycare</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these nanny vs daycare results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate your plan to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><h2>One price per kid, one price for the household.</h2><p>Daycare charges per child. A nanny costs the same whether you have one kid or three — enter your numbers and see where the math flips.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow" id="winnerEyebrow">CHEAPER OPTION</p><p class="target" id="winner">—</p><p class="target-note" id="winnerNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>DAYCARE / YEAR</span><strong id="metricDaycare">—</strong><em id="metricDaycareNote">—</em></article>
+          <article class="metric"><span>NANNY / YEAR</span><strong id="metricNanny">—</strong><em id="metricNannyNote">—</em></article>
+          <article class="metric"><span>CROSSOVER POINT</span><strong id="metricCross">—</strong><em id="metricCrossNote">—</em></article>
+        </div>
+        <section class="panel roadmap">
+          <div class="road-head"><div><h2>Cost by number of children</h2><p>Daycare scales with every kid. A nanny mostly doesn&rsquo;t.</p></div><span class="coverage-badge" id="diffBadge">—</span></div>
+          <div class="track" role="img" id="compareTrack" aria-label="Daycare versus nanny cost comparison"><div class="track-fill" id="trackFill"></div></div>
+          <div class="track-labels"><span id="trackDayLabel">Daycare $0</span><span id="trackNannyLabel">Nanny $0</span></div>
+          <div class="plan-block" style="margin-top:14px"><h3>Annual cost at each family size</h3><dl id="kidTable"></dl></div>
+        </section>
+        <div class="plan">
+          <section class="plan-block"><h3>Plan details</h3><dl><dt>Children</dt><dd id="detailKids">—</dd><dt>Daycare / child / month</dt><dd id="detailDayRate">—</dd><dt>Nanny pay rate</dt><dd id="detailNannyRate">—</dd><dt>Employer taxes</dt><dd id="detailTax">—</dd></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">The nanny tax</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="warn-box" aria-label="Nanny tax obligation">
+          <h3>Don&rsquo;t skip the nanny tax</h3>
+          <p>If you pay a household employee <strong>$2,800 or more in a year</strong> (2026 threshold), you owe the employer share of Social Security (6.2%) and Medicare (1.45%) plus federal and state unemployment insurance. That is roughly <strong>10% on top of wages</strong>. Paying cash &ldquo;off the books&rdquo; is illegal and can cost you back taxes and penalties if caught. The tax cost above is already included in the nanny total.</p>
+        </section>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download plan</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Planning note:</strong> Daycare typically charges per child, so its cost grows with family size; a nanny&rsquo;s wages are largely flat whether you have one child or three. Employer tax figures here are an estimate — actual rates vary by state. Cost is only one factor: schedules, sick-child policies, and socialization matter too.</p><p>Educational estimate, not financial advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('careForm'),last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function fmt(n){return money0.format(n)}
+  function daycareAnnual(kids,perMonth,fees){return kids*perMonth*12+fees}
+  function nannyAnnual(rate,hours,weeks,taxPct){var base=rate*hours*weeks;return{base:base,tax:base*taxPct/100,total:base*(1+taxPct/100)}}
+  function updateSubtotals(){
+    var kids=Math.max(1,Math.round(num('kids'))),perMonth=num('daycareMonthly'),fees=num('daycareFees');
+    var n=nannyAnnual(num('nannyRate'),num('nannyHours'),num('nannyWeeks'),num('nannyTax'));
+    document.getElementById('daycareSubtotal').textContent=fmt(daycareAnnual(kids,perMonth,fees));
+    document.getElementById('nannySubtotal').textContent=fmt(n.total);
+  }
+  function crossover(perMonth,fees,nannyTotal){
+    var perChild=perMonth*12;
+    if(perChild<=0||nannyTotal<=0)return null;
+    var n=(nannyTotal-fees)/perChild;
+    if(n<=1)return 1;
+    return Math.ceil(n-1e-9);
+  }
+  function getData(){
+    var kids=Math.max(1,Math.round(num('kids'))),perMonth=num('daycareMonthly'),fees=num('daycareFees');
+    var rate=num('nannyRate'),hours=num('nannyHours'),weeks=num('nannyWeeks'),taxPct=num('nannyTax');
+    var dc=daycareAnnual(kids,perMonth,fees),n=nannyAnnual(rate,hours,weeks,taxPct);
+    var cheaper=dc<n.total?'Daycare':(n.total<dc?'Nanny':'Tie');
+    var diff=Math.abs(dc-n.total);
+    var cross=crossover(perMonth,fees,n.total);
+    return{kids:kids,perMonth:perMonth,fees:fees,rate:rate,hours:hours,weeks:weeks,taxPct:taxPct,
+      daycare:dc,nanny:n,cheaper:cheaper,diff:diff,cross:cross};
+  }
+  function renderKidTable(d){
+    var rows=[];
+    for(var k=1;k<=4;k++){
+      var dc=daycareAnnual(k,d.perMonth,d.fees),win=dc<d.nanny.total?'Daycare':(d.nanny.total<dc?'Nanny':'Tie');
+      rows.push('<dt>'+k+(k===1?' child':' children')+'</dt><dd>Daycare '+fmt(dc)+' · Nanny '+fmt(d.nanny.total)+' → '+win+'</dd>');
+    }
+    document.getElementById('kidTable').innerHTML=rows.join('');
+  }
+  function emailBody(d){var lines=['Nanny vs Daycare Cost Calculator results','',
+    'Children: '+d.kids,
+    'Daycare per child per month: '+money2.format(d.perMonth),
+    'Daycare fees per year: '+money2.format(d.fees),
+    'Daycare annual total: '+money2.format(d.daycare),
+    'Nanny hourly rate: '+money2.format(d.rate),
+    'Nanny hours per week: '+d.hours,
+    'Nanny weeks per year: '+d.weeks,
+    'Employer tax rate: '+d.taxPct.toFixed(1)+'%',
+    'Nanny wages: '+money2.format(d.nanny.base),
+    'Nanny employer taxes: '+money2.format(d.nanny.tax),
+    'Nanny annual total: '+money2.format(d.nanny.total),
+    'Cheaper option: '+d.cheaper,
+    'Annual difference: '+money2.format(d.diff),
+    d.cross===null?'Crossover point: not calculable with these inputs':'Crossover point: nanny wins at '+d.cross+(d.cross===1?' child':' children'),
+    '','Note: household employer taxes (~10%) are included in the nanny total.',
+    '','Educational estimate, not financial advice.'];return lines.join('\n')}
+  function explanationText(d){var parts=['Daycare for '+d.kids+(d.kids===1?' child':' children')+' at '+fmt(d.perMonth)+' a month comes to '+fmt(d.daycare)+' a year'+(d.fees>0?' (including '+fmt(d.fees)+' in fees)':'')+'. Your nanny would earn '+fmt(d.nanny.base)+' in wages ('+fmt(d.rate)+' an hour × '+d.hours+' hours × '+d.weeks+' weeks), plus about '+fmt(d.nanny.tax)+' in employer taxes at '+d.taxPct.toFixed(1)+'%, for '+fmt(d.nanny.total)+' all-in.'];
+    if(d.cheaper==='Tie'){parts.push('The two options cost the same at your inputs.')}
+    else{parts.push(d.cheaper+' is cheaper by '+fmt(d.diff)+' a year.')}
+    if(d.cross===null){parts.push('A crossover point needs a daycare rate and a nanny cost above zero.')}
+    else if(d.cross===1){parts.push('The nanny is already cheaper even with one child.')}
+    else{parts.push('Because daycare charges per child and the nanny&rsquo;s pay is mostly flat, a nanny becomes cheaper once you reach '+d.cross+' children.')}
+    parts.push('Remember: this is cost only. Schedules, sick-child coverage, and what works for your family matter just as much.');return parts.join(' ')}
+  function render(d){last=d;document.getElementById('emptyState').classList.add('hidden');document.getElementById('resultState').classList.remove('hidden');
+    var eyebrow=document.getElementById('winnerEyebrow');
+    if(d.cheaper==='Tie'){eyebrow.textContent='ANNUAL COST';document.getElementById('winner').textContent='It\'s a tie';document.getElementById('winnerNote').textContent='Both options cost '+fmt(d.daycare)+' a year.'}
+    else{document.getElementById('winner').textContent=d.cheaper+' wins';
+      document.getElementById('winnerNote').textContent=d.cheaper+' costs '+fmt(d.diff)+' less per year for '+d.kids+(d.kids===1?' child':' children')+'.'}
+    document.getElementById('metricDaycare').textContent=fmt(d.daycare);
+    document.getElementById('metricDaycareNote').textContent=fmt(d.perMonth)+'/child/mo'+(d.fees>0?' + fees':'');
+    document.getElementById('metricNanny').textContent=fmt(d.nanny.total);
+    document.getElementById('metricNannyNote').textContent=fmt(d.nanny.base)+' wages + '+fmt(d.nanny.tax)+' tax';
+    if(d.cross===null){document.getElementById('metricCross').textContent='—';document.getElementById('metricCrossNote').textContent='needs valid rates'}
+    else{document.getElementById('metricCross').textContent=d.cross+(d.cross===1?' child':' children');document.getElementById('metricCrossNote').textContent='nanny wins at this size'}
+    var badge=document.getElementById('diffBadge');
+    badge.textContent=d.cheaper==='Tie'?'Same cost':d.cheaper+' saves '+fmt(d.diff)+'/yr';
+    var max=Math.max(d.daycare,d.nanny.total,1),pct=max?Math.min(100,d.daycare/max*100):0;
+    document.getElementById('trackFill').style.width=pct+'%';
+    document.getElementById('trackDayLabel').textContent='Daycare '+fmt(d.daycare);
+    document.getElementById('trackNannyLabel').textContent='Nanny '+fmt(d.nanny.total);
+    document.getElementById('compareTrack').setAttribute('aria-label','Daycare '+fmt(d.daycare)+' versus nanny '+fmt(d.nanny.total)+' per year');
+    renderKidTable(d);
+    document.getElementById('detailKids').textContent=d.kids;
+    document.getElementById('detailDayRate').textContent=fmt(d.perMonth)+'/mo';
+    document.getElementById('detailNannyRate').textContent=fmt(d.rate)+'/hr × '+d.hours+'h';
+    document.getElementById('detailTax').textContent=d.taxPct.toFixed(1)+'% ('+fmt(d.nanny.tax)+')';
+    document.getElementById('nudgeText').textContent='As a household employer you owe Social Security, Medicare, and unemployment taxes on nanny wages — roughly 10% on top of pay. It is already baked into the nanny total above.';
+    document.getElementById('nudgeStrong').textContent=fmt(d.nanny.tax)+' / year in employer taxes';
+    document.getElementById('nudgeFoot').textContent='Underpaying or skipping these taxes risks back taxes and penalties.';
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My nanny vs daycare results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.perMonth<=0&&d.rate<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  ['kids','daycareMonthly','daycareFees','nannyRate','nannyHours','nannyWeeks','nannyTax'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){updateSubtotals();if(last)render(getData())})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var d=getData(),rows=[['Nanny vs Daycare Plan','Value'],['Children',d.kids],['Daycare per child per month',d.perMonth.toFixed(2)],['Daycare fees per year',d.fees.toFixed(2)],['Daycare annual total',d.daycare.toFixed(2)],['Nanny hourly rate',d.rate.toFixed(2)],['Nanny hours per week',d.hours],['Nanny weeks per year',d.weeks],['Employer tax rate %',d.taxPct.toFixed(1)],['Nanny wages',d.nanny.base.toFixed(2)],['Nanny employer taxes',d.nanny.tax.toFixed(2)],['Nanny annual total',d.nanny.total.toFixed(2)],['Cheaper option',d.cheaper],['Annual difference',d.diff.toFixed(2)],['Crossover (children)',d.cross===null?'n/a':d.cross],[],['Children','Daycare','Nanny','Cheaper']];for(var k=1;k<=4;k++){var dc=daycareAnnual(k,d.perMonth,d.fees);rows.push([k,dc.toFixed(2),d.nanny.total.toFixed(2),dc<d.nanny.total?'Daycare':(d.nanny.total<dc?'Nanny':'Tie')])}var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='nanny-vs-daycare.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+  updateSubtotals();
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/childcare-cost-calculator/"><span class="arr">→</span>Total childcare cost planner</a></li><li><a href="/money/family/"><span class="arr">→</span>More family money tools</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
