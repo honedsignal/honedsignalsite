@@ -1848,5 +1848,15 @@
       "Insurance"
     ],
     "kind": "tool"
+  },
+  {
+    "t": "Experience Seeker Calculators",
+    "d": "Collect experiences, not things. Budget the adventures, trips, and bucket-list moments.",
+    "u": "/money/experience-seekers/",
+    "tags": [
+      "Experience Seekers",
+      "Travel"
+    ],
+    "kind": "section"
   }
 ]
