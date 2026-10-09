@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Nomad Domicile Cost Comparison | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}.select-wrap{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.select-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.select-wrap select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:700;appearance:none;-webkit-appearance:none}.select-wrap select option{color:#0b0e14}.field{margin-bottom:12px}.field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}input::-webkit-inner-spin-button{-webkit-appearance:none}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric.winner{border-color:var(--green);box-shadow:0 0 0 1px var(--green)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.roadmap{padding:24px;border-radius:22px;margin-top:10px}.road-head{display:flex;align-items:flex-start;justify-content:space-between;gap:22px;margin-bottom:6px}.road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}.road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}.compare{width:100%;border-collapse:collapse;margin-top:14px;font-size:.74rem}.compare th,.compare td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}.compare th:first-child,.compare td:first-child{text-align:left}.compare thead th{font-size:.66rem;font-weight:800;letter-spacing:.04em;color:var(--muted)}.compare tbody th{font-weight:700;color:var(--muted);font-size:.72rem}.compare tfoot td{font-weight:800;border-bottom:0}.compare .best{background:var(--green-soft);border-radius:6px}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.plan-block ul{margin:0;padding-left:18px;color:var(--muted);font-size:.76rem;line-height:1.7}.plan-block ul strong{color:var(--ink)}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.disclaimer{margin-top:10px;border:1px solid var(--red);border-radius:12px;background:color-mix(in srgb,var(--red) 7%,var(--surface));padding:16px 18px}.disclaimer h3{margin:0 0 8px;font-size:.82rem;color:var(--red)}.disclaimer p{margin:0;color:var(--muted);font-size:.76rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.metric-grid{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.road-head{display:block}.compare{font-size:.68rem}.compare th,.compare td{padding:8px 5px}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="Which state should you call home? Compare Texas, South Dakota, and Florida as a nomad domicile — registration, insurance, and mail costs side by side. Free calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/nomad-domicile-comparison/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Nomad Domicile Cost Comparison","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/nomad-domicile-comparison/","description":"Which state should you call home? Compare Texas, South Dakota, and Florida as a nomad domicile — registration, insurance, and mail costs side by side. Free calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/travel.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Which state should you call <span class="accent">home?</span></h1>
+</div>
+    <p>Compare Texas, South Dakota, and Florida as a nomad domicile — the real yearly costs, side by side.</p>
+  </header>
+
+  <section class="workbench" aria-label="Nomad domicile comparison calculator">
+    <form class="panel inputs" id="domForm" novalidate>
+      <div class="section-head"><h2>Your situation</h2><span class="step">01 / INPUTS</span></div>
+      <div class="field"><label for="income">Annual income</label><div class="money-input"><span>$</span><input id="income" type="number" min="0" step="1000" inputmode="decimal" placeholder="60000" aria-label="Annual income"></div></div>
+      <div class="field"><label for="vehType">Vehicle type</label><div class="select-wrap"><select id="vehType" aria-label="Vehicle type">
+        <option value="van">Van</option>
+        <option value="car">Car</option>
+        <option value="truck">Truck + trailer</option>
+        <option value="rv">RV / Motorhome</option>
+      </select></div></div>
+      <div class="field"><label for="vehValue">Vehicle value</label><div class="money-input"><span>$</span><input id="vehValue" type="number" min="0" step="1000" inputmode="decimal" placeholder="25000" aria-label="Vehicle value"></div></div>
+      <div class="field"><label for="ageBand">Age band</label><div class="select-wrap"><select id="ageBand" aria-label="Age band">
+        <option value="u25">Under 25</option>
+        <option value="2539" selected>25&ndash;39</option>
+        <option value="4064">40&ndash;64</option>
+        <option value="65p">65+</option>
+      </select></div></div>
+      <button class="calculate" type="submit">Compare the three states</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these domicile comparison results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><h2>Texas, South Dakota, or Florida?</h2><p>Enter your income, vehicle, and age band to estimate what each nomad-friendly domicile costs per year.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">LOWEST ESTIMATED ANNUAL DOMICILE COST</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid" id="metricGrid"></div>
+        <section class="panel roadmap" aria-label="State by state breakdown">
+          <div class="road-head"><div><h2>State-by-state breakdown</h2><p>2026 estimates. Actual fees vary by county, vehicle, and driving record.</p></div></div>
+          <table class="compare" id="compareTable">
+            <thead><tr><th scope="col">Cost item</th><th scope="col">Texas</th><th scope="col">South Dakota</th><th scope="col">Florida</th></tr></thead>
+            <tbody id="compareBody"></tbody>
+            <tfoot><tr><td><strong>Estimated annual total</strong></td><td id="totTX">—</td><td id="totSD">—</td><td id="totFL">—</td></tr></tfoot>
+          </table>
+        </section>
+        <div class="plan">
+          <section class="plan-block"><h3>Health insurance network notes</h3><dl id="healthNotes"></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">What the winner saves you</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="plan-block" style="margin-top:10px" aria-label="Domicile checklist"><h3>Establishing domicile: the checklist</h3>
+          <ul>
+            <li><strong>Get a driver&rsquo;s license</strong> in the new state — usually requires an in-person visit.</li>
+            <li><strong>Register and retitle your vehicle(s)</strong> there; fees and inspections vary by state.</li>
+            <li><strong>Register to vote</strong> at your new domicile address.</li>
+            <li><strong>Set up a mail-forwarding service</strong> (typically $100&ndash;$250/yr) and use that address everywhere.</li>
+            <li><strong>Update insurance, banking, and medical records</strong> to the new address.</li>
+            <li><strong>Keep proof of intent:</strong> nights spent in-state, club memberships, and where you file taxes.</li>
+            <li><strong>State quirks:</strong> South Dakota has historically required just one overnight stay to claim residency; Texas and Florida require in-person visits for license and registration.</li>
+          </ul>
+        </section>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <section class="disclaimer" aria-label="Important disclaimer"><h3>Not tax or legal advice</h3><p>These are rough 2026 estimates for comparison only — registration fees, insurance bands, and mail-service prices change and vary by county, vehicle, and driving record. Domicile is a legal and tax concept: choosing the wrong state or doing it halfway can create real tax and insurance problems. <strong>Verify everything with a tax professional before you switch.</strong> Educational estimate, not financial advice.</p></section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download comparison</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Planning note:</strong> Texas, South Dakota, and Florida all have no state income tax on wages — that is why nomads favor them. The differences show up in vehicle registration, insurance costs, and health-plan networks. Your driving record, exact vehicle, and county can move these numbers more than the state choice itself. Get real insurance quotes before deciding.</p><p>Educational estimate, not financial advice. Verify with a tax professional.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('domForm'),last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function fmt(n){return money0.format(Math.round(n))}
+  /* 2026 estimate assumptions — labeled as estimates in the UI */
+  var STATES=[
+    {code:'TX',name:'Texas',reg:85,mail:180,insMult:1.10,
+     health:'Mid-size ACA marketplace — solid plan choice in metro areas, thinner networks in rural counties.'},
+    {code:'SD',name:'South Dakota',reg:110,mail:150,insMult:0.85,
+     health:'Limited ACA insurer networks — confirm any plan covers you nationwide before you roam. Upside: some of the cheapest auto insurance in the country.'},
+    {code:'FL',name:'Florida',reg:45,mail:175,insMult:1.30,
+     health:'Strong ACA marketplace with broad plan choice — but auto insurance runs well above the national average.'}
+  ];
+  var AGE_BASE={u25:3000,'2539':2100,'4064':1850,'65p':1700};
+  var AGE_LABEL={u25:'Under 25','2539':'25–39','4064':'40–64','65p':'65+'};
+  var TYPE_MULT={van:1.0,car:1.0,truck:1.15,rv:1.5};
+  var TYPE_REG_BUMP={van:0,car:0,truck:40,rv:60};
+  var TYPE_LABEL={van:'Van',car:'Car',truck:'Truck + trailer',rv:'RV / Motorhome'};
+  function valueMult(v){if(v<30000)return 0.95;if(v<=60000)return 1.0;return 1.15}
+  function stateCost(st,income,type,value,age){
+    var insurance=AGE_BASE[age]*st.insMult*TYPE_MULT[type]*valueMult(value);
+    var reg=st.reg+TYPE_REG_BUMP[type];
+    var total=reg+insurance+st.mail; /* income tax is $0 in all three states */
+    return{state:st,incomeTax:0,reg:Math.round(reg),insurance:Math.round(insurance),mail:st.mail,total:Math.round(total)};
+  }
+  function getData(){
+    var income=num('income'),type=document.getElementById('vehType').value,
+        value=num('vehValue'),age=document.getElementById('ageBand').value;
+    var rows=STATES.map(function(st){return stateCost(st,income,type,value,age)});
+    rows.sort(function(a,b){return a.total-b.total});
+    return{income:income,type:type,typeLabel:TYPE_LABEL[type],value:value,age:age,ageLabel:AGE_LABEL[age],rows:rows,winner:rows[0],priciest:rows[2]};
+  }
+  function emailBody(d){
+    var lines=['Nomad Domicile Cost Comparison results','',
+      'Annual income: '+money2.format(d.income),
+      'Vehicle: '+d.typeLabel+' valued at '+money2.format(d.value),
+      'Age band: '+d.ageLabel,'',
+      'Estimated annual domicile cost (ranked):'];
+    d.rows.forEach(function(r,i){lines.push((i+1)+'. '+r.state.name+': '+money2.format(r.total)+' (registration '+money2.format(r.reg)+', insurance '+money2.format(r.insurance)+', mail '+money2.format(r.mail)+', income tax $0)')});
+    lines.push('','Estimated annual savings, cheapest vs priciest: '+money2.format(d.priciest.total-d.winner.total));
+    lines.push('','Rough 2026 estimates for comparison only. Domicile is a legal and tax concept — verify with a tax professional before switching. Educational estimate, not financial advice.');
+    return lines.join('\n');
+  }
+  function explanationText(d){
+    var parts=['Texas, South Dakota, and Florida all charge $0 state income tax on wages, so income tax is a tie — the comparison comes down to vehicle registration, auto insurance, and mail-forwarding costs.',
+      'Registration figures are rough 2026 estimates (Texas ~$85, South Dakota ~$110, Florida ~$45) plus a bump for larger rigs; actual fees vary by county, weight, and vehicle age.',
+      'Insurance is the biggest swing: it starts from a typical national band for your age ('+fmt(AGE_BASE[d.age])+'/yr for '+d.ageLabel+'), then adjusts for the state (Florida runs hot, South Dakota runs cheap), your vehicle type, and its value. Your driving record can move this more than any other input — get real quotes.',
+      'Mail-forwarding services that establish a domicile address typically run $100–$250 a year.',
+      d.winner.state.name+' comes out cheapest here at about '+fmt(d.winner.total)+' a year, roughly '+fmt(d.priciest.total-d.winner.total)+' less than '+d.priciest.state.name+'. But cost is only one input: health-plan networks, how often you will actually visit the state, and your comfort with each state\'s residency rules matter too.'];
+    return parts.join(' ');
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    var w=d.winner;
+    document.getElementById('target').textContent=w.state.name+' · '+fmt(w.total)+'/yr';
+    document.getElementById('targetNote').textContent='Estimated annual domicile cost for a '+d.typeLabel.toLowerCase()+' valued at '+fmt(d.value)+', age '+d.ageLabel+'. All three states charge $0 income tax — insurance and registration decide the ranking.';
+    var grid=document.getElementById('metricGrid'),labels=['CHEAPEST','RUNNER-UP','PRICIEST'];
+    grid.innerHTML=d.rows.map(function(r,i){
+      return '<article class="metric'+(i===0?' winner':'')+'"><span>'+r.state.name.toUpperCase()+' — '+labels[i]+'</span><strong>'+fmt(r.total)+'/yr</strong><em>'+(i===0?'Lowest estimated cost':fmt(r.total-d.winner.total)+' more than '+d.winner.state.name)+'</em></article>';
+    }).join('');
+    var body=document.getElementById('compareBody');
+    function row(label,fn,bestIdx){
+      return '<tr><th scope="row">'+label+'</th>'+d.rows.map(function(r,i){
+        return '<td'+(i===bestIdx?' class="best"':'')+'>'+fn(r)+'</td>';
+      }).join('')+'</tr>';
+    }
+    body.innerHTML=
+      row('State income tax',function(r){return '$0'},0)+
+      row('Vehicle registration (est.)',function(r){return fmt(r.reg)},2)+
+      row('Auto insurance (est.)',function(r){return fmt(r.insurance)},1)+
+      row('Mail forwarding (est.)',function(r){return fmt(r.mail)},2);
+    document.getElementById('totTX').textContent=fmt(d.rows.filter(function(r){return r.state.code==='TX'})[0].total);
+    document.getElementById('totSD').textContent=fmt(d.rows.filter(function(r){return r.state.code==='SD'})[0].total);
+    document.getElementById('totFL').textContent=fmt(d.rows.filter(function(r){return r.state.code==='FL'})[0].total);
+    document.getElementById('healthNotes').innerHTML=STATES.map(function(st){
+      return '<dt>'+st.name+'</dt><dd>'+st.health+'</dd>';
+    }).join('');
+    document.getElementById('nudgeTitle').textContent='What the winner saves you';
+    document.getElementById('nudgeText').textContent='Choosing '+w.state.name+' over '+d.priciest.state.name+' saves an estimated';
+    document.getElementById('nudgeStrong').textContent=fmt(d.priciest.total-w.total)+' per year';
+    document.getElementById('nudgeFoot').textContent='Most of the gap is auto insurance — get real quotes, since your driving record moves that number more than anything else.';
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('My nomad domicile comparison')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
+  }
+  function calculate(e){
+    if(e)e.preventDefault();
+    var d=getData();
+    render(d);
+  }
+  ['income','vehValue'].forEach(function(id){
+    document.getElementById(id).addEventListener('input',function(){if(last)render(getData())});
+  });
+  ['vehType','ageBand'].forEach(function(id){
+    document.getElementById(id).addEventListener('change',function(){if(last)render(getData())});
+  });
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    if(!last)return;var d=getData(),
+    rows=[['Nomad Domicile Cost Comparison','Value'],
+      ['Annual income',d.income.toFixed(2)],['Vehicle type',d.typeLabel],['Vehicle value',d.value.toFixed(2)],['Age band',d.ageLabel],[],
+      ['State','Income tax','Registration (est.)','Insurance (est.)','Mail forwarding (est.)','Annual total (est.)']];
+    d.rows.forEach(function(r){rows.push([r.state.name,r.incomeTax.toFixed(2),r.reg.toFixed(2),r.insurance.toFixed(2),r.mail.toFixed(2),r.total.toFixed(2)])});
+    rows.push([],['Winner',d.winner.state.name],['Annual savings vs priciest',(d.priciest.total-d.winner.total).toFixed(2)],
+      [],['Note','Rough 2026 estimates. Verify with a tax professional. Educational estimate, not financial advice.']);
+    var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),
+    blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='nomad-domicile-comparison.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/travel/"><span class="arr">→</span>Travel money tools</a></li><li><a href="/money/insurance/"><span class="arr">→</span>Insurance tools</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

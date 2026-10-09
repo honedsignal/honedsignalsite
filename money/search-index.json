@@ -1788,5 +1788,65 @@
       "Taxes"
     ],
     "kind": "tool"
+  },
+  {
+    "t": "Modern Nomad Calculators",
+    "d": "Life on the move, money under control. Van, RV, boat, or backpack.",
+    "u": "/money/modern-nomads/",
+    "tags": [
+      "Modern Nomads"
+    ],
+    "kind": "section"
+  },
+  {
+    "t": "Nomad vs Settled: Is It Actually Cheaper?",
+    "d": "Is van, RV, or boat life cheaper than your apartment?",
+    "u": "/money/nomad-vs-settled/",
+    "tags": [
+      "Modern Nomads",
+      "Travel"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Nomad Life Budget Calculator",
+    "d": "What will it actually cost to live on the road?",
+    "u": "/money/nomad-life-budget/",
+    "tags": [
+      "Modern Nomads",
+      "Travel"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Rig Break-Even Calculator",
+    "d": "When does the van, RV, or boat pay for itself?",
+    "u": "/money/rig-break-even/",
+    "tags": [
+      "Modern Nomads",
+      "Vehicles"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Nomad Domicile Cost Comparison",
+    "d": "Which state should you call home? TX vs SD vs FL.",
+    "u": "/money/nomad-domicile-comparison/",
+    "tags": [
+      "Modern Nomads",
+      "Taxes"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Nomad Health Insurance Estimator",
+    "d": "What will health coverage cost on the road?",
+    "u": "/money/nomad-health-insurance/",
+    "tags": [
+      "Modern Nomads",
+      "Health",
+      "Insurance"
+    ],
+    "kind": "tool"
   }
 ]

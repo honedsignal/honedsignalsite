@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Nomad vs Settled: Is It Actually Cheaper? | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.rig-toggle-label{display:flex;align-items:center;justify-content:space-between;margin:4px 0 9px}.rig-toggle-label label{font-size:.75rem;font-weight:700;color:var(--muted)}.rig-modes{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px}.rig-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}.rig-btn:hover{border-color:var(--blue)}.rig-btn.active{background:var(--orange);border-color:var(--orange);color:#171009;font-weight:700}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty-art{width:118px;height:99px;margin:0 auto 19px;position:relative}.jar{position:absolute;left:20px;right:20px;bottom:0;height:73px;border:4px solid var(--blue);border-radius:10px 10px 22px 22px;overflow:hidden}.jar:before{content:"";position:absolute;left:17px;right:17px;top:-12px;height:15px;border:4px solid var(--blue);border-radius:5px}.coin{position:absolute;width:22px;height:22px;border:4px solid var(--orange);border-radius:50%}.coin.one{left:11px;top:3px}.coin.two{right:10px;top:17px}.fill{position:absolute;left:0;right:0;bottom:0;height:28%;background:var(--green-soft);border-top:2px solid var(--green)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.expense{grid-template-columns:1fr 126px}.metric-grid{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="Is van, RV, or boat life cheaper than your apartment? Free nomad vs settled cost comparison from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/nomad-vs-settled/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Nomad vs Settled: Is It Actually Cheaper?","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/nomad-vs-settled/","description":"Is van, RV, or boat life cheaper than your apartment? Free nomad vs settled cost comparison from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/travel.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Is life on the road <span class="accent">actually cheaper?</span></h1>
+</div>
+    <p>The #1 question in every nomad community. Put your apartment costs next to your rig costs and get an honest answer.</p>
+  </header>
+
+  <section class="workbench" aria-label="Nomad vs settled calculator">
+    <form class="panel inputs" id="nomadForm" novalidate>
+      <div class="section-head"><h2>Settled life</h2><span class="step">01 / NOW</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="rent">Rent / mortgage</label><div class="money-input"><span>$</span><input id="rent" data-settled="Rent" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly rent or mortgage"></div></div>
+        <div class="expense"><label for="sUtilities">Utilities</label><div class="money-input"><span>$</span><input id="sUtilities" data-settled="Utilities" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly utilities"></div></div>
+        <div class="expense"><label for="sInsurance">Renters insurance</label><div class="money-input"><span>$</span><input id="sInsurance" data-settled="Renters insurance" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly renters insurance"></div></div>
+        <div class="expense"><label for="commuting">Commuting</label><div class="money-input"><span>$</span><input id="commuting" data-settled="Commuting" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly commuting cost"></div></div>
+      </div>
+      <div class="subtotal"><span>Settled monthly cost</span><strong id="settledTotal">$0</strong></div>
+      <div class="section-head"><h2>Nomad life</h2><span class="step">02 / ROAD</span></div>
+      <div class="rig-toggle-label"><label>How are you paying for the rig?</label></div>
+      <div class="rig-modes" role="group" aria-label="Rig ownership">
+        <button type="button" class="rig-btn active" data-rig="outright">Own it outright</button>
+        <button type="button" class="rig-btn" data-rig="financed">Financing it</button>
+      </div>
+      <div class="expense-list" id="rigOutright">
+        <div class="expense"><label for="rigPrice">Rig purchase price</label><div class="money-input"><span>$</span><input id="rigPrice" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Total rig purchase price"></div></div>
+        <div class="expense"><label for="rigYears">Years you will keep it</label><div class="money-input"><span style="padding-left:10px"></span><input id="rigYears" type="number" min="1" step="1" inputmode="decimal" placeholder="5" aria-label="Years you will keep the rig" style="text-align:right"><span style="padding-right:10px;color:var(--muted);font:500 .74rem 'DM Mono',monospace">yrs</span></div></div>
+      </div>
+      <div class="expense-list hidden" id="rigFinanced">
+        <div class="expense"><label for="rigPayment">Monthly rig payment</label><div class="money-input"><span>$</span><input id="rigPayment" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly rig payment"></div></div>
+      </div>
+      <div class="expense-list" style="margin-top:8px">
+        <div class="expense"><label for="siteFees">Site / marina / campground fees</label><div class="money-input"><span>$</span><input id="siteFees" data-nomad="Site fees" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly site or marina fees"></div></div>
+        <div class="expense"><label for="fuel">Fuel</label><div class="money-input"><span>$</span><input id="fuel" data-nomad="Fuel" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly fuel cost"></div></div>
+        <div class="expense"><label for="vInsurance">Vehicle / vessel insurance</label><div class="money-input"><span>$</span><input id="vInsurance" data-nomad="Vehicle insurance" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly vehicle or vessel insurance"></div></div>
+        <div class="expense"><label for="maintenance">Maintenance reserve</label><div class="money-input"><span>$</span><input id="maintenance" data-nomad="Maintenance" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly maintenance reserve"></div></div>
+        <div class="expense"><label for="healthIns">Health insurance</label><div class="money-input"><span>$</span><input id="healthIns" data-nomad="Health insurance" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly health insurance"></div></div>
+        <div class="expense"><label for="phoneNet">Phone &amp; internet</label><div class="money-input"><span>$</span><input id="phoneNet" data-nomad="Phone and internet" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Monthly phone and internet"></div></div>
+      </div>
+      <div class="subtotal"><span>Nomad monthly cost</span><strong id="nomadTotal">$0</strong></div>
+      <button class="calculate" type="submit">Compare the two lives</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these nomad comparison results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate the comparison to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><i class="coin one"></i><i class="coin two"></i><div class="jar"><i class="fill"></i></div></div><h2>Settle the debate.</h2><p>Enter what your settled life costs now, then price out the road life — rig, sites, fuel, insurance, and all.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">MONTHLY DIFFERENCE</p><p class="target" id="target">$0</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>SETTLED / MONTH</span><strong id="mSettled">—</strong><em id="mSettledNote">—</em></article>
+          <article class="metric"><span>NOMAD / MONTH</span><strong id="mNomad">—</strong><em id="mNomadNote">—</em></article>
+          <article class="metric"><span>ANNUAL DIFFERENCE</span><strong id="mAnnual">—</strong><em id="mAnnualNote">—</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>Side by side</h3><dl id="detailList"></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">The honest take</h3><p id="nudgeText"></p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download comparison</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Planning note:</strong> This compares monthly living costs only. It does not include the lifestyle trade-offs: no fixed address paperwork, variable income risk, or the repair bill that finds you at the worst moment. If you are financing the rig, the payment is usually the single biggest line in the nomad budget — run the numbers honestly before you sign.</p><p>Educational estimate, not financial advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('nomadForm'),
+      settledInputs=Array.prototype.slice.call(document.querySelectorAll('[data-settled]')),
+      nomadInputs=Array.prototype.slice.call(document.querySelectorAll('[data-nomad]')),
+      rigMode='outright',last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}),money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function fmt(n){return money0.format(n)}
+  function sumInputs(list){return list.reduce(function(sum,input){var v=parseFloat(input.value);return sum+(isFinite(v)&&v>=0?v:0)},0)}
+  function rigMonthly(){
+    if(rigMode==='financed'){return num('rigPayment')}
+    var price=num('rigPrice'),years=parseFloat(document.getElementById('rigYears').value);
+    if(!isFinite(years)||years<=0){years=5}
+    if(price<=0){return 0}
+    return price/(years*12);
+  }
+  function updateSubtotals(){
+    document.getElementById('settledTotal').textContent=fmt(sumInputs(settledInputs));
+    document.getElementById('nomadTotal').textContent=fmt(rigMonthly()+sumInputs(nomadInputs));
+  }
+  function getData(){
+    var settled=sumInputs(settledInputs),
+        rig=rigMonthly(),
+        nomadOps=sumInputs(nomadInputs),
+        nomad=rig+nomadOps,
+        diff=settled-nomad,
+        annual=diff*12,
+        price=num('rigPrice'),
+        breakEven=(rigMode==='outright'&&diff>0&&price>0)?price/diff:null;
+    return{settled:settled,rig:rig,nomadOps:nomadOps,nomad:nomad,diff:diff,annual:annual,price:price,breakEven:breakEven,mode:rigMode};
+  }
+  function diffLabel(d){
+    if(d.diff>0){return{headline:'You would save '+fmt(d.diff)+'/mo',note:'Nomad life comes out '+fmt(d.diff)+' a month cheaper than your settled life — about '+fmt(Math.abs(d.annual))+' a year.',good:true}}
+    if(d.diff<0){return{headline:'It costs '+fmt(Math.abs(d.diff))+'/mo more',note:'Nomad life comes out '+fmt(Math.abs(d.diff))+' a month more expensive than your settled life — about '+fmt(Math.abs(d.annual))+' a year extra.',good:false}}
+    return{headline:'About the same',note:'The two lives price out within a dollar of each other. The decision is about lifestyle, not money.',good:true};
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    var lab=diffLabel(d),target=document.getElementById('target');
+    target.textContent=lab.headline;
+    target.style.color=d.diff>=0?'var(--green)':'var(--red)';
+    document.getElementById('targetNote').textContent=lab.note;
+    document.getElementById('mSettled').textContent=fmt(d.settled);
+    document.getElementById('mSettledNote').textContent='per month now';
+    document.getElementById('mNomad').textContent=fmt(d.nomad);
+    document.getElementById('mNomadNote').textContent=d.mode==='financed'?'per month, financed rig':'per month, rig owned';
+    document.getElementById('mAnnual').textContent=(d.annual<0?'−':'+')+fmt(Math.abs(d.annual));
+    document.getElementById('mAnnualNote').textContent=d.annual>=0?'saved per year':'extra per year';
+    var rows=[['Settled monthly',fmt(d.settled)],['Nomad monthly',fmt(d.nomad)],['Rig cost in nomad budget',fmt(d.rig)+(d.mode==='outright'?' (amortized)':' (payment)')],['Nomad operating costs',fmt(d.nomadOps)],['Monthly difference',fmt(Math.abs(d.diff))+(d.diff>=0?' saved':' extra')],['Annual difference',fmt(Math.abs(d.annual))+(d.annual>=0?' saved':' extra')]];
+    document.getElementById('detailList').innerHTML=rows.map(function(r){return'<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'}).join('');
+    var title=document.getElementById('nudgeTitle'),text=document.getElementById('nudgeText'),strong=document.getElementById('nudgeStrong'),foot=document.getElementById('nudgeFoot');
+    if(d.mode==='financed'&&d.rig>0){
+      var share=d.nomad>0?Math.round(d.rig/d.nomad*100):0;
+      title.textContent='The rig payment truth';
+      text.textContent='Your rig payment is '+fmt(d.rig)+'/mo — '+share+'% of your whole nomad budget. Full-timers say it plainly: once you are financing the rig, the savings usually vanish.';
+      strong.textContent=d.diff>0?'Still ahead by '+fmt(d.diff)+'/mo':'Behind by '+fmt(Math.abs(d.diff))+'/mo';
+      foot.textContent='A paid-off rig changes this math completely.';
+    }else if(d.breakEven!==null){
+      var beM=Math.ceil(d.breakEven),beY=Math.floor(beM/12),beR=beM%12,
+          beStr=beY>0?(beY+' yr'+(beY>1?'s':'')+(beR?' '+beR+' mo':'')):(beM+' month'+(beM===1?'':'s'));
+      title.textContent='Rig break-even';
+      text.textContent='Your '+fmt(d.price)+' rig pays for itself in about';
+      strong.textContent=beStr;
+      foot.textContent='That is the purchase price divided by your monthly savings. After that, the savings are pure.';
+    }else{
+      title.textContent='No savings to break even on';
+      text.textContent='At these numbers the road costs as much or more, so there is no break-even point.';
+      strong.textContent=fmt(Math.abs(d.diff))+'/mo '+(d.diff>=0?'saved':'extra');
+      foot.textContent='Adjust the inputs — cheaper sites or a paid-off rig move the needle most.';
+    }
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('My nomad vs settled comparison')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
+  }
+  function emailBody(d){
+    var lines=['Nomad vs Settled Calculator results','',
+      'Settled monthly cost: '+money2.format(d.settled),
+      'Nomad monthly cost: '+money2.format(d.nomad)+(d.mode==='financed'?' (rig financed)':' (rig owned outright)'),
+      'Monthly difference: '+(d.diff>=0?'save ':'extra ')+money2.format(Math.abs(d.diff)),
+      'Annual difference: '+(d.annual>=0?'save ':'extra ')+money2.format(Math.abs(d.annual))];
+    if(d.breakEven!==null){lines.push('Rig break-even: about '+Math.ceil(d.breakEven)+' months')}
+    lines.push('','Settled costs');
+    settledInputs.forEach(function(input){lines.push('- '+input.dataset.settled+': '+money2.format(parseFloat(input.value)||0))});
+    lines.push('','Nomad costs');
+    lines.push('- Rig ('+d.mode+'): '+money2.format(d.rig));
+    nomadInputs.forEach(function(input){lines.push('- '+input.dataset.nomad+': '+money2.format(parseFloat(input.value)||0))});
+    lines.push('','Educational estimate, not financial advice.');
+    return lines.join('\n');
+  }
+  function explanationText(d){
+    var parts=['Your settled life costs '+fmt(d.settled)+' a month: rent or mortgage, utilities, renters insurance, and commuting added together.'];
+    if(d.mode==='financed'){parts.push('Your nomad budget uses a rig payment of '+fmt(d.rig)+' a month.')}
+    else{var years=parseFloat(document.getElementById('rigYears').value);if(!isFinite(years)||years<=0){years=5}parts.push('Your '+fmt(d.price)+' rig is spread over '+years+' years, which puts '+fmt(d.rig)+' a month of rig cost into the nomad budget.')}
+    parts.push('Add site or marina fees, fuel, vehicle insurance, a maintenance reserve, health insurance, and phone plus internet, and the road life totals '+fmt(d.nomad)+' a month.');
+    if(d.diff>0){parts.push('That is '+fmt(d.diff)+' a month — '+fmt(d.annual)+' a year — cheaper than staying put.')}
+    else if(d.diff<0){parts.push('That is '+fmt(Math.abs(d.diff))+' a month — '+fmt(Math.abs(d.annual))+' a year — more than staying put.')}
+    else{parts.push('The two come out even.')}
+    if(d.mode==='financed'&&d.rig>0){parts.push('Honest note: the rig payment is doing most of the damage here. This matches what experienced full-timers report — financing the rig is the fastest way to erase the savings.')}
+    if(d.breakEven!==null){parts.push('Your rig breaks even in about '+Math.ceil(d.breakEven)+' months: the purchase price divided by the monthly savings.')}
+    return parts.join(' ');
+  }
+  function calculate(e){
+    if(e){e.preventDefault()}
+    var d=getData();
+    if(d.settled<=0&&d.nomad<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}
+    render(d);
+  }
+  settledInputs.concat(nomadInputs).forEach(function(input){input.addEventListener('input',function(){updateSubtotals();if(last){render(getData())}})});
+  ['rigPrice','rigYears','rigPayment'].forEach(function(id){var el=document.getElementById(id);if(el){el.addEventListener('input',function(){updateSubtotals();if(last){render(getData())}})}});
+  document.querySelectorAll('.rig-btn').forEach(function(btn){btn.addEventListener('click',function(){
+    rigMode=btn.dataset.rig;
+    document.querySelectorAll('.rig-btn').forEach(function(b){b.classList.toggle('active',b===btn)});
+    document.getElementById('rigOutright').classList.toggle('hidden',rigMode!=='outright');
+    document.getElementById('rigFinanced').classList.toggle('hidden',rigMode!=='financed');
+    updateSubtotals();if(last){render(getData())}
+  })});
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    if(!last)return;
+    var d=getData(),rows=[['Nomad vs Settled','Value'],['Settled monthly',d.settled.toFixed(2)],['Nomad monthly',d.nomad.toFixed(2)],['Rig mode',d.mode],['Rig monthly cost',d.rig.toFixed(2)],['Nomad operating costs',d.nomadOps.toFixed(2)],['Monthly difference',d.diff.toFixed(2)],['Annual difference',d.annual.toFixed(2)]];
+    if(d.breakEven!==null){rows.push(['Rig break-even (months)',Math.ceil(d.breakEven)])}
+    rows.push([],['Settled cost','Amount']);
+    settledInputs.forEach(function(input){rows.push([input.dataset.settled,(parseFloat(input.value)||0).toFixed(2)])});
+    rows.push([],['Nomad cost','Amount']);
+    rows.push(['Rig ('+d.mode+')',d.rig.toFixed(2)]);
+    nomadInputs.forEach(function(input){rows.push([input.dataset.nomad,(parseFloat(input.value)||0).toFixed(2)])});
+    var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='nomad-vs-settled.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)
+  });
+  updateSubtotals();
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/nomad-life-budget-calculator/"><span class="arr">→</span>Build a full nomad budget</a></li><li><a href="/money/auto-loan-calculator/"><span class="arr">→</span>Price the rig loan first</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
