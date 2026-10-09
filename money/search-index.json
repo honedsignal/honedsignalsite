@@ -1607,5 +1607,56 @@
       "Taxes"
     ],
     "kind": "tool"
+  },
+  {
+    "t": "Real Estate Investing Money Calculators",
+    "d": "Run the numbers before you buy. Cash flow, cap rate, and whether the deal actually works.",
+    "u": "/money/real-estate-investing/",
+    "tags": [
+      "Real Estate",
+      "Investing",
+      "Housing"
+    ],
+    "kind": "section"
+  },
+  {
+    "t": "Rental Property Analyzer",
+    "d": "Cash flow, cap rate, cash-on-cash return \u2014 is this rental a deal?",
+    "u": "/money/rental-property-analyzer/",
+    "tags": [
+      "Real Estate",
+      "Investing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "House Hacking Calculator",
+    "d": "Buy a multi-unit, live in one, let tenants cover the mortgage.",
+    "u": "/money/house-hacking-calculator/",
+    "tags": [
+      "Real Estate",
+      "Housing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "BRRRR Calculator",
+    "d": "Buy, rehab, rent, refinance, repeat \u2014 recycle your capital.",
+    "u": "/money/brrrr-calculator/",
+    "tags": [
+      "Real Estate",
+      "Investing"
+    ],
+    "kind": "tool"
+  },
+  {
+    "t": "Social Security Timing Calculator",
+    "d": "Claim at 62, 67, or 70? See the break-even and lifetime total.",
+    "u": "/money/social-security-timing-calculator/",
+    "tags": [
+      "Retirement",
+      "Social Security"
+    ],
+    "kind": "tool"
   }
 ]

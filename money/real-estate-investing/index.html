@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <title>Real Estate Investing Money Calculators | Honed Money</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --page: #0b0e14;
+      --panel: #121721;
+      --panel-hover: #171e2a;
+      --ink: #f5f5f5;
+      --muted: #aab3c2;
+      --line: #2b3340;
+      --orange: #f7931a;
+      --orange-ink: #1a0d00;
+      --blue: #6490c4;
+      --neon: #39ff14;
+      --button: #f5f5f5;
+      --button-ink: #0b0e14;
+      --shadow: 0 14px 45px rgba(0, 0, 0, .22);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --page: #0f131a;
+        --panel: #171c25;
+        --panel-hover: #1c2330;
+        --ink: #f7f8fa;
+        --muted: #bac2cf;
+        --line: #333c49;
+        --button: #f5f5f5;
+        --button-ink: #0b0e14;
+        --shadow: 0 12px 35px rgba(0, 0, 0, .2);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--page); }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, transparent calc(50% - .5px), color-mix(in srgb, var(--line) 24%, transparent) 50%, transparent calc(50% + .5px)),
+        var(--page);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: max(24px, env(safe-area-inset-top)) 0 max(64px, env(safe-area-inset-bottom));
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      margin-left: -10px;
+      padding: 8px 10px;
+      color: var(--muted);
+      font-size: .94rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: color .16s ease, background .16s ease;
+    }
+
+    .back svg { width: 17px; height: 17px; }
+    .back:hover, .back:focus-visible { color: var(--ink); background: color-mix(in srgb, var(--panel) 65%, transparent); }
+    .back:focus-visible, .open:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 32px;
+      align-items: end;
+      padding: clamp(44px, 8vw, 86px) 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 16px;
+      color: var(--orange);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .77rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      font-weight: 700;
+      letter-spacing: -.065em;
+      line-height: .9;
+    }
+
+    .intro {
+      width: min(330px, 100%);
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      padding-top: 18px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      min-height: 285px;
+      flex-direction: column;
+      overflow: hidden;
+      padding: clamp(24px, 4vw, 38px);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transition: background .18s ease, border-color .18s ease;
+    }
+
+    .card:nth-child(1) { border-radius: 3px 18px 3px 3px; }
+    .card:nth-child(2) { border-radius: 18px 3px 3px 3px; }
+    .card:nth-child(3) { border-radius: 3px 3px 18px 3px; }
+    .card:nth-child(4) { border-radius: 3px 3px 3px 18px; }
+    .card:hover { background: var(--panel-hover); border-color: color-mix(in srgb, var(--blue) 65%, var(--line)); }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 38px;
+    }
+
+    .number {
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .78rem;
+      font-weight: 600;
+    }
+
+    .symbol {
+      display: grid;
+      width: 47px;
+      height: 47px;
+      place-items: center;
+      color: var(--blue);
+      border: 1px solid color-mix(in srgb, var(--blue) 58%, var(--line));
+      border-radius: 50%;
+    }
+
+    .symbol svg { width: 23px; height: 23px; }
+    .card:first-child .symbol { color: var(--orange); border-color: color-mix(in srgb, var(--orange) 58%, var(--line)); }
+    .card:nth-child(4) .symbol { color: var(--neon); border-color: color-mix(in srgb, var(--neon) 44%, var(--line)); }
+
+    h2 {
+      margin: 0;
+      max-width: 440px;
+      font-size: clamp(1.45rem, 3.4vw, 2.1rem);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+
+    .desc {
+      margin: 12px 0 28px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .open {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+      min-height: 48px;
+      margin-top: auto;
+      padding: 12px 16px;
+      background: var(--button);
+      color: var(--button-ink);
+      font-size: .92rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background .16s ease, color .16s ease;
+    }
+
+    .open svg { width: 18px; height: 18px; transition: transform .16s ease; }
+    .open:hover { background: var(--orange); color: var(--orange-ink); }
+    .open:hover svg { transform: translateX(3px); }
+
+    @media (max-width: 760px) {
+      body { background: var(--page); }
+      .shell { width: min(100% - 28px, 600px); padding-top: max(14px, env(safe-area-inset-top)); }
+      header { grid-template-columns: 1fr; gap: 22px; padding: 36px 0 26px; }
+      h1 { font-size: clamp(3.2rem, 19vw, 5rem); }
+      .intro { width: 100%; font-size: 1rem; }
+      .grid { grid-template-columns: 1fr; gap: 12px; padding-top: 12px; }
+      .card { min-height: 248px; padding: 24px; border-radius: 5px 14px 5px 5px !important; }
+      .card-top { margin-bottom: 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  
+    .hs-hero-tool{border:2px solid var(--orange);border-radius:18px;padding:28px clamp(20px,4vw,36px);margin:0 0 32px;background:linear-gradient(135deg,color-mix(in srgb,var(--orange) 8%,var(--surface)),var(--surface));position:relative}
+    .hs-hero-tool .hero-badge{display:inline-block;background:var(--orange);color:var(--orange-on);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+    .hs-hero-tool h2{margin:0 0 8px;font-size:1.5rem}
+    .hs-hero-tool p{color:var(--muted);margin:0 0 16px}
+    .hs-hero-tool .tool-link{display:inline-block;background:var(--orange);color:var(--orange-on);padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:600}
+    .hs-hero-tool .tool-link:hover{filter:brightness(1.08)}
+    .hs-next-steps{margin:0 0 8px}
+    .hs-next-steps h3{font-size:1.05rem;margin:0 0 12px;color:var(--muted);font-weight:600}
+    .hs-next-steps .step-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+    .hs-next-steps .step-link{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;font-size:.92rem;background:var(--surface)}
+    .hs-next-steps .step-link:hover{border-color:var(--orange)}
+    .hs-next-steps .step-link .cue{color:var(--orange);font-weight:600}
+    .hs-all-tools-label{font-size:.95rem;color:var(--muted);margin:0 0 12px;font-weight:600}
+
+    </style>
+
+
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="Free debt calculators from Honed Money — plain-English answers to real money questions, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/debt/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage",
+"name":"Debt Money Calculators | Honed Money","url":"https://honedsignal.com/money/debt/",
+"description":"Free debt calculators from Honed Money — plain-English answers to real money questions, no signup needed."}
+</script>
+<!-- honed-seo-end -->
+</head>
+<body>
+  <main class="shell">
+    <a class="back" href="/money/" aria-label="Back to Honed Money">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Honed Money
+    </a>
+
+    <header>
+      <div>
+        <p class="eyebrow">Money tools</p>
+        <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/housing.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Real Estate Investing</h1>
+</div>
+      </div>
+      <p class="intro">Run the numbers before you buy. Cash flow, cap rate, and whether the deal actually works.</p>
+    </header>
+
+    <section class="hs-hero-tool" aria-label="Start here">
+      <span class="hero-badge">Start here</span>
+      <h2>Rental Property Analyzer</h2>
+      <p>Cash flow, cap rate, deal or no deal?</p>
+      <a class="tool-link" href="/money/rental-property-analyzer/">Open tool →</a>
+    </section>
+
+    <div class="hs-next-steps">
+      <h3>Next steps</h3>
+      <div class="step-links">
+      <a class="step-link" href="/money/house-hacking-calculator/"><span class="cue">Live for free? →</span> House Hacking Calculator</a>
+      <a class="step-link" href="/money/brrrr-calculator/"><span class="cue">Recycle capital →</span> BRRRR Calculator</a>
+      </div>
+    </div>
+
+    <p class="hs-all-tools-label">All calculators in this section:</p>
+    <section class="grid" aria-label="Real estate investing calculators">
+      <article class="card">
+        <div class="card-top">
+          <span class="number">01</span>
+          <span class="symbol" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 22V12h6v10"/></svg>
+          </span>
+        </div>
+        <h2>Rental Property Analyzer</h2>
+        <p class="desc">Cash flow, cap rate, deal or no deal?</p>
+        <a class="open" href="/money/rental-property-analyzer/">Open tool
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <span class="number">02</span>
+          <span class="symbol" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </span>
+        </div>
+        <h2>House Hacking</h2>
+        <p class="desc">Live in one unit, rent the rest.</p>
+        <a class="open" href="/money/house-hacking-calculator/">Open tool
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <span class="number">03</span>
+          <span class="symbol" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9m8 10V5m8 14v-7"/><path d="m3 6 5-3 5 2 8-4"/></svg>
+          </span>
+        </div>
+        <h2>BRRRR Calculator</h2>
+        <p class="desc">Buy, rehab, rent, refinance, repeat.</p>
+        <a class="open" href="/money/brrrr-calculator/">Open tool
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+      </article>
+
+    </section>
+  </main>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
