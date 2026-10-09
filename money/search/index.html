@@ -25,6 +25,16 @@ h1{font-size:clamp(1.7rem,4.6vw,2.4rem);letter-spacing:-.01em}
 .res p{margin:0;color:var(--muted);font-size:.9rem}
 .res .k{font-size:.75rem;color:var(--orange);text-transform:uppercase;letter-spacing:.06em}
 footer{color:#7d8698;font-size:.8rem;text-align:center;margin-top:44px}
+/* Autocomplete suggestions */
+.ac-wrap{position:relative}
+#ac{position:absolute;top:100%;left:0;right:0;z-index:50;display:none;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-top:6px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.5)}
+#ac.open{display:block}
+.ac-item{display:block;padding:10px 16px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+.ac-item:last-child{border-bottom:0}
+.ac-item:hover,.ac-item.active{background:#1a2230}
+.ac-item.active{box-shadow:inset 3px 0 0 var(--orange)}
+.ac-t{display:block;font-weight:600;font-size:.95rem}
+.ac-d{display:block;color:var(--muted);font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 </style>
   <link rel="stylesheet" href="/money/print.css" media="print">
 </head>
@@ -33,7 +43,10 @@ footer{color:#7d8698;font-size:.8rem;text-align:center;margin-top:44px}
 <a class="back-link" href="/money/">&larr; Honed Money</a>
 <h1>Search Honed Money</h1>
 <p class="lede">Find any calculator or decision path by keyword, or filter by topic.</p>
-<input id="q" type="search" placeholder="Try &lsquo;refinance&rsquo;, &lsquo;retirement&rsquo;, &lsquo;credit score&rsquo;&hellip;" autocomplete="off" aria-label="Search Honed Money">
+<div class="ac-wrap">
+<input id="q" type="search" placeholder="Try &lsquo;refinance&rsquo;, &lsquo;retirement&rsquo;, &lsquo;credit score&rsquo;&hellip;" autocomplete="off" aria-label="Search Honed Money" role="combobox" aria-expanded="false" aria-controls="ac" aria-autocomplete="list">
+<div id="ac" role="listbox" aria-label="Search suggestions"></div>
+</div>
 <div class="tags" id="tags"><button class="tag" data-tag="Auto">Auto</button>
 <button class="tag" data-tag="Budget">Budget</button>
 <button class="tag" data-tag="Business">Business</button>
@@ -65,7 +78,7 @@ let IDX = [];
 let activeTag = "";
 const q = document.getElementById("q"), res = document.getElementById("results"),
       count = document.getElementById("count");
-fetch("/money/search-index.json").then(r => r.json()).then(d => { IDX = d; render(""); });
+fetch("/money/search-index.json").then(r => r.json()).then(d => { IDX = d; render(""); if (window.__acIndexReady) window.__acIndexReady(); });
 const params = new URLSearchParams(location.search);
 if (params.get("q")) { q.value = params.get("q"); }
 q.addEventListener("input", () => render(q.value.trim().toLowerCase()));
@@ -90,5 +103,7 @@ function render(term) {
   ).join("") || "<p class='lede'>No matches. Try fewer words or a different topic.</p>";
 }
 </script>
+<script src="/money/search/fuzzy.js"></script>
+<script src="/money/search/autocomplete.js"></script>
 </body>
 </html>
