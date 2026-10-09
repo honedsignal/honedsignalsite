@@ -486,6 +486,17 @@
     @media (max-width: 560px) {
       .question-links { grid-template-columns: 1fr; }
     }
+    .start-here { margin: 6px 0 30px; }
+    .start-here h2 {
+      margin: 0 0 4px;
+      font-size: 1.25rem;
+      letter-spacing: -.02em;
+    }
+    .start-here p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
     .topics-header p { margin-top: 10px; }
       footer { flex-direction: column; gap: 8px; }
     }
@@ -581,9 +592,23 @@
       </ul>
     </section>
 
+    <section class="start-here" aria-labelledby="start-here-title">
+      <h2 id="start-here-title">Start here</h2>
+      <p>The topics most people visit first.</p>
+      <ul class="topic-links">
+        <li><a href="/money/budget/">Budget</a></li>
+        <li><a href="/money/housing/">Housing</a></li>
+        <li><a href="/money/debt/">Debt</a></li>
+        <li><a href="/money/paycheck/">Paycheck</a></li>
+        <li><a href="/money/taxes/">Taxes</a></li>
+        <li><a href="/money/retirement/">Retirement</a></li>
+        <li><a href="/money/investing/">Investing</a></li>
+      </ul>
+    </section>
+
     <nav class="topics" aria-labelledby="topics-title">
       <div class="topics-header">
-        <h2 id="topics-title">Choose a topic</h2>
+        <h2 id="topics-title">All topics A–Z</h2>
         <p>Go straight to the tools you need.</p>
         <div class="view-toggle" role="group" aria-label="Browse view">
           <span class="view-toggle-btn view-toggle-active" aria-current="true">Topic list</span>
