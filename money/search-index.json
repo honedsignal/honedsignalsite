@@ -2989,5 +2989,75 @@
    "Decisions"
   ],
   "kind": "decision"
+ },
+ {
+  "t": "Overtime Pay Calculator",
+  "d": "Hourly or salaried non-exempt? Overtime owed at 1.5x past 40 hours, or the half-rate premium on a salary.",
+  "u": "/money/overtime-calculator/",
+  "tags": [
+   "Paycheck",
+   "Overtime"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "W-2 vs. 1099 Calculator",
+  "d": "$35/hr contractor or $27/hr employee? Effective take-home with self-employment tax and benefits.",
+  "u": "/money/w2-vs-1099-calculator/",
+  "tags": [
+   "Career",
+   "Contractor"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Staffing Agency vs. Direct Hire Calculator",
+  "d": "Agency rate vs direct offer: annual effective pay with assignment gaps and benefits.",
+  "u": "/money/staffing-vs-direct/",
+  "tags": [
+   "Career",
+   "Staffing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Seasonal Income Planner",
+  "d": "Total contract earnings and how many months of expenses they cover after the job ends.",
+  "u": "/money/seasonal-income-planner/",
+  "tags": [
+   "Paycheck",
+   "Seasonal"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Part-Time vs. Full-Time Calculator",
+  "d": "Would full-time leave you better off? Schedules compared with benefits and commuting.",
+  "u": "/money/part-time-vs-full-time/",
+  "tags": [
+   "Career",
+   "Schedule"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Contractor Payment Gap Calculator",
+  "d": "Work is done, money isn’t here. Can your cash cover the wait for net-30 invoices?",
+  "u": "/money/contractor-payment-gap/",
+  "tags": [
+   "Side Hustles",
+   "Cash Flow"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Am I Exempt From Overtime?",
+  "d": "Salary doesn’t automatically mean no overtime. Screen the three federal exemption tests.",
+  "u": "/money/exempt-status-screener/",
+  "tags": [
+   "Career",
+   "Overtime"
+  ],
+  "kind": "tool"
  }
 ]
