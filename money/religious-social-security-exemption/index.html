@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Can I Skip Social Security Taxes for Religious Reasons? | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.months-label{display:flex;align-items:center;justify-content:space-between;margin:18px 0 9px}.months-label label{font-size:.75rem;font-weight:700;color:var(--muted)}.months-label output{font:500 .75rem "DM Mono",monospace;color:var(--orange)}.months{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}.month-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}.month-btn:hover{border-color:var(--blue)}.month-btn.active{background:var(--orange);border-color:var(--orange);color:#171009;font-weight:700}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top{padding:19px}.expense{grid-template-columns:1fr 126px}.metric-grid{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="Can religious beliefs exempt you from Social Security taxes? Free Form 4029 exemption checker from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/religious-social-security-exemption/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Can I Skip Social Security Taxes for Religious Reasons?","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/religious-social-security-exemption/","description":"Can religious beliefs exempt you from Social Security taxes? Free Form 4029 exemption checker from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+  <link rel="stylesheet" href="/money/print.css" media="print">
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/taxes.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Can faith excuse you from <span class="accent">Social Security taxes?</span></h1>
+</div>
+    <p>Answer five questions drawn from IRS Form 4029 rules to see whether a religious exemption could apply to you — and what you would permanently give up.</p>
+  </header>
+
+    <section class="workbench" aria-label="Religious Social Security exemption checker">
+    <form class="panel inputs" id="taxForm" novalidate>
+      <div class="section-head"><h2>Five questions</h2><span class="step">01 / ELIGIBILITY</span></div>
+
+      <div class="months-label"><label>Are you a minister, priest, rabbi, imam, or other member of the clergy?</label><output id="clergyOutput">No</output></div>
+      <div class="months" role="group" aria-label="Member of the clergy">
+        <button type="button" class="month-btn active" data-q="clergy" data-v="no">No</button>
+        <button type="button" class="month-btn" data-q="clergy" data-v="yes">Yes</button>
+      </div>
+
+      <div class="months-label"><label>Are you a member of a recognized religious sect whose established tenets oppose insurance?</label><output id="memberOutput">No</output></div>
+      <div class="months" role="group" aria-label="Member of recognized sect">
+        <button type="button" class="month-btn active" data-q="member" data-v="no">No</button>
+        <button type="button" class="month-btn" data-q="member" data-v="yes">Yes</button>
+      </div>
+      <p class="hint">In practice this means groups like the Old Order Amish. The IRS requires the sect to have existed since 1950 with established anti-insurance teachings — personal belief alone is not enough.</p>
+
+      <div class="months-label"><label>Are you personally, conscientiously opposed to accepting Social Security, Medicare, or any other public or private insurance benefits?</label><output id="opposedOutput">No</output></div>
+      <div class="months" role="group" aria-label="Conscientiously opposed to insurance">
+        <button type="button" class="month-btn active" data-q="opposed" data-v="no">No</button>
+        <button type="button" class="month-btn" data-q="opposed" data-v="yes">Yes</button>
+      </div>
+
+      <div class="months-label"><label>Is your income from self-employment?</label><output id="selfempOutput">No</output></div>
+      <div class="months" role="group" aria-label="Self-employment income">
+        <button type="button" class="month-btn active" data-q="selfemp" data-v="no">No</button>
+        <button type="button" class="month-btn" data-q="selfemp" data-v="yes">Yes</button>
+      </div>
+      <p class="hint">The exemption covers self-employment income. Wage earners qualify only if their employer is also an approved member holding its own exemption.</p>
+
+      <div class="months-label"><label>Do you understand that approval permanently waives all your future Social Security and Medicare benefits?</label><output id="waiveOutput">No</output></div>
+      <div class="months" role="group" aria-label="Understands benefits waiver">
+        <button type="button" class="month-btn active" data-q="waive" data-v="no">No</button>
+        <button type="button" class="month-btn" data-q="waive" data-v="yes">Yes</button>
+      </div>
+
+      <button class="calculate" type="submit">Check my exemption</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these exemption results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate to activate the email and copy buttons. Your answers stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><h2>Could faith excuse the tax?</h2><p>Answer five questions based on IRS Form 4029 rules. Almost nobody qualifies — but the few who do need to understand the trade-off.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">LIKELY OUTCOME</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>FORM TO FILE</span><strong id="mForm">—</strong><em id="mFormNote">—</em></article>
+          <article class="metric"><span>INCOME TAX STILL OWED</span><strong id="mIncome">—</strong><em id="mIncomeNote">—</em></article>
+          <article class="metric"><span>CRITERIA MET</span><strong id="mMet">—</strong><em id="mMetNote">—</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>How each answer was treated</h3><dl id="breakdown"></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">Beyond Social Security</h3><p id="nudgeText">The 4029 exemption is the only true opt-out. But religion touches taxes in a few other places:</p><strong id="nudgeStrong">Worth knowing</strong><p id="nudgeFoot">Clergy housing allowance (§107) can be excluded from income tax · Ministers file Form 4361, not 4029 · Churches and ministries are tax-exempt as organizations under 501(c)(3) · Tithes and donations are deductible for the giver · Houses of worship may be exempt from property tax — rules vary by state.</p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download answers</button></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><p><strong>Tax note:</strong> The religious exemption from Social Security and Medicare taxes comes from IRC §1402(g) and is claimed on IRS Form 4029. It applies only to Social Security and Medicare taxes — federal income tax is still owed in full. The exemption takes effect only after the IRS approves the application, and approval permanently waives the applicant's future Social Security and Medicare benefits. Ministers use Form 4361 instead, under different rules. <strong>This checker screens the published criteria; it is not a determination of eligibility.</strong> Rules shown are as of 2026; tax law changes, so verify with IRS.gov or a tax professional.</p><p>Educational estimate, not tax advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('taxForm'),last=null;
+  var state={clergy:false,member:false,opposed:false,selfemp:false,waive:false};
+  var qtext={clergy:'Are you a member of the clergy?',member:'Member of a recognized sect whose tenets oppose insurance',opposed:'Conscientiously opposed to insurance benefits',selfemp:'Income is from self-employment',waive:'Understands benefits are permanently waived'};
+  function yn(b){return b?'Yes':'No'}
+  function mark(ok){return ok?'✓':'✗'}
+  document.querySelectorAll('[data-q]').forEach(function(btn){btn.addEventListener('click',function(){
+    var q=btn.dataset.q;
+    state[q]=btn.dataset.v==='yes';
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(b){b.classList.toggle('active',b===btn)});
+    document.getElementById(q+'Output').textContent=state[q]?'Yes':'No';
+    if(last)render(decide());
+  })});
+  function decide(){
+    var s=state;
+    if(s.clergy){
+      return{path:'clergy',headline:'Different form: 4361',
+        note:'Ministers do not use Form 4029. You would file Form 4361 to opt out of Social Security on ministerial earnings, certifying conscientious or religious opposition to public insurance. A different set of rules — and deadlines — applies.',
+        form:'4361',formNote:'for ministers',met:'—',metNote:'clergy path',
+        rows:[
+          {label:'Clergy status',ok:true,why:'As clergy you follow the Form 4361 path, not Form 4029.'},
+          {label:'Recognized sect membership',ok:s.member,why:s.member?'You report sect membership as well; 4361 turns on your own conscientious opposition, certified on the form.':'Form 4361 turns on your own conscientious or religious opposition, which you certify when you file.'},
+          {label:'Conscientious opposition',ok:s.opposed,why:s.opposed?'Certify this opposition on Form 4361.':'You must certify conscientious or religious opposition to public insurance on the form.'}
+        ],
+        fails:[]};
+    }
+    var checks=[
+      {label:'Recognized sect membership',ok:s.member,why:'Only members of IRS-recognized sects with established anti-insurance tenets (in practice, Old Order Amish and a few conservative Mennonite groups) can apply. Personal belief alone does not count.'},
+      {label:'Conscientious opposition',ok:s.opposed,why:'You must be conscientiously opposed to accepting Social Security, Medicare, or any other public or private insurance benefits — not simply preferring not to pay.'},
+      {label:'Self-employment income',ok:s.selfemp,why:'The exemption covers self-employment income. Wage earners qualify only if their employer is also an approved member holding its own exemption.'},
+      {label:'Benefits waiver understood',ok:s.waive,why:'Approval permanently waives your future Social Security and Medicare benefits — retirement, disability, and survivors. It is effectively irrevocable.'}
+    ];
+    var fails=checks.filter(function(c){return !c.ok});
+    if(fails.length===0){
+      return{path:'qualify',headline:'You may qualify',
+        note:'Your answers line up with the Form 4029 criteria. File Form 4029 with the IRS — the exemption starts only after it is approved, and you must keep meeting every condition.',
+        form:'4029',formNote:'exemption application',met:'4 / 4',metNote:'all criteria met',rows:checks,fails:fails};
+    }
+    return{path:'no',headline:'You likely don\u2019t qualify',
+      note:'At least one Form 4029 requirement is not met. The blocker'+(fails.length>1?'s are':' is')+' below.',
+      form:'—',formNote:'no form applies',met:(4-fails.length)+' / 4',metNote:'criteria met',rows:checks,fails:fails};
+  }
+  function row(label,value){return'<dt>'+label+'</dt><dd>'+value+'</dd>'}
+  function emailBody(d){
+    var lines=['Can I skip Social Security taxes for religious reasons? — results',''];
+    Object.keys(qtext).forEach(function(k){lines.push(qtext[k]+': '+yn(state[k]))});
+    lines.push('','Likely outcome: '+d.headline,'Form to file: '+d.form,'Income tax still owed: Yes — this exemption never touches income tax.','',
+      'Screens the published Form 4029 / 4361 criteria only; not a determination of eligibility. Rules as of 2026.',
+      '','Educational estimate, not tax advice.');
+    return lines.join('\n')
+  }
+  function explanationText(d){
+    var parts=[];
+    parts.push('Under IRC section 1402(g), members of certain religious sects may apply for exemption from Social Security and Medicare taxes using IRS Form 4029. The exemption is narrow: the sect must be recognized by the IRS and have established teachings against insurance, you must be conscientiously opposed to accepting insurance benefits, and it generally covers self-employment income. It never excuses federal income tax, which everyone owes regardless of denomination.');
+    if(d.path==='clergy'){
+      parts.push('Because you indicated clergy status, the relevant form is 4361, not 4029. Ministers, priests, rabbis, imams, and similar religious workers may file Form 4361 to opt out of Social Security on their ministerial earnings, certifying conscientious or religious opposition to public insurance. Note the trade: opting out also means no Social Security credits for that work, and clergy may still benefit from the parsonage (housing) allowance exclusion under section 107.');
+    }else if(d.path==='qualify'){
+      parts.push('Your answers match the published criteria, so filing Form 4029 is the next step. Two warnings from the fine print: the exemption takes effect only when the IRS approves your application — not when you mail it — and approval permanently waives your future Social Security and Medicare benefits, including disability and survivor benefits.');
+    }else{
+      parts.push('Your answers fall short of the criteria, and the breakdown above names the blocker'+(d.fails.length>1?'s':'')+'. The most common reason is sect membership: the IRS recognizes only a handful of groups with the required long-standing anti-insurance tenets, and personal religious belief — however sincere — does not satisfy that requirement.');
+    }
+    parts.push('Rules shown are as of 2026 and tax law changes; verify with IRS.gov or a tax professional before acting.');
+    return parts.join(' ')
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('target').textContent=d.headline;
+    document.getElementById('targetNote').textContent=d.note;
+    document.getElementById('mForm').textContent=d.form;
+    document.getElementById('mFormNote').textContent=d.formNote;
+    document.getElementById('mIncome').textContent='Yes';
+    document.getElementById('mIncomeNote').textContent='always — income tax is never excused';
+    document.getElementById('mMet').textContent=d.met;
+    document.getElementById('mMetNote').textContent=d.metNote;
+    document.getElementById('breakdown').innerHTML=d.rows.map(function(r){
+      return row(mark(r.ok)+' '+r.label, yn(r.ok));
+    }).join('');
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('Religious Social Security exemption check')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
+  }
+  function calculate(e){if(e)e.preventDefault();render(decide())}
+  form.addEventListener('submit',calculate);
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
+  });
+  function summaryText(){
+    var d=last||decide();
+    var lines=['Religious Social Security exemption check — Honed Money',''];
+    Object.keys(qtext).forEach(function(k){lines.push(qtext[k]+': '+yn(state[k]))});
+    lines.push('','Likely outcome: '+d.headline,'Form to file: '+d.form,'Income tax still owed: Yes.');
+    return lines.join('\n');
+  }
+  document.getElementById('copyResults').addEventListener('click',function(){
+    var txt=summaryText(),status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Copied.':'Copy failed — your browser blocked it.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{done(document.execCommand('copy'))}catch(e){done(false)}ta.remove()}
+  });
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    var d=last||decide();
+    var rows=[['question','answer']];
+    Object.keys(qtext).forEach(function(k){rows.push([qtext[k],yn(state[k])])});
+    rows.push(['likely outcome',d.headline],['form to file',d.form],['income tax still owed','Yes']);
+    var csv=rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+    var url=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    var a=document.createElement('a');a.href=url;a.download='religious-exemption-answers.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  });
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/self-employment-tax-estimator/"><span class="arr">→</span>Estimate your self-employment tax</a></li><li><a href="/money/quarterly-estimated-tax-calculator/"><span class="arr">→</span>Plan quarterly estimated taxes</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+<script src="/money/recent-tools.js" defer></script>
+<script src="/money/share-result.js" defer></script>
+</body>
+</html>

@@ -2689,5 +2689,14 @@
    "Budget"
   ],
   "kind": "tool"
+ },
+ {
+  "t": "Religious Social Security Exemption Checker",
+  "d": "Can faith excuse you from Social Security taxes? Check the Form 4029 rules in plain English.",
+  "u": "/money/religious-social-security-exemption/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
  }
 ]
