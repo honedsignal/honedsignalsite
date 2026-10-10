@@ -424,6 +424,16 @@
 
       'school-supply-budget-planner': {
         'budget limit': 'The most you want to spend total on school supplies.'
+      },
+      'prescription-price-finder': {
+        'drug name': 'Use the generic name if there is one (e.g. atorvastatin instead of Lipitor) — generics are usually far cheaper.',
+        'strength / dose': 'The milligrams per pill, from your prescription label. Prices are specific to the strength.',
+        'goodrx': 'GoodRx shows coupon prices at nearby pharmacies. Free to use; the coupon price usually cannot be combined with insurance.',
+        'cost plus drugs': "Mark Cuban's Cost Plus Drugs sells generics at cost plus a fixed markup, often far below retail.",
+        'amazon pharmacy': 'Amazon Pharmacy lists prices without Prime; Prime members get extra Rx discounts.',
+        'costco pharmacy': 'Costco pharmacies are open to non-members for prescriptions in most states, and their prices are often low.',
+        'local pharmacy': 'Call and ask for the cash price for your exact drug, strength, and quantity — it is often lower than the listed price.',
+        'insurance copay': 'What your plan charges per fill. If a cash or coupon price beats it, you can usually just pay cash instead.'
       }
 
     };
@@ -556,7 +566,14 @@
           wrap.appendChild(btn);
           if (el.parentNode) {
             el.parentNode.insertBefore(wrap, el.nextSibling);
-            wrap.parentNode.insertBefore(box, wrap.nextSibling);
+            // Full-width block below the field row, never inside the input row.
+            var container = null;
+            if (el.closest) { try { container = el.closest('.price-row, .field, .expense, .form-group'); } catch (e) { container = null; } }
+            if (container && container.parentNode) {
+              container.parentNode.insertBefore(box, container.nextSibling);
+            } else {
+              wrap.parentNode.insertBefore(box, wrap.nextSibling);
+            }
           }
         })(els[i]);
       }

@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Compare prescription prices across GoodRx, Cost Plus Drugs, Amazon Pharmacy, Costco, and your insurance. Free prescription price finder from Honed Proof — plain-English results, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/prescription-price-finder/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Prescription Price Finder","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/prescription-price-finder/","description":"Compare prescription drug prices across pharmacies and discount sources.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Prescription Price Finder: Compare Pharmacy Prices | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .supply-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .supply-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}
+    .supply-btn:hover{border-color:var(--blue)}
+    .supply-btn.active{background:var(--orange);border-color:var(--orange);color:var(--orange-ink);font-weight:700}
+    .price-list{display:grid;gap:8px}
+    .price-row{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px;padding:10px 0;border-top:1px solid var(--line)}
+    .price-row:first-child{border-top:0}
+    .price-row .src{font-size:.79rem;font-weight:700;color:var(--muted)}
+    .price-row .src a{display:inline-block;margin-left:6px;font-size:.7rem;font-weight:700;color:var(--teal);text-decoration:none}
+    .price-row .src a:hover{text-decoration:underline}
+    .price-row .src small{display:block;font-weight:400;font-size:.66rem;margin-top:2px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .roadmap{padding:24px;border-radius:22px;margin-top:10px}
+    .road-head{margin-bottom:14px}
+    .road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}
+    .road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}
+    .rank-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 4px;border-top:1px solid var(--line);font-size:.82rem}
+    .rank-row:first-child{border-top:0}
+    .rank-num{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 .7rem "DM Mono",monospace;background:var(--surface-2);color:var(--muted)}
+    .rank-row.best .rank-num{background:var(--teal);color:#071009}
+    .rank-row .rname{font-weight:700}
+    .rank-row .rname small{display:block;font-weight:400;color:var(--muted);font-size:.68rem}
+    .rank-row .rprice{font:500 .95rem "DM Mono",monospace;text-align:right}
+    .rank-row.best .rprice{color:var(--teal);font-weight:700}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.price-row{grid-template-columns:1fr 126px}.goal-fields{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Find the <span class="accent">cheapest price</span> for your prescription.</h1>
+      </div>
+      <p>Same drug, same dose — wildly different prices. Check the main sources, enter what you find, and see your cheapest option ranked.</p>
+    </header>
+
+    <section class="workbench" aria-label="Prescription price finder">
+      <form class="panel inputs" id="rxForm" novalidate>
+        <div class="section-head"><h2>Your prescription</h2><span class="step">01 / DRUG</span></div>
+        <div class="field">
+          <label for="drug">Drug name</label>
+          <div class="text-input"><input id="drug" type="text" placeholder="e.g. atorvastatin" autocomplete="off" /></div>
+        </div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="strength">Strength / dose</label>
+            <div class="text-input"><input id="strength" type="text" placeholder="e.g. 20 mg" autocomplete="off" /></div>
+          </div>
+          <div class="field">
+            <label>Days supply</label>
+            <div class="supply-btns" role="group" aria-label="Days supply">
+              <button type="button" class="supply-btn active" data-days="30">30-day</button>
+              <button type="button" class="supply-btn" data-days="90">90-day</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>Price checks</h2><span class="step">02 / PRICES</span></div>
+        <p class="hint" style="margin-top:0">Open each source, look up your exact drug, strength, and quantity, then enter the price. Links open in a new tab. Skip any you can't check.</p>
+        <div class="price-list">
+          <div class="price-row">
+            <div class="src">GoodRx<a href="https://www.goodrx.com" target="_blank" rel="noopener">check &rarr;</a><small>Free coupons; can't combine with insurance</small></div>
+            <div class="money-input"><span>$</span><input id="p_goodrx" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="GoodRx price" /></div>
+          </div>
+          <div class="price-row">
+            <div class="src">Cost Plus Drugs<a href="https://costplusdrugs.com" target="_blank" rel="noopener">check &rarr;</a><small>Mark Cuban's transparent pricing</small></div>
+            <div class="money-input"><span>$</span><input id="p_costplus" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Cost Plus Drugs price" /></div>
+          </div>
+          <div class="price-row">
+            <div class="src">Amazon Pharmacy<a href="https://pharmacy.amazon.com" target="_blank" rel="noopener">check &rarr;</a><small>Often competitive; Prime Rx discounts</small></div>
+            <div class="money-input"><span>$</span><input id="p_amazon" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Amazon Pharmacy price" /></div>
+          </div>
+          <div class="price-row">
+            <div class="src">Costco Pharmacy<a href="https://www.costco.com/pharmacy" target="_blank" rel="noopener">check &rarr;</a><small>No membership needed in most states</small></div>
+            <div class="money-input"><span>$</span><input id="p_costco" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Costco Pharmacy price" /></div>
+          </div>
+          <div class="price-row">
+            <div class="src">Local pharmacy<small>Call and ask for the cash price</small></div>
+            <div class="money-input"><span>$</span><input id="p_local" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Local pharmacy cash price" /></div>
+          </div>
+          <div class="price-row">
+            <div class="src">Insurance copay<small>From your plan, if you have one</small></div>
+            <div class="money-input"><span>$</span><input id="p_insurance" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Insurance copay" /></div>
+          </div>
+        </div>
+
+        <button class="calculate" type="submit">Find my cheapest price</button>
+        <p class="hint">Prices change often — this compares what you enter today. Your entries stay in this tab and are not saved.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Enter prices to compare</h2>
+            <p>Check two or three sources above, enter the prices, and see them ranked cheapest first.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow">CHEAPEST PRICE PER FILL</p>
+            <p class="target" id="bestPrice">$0</p>
+            <p class="target-note" id="bestNote"></p>
+          </section>
+          <section class="panel roadmap">
+            <div class="road-head">
+              <div><h2>Price ranking</h2><p>Cheapest first, per fill as entered.</p></div>
+            </div>
+            <div id="ranking"></div>
+          </section>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>Annual cost</h3>
+              <dl>
+                <dt>Cheapest source</dt><dd id="dBest">—</dd>
+                <dt>Annual cost (cheapest)</dt><dd id="dAnnualBest">—</dd>
+                <dt>Annual cost (priciest)</dt><dd id="dAnnualWorst">—</dd>
+                <dt>You save per year</dt><dd id="dSave" style="color:var(--teal);font-weight:700">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>Ways to pay less</h3>
+              <ul>
+                <li><strong>90-day supplies</strong> often cost less per pill than 30-day fills.</li>
+                <li><strong>Ask your doctor</strong> about therapeutic alternatives — a different drug in the same class can cost far less.</li>
+                <li><strong>Brand-name drugs:</strong> check the manufacturer's patient assistance program; many are income-based and free.</li>
+                <li><strong>Cash can beat insurance.</strong> If your copay is higher than a coupon price, you can usually pay cash instead.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About these results</button>
+            <p class="explain-copy hidden" id="explainCopy">This tool ranks the prices you enter — it does not look up live prices. Drug prices vary by pharmacy, location, and day, so re-check before you fill. Discount coupons (like GoodRx) generally cannot be combined with insurance; compare both and pay whichever is lower. Never switch, split, or stop a prescription to save money without talking to your prescriber or pharmacist. If cost forces a choice, ask your doctor about therapeutic alternatives rather than skipping doses.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var SOURCES = [
+      { id: 'p_goodrx', name: 'GoodRx', sub: 'Coupon price' },
+      { id: 'p_costplus', name: 'Cost Plus Drugs', sub: 'Transparent pricing' },
+      { id: 'p_amazon', name: 'Amazon Pharmacy', sub: 'Mail order' },
+      { id: 'p_costco', name: 'Costco Pharmacy', sub: 'No membership needed in most states' },
+      { id: 'p_local', name: 'Local pharmacy', sub: 'Cash price' },
+      { id: 'p_insurance', name: 'Insurance copay', sub: 'Your plan' }
+    ];
+    var days = 30;
+    var last = null;
+
+    function $(id) { return document.getElementById(id); }
+    function num(id) { var v = parseFloat($(id).value); return (isFinite(v) && v > 0) ? v : null; }
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+    var btns = document.querySelectorAll('.supply-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function () {
+        for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
+        this.classList.add('active');
+        days = parseInt(this.getAttribute('data-days'), 10) || 30;
+      });
+    }
+
+    function getData() {
+      var drug = $('drug').value.trim();
+      var strength = $('strength').value.trim();
+      var rows = [];
+      for (var i = 0; i < SOURCES.length; i++) {
+        var p = num(SOURCES[i].id);
+        if (p !== null) rows.push({ name: SOURCES[i].name, sub: SOURCES[i].sub, price: p });
+      }
+      rows.sort(function (a, b) { return a.price - b.price; });
+      return { drug: drug, strength: strength, rows: rows };
+    }
+
+    function annualize(price) {
+      // Normalize to yearly cost from the entered fill price.
+      return price * (days === 90 ? 4 : 12);
+    }
+
+    function render(d) {
+      last = d;
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+      var best = d.rows[0], worst = d.rows[d.rows.length - 1];
+      var label = d.drug ? d.drug + (d.strength ? ' ' + d.strength : '') : 'Your prescription';
+      $('bestPrice').textContent = fmt(best.price);
+      $('bestNote').textContent = best.name + ' — ' + label + ', per ' + days + '-day fill.';
+
+      var html = '';
+      for (var i = 0; i < d.rows.length; i++) {
+        var r = d.rows[i];
+        html += '<div class="rank-row' + (i === 0 ? ' best' : '') + '">' +
+          '<span class="rank-num">' + (i + 1) + '</span>' +
+          '<span class="rname">' + r.name + '<small>' + r.sub + '</small></span>' +
+          '<span class="rprice">' + fmt(r.price) + '</span></div>';
+      }
+      $('ranking').innerHTML = html;
+
+      var aBest = annualize(best.price), aWorst = annualize(worst.price);
+      $('dBest').textContent = best.name + ' (' + fmt(best.price) + ')';
+      $('dAnnualBest').textContent = fmt(aBest);
+      $('dAnnualWorst').textContent = fmt(aWorst);
+      $('dSave').textContent = d.rows.length > 1 ? fmt(aWorst - aBest) : '—';
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    $('rxForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = getData();
+      if (!d.rows.length) {
+        $('emptyState').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      render(d);
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

@@ -7,7 +7,12 @@
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
-    <link rel="icon" href="data:," />
+    <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+    <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -89,6 +94,12 @@
       .back-link:focus-visible {
         color: var(--text);
         text-decoration: underline;
+      }
+      .back-link .brand-mark {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        flex: none;
       }
 
       .back-link:focus-visible,
@@ -393,7 +404,7 @@
 </head>
   <body>
     <main class="page">
-      <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <span>Honed Proof</span></a>
+      <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
 
       <header class="intro">
         <div>
@@ -441,6 +452,33 @@
         </div>
       </section>
 
+      <section aria-label="Editorial standards" style="margin:26px 0">
+        <h2 style="font-size:1.35rem;margin:0 0 6px">Our editorial standards</h2>
+        <p style="color:var(--muted);max-width:640px">A grade is only as good as the process behind it. Here is how Honed Proof reviews are built, kept current, and corrected.</p>
+        <div class="tool-grid" style="margin-top:18px">
+          <article class="tool-card"><div class="card-inner">
+            <div class="card-top"><span class="step">01</span></div>
+            <h2>What counts as evidence</h2>
+            <p class="description">Systematic reviews and large randomized trials outrank small studies; small studies outrank observational data; everything outranks anecdotes, testimonials, and marketing. A claim with only the last three cannot earn better than Preliminary.</p>
+          </div></article>
+          <article class="tool-card"><div class="card-inner">
+            <div class="card-top"><span class="step">02</span></div>
+            <h2>Review dates</h2>
+            <p class="description">Every review carries its publication date and a scheduled re-check. Medicine moves; a grade from two years ago is a starting point, not a verdict. If new evidence changes a grade, the review is updated and the change is noted.</p>
+          </div></article>
+          <article class="tool-card"><div class="card-inner">
+            <div class="card-top"><span class="step">03</span></div>
+            <h2>Corrections</h2>
+            <p class="description">Errors get fixed promptly and transparently. Substantive corrections are noted on the review itself with what changed and when. If you spot an error, the contact address at the bottom of this site reaches the editor.</p>
+          </div></article>
+          <article class="tool-card"><div class="card-inner">
+            <div class="card-top"><span class="step">04</span></div>
+            <h2>Independence</h2>
+            <p class="description">No sponsored grades. No supplement sales. No payments from clinics or manufacturers influence a review. When a treatment is sold by someone with a financial stake in the claim, we say so.</p>
+          </div></article>
+        </div>
+      </section>
+
       <section aria-label="Coming soon" style="margin:26px 0">
         <h2 style="font-size:1.35rem;margin:0 0 6px">Reviews in progress</h2>
         <p style="color:var(--muted);max-width:640px">Graded reviews are being researched and verified now. Each one states what the evidence supports, what remains uncertain, what it costs \u2014 and what the safety record shows, separately from whether it works.</p>
@@ -448,7 +486,7 @@
 
       <p class="note"><span class="note-mark" aria-hidden="true"></span><span>Compare scenarios with these tools, then confirm details with your insurer, provider, or marketplace before making decisions.</span></p>
     </main>
-  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These tools provide estimates and information for general purposes only &mdash; not medical advice. Talk to a qualified health professional about your own care.</div>
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Evidence grades describe what research shows, not what you should do. Always talk to a qualified health professional about your own care, and never delay seeking care because of something you read here.</div>
 
 </body>
 </html>

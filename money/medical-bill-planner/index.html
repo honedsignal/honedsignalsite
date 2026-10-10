@@ -12,7 +12,7 @@
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#0b0e14" />
   <link rel="icon" href="data:," />
-  <title>Medical Bill Payment Plan Calculator | Honed Money</title>
+  <title>Medical Bill: Pay Upfront or Use a Payment Plan? | Honed Money</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@
 <link rel="canonical" href="https://honedsignal.com/money/medical-bill-planner/" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication",
-"name":"Medical Bill Payment Plan Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"name":"Medical Bill: Pay Upfront or Use a Payment Plan?","applicationCategory":"FinanceApplication","operatingSystem":"Any",
 "url":"https://honedsignal.com/money/medical-bill-planner/","description":"Should you pay this medical bill upfront or use a payment plan? Free medical bill payment plan calculator from Honed Money — plain-English results, no signup needed.",
 "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
@@ -149,7 +149,7 @@
     var hsaCoversUpfront=Math.min(hsa,upfront),hsaRemainder=Math.max(0,upfront-hsaCoversUpfront);
     return{bill:bill,disc:disc,months:months,apr:apr,cash:cash,hsa:hsa,upfront:upfront,discountAmt:discountAmt,monthly:monthly,planTotal:planTotal,interest:interest,diff:diff,hsaCoversUpfront:hsaCoversUpfront,hsaRemainder:hsaRemainder}
   }
-  function emailBody(d){var lines=['Medical Bill Payment Plan Calculator results','',
+  function emailBody(d){var lines=['Medical Bill: Pay Upfront or Use a Payment Plan? results','',
     'Original bill: '+money2.format(d.bill),
     'Prompt-pay discount: '+(d.disc*100).toFixed(0)+'% ('+money2.format(d.discountAmt)+')',
     'Cost if paid upfront: '+money2.format(d.upfront),

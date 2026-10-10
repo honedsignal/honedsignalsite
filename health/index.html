@@ -7,7 +7,12 @@
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
-    <link rel="icon" href="data:," />
+    <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+    <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -89,6 +94,12 @@
       .back-link:focus-visible {
         color: var(--text);
         text-decoration: underline;
+      }
+      .back-link .brand-mark {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        flex: none;
       }
 
       .back-link:focus-visible,
@@ -393,7 +404,7 @@
 </head>
   <body>
     <main class="page">
-      <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <span>Honed Proof</span></a>
+      <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
 
       <header class="intro">
         <div>
