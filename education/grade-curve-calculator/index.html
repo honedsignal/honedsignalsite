@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Education Tools | Honed Signal</title>
-  <meta name="description" content="Practical education tools for students, teachers, and parents. GPA, final exams, study plans, citations and more \u2014 free, no signup." />
-  <link rel="canonical" href="https://honedsignal.com/education/" />
+  <title>Grade Curve Calculator | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,7 +34,6 @@
 .hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.55) 100%)}
 .hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
 .hs-hero h1 .accent{color:var(--green)}
-.hs-hero.has-art{background-image:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.62) 100%),url('/education/assets/education-hub-hero.jpg');background-size:cover;background-position:center}
 @media(max-width:640px){.hs-hero{min-height:130px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
 .dyn-row{display:grid;grid-template-columns:1fr 96px 78px 34px;gap:8px;margin-bottom:8px;align-items:center}
 .dyn-row.wide{grid-template-columns:1fr 110px 110px 34px}
@@ -61,31 +58,144 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 .empty-art .doc:before{content:"";position:absolute;left:12px;right:12px;top:14px;height:6px;background:var(--line-strong);border-radius:3px;box-shadow:0 14px 0 var(--line-strong),0 28px 0 var(--line-strong),0 42px 0 var(--line-strong),0 56px 0 var(--orange)}
 .err{color:var(--red);font-size:.75rem;font-weight:700;margin-top:8px;min-height:1.1em}
 
-    .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:30px}
-    .card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:border-color .15s}
-    .card:hover{border-color:var(--orange)}
-    .card h3{margin:0 0 8px;font-size:1.05rem;letter-spacing:-.02em}
-    .card p{margin:0 0 12px;color:var(--muted);font-size:.85rem}
-    .card .go{color:var(--orange);font-weight:800;font-size:.8rem}
-    .hub-hero{padding:20px 0 6px}
-    .hub-hero h1{margin:0;font-size:clamp(2.2rem,6vw,4rem);letter-spacing:-.04em}
-    .hub-hero h1 .accent{color:var(--green)}
-    .hub-hero p{color:var(--muted);font-size:1.05rem;max-width:56ch}
   </style>
+<!-- honed-seo-start -->
+<meta name="description" content="See what your raw test score becomes under common grading curves — flat addition, square-root, or linear scale. Free education tool with plain-English results, no signup." />
+<link rel="canonical" href="https://honedsignal.com/education/grade-curve-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Grade Curve Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/grade-curve-calculator/","description":"See what your raw test score becomes under common grading curves — flat addition, square-root, or linear scale. Free education tool with plain-English results, no signup.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
 </head>
 <body>
-<a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
+<a class="money-home" href="/education/" aria-label="Back to Education">← Education</a>
 <main class="page">
-  <header class="hub-hero">
-    <div class="hs-hero has-art" role="img" aria-label="A diverse group of students studying together in a sunlit library"><div class="shade"></div><h1 class="hs-hero-title">Tools for <span class="accent">learning</span>.</h1></div>
-    <p>Practical tools for students, teachers, and parents. Grades, study plans, reading time, citations \u2014 free, private, no account needed.</p>
+  <header class="intro">
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">What would your score be <span class="accent">after the curve?</span></h1></div>
+    <p>Enter your raw score and the curve method your teacher uses. The calculator applies the curve, caps it at 100, and shows your letter grade.</p>
   </header>
-  <section class="tool-grid" aria-label="Education tools">
-    <a class="card" href="/education/gpa-calculator/"><h3>GPA Calculator</h3><p>Your GPA on the 4.0 scale from course grades and credits.</p><span class="go">Open tool →</span></a><a class="card" href="/education/final-exam-calculator/"><h3>Final Exam Grade Calculator</h3><p>The exact final-exam score you need to hit your target grade.</p><span class="go">Open tool →</span></a><a class="card" href="/education/weighted-grade-calculator/"><h3>Weighted Grade Calculator</h3><p>Combine exams, homework, and projects the way your syllabus does.</p><span class="go">Open tool →</span></a><a class="card" href="/education/can-i-still-pass/"><h3>Can I Still Pass? Calculator</h3><p>An honest answer about what your remaining work needs to average.</p><span class="go">Open tool →</span></a><a class="card" href="/education/study-planner/"><h3>Study Planner</h3><p>A day-by-day study plan built around your exam dates.</p><span class="go">Open tool →</span></a><a class="card" href="/education/absence-tracker/"><h3>Class Absence Calculator</h3><p>How many classes you can still miss before it costs you.</p><span class="go">Open tool →</span></a><a class="card" href="/education/reading-time-estimator/"><h3>Reading Time Calculator</h3><p>How long that assigned reading will actually take.</p><span class="go">Open tool →</span></a><a class="card" href="/education/word-counter/"><h3>Essay Word Counter</h3><p>Live word, character, sentence, and paragraph counts. Private.</p><span class="go">Open tool →</span></a><a class="card" href="/education/citation-formatter/"><h3>Citation Generator (APA/MLA)</h3><p>Formatted citations ready to copy, in APA or MLA style.</p><span class="go">Open tool →</span></a><a class="card" href="/education/gradebook-calculator/"><h3>Gradebook Calculator</h3><p>Scores to percentages, letter grades, and class average.</p><span class="go">Open tool →</span></a><a class="card" href="/education/assignment-tracker/"><h3>Assignment Deadline Tracker</h3><p>Never miss a due date. Track assignments, flag what is overdue, and watch your completion climb.</p><span class="go">Open tool →</span></a><a class="card" href="/education/grade-curve-calculator/"><h3>Grade Curve Calculator</h3><p>See what a flat, square-root, or linear curve does to your test score.</p><span class="go">Open tool →</span></a><a class="card" href="/education/can-i-still-get-an-a/"><h3>Can I Still Get an A? Calculator</h3><p>The exact average you need on remaining work to finish with an A.</p><span class="go">Open tool →</span></a><a class="card" href="/education/college-cost-comparison/"><h3>College Cost Comparison</h3><p>Compare up to three colleges by true net cost, ranked cheapest first.</p><span class="go">Open tool →</span></a><a class="card" href="/education/class-curve-grader/"><h3>Class Curve Grader</h3><p>For teachers: curve a whole class of scores at once, with before-and-after stats.</p><span class="go">Open tool →</span></a><a class="card" href="/education/random-student-picker/"><h3>Random Student Picker</h3><p>For teachers: pick a student at random, with no repeats until everyone has had a turn.</p><span class="go">Open tool →</span></a><a class="card" href="/education/school-supply-budget-planner/"><h3>School Supply Budget Planner</h3><p>For parents: plan back-to-school spending and stay under budget.</p><span class="go">Open tool →</span></a>
+  <section class="workbench" aria-label="Grade Curve Calculator">
+    <form class="panel inputs" id="calcForm" novalidate>
+      <div class="section-head"><h2>Your score</h2><span class="step">01 / CURVE</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="rawScore">Your raw score</label><div class="money-input"><span>&nbsp;</span><input id="rawScore" type="number" min="0" max="100" step="any" placeholder="70" aria-label="Your raw score"></div></div>
+        <div class="expense"><label for="curveMethod">Curve method</label><div class="money-input"><select id="curveMethod" aria-label="Curve method">
+          <option value="flat">Flat addition to target average</option>
+          <option value="sqrt">Square-root curve</option>
+          <option value="linear">Linear scale (top score = 100)</option>
+        </select></div></div>
+        <div id="flatFields">
+          <div class="expense"><label for="classAvg">Class average</label><div class="money-input"><span>&nbsp;</span><input id="classAvg" type="number" min="0" max="100" step="any" placeholder="68" aria-label="Class average"></div></div>
+          <div class="expense"><label for="targetAvg">Target average</label><div class="money-input"><span>&nbsp;</span><input id="targetAvg" type="number" min="0" max="100" step="any" value="75" aria-label="Target average"></div></div>
+        </div>
+        <div id="linearFields" class="hidden">
+          <div class="expense"><label for="topScore">Top score in class</label><div class="money-input"><span>&nbsp;</span><input id="topScore" type="number" min="0" step="any" placeholder="92" aria-label="Top score in class"></div></div>
+        </div>
+      </div>
+      <p class="err" id="formErr"></p>
+      <button class="calculate" type="submit">Curve my score</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Run the numbers.</h2><p>Enter your raw score and the curve method, then calculate to see your curved score and letter grade.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">YOUR CURVED SCORE</p><p class="target" id="curvedOut">0.0</p><p class="target-note" id="curvedNote"></p></section>
+        <div class="metric-grid"><article class="metric"><span>RAW SCORE</span><strong id="mRaw">—</strong><em id="mRawNote">—</em></article><article class="metric"><span>LETTER GRADE</span><strong id="mLetter">—</strong><em id="mLetterNote">—</em></article><article class="metric"><span>ADJUSTMENT</span><strong id="mAdj">—</strong><em>points added</em></article></div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download breakdown</button></div>
+      </div>
+    </div>
   </section>
-  <footer class="footer"><p><strong>About these tools:</strong> Every tool runs entirely on your device. Nothing you type is uploaded or saved.</p><p>Educational estimates, not academic advice.</p></footer>
+  <footer class="footer"><p><strong>Assumptions:</strong> Curved scores are capped at 100. Letter grades use the standard 10-point scale (A = 90 or higher through F = below 60). Your teacher's curve may work differently — ask them.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('calcForm'),last=null,errEl=document.getElementById('formErr');
+  var rawEl=document.getElementById('rawScore'),methodEl=document.getElementById('curveMethod'),
+      avgEl=document.getElementById('classAvg'),targetEl=document.getElementById('targetAvg'),topEl=document.getElementById('topScore'),
+      flatFields=document.getElementById('flatFields'),linearFields=document.getElementById('linearFields');
+  var METHODS={flat:'Flat addition to target average',sqrt:'Square-root curve',linear:'Linear scale (top score = 100)'};
+  function letter(s){if(s>=90)return 'A';if(s>=80)return 'B';if(s>=70)return 'C';if(s>=60)return 'D';return 'F'}
+  function clamp(s){return Math.min(100,Math.max(0,s))}
+  function fail(msg){errEl.textContent=msg;return null}
+  function toggleFields(){var m=methodEl.value;flatFields.classList.toggle('hidden',m!=='flat');linearFields.classList.toggle('hidden',m!=='linear')}
+  methodEl.addEventListener('change',toggleFields);toggleFields();
+  function getData(){
+    errEl.textContent='';
+    var raw=parseFloat(rawEl.value);
+    if(!(raw>=0&&raw<=100))return fail('Enter your raw score between 0 and 100.');
+    var m=methodEl.value,curved,adj;
+    if(m==='flat'){
+      var avg=parseFloat(avgEl.value),tgt=parseFloat(targetEl.value);
+      if(!(avg>=0&&avg<=100))return fail('Enter the class average between 0 and 100.');
+      if(!(tgt>=0&&tgt<=100))return fail('Enter the target average between 0 and 100.');
+      var shift=tgt-avg;
+      curved=clamp(raw+shift);
+      adj=(shift>=0?'+':'')+shift.toFixed(1);
+    }else if(m==='sqrt'){
+      curved=Math.min(100,10*Math.sqrt(raw));
+      adj=(curved-raw>=0?'+':'')+(curved-raw).toFixed(1);
+    }else{
+      var top=parseFloat(topEl.value);
+      if(!(top>0))return fail('Enter the top score in the class \u2014 it can\u2019t be zero.');
+      curved=Math.min(100,raw/top*100);
+      adj=(curved-raw>=0?'+':'')+(curved-raw).toFixed(1);
+    }
+    return{raw:raw,method:METHODS[m],curved:curved,letter:letter(curved),adj:adj};
+  }
+  function emailBody(d){
+    var lines=['Grade Curve Calculator results','','Raw score: '+d.raw.toFixed(1),'Method: '+d.method,
+      'Curved score: '+d.curved.toFixed(1)+' ('+d.letter+')','Adjustment: '+d.adj+' points','','Educational estimate, not academic advice.'];
+    return lines.join('\n');
+  }
+  function csvRows(d){
+    return[['Grade Curve Calculator','Raw score','Curved score','Letter grade','Adjustment (points)'],
+      [d.method,d.raw.toFixed(1),d.curved.toFixed(1),d.letter,d.adj]];
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('curvedOut').textContent=d.curved.toFixed(1);
+    document.getElementById('curvedNote').textContent='Your raw score of '+d.raw.toFixed(1)+' becomes '+d.curved.toFixed(1)+' under the '+d.method.toLowerCase()+'. That is a letter grade of '+d.letter+'.';
+    document.getElementById('mRaw').textContent=d.raw.toFixed(1);
+    document.getElementById('mRawNote').textContent='before the curve';
+    document.getElementById('mLetter').textContent=d.letter;
+    document.getElementById('mLetterNote').textContent=d.letter+' = '+({A:'90\u2013100',B:'80\u201389',C:'70\u201379',D:'60\u201369',F:'below 60'})[d.letter];
+    document.getElementById('mAdj').textContent=d.adj;
+    document.getElementById('explainCopy').textContent='Flat addition to target average: the teacher adds the same number of points to every score so the class average lands on the target (class average 68, target 75 = +7.0 for everyone). It is the most common curve — simple and even across the board. Square-root curve: your score is square-rooted, then multiplied by 10 (64 becomes 80.0). It lifts low scores a lot while barely moving high ones — teachers use it when an exam was unexpectedly hard. Linear scale: the top score in the class becomes 100 and everything else is scaled proportionally (85 with a top score of 92 becomes 92.4). It keeps everyone\u2019s rank order exactly the same — nobody passes anyone else.';
+    enableActions(d);
+  }
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(!d)return;render(d)}
+  form.addEventListener('submit',calculate);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    if(!last)return;
+    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()||last),settled=false;
+    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
+    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  });
+  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
+  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var rows=csvRows(getData()||last);var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='grade-curve-calculator.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
+  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My curved grade result')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+})();
+</script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/can-i-still-pass/"><span class="arr">→</span>Can you still pass this class?</a></li><li><a href="/education/can-i-still-get-an-a/"><span class="arr">→</span>Can you still get an A?</a></li><li><a href="/education/gpa-calculator/"><span class="arr">→</span>Calculate your GPA on the 4.0 scale</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only. They are not academic, financial, or legal advice. Grading scales and school policies vary &mdash; verify requirements with your school. Your entries stay on your device. Use at your own risk.</div>
+<script src="/money/recent-tools.js" defer></script>
+<script src="/money/input-hints.js" defer></script>
+<script src="/money/share-result.js" defer></script>
 </body>
 </html>

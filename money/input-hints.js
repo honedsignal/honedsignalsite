@@ -383,6 +383,47 @@
         'billing cycle': 'How often you are charged — most subscriptions are monthly.',
         'next renewal': 'The next date you will be charged. Find it in the app or your email receipts.',
         'manage / cancel link': 'Optional — paste the cancellation page so future-you can quit in one tap.'
+      },
+      'assignment-tracker': {
+        'assignment title': 'The name of the assignment, as it appears in your syllabus or LMS.',
+        'course': 'Which class this is for — helps when sorting a busy week.',
+        'due date': 'The date it is due. Leave blank if there is no fixed date.',
+        'priority': 'High priority items sort first when you sort by priority.'
+      },
+
+      'grade-curve-calculator': {
+        'your raw score': 'Your score before any curve, out of 100.',
+        'curve method': 'Square-root curves help low scores most; flat additions help everyone equally.',
+        'class average': 'The average raw score for the whole class.',
+        'target average': 'The average your teacher is curving toward — often around 75.',
+        'top score in class': 'The highest raw score anyone earned; the linear method scales this to 100.'
+      },
+
+      'can-i-still-get-an-a': {
+        'current grade': 'Your average on completed work so far.',
+        'weight still remaining': 'What percent of the total grade is not yet graded.',
+        'target grade': 'The letter grade you are aiming for.'
+      },
+
+      'college-cost-comparison': {
+        'tuition': 'Annual tuition and fees before any aid.',
+        'room': 'Annual housing and meal plan cost.',
+        'books': 'Estimated annual cost of books and supplies.',
+        'scholarships': 'Grants and scholarships you do not have to pay back — not loans.'
+      },
+
+      'class-curve-grader': {
+        'scores, one per line': 'Paste one raw score per line. Non-numeric lines are skipped.',
+        'target average': 'The class average you are curving toward.',
+        'points to add': 'Flat number of points added to every score, capped at 100.'
+      },
+
+      'random-student-picker': {
+        'names': 'One student name per line. Blank lines are ignored.'
+      },
+
+      'school-supply-budget-planner': {
+        'budget limit': 'The most you want to spend total on school supplies.'
       }
 
     };
