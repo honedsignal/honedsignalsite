@@ -61,7 +61,7 @@
     .sub-due.over{color:var(--red)}
     .sub-due.soon{color:var(--orange)}
     .sub-actions{grid-column:1/-1;display:flex;gap:8px}
-    .mini-btn{border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:6px 12px;font-size:.68rem;font-weight:800;cursor:pointer}
+    .mini-btn{border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:6px 12px;font-size:.68rem;font-weight:800;cursor:pointer;min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
     .mini-btn:hover{border-color:var(--blue);color:var(--blue)}
     .mini-btn.danger:hover{border-color:var(--red);color:var(--red)}
     .sort-row{display:flex;align-items:center;gap:8px;margin:16px 0 4px;flex-wrap:wrap}
@@ -188,7 +188,7 @@
         <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
         <section class="explanation" aria-label="How the math works">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
-          <p class="explain-copy hidden" id="explainCopy">Monthly totals are normalized so different billing cycles can be compared fairly: weekly amounts are multiplied by 52 then divided by 12, monthly counts as-is, quarterly is divided by 3, and yearly is divided by 12. So a $15.99/month plan counts as $191.88/year, while a $99/year plan counts as $8.25/month. &ldquo;Days until renewal&rdquo; counts calendar days from today; anything past its date is flagged overdue. The priciest subscription is ranked by annualized cost, not by a single payment.</p>
+          <p class="explain-copy hidden" id="explainCopy">Monthly totals are normalized so different billing cycles can be compared fairly: weekly amounts are multiplied by 52 then divided by 12, monthly counts as-is, quarterly is divided by 3, and yearly is divided by 12. So a $15.99/month plan counts as $191.88/year, while a $99/year plan counts as $8.25/month. &ldquo;Days until renewal&rdquo; counts calendar days from today; anything past its date is flagged overdue. The priciest subscription is ranked by annualized cost, not by a single payment. Renewal dates never roll forward on their own — if a date passes, the entry is flagged overdue until you update it with the next charge date.</p>
         </section>
       </div>
     </div>
@@ -283,6 +283,7 @@
     var name=val('subName').trim(),amount=parseFloat(val('subAmount'));
     if(!name){showErr('Give the subscription a name.');$('subName').focus();return}
     if(!(amount>0)){showErr('Enter an amount greater than $0.');$('subAmount').focus();return}
+    if(amount>100000000){showErr('That amount looks too large — please check it and try again.');$('subAmount').focus();return}
     clearErr();
     var list=load();
     var entry={id:editId||uid(),name:name,amount:Math.round(amount*100)/100,
@@ -340,7 +341,7 @@
     var list=load();
     var rows=[['Subscription Tracker','Amount','Cycle','Annualized','Category','Next renewal','Manage link']];
     list.forEach(function(s){rows.push([s.name,s.amount.toFixed(2),s.cycle,annualOf(s).toFixed(2),s.category||'',s.renewal||'',s.url||''])});
-    return rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+    return rows.map(function(r){return r.map(function(v){var s=String(v);if(/^[=+\-@\t\r]/.test(s))s="'"+s;return'"'+s.replace(/"/g,'""')+'"'}).join(',')}).join('\n');
   }
   $('downloadCsv').addEventListener('click',function(){
     if(!load().length)return;
