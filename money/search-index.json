@@ -2833,5 +2833,92 @@
    "Is It Taxable"
   ],
   "kind": "tool"
+ },
+ {
+  "t": "Variable-Hours Paycheck Calculator",
+  "d": "Hours change every week — your paycheck math should too: overtime, differentials, holiday pay, unpaid breaks, take-home.",
+  "u": "/money/variable-hours-paycheck/",
+  "tags": [
+   "Paycheck",
+   "Hourly work"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Paycheck Error Checker",
+  "d": "Compare what you worked against your pay stub. Flags missing hours, short overtime, gross-pay gaps.",
+  "u": "/money/paycheck-error-checker/",
+  "tags": [
+   "Paycheck",
+   "Hourly work"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Tipped Worker Income Calculator",
+  "d": "Base wages plus cash and card tips minus tip-outs, with a take-home estimate.",
+  "u": "/money/tipped-income-calculator/",
+  "tags": [
+   "Paycheck",
+   "Hourly work"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Missed Shift Cost Calculator",
+  "d": "Lost wages, shrunken paycheck, and the shortfall against your bills.",
+  "u": "/money/missed-shift-calculator/",
+  "tags": [
+   "Paycheck",
+   "Hourly work"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Benefits & Deductions Paycheck Comparison",
+  "d": "Take-home before and after health, dental, and retirement deductions.",
+  "u": "/money/benefits-paycheck-comparison/",
+  "tags": [
+   "Paycheck",
+   "Benefits"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Bill Shortfall Calculator",
+  "d": "Cash on hand plus incoming money vs. every bill due. Will you make it to payday?",
+  "u": "/money/bill-shortfall-calculator/",
+  "tags": [
+   "Budget",
+   "Bills"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Journey — How much will I actually make?",
+  "d": "Hourly worker paycheck journey: variable hours, overtime, take-home pay, withholding, and stub verification.",
+  "u": "/money/decide/understand-my-paycheck/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "Journey — Will I make it to payday?",
+  "d": "Hourly worker survival journey: bill shortfalls, missed shifts, irregular-income budgeting, and the emergency buffer.",
+  "u": "/money/decide/make-it-to-payday/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
+ },
+ {
+  "t": "Journey — How do I protect my income?",
+  "d": "Hourly worker protection journey: paycheck verification, pricing disruptions, the emergency buffer, and benefits vs. pay.",
+  "u": "/money/decide/protect-my-income/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
  }
 ]
