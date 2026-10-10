@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Weighted Grade Calculator | Honed Signal</title>
+  <title>School-Year Expense Planner | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -60,10 +60,10 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 
   </style>
 <!-- honed-seo-start -->
-<meta name="description" content="Compute your final course grade from weighted categories like exams, homework, and projects. Free education tool, plain-English results." />
-<link rel="canonical" href="https://honedsignal.com/education/weighted-grade-calculator/" />
+<meta name="description" content="The true cost of a school year per child: tuition, supplies, clothing, lunch, transport, activities, and tech in one total." />
+<link rel="canonical" href="https://honedsignal.com/education/school-year-expense-planner/" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Weighted Grade Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/weighted-grade-calculator/","description":"Compute your final course grade from weighted categories like exams, homework, and projects. Free education tool, plain-English results.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"School-Year Expense Planner","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/school-year-expense-planner/","description":"The true cost of a school year per child: tuition, supplies, clothing, lunch, transport, activities, and tech in one total.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
@@ -72,105 +72,140 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 <a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
   <header class="intro">
-    <div class="hs-hero has-art" role="img" aria-label="A student balancing glowing assignment orbs on a scale in a classroom" style="background-image:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.62) 100%),url('/education/assets/weighted-grade-calculator.jpg');background-size:cover;background-position:center"><div class="shade"></div><h1 class="hs-hero-title">What is your <span class="accent">weighted</span> grade?</h1></div>
-    <p>For courses where categories carry different weights. <strong>Just adding up points with no categories?</strong> The <a href="/education/gradebook-calculator/" style="color:#f7931a">Gradebook Calculator</a> is the simpler one.</p>
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">It’s never <span class="accent">just tuition.</span></h1></div>
+    <p>Add every school-year cost category — see the true yearly total per child and the monthly number to save.</p>
   </header>
-  <section class="workbench" aria-label="Weighted Grade Calculator">
+    <section class="workbench" aria-label="School year expense planner">
     <form class="panel inputs" id="calcForm" novalidate>
-      <div class="section-head"><h2>Grading categories</h2><span class="step">01 / WEIGHTS</span></div><div id="rows"></div><button type="button" class="action" id="addRow">+ Add category</button><p class="err" id="formErr"></p>
-      <button class="calculate" type="submit">Calculate my grade</button>
+      <div class="section-head"><h2>School-year costs</h2><span class="step">01 / EXPENSES</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="tuition">Tuition &amp; fees ($/yr)</label><div class="money-input"><span>$</span><input id="tuition" type="number" min="0" step="50" inputmode="decimal" placeholder="0" aria-label="Tuition and fees per year"></div></div>
+        <div class="expense"><label for="supplies">Supplies &amp; books ($/yr)</label><div class="money-input"><span>$</span><input id="supplies" type="number" min="0" step="25" inputmode="decimal" placeholder="0" aria-label="Supplies and books per year"></div></div>
+        <div class="expense"><label for="clothing">Clothing ($/yr)</label><div class="money-input"><span>$</span><input id="clothing" type="number" min="0" step="25" inputmode="decimal" placeholder="0" aria-label="Clothing per year"></div></div>
+        <div class="expense"><label for="lunch">Lunch ($/yr)</label><div class="money-input"><span>$</span><input id="lunch" type="number" min="0" step="25" inputmode="decimal" placeholder="0" aria-label="Lunch per year"></div></div>
+        <div class="expense"><label for="transport">Transport ($/yr)</label><div class="money-input"><span>$</span><input id="transport" type="number" min="0" step="25" inputmode="decimal" placeholder="0" aria-label="Transport per year"></div></div>
+        <div class="expense"><label for="activities">Activities &amp; sports ($/yr)</label><div class="money-input"><span>$</span><input id="activities" type="number" min="0" step="25" inputmode="decimal" placeholder="0" aria-label="Activities and sports per year"></div></div>
+        <div class="expense"><label for="tech">Tech &amp; devices ($/yr)</label><div class="money-input"><span>$</span><input id="tech" type="number" min="0" step="25" inputmode="decimal" placeholder="0" aria-label="Tech per year"></div></div>
+        <div class="expense"><label for="other">Other ($/yr)</label><div class="money-input"><span>$</span><input id="other" type="number" min="0" step="25" inputmode="decimal" placeholder="0" aria-label="Other per year"></div></div>
+      </div>
+      <p class="hint">Per child. The small categories are where budgets quietly die.</p>
+      <button class="calculate" type="submit">What does the year really cost?</button>
       <div class="result-actions">
-        <a class="action result-action" id="emailResults" aria-label="Email these results" aria-disabled="true">Email my results</a>
+        <a class="action result-action" id="emailResults" aria-label="Email this school-year budget" aria-disabled="true">Email my results</a>
         <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
       </div>
       <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
       <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
     </form>
+
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Run the numbers.</h2><p>Add your grading categories and weights, then calculate.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>It\u2019s never just tuition.</h2><p>Add every category \u2014 see the true yearly total per child.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">WEIGHTED GRADE</p><p class="target" id="gradeOut">0%</p><p class="target-note" id="gradeNote"></p></section><div class="metric-grid"><article class="metric"><span>WEIGHTS TOTAL</span><strong id="mW">—</strong><em id="mWNote">—</em></article><article class="metric"><span>HEAVIEST CATEGORY</span><strong id="mTop">—</strong><em id="mTopNote">—</em></article><article class="metric"><span>METHOD</span><strong>Weighted</strong><em>by syllabus</em></article></div>
+        <section class="result-top"><p class="eyebrow">TOTAL PER CHILD, PER YEAR</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>PER MONTH</span><strong id="mMo">\u2014</strong><em id="mMoNote">\u2014</em></article>
+          <article class="metric"><span>BIGGEST CATEGORY</span><strong id="mBig">\u2014</strong><em id="mBigNote">\u2014</em></article>
+          <article class="metric"><span>HIDDEN COSTS</span><strong id="mHid">\u2014</strong><em id="mHidNote">\u2014</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>Where it goes</h3><dl id="breakdown"></dl></section>
+          <section class="plan-block nudge"><h3>Budget monthly, not yearly</h3><p>A $3,600 school year is $300 a month. Monthly numbers get saved; yearly numbers get wished for.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
           <p class="explain-copy hidden" id="explainCopy"></p>
         </section>
-        <div class="actions"><button class="action" id="downloadCsv" type="button">Download breakdown</button></div>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download budget</button></div>
       </div>
     </div>
   </section>
-  <footer class="footer"><p><strong>Assumptions:</strong> Grades are percentages; weights are shares of the total grade and should add to 100%. Empty grades count as zero.</p><p>Educational estimate, not academic or professional advice.</p></footer>
+
+  <footer class="footer"><p><strong>Assumptions:</strong> Estimates only. Costs vary widely by school, district, and grade level.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
 <script>
 (function(){'use strict';
-  var form=document.getElementById('calcForm'),last=null,rowsBox=document.getElementById('rows');
-  function addRow(){var row=document.createElement('div');row.className='dyn-row wide';
-    row.innerHTML='<input type="text" placeholder="Category (e.g. Exams)" aria-label="Category name">'
-    +'<input type="number" min="0" step="0.1" placeholder="Weight %" aria-label="Weight percent">'
-    +'<input type="number" min="0" step="0.1" placeholder="Grade %" aria-label="Grade percent">'
-    +'<button type="button" class="dyn-rm" aria-label="Remove row">\u00d7</button>';
-    row.querySelector('.dyn-rm').addEventListener('click',function(){row.remove();if(last)calculate()});
-    rowsBox.appendChild(row);return row}
-  document.getElementById('addRow').addEventListener('click',function(){addRow()});
-  addRow();addRow();addRow();
+  var form=document.getElementById('calcForm'),last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+  var CATS=[['tuition','Tuition & fees'],['supplies','Supplies & books'],['clothing','Clothing'],['lunch','Lunch'],['transport','Transport'],['activities','Activities & sports'],['tech','Tech & devices'],['other','Other']];
+  function num(id,def){var v=parseFloat(document.getElementById(id).value);if(!isFinite(v)||v<0)v=def||0;return v}
+  function fmt(n){return money0.format(n)}
+  function row(l,v){return'<dt>'+l+'</dt><dd>'+v+'</dd>'}
   function getData(){
-    var rows=rowsBox.querySelectorAll('.dyn-row'),items=[],wSum=0,pts=0;
-    for(var i=0;i<rows.length;i++){
-      var ins=rows[i].querySelectorAll('input');
-      var w=parseFloat(ins[1].value),g=parseFloat(ins[2].value);
-      if(!(w>0))continue;
-      var name=ins[0].value.trim()||('Category '+(items.length+1));
-      items.push({name:name,w:w,g:isFinite(g)&&g>=0?g:0});wSum+=w;pts+=w*(isFinite(g)&&g>=0?g:0);
-    }
-    return{items:items,wSum:wSum,grade:wSum>0?pts/wSum:0};
+    var items=CATS.map(function(c){return{name:c[1],v:num(c[0])}});
+    var total=items.reduce(function(a,i){return a+i.v},0);
+    var big=items.reduce(function(a,i){return i.v>a.v?i:a},items[0]);
+    var hidden=total-items[0].v;
+    return{items:items,total:total,monthly:total/12,big:big,hidden:hidden};
   }
   function emailBody(d){
-    var lines=['Weighted Grade Calculator results',''];
-    for(var i=0;i<d.items.length;i++){lines.push(d.items[i].name+': '+d.items[i].g+'% x '+d.items[i].w+'% weight')}
-    lines.push('','Weights total: '+d.wSum.toFixed(1)+'%','Final grade: '+d.grade.toFixed(1)+'%','','Educational estimate, not academic advice.');
+    var lines=['School-year expenses \u2014 results',''];
+    d.items.forEach(function(i){lines.push(i.name+': '+money0.format(i.v))});
+    lines.push('','Total per child: '+money0.format(d.total),'Per month: '+money0.format(d.monthly),'','Educational estimate, not financial advice.');
     return lines.join('\n');
   }
-  function csvRows(d){
-    var r=[['Weighted Grade Calculator','Weight %','Grade %']];
-    for(var i=0;i<d.items.length;i++){r.push([d.items[i].name,d.items[i].w,d.items[i].g])}
-    r.push(['Final grade',d.grade.toFixed(2),'']);return r;
+  function explanationText(d){
+    var parts=[];
+    parts.push('The true cost is '+fmt(d.total)+' per child per year \u2014 '+fmt(d.monthly)+' a month. The biggest line is '+d.big.name.toLowerCase()+' at '+fmt(d.big.v)+'.');
+    parts.push('The "hidden" costs \u2014 everything beyond tuition and fees \u2014 total '+fmt(d.hidden)+'. That\u2019s the part families forget to budget, and it\u2019s often a third or more of the real number.');
+    parts.push('Multiply by your number of school-age kids for the household total, then divide by 12 and treat it as a monthly bill. Sinking a little each month beats scrambling every August.');
+    return parts.join(' ');
   }
   function render(d){
     last=d;
     document.getElementById('emptyState').classList.add('hidden');
     document.getElementById('resultState').classList.remove('hidden');
-    document.getElementById('gradeOut').textContent=d.grade.toFixed(1)+'%';
-    var note=d.wSum>100?'Warning: your weights add up to '+d.wSum.toFixed(1)+'% \u2014 over 100%. Check your syllabus.':(d.wSum<100?'Note: weights add up to '+d.wSum.toFixed(1)+'%, so this is the grade on the entered portion only.':'Weights add up to exactly 100%. This is your final course grade.');
-    document.getElementById('gradeNote').textContent=note;
-    document.getElementById('mW').textContent=d.wSum.toFixed(1)+'%';
-    document.getElementById('mWNote').textContent=d.items.length+' categor'+(d.items.length===1?'y':'ies');
-    var top=null;for(var i=0;i<d.items.length;i++){if(!top||d.items[i].w>top.w)top=d.items[i]}
-    document.getElementById('mTop').textContent=top?top.name:'\u2014';
-    document.getElementById('mTopNote').textContent=top?('heaviest at '+top.w+'%'):'';
-    document.getElementById('explainCopy').textContent='Each category contributes its grade multiplied by its weight, divided by the total weight: for example, 85% on exams worth 50% contributes 42.5 points. Weights should total 100% for a true final grade.';
-    enableActions(d);
+    document.getElementById('target').textContent=fmt(d.total);
+    document.getElementById('targetNote').textContent='per child, per school year \u2014 all categories combined.';
+    document.getElementById('mMo').textContent=fmt(d.monthly);
+    document.getElementById('mMoNote').textContent='per month';
+    document.getElementById('mBig').textContent=d.big.name;
+    document.getElementById('mBigNote').textContent=fmt(d.big.v);
+    document.getElementById('mHid').textContent=fmt(d.hidden);
+    document.getElementById('mHidNote').textContent='beyond tuition & fees';
+    document.getElementById('breakdown').innerHTML=d.items.map(function(i){return row(i.name,fmt(i.v))}).join('')+row('Total',fmt(d.total));
+    document.getElementById('nudgeStrong').textContent=fmt(d.monthly)+'/mo';
+    document.getElementById('nudgeFoot').textContent='the monthly savings target.';
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('School-year expense plan')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
   }
-  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.items.length===0){document.getElementById('formErr').textContent='Add at least one category with a weight.';return}document.getElementById('formErr').textContent='';render(d)}
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.total<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  CATS.forEach(function(c){document.getElementById(c[0]).addEventListener('input',function(){if(last)render(getData())})});
   form.addEventListener('submit',calculate);
-  rowsBox.addEventListener('input',function(){if(last)calculate()});
-
-  document.getElementById('copyResults').addEventListener('click',function(){
-    if(!last)return;
-    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
-    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
-    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
   });
-  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
-  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var rows=csvRows(getData());var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='weighted-grade-calculator.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My weighted grade')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
-
+  function summaryText(){
+    var d=last||getData();
+    return['School-year costs \u2014 Honed Signal','','Total: '+money0.format(d.total),'Per month: '+money0.format(d.monthly)].join('\n');
+  }
+  document.getElementById('copyResults').addEventListener('click',function(){
+    var txt=summaryText(),status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Copied.':'Copy failed \u2014 your browser blocked it.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{done(document.execCommand('copy'))}catch(e){done(false)}ta.remove()}
+  });
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    var d=last||getData();
+    var rows=[['category','annual']];
+    d.items.forEach(function(i){rows.push([i.name,+i.v.toFixed(2)])});
+    rows.push(['total',+d.total.toFixed(2)]);
+    var csv=rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+    var url=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    var a=document.createElement('a');a.href=url;a.download='school-year-expenses.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  });
 })();
 
 </script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
-<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/final-exam-calculator/"><span class="arr">→</span>What do you need on the final?</a></li><li><a href="/education/gpa-calculator/"><span class="arr">→</span>Calculate your overall GPA</a></li><li><a href="/education/gradebook-calculator/"><span class="arr">→</span>Grade a whole class</a></li></ul></div>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/school-supply-budget-planner/"><span class="arr">→</span>School Supply Budget Planner</a></li><li><a href="/education/financial-aid-award-comparison/"><span class="arr">→</span>Financial Aid Award Comparison</a></li></ul></div>
 <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only. They are not academic, financial, or legal advice. Grading scales and school policies vary &mdash; verify requirements with your school. Your entries stay on your device. Use at your own risk.</div>
 <script src="/money/recent-tools.js" defer></script>
 <script src="/money/input-hints.js" defer></script>

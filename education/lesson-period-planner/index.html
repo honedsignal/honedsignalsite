@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Weighted Grade Calculator | Honed Signal</title>
+  <title>Lesson Period Planner | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -60,10 +60,10 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 
   </style>
 <!-- honed-seo-start -->
-<meta name="description" content="Compute your final course grade from weighted categories like exams, homework, and projects. Free education tool, plain-English results." />
-<link rel="canonical" href="https://honedsignal.com/education/weighted-grade-calculator/" />
+<meta name="description" content="Fit the lesson to the period: divide class minutes across activities and see the timeline — and what doesn’t fit." />
+<link rel="canonical" href="https://honedsignal.com/education/lesson-period-planner/" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Weighted Grade Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/weighted-grade-calculator/","description":"Compute your final course grade from weighted categories like exams, homework, and projects. Free education tool, plain-English results.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Lesson Period Planner","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/lesson-period-planner/","description":"Fit the lesson to the period: divide class minutes across activities and see the timeline — and what doesn’t fit.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
@@ -72,105 +72,144 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 <a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
   <header class="intro">
-    <div class="hs-hero has-art" role="img" aria-label="A student balancing glowing assignment orbs on a scale in a classroom" style="background-image:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.62) 100%),url('/education/assets/weighted-grade-calculator.jpg');background-size:cover;background-position:center"><div class="shade"></div><h1 class="hs-hero-title">What is your <span class="accent">weighted</span> grade?</h1></div>
-    <p>For courses where categories carry different weights. <strong>Just adding up points with no categories?</strong> The <a href="/education/gradebook-calculator/" style="color:#f7931a">Gradebook Calculator</a> is the simpler one.</p>
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Fifty minutes, <span class="accent">zero waste.</span></h1></div>
+    <p>Enter the period length and each activity block — see the minute-by-minute timeline and what overflows.</p>
   </header>
-  <section class="workbench" aria-label="Weighted Grade Calculator">
+    <section class="workbench" aria-label="Lesson period planner">
     <form class="panel inputs" id="calcForm" novalidate>
-      <div class="section-head"><h2>Grading categories</h2><span class="step">01 / WEIGHTS</span></div><div id="rows"></div><button type="button" class="action" id="addRow">+ Add category</button><p class="err" id="formErr"></p>
-      <button class="calculate" type="submit">Calculate my grade</button>
+      <div class="section-head"><h2>The period</h2><span class="step">01 / TIME</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="length">Class length (minutes)</label><div class="money-input"><span>min</span><input id="length" type="number" min="0" step="5" inputmode="numeric" placeholder="50" aria-label="Class length in minutes"></div></div>
+      </div>
+      <div class="section-head" style="margin-top:22px"><h2>Activities</h2><span class="step">02 / PLAN</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="a1">Warm-up / bell ringer (min)</label><div class="money-input"><span>min</span><input id="a1" type="number" min="0" step="1" inputmode="numeric" placeholder="5" aria-label="Warm-up minutes"></div></div>
+        <div class="expense"><label for="a2">Direct instruction (min)</label><div class="money-input"><span>min</span><input id="a2" type="number" min="0" step="1" inputmode="numeric" placeholder="15" aria-label="Direct instruction minutes"></div></div>
+        <div class="expense"><label for="a3">Guided / group practice (min)</label><div class="money-input"><span>min</span><input id="a3" type="number" min="0" step="1" inputmode="numeric" placeholder="20" aria-label="Practice minutes"></div></div>
+        <div class="expense"><label for="a4">Exit ticket / wrap-up (min)</label><div class="money-input"><span>min</span><input id="a4" type="number" min="0" step="1" inputmode="numeric" placeholder="5" aria-label="Wrap-up minutes"></div></div>
+      </div>
+      <p class="hint">Transitions eat 2\u20133 minutes each \u2014 budget them or they budget you.</p>
+      <button class="calculate" type="submit">Does the lesson fit?</button>
       <div class="result-actions">
-        <a class="action result-action" id="emailResults" aria-label="Email these results" aria-disabled="true">Email my results</a>
+        <a class="action result-action" id="emailResults" aria-label="Email this lesson plan" aria-disabled="true">Email my results</a>
         <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
       </div>
       <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
       <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
     </form>
+
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Run the numbers.</h2><p>Add your grading categories and weights, then calculate.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Fifty minutes, zero waste.</h2><p>Enter the period length and each block \u2014 see the timeline and what doesn\u2019t fit.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">WEIGHTED GRADE</p><p class="target" id="gradeOut">0%</p><p class="target-note" id="gradeNote"></p></section><div class="metric-grid"><article class="metric"><span>WEIGHTS TOTAL</span><strong id="mW">—</strong><em id="mWNote">—</em></article><article class="metric"><span>HEAVIEST CATEGORY</span><strong id="mTop">—</strong><em id="mTopNote">—</em></article><article class="metric"><span>METHOD</span><strong>Weighted</strong><em>by syllabus</em></article></div>
+        <section class="result-top"><p class="eyebrow">TIME REMAINING</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>PLANNED</span><strong id="mPlan">\u2014</strong><em id="mPlanNote">\u2014</em></article>
+          <article class="metric"><span>PERIOD</span><strong id="mLen">\u2014</strong><em id="mLenNote">\u2014</em></article>
+          <article class="metric"><span>STATUS</span><strong id="mStatus">\u2014</strong><em id="mStatusNote">\u2014</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>Timeline</h3><dl id="breakdown"></dl></section>
+          <section class="plan-block nudge"><h3>Protect the practice</h3><p>When a lesson runs long, instruction expands and practice shrinks. Plan practice first \u2014 it\u2019s where learning happens.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
           <p class="explain-copy hidden" id="explainCopy"></p>
         </section>
-        <div class="actions"><button class="action" id="downloadCsv" type="button">Download breakdown</button></div>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download timeline</button></div>
       </div>
     </div>
   </section>
-  <footer class="footer"><p><strong>Assumptions:</strong> Grades are percentages; weights are shares of the total grade and should add to 100%. Empty grades count as zero.</p><p>Educational estimate, not academic or professional advice.</p></footer>
+
+  <footer class="footer"><p><strong>Assumptions:</strong> Planning aid only. Transitions, tech issues, and lively discussions will move the real timeline.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
 <script>
 (function(){'use strict';
-  var form=document.getElementById('calcForm'),last=null,rowsBox=document.getElementById('rows');
-  function addRow(){var row=document.createElement('div');row.className='dyn-row wide';
-    row.innerHTML='<input type="text" placeholder="Category (e.g. Exams)" aria-label="Category name">'
-    +'<input type="number" min="0" step="0.1" placeholder="Weight %" aria-label="Weight percent">'
-    +'<input type="number" min="0" step="0.1" placeholder="Grade %" aria-label="Grade percent">'
-    +'<button type="button" class="dyn-rm" aria-label="Remove row">\u00d7</button>';
-    row.querySelector('.dyn-rm').addEventListener('click',function(){row.remove();if(last)calculate()});
-    rowsBox.appendChild(row);return row}
-  document.getElementById('addRow').addEventListener('click',function(){addRow()});
-  addRow();addRow();addRow();
+  var form=document.getElementById('calcForm'),last=null;
+  var NAMES=['Warm-up','Direct instruction','Practice','Wrap-up'];
+  function num(id,def){var v=parseFloat(document.getElementById(id).value);if(!isFinite(v)||v<0)v=def||0;return v}
+  function row(l,v){return'<dt>'+l+'</dt><dd>'+v+'</dd>'}
   function getData(){
-    var rows=rowsBox.querySelectorAll('.dyn-row'),items=[],wSum=0,pts=0;
-    for(var i=0;i<rows.length;i++){
-      var ins=rows[i].querySelectorAll('input');
-      var w=parseFloat(ins[1].value),g=parseFloat(ins[2].value);
-      if(!(w>0))continue;
-      var name=ins[0].value.trim()||('Category '+(items.length+1));
-      items.push({name:name,w:w,g:isFinite(g)&&g>=0?g:0});wSum+=w;pts+=w*(isFinite(g)&&g>=0?g:0);
-    }
-    return{items:items,wSum:wSum,grade:wSum>0?pts/wSum:0};
+    var len=num('length',50);
+    var acts=[num('a1'),num('a2'),num('a3'),num('a4')];
+    var planned=acts.reduce(function(a,b){return a+b},0);
+    var remain=len-planned;
+    var status=remain<0?'OVER BY':'FITS';
+    return{len:len,acts:acts,planned:planned,remain:remain,status:status};
   }
   function emailBody(d){
-    var lines=['Weighted Grade Calculator results',''];
-    for(var i=0;i<d.items.length;i++){lines.push(d.items[i].name+': '+d.items[i].g+'% x '+d.items[i].w+'% weight')}
-    lines.push('','Weights total: '+d.wSum.toFixed(1)+'%','Final grade: '+d.grade.toFixed(1)+'%','','Educational estimate, not academic advice.');
+    var lines=['Lesson period plan \u2014 results','','Period: '+d.len+' min','Planned: '+d.planned+' min'];
+    NAMES.forEach(function(n,i){lines.push(n+': '+d.acts[i]+' min')});
+    lines.push('Remaining: '+d.remain+' min','','Educational planning aid, not professional advice.');
     return lines.join('\n');
   }
-  function csvRows(d){
-    var r=[['Weighted Grade Calculator','Weight %','Grade %']];
-    for(var i=0;i<d.items.length;i++){r.push([d.items[i].name,d.items[i].w,d.items[i].g])}
-    r.push(['Final grade',d.grade.toFixed(2),'']);return r;
+  function explanationText(d){
+    var parts=[],t=0;
+    parts.push('A '+d.len+'-minute period with '+d.planned+' minutes planned leaves '+d.remain+' minute'+(Math.abs(d.remain)===1?'':'s')+'.');
+    NAMES.forEach(function(n,i){parts.push(n+': '+t+'\u2013'+(t+d.acts[i])+' min.') ;t+=d.acts[i]});
+    if(d.remain<0)parts.push('You\u2019re '+Math.abs(d.remain)+' minutes over \u2014 cut from instruction before practice. The wrap-up is the first thing teachers drop and the last thing they should.');
+    else if(d.remain>5)parts.push(d.remain+' minutes unplanned is a gift: bank it as buffer or add an extension activity, because something always runs long.');
+    else parts.push('Nearly exact fit \u2014 tight but workable. Keep one activity trimmable in case the warm-up runs long.');
+    return parts.join(' ');
   }
   function render(d){
     last=d;
     document.getElementById('emptyState').classList.add('hidden');
     document.getElementById('resultState').classList.remove('hidden');
-    document.getElementById('gradeOut').textContent=d.grade.toFixed(1)+'%';
-    var note=d.wSum>100?'Warning: your weights add up to '+d.wSum.toFixed(1)+'% \u2014 over 100%. Check your syllabus.':(d.wSum<100?'Note: weights add up to '+d.wSum.toFixed(1)+'%, so this is the grade on the entered portion only.':'Weights add up to exactly 100%. This is your final course grade.');
-    document.getElementById('gradeNote').textContent=note;
-    document.getElementById('mW').textContent=d.wSum.toFixed(1)+'%';
-    document.getElementById('mWNote').textContent=d.items.length+' categor'+(d.items.length===1?'y':'ies');
-    var top=null;for(var i=0;i<d.items.length;i++){if(!top||d.items[i].w>top.w)top=d.items[i]}
-    document.getElementById('mTop').textContent=top?top.name:'\u2014';
-    document.getElementById('mTopNote').textContent=top?('heaviest at '+top.w+'%'):'';
-    document.getElementById('explainCopy').textContent='Each category contributes its grade multiplied by its weight, divided by the total weight: for example, 85% on exams worth 50% contributes 42.5 points. Weights should total 100% for a true final grade.';
-    enableActions(d);
+    document.getElementById('target').textContent=(d.remain>=0?'+':'\u2212')+Math.abs(d.remain)+' min';
+    document.getElementById('targetNote').textContent=d.remain>=0?'unplanned time in the period.':'over the period length \u2014 trim something.';
+    document.getElementById('mPlan').textContent=d.planned+' min';
+    document.getElementById('mPlanNote').textContent='planned';
+    document.getElementById('mLen').textContent=d.len+' min';
+    document.getElementById('mLenNote').textContent='period';
+    document.getElementById('mStatus').textContent=d.status;
+    document.getElementById('mStatusNote').textContent=d.remain>=0?'fits':'over budget';
+    var t=0,html='';
+    NAMES.forEach(function(n,i){
+      html+=row(n+' ('+d.acts[i]+' min)',t+'\u2013'+(t+d.acts[i])+' min');t+=d.acts[i];
+    });
+    document.getElementById('breakdown').innerHTML=html;
+    document.getElementById('nudgeStrong').textContent=d.status;
+    document.getElementById('nudgeFoot').textContent='plan vs period.';
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('Lesson period plan')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
   }
-  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.items.length===0){document.getElementById('formErr').textContent='Add at least one category with a weight.';return}document.getElementById('formErr').textContent='';render(d)}
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.len<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  ['length','a1','a2','a3','a4'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)render(getData())})});
   form.addEventListener('submit',calculate);
-  rowsBox.addEventListener('input',function(){if(last)calculate()});
-
-  document.getElementById('copyResults').addEventListener('click',function(){
-    if(!last)return;
-    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
-    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
-    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
   });
-  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
-  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var rows=csvRows(getData());var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='weighted-grade-calculator.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My weighted grade')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
-
+  function summaryText(){
+    var d=last||getData();
+    return['Lesson plan \u2014 Honed Signal','','Remaining: '+d.remain+' min','Status: '+d.status].join('\n');
+  }
+  document.getElementById('copyResults').addEventListener('click',function(){
+    var txt=summaryText(),status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Copied.':'Copy failed \u2014 your browser blocked it.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{done(document.execCommand('copy'))}catch(e){done(false)}ta.remove()}
+  });
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    var d=last||getData();
+    var rows=[['activity','minutes','start','end']],t=0;
+    NAMES.forEach(function(n,i){rows.push([n,d.acts[i],t,t+d.acts[i]]);t+=d.acts[i]});
+    var csv=rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+    var url=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    var a=document.createElement('a');a.href=url;a.download='lesson-plan.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  });
 })();
 
 </script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
-<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/final-exam-calculator/"><span class="arr">→</span>What do you need on the final?</a></li><li><a href="/education/gpa-calculator/"><span class="arr">→</span>Calculate your overall GPA</a></li><li><a href="/education/gradebook-calculator/"><span class="arr">→</span>Grade a whole class</a></li></ul></div>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/random-student-picker/"><span class="arr">→</span>Random Student Picker</a></li><li><a href="/education/class-curve-grader/"><span class="arr">→</span>Class Curve Grader</a></li></ul></div>
 <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only. They are not academic, financial, or legal advice. Grading scales and school policies vary &mdash; verify requirements with your school. Your entries stay on your device. Use at your own risk.</div>
 <script src="/money/recent-tools.js" defer></script>
 <script src="/money/input-hints.js" defer></script>

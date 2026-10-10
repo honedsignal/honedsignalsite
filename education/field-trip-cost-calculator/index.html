@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Weighted Grade Calculator | Honed Signal</title>
+  <title>Field Trip Cost Calculator | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -60,10 +60,10 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 
   </style>
 <!-- honed-seo-start -->
-<meta name="description" content="Compute your final course grade from weighted categories like exams, homework, and projects. Free education tool, plain-English results." />
-<link rel="canonical" href="https://honedsignal.com/education/weighted-grade-calculator/" />
+<meta name="description" content="Price the field trip: fixed bus costs plus per-student tickets and food for the break-even price per student." />
+<link rel="canonical" href="https://honedsignal.com/education/field-trip-cost-calculator/" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Weighted Grade Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/weighted-grade-calculator/","description":"Compute your final course grade from weighted categories like exams, homework, and projects. Free education tool, plain-English results.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Field Trip Cost Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/field-trip-cost-calculator/","description":"Price the field trip: fixed bus costs plus per-student tickets and food for the break-even price per student.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
@@ -72,105 +72,149 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 <a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
   <header class="intro">
-    <div class="hs-hero has-art" role="img" aria-label="A student balancing glowing assignment orbs on a scale in a classroom" style="background-image:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.62) 100%),url('/education/assets/weighted-grade-calculator.jpg');background-size:cover;background-position:center"><div class="shade"></div><h1 class="hs-hero-title">What is your <span class="accent">weighted</span> grade?</h1></div>
-    <p>For courses where categories carry different weights. <strong>Just adding up points with no categories?</strong> The <a href="/education/gradebook-calculator/" style="color:#f7931a">Gradebook Calculator</a> is the simpler one.</p>
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">The bus costs the same <span class="accent">full or empty.</span></h1></div>
+    <p>Enter fixed and per-student costs — get the break-even price and the surplus or shortfall at your price.</p>
   </header>
-  <section class="workbench" aria-label="Weighted Grade Calculator">
+    <section class="workbench" aria-label="Field trip cost calculator">
     <form class="panel inputs" id="calcForm" novalidate>
-      <div class="section-head"><h2>Grading categories</h2><span class="step">01 / WEIGHTS</span></div><div id="rows"></div><button type="button" class="action" id="addRow">+ Add category</button><p class="err" id="formErr"></p>
-      <button class="calculate" type="submit">Calculate my grade</button>
+      <div class="section-head"><h2>Fixed costs</h2><span class="step">01 / FIXED</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="bus">Bus / transport ($)</label><div class="money-input"><span>$</span><input id="bus" type="number" min="0" step="25" inputmode="decimal" placeholder="0" aria-label="Bus cost"></div></div>
+        <div class="expense"><label for="other">Other fixed costs ($)</label><div class="money-input"><span>$</span><input id="other" type="number" min="0" step="25" inputmode="decimal" placeholder="0" aria-label="Other fixed costs"></div></div>
+      </div>
+      <div class="section-head" style="margin-top:22px"><h2>Per person</h2><span class="step">02 / VARIABLE</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="ticket">Ticket / entry per student ($)</label><div class="money-input"><span>$</span><input id="ticket" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Ticket per student"></div></div>
+        <div class="expense"><label for="food">Food per student ($)</label><div class="money-input"><span>$</span><input id="food" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Food per student"></div></div>
+        <div class="expense"><label for="students">Paying students</label><div class="money-input"><span>#</span><input id="students" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Number of paying students"></div></div>
+        <div class="expense"><label for="price">Price charged per student ($)</label><div class="money-input"><span>$</span><input id="price" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Price charged per student"></div></div>
+      </div>
+      <p class="hint">Chaperones usually ride free \u2014 their seats come out of the fixed costs.</p>
+      <button class="calculate" type="submit">What should we charge?</button>
       <div class="result-actions">
-        <a class="action result-action" id="emailResults" aria-label="Email these results" aria-disabled="true">Email my results</a>
+        <a class="action result-action" id="emailResults" aria-label="Email this field trip budget" aria-disabled="true">Email my results</a>
         <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
       </div>
       <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
       <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
     </form>
+
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Run the numbers.</h2><p>Add your grading categories and weights, then calculate.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The bus costs the same full or empty.</h2><p>Enter fixed and per-student costs \u2014 get the break-even price.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">WEIGHTED GRADE</p><p class="target" id="gradeOut">0%</p><p class="target-note" id="gradeNote"></p></section><div class="metric-grid"><article class="metric"><span>WEIGHTS TOTAL</span><strong id="mW">—</strong><em id="mWNote">—</em></article><article class="metric"><span>HEAVIEST CATEGORY</span><strong id="mTop">—</strong><em id="mTopNote">—</em></article><article class="metric"><span>METHOD</span><strong>Weighted</strong><em>by syllabus</em></article></div>
+        <section class="result-top"><p class="eyebrow">BREAK-EVEN PRICE PER STUDENT</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>TOTAL TRIP COST</span><strong id="mTotal">\u2014</strong><em id="mTotalNote">\u2014</em></article>
+          <article class="metric"><span>AT YOUR PRICE</span><strong id="mRev">\u2014</strong><em id="mRevNote">\u2014</em></article>
+          <article class="metric"><span>SURPLUS / SHORTFALL</span><strong id="mSur">\u2014</strong><em id="mSurNote">\u2014</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
+          <section class="plan-block nudge"><h3>Round up, not down</h3><p>Price to the next whole dollar above break-even \u2014 no-shows and last-minute dropouts are guaranteed.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
           <p class="explain-copy hidden" id="explainCopy"></p>
         </section>
-        <div class="actions"><button class="action" id="downloadCsv" type="button">Download breakdown</button></div>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download budget</button></div>
       </div>
     </div>
   </section>
-  <footer class="footer"><p><strong>Assumptions:</strong> Grades are percentages; weights are shares of the total grade and should add to 100%. Empty grades count as zero.</p><p>Educational estimate, not academic or professional advice.</p></footer>
+
+  <footer class="footer"><p><strong>Assumptions:</strong> Estimates only. Confirm venue pricing, bus quotes, and chaperone policies with your school.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
 <script>
 (function(){'use strict';
-  var form=document.getElementById('calcForm'),last=null,rowsBox=document.getElementById('rows');
-  function addRow(){var row=document.createElement('div');row.className='dyn-row wide';
-    row.innerHTML='<input type="text" placeholder="Category (e.g. Exams)" aria-label="Category name">'
-    +'<input type="number" min="0" step="0.1" placeholder="Weight %" aria-label="Weight percent">'
-    +'<input type="number" min="0" step="0.1" placeholder="Grade %" aria-label="Grade percent">'
-    +'<button type="button" class="dyn-rm" aria-label="Remove row">\u00d7</button>';
-    row.querySelector('.dyn-rm').addEventListener('click',function(){row.remove();if(last)calculate()});
-    rowsBox.appendChild(row);return row}
-  document.getElementById('addRow').addEventListener('click',function(){addRow()});
-  addRow();addRow();addRow();
+  var form=document.getElementById('calcForm'),last=null;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+  var money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id,def){var v=parseFloat(document.getElementById(id).value);if(!isFinite(v)||v<0)v=def||0;return v}
+  function fmt(n){return money0.format(n)}
+  function row(l,v){return'<dt>'+l+'</dt><dd>'+v+'</dd>'}
   function getData(){
-    var rows=rowsBox.querySelectorAll('.dyn-row'),items=[],wSum=0,pts=0;
-    for(var i=0;i<rows.length;i++){
-      var ins=rows[i].querySelectorAll('input');
-      var w=parseFloat(ins[1].value),g=parseFloat(ins[2].value);
-      if(!(w>0))continue;
-      var name=ins[0].value.trim()||('Category '+(items.length+1));
-      items.push({name:name,w:w,g:isFinite(g)&&g>=0?g:0});wSum+=w;pts+=w*(isFinite(g)&&g>=0?g:0);
-    }
-    return{items:items,wSum:wSum,grade:wSum>0?pts/wSum:0};
+    var bus=num('bus'),other=num('other'),ticket=num('ticket'),food=num('food');
+    var students=num('students'),price=num('price');
+    var fixed=bus+other, perStudent=ticket+food;
+    var total=fixed+perStudent*students;
+    var breakeven=students>0?total/students:0;
+    var revenue=price*students, surplus=revenue-total;
+    return{bus:bus,other:other,ticket:ticket,food:food,students:students,price:price,
+      fixed:fixed,perStudent:perStudent,total:total,breakeven:breakeven,revenue:revenue,surplus:surplus};
   }
   function emailBody(d){
-    var lines=['Weighted Grade Calculator results',''];
-    for(var i=0;i<d.items.length;i++){lines.push(d.items[i].name+': '+d.items[i].g+'% x '+d.items[i].w+'% weight')}
-    lines.push('','Weights total: '+d.wSum.toFixed(1)+'%','Final grade: '+d.grade.toFixed(1)+'%','','Educational estimate, not academic advice.');
-    return lines.join('\n');
+    return['Field trip budget \u2014 results','','Fixed costs: '+money2.format(d.fixed),
+    'Per student: '+money2.format(d.perStudent),'Students: '+d.students,
+    'Total cost: '+money2.format(d.total),'Break-even price: '+money2.format(d.breakeven),
+    'At '+money2.format(d.price)+': '+(d.surplus>=0?'surplus ':'shortfall ')+money2.format(Math.abs(d.surplus)),
+    '','Educational estimate, not professional advice.'].join('\n');
   }
-  function csvRows(d){
-    var r=[['Weighted Grade Calculator','Weight %','Grade %']];
-    for(var i=0;i<d.items.length;i++){r.push([d.items[i].name,d.items[i].w,d.items[i].g])}
-    r.push(['Final grade',d.grade.toFixed(2),'']);return r;
+  function explanationText(d){
+    var parts=[];
+    parts.push('Fixed costs ('+fmt(d.fixed)+') plus '+fmt(d.perStudent)+' per student \u00d7 '+d.students+' students = '+fmt(d.total)+' total. Break-even is '+money2.format(d.breakeven)+' per student.');
+    parts.push(d.surplus>=0
+      ? 'At '+money2.format(d.price)+' you collect '+fmt(d.revenue)+' \u2014 a '+fmt(d.surplus)+' cushion for no-shows. Good.'
+      : 'At '+money2.format(d.price)+' you collect '+fmt(d.revenue)+' \u2014 '+fmt(Math.abs(d.surplus))+' short. Raise the price or find more students; the bus doesn\u2019t get cheaper.');
+    parts.push('Fewer students means a higher break-even \u2014 fixed costs spread thinner. Set the price on conservative attendance, not hopeful attendance.');
+    return parts.join(' ');
   }
   function render(d){
     last=d;
     document.getElementById('emptyState').classList.add('hidden');
     document.getElementById('resultState').classList.remove('hidden');
-    document.getElementById('gradeOut').textContent=d.grade.toFixed(1)+'%';
-    var note=d.wSum>100?'Warning: your weights add up to '+d.wSum.toFixed(1)+'% \u2014 over 100%. Check your syllabus.':(d.wSum<100?'Note: weights add up to '+d.wSum.toFixed(1)+'%, so this is the grade on the entered portion only.':'Weights add up to exactly 100%. This is your final course grade.');
-    document.getElementById('gradeNote').textContent=note;
-    document.getElementById('mW').textContent=d.wSum.toFixed(1)+'%';
-    document.getElementById('mWNote').textContent=d.items.length+' categor'+(d.items.length===1?'y':'ies');
-    var top=null;for(var i=0;i<d.items.length;i++){if(!top||d.items[i].w>top.w)top=d.items[i]}
-    document.getElementById('mTop').textContent=top?top.name:'\u2014';
-    document.getElementById('mTopNote').textContent=top?('heaviest at '+top.w+'%'):'';
-    document.getElementById('explainCopy').textContent='Each category contributes its grade multiplied by its weight, divided by the total weight: for example, 85% on exams worth 50% contributes 42.5 points. Weights should total 100% for a true final grade.';
-    enableActions(d);
+    document.getElementById('target').textContent=money2.format(d.breakeven);
+    document.getElementById('targetNote').textContent='per student to break even with '+d.students+' paying students.';
+    document.getElementById('mTotal').textContent=fmt(d.total);
+    document.getElementById('mTotalNote').textContent='total trip cost';
+    document.getElementById('mRev').textContent=fmt(d.revenue);
+    document.getElementById('mRevNote').textContent='collected';
+    document.getElementById('mSur').textContent=(d.surplus>=0?'+':'\u2212')+fmt(Math.abs(d.surplus));
+    document.getElementById('mSurNote').textContent=d.surplus>=0?'surplus':'shortfall';
+    document.getElementById('breakdown').innerHTML=
+      row('Bus / transport',fmt(d.bus))+row('Other fixed',fmt(d.other))+
+      row('Per-student costs',money2.format(d.perStudent)+' \u00d7 '+d.students)+
+      row('Total cost',fmt(d.total))+row('Break-even',money2.format(d.breakeven)+'/student');
+    document.getElementById('nudgeStrong').textContent=money2.format(Math.ceil(d.breakeven));
+    document.getElementById('nudgeFoot').textContent='rounded-up safe price.';
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('Field trip budget')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
   }
-  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.items.length===0){document.getElementById('formErr').textContent='Add at least one category with a weight.';return}document.getElementById('formErr').textContent='';render(d)}
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.students<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  ['bus','other','ticket','food','students','price'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)render(getData())})});
   form.addEventListener('submit',calculate);
-  rowsBox.addEventListener('input',function(){if(last)calculate()});
-
-  document.getElementById('copyResults').addEventListener('click',function(){
-    if(!last)return;
-    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
-    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
-    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
   });
-  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
-  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var rows=csvRows(getData());var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='weighted-grade-calculator.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My weighted grade')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
-
+  function summaryText(){
+    var d=last||getData();
+    return['Field trip \u2014 Honed Signal','','Break-even: '+money2.format(d.breakeven)+'/student','Total: '+money2.format(d.total)].join('\n');
+  }
+  document.getElementById('copyResults').addEventListener('click',function(){
+    var txt=summaryText(),status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Copied.':'Copy failed \u2014 your browser blocked it.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{done(document.execCommand('copy'))}catch(e){done(false)}ta.remove()}
+  });
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    var d=last||getData();
+    var rows=[['item','amount'],['fixed costs',+d.fixed.toFixed(2)],['per-student costs',+d.perStudent.toFixed(2)],
+      ['students',d.students],['total',+d.total.toFixed(2)],['break-even per student',+d.breakeven.toFixed(2)]];
+    var csv=rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+    var url=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    var a=document.createElement('a');a.href=url;a.download='field-trip.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  });
 })();
 
 </script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
-<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/final-exam-calculator/"><span class="arr">→</span>What do you need on the final?</a></li><li><a href="/education/gpa-calculator/"><span class="arr">→</span>Calculate your overall GPA</a></li><li><a href="/education/gradebook-calculator/"><span class="arr">→</span>Grade a whole class</a></li></ul></div>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/school-year-expense-planner/"><span class="arr">→</span>School-Year Expense Planner</a></li><li><a href="/education/random-student-picker/"><span class="arr">→</span>Random Student Picker</a></li></ul></div>
 <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only. They are not academic, financial, or legal advice. Grading scales and school policies vary &mdash; verify requirements with your school. Your entries stay on your device. Use at your own risk.</div>
 <script src="/money/recent-tools.js" defer></script>
 <script src="/money/input-hints.js" defer></script>
