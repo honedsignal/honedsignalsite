@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/icon-180.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:," />
+  <title>Tithing Tax Savings Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f5f5f5;--surface:#ffffff;--surface-2:#e8edf0;--ink:#0b0e14;--muted:#55606d;
+      --line:#cbd2d7;--line-strong:#9ca8b1;--blue:#4777ad;--blue-soft:#dfebf6;
+      --orange:#d96e00;--orange-ink:#171009;--orange-soft:#fff0de;--green:#147c36;--green-soft:#e1f4e6;
+      --red:#bd343b;--shadow:0 18px 48px rgba(11,14,20,.09);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#080b10;--surface:#111720;--surface-2:#19232d;--ink:#f5f7f9;--muted:#acb7c2;
+      --line:#2d3945;--line-strong:#50606d;--blue:#76a8dc;--blue-soft:#172d42;
+      --orange:#f7931a;--orange-ink:#171009;--orange-soft:#392715;--green:#39ff14;--green-soft:#163419;
+      --red:#ff7379;--shadow:0 22px 60px rgba(0,0,0,.32);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}.money-home{position:fixed;z-index:20;top:calc(env(safe-area-inset-top) + 10px);left:max(20px,calc((100vw - 1220px)/2));display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-shadow:0 5px 18px rgba(11,14,20,.1);font-size:.72rem;font-weight:800;text-decoration:none}.money-home:hover{border-color:var(--blue);color:var(--blue)}.money-home:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 38%,transparent);outline-offset:2px}.page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:64px 0 70px}.intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}.accent{color:var(--green)}.intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}.workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}.panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}.inputs{padding:25px;border-radius:22px 6px 22px 22px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}.step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}.expense-list{display:grid;gap:8px}.expense{display:grid;grid-template-columns:1fr 142px;align-items:center;gap:13px}.expense label{font-size:.79rem;font-weight:700;color:var(--muted)}.money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}.money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}.money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}.money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}input::-webkit-inner-spin-button{-webkit-appearance:none}.subtotal{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:15px 0 20px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}.subtotal strong{font:500 1rem "DM Mono",monospace;color:var(--ink)}.months-label{display:flex;align-items:center;justify-content:space-between;margin:18px 0 9px}.months-label label{font-size:.75rem;font-weight:700;color:var(--muted)}.months-label output{font:500 .75rem "DM Mono",monospace;color:var(--orange)}.months{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}.month-btn{min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace}.month-btn:hover{border-color:var(--blue)}.month-btn.active{background:var(--orange);border-color:var(--orange);color:#171009;font-weight:700}.calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--green);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--green) 45%,#09200d);transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--green) 45%,#09200d)}.hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}.results{min-width:0}.empty{min-height:500px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}.empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}.empty p{margin:0 auto;color:var(--muted);max-width:40ch}.hidden{display:none!important}.result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.result-top{background:#eef3f7;color:#0b0e14}}.result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}.target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}.target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.metric{padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.metric span{display:block;color:var(--muted);font-size:.65rem;font-weight:800;letter-spacing:.035em}.metric strong{display:block;margin-top:7px;font:500 clamp(1rem,2.2vw,1.34rem)/1.1 "DM Mono",monospace;letter-spacing:-.025em}.metric em{display:block;margin-top:7px;color:var(--green);font-size:.67rem;font-style:normal;font-weight:700}.plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}.plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}.plan-block h3{margin:0 0 12px;font-size:.9rem}.plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}.plan-block dt{color:var(--muted)}.plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}.nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}.nudge p{margin:0;color:var(--muted);font-size:.73rem}.nudge strong{display:block;margin:7px 0 4px;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:39px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:8px 12px;text-decoration:none;cursor:pointer;font-size:.72rem;font-weight:800}.action:hover{border-color:var(--blue);color:var(--blue)}#emailResults{border-color:var(--orange);background:var(--orange);color:var(--orange-ink)}#emailResults:hover{border-color:var(--orange);color:var(--orange-ink)}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.result-action{width:100%}.result-action[aria-disabled="true"],.result-action:disabled{cursor:not-allowed;color:var(--muted);background:var(--surface-2);opacity:.72;pointer-events:none}.copy-status{min-height:1em;margin:7px 1px 0;color:var(--green);font-size:.68rem;font-weight:700;text-align:right}.explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}.explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800}.explain-toggle:hover{color:var(--blue)}.explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}.explain-toggle[aria-expanded="true"]:after{content:"−"}.explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}.footer p{margin:0;max-width:79ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.money-home{left:14px}.page{width:min(100% - 28px,700px);padding-top:62px}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.money-home{left:11px}.page{width:min(100% - 22px,520px);padding:60px 0 54px}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top{padding:19px}.expense{grid-template-columns:1fr 126px}.metric-grid{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:3px 12px}.metric strong{grid-column:2;grid-row:1 / span 2}.metric em{margin-top:0}.footer{flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+
+<!-- honed-seo-start -->
+<meta name="description" content="What is your church giving really worth after taxes? Free tithing tax-savings calculator from Honed Money — plain-English results, no signup needed." />
+<link rel="canonical" href="https://honedsignal.com/money/tithing-tax-savings-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Tithing Tax Savings Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/tithing-tax-savings-calculator/","description":"What is your church giving really worth after taxes? Free tithing tax-savings calculator from Honed Money — plain-English results, no signup needed.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+  <link rel="stylesheet" href="/money/print.css" media="print">
+</head>
+<body>
+<a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
+<main class="page">
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;min-height:230px;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:165px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/taxes.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">What does your giving <span class="accent">save you at tax time?</span></h1>
+</div>
+    <p>Donations to your church are deductible if you itemize. See what your giving really costs after the tax savings.</p>
+  </header>
+
+    <section class="workbench" aria-label="Tithing tax savings calculator">
+    <form class="panel inputs" id="taxForm" novalidate>
+      <div class="section-head"><h2>Your giving</h2><span class="step">01 / DONATIONS</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="giving">Annual donations to church / charity ($)</label><div class="money-input"><span>$</span><input id="giving" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Annual donations in dollars"></div></div>
+        <div class="expense"><label for="fedrate">Federal marginal tax rate (%)</label><div class="money-input"><span>%</span><input id="fedrate" type="number" min="0" max="50" step="0.1" inputmode="decimal" placeholder="22" aria-label="Federal marginal tax rate percent"></div></div>
+        <div class="expense"><label for="staterate">State marginal tax rate (%, 0 if none)</label><div class="money-input"><span>%</span><input id="staterate" type="number" min="0" max="20" step="0.1" inputmode="decimal" placeholder="0" aria-label="State marginal tax rate percent"></div></div>
+      </div>
+      <div class="months-label"><label>Do you itemize deductions (rather than taking the standard deduction)?</label><output id="itemizeOutput">Yes</output></div>
+      <div class="months" role="group" aria-label="Itemize deductions">
+        <button type="button" class="month-btn active" data-q="itemize" data-v="yes">Yes</button>
+        <button type="button" class="month-btn" data-q="itemize" data-v="no">No</button>
+      </div>
+      <p class="hint">Charitable deductions only help if you itemize. Taking the standard deduction? Your giving saves $0 on taxes — the calculator will show it honestly.</p>
+      <button class="calculate" type="submit">Price my giving</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email these giving results" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><h2>Giving has a price tag.</h2><p>Enter your annual donations and tax rates to see the true after-tax cost of your generosity.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">ESTIMATED TAX SAVED</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>AFTER-TAX COST</span><strong id="mNet">—</strong><em id="mNetNote">—</em></article>
+          <article class="metric"><span>COST PER $100 GIVEN</span><strong id="mPer100">—</strong><em id="mPer100Note">—</em></article>
+          <article class="metric"><span>EFFECTIVE SAVINGS RATE</span><strong id="mRate">—</strong><em id="mRateNote">—</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>Where the savings come from</h3><dl id="breakdown"></dl></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">The bunching trick</h3><p id="nudgeText">If your giving alone doesn't beat the standard deduction, consider giving two years' worth in one year — then taking the standard deduction the next. Same generosity, bigger tax benefit.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download breakdown</button></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><p><strong>Tax note:</strong> Charitable contributions — including tithes to a church — are deductible only if you itemize on Schedule A. If you take the standard deduction, your giving saves nothing on taxes (the calculator shows this). Deduction bunching — giving two years' worth in one year — can push itemizers over the standard deduction threshold. Rules shown are as of 2026; verify with IRS.gov or a tax professional.</p><p>Educational estimate, not tax advice.</p></footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('taxForm'),last=null,itemize=true;
+  var money0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+  var money2=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});
+  function num(id){var v=parseFloat(document.getElementById(id).value);return isFinite(v)&&v>=0?v:0}
+  function fmt(n){return money0.format(n)}
+  document.querySelectorAll('[data-q]').forEach(function(btn){btn.addEventListener('click',function(){
+    itemize=btn.dataset.v==='yes';
+    document.querySelectorAll('[data-q]').forEach(function(b){b.classList.toggle('active',b===btn)});
+    document.getElementById('itemizeOutput').textContent=itemize?'Yes':'No';
+    if(last)render(getData());
+  })});
+  function getData(){
+    var g=num('giving'),f=num('fedrate'),s=num('staterate');
+    var saved=itemize?g*(f+s)/100:0;
+    var net=g-saved;
+    var rate=itemize?(f+s):0;
+    var per100=itemize?(100-f-s):100;
+    return{g:g,f:f,s:s,saved:saved,net:net,rate:rate,per100:per100};
+  }
+  function row(label,value){return'<dt>'+label+'</dt><dd>'+value+'</dd>'}
+  function emailBody(d){
+    return['Tithing tax savings results','',
+    'Annual donations: '+money2.format(d.g),
+    'Itemize deductions: '+(itemize?'Yes':'No'),
+    'Federal marginal rate: '+d.f+'%','State marginal rate: '+d.s+'%','',
+    'Estimated tax saved: '+money2.format(d.saved),
+    'After-tax cost of giving: '+money2.format(d.net),
+    'Cost per $100 given: '+money2.format(d.per100),'',
+    'Savings apply only when itemizing. Rules as of 2026.',
+    '','Educational estimate, not tax advice.'].join('\n');
+  }
+  function explanationText(d){
+    var parts=[];
+    if(itemize){
+      parts.push('Because you itemize, each donated dollar reduces your taxable income, saving you '+d.f+'% federally'+(d.s>0?' and '+d.s+'% at the state level':'')+'. On '+fmt(d.g)+' of giving, that is '+fmt(d.saved)+' back at tax time \u2014 so your generosity truly costs '+fmt(d.net)+', or '+money2.format(d.per100)+' per $100 given.');
+    }else{
+      parts.push('Because you take the standard deduction instead of itemizing, your charitable donations do not change your tax bill \u2014 the savings are $0 and your giving costs the full '+fmt(d.g)+'. This is the honest math most people never see.');
+      parts.push('One legal workaround is bunching: give two years\u2019 worth of donations in a single year so your itemized total clears the standard deduction, then take the standard deduction the following year. Same lifetime generosity, more tax benefit.');
+    }
+    parts.push('Rules shown are as of 2026 and tax law changes; verify with IRS.gov or a tax professional.');
+    return parts.join(' ');
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('target').textContent=fmt(d.saved);
+    document.getElementById('targetNote').textContent=itemize
+      ?'This is what your giving shaves off your tax bill \u2014 money back for money given.'
+      :'No tax benefit when you take the standard deduction. The nudge below has one workaround.';
+    document.getElementById('mNet').textContent=fmt(d.net);
+    document.getElementById('mNetNote').textContent='true out-of-pocket cost';
+    document.getElementById('mPer100').textContent=money2.format(d.per100);
+    document.getElementById('mPer100Note').textContent='per $100 donated';
+    document.getElementById('mRate').textContent=d.rate.toFixed(1)+'%';
+    document.getElementById('mRateNote').textContent=itemize?'combined marginal rate':'no benefit';
+    document.getElementById('breakdown').innerHTML=
+      row('Annual giving',fmt(d.g))+
+      row('Federal saved ('+d.f+'%)',fmt(itemize?d.g*d.f/100:0))+
+      row('State saved ('+d.s+'%)',fmt(itemize?d.g*d.s/100:0))+
+      row('Total tax saved',fmt(d.saved))+
+      row('True cost of giving',fmt(d.net));
+    document.getElementById('nudgeStrong').textContent=itemize?'Bunching still helps':'Consider bunching';
+    document.getElementById('nudgeFoot').textContent='See the deduction bunching calculator in What\u2019s next below.';
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('Tithing tax savings results')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
+  }
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.g<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  ['giving','fedrate','staterate'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)render(getData())})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
+  });
+  function summaryText(){
+    var d=last||getData();
+    return['Tithing tax savings \u2014 Honed Money','',
+    'Annual donations: '+money2.format(d.g),'Itemize: '+(itemize?'Yes':'No'),
+    'Federal rate: '+d.f+'%, State rate: '+d.s+'%','',
+    'Tax saved: '+money2.format(d.saved),'After-tax cost: '+money2.format(d.net)].join('\n');
+  }
+  document.getElementById('copyResults').addEventListener('click',function(){
+    var txt=summaryText(),status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Copied.':'Copy failed \u2014 your browser blocked it.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{done(document.execCommand('copy'))}catch(e){done(false)}ta.remove()}
+  });
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    var d=last||getData();
+    var rows=[['item','amount'],['annual giving',d.g],['federal saved',+(d.g*d.f/100*(itemize?1:0)).toFixed(2)],
+      ['state saved',+(d.g*d.s/100*(itemize?1:0)).toFixed(2)],['total saved',+d.saved.toFixed(2)],['true cost',+d.net.toFixed(2)]];
+    var csv=rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+    var url=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    var a=document.createElement('a');a.href=url;a.download='tithing-tax-savings.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  });
+})();
+
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/deduction-bunching-calculator/"><span class="arr">→</span>Bunch deductions across tax years</a></li><li><a href="/money/charitable-deduction-calculator/"><span class="arr">→</span>Charitable deduction basics</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+<script src="/money/recent-tools.js" defer></script>
+<script src="/money/share-result.js" defer></script>
+</body>
+</html>

@@ -2698,5 +2698,32 @@
    "Taxes"
   ],
   "kind": "tool"
+ },
+ {
+  "t": "Clergy Housing Allowance Checker",
+  "d": "How much of a minister's housing allowance is tax-free?",
+  "u": "/money/clergy-housing-allowance-calculator/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Tithing Tax Savings Checker",
+  "d": "What your church giving really costs after tax savings.",
+  "u": "/money/tithing-tax-savings-calculator/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Health Sharing vs. Insurance",
+  "d": "Ministry or insurance: which costs less at your medical usage?",
+  "u": "/money/health-sharing-vs-insurance/",
+  "tags": [
+   "Health"
+  ],
+  "kind": "tool"
  }
 ]
