@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Citation Generator (APA/MLA) | Honed Signal</title>
+  <title>School Choice Comparison Worksheet | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -58,171 +58,241 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 .empty-art .doc:before{content:"";position:absolute;left:12px;right:12px;top:14px;height:6px;background:var(--line-strong);border-radius:3px;box-shadow:0 14px 0 var(--line-strong),0 28px 0 var(--line-strong),0 42px 0 var(--line-strong),0 56px 0 var(--orange)}
 .err{color:var(--red);font-size:.75rem;font-weight:700;margin-top:8px;min-height:1.1em}
 
+  
+.cmp-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:4px}.cmp-table th,.cmp-table td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}.cmp-table th{background:var(--surface-2);font-size:.72rem}.cmp-table td.num{font-family:'DM Mono',monospace}.school-block{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;background:var(--bg)}.school-block h4{margin:0 0 10px;font-size:.85rem}
   </style>
 <!-- honed-seo-start -->
-<meta name="description" content="Generate APA and MLA citations from author, year, title, and source. Free education tool with one-click copy." />
-<link rel="canonical" href="https://honedsignal.com/education/citation-formatter/" />
+<meta name="description" content="Compare up to three schools on cost, academics, commute, and class size with a weighted score and printable worksheet. Free parent tool." />
+<link rel="canonical" href="https://honedsignal.com/education/school-choice-comparison-worksheet/" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Citation Generator (APA/MLA)","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/citation-formatter/","description":"Generate APA and MLA citations from author, year, title, and source. Free education tool with one-click copy.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"School Choice Comparison Worksheet","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/school-choice-comparison-worksheet/","description":"Compare up to three schools on cost, academics, commute, and class size with a weighted score and printable worksheet. Free parent tool.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
-</head>
-<body>
+</head><body>
 <a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
   <header class="intro">
-    <div class="hs-hero has-art" role="img" aria-label="A student shelving books in a grand library lit by warm lamps" style="background-image:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.62) 100%),url('/education/assets/citation-formatter.jpg');background-size:cover;background-position:center"><div class="shade"></div><h1 class="hs-hero-title">Citations, <span class="accent">formatted</span> correctly.</h1></div>
-    <p>Add the authors, pick a source type and style — get a formatted citation ready to copy.</p>
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Compare schools <span class="accent">side by side.</span></h1></div>
+    <p>Score up to three schools on cost, academics, commute, and class size — then print the worksheet.</p>
   </header>
-  <section class="workbench" aria-label="Citation Generator">
+  <section class="workbench" aria-label="School Choice Comparison Worksheet">
     <form class="panel inputs" id="calcForm" novalidate>
-      <div class="section-head"><h2>Citation style</h2><span class="step">01 / STYLE</span></div><div class="seg" id="styleSeg" role="group" aria-label="Citation style"><button type="button" data-s="APA" class="active">APA</button><button type="button" data-s="MLA">MLA</button></div><div class="section-head" style="margin-top:18px"><h2>Source type</h2><span class="step">02 / TYPE</span></div><div class="expense-list"><div class="expense"><label for="srcType">What are you citing?</label><div class="money-input"><select id="srcType" aria-label="Source type"><option value="book">Book</option><option value="journal">Journal article</option><option value="website">Website</option><option value="film">Film / video</option></select></div></div></div><div class="section-head" style="margin-top:18px"><h2>Source details</h2><span class="step">03 / DETAILS</span></div><div class="expense-list"><div class="expense"><label for="year">Year</label><div class="money-input"><input id="year" type="text" inputmode="numeric" placeholder="2026" aria-label="Year" style="text-align:left"></div></div><div class="expense"><label for="title">Title</label><div class="money-input"><input id="title" type="text" placeholder="Title of work" aria-label="Title" style="text-align:left"></div></div><div class="expense"><label for="source" id="sourceLabel">Publisher</label><div class="money-input"><input id="source" type="text" placeholder="Publisher" aria-label="Source" style="text-align:left"></div></div></div><div class="section-head" style="margin-top:18px"><h2>Authors</h2><span class="step">04 / AUTHORS</span></div><div id="authorRows"></div><button class="action" id="addAuthor" type="button">+ Add author</button>
-      <button class="calculate" type="submit">Format citation</button>
-      <div class="result-actions">
-        <a class="action result-action" id="emailResults" aria-label="Email these results" aria-disabled="true">Email my results</a>
-        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
-      </div>
-      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
-      <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+
+      <div class="section-head"><h2>Schools</h2><span class="step">01 / SCHOOLS</span></div>
+      <div class="school-block"><h4>School 1</h4><div class="expense-list">
+        <div class="expense"><label for="s1name">Name</label><div class="money-input"><input id="s1name" type="text" placeholder="Roosevelt Elementary" aria-label="School 1 name" style="text-align:left"></div></div>
+        <div class="expense"><label for="s1cost">Yearly cost</label><div class="money-input"><span>$</span><input id="s1cost" type="number" min="0" step="100" inputmode="numeric" placeholder="0" aria-label="School 1 yearly cost"></div></div>
+        <div class="expense"><label for="s1commute">Commute (minutes)</label><div class="money-input"><span>min</span><input id="s1commute" type="number" min="0" step="1" inputmode="numeric" placeholder="15" aria-label="School 1 commute minutes"></div></div>
+        <div class="expense"><label for="s1rating">Academic rating (1–10)</label><div class="money-input"><span>★</span><input id="s1rating" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="7" aria-label="School 1 academic rating"></div></div>
+        <div class="expense"><label for="s1class">Average class size</label><div class="money-input"><input id="s1class" type="number" min="1" step="1" inputmode="numeric" placeholder="24" aria-label="School 1 class size"></div></div>
+        <div class="expense" style="grid-template-columns:1fr"><label for="s1notes">Notes</label><textarea class="edu" id="s1notes" rows="2" placeholder="Anything else — programs, feel, aftercare..."></textarea></div>
+      </div></div>
+      <div class="school-block"><h4>School 2</h4><div class="expense-list">
+        <div class="expense"><label for="s2name">Name</label><div class="money-input"><input id="s2name" type="text" placeholder="St. Mary's" aria-label="School 2 name" style="text-align:left"></div></div>
+        <div class="expense"><label for="s2cost">Yearly cost</label><div class="money-input"><span>$</span><input id="s2cost" type="number" min="0" step="100" inputmode="numeric" placeholder="8500" aria-label="School 2 yearly cost"></div></div>
+        <div class="expense"><label for="s2commute">Commute (minutes)</label><div class="money-input"><span>min</span><input id="s2commute" type="number" min="0" step="1" inputmode="numeric" placeholder="25" aria-label="School 2 commute minutes"></div></div>
+        <div class="expense"><label for="s2rating">Academic rating (1–10)</label><div class="money-input"><span>★</span><input id="s2rating" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="8" aria-label="School 2 academic rating"></div></div>
+        <div class="expense"><label for="s2class">Average class size</label><div class="money-input"><input id="s2class" type="number" min="1" step="1" inputmode="numeric" placeholder="18" aria-label="School 2 class size"></div></div>
+        <div class="expense" style="grid-template-columns:1fr"><label for="s2notes">Notes</label><textarea class="edu" id="s2notes" rows="2" placeholder="Anything else..."></textarea></div>
+      </div></div>
+      <div class="school-block"><h4>School 3 (optional)</h4><div class="expense-list">
+        <div class="expense"><label for="s3name">Name</label><div class="money-input"><input id="s3name" type="text" placeholder="" aria-label="School 3 name" style="text-align:left"></div></div>
+        <div class="expense"><label for="s3cost">Yearly cost</label><div class="money-input"><span>$</span><input id="s3cost" type="number" min="0" step="100" inputmode="numeric" placeholder="" aria-label="School 3 yearly cost"></div></div>
+        <div class="expense"><label for="s3commute">Commute (minutes)</label><div class="money-input"><span>min</span><input id="s3commute" type="number" min="0" step="1" inputmode="numeric" placeholder="" aria-label="School 3 commute minutes"></div></div>
+        <div class="expense"><label for="s3rating">Academic rating (1–10)</label><div class="money-input"><span>★</span><input id="s3rating" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="" aria-label="School 3 academic rating"></div></div>
+        <div class="expense"><label for="s3class">Average class size</label><div class="money-input"><input id="s3class" type="number" min="1" step="1" inputmode="numeric" placeholder="" aria-label="School 3 class size"></div></div>
+        <div class="expense" style="grid-template-columns:1fr"><label for="s3notes">Notes</label><textarea class="edu" id="s3notes" rows="2" placeholder="Anything else..."></textarea></div>
+      </div></div>
+      <p class="hint"><strong>Fixed weights:</strong> cost 40%, academics 30%, commute 20%, class size 10%. Lower cost, shorter commute, and smaller classes score higher.</p>
+      <button class="calculate" type="submit">Compare schools</button>
+      <div class="actions" style="margin-top:12px"><button class="action" id="printBtn" type="button">Print worksheet</button></div>
+      <p class="hint">Print the blank worksheet to fill in by hand, or calculate first and print the scored version.</p>
+
     </form>
     <div class="results">
-      <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Run the numbers.</h2><p>Fill in the source details and pick a style.</p></div>
-      </div>
+<div class="empty" id="emptyState">
+  <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Run the numbers.</h2><p>Enter up to three schools below — the comparison table and winner appear here.</p></div>
+</div>
+
+
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">YOUR CITATION</p><p class="target" id="citeOut" style="font-size:clamp(1.1rem,3vw,1.7rem);line-height:1.4">—</p><p class="target-note" id="citeNote"></p></section><div class="metric-grid"><article class="metric"><span>STYLE</span><strong id="mStyle">APA</strong><em id="mStyleNote">—</em></article><article class="metric"><span>COPY</span><strong>One-click</strong><em>use Copy results</em></article><article class="metric"><span>VERIFY</span><strong>Official</strong><em>style guide</em></article></div>
+        <section class="result-top"><p class="eyebrow">TOP PICK</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid" id="scoreGrid"></div>
+        <div class="plan">
+          <section class="plan-block" style="grid-column:1/-1"><h3>Side-by-side worksheet</h3><div id="cmpTable"></div></section>
+        </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
-          <p class="explain-copy hidden" id="explainCopy"></p>
+          <p class="explain-copy hidden" id="explainCopy">Each factor is scored 0–100 relative to the schools you entered: cheapest cost, highest rating, shortest commute, and smallest class each earn 100; the rest scale between the best and worst. The weighted score = 40% cost + 30% academics + 20% commute + 10% class size. Scores only compare your entries — they aren't absolute quality ratings. Visit schools and trust your gut too.</p>
         </section>
-        <div class="actions"><button class="action" id="downloadCsv" type="button">Download breakdown</button></div>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download worksheet (CSV)</button></div>
       </div>
+
     </div>
   </section>
-  <footer class="footer"><p><strong>Assumptions:</strong> Covers books, journal articles, websites, and films in APA and MLA. One or two authors are listed fully; three or more become “et al.” Unusual sources have additional rules — verify against the official style guide.</p><p>Educational estimate, not academic or professional advice.</p></footer>
+  <footer class="footer"><p><strong>Assumptions:</strong> Fixed disclosed weights: cost 40%, academics 30%, commute 20%, class size 10%. Scores are relative to the schools you enter — not absolute ratings.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
 <script>
+
 (function(){'use strict';
-  var form=document.getElementById('calcForm'),last=null,style='APA',srcType='book';
-  var segBtns=document.querySelectorAll('#styleSeg button');
-  for(var b=0;b<segBtns.length;b++){
-    segBtns[b].addEventListener('click',function(){style=this.getAttribute('data-s');
-      for(var k=0;k<segBtns.length;k++){segBtns[k].classList.toggle('active',segBtns[k]===this)}
-      if(last)render(getData())});
-  }
-  var SRC_LABELS={book:'Publisher',journal:'Journal name',website:'Website name',film:'Production company'};
-  var SRC_PH={book:'Publisher',journal:'Journal name',website:'Website name',film:'Production company'};
-  document.getElementById('srcType').addEventListener('change',function(){
-    srcType=this.value;
-    document.getElementById('sourceLabel').textContent=SRC_LABELS[srcType];
-    document.getElementById('source').placeholder=SRC_PH[srcType];
-    if(last)render(getData());
-  });
+  var form=document.getElementById('calcForm'),last=null;
+  var W={cost:0.40,acad:0.30,commute:0.20,cls:0.10};
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
   function val(id){var el=document.getElementById(id);return el?el.value.trim():''}
-  function addAuthorRow(first,lastn){
-    var wrap=document.getElementById('authorRows'),d=document.createElement('div');
-    d.className='dyn-row wide';
-    d.innerHTML='<input type="text" class="au-first" placeholder="First name" aria-label="Author first name" value="'+esc(first||'')+'">'
-      +'<input type="text" class="au-last" placeholder="Last name" aria-label="Author last name" value="'+esc(lastn||'')+'">'
-      +'<span></span><button type="button" class="dyn-rm" aria-label="Remove author">\u00d7</button>';
-    d.querySelector('.dyn-rm').addEventListener('click',function(){d.remove();if(last)render(getData())});
-    d.querySelectorAll('input').forEach(function(el){el.addEventListener('input',function(){if(last)render(getData())})});
-    wrap.appendChild(d);
-  }
-  document.getElementById('addAuthor').addEventListener('click',function(){addAuthorRow()});
-  addAuthorRow();
-  function authors(){
-    return Array.prototype.slice.call(document.querySelectorAll('#authorRows .dyn-row')).map(function(r){
-      return{first:r.querySelector('.au-first').value.trim(),last:r.querySelector('.au-last').value.trim()};
-    }).filter(function(a){return a.first||a.last});
-  }
-  function initials(first){
-    return first.split(/\s+/).filter(Boolean).map(function(w){return w.charAt(0).toUpperCase()+'.'}).join(' ');
-  }
-  function apaAuthors(list){
-    var fmt=list.map(function(a){return (a.last||'(Unknown)')+(a.first?', '+initials(a.first):'');});
-    if(fmt.length===0)return '';
-    if(fmt.length===1)return fmt[0];
-    if(fmt.length===2)return fmt[0]+', & '+fmt[1];
-    return fmt[0]+', et al.';
-  }
-  function mlaAuthors(list){
-    var fmt=list.map(function(a,i){
-      if(i===0)return ((a.last||'(Unknown)')+(a.first?', '+a.first:''));
-      return ((a.first?a.first+' ':'')+(a.last||'(Unknown)')).trim();
-    });
-    if(fmt.length===0)return '';
-    if(fmt.length===1)return fmt[0];
-    if(fmt.length===2)return fmt[0]+', and '+fmt[1];
-    return fmt[0]+', et al.';
-  }
-  function stripDots(s){return s.replace(/\.+$/,'')}
+  function num(id,def){var v=parseFloat(val(id));return isFinite(v)?v:def}
+  function money(n){return '$'+Math.round(n).toLocaleString('en-US')}
   function getData(){
-    var au=authors(),year=stripDots(val('year')),title=stripDots(val('title')),source=stripDots(val('source'));
-    var cite='';
-    if(style==='APA'){
-      var a=apaAuthors(au);
-      if(srcType==='film'){
-        cite=(a?a+'. (Director). ':'')+(year?'('+year+'). ':'(n.d.). ')+(title?title+' [Film]. ':'')+(source?source+'.':'');
-      }else{
-        cite=(a?a+'. ':'')+(year?'('+year+'). ':'(n.d.). ')+(title?title+'. ':'')+(source?source+'.':'');
-      }
-    }else{
-      var m=mlaAuthors(au);
-      if(srcType==='film'){
-        var dir=au.length?((au[0].first?au[0].first+' ':'')+au[0].last).trim():'';
-        cite=(title?title+'. ':'')+(dir?'Directed by '+dir+', ':'')+(source?source+', ':'')+(year?year+'.':'');
-      }else if(srcType==='book'){
-        cite=(m?m+'. ':'')+(title?title+'. ':'')+(source?source+', ':'')+(year?year+'.':'');
-      }else{
-        cite=(m?m+'. ':'')+(title?'"'+title+'." ':'')+(source?source+', ':'')+(year?year+'.':'');
-      }
+    var schools=[];
+    for(var i=1;i<=3;i++){
+      var name=val('s'+i+'name');
+      var cost=num('s'+i+'cost',null),commute=num('s'+i+'commute',null),
+          rating=num('s'+i+'rating',null),cls=num('s'+i+'class',null);
+      if(!name&&cost===null&&commute===null&&rating===null&&cls===null)continue;
+      schools.push({name:name||('School '+i),cost:cost===null?0:Math.max(0,cost),
+        commute:commute===null?0:Math.max(0,commute),
+        rating:rating===null?5:Math.min(10,Math.max(1,rating)),
+        cls:cls===null?25:Math.max(1,cls),notes:val('s'+i+'notes')});
     }
-    var auStr=au.map(function(a){return (a.first+' '+a.last).trim()}).filter(Boolean).join('; ');
-    return{style:style,srcType:srcType,authors:auStr,year:year,title:title,source:source,cite:cite.trim()};
+    return{schools:schools};
   }
-  function typeLabel(){return{book:'Book',journal:'Journal article',website:'Website',film:'Film / video'}[srcType]}
-  function emailBody(d){
-    return ['Citation Generator ('+d.style+', '+typeLabel()+') results','','Authors: '+(d.authors||'(none)'),'Year: '+d.year,'Title: '+d.title,'Source: '+d.source,'',
-      'Formatted citation:',''+d.cite,'','Double-check against the official '+d.style+' guide \u2014 unusual sources have special rules.','','Educational estimate, not academic advice.'].join('\n');
+  function normLo(vals){ // lower is better
+    var mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals);
+    return vals.map(function(v){return mx===mn?100:(mx-v)/(mx-mn)*100});
   }
-  function csvRows(d){
-    return [['Citation Generator','Value'],['Style',d.style],['Source type',typeLabel()],['Authors',d.authors],['Year',d.year],['Title',d.title],['Source',d.source],['Citation',d.cite]];
+  function normHi(vals){ // higher is better
+    var mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals);
+    return vals.map(function(v){return mx===mn?100:(v-mn)/(mx-mn)*100});
+  }
+  function analyze(d){
+    var s=d.schools;
+    if(s.length<2)return{ok:false,reason:'Enter at least two schools to compare.'};
+    var cs=normLo(s.map(function(x){return x.cost}));
+    var as=normHi(s.map(function(x){return x.rating}));
+    var ms=normLo(s.map(function(x){return x.commute}));
+    var ls=normLo(s.map(function(x){return x.cls}));
+    s.forEach(function(x,i){
+      x.score=W.cost*cs[i]+W.acad*as[i]+W.commute*ms[i]+W.cls*ls[i];
+      x.parts={cost:cs[i],acad:as[i],commute:ms[i],cls:ls[i]};
+    });
+    var ranked=s.slice().sort(function(a,b){return b.score-a.score});
+    return{ok:true,ranked:ranked};
   }
   function render(d){
-    last=d;
+    var a=analyze(d);
+    last={d:d,a:a};
     document.getElementById('emptyState').classList.add('hidden');
     document.getElementById('resultState').classList.remove('hidden');
-    document.getElementById('citeOut').textContent=d.cite||'Fill in the fields above.';
-    document.getElementById('citeNote').textContent=d.cite?('Formatted in '+d.style+' style ('+typeLabel().toLowerCase()+'). Always double-check unusual sources against the official guide.'):'';
-    document.getElementById('mStyle').textContent=d.style;
-    document.getElementById('mStyleNote').textContent=typeLabel().toLowerCase();
-    document.getElementById('explainCopy').textContent='APA format: Author. (Year). Title. Source. — with authors as "Last, F." (two authors joined by "&", three or more become "et al."). MLA format: Author. "Title." Source, Year. — first author "Last, First", second "First Last", three or more become "et al." Films credit the director. This covers the common cases; unusual sources have extra rules in the official guides.';
-    enableActions(d);
+    var grid=document.getElementById('scoreGrid');
+    if(!a.ok){
+      document.getElementById('target').textContent='Add schools';
+      document.getElementById('targetNote').textContent=a.reason;
+      grid.innerHTML='';document.getElementById('cmpTable').innerHTML='';
+      return;
+    }
+    var win=a.ranked[0];
+    document.getElementById('target').textContent=win.name;
+    document.getElementById('targetNote').textContent='Weighted score '+Math.round(win.score)+'/100';
+    grid.innerHTML=a.ranked.map(function(x){
+      return '<article class="metric"><span>'+esc(x.name.toUpperCase().slice(0,24))+'</span><strong>'+Math.round(x.score)+'</strong><em>weighted score</em></article>';
+    }).join('');
+    var rows=[
+      ['Yearly cost',function(x){return money(x.cost)}],
+      ['Commute',function(x){return x.commute+' min'}],
+      ['Academic rating',function(x){return x.rating+'/10'}],
+      ['Class size',function(x){return '≈ '+x.cls}],
+      ['Cost score (40%)',function(x){return Math.round(x.parts.cost)}],
+      ['Academics score (30%)',function(x){return Math.round(x.parts.acad)}],
+      ['Commute score (20%)',function(x){return Math.round(x.parts.commute)}],
+      ['Class size score (10%)',function(x){return Math.round(x.parts.cls)}],
+      ['Weighted score',function(x){return '<strong>'+Math.round(x.score)+'</strong>'}]
+    ];
+    var th='<tr><th></th>'+a.ranked.map(function(x){return '<th>'+esc(x.name)+'</th>'}).join('')+'</tr>';
+    var tb=rows.map(function(r){
+      return '<tr><td><strong>'+r[0]+'</strong></td>'+a.ranked.map(function(x){return '<td class="num">'+r[1](x)+'</td>'}).join('')+'</tr>';
+    }).join('');
+    var notes=a.ranked.filter(function(x){return x.notes}).map(function(x){
+      return '<p style="font-size:.78rem;color:var(--muted);margin:8px 0 0"><strong>'+esc(x.name)+':</strong> '+esc(x.notes)+'</p>';
+    }).join('');
+    document.getElementById('cmpTable').innerHTML='<table class="cmp-table"><thead>'+th+'</thead><tbody>'+tb+'</tbody></table>'+notes
+      +'<p style="font-size:.72rem;color:var(--muted);margin:10px 0 0">Weights: cost 40% · academics 30% · commute 20% · class size 10%.</p>';
   }
   function calculate(e){if(e)e.preventDefault();render(getData())}
   form.addEventListener('submit',calculate);
-  ['year','title','source'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)calculate()})});
-
-  document.getElementById('copyResults').addEventListener('click',function(){
-    if(!last)return;
-    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
-    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
-    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  ['s1name','s1cost','s1commute','s1rating','s1class','s1notes',
+   's2name','s2cost','s2commute','s2rating','s2class','s2notes',
+   's3name','s3cost','s3commute','s3rating','s3class','s3notes'].forEach(function(id){
+    document.getElementById(id).addEventListener('input',function(){if(last)calculate()});
   });
-  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
-  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var rows=csvRows(getData());var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='citation-formatter.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My formatted citation')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
+  });
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    if(!last||!last.a.ok)return;
+    var a=last.a;
+    var rows=[['School','Yearly cost','Commute (min)','Rating (1-10)','Class size','Cost score','Academics score','Commute score','Class size score','Weighted score','Notes']];
+    a.ranked.forEach(function(x){
+      rows.push([x.name,Math.round(x.cost),x.commute,x.rating,x.cls,
+        Math.round(x.parts.cost),Math.round(x.parts.acad),Math.round(x.parts.commute),Math.round(x.parts.cls),
+        Math.round(x.score),x.notes]);
+    });
+    csvDownload('school-choice-worksheet.csv',rows);
+  });
+  document.getElementById('printBtn').addEventListener('click',function(){window.print()});
+
+  function flashCopy(btn, ok){
+    var status = document.getElementById('copyStatus');
+    btn.textContent = ok ? 'Copied' : 'Copy failed';
+    status.textContent = ok ? 'Results copied to your clipboard.' : 'Could not copy automatically.';
+    window.setTimeout(function(){ btn.textContent = 'Copy results'; status.textContent = ''; }, 1800);
+  }
+  function doCopy(text, btn){
+    btn = btn || document.getElementById('copyResults');
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ flashCopy(btn, true); },
+        function(){ flashCopy(btn, false); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { flashCopy(btn, document.execCommand('copy')); }
+      catch(e){ flashCopy(btn, false); }
+      ta.remove();
+    }
+  }
+  function csvDownload(filename, rows){
+    var csv = rows.map(function(r){
+      return r.map(function(c){ return '"' + String(c == null ? '' : c).replace(/"/g,'""') + '"'; }).join(',');
+    }).join('\n');
+    var url = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
+    var a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+  function enableActions(subject, bodyText){
+    var email = document.getElementById('emailResults');
+    if (email){
+      email.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
+      email.setAttribute('aria-disabled','false');
+    }
+    var cp = document.getElementById('copyResults');
+    if (cp) cp.disabled = false;
+  }
 
 })();
 
 </script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
-<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/word-counter/"><span class="arr">→</span>Count words in your essay</a></li><li><a href="/education/reading-time-estimator/"><span class="arr">→</span>How long is the reading?</a></li><li><a href="/education/study-planner/"><span class="arr">→</span>Plan your study time</a></li></ul></div>
+
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/which-school-fits-my-family/"><span class="arr">→</span>Which school fits my family?</a></li><li><a href="/education/school-year-expense-planner/"><span class="arr">→</span>Plan the school-year budget</a></li><li><a href="/education/extracurricular-cost-calculator/"><span class="arr">→</span>Price extracurriculars</a></li></ul></div>
+
 <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only. They are not academic, financial, or legal advice. Grading scales and school policies vary &mdash; verify requirements with your school. Your entries stay on your device. Use at your own risk.</div>
+
 <script src="/money/recent-tools.js" defer></script>
 <script src="/money/input-hints.js" defer></script>
 <script src="/money/share-result.js" defer></script>

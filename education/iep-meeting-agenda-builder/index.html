@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Citation Generator (APA/MLA) | Honed Signal</title>
+  <title>IEP Meeting Agenda Builder | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -60,169 +60,274 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 
   </style>
 <!-- honed-seo-start -->
-<meta name="description" content="Generate APA and MLA citations from author, year, title, and source. Free education tool with one-click copy." />
-<link rel="canonical" href="https://honedsignal.com/education/citation-formatter/" />
+<meta name="description" content="Build a printable IEP meeting agenda: goals review, questions to ask, attendees, and next steps. Free tool for parents." />
+<link rel="canonical" href="https://honedsignal.com/education/iep-meeting-agenda-builder/" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Citation Generator (APA/MLA)","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/citation-formatter/","description":"Generate APA and MLA citations from author, year, title, and source. Free education tool with one-click copy.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"IEP Meeting Agenda Builder","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/iep-meeting-agenda-builder/","description":"Build a printable IEP meeting agenda: goals review, questions to ask, attendees, and next steps. Free tool for parents.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
-</head>
-<body>
+</head><body>
 <a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
   <header class="intro">
-    <div class="hs-hero has-art" role="img" aria-label="A student shelving books in a grand library lit by warm lamps" style="background-image:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.62) 100%),url('/education/assets/citation-formatter.jpg');background-size:cover;background-position:center"><div class="shade"></div><h1 class="hs-hero-title">Citations, <span class="accent">formatted</span> correctly.</h1></div>
-    <p>Add the authors, pick a source type and style — get a formatted citation ready to copy.</p>
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Walk in <span class="accent">prepared.</span></h1></div>
+    <p>Build a clear, printable agenda for your child's IEP meeting — goals, questions, and who's who.</p>
   </header>
-  <section class="workbench" aria-label="Citation Generator">
+  <section class="workbench" aria-label="IEP Meeting Agenda Builder">
     <form class="panel inputs" id="calcForm" novalidate>
-      <div class="section-head"><h2>Citation style</h2><span class="step">01 / STYLE</span></div><div class="seg" id="styleSeg" role="group" aria-label="Citation style"><button type="button" data-s="APA" class="active">APA</button><button type="button" data-s="MLA">MLA</button></div><div class="section-head" style="margin-top:18px"><h2>Source type</h2><span class="step">02 / TYPE</span></div><div class="expense-list"><div class="expense"><label for="srcType">What are you citing?</label><div class="money-input"><select id="srcType" aria-label="Source type"><option value="book">Book</option><option value="journal">Journal article</option><option value="website">Website</option><option value="film">Film / video</option></select></div></div></div><div class="section-head" style="margin-top:18px"><h2>Source details</h2><span class="step">03 / DETAILS</span></div><div class="expense-list"><div class="expense"><label for="year">Year</label><div class="money-input"><input id="year" type="text" inputmode="numeric" placeholder="2026" aria-label="Year" style="text-align:left"></div></div><div class="expense"><label for="title">Title</label><div class="money-input"><input id="title" type="text" placeholder="Title of work" aria-label="Title" style="text-align:left"></div></div><div class="expense"><label for="source" id="sourceLabel">Publisher</label><div class="money-input"><input id="source" type="text" placeholder="Publisher" aria-label="Source" style="text-align:left"></div></div></div><div class="section-head" style="margin-top:18px"><h2>Authors</h2><span class="step">04 / AUTHORS</span></div><div id="authorRows"></div><button class="action" id="addAuthor" type="button">+ Add author</button>
-      <button class="calculate" type="submit">Format citation</button>
+
+      <div class="section-head"><h2>Meeting details</h2><span class="step">01 / DETAILS</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="studentName">Student first name (optional)</label><div class="money-input"><input id="studentName" type="text" placeholder="Alex" aria-label="Student first name" style="text-align:left"></div></div>
+        <div class="expense"><label for="meetDate">Meeting date</label><div class="money-input"><input id="meetDate" type="date" aria-label="Meeting date" style="text-align:left"></div></div>
+        <div class="expense"><label for="meetType">Meeting type</label><div class="money-input"><select id="meetType" aria-label="Meeting type"><option>Initial IEP</option><option selected>Annual review</option><option>Reevaluation</option><option>Amendment</option><option>Other</option></select></div></div>
+      </div>
+      <div class="section-head" style="margin-top:18px"><h2>Goals to review</h2><span class="step">02 / GOALS</span></div>
+      <div id="goalRows"></div>
+      <button class="action" id="addGoal" type="button">+ Add goal</button>
+      <div class="section-head" style="margin-top:18px"><h2>Who should be there</h2><span class="step">03 / TEAM</span></div>
+      <div id="attendeeRows"></div>
+      <button class="action" id="addAttendee" type="button">+ Add attendee</button>
+      <div class="section-head" style="margin-top:18px"><h2>Your input</h2><span class="step">04 / INPUT</span></div>
+      <div class="expense-list">
+        <div class="expense" style="grid-template-columns:1fr"><label for="concerns">Concerns to raise</label><textarea class="edu" id="concerns" rows="3" placeholder="What you want the team to hear — strengths, struggles, what's working at home."></textarea></div>
+      </div>
+      <div id="questionRows" style="margin-top:8px"></div>
+      <button class="action" id="addQuestion" type="button">+ Add question to ask</button>
+      <button class="calculate" type="submit">Build my agenda</button>
       <div class="result-actions">
-        <a class="action result-action" id="emailResults" aria-label="Email these results" aria-disabled="true">Email my results</a>
+        <a class="action result-action" id="emailResults" aria-label="Email this agenda" aria-disabled="true">Email my results</a>
         <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
       </div>
       <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
-      <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+      <p class="hint">Calculate to activate the email and copy buttons. Nothing is saved — print or copy before you leave.</p>
+
     </form>
     <div class="results">
-      <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Run the numbers.</h2><p>Fill in the source details and pick a style.</p></div>
-      </div>
+<div class="empty" id="emptyState">
+  <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Run the numbers.</h2><p>Fill in the meeting details and add goals, attendees, and questions.</p></div>
+</div>
+
+
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">YOUR CITATION</p><p class="target" id="citeOut" style="font-size:clamp(1.1rem,3vw,1.7rem);line-height:1.4">—</p><p class="target-note" id="citeNote"></p></section><div class="metric-grid"><article class="metric"><span>STYLE</span><strong id="mStyle">APA</strong><em id="mStyleNote">—</em></article><article class="metric"><span>COPY</span><strong>One-click</strong><em>use Copy results</em></article><article class="metric"><span>VERIFY</span><strong>Official</strong><em>style guide</em></article></div>
+        <section class="result-top"><p class="eyebrow">IEP MEETING AGENDA</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>GOALS ON TRACK</span><strong id="mOnTrack">—</strong><em id="mOnTrackNote">of goals listed</em></article>
+          <article class="metric"><span>NEEDS ATTENTION</span><strong id="mBehind">—</strong><em>behind or new</em></article>
+          <article class="metric"><span>QUESTIONS READY</span><strong id="mQuestions">—</strong><em>to ask the team</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>Your agenda</h3><div id="agendaBody"></div></section>
+          <section class="plan-block nudge"><h3>At the meeting</h3><p>You are an equal member of the IEP team. A few things that help:</p><strong id="nudgeStrong">Get it in writing.</strong><p id="nudgeFoot">Ask for prior written notice of any decision, take notes, and remember you can reconvene — you never have to agree on the spot.</p></section>
+        </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
-          <p class="explain-copy hidden" id="explainCopy"></p>
+          <p class="explain-copy hidden" id="explainCopy">This agenda organizes what you entered into the order most IEP meetings follow: introductions, review of current goals, discussion of concerns, then new business and next steps. Bring two copies — one for you, one for the team. The questions list is yours to work through; check them off as you go.</p>
         </section>
-        <div class="actions"><button class="action" id="downloadCsv" type="button">Download breakdown</button></div>
+        <div class="actions"><button class="action" id="printBtn" type="button">Print agenda</button></div>
       </div>
+
     </div>
   </section>
-  <footer class="footer"><p><strong>Assumptions:</strong> Covers books, journal articles, websites, and films in APA and MLA. One or two authors are listed fully; three or more become “et al.” Unusual sources have additional rules — verify against the official style guide.</p><p>Educational estimate, not academic or professional advice.</p></footer>
+  <footer class="footer"><p><strong>Assumptions:</strong> Agenda template for planning help only — not legal advice. IEP timelines and required attendees vary by state; your procedural safeguards notice has the details.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
 <script>
+
 (function(){'use strict';
-  var form=document.getElementById('calcForm'),last=null,style='APA',srcType='book';
-  var segBtns=document.querySelectorAll('#styleSeg button');
-  for(var b=0;b<segBtns.length;b++){
-    segBtns[b].addEventListener('click',function(){style=this.getAttribute('data-s');
-      for(var k=0;k<segBtns.length;k++){segBtns[k].classList.toggle('active',segBtns[k]===this)}
-      if(last)render(getData())});
-  }
-  var SRC_LABELS={book:'Publisher',journal:'Journal name',website:'Website name',film:'Production company'};
-  var SRC_PH={book:'Publisher',journal:'Journal name',website:'Website name',film:'Production company'};
-  document.getElementById('srcType').addEventListener('change',function(){
-    srcType=this.value;
-    document.getElementById('sourceLabel').textContent=SRC_LABELS[srcType];
-    document.getElementById('source').placeholder=SRC_PH[srcType];
-    if(last)render(getData());
-  });
+  var form=document.getElementById('calcForm'),last=null;
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
   function val(id){var el=document.getElementById(id);return el?el.value.trim():''}
-  function addAuthorRow(first,lastn){
-    var wrap=document.getElementById('authorRows'),d=document.createElement('div');
+  function addGoalRow(area,status){
+    var wrap=document.getElementById('goalRows'),d=document.createElement('div');
     d.className='dyn-row wide';
-    d.innerHTML='<input type="text" class="au-first" placeholder="First name" aria-label="Author first name" value="'+esc(first||'')+'">'
-      +'<input type="text" class="au-last" placeholder="Last name" aria-label="Author last name" value="'+esc(lastn||'')+'">'
-      +'<span></span><button type="button" class="dyn-rm" aria-label="Remove author">\u00d7</button>';
-    d.querySelector('.dyn-rm').addEventListener('click',function(){d.remove();if(last)render(getData())});
-    d.querySelectorAll('input').forEach(function(el){el.addEventListener('input',function(){if(last)render(getData())})});
+    d.innerHTML='<input type="text" class="goal-area" placeholder="Goal area (e.g. reading fluency)" aria-label="Goal area" value="'+esc(area||'')+'">'
+      +'<select class="goal-status" aria-label="Goal status">'
+      +'<option value="on-track">On track</option><option value="behind">Behind</option><option value="new">New goal</option></select>'
+      +'<span></span><button type="button" class="dyn-rm" aria-label="Remove goal">×</button>';
+    if(status)d.querySelector('.goal-status').value=status;
+    d.querySelector('.dyn-rm').addEventListener('click',function(){d.remove();if(last)calculate()});
+    d.querySelectorAll('input,select').forEach(function(el){el.addEventListener('input',function(){if(last)calculate()})});
     wrap.appendChild(d);
   }
-  document.getElementById('addAuthor').addEventListener('click',function(){addAuthorRow()});
-  addAuthorRow();
-  function authors(){
-    return Array.prototype.slice.call(document.querySelectorAll('#authorRows .dyn-row')).map(function(r){
-      return{first:r.querySelector('.au-first').value.trim(),last:r.querySelector('.au-last').value.trim()};
-    }).filter(function(a){return a.first||a.last});
+  function addAttendeeRow(name,role){
+    var wrap=document.getElementById('attendeeRows'),d=document.createElement('div');
+    d.className='dyn-row wide';
+    d.innerHTML='<input type="text" class="att-name" placeholder="Name" aria-label="Attendee name" value="'+esc(name||'')+'">'
+      +'<input type="text" class="att-role" placeholder="Role (e.g. special ed teacher)" aria-label="Attendee role" value="'+esc(role||'')+'">'
+      +'<span></span><button type="button" class="dyn-rm" aria-label="Remove attendee">×</button>';
+    d.querySelector('.dyn-rm').addEventListener('click',function(){d.remove();if(last)calculate()});
+    d.querySelectorAll('input').forEach(function(el){el.addEventListener('input',function(){if(last)calculate()})});
+    wrap.appendChild(d);
   }
-  function initials(first){
-    return first.split(/\s+/).filter(Boolean).map(function(w){return w.charAt(0).toUpperCase()+'.'}).join(' ');
+  function addQuestionRow(q){
+    var wrap=document.getElementById('questionRows'),d=document.createElement('div');
+    d.className='dyn-row';
+    d.innerHTML='<input type="text" class="q-text" placeholder="Question for the team" aria-label="Question to ask" value="'+esc(q||'')+'">'
+      +'<span></span><span></span><button type="button" class="dyn-rm" aria-label="Remove question">×</button>';
+    d.querySelector('.dyn-rm').addEventListener('click',function(){d.remove();if(last)calculate()});
+    d.querySelector('input').addEventListener('input',function(){if(last)calculate()});
+    wrap.appendChild(d);
   }
-  function apaAuthors(list){
-    var fmt=list.map(function(a){return (a.last||'(Unknown)')+(a.first?', '+initials(a.first):'');});
-    if(fmt.length===0)return '';
-    if(fmt.length===1)return fmt[0];
-    if(fmt.length===2)return fmt[0]+', & '+fmt[1];
-    return fmt[0]+', et al.';
+  document.getElementById('addGoal').addEventListener('click',function(){addGoalRow()});
+  document.getElementById('addAttendee').addEventListener('click',function(){addAttendeeRow()});
+  document.getElementById('addQuestion').addEventListener('click',function(){addQuestionRow()});
+  addGoalRow();addAttendeeRow();addQuestionRow();
+  function rows(sel){return Array.prototype.slice.call(document.querySelectorAll(sel))}
+  function fmtDate(v){
+    if(!v)return 'Date TBD';
+    var d=new Date(v+'T00:00:00');
+    return isNaN(d)?'Date TBD':d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   }
-  function mlaAuthors(list){
-    var fmt=list.map(function(a,i){
-      if(i===0)return ((a.last||'(Unknown)')+(a.first?', '+a.first:''));
-      return ((a.first?a.first+' ':'')+(a.last||'(Unknown)')).trim();
-    });
-    if(fmt.length===0)return '';
-    if(fmt.length===1)return fmt[0];
-    if(fmt.length===2)return fmt[0]+', and '+fmt[1];
-    return fmt[0]+', et al.';
-  }
-  function stripDots(s){return s.replace(/\.+$/,'')}
   function getData(){
-    var au=authors(),year=stripDots(val('year')),title=stripDots(val('title')),source=stripDots(val('source'));
-    var cite='';
-    if(style==='APA'){
-      var a=apaAuthors(au);
-      if(srcType==='film'){
-        cite=(a?a+'. (Director). ':'')+(year?'('+year+'). ':'(n.d.). ')+(title?title+' [Film]. ':'')+(source?source+'.':'');
-      }else{
-        cite=(a?a+'. ':'')+(year?'('+year+'). ':'(n.d.). ')+(title?title+'. ':'')+(source?source+'.':'');
-      }
-    }else{
-      var m=mlaAuthors(au);
-      if(srcType==='film'){
-        var dir=au.length?((au[0].first?au[0].first+' ':'')+au[0].last).trim():'';
-        cite=(title?title+'. ':'')+(dir?'Directed by '+dir+', ':'')+(source?source+', ':'')+(year?year+'.':'');
-      }else if(srcType==='book'){
-        cite=(m?m+'. ':'')+(title?title+'. ':'')+(source?source+', ':'')+(year?year+'.':'');
-      }else{
-        cite=(m?m+'. ':'')+(title?'"'+title+'." ':'')+(source?source+', ':'')+(year?year+'.':'');
-      }
+    var goals=rows('#goalRows .dyn-row').map(function(r){
+      return{area:r.querySelector('.goal-area').value.trim(),
+             status:r.querySelector('.goal-status').value};
+    }).filter(function(g){return g.area});
+    var attendees=rows('#attendeeRows .dyn-row').map(function(r){
+      return{name:r.querySelector('.att-name').value.trim(),
+             role:r.querySelector('.att-role').value.trim()};
+    }).filter(function(a){return a.name||a.role});
+    var questions=rows('#questionRows .dyn-row').map(function(r){
+      return r.querySelector('.q-text').value.trim();
+    }).filter(Boolean);
+    var type=val('meetType'),date=fmtDate(val('meetDate')),student=val('studentName');
+    var who=student?student:'your child';
+    var onTrack=goals.filter(function(g){return g.status==='on-track'}).length;
+    var behind=goals.filter(function(g){return g.status!=='on-track'}).length;
+    return{type:type,date:date,who:who,goals:goals,attendees:attendees,
+           questions:questions,concerns:val('concerns'),onTrack:onTrack,behind:behind};
+  }
+  function statusLabel(s){return s==='on-track'?'On track':(s==='behind'?'Behind':'New goal')}
+  function agendaText(d){
+    var L=[];
+    L.push('IEP MEETING AGENDA','');
+    L.push('Meeting: '+d.type+' — '+d.date);
+    L.push('Student: '+d.who,'');
+    L.push('1. INTRODUCTIONS & PURPOSE');
+    L.push('   '+d.type+' for '+d.who+'.');
+    if(d.attendees.length){L.push('   Expected attendees:');d.attendees.forEach(function(a){L.push('   - '+(a.name||'TBD')+(a.role?' ('+a.role+')':''))});}
+    L.push('');
+    L.push('2. REVIEW OF CURRENT GOALS');
+    if(d.goals.length){d.goals.forEach(function(g){L.push('   - '+g.area+': '+statusLabel(g.status))});}
+    else L.push('   (no goals listed)');
+    L.push('');
+    L.push('3. PARENT CONCERNS');
+    L.push('   '+(d.concerns||'(none listed)'));
+    L.push('');
+    L.push('4. SERVICES & ACCOMMODATIONS TO DISCUSS');
+    L.push('   - Are current services being delivered as written?');
+    L.push('   - Any changes to services, minutes, or setting needed?');
+    L.push('   - Accommodations for classwork and testing.');
+    L.push('');
+    L.push('5. QUESTIONS FOR THE TEAM');
+    if(d.questions.length){d.questions.forEach(function(q,i){L.push('   '+(i+1)+'. '+q)});}
+    else L.push('   (none listed)');
+    L.push('');
+    L.push('6. NEXT STEPS');
+    L.push('   - Request prior written notice of any decisions.');
+    L.push('   - Get a copy of the draft IEP before leaving, or a date it will arrive.');
+    L.push('   - Agree on a follow-up date to review progress.');
+    L.push('   - Remember: you can reconvene — no need to agree on the spot.');
+    return L.join('\n');
+  }
+  function agendaHtml(d){
+    var h='<h4 style="margin:0 0 6px">1. Introductions &amp; purpose</h4><p style="margin:0 0 12px;color:var(--muted);font-size:.8rem">'+esc(d.type)+' for '+esc(d.who)+' — '+esc(d.date)+'.</p>';
+    if(d.attendees.length){
+      h+='<h4 style="margin:0 0 6px">Expected attendees</h4><ul style="margin:0 0 12px;padding-left:18px;color:var(--muted);font-size:.8rem">'
+        +d.attendees.map(function(a){return '<li>'+esc(a.name||'TBD')+(a.role?' — '+esc(a.role):'')+'</li>'}).join('')+'</ul>';
     }
-    var auStr=au.map(function(a){return (a.first+' '+a.last).trim()}).filter(Boolean).join('; ');
-    return{style:style,srcType:srcType,authors:auStr,year:year,title:title,source:source,cite:cite.trim()};
-  }
-  function typeLabel(){return{book:'Book',journal:'Journal article',website:'Website',film:'Film / video'}[srcType]}
-  function emailBody(d){
-    return ['Citation Generator ('+d.style+', '+typeLabel()+') results','','Authors: '+(d.authors||'(none)'),'Year: '+d.year,'Title: '+d.title,'Source: '+d.source,'',
-      'Formatted citation:',''+d.cite,'','Double-check against the official '+d.style+' guide \u2014 unusual sources have special rules.','','Educational estimate, not academic advice.'].join('\n');
-  }
-  function csvRows(d){
-    return [['Citation Generator','Value'],['Style',d.style],['Source type',typeLabel()],['Authors',d.authors],['Year',d.year],['Title',d.title],['Source',d.source],['Citation',d.cite]];
+    h+='<h4 style="margin:0 0 6px">2. Goals review</h4>';
+    if(d.goals.length){
+      h+='<ul style="margin:0 0 12px;padding-left:18px;color:var(--muted);font-size:.8rem">'
+        +d.goals.map(function(g){return '<li>'+esc(g.area)+' — <strong>'+esc(statusLabel(g.status))+'</strong></li>'}).join('')+'</ul>';
+    }else{h+='<p style="margin:0 0 12px;color:var(--muted);font-size:.8rem">No goals listed.</p>'}
+    h+='<h4 style="margin:0 0 6px">3. Your concerns</h4><p style="margin:0 0 12px;color:var(--muted);font-size:.8rem">'+esc(d.concerns||'None listed.')+'</p>';
+    h+='<h4 style="margin:0 0 6px">4. Questions for the team</h4>';
+    if(d.questions.length){
+      h+='<ol style="margin:0 0 12px;padding-left:18px;color:var(--muted);font-size:.8rem">'
+        +d.questions.map(function(q){return '<li>'+esc(q)+'</li>'}).join('')+'</ol>';
+    }else{h+='<p style="margin:0 0 12px;color:var(--muted);font-size:.8rem">None listed.</p>'}
+    h+='<h4 style="margin:0 0 6px">5. Next steps</h4><ul style="margin:0;padding-left:18px;color:var(--muted);font-size:.8rem"><li>Request prior written notice of any decisions.</li><li>Get a copy of the draft IEP or a delivery date.</li><li>Set a follow-up date to review progress.</li></ul>';
+    return h;
   }
   function render(d){
     last=d;
     document.getElementById('emptyState').classList.add('hidden');
     document.getElementById('resultState').classList.remove('hidden');
-    document.getElementById('citeOut').textContent=d.cite||'Fill in the fields above.';
-    document.getElementById('citeNote').textContent=d.cite?('Formatted in '+d.style+' style ('+typeLabel().toLowerCase()+'). Always double-check unusual sources against the official guide.'):'';
-    document.getElementById('mStyle').textContent=d.style;
-    document.getElementById('mStyleNote').textContent=typeLabel().toLowerCase();
-    document.getElementById('explainCopy').textContent='APA format: Author. (Year). Title. Source. — with authors as "Last, F." (two authors joined by "&", three or more become "et al."). MLA format: Author. "Title." Source, Year. — first author "Last, First", second "First Last", three or more become "et al." Films credit the director. This covers the common cases; unusual sources have extra rules in the official guides.';
-    enableActions(d);
+    document.getElementById('target').textContent=d.type;
+    document.getElementById('targetNote').textContent=d.who+' — '+d.date;
+    document.getElementById('mOnTrack').textContent=d.onTrack;
+    document.getElementById('mBehind').textContent=d.behind;
+    document.getElementById('mQuestions').textContent=d.questions.length;
+    document.getElementById('agendaBody').innerHTML=agendaHtml(d);
+    var txt=agendaText(d);
+    enableActions('IEP meeting agenda', txt);
+    document.getElementById('copyResults').onclick=function(){doCopy(txt)};
   }
   function calculate(e){if(e)e.preventDefault();render(getData())}
   form.addEventListener('submit',calculate);
-  ['year','title','source'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)calculate()})});
-
-  document.getElementById('copyResults').addEventListener('click',function(){
-    if(!last)return;
-    var button=this,status=document.getElementById('copyStatus'),text=emailBody(getData()),settled=false;
-    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
-    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
+  ['studentName','meetDate','meetType','concerns'].forEach(function(id){
+    document.getElementById(id).addEventListener('input',function(){if(last)calculate()});
   });
-  document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
-  document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var rows=csvRows(getData());var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='citation-formatter.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My formatted citation')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
+  });
+  document.getElementById('printBtn').addEventListener('click',function(){window.print()});
+
+  function flashCopy(btn, ok){
+    var status = document.getElementById('copyStatus');
+    btn.textContent = ok ? 'Copied' : 'Copy failed';
+    status.textContent = ok ? 'Results copied to your clipboard.' : 'Could not copy automatically.';
+    window.setTimeout(function(){ btn.textContent = 'Copy results'; status.textContent = ''; }, 1800);
+  }
+  function doCopy(text, btn){
+    btn = btn || document.getElementById('copyResults');
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ flashCopy(btn, true); },
+        function(){ flashCopy(btn, false); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { flashCopy(btn, document.execCommand('copy')); }
+      catch(e){ flashCopy(btn, false); }
+      ta.remove();
+    }
+  }
+  function csvDownload(filename, rows){
+    var csv = rows.map(function(r){
+      return r.map(function(c){ return '"' + String(c == null ? '' : c).replace(/"/g,'""') + '"'; }).join(',');
+    }).join('\n');
+    var url = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
+    var a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+  function enableActions(subject, bodyText){
+    var email = document.getElementById('emailResults');
+    if (email){
+      email.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
+      email.setAttribute('aria-disabled','false');
+    }
+    var cp = document.getElementById('copyResults');
+    if (cp) cp.disabled = false;
+  }
 
 })();
 
 </script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
-<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/word-counter/"><span class="arr">→</span>Count words in your essay</a></li><li><a href="/education/reading-time-estimator/"><span class="arr">→</span>How long is the reading?</a></li><li><a href="/education/study-planner/"><span class="arr">→</span>Plan your study time</a></li></ul></div>
+
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/accommodation-tracker/"><span class="arr">→</span>Track IEP accommodations</a></li><li><a href="/education/intervention-progress-tracker/"><span class="arr">→</span>Track intervention progress</a></li><li><a href="/education/parent-teacher-conference-scheduler/"><span class="arr">→</span>Plan a parent-teacher conference</a></li></ul></div>
+
 <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only. They are not academic, financial, or legal advice. Grading scales and school policies vary &mdash; verify requirements with your school. Your entries stay on your device. Use at your own risk.</div>
+
 <script src="/money/recent-tools.js" defer></script>
 <script src="/money/input-hints.js" defer></script>
 <script src="/money/share-result.js" defer></script>
