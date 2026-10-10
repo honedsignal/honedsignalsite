@@ -62,12 +62,13 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* The wordmark lockup's orange square period */
+/* The wordmark lockup's orange round period */
 .dot {
   display: inline-block;
   width: 0.32em;
   height: 0.32em;
   background: var(--orange);
+  border-radius: 50%;
   margin-left: 0.08em;
   vertical-align: baseline;
 }
