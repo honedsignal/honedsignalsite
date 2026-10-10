@@ -454,7 +454,8 @@
 
     // ---- Styles (inline so no site CSS dependency) ------------------------
     var css =
-      '.hm-hint-btn{display:inline-block;width:1.15em;height:1.15em;margin-left:.45em;' +
+      '.hm-hint-btn{display:inline-block;width:1.15em;height:1.15em;min-width:0;min-height:0;margin-left:.45em;' +
+      'flex:none;box-sizing:border-box;' +
       'border-radius:50%;border:1px solid #ff8c42;background:#0b0e14;color:#ff9e5e;' +
       'font-size:.78em;line-height:1;font-weight:700;cursor:pointer;padding:0;' +
       'vertical-align:middle;text-align:center}' +
@@ -524,6 +525,13 @@
       for (i = 0; i < els.length; i++) {
         (function (el) {
           if (el.getAttribute(MARK)) return;
+          // Skip when an associated <label> already received a hint (avoids doubles).
+          var lab = null;
+          if (el.id) {
+            try { lab = document.querySelector('label[for="' + String(el.id).replace(/"/g, '') + '"]'); } catch (e) { lab = null; }
+          }
+          if (!lab && el.closest) { try { lab = el.closest('label'); } catch (e) { lab = null; } }
+          if (lab && lab.getAttribute(MARK)) return;
           var hint = hintFor(el.getAttribute('aria-label'));
           if (!hint) return;
           el.setAttribute(MARK, 'attached');
@@ -548,7 +556,7 @@
           wrap.appendChild(btn);
           if (el.parentNode) {
             el.parentNode.insertBefore(wrap, el.nextSibling);
-            wrap.appendChild(box);
+            wrap.parentNode.insertBefore(box, wrap.nextSibling);
           }
         })(els[i]);
       }
