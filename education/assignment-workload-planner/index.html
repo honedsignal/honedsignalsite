@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Education Tools | Honed Signal</title>
-  <meta name="description" content="Practical education tools for students, teachers, and parents. GPA, final exams, study plans, citations and more \u2014 free, no signup." />
-  <link rel="canonical" href="https://honedsignal.com/education/" />
+  <title>Assignment Workload Planner | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,7 +34,6 @@
 .hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.55) 100%)}
 .hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
 .hs-hero h1 .accent{color:var(--green)}
-.hs-hero.has-art{background-image:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.62) 100%),url('/education/assets/education-hub-hero.jpg');background-size:cover;background-position:center}
 @media(max-width:640px){.hs-hero{min-height:130px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
 .dyn-row{display:grid;grid-template-columns:1fr 96px 78px 34px;gap:8px;margin-bottom:8px;align-items:center}
 .dyn-row.wide{grid-template-columns:1fr 110px 110px 34px}
@@ -61,31 +58,153 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 .empty-art .doc:before{content:"";position:absolute;left:12px;right:12px;top:14px;height:6px;background:var(--line-strong);border-radius:3px;box-shadow:0 14px 0 var(--line-strong),0 28px 0 var(--line-strong),0 42px 0 var(--line-strong),0 56px 0 var(--orange)}
 .err{color:var(--red);font-size:.75rem;font-weight:700;margin-top:8px;min-height:1.1em}
 
-    .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:30px}
-    .card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:border-color .15s}
-    .card:hover{border-color:var(--orange)}
-    .card h3{margin:0 0 8px;font-size:1.05rem;letter-spacing:-.02em}
-    .card p{margin:0 0 12px;color:var(--muted);font-size:.85rem}
-    .card .go{color:var(--orange);font-weight:800;font-size:.8rem}
-    .hub-hero{padding:20px 0 6px}
-    .hub-hero h1{margin:0;font-size:clamp(2.2rem,6vw,4rem);letter-spacing:-.04em}
-    .hub-hero h1 .accent{color:var(--green)}
-    .hub-hero p{color:var(--muted);font-size:1.05rem;max-width:56ch}
   </style>
+<!-- honed-seo-start -->
+<meta name="description" content="This week’s assignments times honest hours each, vs. the study time you actually have — can it all get done?" />
+<link rel="canonical" href="https://honedsignal.com/education/assignment-workload-planner/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Assignment Workload Planner","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/assignment-workload-planner/","description":"This week’s assignments times honest hours each, vs. the study time you actually have — can it all get done?","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
 </head>
 <body>
 <a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
-  <header class="hub-hero">
-    <div class="hs-hero has-art" role="img" aria-label="A diverse group of students studying together in a sunlit library"><div class="shade"></div><h1 class="hs-hero-title">Tools for <span class="accent">learning</span>.</h1></div>
-    <p>Practical tools for students, teachers, and parents. Grades, study plans, reading time, citations \u2014 free, private, no account needed.</p>
+  <header class="intro">
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Hope is <span class="accent">not a schedule.</span></h1></div>
+    <p>Enter the week’s load and your real hours — get a verdict before Sunday night.</p>
   </header>
-  <section class="tool-grid" aria-label="Education tools">
-    <a class="card" href="/education/gpa-calculator/"><h3>GPA Calculator</h3><p>Your GPA on the 4.0 scale from course grades and credits.</p><span class="go">Open tool →</span></a><a class="card" href="/education/final-exam-calculator/"><h3>Final Exam Grade Calculator</h3><p>The exact final-exam score you need to hit your target grade.</p><span class="go">Open tool →</span></a><a class="card" href="/education/weighted-grade-calculator/"><h3>Weighted Grade Calculator</h3><p>Combine exams, homework, and projects the way your syllabus does.</p><span class="go">Open tool →</span></a><a class="card" href="/education/can-i-still-pass/"><h3>Can I Still Pass? Calculator</h3><p>An honest answer about what your remaining work needs to average.</p><span class="go">Open tool →</span></a><a class="card" href="/education/study-planner/"><h3>Study Planner</h3><p>A day-by-day study plan built around your exam dates.</p><span class="go">Open tool →</span></a><a class="card" href="/education/absence-tracker/"><h3>Class Absence Calculator</h3><p>How many classes you can still miss before it costs you.</p><span class="go">Open tool →</span></a><a class="card" href="/education/reading-time-estimator/"><h3>Reading Time Calculator</h3><p>How long that assigned reading will actually take.</p><span class="go">Open tool →</span></a><a class="card" href="/education/word-counter/"><h3>Essay Word Counter</h3><p>Live word, character, sentence, and paragraph counts. Private.</p><span class="go">Open tool →</span></a><a class="card" href="/education/citation-formatter/"><h3>Citation Generator (APA/MLA)</h3><p>Formatted citations ready to copy, in APA or MLA style.</p><span class="go">Open tool →</span></a><a class="card" href="/education/gradebook-calculator/"><h3>Gradebook Calculator</h3><p>Scores to percentages, letter grades, and class average.</p><span class="go">Open tool →</span></a><a class="card" href="/education/assignment-tracker/"><h3>Assignment Deadline Tracker</h3><p>Never miss a due date. Track assignments, flag what is overdue, and watch your completion climb.</p><span class="go">Open tool →</span></a><a class="card" href="/education/grade-curve-calculator/"><h3>Grade Curve Calculator</h3><p>See what a flat, square-root, or linear curve does to your test score.</p><span class="go">Open tool →</span></a><a class="card" href="/education/can-i-still-get-an-a/"><h3>Can I Still Get an A? Calculator</h3><p>The exact average you need on remaining work to finish with an A.</p><span class="go">Open tool →</span></a><a class="card" href="/education/college-cost-comparison/"><h3>College Cost Comparison</h3><p>Compare up to three colleges by true net cost, ranked cheapest first.</p><span class="go">Open tool →</span></a><a class="card" href="/education/class-curve-grader/"><h3>Class Curve Grader</h3><p>For teachers: curve a whole class of scores at once, with before-and-after stats.</p><span class="go">Open tool →</span></a><a class="card" href="/education/random-student-picker/"><h3>Random Student Picker</h3><p>For teachers: pick a student at random, with no repeats until everyone has had a turn.</p><span class="go">Open tool →</span></a><a class="card" href="/education/assignment-workload-planner/"><h3>Assignment Workload Planner</h3><p>This week’s load vs. your real study hours — can it all get done?</p><span class="go">Open tool →</span></a><a class="card" href="/education/transfer-credit-planner/"><h3>Transfer Credit Planner</h3><p>What transfers, what’s lost, what’s left — at the real acceptance rate.</p><span class="go">Open tool →</span></a><a class="card" href="/education/test-retake-decision/"><h3>Test Retake Decision</h3><p>Score gap, retake cost, prep time — should you pay to take it again?</p><span class="go">Open tool →</span></a><a class="card" href="/education/teacher-grading-workload/"><h3>Grading Workload Estimator</h3><p>For teachers: the real weekly cost of grading, in hours.</p><span class="go">Open tool →</span></a><a class="card" href="/education/classroom-supply-quantity-planner/"><h3>Supply Quantity Planner</h3><p>For teachers: the full classroom buy list, overage included.</p><span class="go">Open tool →</span></a><a class="card" href="/education/professional-development-hours-tracker/"><h3>PD Hours Tracker</h3><p>For teachers: log PD hours toward the requirement — private to your browser.</p><span class="go">Open tool →</span></a><a class="card" href="/education/childcare-after-school-cost/"><h3>Childcare & After-School Cost</h3><p>For parents: compare two care options — the yearly winner.</p><span class="go">Open tool →</span></a><a class="card" href="/education/college-living-expense-calculator/"><h3>College Living Expense Calculator</h3><p>Dorm vs. apartment on a real 12-month lease — the true winner.</p><span class="go">Open tool →</span></a><a class="card" href="/education/return-on-education-investment/"><h3>Education ROI Calculator</h3><p>Degree cost vs. salary bump — payback years and 10-year gain.</p><span class="go">Open tool →</span></a><a class="card" href="/education/should-i-work-while-in-college/"><h3>Should I Work While in College?</h3><p>Job earnings vs. lost study hours — a verdict on whether it fits.</p><span class="go">Open tool →</span></a><a class="card" href="/education/can-i-afford-this-college/"><h3>Can I Afford This College?</h3><p>Yearly costs vs. your money and loan cap — a plain-English verdict.</p><span class="go">Open tool →</span></a><a class="card" href="/education/degree-completion-timeline/"><h3>Degree Completion Timeline</h3><p>Semesters to graduation at your pace, with and without summers.</p><span class="go">Open tool →</span></a><a class="card" href="/education/student-group-generator/"><h3>Student Group Generator</h3><p>For teachers: fair randomized groups, no names stored.</p><span class="go">Open tool →</span></a><a class="card" href="/education/classroom-budget-calculator/"><h3>Classroom Budget Calculator</h3><p>For teachers: stipend vs. spending, including out-of-pocket.</p><span class="go">Open tool →</span></a><a class="card" href="/education/tutoring-cost-calculator/"><h3>Tutoring Cost Calculator</h3><p>For parents: the true weekly, monthly, and yearly tutoring cost.</p><span class="go">Open tool →</span></a><a class="card" href="/education/back-to-school-budget-planner/"><h3>Back-to-School Budget Planner</h3><p>For parents: price August per child against your budget.</p><span class="go">Open tool →</span></a><a class="card" href="/education/scholarship-application-tracker/"><h3>Scholarship Application Tracker</h3><p>Track amounts, deadlines, and status — private to your browser.</p><span class="go">Open tool →</span></a><a class="card" href="/education/work-study-income-calculator/"><h3>Work-Study Income Calculator</h3><p>The award is a ceiling — see actual yearly earnings.</p><span class="go">Open tool →</span></a><a class="card" href="/education/is-tutoring-worth-it/"><h3>Is Tutoring Worth It?</h3><p>Price the grade, not the hour — cost per point and a verdict.</p><span class="go">Open tool →</span></a><a class="card" href="/education/extracurricular-cost-calculator/"><h3>Extracurricular Cost Calculator</h3><p>For parents: fees, gear, and travel per activity per child.</p><span class="go">Open tool →</span></a><a class="card" href="/education/graduation-credit-tracker/"><h3>Graduation Credit Tracker</h3><p>Credits earned vs. required — how many semesters to the finish line.</p><span class="go">Open tool →</span></a><a class="card" href="/education/rubric-score-calculator/"><h3>Rubric Score Calculator</h3><p>For teachers: four rubric criteria, one percentage and letter grade.</p><span class="go">Open tool →</span></a><a class="card" href="/education/lesson-period-planner/"><h3>Lesson Period Planner</h3><p>For teachers: fit the lesson to the period with a minute-by-minute timeline.</p><span class="go">Open tool →</span></a><a class="card" href="/education/school-year-expense-planner/"><h3>School-Year Expense Planner</h3><p>For parents: the true yearly cost per child, all categories combined.</p><span class="go">Open tool →</span></a><a class="card" href="/education/financial-aid-award-comparison/"><h3>Financial Aid Award Comparison</h3><p>Compare two aid offers by net cost — loans excluded on purpose.</p><span class="go">Open tool →</span></a><a class="card" href="/education/summer-school-worth-it/"><h3>Is Summer School Worth It?</h3><p>Summer tuition vs. graduating early and earning sooner.</p><span class="go">Open tool →</span></a><a class="card" href="/education/field-trip-cost-calculator/"><h3>Field Trip Cost Calculator</h3><p>For teachers: the break-even price per student for the trip.</p><span class="go">Open tool →</span></a><a class="card" href="/education/school-supply-budget-planner/"><h3>School Supply Budget Planner</h3><p>For parents: plan back-to-school spending and stay under budget.</p><span class="go">Open tool →</span></a>
+    <section class="workbench" aria-label="Assignment workload planner">
+    <form class="panel inputs" id="calcForm" novalidate>
+      <div class="section-head"><h2>The workload</h2><span class="step">01 / LOAD</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="count">Assignments this week</label><div class="money-input"><span>#</span><input id="count" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Assignments this week"></div></div>
+        <div class="expense"><label for="each">Hours per assignment</label><div class="money-input"><span>hrs</span><input id="each" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Hours per assignment"></div></div>
+      </div>
+      <div class="section-head" style="margin-top:22px"><h2>Your time</h2><span class="step">02 / AVAILABILITY</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="avail">Study hours available</label><div class="money-input"><span>hrs</span><input id="avail" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Study hours available"></div></div>
+      </div>
+      <p class="hint">Be honest about available hours \u2014 hope is not a schedule.</p>
+      <button class="calculate" type="submit">Can I get it all done?</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email this workload plan" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Hope is not a schedule.</h2><p>Enter the week\u2019s load and your real hours \u2014 get a verdict.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">VERDICT</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>HOURS NEEDED</span><strong id="mNeed">\u2014</strong><em id="mNeedNote">\u2014</em></article>
+          <article class="metric"><span>HOURS AVAILABLE</span><strong id="mAvail">\u2014</strong><em id="mAvailNote">\u2014</em></article>
+          <article class="metric"><span>GAP</span><strong id="mGap">\u2014</strong><em id="mGapNote">\u2014</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
+          <section class="plan-block nudge"><h3>Triage, don\u2019t panic</h3><p>When the math doesn\u2019t fit, rank by grade weight and deadline \u2014 do the heavy hitters first, email professors about the rest.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download plan</button></div>
+      </div>
+    </div>
   </section>
-  <footer class="footer"><p><strong>About these tools:</strong> Every tool runs entirely on your device. Nothing you type is uploaded or saved.</p><p>Educational estimates, not academic advice.</p></footer>
+
+  <footer class="footer"><p><strong>Assumptions:</strong> Simple hours arithmetic on your entries. Actual assignment difficulty varies.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('calcForm'),last=null;
+  function num(id,def){var v=parseFloat(document.getElementById(id).value);if(!isFinite(v)||v<0)v=def||0;return v}
+  function hrs(n){return n.toFixed(n%1?1:0)}
+  function row(l,v){return'<dt>'+l+'</dt><dd>'+v+'</dd>'}
+  function getData(){
+    var count=Math.round(num('count')),each=num('each'),avail=num('avail');
+    var need=count*each, gap=avail-need;
+    var verdict=need<=avail?'Doable':'Overloaded';
+    return{count:count,each:each,avail:avail,need:need,gap:gap,verdict:verdict};
+  }
+  function emailBody(d){
+    return['Workload plan \u2014 results','','Assignments: '+d.count,'Hours each: '+d.each,
+    'Hours needed: '+d.need,'Hours available: '+d.avail,'Verdict: '+d.verdict,'','Educational estimate, not academic advice.'].join('\n');
+  }
+  function explanationText(d){
+    var parts=[];
+    parts.push(d.count+' assignments \u00d7 '+hrs(d.each)+' hrs = '+hrs(d.need)+' hours needed against '+hrs(d.avail)+' available.');
+    parts.push(d.verdict==='Doable'
+      ? 'It fits \u2014 with '+hrs(d.gap)+' to spare. Protect that buffer; one hard assignment eats it fast.'
+      : 'You\u2019re '+hrs(Math.abs(d.gap))+' hours short. Rank everything by grade weight and deadline, do the heavy hitters first, and email professors about extensions on the rest before the deadline \u2014 not after.');
+    return parts.join(' ');
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('target').textContent=d.verdict;
+    document.getElementById('targetNote').textContent=d.verdict==='Doable'
+      ? 'The week fits \u2014 '+hrs(d.gap)+' hours to spare.'
+      : hrs(Math.abs(d.gap))+' hours short. Triage now, not Sunday night.';
+    document.getElementById('mNeed').textContent=hrs(d.need);
+    document.getElementById('mNeedNote').textContent='hours needed';
+    document.getElementById('mAvail').textContent=hrs(d.avail);
+    document.getElementById('mAvailNote').textContent='hours available';
+    document.getElementById('mGap').textContent=(d.gap>=0?'+':'\u2212')+hrs(Math.abs(d.gap));
+    document.getElementById('mGapNote').textContent=d.gap>=0?'spare':'short';
+    document.getElementById('breakdown').innerHTML=
+      row('Assignments',d.count)+row('Hours each',hrs(d.each))+row('Hours needed',hrs(d.need))+
+      row('Available',hrs(d.avail))+row('Gap',(d.gap>=0?'+':'\u2212')+hrs(Math.abs(d.gap)));
+    document.getElementById('nudgeStrong').textContent=d.verdict;
+    document.getElementById('nudgeFoot').textContent='the workload verdict.';
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('My workload plan')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
+  }
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.count<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  ['count','each','avail'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)render(getData())})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
+  });
+  function summaryText(){
+    var d=last||getData();
+    return['Workload \u2014 Honed Signal','','Verdict: '+d.verdict,'Need '+hrs(d.need)+'h, have '+hrs(d.avail)+'h'].join('\n');
+  }
+  document.getElementById('copyResults').addEventListener('click',function(){
+    var txt=summaryText(),status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Copied.':'Copy failed \u2014 your browser blocked it.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{done(document.execCommand('copy'))}catch(e){done(false)}ta.remove()}
+  });
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    var d=last||getData();
+    var rows=[['item','value'],['assignments',d.count],['hours needed',+d.need.toFixed(1)],['hours available',+d.avail.toFixed(1)],['verdict',d.verdict]];
+    var csv=rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+    var url=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    var a=document.createElement('a');a.href=url;a.download='workload.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  });
+})();
+
+</script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/assignment-tracker/"><span class="arr">→</span>Assignment Tracker</a></li><li><a href="/education/study-planner/"><span class="arr">→</span>Study Planner</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only. They are not academic, financial, or legal advice. Grading scales and school policies vary &mdash; verify requirements with your school. Your entries stay on your device. Use at your own risk.</div>
+<script src="/money/recent-tools.js" defer></script>
+<script src="/money/input-hints.js" defer></script>
+<script src="/money/share-result.js" defer></script>
 </body>
 </html>
