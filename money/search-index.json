@@ -2725,5 +2725,50 @@
    "Health"
   ],
   "kind": "tool"
+ },
+ {
+  "t": "Church Building Affordability",
+  "d": "Can your congregation afford this building? Mortgage plus upkeep vs. giving.",
+  "u": "/money/church-building-affordability/",
+  "tags": [
+   "Housing"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Pastor Compensation Builder",
+  "d": "Split salary, housing allowance, and benefits the tax-smart way.",
+  "u": "/money/pastor-compensation-builder/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Parsonage vs. Housing Allowance",
+  "d": "Church-owned home or cash allowance? Compare both sides.",
+  "u": "/money/parsonage-vs-housing-allowance/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Church UBIT Checker",
+  "d": "Does the bookstore or café trigger unrelated business income tax?",
+  "u": "/money/church-ubit-checker/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Church Tax-Exempt Jeopardy",
+  "d": "Four questions that could cost — or save — your 501(c)(3).",
+  "u": "/money/church-tax-exempt-checker/",
+  "tags": [
+   "Taxes"
+  ],
+  "kind": "tool"
  }
 ]
