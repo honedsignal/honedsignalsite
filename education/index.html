@@ -36,6 +36,7 @@
 .hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.55) 100%)}
 .hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
 .hs-hero h1 .accent{color:var(--green)}
+.hs-hero.has-art{background-image:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.62) 100%),url('/education/assets/education-hub-hero.jpg');background-size:cover;background-position:center}
 @media(max-width:640px){.hs-hero{min-height:130px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
 .dyn-row{display:grid;grid-template-columns:1fr 96px 78px 34px;gap:8px;margin-bottom:8px;align-items:center}
 .dyn-row.wide{grid-template-columns:1fr 110px 110px 34px}
@@ -77,7 +78,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 <a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
   <header class="hub-hero">
-    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Tools for <span class="accent">learning</span>.</h1></div>
+    <div class="hs-hero has-art" role="img" aria-label="A diverse group of students studying together in a sunlit library"><div class="shade"></div><h1 class="hs-hero-title">Tools for <span class="accent">learning</span>.</h1></div>
     <p>Practical tools for students, teachers, and parents. Grades, study plans, reading time, citations \u2014 free, private, no account needed.</p>
   </header>
   <section class="tool-grid" aria-label="Education tools">
