@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Random Student Picker | Honed Signal</title>
+  <title>Substitute Day-Plan Builder | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -58,241 +58,173 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 .empty-art .doc:before{content:"";position:absolute;left:12px;right:12px;top:14px;height:6px;background:var(--line-strong);border-radius:3px;box-shadow:0 14px 0 var(--line-strong),0 28px 0 var(--line-strong),0 42px 0 var(--line-strong),0 56px 0 var(--orange)}
 .err{color:var(--red);font-size:.75rem;font-weight:700;margin-top:8px;min-height:1.1em}
 
-
-    /* ---- Tracker / picker extras ---- */
-    .tracker-form .field{margin-bottom:14px}
-    .tracker-form .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}
-    .tracker-form .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
-    .tracker-form .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
-    .tracker-form .text-input input,.tracker-form .text-input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600}
-    .tracker-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .form-err{display:none;margin:10px 0 0;color:var(--red);font-size:.72rem;font-weight:700}
-    .form-err.show{display:block}
-    .btn-row{display:flex;gap:8px;margin-top:16px}
-    .btn-row .calculate{margin-top:0;flex:1}
-    .btn-secondary{border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--ink);padding:14px 18px;font-weight:800;cursor:pointer}
-    .btn-secondary:hover{border-color:var(--blue);color:var(--blue)}
-    .mini-btn{border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:6px 12px;font-size:.68rem;font-weight:800;cursor:pointer;min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
-    .mini-btn:hover{border-color:var(--blue);color:var(--blue)}
-    .mini-btn.danger:hover{border-color:var(--red);color:var(--red)}
-    .sort-row{display:flex;align-items:center;gap:8px;margin:16px 0 4px;flex-wrap:wrap}
-    .sort-row>span{color:var(--muted);font-size:.68rem;font-weight:800}
-    .sort-btn{border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);padding:6px 12px;font-size:.68rem;font-weight:800;cursor:pointer}
-    .sort-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-    .due-head{margin:16px 0 0;font-size:.8rem;font-weight:800}
-    .privacy{margin-top:16px;padding:12px 14px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:.72rem;line-height:1.65}
-    .privacy strong{color:var(--ink)}
-    .asn-list{display:grid;gap:8px;margin-top:10px}
-    .asn-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 12px;align-items:start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
-    .asn-check{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;cursor:pointer}
-    .asn-check input{width:24px;height:24px;accent-color:var(--green);cursor:pointer}
-    .asn-title{font-weight:800;font-size:.92rem;overflow-wrap:anywhere}
-    .asn-row.done .asn-title{text-decoration:line-through;color:var(--muted)}
-    .asn-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center}
-    .asn-tag,.due-badge,.pri-badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.62rem;font-weight:800;letter-spacing:.04em}
-    .asn-tag{border:1px solid var(--line);color:var(--muted);text-transform:uppercase}
-    .due-badge{border:1px solid var(--line);color:var(--muted)}
-    .due-badge.over{background:color-mix(in srgb,var(--red) 14%,var(--surface));border-color:var(--red);color:var(--red)}
-    .due-badge.soon{background:var(--orange-soft);border-color:var(--orange);color:var(--orange)}
-    .due-badge.ok{background:var(--green-soft);border-color:var(--green);color:var(--green)}
-    .pri-badge{border:1px solid var(--line);text-transform:uppercase}
-    .pri-high{background:color-mix(in srgb,var(--red) 14%,var(--surface));color:var(--red);border-color:var(--red)}
-    .pri-medium{background:var(--orange-soft);color:var(--orange);border-color:var(--orange)}
-    .pri-low{color:var(--muted)}
-    .asn-actions{display:flex;gap:8px}
-    .check-line{display:flex;align-items:center;gap:10px;margin:4px 0;font-weight:700;font-size:.82rem;cursor:pointer}
-    .check-line input{width:20px;height:20px;accent-color:var(--green);cursor:pointer}
-    .pick-log{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px}
-    .pick-log li{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-size:.8rem}
-    .pick-log .n{color:var(--muted);font:500 .7rem "DM Mono",monospace}
-    @media(max-width:560px){.tracker-form .form-row{grid-template-columns:1fr}.asn-row{grid-template-columns:auto minmax(0,1fr)}.asn-actions{grid-column:1/-1}}
-
   </style>
 <!-- honed-seo-start -->
-<meta name="description" content="Draw a student at random from your class list — no repeats until everyone has been picked. Free classroom tool, no signup." />
-<link rel="canonical" href="https://honedsignal.com/education/random-student-picker/" />
+<meta name="description" content="Build a clean, printable substitute teacher day plan — periods, must-dos, and emergency notes on one page. Free, no account." />
+<link rel="canonical" href="https://honedsignal.com/education/substitute-day-plan-builder/" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Random Student Picker","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/random-student-picker/","description":"Draw a student at random from your class list — no repeats until everyone has been picked. Free classroom tool, no signup.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Substitute Day-Plan Builder","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/substitute-day-plan-builder/","description":"Build a clean, printable substitute teacher day plan — periods, must-dos, and emergency notes on one page. Free, no account.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
 </head>
 <body>
-<a class="money-home" href="/education/" aria-label="Back to Education">← Education</a>
+<a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
   <header class="intro">
-        <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Pick a student, <span class="accent">fairly</span> and fast.</h1></div>
-    <p>Paste your class list — one name per line. The picker draws students at random, with no repeats until everyone has been picked.</p>
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Leave a plan <span class="accent">a sub can follow.</span></h1></div>
+    <p>Periods, must-dos, and emergency notes — one clean printable page.</p>
   </header>
-  <section class="workbench" aria-label="Random Student Picker">
-    <form class="panel inputs tracker-form" id="pickForm" novalidate>
-      <div class="section-head"><h2>Your class list</h2><span class="step">01 / NAMES</span></div>
-      <div class="field">
-        <label for="studentList">Names — one per line</label>
-        <textarea class="edu" id="studentList" rows="8" placeholder="Ana&#10;Jamal&#10;Priya&#10;…"></textarea>
+    <section class="workbench" aria-label="Substitute day-plan builder">
+    <form class="panel inputs" id="calcForm" novalidate>
+      <div class="section-head"><h2>The basics</h2><span class="step">01 / INFO</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="tName">Your name</label><div class="money-input"><input id="tName" type="text" placeholder="Ms. Rivera" aria-label="Teacher name" style="text-align:left"></div></div>
+        <div class="expense"><label for="tDate">Date</label><div class="money-input"><input id="tDate" type="date" aria-label="Date" style="text-align:left"></div></div>
+        <div class="expense"><label for="tRoom">Room number</label><div class="money-input"><input id="tRoom" type="text" placeholder="204" aria-label="Room number" style="text-align:left"></div></div>
       </div>
-      <label class="check-line"><input type="checkbox" id="noRepeat" checked><span>No repeats until everyone is picked</span></label>
-      <p class="form-err" id="formErr" role="alert"></p>
-      <div class="btn-row">
-        <button class="calculate" type="submit" id="pickBtn">Pick a student</button>
-        <button class="btn-secondary" type="button" id="resetBtn">Reset</button>
+      <div class="section-head" style="margin-top:18px"><h2>Periods</h2><span class="step">02 / SCHEDULE</span></div>
+      <div id="periodRows"></div>
+      <button class="action" id="addPeriod" type="button">+ Add period</button>
+      <div class="field" style="margin-top:12px"><label for="seating">Seating chart note</label><textarea class="edu" id="seating" placeholder="Where the seating chart is, who not to seat together&hellip;" style="min-height:80px"></textarea></div>
+      <div class="field" style="margin-top:10px"><label for="emerg">Emergency procedures</label><textarea class="edu" id="emerg" placeholder="Fire drill route, lockdown procedure, nurse location&hellip;" style="min-height:80px"></textarea></div>
+      <div class="section-head" style="margin-top:18px"><h2>Must do</h2><span class="step">03 / PRIORITIES</span></div>
+      <div id="mustRows"></div>
+      <button class="action" id="addMust" type="button">+ Add must-do</button>
+      <div class="section-head" style="margin-top:18px"><h2>If there&rsquo;s time</h2><span class="step">04 / EXTRA</span></div>
+      <div id="extraRows"></div>
+      <button class="action" id="addExtra" type="button">+ Add if-time item</button>
+      <p class="err" id="err"></p>
+      <button class="calculate" type="submit">Build the day plan</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email the substitute day plan" aria-disabled="true">Email the plan</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+        <button class="action result-action" id="printBtn" type="button">Print plan</button>
       </div>
-      <p class="hint">Blank lines are skipped; duplicates are kept as you enter them — the list is yours. Picks are random.</p>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Nothing is saved — build it, print it, leave it on the desk.</p>
     </form>
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Who&rsquo;s it going to be?</h2><p>Paste your class list on the left — one name per line — then pick to draw a name at random.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>A sub-proof day.</h2><p>Periods, must-dos, and emergency notes — one clean printable page.</p></div>
       </div>
-      <div id="pickState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">PICKED</p><p class="target" id="pickOut">—</p><p class="target-note" id="remainNote"></p></section>
-        <h3 class="due-head">Picked so far</h3>
-        <ul class="pick-log" id="pickLog"></ul>
-        <div class="result-actions">
-          <a class="action result-action" id="emailResults" aria-label="Email these results" aria-disabled="true">Email my results</a>
-          <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
-          <button class="action result-action" id="downloadCsv" type="button" disabled>Download CSV</button>
-          <button class="action result-action" id="printBtn" type="button">Print</button>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">SUBSTITUTE DAY PLAN</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
+        <div class="plan">
+          <section class="plan-block"><h3>Schedule</h3><div id="schedOut"></div></section>
+          <section class="plan-block"><h3>Must do</h3><dl id="mustOut"></dl></section>
         </div>
-        <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
-        <section class="explanation" aria-label="How no-repeat mode works">
+        <div class="plan">
+          <section class="plan-block"><h3>If there&rsquo;s time</h3><dl id="extraOut"></dl></section>
+          <section class="plan-block nudge"><h3>Notes for the sub</h3><p id="notesOut" style="white-space:pre-line;font-size:.8rem"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
-          <p class="explain-copy hidden" id="explainCopy">With "No repeats" on, each name is drawn once per cycle and removed from the pool until everyone has been picked; the counter shows how many names are still unpicked. When the pool is empty the picker says everyone has been picked — reset starts a fresh cycle. With the box unchecked, every draw picks from the full list, so repeats are possible. Names are used exactly as you type them: blank lines are skipped, duplicates are kept, and leading/trailing spaces are trimmed. All draws happen in your browser; your list is never sent anywhere.</p>
+          <p class="explain-copy hidden" id="explainCopy"></p>
         </section>
       </div>
     </div>
-  </section></section>
-  <footer class="footer"><p><strong>Assumptions:</strong> Draws use your browser's random number generator; every name in the pool has an equal chance on each draw. Editing the list starts a fresh cycle, and duplicates are treated as separate entries.</p><p>Educational estimate, not academic or professional advice.</p></footer>
+  </section>
+
+  <footer class="footer"><p><strong>Assumptions:</strong> Priority ranking heuristic, not a guarantee. Pair with the Study Planner for day-by-day scheduling.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
+
 <script>
 (function(){'use strict';
-  function $(id){return document.getElementById(id)}
+  var form=document.getElementById('calcForm'),last=null;
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-  var pool=[],remaining=[],picked=[],listSig='__none__';
-
-  function getList(){
-    var raw=$('studentList').value;
-    var list=raw.split(/\r?\n/).map(function(l){return l.replace(/^\s+/,'').replace(/\s+$/,'')}).filter(function(l){return l.length>0});
-    return{list:list,sig:raw};
+  function row(l,v){return'<dt>'+l+'</dt><dd>'+v+'</dd>'}
+  function val(id){var el=document.getElementById(id);return el?el.value.trim():''}
+  function addRow(wrapId,fields,ph){
+    var wrap=document.getElementById(wrapId),d=document.createElement('div');
+    d.className='dyn-row';if(fields>1)d.classList.add('wide');
+    var h='';
+    for(var i=0;i<fields;i++){h+='<input type="text" placeholder="'+ph[i]+'" aria-label="'+ph[i]+'">'}
+    h+='<button type="button" class="dyn-rm" aria-label="Remove">\u00d7</button>';
+    d.innerHTML=h;
+    d.querySelector('.dyn-rm').addEventListener('click',function(){d.remove();if(last)render(getData())});
+    d.querySelectorAll('input').forEach(function(el){el.addEventListener('input',function(){if(last)render(getData())})});
+    wrap.appendChild(d);
   }
-  function ensurePool(){
-    var c=getList();
-    if(c.sig!==listSig){
-      listSig=c.sig;pool=c.list;remaining=[];
-      for(var i=0;i<pool.length;i++)remaining.push(i);
-      picked=[];
-    }
-    return pool;
+  document.getElementById('addPeriod').addEventListener('click',function(){addRow('periodRows',3,['Period','Time','Subject / notes'])});
+  document.getElementById('addMust').addEventListener('click',function(){addRow('mustRows',1,['Must-do item'])});
+  document.getElementById('addExtra').addEventListener('click',function(){addRow('extraRows',1,['If-time item'])});
+  function readRows(wrapId){
+    return Array.prototype.slice.call(document.querySelectorAll('#'+wrapId+' .dyn-row')).map(function(r){
+      return Array.prototype.slice.call(r.querySelectorAll('input')).map(function(i){return i.value.trim()});
+    }).filter(function(a){return a.some(function(v){return v})});
   }
-  function showErr(msg){var e=$('formErr');e.textContent=msg;e.classList.add('show')}
-  function clearErr(){$('formErr').classList.remove('show')}
-  function showResults(){$('emptyState').classList.add('hidden');$('pickState').classList.remove('hidden')}
-
-  function setExhausted(){
-    showResults();
-    $('pickOut').textContent='Everyone has been picked!';
-    $('remainNote').innerHTML='No names left in the pool. <button type="button" class="mini-btn" id="resetAgain">Reset the pool</button>';
+  function fmtDate(ds){if(!ds)return'';var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(ds);if(!m)return ds;return new Date(+m[1],+m[2]-1,+m[3]).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})}
+  function getData(){
+    return{name:val('tName'),date:val('tDate'),room:val('tRoom'),
+      periods:readRows('periodRows'),seating:val('seating'),emerg:val('emerg'),
+      must:readRows('mustRows'),extra:readRows('extraRows')};
   }
-
-  function renderLog(){
-    var h='',i;
-    for(i=picked.length-1;i>=0;i--){h+='<li><span class="n">#'+(i+1)+'</span><strong>'+esc(picked[i])+'</strong></li>'}
-    $('pickLog').innerHTML=h;
+  function planText(d){
+    var L=[];
+    L.push('SUBSTITUTE DAY PLAN'+(d.date?' \u2014 '+fmtDate(d.date):''),'');
+    if(d.name)L.push('Teacher: '+d.name+(d.room?' \u00b7 Room '+d.room:''));
+    L.push('');
+    d.periods.forEach(function(p,i){L.push((p[0]||'Period '+(i+1))+(p[1]?' ('+p[1]+')':'')+(p[2]?': '+p[2]:''))});
+    L.push('','MUST DO:');
+    d.must.forEach(function(m,i){L.push((i+1)+'. '+m[0])});
+    if(d.extra.length){L.push('','IF THERE IS TIME:');d.extra.forEach(function(m,i){L.push((i+1)+'. '+m[0])})}
+    if(d.seating)L.push('','Seating: '+d.seating);
+    if(d.emerg)L.push('','Emergency: '+d.emerg);
+    return L.join('\n');
   }
-
-  function resultsText(){
-    var lines=['Random Student Picker \u2014 '+picked.length+' draw'+(picked.length===1?'':'s'),''];
-    for(var i=0;i<picked.length;i++)lines.push((i+1)+'. '+picked[i]);
-    return lines.join('\n');
-  }
-
-  function enableActions(){
-    var t=resultsText();
-    var email=$('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Random student picks')+'&body='+encodeURIComponent(t);
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('target').textContent=d.periods.length+(d.periods.length===1?' period':' periods');
+    document.getElementById('targetNote').textContent=(d.date?fmtDate(d.date):'Undated')+(d.name?' \u00b7 for '+d.name:'');
+    document.getElementById('schedOut').innerHTML=d.periods.length?d.periods.map(function(p,i){
+      return'<div class="plan-day"><strong>'+esc(p[0]||('Period '+(i+1)))+(p[1]?' \u00b7 '+esc(p[1]):'')+'</strong><span>'+esc(p[2]||'\u2014')+'</span></div>';
+    }).join(''):'<p style="color:var(--muted);font-size:.8rem">No periods added.</p>';
+    document.getElementById('mustOut').innerHTML=d.must.length?d.must.map(function(m,i){return row((i+1)+'.',esc(m[0]))}).join(''):'<p style="color:var(--muted);font-size:.8rem">\u2014</p>';
+    document.getElementById('extraOut').innerHTML=d.extra.length?d.extra.map(function(m,i){return row((i+1)+'.',esc(m[0]))}).join(''):'<p style="color:var(--muted);font-size:.8rem">\u2014</p>';
+    var notes=[];
+    if(d.seating)notes.push('Seating: '+d.seating);
+    if(d.emerg)notes.push('Emergency: '+d.emerg);
+    document.getElementById('notesOut').textContent=notes.join('\n\n')||'\u2014';
+    document.getElementById('explainCopy').textContent='A good sub plan fits on one page: who, when, what each period does, and what matters most. Print this and leave it on the desk \u2014 subs rarely have time to log in to anything.';
+    var txt=planText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('Substitute day plan'+(d.date?' \u2014 '+fmtDate(d.date):''))+'&body='+encodeURIComponent(txt);
     email.setAttribute('aria-disabled','false');
-    $('copyResults').dataset.shareText=t;
-    $('copyResults').disabled=false;
-    $('downloadCsv').disabled=false;
+    document.getElementById('copyResults').disabled=false;
   }
-  function disableActions(){
-    $('emailResults').setAttribute('aria-disabled','true');
-    $('copyResults').disabled=true;
-    $('downloadCsv').disabled=true;
+  function calculate(e){
+    if(e)e.preventDefault();
+    var d=getData(),err=document.getElementById('err');
+    if(!d.periods.length){err.textContent='Add at least one period.';return}
+    err.textContent='';
+    render(d);
   }
+  ['tName','tDate','tRoom','seating','emerg'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)render(getData())})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('printBtn').addEventListener('click',function(){window.print()});
 
-  function doReset(){
-    listSig='__none__';
-    ensurePool();
-    $('pickOut').textContent='\u2014';
-    $('remainNote').textContent='';
-    $('pickLog').innerHTML='';
-    $('pickState').classList.add('hidden');
-    $('emptyState').classList.remove('hidden');
-    disableActions();clearErr();
-  }
-
-  function renderPick(name){
-    showResults();
-    $('pickOut').textContent=name;
-    var noRep=$('noRepeat').checked;
-    if(noRep){
-      if(remaining.length===0){$('remainNote').innerHTML='That was the last name. <button type="button" class="mini-btn" id="resetAgain2">Reset the pool</button>';renderLog();enableActions();return}
-      $('remainNote').textContent=remaining.length+' of '+pool.length+' remaining';
-    }else{
-      $('remainNote').textContent=pool.length+' names in the pool \u00b7 repeats allowed';
-    }
-    renderLog();enableActions();
-  }
-
-  $('pickForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    var list=ensurePool();
-    if(!list.length){showErr('Add at least one name first \u2014 one per line.');$('studentList').focus();return}
-    clearErr();
-    var noRep=$('noRepeat').checked,name;
-    if(noRep){
-      if(remaining.length===0){setExhausted();return}
-      var r=Math.floor(Math.random()*remaining.length);
-      name=pool[remaining.splice(r,1)[0]];
-    }else{
-      name=pool[Math.floor(Math.random()*pool.length)];
-    }
-    picked.push(name);
-    renderPick(name);
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
   });
+  function summaryText(){return planText(last||getData())}
 
-  $('resetBtn').addEventListener('click',doReset);
-  $('remainNote').addEventListener('click',function(e){var t=e.target;if(t&&(t.id==='resetAgain'||t.id==='resetAgain2'))doReset()});
-  $('noRepeat').addEventListener('change',doReset);
-
-  function csvCell(v){var s=String(v);if(/^[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
-  $('downloadCsv').addEventListener('click',function(){
-    if(!picked.length)return;
-    var rows=[['Random Student Picker','Draw #']];
-    for(var i=0;i<picked.length;i++)rows.push([picked[i],i+1]);
-    var csv=rows.map(function(r){return r.map(csvCell).join(',')}).join('\n');
-    var blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
-    var url=URL.createObjectURL(blob),a=document.createElement('a');
-    a.href=url;a.download='random-student-picks.csv';document.body.appendChild(a);a.click();a.remove();
-    URL.revokeObjectURL(url);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    var txt=summaryText(),status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Copied.':'Copy failed \u2014 your browser blocked it.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{done(document.execCommand('copy'))}catch(e){done(false)}ta.remove()}
   });
-
-  $('printBtn').addEventListener('click',function(){window.print()});
-
-  $('copyResults').addEventListener('click',function(){
-    var text=this.dataset.shareText||'';
-    if(!text)return;
-    var button=this,status=$('copyStatus'),settled=false;
-    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
-    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
-  });
-
-  $('explainToggle').addEventListener('click',function(){var c=$('explainCopy'),x=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!x));c.classList.toggle('hidden',x)});
+  addRow('periodRows',3,['Period','Time','Subject / notes']);
 })();
 </script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
-<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/gradebook-calculator/"><span class="arr">→</span>Calculate a gradebook grade</a></li><li><a href="/education/class-curve-grader/"><span class="arr">→</span>Grade on a curve</a></li><li><a href="/education/absence-tracker/"><span class="arr">→</span>Track your class absences</a></li></ul></div>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/parent-teacher-conference-scheduler/"><span class="arr">→</span>Conference Scheduler</a></li><li><a href="/education/lesson-period-planner/"><span class="arr">→</span>Lesson Period Planner</a></li></ul></div>
 <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only — not academic, financial, tax, or legal advice. Verify important decisions with your school, the IRS, or a qualified professional. Tools are provided as-is, without warranties. <a href="/education/disclaimer/">Read the full disclaimer</a>.</div>
 <script src="/money/recent-tools.js" defer></script>
 <script src="/money/input-hints.js" defer></script>

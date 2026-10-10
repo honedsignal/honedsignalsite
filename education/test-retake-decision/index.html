@@ -99,7 +99,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
         <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Same prep, same score.</h2><p>Enter the score gap, the cost, and your prep time \u2014 get a verdict.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">VERDICT</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">VERDICT</p><p class="target" id="targetOut">\u2014</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
           <article class="metric"><span>SCORE GAP</span><strong id="mGap">\u2014</strong><em id="mGapNote">\u2014</em></article>
           <article class="metric"><span>COST PER POINT</span><strong id="mPt">\u2014</strong><em id="mPtNote">\u2014</em></article>
@@ -156,7 +156,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     last=d;
     document.getElementById('emptyState').classList.add('hidden');
     document.getElementById('resultState').classList.remove('hidden');
-    document.getElementById('target').textContent=d.verdict;
+    document.getElementById('targetOut').textContent=d.verdict;
     document.getElementById('targetNote').textContent=d.gap<=0?'Nothing to gain \u2014 you\u2019re already there.':('A '+d.gap+'-point gap at '+money2.format(d.perPt)+' per point.');
     document.getElementById('mGap').textContent='+'+d.gap;
     document.getElementById('mGapNote').textContent='points to gain';

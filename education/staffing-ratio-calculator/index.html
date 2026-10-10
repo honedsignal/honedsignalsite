@@ -98,7 +98,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
         <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The number behind every class size debate.</h2><p>Enter students and teachers \u2014 see the ratio and the hires needed.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">STUDENT : TEACHER RATIO</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">STUDENT : TEACHER RATIO</p><p class="target" id="targetOut">\u2014</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
           <article class="metric"><span>TARGET</span><strong id="mTarget">\u2014</strong><em id="mTargetNote">\u2014</em></article>
           <article class="metric"><span>TEACHERS NEEDED</span><strong id="mNeed">\u2014</strong><em id="mNeedNote">\u2014</em></article>
@@ -147,7 +147,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     last=d;
     document.getElementById('emptyState').classList.add('hidden');
     document.getElementById('resultState').classList.remove('hidden');
-    document.getElementById('target').textContent=d.ratio.toFixed(1)+' : 1';
+    document.getElementById('targetOut').textContent=d.ratio.toFixed(1)+' : 1';
     document.getElementById('targetNote').textContent=d.ratio<=d.target?'at or better than the '+d.target+' : 1 target.':d.ratio.toFixed(1)+' vs. a '+d.target+' : 1 target.';
     document.getElementById('mTarget').textContent=d.target+' : 1';
     document.getElementById('mTargetNote').textContent='target ratio';

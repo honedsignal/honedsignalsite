@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Random Student Picker | Honed Signal</title>
+  <title>Parent Email Template Builder | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -58,241 +58,167 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 .empty-art .doc:before{content:"";position:absolute;left:12px;right:12px;top:14px;height:6px;background:var(--line-strong);border-radius:3px;box-shadow:0 14px 0 var(--line-strong),0 28px 0 var(--line-strong),0 42px 0 var(--line-strong),0 56px 0 var(--orange)}
 .err{color:var(--red);font-size:.75rem;font-weight:700;margin-top:8px;min-height:1.1em}
 
-
-    /* ---- Tracker / picker extras ---- */
-    .tracker-form .field{margin-bottom:14px}
-    .tracker-form .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}
-    .tracker-form .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
-    .tracker-form .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
-    .tracker-form .text-input input,.tracker-form .text-input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600}
-    .tracker-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .form-err{display:none;margin:10px 0 0;color:var(--red);font-size:.72rem;font-weight:700}
-    .form-err.show{display:block}
-    .btn-row{display:flex;gap:8px;margin-top:16px}
-    .btn-row .calculate{margin-top:0;flex:1}
-    .btn-secondary{border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--ink);padding:14px 18px;font-weight:800;cursor:pointer}
-    .btn-secondary:hover{border-color:var(--blue);color:var(--blue)}
-    .mini-btn{border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:6px 12px;font-size:.68rem;font-weight:800;cursor:pointer;min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
-    .mini-btn:hover{border-color:var(--blue);color:var(--blue)}
-    .mini-btn.danger:hover{border-color:var(--red);color:var(--red)}
-    .sort-row{display:flex;align-items:center;gap:8px;margin:16px 0 4px;flex-wrap:wrap}
-    .sort-row>span{color:var(--muted);font-size:.68rem;font-weight:800}
-    .sort-btn{border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);padding:6px 12px;font-size:.68rem;font-weight:800;cursor:pointer}
-    .sort-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-    .due-head{margin:16px 0 0;font-size:.8rem;font-weight:800}
-    .privacy{margin-top:16px;padding:12px 14px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:.72rem;line-height:1.65}
-    .privacy strong{color:var(--ink)}
-    .asn-list{display:grid;gap:8px;margin-top:10px}
-    .asn-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 12px;align-items:start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
-    .asn-check{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;cursor:pointer}
-    .asn-check input{width:24px;height:24px;accent-color:var(--green);cursor:pointer}
-    .asn-title{font-weight:800;font-size:.92rem;overflow-wrap:anywhere}
-    .asn-row.done .asn-title{text-decoration:line-through;color:var(--muted)}
-    .asn-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center}
-    .asn-tag,.due-badge,.pri-badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.62rem;font-weight:800;letter-spacing:.04em}
-    .asn-tag{border:1px solid var(--line);color:var(--muted);text-transform:uppercase}
-    .due-badge{border:1px solid var(--line);color:var(--muted)}
-    .due-badge.over{background:color-mix(in srgb,var(--red) 14%,var(--surface));border-color:var(--red);color:var(--red)}
-    .due-badge.soon{background:var(--orange-soft);border-color:var(--orange);color:var(--orange)}
-    .due-badge.ok{background:var(--green-soft);border-color:var(--green);color:var(--green)}
-    .pri-badge{border:1px solid var(--line);text-transform:uppercase}
-    .pri-high{background:color-mix(in srgb,var(--red) 14%,var(--surface));color:var(--red);border-color:var(--red)}
-    .pri-medium{background:var(--orange-soft);color:var(--orange);border-color:var(--orange)}
-    .pri-low{color:var(--muted)}
-    .asn-actions{display:flex;gap:8px}
-    .check-line{display:flex;align-items:center;gap:10px;margin:4px 0;font-weight:700;font-size:.82rem;cursor:pointer}
-    .check-line input{width:20px;height:20px;accent-color:var(--green);cursor:pointer}
-    .pick-log{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px}
-    .pick-log li{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-size:.8rem}
-    .pick-log .n{color:var(--muted);font:500 .7rem "DM Mono",monospace}
-    @media(max-width:560px){.tracker-form .form-row{grid-template-columns:1fr}.asn-row{grid-template-columns:auto minmax(0,1fr)}.asn-actions{grid-column:1/-1}}
-
   </style>
 <!-- honed-seo-start -->
-<meta name="description" content="Draw a student at random from your class list — no repeats until everyone has been picked. Free classroom tool, no signup." />
-<link rel="canonical" href="https://honedsignal.com/education/random-student-picker/" />
+<meta name="description" content="Draft professional parent emails in your tone — missing assignments, behavior, praise, conferences, field trips. Free, no account." />
+<link rel="canonical" href="https://honedsignal.com/education/parent-email-template-builder/" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Random Student Picker","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/random-student-picker/","description":"Draw a student at random from your class list — no repeats until everyone has been picked. Free classroom tool, no signup.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Parent Email Template Builder","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/parent-email-template-builder/","description":"Draft professional parent emails in your tone — missing assignments, behavior, praise, conferences, field trips. Free, no account.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
 </head>
 <body>
-<a class="money-home" href="/education/" aria-label="Back to Education">← Education</a>
+<a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
   <header class="intro">
-        <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Pick a student, <span class="accent">fairly</span> and fast.</h1></div>
-    <p>Paste your class list — one name per line. The picker draws students at random, with no repeats until everyone has been picked.</p>
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">The right email, <span class="accent">in your voice.</span></h1></div>
+    <p>Pick the situation and the tone — get a professional parent email draft.</p>
   </header>
-  <section class="workbench" aria-label="Random Student Picker">
-    <form class="panel inputs tracker-form" id="pickForm" novalidate>
-      <div class="section-head"><h2>Your class list</h2><span class="step">01 / NAMES</span></div>
-      <div class="field">
-        <label for="studentList">Names — one per line</label>
-        <textarea class="edu" id="studentList" rows="8" placeholder="Ana&#10;Jamal&#10;Priya&#10;…"></textarea>
+    <section class="workbench" aria-label="Parent email template builder">
+    <form class="panel inputs" id="calcForm" novalidate>
+      <div class="section-head"><h2>The situation</h2><span class="step">01 / PICK</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="tpl">Email type</label><div class="money-input"><select id="tpl" aria-label="Email type">
+          <option value="missing">Missing assignment</option>
+          <option value="behavior">Behavior concern</option>
+          <option value="praise">Praise / good news</option>
+          <option value="conference">Conference request</option>
+          <option value="fieldtrip">Field trip reminder</option>
+        </select></div></div>
+        <div class="expense"><label for="tone">Tone</label><div class="money-input"><select id="tone" aria-label="Tone">
+          <option value="warm">Warm</option>
+          <option value="neutral" selected>Neutral</option>
+          <option value="firm">Firm</option>
+        </select></div></div>
       </div>
-      <label class="check-line"><input type="checkbox" id="noRepeat" checked><span>No repeats until everyone is picked</span></label>
-      <p class="form-err" id="formErr" role="alert"></p>
-      <div class="btn-row">
-        <button class="calculate" type="submit" id="pickBtn">Pick a student</button>
-        <button class="btn-secondary" type="button" id="resetBtn">Reset</button>
+      <div class="section-head" style="margin-top:18px"><h2>The details</h2><span class="step">02 / FILL</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="stName">Student first name</label><div class="money-input"><input id="stName" type="text" placeholder="Alex" aria-label="Student first name" style="text-align:left"></div></div>
+        <div class="expense"><label for="tName">Your name</label><div class="money-input"><input id="tName" type="text" placeholder="Ms. Rivera" aria-label="Teacher name" style="text-align:left"></div></div>
+        <div class="expense"><label for="cls">Class</label><div class="money-input"><input id="cls" type="text" placeholder="7th grade math" aria-label="Class" style="text-align:left"></div></div>
+        <div class="expense"><label for="relDate">Relevant date</label><div class="money-input"><input id="relDate" type="date" aria-label="Relevant date" style="text-align:left"></div></div>
       </div>
-      <p class="hint">Blank lines are skipped; duplicates are kept as you enter them — the list is yours. Picks are random.</p>
+      <div class="field" style="margin-top:10px"><label for="details">Specific details</label><textarea class="edu" id="details" placeholder="The assignment name, what happened, the trip details — the facts only you know."></textarea></div>
+      <p class="err" id="err"></p>
+      <button class="calculate" type="submit">Draft the email</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email the parent email draft" aria-disabled="true">Email draft</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Nothing is saved — draft it, copy it, send it from your own email.</p>
     </form>
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Who&rsquo;s it going to be?</h2><p>Paste your class list on the left — one name per line — then pick to draw a name at random.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The right email, in your voice.</h2><p>Pick the situation and the tone — get a professional parent email draft.</p></div>
       </div>
-      <div id="pickState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">PICKED</p><p class="target" id="pickOut">—</p><p class="target-note" id="remainNote"></p></section>
-        <h3 class="due-head">Picked so far</h3>
-        <ul class="pick-log" id="pickLog"></ul>
-        <div class="result-actions">
-          <a class="action result-action" id="emailResults" aria-label="Email these results" aria-disabled="true">Email my results</a>
-          <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
-          <button class="action result-action" id="downloadCsv" type="button" disabled>Download CSV</button>
-          <button class="action result-action" id="printBtn" type="button">Print</button>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">EMAIL DRAFT</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
+        <div class="plan">
+          <section class="plan-block"><h3>Subject line</h3><p id="subjectOut" style="font-size:.85rem;font-weight:700"></p></section>
+          <section class="plan-block"><h3>The email</h3><p id="bodyOut" style="white-space:pre-line;font-size:.82rem"></p></section>
         </div>
-        <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
-        <section class="explanation" aria-label="How no-repeat mode works">
+        <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
-          <p class="explain-copy hidden" id="explainCopy">With "No repeats" on, each name is drawn once per cycle and removed from the pool until everyone has been picked; the counter shows how many names are still unpicked. When the pool is empty the picker says everyone has been picked — reset starts a fresh cycle. With the box unchecked, every draw picks from the full list, so repeats are possible. Names are used exactly as you type them: blank lines are skipped, duplicates are kept, and leading/trailing spaces are trimmed. All draws happen in your browser; your list is never sent anywhere.</p>
+          <p class="explain-copy hidden" id="explainCopy"></p>
         </section>
       </div>
     </div>
-  </section></section>
-  <footer class="footer"><p><strong>Assumptions:</strong> Draws use your browser's random number generator; every name in the pool has an equal chance on each draw. Editing the list starts a fresh cycle, and duplicates are treated as separate entries.</p><p>Educational estimate, not academic or professional advice.</p></footer>
+  </section>
+
+  <footer class="footer"><p><strong>Assumptions:</strong> Priority ranking heuristic, not a guarantee. Pair with the Study Planner for day-by-day scheduling.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
+
 <script>
 (function(){'use strict';
-  function $(id){return document.getElementById(id)}
-  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-  var pool=[],remaining=[],picked=[],listSig='__none__';
-
-  function getList(){
-    var raw=$('studentList').value;
-    var list=raw.split(/\r?\n/).map(function(l){return l.replace(/^\s+/,'').replace(/\s+$/,'')}).filter(function(l){return l.length>0});
-    return{list:list,sig:raw};
-  }
-  function ensurePool(){
-    var c=getList();
-    if(c.sig!==listSig){
-      listSig=c.sig;pool=c.list;remaining=[];
-      for(var i=0;i<pool.length;i++)remaining.push(i);
-      picked=[];
+  var form=document.getElementById('calcForm'),last=null;
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function val(id){var el=document.getElementById(id);return el?el.value.trim():''}
+  function fmtDate(ds){if(!ds)return'';var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(ds);if(!m)return ds;return new Date(+m[1],+m[2]-1,+m[3]).toLocaleDateString('en-US',{month:'long',day:'numeric'})}
+  function open(tone,warm,neutral,firm){return tone==='warm'?warm:(tone==='firm'?firm:neutral)}
+  function build(d){
+    var st=d.stName||'[Student]',t=d.tName||'[Teacher]',cls=d.cls||'[class]',
+        det=d.details,dt=d.relDate?fmtDate(d.relDate):'',
+        subj='',body='';
+    if(d.tpl==='missing'){
+      subj=st+' \u2014 missing assignment in '+cls;
+      body=open(d.tone,
+        'Hi there,\n\nI wanted to share a quick heads-up: '+st+' has a missing assignment in '+cls+(det?' ('+det+')':'')+(dt?', due '+dt:'')+'. I know '+st+' is capable of strong work, and I\u2019d love to see this one come in. The new deadline is flexible \u2014 just have '+st+' turn it in as soon as you can.\n\nThank you so much,\n'+t,
+        'Hello,\n\nI\u2019m writing to let you know that '+st+' has a missing assignment in '+cls+(det?' ('+det+')':'')+(dt?', originally due '+dt:'')+'. Please have '+st+' complete and turn it in at the earliest opportunity.\n\nThank you,\n'+t,
+        'Hello,\n\nThis is to inform you that '+st+' has a missing assignment in '+cls+(det?' ('+det+')':'')+(dt?', due '+dt:'')+'. It needs to be turned in promptly \u2014 grades are being finalized. Please confirm receipt of this message.\n\nRegards,\n'+t);
+    }else if(d.tpl==='behavior'){
+      subj='Checking in about '+st+' in '+cls;
+      body=open(d.tone,
+        'Hi there,\n\nI wanted to touch base about something I noticed with '+st+' in '+cls+(det?': '+det:'')+(dt?' on '+dt:'')+'. I care about '+st+' and want us to be on the same team here \u2014 could we find a few minutes to talk through it? I\u2019m confident we can sort it out together.\n\nWarmly,\n'+t,
+        'Hello,\n\nI\u2019m writing to make you aware of a concern regarding '+st+' in '+cls+(det?': '+det:'')+(dt?' on '+dt:'')+'. I\u2019d appreciate the chance to discuss it with you and agree on next steps. Please let me know a good time to talk.\n\nThank you,\n'+t,
+        'Hello,\n\nI need to bring a serious concern to your attention regarding '+st+' in '+cls+(det?': '+det:'')+(dt?' on '+dt:'')+'. This behavior cannot continue. Please contact me as soon as possible so we can address it directly.\n\nRegards,\n'+t);
+    }else if(d.tpl==='praise'){
+      subj='Good news about '+st+'!';
+      body=open(d.tone,
+        'Hi there,\n\nI just had to share some wonderful news: '+st+(det?' '+det:' did something terrific')+' in '+cls+(dt?' on '+dt:'')+'! Moments like this are why I teach \u2014 please pass along my congratulations.\n\nWarmly,\n'+t,
+        'Hello,\n\nI wanted to share some good news: '+st+(det?' '+det:' had an excellent moment')+' in '+cls+(dt?' on '+dt:'')+'. Please congratulate '+st+' on my behalf.\n\nBest,\n'+t,
+        'Hello,\n\nFor the record: '+st+(det?' '+det:' performed excellently')+' in '+cls+(dt?' on '+dt:'')+'. I wanted this noted and shared with you.\n\nRegards,\n'+t);
+    }else if(d.tpl==='conference'){
+      subj='Requesting a parent-teacher conference for '+st;
+      body=open(d.tone,
+        'Hi there,\n\nI\u2019d love to sit down with you to talk about '+st+'\u2019s progress in '+cls+(det?' \u2014 '+det:'')+'. Nothing alarming, just a good conversation'+(dt?' \u2014 would '+dt+' work for you?':' \u2014 what times work for you?')+'\n\nWarmly,\n'+t,
+        'Hello,\n\nI\u2019d like to schedule a parent-teacher conference to discuss '+st+'\u2019s progress in '+cls+(det?'. Specifically: '+det:'')+'. Please let me know your availability'+(dt?', ideally around '+dt:'')+'.\n\nThank you,\n'+t,
+        'Hello,\n\nI am requesting a parent-teacher conference regarding '+st+' in '+cls+(det?'. The matter: '+det:'')+'. This is important \u2014 please respond with your availability'+(dt?' for '+dt:' promptly')+'.\n\nRegards,\n'+t);
+    }else{
+      subj='Reminder: upcoming field trip for '+cls;
+      body=open(d.tone,
+        'Hi there,\n\nJust a friendly reminder about our upcoming field trip'+(det?': '+det:'')+(dt?' on '+dt:'')+' for '+cls+'. Please make sure '+st+' brings the signed permission slip and a packed lunch. It should be a great day!\n\nThanks so much,\n'+t,
+        'Hello,\n\nThis is a reminder about the upcoming field trip'+(det?': '+det:'')+(dt?' on '+dt:'')+' for '+cls+'. Please ensure '+st+' returns the signed permission slip and brings a packed lunch.\n\nThank you,\n'+t,
+        'Hello,\n\nReminder: the field trip'+(det?' ('+det+')':'')+(dt?' on '+dt:'')+' for '+cls+' is approaching. '+st+' must have a signed permission slip to attend \u2014 no exceptions. Please return it immediately.\n\nRegards,\n'+t);
     }
-    return pool;
+    return{subj:subj,body:body};
   }
-  function showErr(msg){var e=$('formErr');e.textContent=msg;e.classList.add('show')}
-  function clearErr(){$('formErr').classList.remove('show')}
-  function showResults(){$('emptyState').classList.add('hidden');$('pickState').classList.remove('hidden')}
-
-  function setExhausted(){
-    showResults();
-    $('pickOut').textContent='Everyone has been picked!';
-    $('remainNote').innerHTML='No names left in the pool. <button type="button" class="mini-btn" id="resetAgain">Reset the pool</button>';
-  }
-
-  function renderLog(){
-    var h='',i;
-    for(i=picked.length-1;i>=0;i--){h+='<li><span class="n">#'+(i+1)+'</span><strong>'+esc(picked[i])+'</strong></li>'}
-    $('pickLog').innerHTML=h;
-  }
-
-  function resultsText(){
-    var lines=['Random Student Picker \u2014 '+picked.length+' draw'+(picked.length===1?'':'s'),''];
-    for(var i=0;i<picked.length;i++)lines.push((i+1)+'. '+picked[i]);
-    return lines.join('\n');
-  }
-
-  function enableActions(){
-    var t=resultsText();
-    var email=$('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Random student picks')+'&body='+encodeURIComponent(t);
+  function getData(){return{tpl:val('tpl'),tone:val('tone'),stName:val('stName'),tName:val('tName'),cls:val('cls'),relDate:val('relDate'),details:val('details')}}
+  function render(d){
+    last=d;
+    var b=build(d);
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('target').textContent=d.tpl==='praise'?'Good news':d.tpl==='conference'?'Let\u2019s talk':d.tpl==='fieldtrip'?'Reminder':d.tpl==='behavior'?'Check-in':'Heads-up';
+    document.getElementById('targetNote').textContent='drafted in a '+d.tone+' tone \u2014 edit before sending.';
+    document.getElementById('subjectOut').textContent=b.subj;
+    document.getElementById('bodyOut').textContent=b.body;
+    document.getElementById('explainCopy').textContent='Parent emails land best when they are short, specific, and human: name the student, name the facts, say what you need. Warm for good news, neutral for routine, firm for things that cannot wait.';
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent(b.subj)+'&body='+encodeURIComponent(b.body);
     email.setAttribute('aria-disabled','false');
-    $('copyResults').dataset.shareText=t;
-    $('copyResults').disabled=false;
-    $('downloadCsv').disabled=false;
+    document.getElementById('copyResults').disabled=false;
   }
-  function disableActions(){
-    $('emailResults').setAttribute('aria-disabled','true');
-    $('copyResults').disabled=true;
-    $('downloadCsv').disabled=true;
+  function calculate(e){
+    if(e)e.preventDefault();
+    var d=getData(),err=document.getElementById('err');
+    if(!d.stName||!d.details){err.textContent='Add the student\u2019s first name and the specific details.';return}
+    err.textContent='';
+    render(d);
   }
+  ['tpl','tone'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){if(last)render(getData())})});
+  ['stName','tName','cls','relDate','details'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)render(getData())})});
+  form.addEventListener('submit',calculate);
 
-  function doReset(){
-    listSig='__none__';
-    ensurePool();
-    $('pickOut').textContent='\u2014';
-    $('remainNote').textContent='';
-    $('pickLog').innerHTML='';
-    $('pickState').classList.add('hidden');
-    $('emptyState').classList.remove('hidden');
-    disableActions();clearErr();
-  }
-
-  function renderPick(name){
-    showResults();
-    $('pickOut').textContent=name;
-    var noRep=$('noRepeat').checked;
-    if(noRep){
-      if(remaining.length===0){$('remainNote').innerHTML='That was the last name. <button type="button" class="mini-btn" id="resetAgain2">Reset the pool</button>';renderLog();enableActions();return}
-      $('remainNote').textContent=remaining.length+' of '+pool.length+' remaining';
-    }else{
-      $('remainNote').textContent=pool.length+' names in the pool \u00b7 repeats allowed';
-    }
-    renderLog();enableActions();
-  }
-
-  $('pickForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    var list=ensurePool();
-    if(!list.length){showErr('Add at least one name first \u2014 one per line.');$('studentList').focus();return}
-    clearErr();
-    var noRep=$('noRepeat').checked,name;
-    if(noRep){
-      if(remaining.length===0){setExhausted();return}
-      var r=Math.floor(Math.random()*remaining.length);
-      name=pool[remaining.splice(r,1)[0]];
-    }else{
-      name=pool[Math.floor(Math.random()*pool.length)];
-    }
-    picked.push(name);
-    renderPick(name);
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
   });
+  function summaryText(){var d=last||getData(),b=build(d);return b.subj+'\n\n'+b.body}
 
-  $('resetBtn').addEventListener('click',doReset);
-  $('remainNote').addEventListener('click',function(e){var t=e.target;if(t&&(t.id==='resetAgain'||t.id==='resetAgain2'))doReset()});
-  $('noRepeat').addEventListener('change',doReset);
-
-  function csvCell(v){var s=String(v);if(/^[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
-  $('downloadCsv').addEventListener('click',function(){
-    if(!picked.length)return;
-    var rows=[['Random Student Picker','Draw #']];
-    for(var i=0;i<picked.length;i++)rows.push([picked[i],i+1]);
-    var csv=rows.map(function(r){return r.map(csvCell).join(',')}).join('\n');
-    var blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
-    var url=URL.createObjectURL(blob),a=document.createElement('a');
-    a.href=url;a.download='random-student-picks.csv';document.body.appendChild(a);a.click();a.remove();
-    URL.revokeObjectURL(url);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    var txt=summaryText(),status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Copied.':'Copy failed \u2014 your browser blocked it.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{done(document.execCommand('copy'))}catch(e){done(false)}ta.remove()}
   });
-
-  $('printBtn').addEventListener('click',function(){window.print()});
-
-  $('copyResults').addEventListener('click',function(){
-    var text=this.dataset.shareText||'';
-    if(!text)return;
-    var button=this,status=$('copyStatus'),settled=false;
-    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
-    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
-  });
-
-  $('explainToggle').addEventListener('click',function(){var c=$('explainCopy'),x=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!x));c.classList.toggle('hidden',x)});
 })();
 </script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
-<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/gradebook-calculator/"><span class="arr">→</span>Calculate a gradebook grade</a></li><li><a href="/education/class-curve-grader/"><span class="arr">→</span>Grade on a curve</a></li><li><a href="/education/absence-tracker/"><span class="arr">→</span>Track your class absences</a></li></ul></div>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/parent-teacher-conference-scheduler/"><span class="arr">→</span>Conference Scheduler</a></li><li><a href="/education/classroom-seating-chart-creator/"><span class="arr">→</span>Seating Chart Creator</a></li></ul></div>
 <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only — not academic, financial, tax, or legal advice. Verify important decisions with your school, the IRS, or a qualified professional. Tools are provided as-is, without warranties. <a href="/education/disclaimer/">Read the full disclaimer</a>.</div>
 <script src="/money/recent-tools.js" defer></script>
 <script src="/money/input-hints.js" defer></script>

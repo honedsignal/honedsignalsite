@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Random Student Picker | Honed Signal</title>
+  <title>504 Plan Request Builder | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -58,241 +58,231 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 .empty-art .doc:before{content:"";position:absolute;left:12px;right:12px;top:14px;height:6px;background:var(--line-strong);border-radius:3px;box-shadow:0 14px 0 var(--line-strong),0 28px 0 var(--line-strong),0 42px 0 var(--line-strong),0 56px 0 var(--orange)}
 .err{color:var(--red);font-size:.75rem;font-weight:700;margin-top:8px;min-height:1.1em}
 
-
-    /* ---- Tracker / picker extras ---- */
-    .tracker-form .field{margin-bottom:14px}
-    .tracker-form .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.7rem;font-weight:700}
-    .tracker-form .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
-    .tracker-form .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
-    .tracker-form .text-input input,.tracker-form .text-input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600}
-    .tracker-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .form-err{display:none;margin:10px 0 0;color:var(--red);font-size:.72rem;font-weight:700}
-    .form-err.show{display:block}
-    .btn-row{display:flex;gap:8px;margin-top:16px}
-    .btn-row .calculate{margin-top:0;flex:1}
-    .btn-secondary{border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--ink);padding:14px 18px;font-weight:800;cursor:pointer}
-    .btn-secondary:hover{border-color:var(--blue);color:var(--blue)}
-    .mini-btn{border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:6px 12px;font-size:.68rem;font-weight:800;cursor:pointer;min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
-    .mini-btn:hover{border-color:var(--blue);color:var(--blue)}
-    .mini-btn.danger:hover{border-color:var(--red);color:var(--red)}
-    .sort-row{display:flex;align-items:center;gap:8px;margin:16px 0 4px;flex-wrap:wrap}
-    .sort-row>span{color:var(--muted);font-size:.68rem;font-weight:800}
-    .sort-btn{border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);padding:6px 12px;font-size:.68rem;font-weight:800;cursor:pointer}
-    .sort-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-    .due-head{margin:16px 0 0;font-size:.8rem;font-weight:800}
-    .privacy{margin-top:16px;padding:12px 14px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:.72rem;line-height:1.65}
-    .privacy strong{color:var(--ink)}
-    .asn-list{display:grid;gap:8px;margin-top:10px}
-    .asn-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 12px;align-items:start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
-    .asn-check{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;cursor:pointer}
-    .asn-check input{width:24px;height:24px;accent-color:var(--green);cursor:pointer}
-    .asn-title{font-weight:800;font-size:.92rem;overflow-wrap:anywhere}
-    .asn-row.done .asn-title{text-decoration:line-through;color:var(--muted)}
-    .asn-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center}
-    .asn-tag,.due-badge,.pri-badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.62rem;font-weight:800;letter-spacing:.04em}
-    .asn-tag{border:1px solid var(--line);color:var(--muted);text-transform:uppercase}
-    .due-badge{border:1px solid var(--line);color:var(--muted)}
-    .due-badge.over{background:color-mix(in srgb,var(--red) 14%,var(--surface));border-color:var(--red);color:var(--red)}
-    .due-badge.soon{background:var(--orange-soft);border-color:var(--orange);color:var(--orange)}
-    .due-badge.ok{background:var(--green-soft);border-color:var(--green);color:var(--green)}
-    .pri-badge{border:1px solid var(--line);text-transform:uppercase}
-    .pri-high{background:color-mix(in srgb,var(--red) 14%,var(--surface));color:var(--red);border-color:var(--red)}
-    .pri-medium{background:var(--orange-soft);color:var(--orange);border-color:var(--orange)}
-    .pri-low{color:var(--muted)}
-    .asn-actions{display:flex;gap:8px}
-    .check-line{display:flex;align-items:center;gap:10px;margin:4px 0;font-weight:700;font-size:.82rem;cursor:pointer}
-    .check-line input{width:20px;height:20px;accent-color:var(--green);cursor:pointer}
-    .pick-log{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px}
-    .pick-log li{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-size:.8rem}
-    .pick-log .n{color:var(--muted);font:500 .7rem "DM Mono",monospace}
-    @media(max-width:560px){.tracker-form .form-row{grid-template-columns:1fr}.asn-row{grid-template-columns:auto minmax(0,1fr)}.asn-actions{grid-column:1/-1}}
-
   </style>
 <!-- honed-seo-start -->
-<meta name="description" content="Draw a student at random from your class list — no repeats until everyone has been picked. Free classroom tool, no signup." />
-<link rel="canonical" href="https://honedsignal.com/education/random-student-picker/" />
+<meta name="description" content="Build a formal Section 504 evaluation request letter — polite, specific, documented. Free parent tool, private to your browser." />
+<link rel="canonical" href="https://honedsignal.com/education/section-504-plan-request-builder/" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Random Student Picker","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/random-student-picker/","description":"Draw a student at random from your class list — no repeats until everyone has been picked. Free classroom tool, no signup.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"504 Plan Request Builder","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/section-504-plan-request-builder/","description":"Build a formal Section 504 evaluation request letter — polite, specific, documented. Free parent tool, private to your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
 </head>
 <body>
-<a class="money-home" href="/education/" aria-label="Back to Education">← Education</a>
+<a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
   <header class="intro">
-        <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Pick a student, <span class="accent">fairly</span> and fast.</h1></div>
-    <p>Paste your class list — one name per line. The picker draws students at random, with no repeats until everyone has been picked.</p>
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Put the request <span class="accent">in writing.</span></h1></div>
+    <p>A formal 504 evaluation request letter — polite, specific, and documented.</p>
   </header>
-  <section class="workbench" aria-label="Random Student Picker">
-    <form class="panel inputs tracker-form" id="pickForm" novalidate>
-      <div class="section-head"><h2>Your class list</h2><span class="step">01 / NAMES</span></div>
-      <div class="field">
-        <label for="studentList">Names — one per line</label>
-        <textarea class="edu" id="studentList" rows="8" placeholder="Ana&#10;Jamal&#10;Priya&#10;…"></textarea>
+    <section class="workbench" aria-label="504 plan request builder">
+    <form class="panel inputs" id="calcForm" novalidate>
+    <div id="preStartWarn" class="hidden" style="margin:0 0 16px;padding:14px 16px;border:2px solid var(--orange);border-radius:12px;background:var(--orange-soft)">
+      <p style="margin:0 0 6px;font-weight:800;color:var(--ink)">Before you start: this tracker saves to THIS BROWSER ONLY — not to the cloud, not to your account.</p>
+      <p style="margin:0 0 10px;font-size:.8rem;color:var(--muted)">Setting it up takes about about 10 minutes. Got the time right now? You can download a CSV backup anytime.</p>
+      <button type="button" id="preStartDismiss" class="action" style="min-height:36px">Got it, let’s start</button>
+    </div>
+      <div class="section-head"><h2>Student &amp; school</h2><span class="step">01 / WHO</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="stName">Student first name</label><div class="money-input"><input id="stName" type="text" placeholder="Alex" aria-label="Student first name" style="text-align:left"></div></div>
+        <div class="expense"><label for="school">School name</label><div class="money-input"><input id="school" type="text" placeholder="Roosevelt Elementary" aria-label="School name" style="text-align:left"></div></div>
+        <div class="expense"><label for="grade">Grade</label><div class="money-input"><input id="grade" type="text" placeholder="4th" aria-label="Grade" style="text-align:left"></div></div>
+        <div class="expense"><label for="condCat">Condition category</label><div class="money-input"><select id="condCat" aria-label="Condition category">
+          <option value="ADHD">ADHD</option>
+          <option value="anxiety / depression">Anxiety / depression</option>
+          <option value="a learning disability">Learning disability (e.g. dyslexia)</option>
+          <option value="autism">Autism</option>
+          <option value="diabetes">Diabetes</option>
+          <option value="asthma">Asthma / respiratory condition</option>
+          <option value="a hearing or vision impairment">Hearing or vision impairment</option>
+          <option value="another condition">Another condition</option>
+        </select></div></div>
+        <div class="expense"><label for="parentName">Your name</label><div class="money-input"><input id="parentName" type="text" placeholder="Parent / guardian name" aria-label="Parent or guardian name" style="text-align:left"></div></div>
       </div>
-      <label class="check-line"><input type="checkbox" id="noRepeat" checked><span>No repeats until everyone is picked</span></label>
-      <p class="form-err" id="formErr" role="alert"></p>
-      <div class="btn-row">
-        <button class="calculate" type="submit" id="pickBtn">Pick a student</button>
-        <button class="btn-secondary" type="button" id="resetBtn">Reset</button>
+      <div class="field" style="margin-top:10px"><label for="challenges">Observed challenges at school</label><textarea class="edu" id="challenges" placeholder="What you see: trouble finishing work, frequent nurse visits, anxiety before tests&hellip; Be specific and factual."></textarea></div>
+      <div class="section-head" style="margin-top:18px"><h2>Requested supports</h2><span class="step">02 / ASK</span></div>
+      <div id="accRows"></div>
+      <button class="action" id="addAcc" type="button">+ Add accommodation</button>
+      <p class="err" id="err"></p>
+      <button class="calculate" type="submit">Build the request letter</button>
+<div class="privacy" style="margin-top:14px;font-size:.68rem;color:var(--muted)"><strong>Private by design.</strong> Saved only in this browser, on this device — it will <strong>not</strong> appear on a different phone, computer, or browser. Download the CSV to keep a copy or move it elsewhere.</div>
+<p class="save-indicator" id="saveIndicator" style="margin:8px 0 0;font-size:.68rem;color:var(--muted)" role="status" aria-live="polite"></p>
+<div class="export-nudge hidden" id="exportNudge" style="margin:10px 0 0;padding:10px 12px;border:1px solid var(--orange);border-radius:10px;background:var(--orange-soft);font-size:.75rem;color:var(--ink)"><strong>Back it up:</strong> you’ve got <span class="export-nudge-count">5</span> items tracked here — download the CSV so it’s safe even if you clear your browser or switch devices.<br><button type="button" id="exportNudgeDismiss" class="action" style="margin-top:8px;min-height:32px;font-size:.7rem">Dismiss</button></div>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email the 504 request letter" aria-disabled="true">Email my letter</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+        <button class="action result-action" id="printBtn" type="button">Print letter</button>
       </div>
-      <p class="hint">Blank lines are skipped; duplicates are kept as you enter them — the list is yours. Picks are random.</p>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Your draft saves in this browser as you type — come back anytime on this device.</p>
     </form>
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Who&rsquo;s it going to be?</h2><p>Paste your class list on the left — one name per line — then pick to draw a name at random.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Put the request in writing.</h2><p>A formal 504 evaluation request letter — polite, specific, and documented.</p></div>
       </div>
-      <div id="pickState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">PICKED</p><p class="target" id="pickOut">—</p><p class="target-note" id="remainNote"></p></section>
-        <h3 class="due-head">Picked so far</h3>
-        <ul class="pick-log" id="pickLog"></ul>
-        <div class="result-actions">
-          <a class="action result-action" id="emailResults" aria-label="Email these results" aria-disabled="true">Email my results</a>
-          <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
-          <button class="action result-action" id="downloadCsv" type="button" disabled>Download CSV</button>
-          <button class="action result-action" id="printBtn" type="button">Print</button>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">504 REQUEST LETTER</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
+        <div class="plan">
+          <section class="plan-block"><h3>The letter</h3><p id="letterBody" style="white-space:pre-line;font-size:.82rem"></p></section>
+          <section class="plan-block"><h3>Attach with the letter</h3><dl id="docList"></dl></section>
         </div>
-        <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
-        <section class="explanation" aria-label="How no-repeat mode works">
+        <div class="plan">
+          <section class="plan-block nudge"><h3>Know your rights</h3><p id="rightsOut" style="font-size:.8rem"></p></section>
+          <section class="plan-block"><h3>After you send</h3><dl id="nextOut"></dl></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
-          <p class="explain-copy hidden" id="explainCopy">With "No repeats" on, each name is drawn once per cycle and removed from the pool until everyone has been picked; the counter shows how many names are still unpicked. When the pool is empty the picker says everyone has been picked — reset starts a fresh cycle. With the box unchecked, every draw picks from the full list, so repeats are possible. Names are used exactly as you type them: blank lines are skipped, duplicates are kept, and leading/trailing spaces are trimmed. All draws happen in your browser; your list is never sent anywhere.</p>
+          <p class="explain-copy hidden" id="explainCopy"></p>
         </section>
       </div>
     </div>
-  </section></section>
-  <footer class="footer"><p><strong>Assumptions:</strong> Draws use your browser's random number generator; every name in the pool has an equal chance on each draw. Editing the list starts a fresh cycle, and duplicates are treated as separate entries.</p><p>Educational estimate, not academic or professional advice.</p></footer>
+  </section>
+
+  <footer class="footer"><p><strong>Assumptions:</strong> Priority ranking heuristic, not a guarantee. Pair with the Study Planner for day-by-day scheduling.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
+
 <script>
 (function(){'use strict';
-  function $(id){return document.getElementById(id)}
+  var KEY='hs-504-request-draft';
+  var form=document.getElementById('calcForm'),last=null;
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-  var pool=[],remaining=[],picked=[],listSig='__none__';
+  function row(l,v){return'<dt>'+l+'</dt><dd>'+v+'</dd>'}
+  function val(id){var el=document.getElementById(id);return el?el.value.trim():''}
 
-  function getList(){
-    var raw=$('studentList').value;
-    var list=raw.split(/\r?\n/).map(function(l){return l.replace(/^\s+/,'').replace(/\s+$/,'')}).filter(function(l){return l.length>0});
-    return{list:list,sig:raw};
+  /* save-location mitigations: indicator names the location, never just "Saved" */
+  function saveClock(){return new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}
+  function onSaved(n){
+    var el=document.getElementById('saveIndicator');
+    if(el)el.textContent='Saved in this browser \u00b7 '+saveClock();
+    maybeShowNudge(n);
   }
-  function ensurePool(){
-    var c=getList();
-    if(c.sig!==listSig){
-      listSig=c.sig;pool=c.list;remaining=[];
-      for(var i=0;i<pool.length;i++)remaining.push(i);
-      picked=[];
-    }
-    return pool;
+  function maybeShowNudge(n){
+    var el=document.getElementById('exportNudge');
+    if(!el)return;
+    if(n<5){el.classList.add('hidden');return}
+    try{if(localStorage.getItem(KEY+'-nudge-dismissed'))return}catch(e){}
+    var c=el.querySelector('.export-nudge-count');
+    if(c)c.textContent=n;
+    el.classList.remove('hidden');
   }
-  function showErr(msg){var e=$('formErr');e.textContent=msg;e.classList.add('show')}
-  function clearErr(){$('formErr').classList.remove('show')}
-  function showResults(){$('emptyState').classList.add('hidden');$('pickState').classList.remove('hidden')}
+  function initSaveMitigations(countStored){
+    var n=countStored();
+    var ind=document.getElementById('saveIndicator');
+    if(ind&&n>0)ind.textContent='Restored '+n+' '+(n===1?'entry':'entries')+' from this browser';
+    maybeShowNudge(n);
+    var warn=document.getElementById('preStartWarn');
+    var dismissed=false;
+    try{dismissed=!!localStorage.getItem(KEY+'-prestart-dismissed')}catch(e){}
+    if(warn&&n===0&&!dismissed)warn.classList.remove('hidden');
+    var db=document.getElementById('preStartDismiss');
+    if(db)db.addEventListener('click',function(){
+      if(warn)warn.classList.add('hidden');
+      try{localStorage.setItem(KEY+'-prestart-dismissed','1')}catch(e){}
+    });
+    var nd=document.getElementById('exportNudgeDismiss');
+    if(nd)nd.addEventListener('click',function(){
+      var el=document.getElementById('exportNudge');
+      if(el)el.classList.add('hidden');
+      try{localStorage.setItem(KEY+'-nudge-dismissed','1')}catch(e){}
+    });
+  }
 
-  function setExhausted(){
-    showResults();
-    $('pickOut').textContent='Everyone has been picked!';
-    $('remainNote').innerHTML='No names left in the pool. <button type="button" class="mini-btn" id="resetAgain">Reset the pool</button>';
+  function addAccRow(v){
+    var wrap=document.getElementById('accRows'),d=document.createElement('div');
+    d.className='dyn-row';
+    d.innerHTML='<input type="text" placeholder="Requested accommodation" aria-label="Requested accommodation" value="'+esc(v||'')+'">'
+      +'<button type="button" class="dyn-rm" aria-label="Remove">\u00d7</button>';
+    d.querySelector('.dyn-rm').addEventListener('click',function(){d.remove();save(getData());if(last)render(getData())});
+    d.querySelector('input').addEventListener('input',function(){save(getData());if(last)render(getData())});
+    wrap.appendChild(d);
   }
-
-  function renderLog(){
-    var h='',i;
-    for(i=picked.length-1;i>=0;i--){h+='<li><span class="n">#'+(i+1)+'</span><strong>'+esc(picked[i])+'</strong></li>'}
-    $('pickLog').innerHTML=h;
+  document.getElementById('addAcc').addEventListener('click',function(){addAccRow();save(getData())});
+  function readAccs(){
+    return Array.prototype.slice.call(document.querySelectorAll('#accRows .dyn-row input')).map(function(i){return i.value.trim()}).filter(function(v){return v});
   }
-
-  function resultsText(){
-    var lines=['Random Student Picker \u2014 '+picked.length+' draw'+(picked.length===1?'':'s'),''];
-    for(var i=0;i<picked.length;i++)lines.push((i+1)+'. '+picked[i]);
-    return lines.join('\n');
+  var FIELD_IDS=['stName','school','grade','condCat','parentName','challenges'];
+  function getData(){
+    var d={};FIELD_IDS.forEach(function(id){d[id]=val(id)});
+    d.accs=readAccs();return d;
   }
-
-  function enableActions(){
-    var t=resultsText();
-    var email=$('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Random student picks')+'&body='+encodeURIComponent(t);
+  function filledCount(d){var n=0;FIELD_IDS.forEach(function(k){if(d[k]&&d[k].trim()!=='')n++});n+=d.accs.length;return n}
+  function save(d){var ok=true;try{window.localStorage.setItem(KEY,JSON.stringify(d))}catch(e){ok=false}if(ok)onSaved(filledCount(d))}
+  function loadDraft(){
+    try{
+      var raw=window.localStorage.getItem(KEY);if(!raw)return false;
+      var d=JSON.parse(raw);if(!d||typeof d!=='object')return false;
+      FIELD_IDS.forEach(function(id){var el=document.getElementById(id);if(el&&d[id]!=null)el.value=d[id]});
+      (d.accs||[]).forEach(addAccRow);
+      return filledCount(d)>0;
+    }catch(e){return false}
+  }
+  function todayStr(){return new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
+  function buildLetter(d){
+    var L=[];
+    L.push(todayStr(),'','Principal / 504 Coordinator',d.school,'',
+      'Re: Request for Section 504 evaluation \u2014 '+d.stName+(d.grade?', grade '+d.grade:''),'',
+      'Dear Sir or Madam:','',
+      'I am the parent/guardian of '+d.stName+'. I am writing to formally request that '+d.stName+' be evaluated for eligibility under Section 504 of the Rehabilitation Act, due to '+d.condCat+'.','',
+      'I have observed the following challenges at school: '+(d.challenges||'[describe specific, factual observations]'),'',
+      'I am requesting the following accommodations be considered:'+(d.accs.length?'':' [list requested supports]'));
+    d.accs.forEach(function(a,i){L.push('  '+(i+1)+'. '+a)});
+    L.push('','Please treat this letter as my formal written request for a 504 evaluation. I understand the school must respond within a reasonable time. I am available to meet and provide any additional information.','',
+      'Thank you,',d.parentName,'','---',
+      'This letter is an organizational aid, not legal advice. Section 504 rights vary by state \u2014 consider consulting an advocate or attorney.');
+    return L.join('\n');
+  }
+  function render(d){
+    last=d;
+    var letter=buildLetter(d);
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('target').textContent=d.accs.length+(d.accs.length===1?' support':' supports');
+    document.getElementById('targetNote').textContent='requested in writing \u2014 dated requests start the clock.';
+    document.getElementById('letterBody').textContent=letter;
+    document.getElementById('docList').innerHTML=[
+      'Recent report cards or progress reports','Medical or psychological evaluations','Doctor\u2019s letter describing the condition',
+      'Work samples showing the challenge','Records of prior interventions tried'
+    ].map(function(x){return row('\u2713',esc(x))}).join('');
+    document.getElementById('rightsOut').textContent='Section 504 is a federal civil rights law: schools must evaluate a child when a disability is suspected, and provide accommodations (a \u201c504 plan\u201d) so the child can access education. You can request an evaluation in writing at any time \u2014 you do not need a diagnosis first, and the school cannot require you to try other programs before evaluating.';
+    document.getElementById('nextOut').innerHTML=row('1','Send it in a way you can prove: email or hand-deliver with a date stamp.')+row('2','Keep a copy of everything.')+row('3','If the school delays or refuses, ask for the reason in writing.');
+    document.getElementById('explainCopy').textContent='A 504 request works best in writing: dated, specific about what you observe, and listing the supports you want considered. Verbal requests are easy to lose \u2014 paper starts the clock.';
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('Request for Section 504 evaluation \u2014 '+d.stName)+'&body='+encodeURIComponent(letter);
     email.setAttribute('aria-disabled','false');
-    $('copyResults').dataset.shareText=t;
-    $('copyResults').disabled=false;
-    $('downloadCsv').disabled=false;
+    document.getElementById('copyResults').disabled=false;
   }
-  function disableActions(){
-    $('emailResults').setAttribute('aria-disabled','true');
-    $('copyResults').disabled=true;
-    $('downloadCsv').disabled=true;
+  function calculate(e){
+    if(e)e.preventDefault();
+    var d=getData(),err=document.getElementById('err');
+    if(!d.stName||!d.school){err.textContent='Add the student\u2019s name and school.';return}
+    err.textContent='';
+    render(d);
   }
+  FIELD_IDS.forEach(function(id){var el=document.getElementById(id);if(el){el.addEventListener('input',function(){save(getData());if(last)render(getData())});el.addEventListener('change',function(){save(getData());if(last)render(getData())})}});
+  form.addEventListener('submit',calculate);
+  document.getElementById('printBtn').addEventListener('click',function(){window.print()});
 
-  function doReset(){
-    listSig='__none__';
-    ensurePool();
-    $('pickOut').textContent='\u2014';
-    $('remainNote').textContent='';
-    $('pickLog').innerHTML='';
-    $('pickState').classList.add('hidden');
-    $('emptyState').classList.remove('hidden');
-    disableActions();clearErr();
-  }
-
-  function renderPick(name){
-    showResults();
-    $('pickOut').textContent=name;
-    var noRep=$('noRepeat').checked;
-    if(noRep){
-      if(remaining.length===0){$('remainNote').innerHTML='That was the last name. <button type="button" class="mini-btn" id="resetAgain2">Reset the pool</button>';renderLog();enableActions();return}
-      $('remainNote').textContent=remaining.length+' of '+pool.length+' remaining';
-    }else{
-      $('remainNote').textContent=pool.length+' names in the pool \u00b7 repeats allowed';
-    }
-    renderLog();enableActions();
-  }
-
-  $('pickForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    var list=ensurePool();
-    if(!list.length){showErr('Add at least one name first \u2014 one per line.');$('studentList').focus();return}
-    clearErr();
-    var noRep=$('noRepeat').checked,name;
-    if(noRep){
-      if(remaining.length===0){setExhausted();return}
-      var r=Math.floor(Math.random()*remaining.length);
-      name=pool[remaining.splice(r,1)[0]];
-    }else{
-      name=pool[Math.floor(Math.random()*pool.length)];
-    }
-    picked.push(name);
-    renderPick(name);
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
   });
+  function summaryText(){return buildLetter(last||getData())}
 
-  $('resetBtn').addEventListener('click',doReset);
-  $('remainNote').addEventListener('click',function(e){var t=e.target;if(t&&(t.id==='resetAgain'||t.id==='resetAgain2'))doReset()});
-  $('noRepeat').addEventListener('change',doReset);
-
-  function csvCell(v){var s=String(v);if(/^[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
-  $('downloadCsv').addEventListener('click',function(){
-    if(!picked.length)return;
-    var rows=[['Random Student Picker','Draw #']];
-    for(var i=0;i<picked.length;i++)rows.push([picked[i],i+1]);
-    var csv=rows.map(function(r){return r.map(csvCell).join(',')}).join('\n');
-    var blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
-    var url=URL.createObjectURL(blob),a=document.createElement('a');
-    a.href=url;a.download='random-student-picks.csv';document.body.appendChild(a);a.click();a.remove();
-    URL.revokeObjectURL(url);
+  document.getElementById('copyResults').addEventListener('click',function(){
+    var txt=summaryText(),status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Copied.':'Copy failed \u2014 your browser blocked it.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{done(document.execCommand('copy'))}catch(e){done(false)}ta.remove()}
   });
-
-  $('printBtn').addEventListener('click',function(){window.print()});
-
-  $('copyResults').addEventListener('click',function(){
-    var text=this.dataset.shareText||'';
-    if(!text)return;
-    var button=this,status=$('copyStatus'),settled=false;
-    function show(message){if(settled)return;settled=true;button.textContent=message;status.textContent=message==='Copied'?'Results copied to your clipboard.':'Could not copy automatically.';window.setTimeout(function(){button.textContent='Copy results';status.textContent=''},1800)}
-    function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{show(document.execCommand('copy')?'Copied':'Copy failed')}catch(err){show('Copy failed')}area.remove()}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback)}else{fallback()}
-  });
-
-  $('explainToggle').addEventListener('click',function(){var c=$('explainCopy'),x=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!x));c.classList.toggle('hidden',x)});
+  var had=loadDraft();
+  initSaveMitigations(function(){return filledCount(getData())});
+  if(had){var d=getData();if(d.stName&&d.school)render(d)}
 })();
 </script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
-<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/gradebook-calculator/"><span class="arr">→</span>Calculate a gradebook grade</a></li><li><a href="/education/class-curve-grader/"><span class="arr">→</span>Grade on a curve</a></li><li><a href="/education/absence-tracker/"><span class="arr">→</span>Track your class absences</a></li></ul></div>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/iep-meeting-agenda-builder/"><span class="arr">→</span>IEP Meeting Agenda Builder</a></li><li><a href="/education/accommodation-tracker/"><span class="arr">→</span>Accommodation Tracker</a></li></ul></div>
 <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only — not academic, financial, tax, or legal advice. Verify important decisions with your school, the IRS, or a qualified professional. Tools are provided as-is, without warranties. <a href="/education/disclaimer/">Read the full disclaimer</a>.</div>
 <script src="/money/recent-tools.js" defer></script>
 <script src="/money/input-hints.js" defer></script>
