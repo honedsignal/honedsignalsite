@@ -78,9 +78,16 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
   </header>
   <section class="workbench" aria-label="Accommodation Tracker">
     <form class="panel inputs" id="calcForm" novalidate>
+    <div id="preStartWarn" class="hidden" style="margin:0 0 16px;padding:14px 16px;border:2px solid var(--orange);border-radius:12px;background:var(--orange-soft)">
+      <p style="margin:0 0 6px;font-weight:800;color:var(--ink)">Before you start: this tracker saves to THIS BROWSER ONLY — not to the cloud, not to your account.</p>
+      <p style="margin:0 0 10px;font-size:.8rem;color:var(--muted)">Setting it up takes about 5–10 minutes. Got the time right now? You can download a CSV backup anytime.</p>
+      <button type="button" id="preStartDismiss" class="action" style="min-height:36px">Got it, let’s start</button>
+    </div>
 
       <div class="section-head"><h2>Accommodations</h2><span class="step">01 / LOG</span></div>
       <div class="privacy" style="margin-top:14px;font-size:.68rem;color:var(--muted)"><strong>Private by design.</strong> Saved only in this browser, on this device — it will <strong>not</strong> appear on a different phone, computer, or browser. Download the CSV to keep a copy or move it elsewhere.</div>
+      <p class="save-indicator" id="saveIndicator" style="margin:8px 0 0;font-size:.68rem;color:var(--muted)" role="status" aria-live="polite"></p>
+      <div class="export-nudge hidden" id="exportNudge" style="margin:10px 0 0;padding:10px 12px;border:1px solid var(--orange);border-radius:10px;background:var(--orange-soft);font-size:.75rem;color:var(--ink)"><strong>Back it up:</strong> you’ve got <span class="export-nudge-count">5</span> items tracked here — download the CSV so it’s safe even if you clear your browser or switch devices.<br><button type="button" id="exportNudgeDismiss" class="action" style="margin-top:8px;min-height:32px;font-size:.7rem">Dismiss</button></div>
       <datalist id="accList">
         <option value="Extended time (1.5x)"></option><option value="Preferential seating"></option>
         <option value="Reduced-distraction setting"></option><option value="Read-aloud"></option>
@@ -164,8 +171,49 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     return{accs:accs,teacher:val('teacherName'),student:val('studentName')};
   }
   function save(d){
-    try{localStorage.setItem(KEY,JSON.stringify({accs:d.accs,teacher:d.teacher,student:d.student}))}catch(e){}
+    var ok=true;
+    try{localStorage.setItem(KEY,JSON.stringify({accs:d.accs,teacher:d.teacher,student:d.student}))}catch(e){ok=false}
+    if(ok)onSaved(d.accs.length);
   }
+  /* save-location mitigations: indicator names the location, never just "Saved" */
+  function saveClock(){return new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}
+  function onSaved(n){
+    var el=document.getElementById('saveIndicator');
+    if(el)el.textContent='Saved in this browser · '+saveClock();
+    maybeShowNudge(n);
+  }
+  function maybeShowNudge(n){
+    var el=document.getElementById('exportNudge');
+    if(!el)return;
+    if(n<5){el.classList.add('hidden');return}
+    try{if(localStorage.getItem(KEY+'-nudge-dismissed'))return}catch(e){}
+    var c=el.querySelector('.export-nudge-count');
+    if(c)c.textContent=n;
+    el.classList.remove('hidden');
+  }
+  function countStored(){try{var s=JSON.parse(localStorage.getItem(KEY));return(s&&s.accs||[]).length}catch(e){return 0}}
+  function initSaveMitigations(){
+    var n=countStored();
+    var ind=document.getElementById('saveIndicator');
+    if(ind&&n>0)ind.textContent='Restored '+n+' '+(n===1?'entry':'entries')+' from this browser';
+    maybeShowNudge(n);
+    var warn=document.getElementById('preStartWarn');
+    var dismissed=false;
+    try{dismissed=!!localStorage.getItem(KEY+'-prestart-dismissed')}catch(e){}
+    if(warn&&n===0&&!dismissed)warn.classList.remove('hidden');
+    var db=document.getElementById('preStartDismiss');
+    if(db)db.addEventListener('click',function(){
+      if(warn)warn.classList.add('hidden');
+      try{localStorage.setItem(KEY+'-prestart-dismissed','1')}catch(e){}
+    });
+    var nd=document.getElementById('exportNudgeDismiss');
+    if(nd)nd.addEventListener('click',function(){
+      var el=document.getElementById('exportNudge');
+      if(el)el.classList.add('hidden');
+      try{localStorage.setItem(KEY+'-nudge-dismissed','1')}catch(e){}
+    });
+  }
+
   function load(){
     try{
       var raw=localStorage.getItem(KEY);if(!raw)return false;
@@ -241,6 +289,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     csvDownload('accommodation-tracker.csv',rows);
   });
   if(load()){render(getData())}else{addAccRow()}
+  initSaveMitigations();
 
   function flashCopy(btn, ok){
     var status = document.getElementById('copyStatus');
