@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Education Tools | Honed Signal</title>
-  <meta name="description" content="Practical education tools for students, teachers, and parents. GPA, final exams, study plans, citations and more \u2014 free, no signup." />
-  <link rel="canonical" href="https://honedsignal.com/education/" />
+  <title>Study Schedule Generator | Honed Signal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,7 +34,6 @@
 .hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.55) 100%)}
 .hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
 .hs-hero h1 .accent{color:var(--green)}
-.hs-hero.has-art{background-image:linear-gradient(180deg,rgba(11,14,20,.05) 0%,rgba(11,14,20,.62) 100%),url('/education/assets/education-hub-hero.jpg');background-size:cover;background-position:center}
 @media(max-width:640px){.hs-hero{min-height:130px;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
 .dyn-row{display:grid;grid-template-columns:1fr 96px 78px 34px;gap:8px;margin-bottom:8px;align-items:center}
 .dyn-row.wide{grid-template-columns:1fr 110px 110px 34px}
@@ -61,31 +58,163 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 .empty-art .doc:before{content:"";position:absolute;left:12px;right:12px;top:14px;height:6px;background:var(--line-strong);border-radius:3px;box-shadow:0 14px 0 var(--line-strong),0 28px 0 var(--line-strong),0 42px 0 var(--line-strong),0 56px 0 var(--orange)}
 .err{color:var(--red);font-size:.75rem;font-weight:700;margin-top:8px;min-height:1.1em}
 
-    .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:30px}
-    .card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:border-color .15s}
-    .card:hover{border-color:var(--orange)}
-    .card h3{margin:0 0 8px;font-size:1.05rem;letter-spacing:-.02em}
-    .card p{margin:0 0 12px;color:var(--muted);font-size:.85rem}
-    .card .go{color:var(--orange);font-weight:800;font-size:.8rem}
-    .hub-hero{padding:20px 0 6px}
-    .hub-hero h1{margin:0;font-size:clamp(2.2rem,6vw,4rem);letter-spacing:-.04em}
-    .hub-hero h1 .accent{color:var(--green)}
-    .hub-hero p{color:var(--muted);font-size:1.05rem;max-width:56ch}
   </style>
+<!-- honed-seo-start -->
+<meta name="description" content="Test dates times difficulty — a priority-ranked study plan that puts hours where they matter." />
+<link rel="canonical" href="https://honedsignal.com/education/study-schedule-generator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Study Schedule Generator","applicationCategory":"EducationalApplication","operatingSystem":"Any","url":"https://honedsignal.com/education/study-schedule-generator/","description":"Test dates times difficulty — a priority-ranked study plan that puts hours where they matter.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
 </head>
 <body>
 <a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
 <main class="page">
-  <header class="hub-hero">
-    <div class="hs-hero has-art" role="img" aria-label="A diverse group of students studying together in a sunlit library"><div class="shade"></div><h1 class="hs-hero-title">Tools for <span class="accent">learning</span>.</h1></div>
-    <p>Practical tools for students, teachers, and parents. Grades, study plans, reading time, citations \u2014 free, private, no account needed.</p>
+  <header class="intro">
+    <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">Study the urgent-hard <span class="accent">stuff first.</span></h1></div>
+    <p>Enter test dates and difficulty — get a priority-ranked plan.</p>
   </header>
-  <section class="tool-grid" aria-label="Education tools">
-    <a class="card" href="/education/gpa-calculator/"><h3>GPA Calculator</h3><p>Your GPA on the 4.0 scale from course grades and credits.</p><span class="go">Open tool →</span></a><a class="card" href="/education/final-exam-calculator/"><h3>Final Exam Grade Calculator</h3><p>The exact final-exam score you need to hit your target grade.</p><span class="go">Open tool →</span></a><a class="card" href="/education/weighted-grade-calculator/"><h3>Weighted Grade Calculator</h3><p>Combine exams, homework, and projects the way your syllabus does.</p><span class="go">Open tool →</span></a><a class="card" href="/education/can-i-still-pass/"><h3>Can I Still Pass? Calculator</h3><p>An honest answer about what your remaining work needs to average.</p><span class="go">Open tool →</span></a><a class="card" href="/education/study-planner/"><h3>Study Planner</h3><p>A day-by-day study plan built around your exam dates.</p><span class="go">Open tool →</span></a><a class="card" href="/education/absence-tracker/"><h3>Class Absence Calculator</h3><p>How many classes you can still miss before it costs you.</p><span class="go">Open tool →</span></a><a class="card" href="/education/reading-time-estimator/"><h3>Reading Time Calculator</h3><p>How long that assigned reading will actually take.</p><span class="go">Open tool →</span></a><a class="card" href="/education/word-counter/"><h3>Essay Word Counter</h3><p>Live word, character, sentence, and paragraph counts. Private.</p><span class="go">Open tool →</span></a><a class="card" href="/education/citation-formatter/"><h3>Citation Generator (APA/MLA)</h3><p>Formatted citations ready to copy, in APA or MLA style.</p><span class="go">Open tool →</span></a><a class="card" href="/education/gradebook-calculator/"><h3>Gradebook Calculator</h3><p>Scores to percentages, letter grades, and class average.</p><span class="go">Open tool →</span></a><a class="card" href="/education/assignment-tracker/"><h3>Assignment Deadline Tracker</h3><p>Never miss a due date. Track assignments, flag what is overdue, and watch your completion climb.</p><span class="go">Open tool →</span></a><a class="card" href="/education/grade-curve-calculator/"><h3>Grade Curve Calculator</h3><p>See what a flat, square-root, or linear curve does to your test score.</p><span class="go">Open tool →</span></a><a class="card" href="/education/can-i-still-get-an-a/"><h3>Can I Still Get an A? Calculator</h3><p>The exact average you need on remaining work to finish with an A.</p><span class="go">Open tool →</span></a><a class="card" href="/education/college-cost-comparison/"><h3>College Cost Comparison</h3><p>Compare up to three colleges by true net cost, ranked cheapest first.</p><span class="go">Open tool →</span></a><a class="card" href="/education/class-curve-grader/"><h3>Class Curve Grader</h3><p>For teachers: curve a whole class of scores at once, with before-and-after stats.</p><span class="go">Open tool →</span></a><a class="card" href="/education/random-student-picker/"><h3>Random Student Picker</h3><p>For teachers: pick a student at random, with no repeats until everyone has had a turn.</p><span class="go">Open tool →</span></a><a class="card" href="/education/school-operating-budget-planner/"><h3>Operating Budget Planner</h3><p>For admins: revenue vs. expenses — surplus or shortfall.</p><span class="go">Open tool →</span></a><a class="card" href="/education/per-student-spending-calculator/"><h3>Per-Student Spending</h3><p>For admins: the budget per student, with comparison context.</p><span class="go">Open tool →</span></a><a class="card" href="/education/program-cost-per-student/"><h3>Program Cost Per Student</h3><p>For admins: compare programs apples to apples.</p><span class="go">Open tool →</span></a><a class="card" href="/education/school-event-budget-planner/"><h3>Event Budget Planner</h3><p>For admins &amp; PTA: profit, loss, and break-even tickets.</p><span class="go">Open tool →</span></a><a class="card" href="/education/can-we-afford-this-school-event/"><h3>Can We Afford This Event?</h3><p>Event cost vs. real funding — yes, no, or yes-with-changes.</p><span class="go">Open tool →</span></a><a class="card" href="/education/graduate-school-affordability/"><h3>Graduate School Affordability</h3><p>True cost including lost wages vs. the salary bump.</p><span class="go">Open tool →</span></a><a class="card" href="/education/cost-of-transferring-colleges/"><h3>Cost of Transferring Colleges</h3><p>Lost credits, fees, moving, yearly difference — the net.</p><span class="go">Open tool →</span></a><a class="card" href="/education/school-transportation-cost-estimator/"><h3>Transportation Cost Estimator</h3><p>For parents: bus fee vs. the true cost of driving.</p><span class="go">Open tool →</span></a><a class="card" href="/education/study-schedule-generator/"><h3>Study Schedule Generator</h3><p>Test dates × difficulty — a priority-ranked study plan.</p><span class="go">Open tool →</span></a><a class="card" href="/education/staff-certification-renewal-tracker/"><h3>Certification Renewal Tracker</h3><p>For admins: every staff deadline — private to your browser.</p><span class="go">Open tool →</span></a><a class="card" href="/education/school-fundraising-goal-calculator/"><h3>Fundraising Goal Calculator</h3><p>For admins &amp; PTA: the per-family number that closes the gap.</p><span class="go">Open tool →</span></a><a class="card" href="/education/substitute-teacher-cost-calculator/"><h3>Substitute Cost Calculator</h3><p>For admins: the yearly line item hiding in the budget.</p><span class="go">Open tool →</span></a><a class="card" href="/education/cafeteria-cost-per-meal/"><h3>Cafeteria Cost Per Meal</h3><p>For admins: the true cost of every tray served.</p><span class="go">Open tool →</span></a><a class="card" href="/education/staffing-ratio-calculator/"><h3>Staffing Ratio Calculator</h3><p>For admins: the ratio vs. target, and hires needed.</p><span class="go">Open tool →</span></a><a class="card" href="/education/classroom-seating-chart-creator/"><h3>Seating Chart Creator</h3><p>For teachers: randomized seating, front to back.</p><span class="go">Open tool →</span></a><a class="card" href="/education/which-certification-path/"><h3>Which Certification Path?</h3><p>Two paths head to head — payback winner and 3-year net.</p><span class="go">Open tool →</span></a><a class="card" href="/education/which-school-fits-my-family/"><h3>Which School Fits My Family?</h3><p>For parents: cost, commute, and fit — scored 0–100.</p><span class="go">Open tool →</span></a><a class="card" href="/education/textbook-adoption-cost/"><h3>Textbook Adoption Cost</h3><p>For admins: the full adoption cost, amortized over the cycle.</p><span class="go">Open tool →</span></a><a class="card" href="/education/parent-teacher-conference-scheduler/"><h3>Conference Scheduler</h3><p>For teachers: every time slot and the end of the evening.</p><span class="go">Open tool →</span></a><a class="card" href="/education/enrollment-projection-planner/"><h3>Enrollment Projection Planner</h3><p>For admins: year-by-year projection and classrooms needed.</p><span class="go">Open tool →</span></a><a class="card" href="/education/assignment-workload-planner/"><h3>Assignment Workload Planner</h3><p>This week’s load vs. your real study hours — can it all get done?</p><span class="go">Open tool →</span></a><a class="card" href="/education/transfer-credit-planner/"><h3>Transfer Credit Planner</h3><p>What transfers, what’s lost, what’s left — at the real acceptance rate.</p><span class="go">Open tool →</span></a><a class="card" href="/education/test-retake-decision/"><h3>Test Retake Decision</h3><p>Score gap, retake cost, prep time — should you pay to take it again?</p><span class="go">Open tool →</span></a><a class="card" href="/education/teacher-grading-workload/"><h3>Grading Workload Estimator</h3><p>For teachers: the real weekly cost of grading, in hours.</p><span class="go">Open tool →</span></a><a class="card" href="/education/classroom-supply-quantity-planner/"><h3>Supply Quantity Planner</h3><p>For teachers: the full classroom buy list, overage included.</p><span class="go">Open tool →</span></a><a class="card" href="/education/professional-development-hours-tracker/"><h3>PD Hours Tracker</h3><p>For teachers: log PD hours toward the requirement — private to your browser.</p><span class="go">Open tool →</span></a><a class="card" href="/education/childcare-after-school-cost/"><h3>Childcare & After-School Cost</h3><p>For parents: compare two care options — the yearly winner.</p><span class="go">Open tool →</span></a><a class="card" href="/education/college-living-expense-calculator/"><h3>College Living Expense Calculator</h3><p>Dorm vs. apartment on a real 12-month lease — the true winner.</p><span class="go">Open tool →</span></a><a class="card" href="/education/return-on-education-investment/"><h3>Education ROI Calculator</h3><p>Degree cost vs. salary bump — payback years and 10-year gain.</p><span class="go">Open tool →</span></a><a class="card" href="/education/should-i-work-while-in-college/"><h3>Should I Work While in College?</h3><p>Job earnings vs. lost study hours — a verdict on whether it fits.</p><span class="go">Open tool →</span></a><a class="card" href="/education/can-i-afford-this-college/"><h3>Can I Afford This College?</h3><p>Yearly costs vs. your money and loan cap — a plain-English verdict.</p><span class="go">Open tool →</span></a><a class="card" href="/education/degree-completion-timeline/"><h3>Degree Completion Timeline</h3><p>Semesters to graduation at your pace, with and without summers.</p><span class="go">Open tool →</span></a><a class="card" href="/education/student-group-generator/"><h3>Student Group Generator</h3><p>For teachers: fair randomized groups, no names stored.</p><span class="go">Open tool →</span></a><a class="card" href="/education/classroom-budget-calculator/"><h3>Classroom Budget Calculator</h3><p>For teachers: stipend vs. spending, including out-of-pocket.</p><span class="go">Open tool →</span></a><a class="card" href="/education/tutoring-cost-calculator/"><h3>Tutoring Cost Calculator</h3><p>For parents: the true weekly, monthly, and yearly tutoring cost.</p><span class="go">Open tool →</span></a><a class="card" href="/education/back-to-school-budget-planner/"><h3>Back-to-School Budget Planner</h3><p>For parents: price August per child against your budget.</p><span class="go">Open tool →</span></a><a class="card" href="/education/scholarship-application-tracker/"><h3>Scholarship Application Tracker</h3><p>Track amounts, deadlines, and status — private to your browser.</p><span class="go">Open tool →</span></a><a class="card" href="/education/work-study-income-calculator/"><h3>Work-Study Income Calculator</h3><p>The award is a ceiling — see actual yearly earnings.</p><span class="go">Open tool →</span></a><a class="card" href="/education/is-tutoring-worth-it/"><h3>Is Tutoring Worth It?</h3><p>Price the grade, not the hour — cost per point and a verdict.</p><span class="go">Open tool →</span></a><a class="card" href="/education/extracurricular-cost-calculator/"><h3>Extracurricular Cost Calculator</h3><p>For parents: fees, gear, and travel per activity per child.</p><span class="go">Open tool →</span></a><a class="card" href="/education/graduation-credit-tracker/"><h3>Graduation Credit Tracker</h3><p>Credits earned vs. required — how many semesters to the finish line.</p><span class="go">Open tool →</span></a><a class="card" href="/education/rubric-score-calculator/"><h3>Rubric Score Calculator</h3><p>For teachers: four rubric criteria, one percentage and letter grade.</p><span class="go">Open tool →</span></a><a class="card" href="/education/lesson-period-planner/"><h3>Lesson Period Planner</h3><p>For teachers: fit the lesson to the period with a minute-by-minute timeline.</p><span class="go">Open tool →</span></a><a class="card" href="/education/school-year-expense-planner/"><h3>School-Year Expense Planner</h3><p>For parents: the true yearly cost per child, all categories combined.</p><span class="go">Open tool →</span></a><a class="card" href="/education/financial-aid-award-comparison/"><h3>Financial Aid Award Comparison</h3><p>Compare two aid offers by net cost — loans excluded on purpose.</p><span class="go">Open tool →</span></a><a class="card" href="/education/summer-school-worth-it/"><h3>Is Summer School Worth It?</h3><p>Summer tuition vs. graduating early and earning sooner.</p><span class="go">Open tool →</span></a><a class="card" href="/education/field-trip-cost-calculator/"><h3>Field Trip Cost Calculator</h3><p>For teachers: the break-even price per student for the trip.</p><span class="go">Open tool →</span></a><a class="card" href="/education/school-supply-budget-planner/"><h3>School Supply Budget Planner</h3><p>For parents: plan back-to-school spending and stay under budget.</p><span class="go">Open tool →</span></a>
+    <section class="workbench" aria-label="Study schedule generator">
+    <form class="panel inputs" id="calcForm" novalidate>
+      <div class="section-head"><h2>What\u2019s coming</h2><span class="step">01 / EXAMS</span></div>
+      <div class="expense-list">
+        <div class="expense"><label for="s1d">Subject 1: days until test</label><div class="money-input"><span>days</span><input id="s1d" type="number" min="0" step="1" inputmode="numeric" placeholder="3" aria-label="Subject 1 days until test"></div></div>
+        <div class="expense"><label for="s1g">Subject 1: difficulty (1\u201310)</label><div class="money-input"><span>★</span><input id="s1g" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="7" aria-label="Subject 1 difficulty"></div></div>
+        <div class="expense"><label for="s2d">Subject 2: days until test</label><div class="money-input"><span>days</span><input id="s2d" type="number" min="0" step="1" inputmode="numeric" placeholder="7" aria-label="Subject 2 days until test"></div></div>
+        <div class="expense"><label for="s2g">Subject 2: difficulty (1\u201310)</label><div class="money-input"><span>★</span><input id="s2g" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="5" aria-label="Subject 2 difficulty"></div></div>
+        <div class="expense"><label for="s3d">Subject 3: days until test</label><div class="money-input"><span>days</span><input id="s3d" type="number" min="0" step="1" inputmode="numeric" placeholder="14" aria-label="Subject 3 days until test"></div></div>
+        <div class="expense"><label for="s3g">Subject 3: difficulty (1\u201310)</label><div class="money-input"><span>★</span><input id="s3g" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="4" aria-label="Subject 3 difficulty"></div></div>
+        <div class="expense"><label for="hours">Study hours available total</label><div class="money-input"><span>hrs</span><input id="hours" type="number" min="0" step="1" inputmode="numeric" placeholder="12" aria-label="Total study hours available"></div></div>
+      </div>
+      <p class="hint">Difficulty = how hard the material feels, 1 easy to 10 brutal. Be honest.</p>
+      <button class="calculate" type="submit">Prioritize my studying</button>
+      <div class="result-actions">
+        <a class="action result-action" id="emailResults" aria-label="Email this study plan" aria-disabled="true">Email my results</a>
+        <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
+      </div>
+      <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+      <p class="hint">Calculate to activate the email and copy buttons. Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Study the urgent-hard stuff first.</h2><p>Enter test dates and difficulty \u2014 get a priority-ranked plan.</p></div>
+      </div>
+      <div id="resultState" class="hidden" aria-live="polite">
+        <section class="result-top"><p class="eyebrow">STUDY FIRST</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <div class="metric-grid">
+          <article class="metric"><span>HOURS: SUBJECT 1</span><strong id="mH1">\u2014</strong><em id="mH1Note">\u2014</em></article>
+          <article class="metric"><span>HOURS: SUBJECT 2</span><strong id="mH2">\u2014</strong><em id="mH2Note">\u2014</em></article>
+          <article class="metric"><span>HOURS: SUBJECT 3</span><strong id="mH3">\u2014</strong><em id="mH3Note">\u2014</em></article>
+        </div>
+        <div class="plan">
+          <section class="plan-block"><h3>The priority order</h3><dl id="breakdown"></dl></section>
+          <section class="plan-block nudge"><h3>Urgency \u00d7 difficulty</h3><p>The subject that\u2019s both soon and hard gets the hours \u2014 easy-far subjects survive on review alone.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+        </div>
+        <section class="explanation" aria-label="Results explanation">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
+          <p class="explain-copy hidden" id="explainCopy"></p>
+        </section>
+        <div class="actions"><button class="action" id="downloadCsv" type="button">Download plan</button></div>
+      </div>
+    </div>
   </section>
-  <footer class="footer"><p><strong>About these tools:</strong> Every tool runs entirely on your device. Nothing you type is uploaded or saved.</p><p>Educational estimates, not academic advice.</p></footer>
+
+  <footer class="footer"><p><strong>Assumptions:</strong> Priority ranking heuristic, not a guarantee. Pair with the Study Planner for day-by-day scheduling.</p><p>Educational estimate, not academic or professional advice.</p></footer>
 </main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('calcForm'),last=null;
+  function num(id,def){var v=parseFloat(document.getElementById(id).value);if(!isFinite(v)||v<0)v=def||0;return v}
+  function row(l,v){return'<dt>'+l+'</dt><dd>'+v+'</dd>'}
+  function hrs(n){return n.toFixed(n%1?1:0)}
+  function getData(){
+    function sub(days,diff,label){
+      var d=Math.max(0,days),g=Math.min(10,Math.max(1,diff));
+      var urgency=1/(d+1);
+      var priority=urgency*g;
+      return{label:label,days:d,diff:g,priority:priority,hours:0};
+    }
+    var subs=[sub(num('s1d',3),num('s1g',7),'Subject 1'),sub(num('s2d',7),num('s2g',5),'Subject 2'),sub(num('s3d',14),num('s3g',4),'Subject 3')];
+    var totalH=num('hours',12);
+    var pSum=subs.reduce(function(a,s){return a+s.priority},0)||1;
+    subs.forEach(function(s){s.hours=totalH*s.priority/pSum});
+    var ranked=subs.slice().sort(function(a,b){return b.priority-a.priority});
+    return{subs:subs,ranked:ranked,totalH:totalH};
+  }
+  function emailBody(d){
+    var lines=['Study priority plan \u2014 results','','Total hours: '+d.totalH,''];
+    d.ranked.forEach(function(s,i){lines.push((i+1)+'. '+s.label+': '+hrs(s.hours)+' hrs (test in '+s.days+'d, difficulty '+s.diff+'/10)')});
+    return lines.join('\n');
+  }
+  function explanationText(d){
+    var parts=[];
+    parts.push('Priority = difficulty \u00f7 (days until test + 1). '+d.totalH+' hours split by priority share:');
+    parts.push(d.ranked.map(function(s,i){return (i+1)+'. '+s.label+' \u2014 '+hrs(s.hours)+' hrs (test in '+s.days+' days, difficulty '+s.diff+')'}).join(' '));
+    parts.push('This ranks what to study first, not a day-by-day calendar \u2014 pair it with the Study Planner once you know the order.');
+    return parts.join(' ');
+  }
+  function render(d){
+    last=d;
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('resultState').classList.remove('hidden');
+    document.getElementById('target').textContent=d.ranked[0].label;
+    document.getElementById('targetNote').textContent='gets the most hours \u2014 '+hrs(d.ranked[0].hours)+' of '+hrs(d.totalH)+'.';
+    document.getElementById('mH1').textContent=hrs(d.subs[0].hours);
+    document.getElementById('mH1Note').textContent='hours';
+    document.getElementById('mH2').textContent=hrs(d.subs[1].hours);
+    document.getElementById('mH2Note').textContent='hours';
+    document.getElementById('mH3').textContent=hrs(d.subs[2].hours);
+    document.getElementById('mH3Note').textContent='hours';
+    document.getElementById('breakdown').innerHTML=d.ranked.map(function(s,i){
+      return row('#'+(i+1)+' '+s.label,hrs(s.hours)+' hrs \u00b7 test in '+s.days+'d \u00b7 difficulty '+s.diff+'/10');
+    }).join('');
+    document.getElementById('nudgeStrong').textContent=d.ranked[0].label;
+    document.getElementById('nudgeFoot').textContent='study this first.';
+    document.getElementById('explainCopy').textContent=explanationText(d);
+    var email=document.getElementById('emailResults');
+    email.href='mailto:?subject='+encodeURIComponent('Study priority plan')+'&body='+encodeURIComponent(emailBody(d));
+    email.setAttribute('aria-disabled','false');
+    document.getElementById('copyResults').disabled=false;
+  }
+  function calculate(e){if(e)e.preventDefault();var d=getData();if(d.totalH<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
+  ['s1d','s1g','s2d','s2g','s3d','s3g','hours'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)render(getData())})});
+  form.addEventListener('submit',calculate);
+  document.getElementById('explainToggle').addEventListener('click',function(){
+    var btn=this,copy=document.getElementById('explainCopy');
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',open?'false':'true');
+    copy.classList.toggle('hidden',open);
+  });
+  function summaryText(){
+    var d=last||getData();
+    var lines=['Study plan \u2014 Honed Signal',''];
+    d.ranked.forEach(function(s,i){lines.push((i+1)+'. '+s.label+': '+hrs(s.hours)+' hrs')});
+    return lines.join('\n');
+  }
+  document.getElementById('copyResults').addEventListener('click',function(){
+    var txt=summaryText(),status=document.getElementById('copyStatus');
+    function done(ok){status.textContent=ok?'Copied.':'Copy failed \u2014 your browser blocked it.'}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{done(document.execCommand('copy'))}catch(e){done(false)}ta.remove()}
+  });
+  document.getElementById('downloadCsv').addEventListener('click',function(){
+    var d=last||getData();
+    var rows=[['subject','hours','days until test','difficulty']];
+    d.ranked.forEach(function(s){rows.push([s.label,+s.hours.toFixed(1),s.days,s.diff])});
+    var csv=rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+    var url=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+    var a=document.createElement('a');a.href=url;a.download='study-plan.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  });
+})();
+
+</script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/education/study-planner/"><span class="arr">→</span>Study Planner</a></li><li><a href="/education/assignment-workload-planner/"><span class="arr">→</span>Assignment Workload Planner</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">These education tools provide estimates and planning help for general purposes only. They are not academic, financial, or legal advice. Grading scales and school policies vary &mdash; verify requirements with your school. Your entries stay on your device. Use at your own risk.</div>
+<script src="/money/recent-tools.js" defer></script>
+<script src="/money/input-hints.js" defer></script>
+<script src="/money/share-result.js" defer></script>
 </body>
 </html>
