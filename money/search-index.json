@@ -2770,5 +2770,68 @@
    "Taxes"
   ],
   "kind": "tool"
+ },
+ {
+  "t": "Is It Taxable? Money Calculators",
+  "d": "Money changed hands — do you owe taxes? Plain-English answers for private sales, gifts, side jobs, winnings, and found money.",
+  "u": "/money/is-it-taxable/",
+  "tags": [
+   "Is It Taxable"
+  ],
+  "kind": "section"
+ },
+ {
+  "t": "Is This Money Taxable?",
+  "d": "Start here: pick what kind of money it was.",
+  "u": "/money/is-this-income-taxable/",
+  "tags": [
+   "Is It Taxable"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Private Sale Tax Checker",
+  "d": "Do you owe taxes on a private sale? Gain, loss, or business?",
+  "u": "/money/private-sale-tax/",
+  "tags": [
+   "Is It Taxable"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Is This Gift Taxable?",
+  "d": "Was it really a gift? The recipient's side.",
+  "u": "/money/is-my-gift-taxable/",
+  "tags": [
+   "Is It Taxable"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Side Job Tax Checker",
+  "d": "Mowed a lawn, got paid. Now what?",
+  "u": "/money/side-job-taxes/",
+  "tags": [
+   "Is It Taxable"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Gambling Winnings Tax Checker",
+  "d": "Poker night, office pool, raffle — all taxable.",
+  "u": "/money/gambling-winnings-tax/",
+  "tags": [
+   "Is It Taxable"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Found Money Tax Checker",
+  "d": "Finders keepers, IRS included.",
+  "u": "/money/found-money-tax/",
+  "tags": [
+   "Is It Taxable"
+  ],
+  "kind": "tool"
  }
 ]
