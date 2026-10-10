@@ -2920,5 +2920,74 @@
    "Decisions"
   ],
   "kind": "decision"
+ },
+ {
+  "t": "Raise vs. Bonus Calculator",
+  "d": "Bonus now or raise forever? Compares a one-time bonus against an annual raise over multiple years, after tax.",
+  "u": "/money/raise-vs-bonus/",
+  "tags": [
+   "Paycheck",
+   "Salary"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Salary Paycheck Converter",
+  "d": "Annual salary converted to weekly, biweekly, semimonthly, monthly, and hourly equivalent.",
+  "u": "/money/salary-paycheck-converter/",
+  "tags": [
+   "Paycheck",
+   "Salary"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Cost-of-Living Raise Calculator",
+  "d": "Did your raise beat inflation? Real purchasing-power change after inflation and cost increases.",
+  "u": "/money/cost-of-living-raise/",
+  "tags": [
+   "Paycheck",
+   "Salary"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Annual Bonus Allocation Calculator",
+  "d": "Split a bonus across debt, emergency savings, retirement, and fun before it evaporates.",
+  "u": "/money/bonus-allocation/",
+  "tags": [
+   "Paycheck",
+   "Bonus"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Time-Off Value Calculator",
+  "d": "Daily rate, unused PTO cash-out value, and unpaid leave cost.",
+  "u": "/money/time-off-value/",
+  "tags": [
+   "Career",
+   "Salary"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Salary for Lifestyle Calculator",
+  "d": "Works backward from the monthly life you want to the salary that funds it.",
+  "u": "/money/salary-for-lifestyle/",
+  "tags": [
+   "Budget",
+   "Salary"
+  ],
+  "kind": "tool"
+ },
+ {
+  "t": "Journey — I make $X a year — what can I spend monthly?",
+  "d": "Salaried worker journey: from annual salary to per-paycheck pay, real take-home, and a monthly budget.",
+  "u": "/money/decide/salary-to-monthly-budget/",
+  "tags": [
+   "Decisions"
+  ],
+  "kind": "decision"
  }
 ]
