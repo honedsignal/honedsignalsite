@@ -447,4 +447,7 @@
   <url><loc>https://honedsignal.com/health/fda-approval-explainer/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/clinical-trial-finder-guide/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/breakthrough-evidence-checker/</loc><changefreq>monthly</changefreq></url>
+  <url>
+    <loc>https://honedsignal.com/nightstone/</loc>
+  </url>
 </urlset>
