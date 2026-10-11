@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Enter your birth month and year to get your personalized Medicare enrollment timeline — Initial Enrollment Period, Part A, B, D, Medigap, and every deadline with exact dates. Free from Honed Proof, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/medicare-enrollment-timeline/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Medicare Enrollment Timeline","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/medicare-enrollment-timeline/","description":"Enter your birth month and year to get your personalized Medicare enrollment deadlines with exact dates.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Medicare Enrollment Timeline: Your Personalized Deadlines | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .select-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .select-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .select-input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600;appearance:none;-webkit-appearance:none}
+    .select-input select option{background:var(--surface);color:var(--ink)}
+    .supply-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .supply-btn{min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font:500 .74rem "DM Mono",monospace;padding:8px 4px}
+    .supply-btn:hover{border-color:var(--blue)}
+    .supply-btn.active{background:var(--orange);border-color:var(--orange);color:var(--orange-ink);font-weight:700}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s;min-height:52px}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(1.5rem,3.4vw,2.6rem)/1.15 "DM Mono",monospace;letter-spacing:-.03em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .roadmap{padding:24px;border-radius:22px;margin-top:10px}
+    .road-head{margin-bottom:6px}
+    .road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}
+    .road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}
+    .timeline{position:relative;margin:14px 0 0;padding-left:26px}
+    .timeline:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
+    .t-item{position:relative;margin:0 0 10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .t-item:before{content:"";position:absolute;left:-26px;top:20px;width:12px;height:12px;margin-left:2px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px color-mix(in srgb,var(--teal) 22%,transparent)}
+    .t-item.warn:before{background:var(--orange);box-shadow:0 0 0 4px color-mix(in srgb,var(--orange) 22%,transparent)}
+    .t-toggle{width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:14px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;min-height:44px}
+    .t-toggle:hover .t-title{color:var(--blue)}
+    .t-title{font-size:.92rem;font-weight:800;letter-spacing:-.01em}
+    .t-date{font:600 .78rem "DM Mono",monospace;color:var(--teal);white-space:nowrap}
+    .t-item.warn .t-date{color:var(--orange)}
+    .t-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .t-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .t-detail{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.82rem;line-height:1.65}
+    .t-detail p{margin:0 0 10px}
+    .t-detail p:last-child{margin-bottom:0}
+    .t-detail strong{color:var(--ink)}
+    .penalty{display:inline-block;margin-top:6px;padding:8px 12px;border-radius:8px;background:var(--orange-soft);border:1px solid color-mix(in srgb,var(--orange) 38%,var(--line));color:var(--ink);font-size:.76rem;font-weight:700}
+    .print-row{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+    .ghost-btn{border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--ink);padding:12px 18px;cursor:pointer;font-weight:700;font-size:.82rem;min-height:48px}
+    .ghost-btn:hover{border-color:var(--teal)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:48px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}.t-date{white-space:normal}}
+    @media print{
+      body{background:#fff;color:#111}
+      .inputs,.calculate,.ghost-btn,.back-link,.hs-legal,.footer,.t-toggle:after{display:none!important}
+      .page{width:100%;padding:0}
+      .intro{border-color:#ccc}
+      h1{font-size:2rem}
+      .intro p,.t-detail,.road-head p{color:#333}
+      .workbench{display:block}
+      .panel{background:#fff;border-color:#ccc;box-shadow:none}
+      .result-top{background:#f2f2f2;color:#111}
+      .result-top:after{display:none}
+      .t-detail{display:block!important}
+      .t-item{background:#fff;border-color:#ccc}
+      .t-item:before{background:#0a7d6c;box-shadow:none}
+      .t-title{color:#111}.t-date{color:#0a7d6c}
+      .t-detail strong{color:#111}
+      .penalty{background:#fff3e6;border-color:#c77;color:#111}
+      .empty{display:none!important}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Never miss a <span class="accent">Medicare deadline</span>.</h1>
+      </div>
+      <p>Missing a Medicare enrollment window can mean lifetime late penalties. Enter your birth month and year — get every key date, personalized.</p>
+    </header>
+
+    <section class="workbench" aria-label="Medicare enrollment timeline">
+      <form class="panel inputs" id="medicareForm" novalidate>
+        <div class="section-head"><h2>Your birthday</h2><span class="step">01 / BIRTH</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="dobMonth">Birth month</label>
+            <div class="select-input">
+              <select id="dobMonth" aria-label="Birth month"></select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="dobYear">Birth year</label>
+            <div class="select-input">
+              <select id="dobYear" aria-label="Birth year"></select>
+            </div>
+          </div>
+        </div>
+        <div class="field" style="margin-top:4px">
+          <label id="firstLabel">Born on the 1st of the month?</label>
+          <div class="supply-btns" role="group" aria-labelledby="firstLabel">
+            <button type="button" class="supply-btn active" data-first="no">No</button>
+            <button type="button" class="supply-btn" data-first="yes">Yes, the 1st</button>
+          </div>
+          <p class="hint">Matters: if your birthday is on the 1st, Medicare treats you as turning 65 the month <em>before</em> — your windows shift a month earlier.</p>
+        </div>
+
+        <button class="calculate" type="submit">Build my timeline</button>
+        <p class="hint">Month and year are enough — we never ask for the exact day. Nothing is saved or sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Enter your birth month and year</h2>
+            <p>We'll map your Initial Enrollment Period, Part A and B, Part D, Medigap, and every other key window — with exact dates.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow">YOUR INITIAL ENROLLMENT PERIOD</p>
+            <p class="target" id="iepRange">—</p>
+            <p class="target-note" id="iepStatus"></p>
+          </section>
+          <section class="panel roadmap">
+            <div class="road-head">
+              <div><h2>Your Medicare timeline</h2><p>Tap any item for the details. Dates are bolded.</p></div>
+            </div>
+            <div class="timeline" id="timeline"></div>
+            <div class="print-row">
+              <button class="ghost-btn" id="printBtn" type="button">Print my timeline</button>
+            </div>
+          </section>
+          <section class="explanation" aria-label="About these dates">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About these dates</button>
+            <p class="explain-copy hidden" id="explainCopy">These dates follow Medicare's published enrollment rules as understood in October 2026, but rules and premiums change — <strong>verify everything at medicare.gov and ssa.gov before acting</strong>. Premium amounts are intentionally not listed here because they change yearly; check the current figures on medicare.gov. This tool is for general information only and is not legal, benefits, or financial advice. If you're still working at 65, confirm your employer's plan status and Special Enrollment Period eligibility with your benefits office and Social Security before making decisions.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    function $(id) { return document.getElementById(id); }
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    // Normalize month arithmetic: returns [year, monthIndex]
+    function addMonths(y, m, d) {
+      var t = y * 12 + m + d;
+      return [Math.floor(t / 12), ((t % 12) + 12) % 12];
+    }
+
+    function firstOf(y, m) { return new Date(y, m, 1); }
+    function lastOf(y, m) { return new Date(y, m + 1, 0); }
+
+    function fmtDate(d) {
+      return MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    }
+    function fmtMonth(y, m) {
+      return MONTHS[m] + ' ' + y;
+    }
+
+    // Populate selects
+    var monthSel = $('dobMonth'), yearSel = $('dobYear');
+    for (var mi = 0; mi < 12; mi++) {
+      var o = document.createElement('option');
+      o.value = mi; o.textContent = MONTHS[mi];
+      monthSel.appendChild(o);
+    }
+    for (var yr = 1970; yr >= 1940; yr--) {
+      var oy = document.createElement('option');
+      oy.value = yr; oy.textContent = yr;
+      if (yr === 1961) oy.selected = true;
+      yearSel.appendChild(oy);
+    }
+    monthSel.value = '5'; // June default
+
+    var bornFirst = false;
+    var firstBtns = document.querySelectorAll('.supply-btn[data-first]');
+    for (var bi = 0; bi < firstBtns.length; bi++) {
+      firstBtns[bi].addEventListener('click', function () {
+        for (var j = 0; j < firstBtns.length; j++) firstBtns[j].classList.remove('active');
+        this.classList.add('active');
+        bornFirst = this.getAttribute('data-first') === 'yes';
+      });
+    }
+
+    function buildTimelineItems(d) {
+      var items = [];
+
+      items.push({
+        title: 'Your 65th birthday month',
+        date: fmtMonth(d.b65y, d.b65m),
+        warn: false,
+        body: bornFirst
+          ? '<p>You were born on the 1st of <strong>' + fmtMonth(d.b65y, d.b65m) + '</strong>, so Medicare treats you as turning 65 in <strong>' + fmtMonth(d.effY, d.effM) + '</strong> — the month before. All the windows below are keyed to that earlier month.</p>'
+          : '<p>You turn 65 in <strong>' + fmtMonth(d.b65y, d.b65m) + '</strong>. Medicare eligibility generally starts the first day of this month (if you enroll in time).</p>'
+      });
+
+      items.push({
+        title: 'Initial Enrollment Period (IEP)',
+        date: fmtDate(d.iepStart) + ' – ' + fmtDate(d.iepEnd),
+        warn: true,
+        body: '<p>Your 7-month window to sign up for Medicare Parts A and B: the <strong>3 months before</strong> your 65th month, your 65th month, and the <strong>3 months after</strong>.</p>' +
+          '<p><strong>Enroll in the first 3 months</strong> and your coverage starts with your 65th month — no gap. Enroll in month 4–7 and coverage can be delayed up to 3 months.</p>' +
+          '<p>If you miss this window and don\'t qualify for a Special Enrollment Period, you wait for the General Enrollment Period (Jan 1 – Mar 31 each year, coverage starts July 1) — and late penalties may apply.</p>'
+      });
+
+      items.push({
+        title: 'Part A — hospital insurance',
+        date: 'Enroll during your IEP',
+        warn: false,
+        body: '<p>Part A covers inpatient hospital stays, skilled nursing, hospice, and some home health care.</p>' +
+          '<p><strong>Premium-free</strong> if you (or a spouse) paid Medicare taxes for at least <strong>40 quarters</strong> — about 10 years of Medicare-covered work. With fewer quarters, Part A has a monthly premium (check the current amount at medicare.gov).</p>' +
+          '<p>Most people enroll in at least premium-free Part A during their IEP even if still working.</p>'
+      });
+
+      items.push({
+        title: 'Part B — medical insurance',
+        date: 'Enroll during your IEP',
+        warn: true,
+        body: '<p>Part B covers doctor visits, outpatient care, preventive services, and medical equipment. It has a standard monthly premium (changes yearly — see medicare.gov) plus an annual deductible.</p>' +
+          '<span class="penalty">Late penalty: 10% of the standard Part B premium for every 12-month period you were eligible but didn\'t enroll — added to your premium for as long as you have Part B.</span>' +
+          '<p style="margin-top:10px">The penalty is <strong>permanent</strong>. If you delay Part B because you have qualifying employer coverage, you generally avoid it — see "Still working at 65?" below.</p>'
+      });
+
+      items.push({
+        title: 'Part D — prescription drug coverage',
+        date: 'Enroll during your IEP',
+        warn: true,
+        body: '<p>Original Medicare doesn\'t cover most prescriptions. Part D is sold by private insurers — enroll during your Initial Enrollment Period to avoid a gap and a penalty.</p>' +
+          '<span class="penalty">Late penalty: 1% of the national base beneficiary premium for every month you went without Part D or other creditable drug coverage — added to your premium permanently.</span>' +
+          '<p style="margin-top:10px">"Creditable" means drug coverage at least as good as Part D — most large employer plans qualify. Get that determination in writing from your employer.</p>'
+      });
+
+      items.push({
+        title: 'Medigap open enrollment',
+        date: fmtMonth(d.medY, d.medM) + ' – ' + fmtMonth(d.medEndY, d.medEndM),
+        warn: false,
+        body: '<p>Medigap (Medicare Supplement) policies help pay Original Medicare\'s deductibles, copays, and coinsurance. Your <strong>6-month Medigap open enrollment</strong> starts the month you turn 65 <em>and</em> are enrolled in Part B.</p>' +
+          '<p>During this window, insurers <strong>cannot deny you or charge more</strong> for pre-existing conditions — these are federal guaranteed-issue rights. Outside this window (in most states), insurers can use medical underwriting.</p>' +
+          '<p>Note: Medigap pairs with Original Medicare. If you choose Medicare Advantage instead, you generally can\'t use Medigap.</p>'
+      });
+
+      items.push({
+        title: 'Annual Open Enrollment',
+        date: 'Oct 15 – Dec 7, every year',
+        warn: false,
+        body: '<p>Every fall, <strong>October 15 through December 7</strong>, you can switch Medicare Advantage plans, switch between Advantage and Original Medicare, or join/change/drop Part D. Changes take effect January 1.</p>' +
+          '<p>This is also when plans announce next year\'s premiums and formularies — worth a yearly review even if you\'re happy.</p>'
+      });
+
+      items.push({
+        title: 'Still working at 65?',
+        date: 'Special Enrollment Period',
+        warn: false,
+        body: '<p>If you (or your spouse) have health coverage through <strong>current employment</strong> at a company with <strong>20+ employees</strong>, you can usually delay Parts B and D without penalty.</p>' +
+          '<p>When that employment or coverage ends, a <strong>Special Enrollment Period</strong> opens: generally <strong>8 months</strong> to sign up for Part B, and <strong>63 days</strong> to join Part D without a late penalty.</p>' +
+          '<p><strong>Caution:</strong> COBRA and retiree coverage do <em>not</em> count as current-employment coverage for this purpose. Small-employer plans (under 20 employees) have different rules — Medicare may pay first. Confirm your situation with your benefits office and Social Security <em>before</em> your 65th month.</p>'
+      });
+
+      return items;
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function render(d) {
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+
+      $('iepRange').textContent = fmtDate(d.iepStart) + ' – ' + fmtDate(d.iepEnd);
+
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+      var status;
+      if (today < firstOf(d.iepStart.getFullYear(), d.iepStart.getMonth())) {
+        status = 'Hasn\'t started yet — it opens ' + fmtDate(d.iepStart) + '. Mark the dates now; enrolling in the first 3 months avoids any coverage gap.';
+      } else if (today <= lastOf(d.iepEnd.getFullYear(), d.iepEnd.getMonth())) {
+        status = 'You are inside this window right now — it closes ' + fmtDate(d.iepEnd) + '.';
+      } else {
+        status = 'This window ended ' + fmtDate(d.iepEnd) + '. If you missed it and lack qualifying employer coverage, the General Enrollment Period (Jan 1 – Mar 31 yearly, coverage from July 1) is the fallback — late penalties may apply.';
+      }
+      $('iepStatus').textContent = status;
+
+      var items = buildTimelineItems(d);
+      var html = '';
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        html += '<div class="t-item' + (it.warn ? ' warn' : '') + '">' +
+          '<button type="button" class="t-toggle" data-idx="' + i + '" aria-expanded="false">' +
+          '<span class="t-title">' + escapeHtml(it.title) + '</span>' +
+          '<span class="t-date">' + escapeHtml(it.date) + '</span>' +
+          '</button>' +
+          '<div class="t-detail hidden">' + it.body + '</div>' +
+          '</div>';
+      }
+      $('timeline').innerHTML = html;
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    $('timeline').addEventListener('click', function (e) {
+      var btn = e.target.closest('.t-toggle');
+      if (!btn) return;
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      btn.nextElementSibling.classList.toggle('hidden', open);
+    });
+
+    $('medicareForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bMonth = parseInt(monthSel.value, 10);
+      var bYear = parseInt(yearSel.value, 10);
+      if (!isFinite(bMonth) || !isFinite(bYear)) return;
+
+      // 65th birthday month
+      var b65 = addMonths(bYear, bMonth, 65 * 12);
+      // Medicare treats 1st-of-month birthdays as turning 65 the month before
+      var eff = bornFirst ? addMonths(b65[0], b65[1], -1) : b65;
+
+      // IEP: 3 months before through 3 months after the effective 65th month
+      var iepStartM = addMonths(eff[0], eff[1], -3);
+      var iepEndM = addMonths(eff[0], eff[1], 3);
+      var iepStart = firstOf(iepStartM[0], iepStartM[1]);
+      var iepEnd = lastOf(iepEndM[0], iepEndM[1]);
+
+      // Medigap OEP: 6 months starting with the Part B enrollment month (assumed = effective 65th month)
+      var medStart = eff;
+      var medEnd = addMonths(eff[0], eff[1], 5);
+
+      render({
+        b65y: b65[0], b65m: b65[1],
+        effY: eff[0], effM: eff[1],
+        iepStart: iepStart, iepEnd: iepEnd,
+        medY: medStart[0], medM: medStart[1],
+        medEndY: medEnd[0], medEndM: medEnd[1]
+      });
+    });
+
+    $('printBtn').addEventListener('click', function () {
+      window.print();
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

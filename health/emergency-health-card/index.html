@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Build a free emergency health card: your critical medical info for first responders. Fill it in, print it, keep it in your wallet. Honed Proof — private, nothing leaves your browser." />
+  <link rel="canonical" href="https://honedsignal.com/health/emergency-health-card/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Emergency Health Card Builder","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/emergency-health-card/","description":"Create a printable wallet-sized emergency health card with your critical medical information.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Emergency Health Card: Your Info When You Can't Speak | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input,.text-input select,.text-input textarea{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600;resize:vertical}
+    .text-input select option{background:var(--surface);color:var(--ink)}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .goal-fields-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+    .check-row{display:flex;align-items:center;gap:10px;margin:10px 0;min-height:44px}
+    .check-row input{width:22px;height:22px;accent-color:var(--teal);flex:none}
+    .check-row label{color:var(--ink);font-size:.85rem;font-weight:600}
+    .add-row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:8px}
+    .add-row.med{grid-template-columns:1fr 1fr auto}
+    .add-btn{min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface-2);color:var(--ink);font-weight:700;cursor:pointer}
+    .add-btn:hover{border-color:var(--teal)}
+    .chip-list{list-style:none;margin:0 0 10px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+    .chip-list li{display:inline-flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:20px;padding:6px 8px 6px 12px;font-size:.8rem;font-weight:600}
+    .chip-list .rm{border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;min-width:32px;min-height:32px;border-radius:50%}
+    .chip-list .rm:hover{color:#ff7a7a;background:rgba(255,122,122,.12)}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost-btn{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer;min-height:44px}
+    .ghost-btn:hover{color:#ff7a7a;border-color:#ff7a7a}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .preview-head{margin:0 0 14px;font-size:1.03rem;letter-spacing:-.02em}
+    .preview-head small{display:block;color:var(--muted);font-size:.72rem;font-weight:400;margin-top:4px}
+    /* Wallet card: credit-card ratio 1.586, white, high contrast */
+    .wallet-card{background:#fff;color:#141414;border-radius:12px;padding:14px 16px;aspect-ratio:1.586;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;margin-bottom:18px}
+    .wc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border-bottom:2px solid #141414;padding-bottom:8px;margin-bottom:8px}
+    .wc-name{font-size:1.15rem;font-weight:800;letter-spacing:-.01em;line-height:1.15;margin:0}
+    .wc-dob{font-size:.72rem;font-weight:600;color:#444;margin:2px 0 0}
+    .wc-blood{text-align:right;flex:none}
+    .wc-blood .bt{font-size:1.5rem;font-weight:800;color:#b00020;line-height:1}
+    .wc-blood small{display:block;font-size:.58rem;font-weight:700;color:#666;letter-spacing:.06em}
+    .wc-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;flex:1;min-height:0}
+    .wc-sec h4{margin:0 0 2px;font-size:.6rem;font-weight:800;letter-spacing:.08em;color:#b00020;text-transform:uppercase}
+    .wc-sec p{margin:0;font-size:.72rem;font-weight:600;line-height:1.35}
+    .wc-sec p .dim{color:#777;font-weight:400}
+    .wc-foot{margin-top:6px;padding-top:6px;border-top:1px solid #ddd;font-size:.6rem;color:#666;font-weight:600}
+    .wc-back .wc-grid{grid-template-columns:1fr}
+    .hidden{display:none!important}
+    .explanation{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .explain-copy li{margin-bottom:6px}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    /* Print: only the print sheet, wallet-sized */
+    #printSheet{display:none}
+    @media print{
+      @page{size:auto;margin:.5in}
+      body{background:#fff}
+      .page,.hs-legal{display:none!important}
+      #printSheet{display:block!important}
+      .p-card{width:3.375in;height:2.125in;background:#fff;color:#141414;border:1px dashed #999;border-radius:.12in;padding:.14in .16in;overflow:hidden;page-break-inside:avoid;display:flex;flex-direction:column}
+      .p-card + .p-card{margin-top:.25in}
+      .p-top{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #141414;padding-bottom:.07in;margin-bottom:.07in}
+      .p-name{font-size:13pt;font-weight:800;line-height:1.15;margin:0}
+      .p-dob{font-size:7.5pt;font-weight:600;color:#444;margin:1pt 0 0}
+      .p-blood{text-align:right}
+      .p-blood .bt{font-size:16pt;font-weight:800;color:#b00020;line-height:1}
+      .p-blood small{display:block;font-size:6pt;font-weight:700;color:#666;letter-spacing:.06em}
+      .p-grid{display:grid;grid-template-columns:1fr 1fr;gap:4pt 10pt;flex:1}
+      .p-sec h4{margin:0 0 1pt;font-size:6pt;font-weight:800;letter-spacing:.08em;color:#b00020;text-transform:uppercase}
+      .p-sec p{margin:0;font-size:7.5pt;font-weight:600;line-height:1.3}
+      .p-sec p .dim{color:#777;font-weight:400}
+      .p-foot{margin-top:5pt;padding-top:4pt;border-top:1px solid #ddd;font-size:6pt;color:#666;font-weight:600}
+      .p-cut{font-size:7pt;color:#666;margin:0 0 6pt;font-weight:600}
+    }
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs{padding:19px}.goal-fields,.goal-fields-3{grid-template-columns:1fr}.add-row.med{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Your info, <span class="accent">when you can't speak.</span></h1>
+      </div>
+      <p>First responders need your critical health info in seconds. Fill this in, print it, and keep it in your wallet.</p>
+    </header>
+
+    <section class="workbench" aria-label="Emergency health card builder">
+      <form class="panel inputs" id="cardForm" novalidate>
+        <div class="section-head"><h2>Identity</h2><span class="step">01 / YOU</span></div>
+        <div class="field">
+          <label for="f_name">Full name</label>
+          <div class="text-input"><input id="f_name" type="text" placeholder="e.g. Alex Rivera" autocomplete="name" /></div>
+        </div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="f_dob">Date of birth</label>
+            <div class="text-input"><input id="f_dob" type="date" /></div>
+          </div>
+          <div class="field">
+            <label for="f_blood">Blood type</label>
+            <div class="text-input"><select id="f_blood">
+              <option value="">Select</option>
+              <option>A+</option><option>A-</option>
+              <option>B+</option><option>B-</option>
+              <option>AB+</option><option>AB-</option>
+              <option>O+</option><option>O-</option>
+              <option value="Unknown">Unknown</option>
+            </select></div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>Emergency contacts</h2><span class="step">02 / CONTACTS</span></div>
+        <div class="goal-fields-3">
+          <div class="field">
+            <label for="ec1_name">Contact 1 — name</label>
+            <div class="text-input"><input id="ec1_name" type="text" placeholder="Name" /></div>
+          </div>
+          <div class="field">
+            <label for="ec1_rel">Relationship</label>
+            <div class="text-input"><input id="ec1_rel" type="text" placeholder="e.g. Spouse" /></div>
+          </div>
+          <div class="field">
+            <label for="ec1_phone">Phone</label>
+            <div class="text-input"><input id="ec1_phone" type="tel" placeholder="(555) 123-4567" autocomplete="off" /></div>
+          </div>
+        </div>
+        <div class="goal-fields-3">
+          <div class="field">
+            <label for="ec2_name">Contact 2 — name</label>
+            <div class="text-input"><input id="ec2_name" type="text" placeholder="Name" /></div>
+          </div>
+          <div class="field">
+            <label for="ec2_rel">Relationship</label>
+            <div class="text-input"><input id="ec2_rel" type="text" placeholder="e.g. Daughter" /></div>
+          </div>
+          <div class="field">
+            <label for="ec2_phone">Phone</label>
+            <div class="text-input"><input id="ec2_phone" type="tel" placeholder="(555) 123-4567" autocomplete="off" /></div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>Care team</h2><span class="step">03 / DOCTORS</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="doc_name">Primary doctor</label>
+            <div class="text-input"><input id="doc_name" type="text" placeholder="Dr. name" /></div>
+          </div>
+          <div class="field">
+            <label for="doc_phone">Doctor's phone</label>
+            <div class="text-input"><input id="doc_phone" type="tel" placeholder="(555) 123-4567" autocomplete="off" /></div>
+          </div>
+        </div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="pharm_name">Pharmacy</label>
+            <div class="text-input"><input id="pharm_name" type="text" placeholder="Pharmacy name" /></div>
+          </div>
+          <div class="field">
+            <label for="pharm_phone">Pharmacy phone</label>
+            <div class="text-input"><input id="pharm_phone" type="tel" placeholder="(555) 123-4567" autocomplete="off" /></div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>Health details</h2><span class="step">04 / HEALTH</span></div>
+        <div class="field">
+          <label for="cond_input">Conditions (add one at a time)</label>
+          <div class="add-row">
+            <div class="text-input"><input id="cond_input" type="text" placeholder="e.g. Type 2 diabetes" /></div>
+            <button type="button" class="add-btn" id="cond_add">Add</button>
+          </div>
+          <ul class="chip-list" id="cond_list" aria-live="polite"></ul>
+        </div>
+        <div class="field">
+          <label for="allergy_input">Allergies (add one at a time)</label>
+          <div class="add-row">
+            <div class="text-input"><input id="allergy_input" type="text" placeholder="e.g. Penicillin" /></div>
+            <button type="button" class="add-btn" id="allergy_add">Add</button>
+          </div>
+          <ul class="chip-list" id="allergy_list" aria-live="polite"></ul>
+        </div>
+        <div class="field">
+          <label for="med_name">Current medications (name + dose)</label>
+          <div class="add-row med">
+            <div class="text-input"><input id="med_name" type="text" placeholder="Medication" /></div>
+            <div class="text-input"><input id="med_dose" type="text" placeholder="Dose, e.g. 20 mg daily" /></div>
+            <button type="button" class="add-btn" id="med_add">Add</button>
+          </div>
+          <ul class="chip-list" id="med_list" aria-live="polite"></ul>
+        </div>
+
+        <div class="section-head"><h2>Insurance</h2><span class="step">05 / COVERAGE</span></div>
+        <div class="field">
+          <label for="ins_carrier">Carrier</label>
+          <div class="text-input"><input id="ins_carrier" type="text" placeholder="e.g. Blue Cross Blue Shield" /></div>
+        </div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="ins_member">Member ID</label>
+            <div class="text-input"><input id="ins_member" type="text" placeholder="Member ID" autocomplete="off" /></div>
+          </div>
+          <div class="field">
+            <label for="ins_group">Group #</label>
+            <div class="text-input"><input id="ins_group" type="text" placeholder="Group number" autocomplete="off" /></div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>Notes</h2><span class="step">06 / EXTRAS</span></div>
+        <div class="check-row">
+          <input type="checkbox" id="note_directive" />
+          <label for="note_directive">I have an advance directive on file</label>
+        </div>
+        <div class="check-row">
+          <input type="checkbox" id="note_donor" />
+          <label for="note_donor">I am an organ donor</label>
+        </div>
+        <div class="field">
+          <label for="note_text">Anything else responders should know</label>
+          <div class="text-input"><textarea id="note_text" rows="2" placeholder="e.g. Pacemaker, left knee replacement, hard of hearing"></textarea></div>
+        </div>
+
+        <button class="calculate" type="button" id="printBtn">Print my wallet card</button>
+        <button class="ghost-btn" type="button" id="clearBtn">Clear all data from this browser</button>
+        <p class="hint"><strong>Private by design.</strong> Everything you enter stays in this browser's local storage — nothing is uploaded, sent, or shared anywhere. Only print and carry what you're comfortable having in your wallet, and think about who might see it if your wallet is lost.</p>
+      </form>
+
+      <div class="results">
+        <h2 class="preview-head">Live preview<small>Updates as you type. Prints white-on-dark, wallet-sized.</small></h2>
+        <div class="wallet-card" id="cardFront" aria-label="Emergency card front preview">
+          <div class="wc-top">
+            <div>
+              <p class="wc-name" id="pv_name">Your Name</p>
+              <p class="wc-dob" id="pv_dob">Date of birth</p>
+            </div>
+            <div class="wc-blood"><span class="bt" id="pv_blood">?</span><small>BLOOD TYPE</small></div>
+          </div>
+          <div class="wc-grid">
+            <div class="wc-sec"><h4>Emergency contact</h4><p id="pv_ec1"><span class="dim">Not provided</span></p></div>
+            <div class="wc-sec"><h4>2nd contact</h4><p id="pv_ec2"><span class="dim">Not provided</span></p></div>
+            <div class="wc-sec"><h4>Conditions</h4><p id="pv_cond"><span class="dim">None listed</span></p></div>
+            <div class="wc-sec"><h4>Allergies</h4><p id="pv_allergy"><span class="dim">None listed</span></p></div>
+          </div>
+          <div class="wc-foot" id="pv_foot">EMERGENCY HEALTH CARD — call 911 first</div>
+        </div>
+        <div class="wallet-card wc-back" id="cardBack" aria-label="Emergency card back preview">
+          <div class="wc-top">
+            <div>
+              <p class="wc-name" style="font-size:.95rem">Medications &amp; coverage</p>
+              <p class="wc-dob" id="pv_backname">Your Name</p>
+            </div>
+          </div>
+          <div class="wc-grid">
+            <div class="wc-sec"><h4>Medications</h4><p id="pv_meds"><span class="dim">None listed</span></p></div>
+            <div class="wc-sec"><h4>Doctor</h4><p id="pv_doc"><span class="dim">Not provided</span></p></div>
+            <div class="wc-sec"><h4>Insurance</h4><p id="pv_ins"><span class="dim">Not provided</span></p></div>
+            <div class="wc-sec"><h4>Pharmacy</h4><p id="pv_pharm"><span class="dim">Not provided</span></p></div>
+          </div>
+          <div class="wc-foot" id="pv_notes">Review after every medication change.</div>
+        </div>
+        <section class="explanation" aria-label="About this card">
+          <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About this card</button>
+          <div class="explain-copy hidden" id="explainCopy">
+            <ul style="margin:0;padding-left:18px">
+              <li><strong>Keep it current.</strong> Review the card after every medication change, new diagnosis, or insurance switch — an out-of-date card can mislead.</li>
+              <li><strong>It supplements, never replaces,</strong> a medical ID bracelet or a formal advance directive. Wearables are seen first; paper is the backup.</li>
+              <li><strong>Print at 100% scale</strong> (no "fit to page") so the card cuts out at true wallet size: 3.375 × 2.125 inches.</li>
+              <li><strong>Privacy:</strong> your data never leaves this browser. But a printed card is physical — if your wallet is lost or stolen, whoever finds it sees your medical details. Carry it deliberately.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <!-- Print-only sheet: populated by JS, wallet-sized, hidden on screen -->
+  <div id="printSheet" aria-hidden="true">
+    <p class="p-cut">✂ Cut along the dashed lines — each card is wallet-sized (3.375 × 2.125 in).</p>
+    <div class="p-card" id="pCardFront">
+      <div class="p-top">
+        <div><p class="p-name" id="pp_name">Your Name</p><p class="p-dob" id="pp_dob">Date of birth</p></div>
+        <div class="p-blood"><span class="bt" id="pp_blood">?</span><small>BLOOD TYPE</small></div>
+      </div>
+      <div class="p-grid">
+        <div class="p-sec"><h4>Emergency contact</h4><p id="pp_ec1"><span class="dim">Not provided</span></p></div>
+        <div class="p-sec"><h4>2nd contact</h4><p id="pp_ec2"><span class="dim">Not provided</span></p></div>
+        <div class="p-sec"><h4>Conditions</h4><p id="pp_cond"><span class="dim">None listed</span></p></div>
+        <div class="p-sec"><h4>Allergies</h4><p id="pp_allergy"><span class="dim">None listed</span></p></div>
+      </div>
+      <div class="p-foot">EMERGENCY HEALTH CARD — call 911 first</div>
+    </div>
+    <div class="p-card" id="pCardBack">
+      <div class="p-top">
+        <div><p class="p-name" style="font-size:11pt">Medications &amp; coverage</p><p class="p-dob" id="pp_backname">Your Name</p></div>
+      </div>
+      <div class="p-grid">
+        <div class="p-sec"><h4>Medications</h4><p id="pp_meds"><span class="dim">None listed</span></p></div>
+        <div class="p-sec"><h4>Doctor</h4><p id="pp_doc"><span class="dim">Not provided</span></p></div>
+        <div class="p-sec"><h4>Insurance</h4><p id="pp_ins"><span class="dim">Not provided</span></p></div>
+        <div class="p-sec"><h4>Pharmacy</h4><p id="pp_pharm"><span class="dim">Not provided</span></p></div>
+      </div>
+      <div class="p-foot" id="pp_notes">Review after every medication change.</div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+    var LS_KEY = 'honedProofEmergencyCard';
+    var FIELD_IDS = ['f_name','f_dob','f_blood','ec1_name','ec1_rel','ec1_phone','ec2_name','ec2_rel','ec2_phone','doc_name','doc_phone','pharm_name','pharm_phone','ins_carrier','ins_member','ins_group','note_text'];
+
+    function $(id) { return document.getElementById(id); }
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    function val(id) { var el = $(id); return el ? el.value.trim() : ''; }
+    function dim(text) { return '<span class="dim">' + esc(text) + '</span>'; }
+
+    var state = { conditions: [], allergies: [], meds: [] };
+
+    function contactLine(name, rel, phone) {
+      var parts = [];
+      if (name) parts.push('<strong>' + esc(name) + '</strong>');
+      if (rel) parts.push(esc(rel));
+      if (phone) parts.push(esc(phone));
+      return parts.length ? parts.join(' · ') : null;
+    }
+
+    function listHtml(items, emptyText, fmt) {
+      if (!items.length) return dim(emptyText);
+      return items.map(function (it) { return esc(fmt ? fmt(it) : it); }).join('<br>');
+    }
+
+    function render() {
+      var name = val('f_name') || 'Your Name';
+      var dobRaw = val('f_dob');
+      var dob = dobRaw ? dobRaw : 'Date of birth';
+      var blood = val('f_blood') || '?';
+      var ec1 = contactLine(val('ec1_name'), val('ec1_rel'), val('ec1_phone'));
+      var ec2 = contactLine(val('ec2_name'), val('ec2_rel'), val('ec2_phone'));
+      var doc = contactLine(val('doc_name'), '', val('doc_phone'));
+      var pharm = contactLine(val('pharm_name'), '', val('pharm_phone'));
+      var insBits = [];
+      if (val('ins_carrier')) insBits.push('<strong>' + esc(val('ins_carrier')) + '</strong>');
+      if (val('ins_member')) insBits.push('ID ' + esc(val('ins_member')));
+      if (val('ins_group')) insBits.push('Grp ' + esc(val('ins_group')));
+      var ins = insBits.length ? insBits.join('<br>') : null;
+      var medsHtml = listHtml(state.meds, 'None listed', function (m) { return m.name + (m.dose ? ' — ' + m.dose : ''); });
+      var condHtml = listHtml(state.conditions, 'None listed');
+      var allergyHtml = listHtml(state.allergies, 'None listed');
+      var noteBits = [];
+      if ($('note_directive').checked) noteBits.push('Advance directive on file');
+      if ($('note_donor').checked) noteBits.push('Organ donor');
+      if (val('note_text')) noteBits.push(esc(val('note_text')));
+      var notes = noteBits.length ? noteBits.join(' · ') : 'Review after every medication change.';
+
+      // Screen preview
+      $('pv_name').textContent = name;
+      $('pv_dob').textContent = dob;
+      $('pv_blood').textContent = blood;
+      $('pv_ec1').innerHTML = ec1 || dim('Not provided');
+      $('pv_ec2').innerHTML = ec2 || dim('Not provided');
+      $('pv_cond').innerHTML = condHtml;
+      $('pv_allergy').innerHTML = allergyHtml;
+      $('pv_meds').innerHTML = medsHtml;
+      $('pv_doc').innerHTML = doc || dim('Not provided');
+      $('pv_ins').innerHTML = ins || dim('Not provided');
+      $('pv_pharm').innerHTML = pharm || dim('Not provided');
+      $('pv_backname').textContent = name;
+      $('pv_notes').textContent = notes;
+
+      // Print sheet mirrors the preview
+      $('pp_name').textContent = name;
+      $('pp_dob').textContent = dob;
+      $('pp_blood').textContent = blood;
+      $('pp_ec1').innerHTML = ec1 || dim('Not provided');
+      $('pp_ec2').innerHTML = ec2 || dim('Not provided');
+      $('pp_cond').innerHTML = condHtml;
+      $('pp_allergy').innerHTML = allergyHtml;
+      $('pp_meds').innerHTML = medsHtml;
+      $('pp_doc').innerHTML = doc || dim('Not provided');
+      $('pp_ins').innerHTML = ins || dim('Not provided');
+      $('pp_pharm').innerHTML = pharm || dim('Not provided');
+      $('pp_backname').textContent = name;
+      $('pp_notes').textContent = notes;
+    }
+
+    function save() {
+      var fields = {};
+      FIELD_IDS.forEach(function (id) { fields[id] = $(id).value; });
+      fields.note_directive = $('note_directive').checked;
+      fields.note_donor = $('note_donor').checked;
+      try {
+        localStorage.setItem(LS_KEY, JSON.stringify({ fields: fields, conditions: state.conditions, allergies: state.allergies, meds: state.meds }));
+      } catch (e) { /* storage unavailable — card still works for this session */ }
+    }
+
+    function load() {
+      var raw = null;
+      try { raw = localStorage.getItem(LS_KEY); } catch (e) { return; }
+      if (!raw) return;
+      var d;
+      try { d = JSON.parse(raw); } catch (e) { return; }
+      if (!d || typeof d !== 'object') return;
+      if (d.fields) {
+        FIELD_IDS.forEach(function (id) { if (d.fields[id] != null) $(id).value = d.fields[id]; });
+        $('note_directive').checked = !!d.fields.note_directive;
+        $('note_donor').checked = !!d.fields.note_donor;
+      }
+      if (Array.isArray(d.conditions)) state.conditions = d.conditions.filter(function (x) { return typeof x === 'string'; });
+      if (Array.isArray(d.allergies)) state.allergies = d.allergies.filter(function (x) { return typeof x === 'string'; });
+      if (Array.isArray(d.meds)) state.meds = d.meds.filter(function (m) { return m && typeof m.name === 'string'; });
+      renderChips();
+    }
+
+    function renderChips() {
+      function chips(listId, items, fmt) {
+        var ul = $(listId);
+        ul.innerHTML = '';
+        items.forEach(function (it, i) {
+          var li = document.createElement('li');
+          var label = fmt ? fmt(it) : it;
+          li.innerHTML = '<span></span><button type="button" class="rm" aria-label="Remove">&times;</button>';
+          li.querySelector('span').textContent = label;
+          li.querySelector('.rm').addEventListener('click', function () {
+            items.splice(i, 1);
+            renderChips(); render(); save();
+          });
+          ul.appendChild(li);
+        });
+      }
+      chips('cond_list', state.conditions);
+      chips('allergy_list', state.allergies);
+      chips('med_list', state.meds, function (m) { return m.name + (m.dose ? ' (' + m.dose + ')' : ''); });
+    }
+
+    function addFrom(inputId, items, make) {
+      var v = val(inputId);
+      if (!v) return;
+      items.push(make ? make(v) : v);
+      $(inputId).value = '';
+      renderChips(); render(); save();
+    }
+
+    $('cond_add').addEventListener('click', function () { addFrom('cond_input', state.conditions); });
+    $('allergy_add').addEventListener('click', function () { addFrom('allergy_input', state.allergies); });
+    $('med_add').addEventListener('click', function () {
+      var n = val('med_name');
+      if (!n) return;
+      state.meds.push({ name: n, dose: val('med_dose') });
+      $('med_name').value = ''; $('med_dose').value = '';
+      renderChips(); render(); save();
+    });
+    [['cond_input', 'cond_add'], ['allergy_input', 'allergy_add'], ['med_dose', 'med_add']].forEach(function (pair) {
+      $(pair[0]).addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); $(pair[1]).click(); }
+      });
+    });
+    $('med_name').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); $('med_dose').focus(); }
+    });
+
+    // Live render + autosave on any form input
+    var saveTimer = null;
+    $('cardForm').addEventListener('input', function () {
+      render();
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(save, 400);
+    });
+    $('cardForm').addEventListener('change', function () { render(); save(); });
+
+    $('printBtn').addEventListener('click', function () { render(); window.print(); });
+
+    $('clearBtn').addEventListener('click', function () {
+      if (!confirm('Delete everything on this card from this browser? This cannot be undone.')) return;
+      try { localStorage.removeItem(LS_KEY); } catch (e) {}
+      $('cardForm').reset();
+      state.conditions = []; state.allergies = []; state.meds = [];
+      renderChips(); render();
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    load();
+    render();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>
