@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Price the home modifications that let you stay home — grab bars, ramps, stairlifts, walk-in showers — and compare against assisted living costs. Free aging-in-place cost planner from Honed Proof." />
+  <link rel="canonical" href="https://honedsignal.com/health/aging-in-place-planner/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Aging-in-Place Cost Planner","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/aging-in-place-planner/","description":"Price home modifications for aging in place and compare against assisted living costs.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Aging in Place: What Would It Cost to Stay Home? | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .roadmap{padding:24px;border-radius:22px;margin-top:10px}
+    .road-head{margin-bottom:14px}
+    .road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}
+    .road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}
+    .mod-list{display:grid;gap:8px}
+    .mod-row{display:grid;grid-template-columns:auto 1fr 118px;gap:12px;align-items:center;min-height:44px;padding:10px 4px;border-top:1px solid var(--line);cursor:pointer;border-radius:8px}
+    .mod-row:first-child{border-top:0}
+    .mod-row:hover{background:color-mix(in srgb,var(--surface-2) 55%,transparent)}
+    .mod-row input[type="checkbox"]{width:22px;height:22px;accent-color:var(--teal);cursor:pointer;flex:none}
+    .mod-row .mname{font-size:.8rem;font-weight:700}
+    .mod-row .mname small{display:block;font-weight:400;color:var(--muted);font-size:.66rem;margin-top:2px;line-height:1.45}
+    .mod-row .mrange{display:block;font:500 .66rem "DM Mono",monospace;color:var(--orange);margin-top:2px}
+    .mod-row .money-input input{padding:7px 7px 7px 4px;font-size:.85rem}
+    .mod-row.off{opacity:.55}
+    .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .verdict{margin-top:10px;padding:20px;border-radius:12px;background:var(--surface-2);border:1px solid color-mix(in srgb,var(--teal) 30%,var(--line))}
+    .verdict h3{margin:0 0 8px;font-size:.95rem}
+    .verdict p{margin:0;color:var(--muted);font-size:.82rem;line-height:1.6}
+    .verdict p strong{color:var(--ink)}
+    .verdict .big{font:500 1.1rem "DM Mono",monospace;color:var(--teal);font-weight:700}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .explain-copy ul{margin:8px 0 0;padding-left:18px}
+    .explain-copy li{margin-bottom:6px}
+    .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:19px}
+    .calculate{width:100%;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s;min-height:52px}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;border:1px solid var(--line);border-radius:10px;padding:14px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer;min-height:52px}
+    .ghost:hover{border-color:var(--orange);color:var(--ink)}
+    .cross-link{display:block;margin-top:10px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);text-decoration:none;font-size:.82rem;font-weight:700}
+    .cross-link:hover{border-color:var(--teal)}
+    .cross-link small{display:block;font-weight:400;color:var(--muted);font-size:.7rem;margin-top:3px}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    #printSheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.compare-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}.mod-row{grid-template-columns:auto 1fr}.mod-row .money-input{grid-column:2;max-width:200px}}
+    @media print{
+      body{background:#fff;color:#111}
+      .page > *:not(#printSheet),.hs-legal{display:none!important}
+      #printSheet{display:block!important;color:#111;max-width:640px;margin:0 auto;font-size:12px}
+      #printSheet h1{font-size:20px;margin:0 0 6px}
+      #printSheet h2{font-size:14px;margin:16px 0 6px}
+      #printSheet table{width:100%;border-collapse:collapse}
+      #printSheet td,#printSheet th{border:1px solid #999;padding:6px 8px;text-align:left}
+      #printSheet td:last-child,#printSheet th:last-child{text-align:right}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>What would it <span class="accent">cost to stay home?</span></h1>
+      </div>
+      <p>Most people would rather age at home than move to assisted living — but the house may need work first. Price the modifications, add any paid care, and compare against the move.</p>
+    </header>
+
+    <section class="workbench" aria-label="Aging-in-place cost planner">
+      <form class="panel inputs" id="aipForm" novalidate>
+        <div class="section-head"><h2>Home modifications</h2><span class="step">01 / THE HOUSE</span></div>
+        <p class="hint" style="margin-top:0">Check what the house needs. Amounts start at the midpoint of typical ranges — edit any of them. Ranges are national ballparks, not quotes.</p>
+        <div class="mod-list" id="modList"></div>
+
+        <div class="section-head"><h2>In-home care</h2><span class="step">02 / HELP</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="careHours">Paid care hours / month</label>
+            <div class="money-input"><input id="careHours" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Paid care hours per month" /></div>
+          </div>
+          <div class="field">
+            <label for="careRate">Hourly rate</label>
+            <div class="money-input"><span>$</span><input id="careRate" type="number" min="0" step="0.50" inputmode="decimal" placeholder="32.00" aria-label="Hourly rate for in-home care" /></div>
+          </div>
+        </div>
+        <p class="hint">Around $30–35/hr is typical nationally for non-medical home care — verify locally, it varies a lot.</p>
+
+        <div class="section-head"><h2>The alternative</h2><span class="step">03 / COMPARE</span></div>
+        <div class="field">
+          <label for="alCost">Assisted living, per month</label>
+          <div class="money-input"><span>$</span><input id="alCost" type="number" min="0" step="50" inputmode="decimal" value="5900" aria-label="Assisted living cost per month" /></div>
+        </div>
+        <p class="hint">Pre-filled with the ~$5,900 national median from industry surveys — a rough benchmark only. Replace it with a local quote; your market will differ.</p>
+
+        <div class="btn-row">
+          <button class="calculate" type="submit">Compare the options</button>
+          <button class="ghost" type="button" id="clearBtn">Start over</button>
+        </div>
+        <p class="hint">Your entries are saved in this browser only — nothing is uploaded anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Price your plan to stay home</h2>
+            <p>Check the modifications the house needs, add any paid care hours, and see how staying home stacks up against assisted living.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow">ONE-TIME MODIFICATION COST</p>
+            <p class="target" id="rModTotal">$0</p>
+            <p class="target-note" id="rModNote"></p>
+          </section>
+          <div class="compare-grid">
+            <section class="plan-block">
+              <h3>Staying home — monthly</h3>
+              <dl>
+                <dt>Paid in-home care</dt><dd id="dCare">—</dd>
+                <dt>One-time mods, amortized over 5 yrs</dt><dd id="dModAmort">—</dd>
+                <dt>Effective monthly cost</dt><dd id="dHomeMonthly" style="color:var(--teal);font-weight:700">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block">
+              <h3>Assisted living — monthly</h3>
+              <dl>
+                <dt>Monthly cost</dt><dd id="dAl">—</dd>
+                <dt>5-year total</dt><dd id="dAl5">—</dd>
+                <dt>5-year total, staying home</dt><dd id="dHome5">—</dd>
+              </dl>
+            </section>
+          </div>
+          <section class="verdict" id="verdictBox">
+            <h3>The honest math</h3>
+            <p id="verdictText"></p>
+          </section>
+          <section class="panel roadmap">
+            <div class="road-head">
+              <div><h2>Your modification list</h2><p>What you checked, at your edited amounts.</p></div>
+            </div>
+            <div id="modSummary"></div>
+          </section>
+          <div class="btn-row">
+            <button class="calculate" type="button" id="printBtn">Print my plan</button>
+          </div>
+          <a class="cross-link" href="/money/home-care-vs-assisted-living/" target="_top">Comparing care settings in more depth?<small>Then try → In-Home Care vs Assisted Living</small></a>
+          <section class="explanation" aria-label="About these numbers">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About these numbers</button>
+            <div class="explain-copy hidden" id="explainCopy">
+              <ul>
+                <li><strong>Ranges are national ballparks, not quotes.</strong> Labor markets, house age, and scope swing these numbers wildly — get at least two local contractor quotes before budgeting.</li>
+                <li><strong>Veterans:</strong> the VA's Specially Adapted Housing (SAH) and Special Housing Adaptation (SHA) grants can cover some modifications for qualifying service-connected disabilities. Check va.gov and verify eligibility — don't assume.</li>
+                <li><strong>Taxes:</strong> medically necessary home improvements can sometimes be deducted as medical expenses. That's a question for a tax professional, not this planner.</li>
+                <li><strong>Care costs rise.</strong> This math uses today's rates held flat; real care costs tend to climb. Treat the 5-year comparison as a sketch, not a forecast.</li>
+                <li>This is planning math, not a contractor quote and not financial advice.</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <div id="printSheet" aria-hidden="true"></div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var STORE_KEY = 'honedProofAgingInPlace';
+
+    var MODS = [
+      { id: 'grabbars', name: 'Grab bars (bathroom)', lo: 100, hi: 300, why: 'Bathroom falls are the #1 home injury for older adults. Bars by the toilet and in the shower give something solid to hold.' },
+      { id: 'shower', name: 'Walk-in shower / tub conversion', lo: 3000, hi: 8000, why: 'Stepping over a high tub edge gets risky. A curbless or low-threshold shower removes the trip point.' },
+      { id: 'ramp', name: 'Wheelchair ramp (entry)', lo: 1500, hi: 4000, why: 'A few front steps become a wall with a walker or wheelchair. A ramp keeps the front door usable.' },
+      { id: 'stairlift', name: 'Stairlift / stair glide', lo: 2500, hi: 5000, why: 'Stairs are the biggest daily hazard in a two-story home. A lift keeps every floor reachable.' },
+      { id: 'doorways', name: 'Widened doorways', lo: 700, hi: 2500, why: 'Walkers and wheelchairs need about 32 inches of clear width. Narrow older doorways often don\u2019t qualify.' },
+      { id: 'levers', name: 'Lever door handles', lo: 150, hi: 400, why: 'Round knobs are hard with arthritis or weak grip. Levers open with a push of the hand or elbow.' },
+      { id: 'flooring', name: 'Non-slip flooring', lo: 1000, hi: 5000, why: 'Throw rugs and slick tile cause falls. Secured, high-traction flooring in halls and bathrooms pays off fast.' },
+      { id: 'lighting', name: 'Improved lighting', lo: 200, hi: 1000, why: 'Dim halls, stairs, and bathrooms hide trip hazards. Brighter lights plus motion-sensor night lights are cheap insurance.' },
+      { id: 'alert', name: 'Medical alert system', lo: 300, hi: 600, why: 'A wearable help button for falls or emergencies — especially valuable for anyone living alone. Range shown is roughly a year of typical subscription.' },
+      { id: 'kitchen', name: 'Kitchen accessibility tweaks', lo: 500, hi: 3000, why: 'Pull-out shelves, lowered storage, and front-control appliances keep cooking safe and independent.' }
+    ];
+
+    function $(id) { return document.getElementById(id); }
+    function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    function fmt2(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+    function mid(m) { return Math.round((m.lo + m.hi) / 2); }
+    function money(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+
+    // Build the modification checklist
+    var listHtml = '';
+    for (var i = 0; i < MODS.length; i++) {
+      var m = MODS[i];
+      listHtml +=
+        '<label class="mod-row" data-mod="' + m.id + '">' +
+          '<input type="checkbox" id="chk_' + m.id + '" aria-label="' + esc(m.name) + '" />' +
+          '<span class="mname">' + esc(m.name) +
+            '<span class="mrange">Typical: ' + fmt(m.lo) + '–' + fmt(m.hi) + '</span>' +
+            '<small>' + esc(m.why) + '</small></span>' +
+          '<span class="money-input"><span>$</span><input id="amt_' + m.id + '" type="number" min="0" step="50" inputmode="decimal" value="' + mid(m) + '" aria-label="' + esc(m.name) + ' estimated cost" /></span>' +
+        '</label>';
+    }
+    $('modList').innerHTML = listHtml;
+
+    function getState() {
+      var selected = [], modTotal = 0;
+      for (var i = 0; i < MODS.length; i++) {
+        var m = MODS[i];
+        var on = $('chk_' + m.id).checked;
+        var amt = money('amt_' + m.id);
+        if (on) { selected.push({ name: m.name, amt: amt }); modTotal += amt; }
+      }
+      var hours = money('careHours');
+      var rate = money('careRate');
+      var al = money('alCost');
+      return { selected: selected, modTotal: modTotal, hours: hours, rate: rate, careMonthly: hours * rate, al: al };
+    }
+
+    function verdict(st) {
+      var monthlySavings = st.al - st.careMonthly;
+      var out = { cls: '', html: '' };
+      if (!st.selected.length && st.careMonthly === 0) {
+        return { html: 'Check at least one modification or add care hours to see the comparison.' };
+      }
+      if (st.al <= 0) {
+        return { html: 'Enter your local assisted-living monthly cost above and the comparison will appear here.' };
+      }
+      var home5 = st.modTotal + st.careMonthly * 60;
+      var al5 = st.al * 60;
+      var diff5 = al5 - home5;
+      if (monthlySavings > 0 && st.modTotal > 0) {
+        var months = st.modTotal / monthlySavings;
+        var mWord = months < 1 ? 'under a month' : ('about ' + Math.max(1, Math.round(months)) + (Math.round(months) === 1 ? ' month' : ' months'));
+        out.html = 'Staying home runs about <strong>' + fmt(st.careMonthly) + '/mo</strong> in paid care versus ' +
+          '<strong>' + fmt(st.al) + '/mo</strong> for assisted living. At that pace the <span class="big">' + fmt(st.modTotal) + '</span> ' +
+          'in modifications pays for itself in <strong>' + mWord + '</strong> — and over five years staying home costs roughly ' +
+          '<strong>' + fmt(home5) + '</strong> versus <strong>' + fmt(al5) + '</strong> for assisted living' +
+          (diff5 > 0 ? ', a difference of about <strong>' + fmt(diff5) + '</strong>.' : '.');
+      } else if (monthlySavings > 0) {
+        out.html = 'With no one-time modifications, staying home costs about <strong>' + fmt(st.careMonthly) + '/mo</strong> versus ' +
+          '<strong>' + fmt(st.al) + '/mo</strong> for assisted living — roughly <strong>' + fmt(monthlySavings) + '/mo</strong> less, or ' +
+          '<strong>' + fmt(diff5) + '</strong> over five years.';
+      } else {
+        out.html = 'With ' + fmt(st.careMonthly) + '/mo in paid care, staying home costs about the same or more per month than assisted living at ' +
+          '<strong>' + fmt(st.al) + '/mo</strong>. At that point the ' + fmt(st.modTotal) + ' in modifications is about <strong>comfort and independence</strong>, ' +
+          'not savings — which is a perfectly good reason, as long as it\u2019s an eyes-open choice.';
+      }
+      return out;
+    }
+
+    function render() {
+      var st = getState();
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+      $('rModTotal').textContent = fmt(st.modTotal);
+      $('rModNote').textContent = st.selected.length
+        ? st.selected.length + ' modification' + (st.selected.length === 1 ? '' : 's') + ' selected, one-time cost.'
+        : 'No modifications selected yet.';
+      $('dCare').textContent = fmt2(st.careMonthly) + '/mo';
+      $('dModAmort').textContent = fmt2(st.modTotal / 60) + '/mo';
+      var homeMonthly = st.careMonthly + st.modTotal / 60;
+      $('dHomeMonthly').textContent = fmt2(homeMonthly) + '/mo';
+      $('dAl').textContent = st.al > 0 ? fmt2(st.al) + '/mo' : '—';
+      $('dAl5').textContent = st.al > 0 ? fmt(st.al * 60) : '—';
+      $('dHome5').textContent = fmt(st.modTotal + st.careMonthly * 60);
+      $('verdictText').innerHTML = verdict(st).html;
+
+      var html = '';
+      for (var i = 0; i < st.selected.length; i++) {
+        html += '<div class="rank-row">' +
+          '<span class="rank-num">' + (i + 1) + '</span>' +
+          '<span class="rname">' + esc(st.selected[i].name) + '</span>' +
+          '<span class="rprice">' + fmt(st.selected[i].amt) + '</span></div>';
+      }
+      var css = '.rank-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 4px;border-top:1px solid var(--line);font-size:.82rem}' +
+        '.rank-row:first-child{border-top:0}.rank-num{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 .7rem "DM Mono",monospace;background:var(--surface-2);color:var(--muted)}' +
+        '.rname{font-weight:700}.rprice{font:500 .95rem "DM Mono",monospace;text-align:right;color:var(--teal)}';
+      if (!$('rankCss')) {
+        var style = document.createElement('style');
+        style.id = 'rankCss';
+        style.textContent = css;
+        document.head.appendChild(style);
+      }
+      $('modSummary').innerHTML = html || '<p class="hint" style="margin:0">Nothing selected yet.</p>';
+      save();
+    }
+
+    // Persistence
+    var saveTimer = null;
+    function save() {
+      try {
+        var data = { chk: {}, amt: {}, hours: $('careHours').value, rate: $('careRate').value, al: $('alCost').value };
+        for (var i = 0; i < MODS.length; i++) {
+          data.chk[MODS[i].id] = $('chk_' + MODS[i].id).checked;
+          data.amt[MODS[i].id] = $('amt_' + MODS[i].id).value;
+        }
+        localStorage.setItem(STORE_KEY, JSON.stringify(data));
+      } catch (e) { /* storage unavailable — tool still works */ }
+    }
+    function restore() {
+      try {
+        var raw = localStorage.getItem(STORE_KEY);
+        if (!raw) return;
+        var data = JSON.parse(raw);
+        for (var i = 0; i < MODS.length; i++) {
+          var id = MODS[i].id;
+          if (data.chk && typeof data.chk[id] === 'boolean') $('chk_' + id).checked = data.chk[id];
+          if (data.amt && data.amt[id] !== undefined && data.amt[id] !== '') $('amt_' + id).value = data.amt[id];
+        }
+        if (data.hours !== undefined) $('careHours').value = data.hours;
+        if (data.rate !== undefined) $('careRate').value = data.rate;
+        if (data.al) $('alCost').value = data.al;
+      } catch (e) { /* corrupted data — start fresh */ }
+    }
+    function scheduleSave() {
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(save, 400);
+    }
+
+    $('aipForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      render();
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    $('aipForm').addEventListener('input', scheduleSave);
+    $('aipForm').addEventListener('change', scheduleSave);
+
+    $('clearBtn').addEventListener('click', function () {
+      if (!confirm('Clear all entries and start over?')) return;
+      try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+      for (var i = 0; i < MODS.length; i++) {
+        $('chk_' + MODS[i].id).checked = false;
+        $('amt_' + MODS[i].id).value = mid(MODS[i]);
+      }
+      $('careHours').value = '';
+      $('careRate').value = '';
+      $('alCost').value = '5900';
+      $('resultState').classList.add('hidden');
+      $('emptyState').classList.remove('hidden');
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    // Print: populate a clean summary sheet, then print
+    $('printBtn').addEventListener('click', function () {
+      var st = getState();
+      var rows = '';
+      for (var i = 0; i < st.selected.length; i++) {
+        rows += '<tr><td>' + esc(st.selected[i].name) + '</td><td>' + fmt(st.selected[i].amt) + '</td></tr>';
+      }
+      var v = verdict(st);
+      var tmp = document.createElement('div');
+      tmp.innerHTML = v.html;
+      $('printSheet').innerHTML =
+        '<h1>Aging-in-Place Plan</h1>' +
+        '<p>One-time modifications: <strong>' + fmt(st.modTotal) + '</strong> &nbsp;·&nbsp; Paid care: <strong>' + fmt2(st.careMonthly) + '/mo</strong> &nbsp;·&nbsp; Assisted living benchmark: <strong>' + fmt2(st.al) + '/mo</strong></p>' +
+        '<h2>Modifications</h2>' +
+        (rows ? '<table><tr><th>Item</th><th>Estimate</th></tr>' + rows + '</table>' : '<p>None selected.</p>') +
+        '<h2>Bottom line</h2><p>' + esc(tmp.textContent) + '</p>' +
+        '<p style="color:#555">Ranges are national ballparks — get local quotes. Prepared with Honed Proof, October 2026.</p>';
+      window.print();
+    });
+
+    restore();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>
