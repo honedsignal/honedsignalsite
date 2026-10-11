@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Track your health plan deductible and out-of-pocket max spending by family member. Free deductible tracker from Honed Proof — progress bars, family totals, CSV export, data stays on your device." />
+  <link rel="canonical" href="https://honedsignal.com/health/deductible-tracker/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Deductible Tracker","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/deductible-tracker/","description":"Track spending toward your health plan deductible and out-of-pocket max, per family member.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Deductible Tracker: Track Spending Toward Your Deductible | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--red:#ff8a8a;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600}
+    .text-input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600;appearance:none;-webkit-appearance:none}
+    .text-input select option{background:var(--surface);color:var(--ink)}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .check{display:flex;align-items:center;gap:12px;min-height:44px;padding:4px 0;cursor:pointer;font-size:.82rem;color:var(--muted)}
+    .check input{width:20px;height:20px;accent-color:var(--teal);flex:none;cursor:pointer}
+    .add-row{display:flex;gap:8px}
+    .add-row .text-input{flex:1;min-width:0}
+    .btn-add{flex:none;min-height:44px;border:0;border-radius:10px;padding:10px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;white-space:nowrap}
+    .btn-add:active{transform:translateY(2px)}
+    .btn-add:disabled{opacity:.45;cursor:not-allowed}
+    .btn-ghost{flex:none;min-height:44px;border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--bg);color:var(--ink);font-weight:700;cursor:pointer}
+    .btn-ghost:hover{border-color:var(--blue)}
+    .row-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:.84rem}
+    .row-item:first-child{border-top:0}
+    .remove-btn{flex:none;min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1}
+    .remove-btn:hover{color:var(--red);border-color:var(--red)}
+    .empty-note{color:var(--muted);font-size:.8rem;padding:12px 0;margin:0}
+    .exp-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--line)}
+    .exp-item:first-child{border-top:0}
+    .exp-main{min-width:0}
+    .exp-main strong{font:700 .95rem "DM Mono",monospace}
+    .exp-main .exp-desc{display:block;font-size:.8rem;font-weight:600;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+    .exp-main small{display:block;color:var(--muted);font-size:.68rem;margin-top:2px}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .roadmap{padding:24px;border-radius:22px;margin-top:10px}
+    .road-head{margin-bottom:14px}
+    .road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}
+    .road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}
+    .member-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:16px;margin-bottom:10px}
+    .member-card:last-child{margin-bottom:0}
+    .mc-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px}
+    .mc-head strong{font-size:.92rem}
+    .badge{font:700 .68rem "DM Mono",monospace;color:var(--muted);white-space:nowrap}
+    .badge.met{color:var(--green)}
+    .bar-label{font-size:.72rem;font-weight:700;color:var(--muted);margin:12px 0 2px}
+    .bar-label:first-of-type{margin-top:8px}
+    .prog{height:12px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin:6px 0}
+    .prog>i{display:block;height:100%;width:0;background:var(--teal);border-radius:inherit;transition:width .3s}
+    .prog.met>i{background:var(--green)}
+    .mc-nums{display:flex;justify-content:space-between;gap:10px;font:500 .72rem "DM Mono",monospace;color:var(--muted)}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .tool-actions{display:flex;gap:8px;margin-top:10px}
+    .tool-actions .btn-ghost{flex:1}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Never get <span class="accent">surprised</span> by your deductible.</h1>
+      </div>
+      <p>Know exactly how close you are to meeting your deductible and out-of-pocket max, so no bill surprises you.</p>
+    </header>
+
+    <section class="workbench" aria-label="Deductible tracker">
+      <div class="panel inputs">
+        <div class="section-head"><h2>Your plan</h2><span class="step">01 / PLAN</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="planYear">Plan year</label>
+            <div class="text-input"><input id="planYear" type="number" min="2000" max="2100" step="1" inputmode="numeric" placeholder="2026" /></div>
+          </div>
+          <div class="field">
+            <label for="indivDed">Individual deductible</label>
+            <div class="money-input"><span>$</span><input id="indivDed" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" /></div>
+          </div>
+          <div class="field">
+            <label for="familyDed">Family deductible <span style="font-weight:400">(optional)</span></label>
+            <div class="money-input"><span>$</span><input id="familyDed" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" /></div>
+          </div>
+          <div class="field">
+            <label for="indivOop">Individual out-of-pocket max <span style="font-weight:400">(optional)</span></label>
+            <div class="money-input"><span>$</span><input id="indivOop" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" /></div>
+          </div>
+          <div class="field">
+            <label for="familyOop">Family out-of-pocket max <span style="font-weight:400">(optional)</span></label>
+            <div class="money-input"><span>$</span><input id="familyOop" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" /></div>
+          </div>
+        </div>
+        <p class="hint">Find these numbers on your plan's summary of benefits. Everything saves automatically on this device.</p>
+
+        <div class="section-head"><h2>Family members</h2><span class="step">02 / PEOPLE</span></div>
+        <div class="add-row">
+          <div class="text-input"><input id="memberName" type="text" placeholder="e.g. Freddie" autocomplete="off" maxlength="40" aria-label="Member name" /></div>
+          <button class="btn-add" id="addMemberBtn" type="button">Add</button>
+        </div>
+        <div id="memberList" aria-live="polite"></div>
+
+        <div class="section-head"><h2>Log an expense</h2><span class="step">03 / EXPENSES</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="expDate">Date</label>
+            <div class="text-input"><input id="expDate" type="date" /></div>
+          </div>
+          <div class="field">
+            <label for="expMember">Member</label>
+            <div class="text-input"><select id="expMember"></select></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="expDesc">Description</label>
+          <div class="text-input"><input id="expDesc" type="text" placeholder="e.g. Urgent care visit" autocomplete="off" maxlength="80" /></div>
+        </div>
+        <div class="field">
+          <label for="expProvider">Provider <span style="font-weight:400">(optional)</span></label>
+          <div class="text-input"><input id="expProvider" type="text" placeholder="e.g. City Medical Center" autocomplete="off" maxlength="80" /></div>
+        </div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="expAmount">Amount you paid</label>
+            <div class="money-input"><span>$</span><input id="expAmount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" /></div>
+          </div>
+          <div class="field" style="display:flex;align-items:flex-end">
+            <label class="check" for="expCounts"><input id="expCounts" type="checkbox" checked /> Counts toward deductible</label>
+          </div>
+        </div>
+        <button class="btn-add" id="addExpenseBtn" type="button" style="width:100%">Log expense</button>
+        <p class="hint" id="expHint">Uncheck "counts toward deductible" for copays your plan excludes from the deductible.</p>
+        <div id="expenseList" aria-live="polite" style="margin-top:8px"></div>
+      </div>
+
+      <div class="results" aria-live="polite">
+        <div class="empty" id="dashEmpty">
+          <div>
+            <h2>Your progress will appear here</h2>
+            <p>Set your deductible above, add your family members, and log expenses to watch the bars move.</p>
+          </div>
+        </div>
+        <div id="dashPanels" class="hidden">
+          <section class="result-top">
+            <p class="eyebrow" id="topEyebrow">SPENT TOWARD DEDUCTIBLES</p>
+            <p class="target" id="topSpent">$0.00</p>
+            <p class="target-note" id="topNote"></p>
+          </section>
+
+          <section class="panel roadmap" id="memberPanelWrap">
+            <div class="road-head">
+              <div><h2>Per-member deductible progress</h2><p>Only expenses marked "counts toward deductible."</p></div>
+            </div>
+            <div id="memberPanels"></div>
+          </section>
+
+          <section class="panel roadmap hidden" id="familyPanelWrap">
+            <div class="road-head">
+              <div><h2>Family totals</h2><p>Everyone's spending combined.</p></div>
+            </div>
+            <div id="familyPanels"></div>
+          </section>
+
+          <div class="plan">
+            <section class="plan-block">
+              <h3>Year to date</h3>
+              <dl>
+                <dt>Deductible spending</dt><dd id="dDedSpend">—</dd>
+                <dt>Total out-of-pocket</dt><dd id="dOopSpend">—</dd>
+                <dt>Expenses logged</dt><dd id="dExpCount">—</dd>
+                <dt>Members tracked</dt><dd id="dMemberCount">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>Good to know</h3>
+              <ul>
+                <li><strong>Check your EOB.</strong> This tracker is only as accurate as what you enter — compare it against your plan's Explanation of Benefits after each claim.</li>
+                <li><strong>Copays may not count.</strong> Some plans exclude copays from the deductible. Uncheck "counts toward deductible" for those.</li>
+                <li><strong>HSA money works here.</strong> These are qualified medical expenses — you can pay them with HSA or FSA funds. Keep your receipts.</li>
+                <li><strong>Not insurance advice.</strong> This is a tracking aid. Your plan documents and your insurer have the final word.</li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="tool-actions">
+            <button class="btn-ghost" id="exportCsvBtn" type="button">Export CSV</button>
+            <button class="btn-ghost" id="clearAllBtn" type="button">Clear all data</button>
+          </div>
+
+          <section class="explanation" aria-label="About this tool">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About this tool</button>
+            <p class="explain-copy hidden" id="explainCopy">Enter your plan's deductible and out-of-pocket numbers from your summary of benefits, add each covered family member, and log every bill you pay. Per-member bars track spending that counts toward the deductible; family totals combine everyone. Out-of-pocket-max bars count everything you paid, including copays that don't count toward the deductible. Your data is stored only in this browser (localStorage) — nothing is sent anywhere, and exporting a CSV gives you a backup. Honed Proof provides health information for general purposes only — this is a tracking aid, not medical or insurance advice. Confirm coverage details with your plan documents or your insurer.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofDeductibleTracker';
+
+    function blank() {
+      return {
+        planYear: new Date().getFullYear(),
+        indivDed: null, familyDed: null, indivOop: null, familyOop: null,
+        members: [], expenses: [], seq: 1
+      };
+    }
+    function posNum(v) {
+      var n = parseFloat(v);
+      return (isFinite(n) && n >= 0) ? n : null;
+    }
+    function cleanMembers(arr) {
+      if (!Array.isArray(arr)) return [];
+      var out = [];
+      for (var i = 0; i < arr.length; i++) {
+        var m = arr[i];
+        if (m && typeof m.id === 'string' && typeof m.name === 'string' && m.name.trim()) {
+          out.push({ id: m.id, name: m.name.trim().slice(0, 40) });
+        }
+      }
+      return out;
+    }
+    function cleanExpenses(arr) {
+      if (!Array.isArray(arr)) return [];
+      var out = [];
+      for (var i = 0; i < arr.length; i++) {
+        var e = arr[i];
+        var amt = posNum(e && e.amount);
+        if (e && typeof e.id === 'string' && amt !== null && amt > 0) {
+          out.push({
+            id: e.id,
+            date: typeof e.date === 'string' ? e.date.slice(0, 10) : '',
+            memberId: typeof e.memberId === 'string' ? e.memberId : '',
+            memberName: typeof e.memberName === 'string' ? e.memberName.slice(0, 40) : 'Unknown',
+            desc: typeof e.desc === 'string' ? e.desc.slice(0, 80) : '',
+            provider: typeof e.provider === 'string' ? e.provider.slice(0, 80) : '',
+            amount: amt,
+            counts: e.counts !== false
+          });
+        }
+      }
+      return out;
+    }
+    function load() {
+      try {
+        var raw = localStorage.getItem(KEY);
+        if (raw) {
+          var s = JSON.parse(raw), b = blank();
+          if (s && typeof s === 'object') {
+            b.planYear = parseInt(s.planYear, 10) || b.planYear;
+            b.indivDed = posNum(s.indivDed);
+            b.familyDed = posNum(s.familyDed);
+            b.indivOop = posNum(s.indivOop);
+            b.familyOop = posNum(s.familyOop);
+            b.members = cleanMembers(s.members);
+            b.expenses = cleanExpenses(s.expenses);
+            b.seq = parseInt(s.seq, 10) > 0 ? parseInt(s.seq, 10) : 1;
+            return b;
+          }
+        }
+      } catch (err) { /* corrupted storage: start fresh */ }
+      return blank();
+    }
+    function save() {
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (err) { /* storage unavailable */ }
+    }
+
+    var state = load();
+
+    function $(id) { return document.getElementById(id); }
+    function money(n) {
+      return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function esc(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    function todayISO() {
+      var d = new Date();
+      function p(n) { return (n < 10 ? '0' : '') + n; }
+      return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+    }
+    function niceDate(iso) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso || '—';
+      var d = new Date(iso + 'T12:00:00');
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    }
+    function bar(spent, goal) {
+      var pct = goal > 0 ? Math.min(100, (spent / goal) * 100) : 0;
+      var met = goal > 0 && spent >= goal;
+      var badge = met
+        ? '<span class="badge met">Deductible met &#10003;</span>'
+        : '<span class="badge">' + money(Math.max(0, goal - spent)) + ' to go</span>';
+      return { pct: pct, met: met, badge: badge };
+    }
+    function barHTML(label, spent, goal) {
+      var b = bar(spent, goal);
+      return '<div class="bar-label">' + esc(label) + '</div>' +
+        '<div class="prog' + (b.met ? ' met' : '') + '"><i style="width:' + b.pct.toFixed(1) + '%"></i></div>' +
+        '<div class="mc-nums"><span>' + money(spent) + ' of ' + money(goal) + '</span><span>' + b.pct.toFixed(0) + '%</span></div>';
+    }
+
+    function dedSpendFor(memberId) {
+      var t = 0;
+      for (var i = 0; i < state.expenses.length; i++) {
+        var e = state.expenses[i];
+        if (e.memberId === memberId && e.counts) t += e.amount;
+      }
+      return t;
+    }
+    function oopSpendFor(memberId) {
+      var t = 0;
+      for (var i = 0; i < state.expenses.length; i++) {
+        var e = state.expenses[i];
+        if (e.memberId === memberId) t += e.amount;
+      }
+      return t;
+    }
+    function totals() {
+      var ded = 0, oop = 0;
+      for (var i = 0; i < state.expenses.length; i++) {
+        var e = state.expenses[i];
+        if (e.counts) ded += e.amount;
+        oop += e.amount;
+      }
+      return { ded: ded, oop: oop };
+    }
+
+    function renderMemberList() {
+      var html = '';
+      if (!state.members.length) {
+        html = '<p class="empty-note">No members yet — add everyone your plan covers.</p>';
+      } else {
+        for (var i = 0; i < state.members.length; i++) {
+          var m = state.members[i];
+          html += '<div class="row-item"><span>' + esc(m.name) + '</span>' +
+            '<button class="remove-btn" type="button" data-remove-member="' + esc(m.id) + '" aria-label="Remove ' + esc(m.name) + '">&#215;</button></div>';
+        }
+      }
+      $('memberList').innerHTML = html;
+      var sel = $('expMember');
+      var prev = sel.value;
+      var opts = '';
+      for (var j = 0; j < state.members.length; j++) {
+        var mm = state.members[j];
+        opts += '<option value="' + esc(mm.id) + '">' + esc(mm.name) + '</option>';
+      }
+      sel.innerHTML = opts;
+      if (prev) sel.value = prev;
+      $('addExpenseBtn').disabled = !state.members.length;
+    }
+
+    function renderExpenseList() {
+      var html = '';
+      if (!state.expenses.length) {
+        html = '<p class="empty-note">No expenses logged yet.</p>';
+      } else {
+        var sorted = state.expenses.slice().sort(function (a, b) {
+          return (b.date || '').localeCompare(a.date || '');
+        });
+        for (var i = 0; i < sorted.length; i++) {
+          var e = sorted[i];
+          var tag = e.counts ? 'counts toward deductible' : 'does not count toward deductible';
+          var line = niceDate(e.date) + ' \u00B7 ' + esc(e.memberName) + ' \u00B7 ' + tag;
+          html += '<div class="exp-item"><div class="exp-main">' +
+            '<strong>' + money(e.amount) + '</strong>' +
+            '<span class="exp-desc">' + esc(e.desc || 'Expense') + (e.provider ? ' — ' + esc(e.provider) : '') + '</span>' +
+            '<small>' + line + '</small></div>' +
+            '<button class="remove-btn" type="button" data-remove-expense="' + esc(e.id) + '" aria-label="Remove expense">&#215;</button></div>';
+        }
+      }
+      $('expenseList').innerHTML = html;
+    }
+
+    function renderDashboard() {
+      var hasPlan = state.indivDed !== null || state.familyDed !== null || state.indivOop !== null || state.familyOop !== null;
+      var hasData = hasPlan || state.members.length || state.expenses.length;
+      $('dashEmpty').classList.toggle('hidden', hasData);
+      $('dashPanels').classList.toggle('hidden', !hasData);
+      if (!hasData) return;
+
+      var t = totals();
+      $('topEyebrow').textContent = 'SPENT TOWARD DEDUCTIBLES \u00B7 PLAN YEAR ' + state.planYear;
+      $('topSpent').textContent = money(t.ded);
+      $('topNote').textContent = state.expenses.length
+        ? state.expenses.length + ' expense' + (state.expenses.length === 1 ? '' : 's') + ' logged \u00B7 only expenses marked "counts toward deductible".'
+        : 'Log expenses to start tracking.';
+
+      var mp = '';
+      if (!state.members.length) {
+        mp = '<p class="empty-note">Add family members to see per-member progress.</p>';
+      } else if (state.indivDed === null && state.indivOop === null) {
+        mp = '<p class="empty-note">Set an individual deductible or out-of-pocket max above to see per-member progress.</p>';
+      } else {
+        for (var i = 0; i < state.members.length; i++) {
+          var m = state.members[i];
+          var ds = dedSpendFor(m.id), os = oopSpendFor(m.id);
+          var b = state.indivDed !== null ? bar(ds, state.indivDed) : null;
+          mp += '<div class="member-card"><div class="mc-head"><strong>' + esc(m.name) + '</strong>' +
+            (b ? b.badge : '') + '</div>';
+          if (state.indivDed !== null) mp += barHTML('Deductible', ds, state.indivDed);
+          if (state.indivOop !== null) {
+            var bo = bar(os, state.indivOop);
+            mp += '<div class="bar-label">Out-of-pocket max</div>' +
+              '<div class="prog' + (bo.met ? ' met' : '') + '"><i style="width:' + bo.pct.toFixed(1) + '%"></i></div>' +
+              '<div class="mc-nums"><span>' + money(os) + ' of ' + money(state.indivOop) + '</span><span>' + bo.pct.toFixed(0) + '%</span></div>';
+          }
+          mp += '</div>';
+        }
+      }
+      $('memberPanels').innerHTML = mp;
+
+      var showFam = state.familyDed !== null || state.familyOop !== null;
+      $('familyPanelWrap').classList.toggle('hidden', !showFam);
+      if (showFam) {
+        var fh = '';
+        if (state.familyDed !== null) fh += barHTML('Family deductible', t.ded, state.familyDed);
+        if (state.familyOop !== null) fh += barHTML('Family out-of-pocket max', t.oop, state.familyOop);
+        $('familyPanels').innerHTML = fh;
+      }
+
+      $('dDedSpend').textContent = money(t.ded);
+      $('dOopSpend').textContent = money(t.oop);
+      $('dExpCount').textContent = String(state.expenses.length);
+      $('dMemberCount').textContent = String(state.members.length);
+    }
+
+    function render() {
+      renderMemberList();
+      renderExpenseList();
+      renderDashboard();
+    }
+
+    function syncPlanInputs() {
+      $('planYear').value = state.planYear;
+      $('indivDed').value = state.indivDed === null ? '' : state.indivDed;
+      $('familyDed').value = state.familyDed === null ? '' : state.familyDed;
+      $('indivOop').value = state.indivOop === null ? '' : state.indivOop;
+      $('familyOop').value = state.familyOop === null ? '' : state.familyOop;
+    }
+
+    // Plan inputs auto-save
+    $('planYear').addEventListener('input', function () {
+      var y = parseInt(this.value, 10);
+      state.planYear = (y >= 2000 && y <= 2100) ? y : new Date().getFullYear();
+      save(); renderDashboard();
+    });
+    var planFields = [['indivDed', 'indivDed'], ['familyDed', 'familyDed'], ['indivOop', 'indivOop'], ['familyOop', 'familyOop']];
+    planFields.forEach(function (pair) {
+      $(pair[0]).addEventListener('input', function () {
+        state[pair[1]] = this.value === '' ? null : posNum(this.value);
+        save(); renderDashboard();
+      });
+    });
+
+    // Members
+    function addMember() {
+      var name = $('memberName').value.trim().slice(0, 40);
+      if (!name) return;
+      state.members.push({ id: 'm' + (state.seq++), name: name });
+      $('memberName').value = '';
+      save(); render();
+    }
+    $('addMemberBtn').addEventListener('click', addMember);
+    $('memberName').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); addMember(); }
+    });
+
+    // Expenses
+    function addExpense() {
+      if (!state.members.length) return;
+      var amt = posNum($('expAmount').value);
+      if (amt === null || amt <= 0) {
+        $('expAmount').focus();
+        return;
+      }
+      var mid = $('expMember').value;
+      var mname = 'Unknown';
+      for (var i = 0; i < state.members.length; i++) {
+        if (state.members[i].id === mid) { mname = state.members[i].name; break; }
+      }
+      state.expenses.push({
+        id: 'e' + (state.seq++),
+        date: $('expDate').value || todayISO(),
+        memberId: mid,
+        memberName: mname,
+        desc: $('expDesc').value.trim().slice(0, 80),
+        provider: $('expProvider').value.trim().slice(0, 80),
+        amount: amt,
+        counts: $('expCounts').checked
+      });
+      $('expDesc').value = '';
+      $('expProvider').value = '';
+      $('expAmount').value = '';
+      $('expCounts').checked = true;
+      save(); render();
+    }
+    $('addExpenseBtn').addEventListener('click', addExpense);
+
+    // Delegated removal
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (t && t.getAttribute) {
+        var mid = t.getAttribute('data-remove-member');
+        if (mid) {
+          var nm = '';
+          for (var i = 0; i < state.members.length; i++) {
+            if (state.members[i].id === mid) nm = state.members[i].name;
+          }
+          if (confirm('Remove ' + nm + '? Their logged expenses stay in family totals.')) {
+            state.members = state.members.filter(function (m) { return m.id !== mid; });
+            save(); render();
+          }
+          return;
+        }
+        var eid = t.getAttribute('data-remove-expense');
+        if (eid) {
+          state.expenses = state.expenses.filter(function (x) { return x.id !== eid; });
+          save(); render();
+        }
+      }
+    });
+
+    // CSV export
+    function csvCell(v) {
+      var s = String(v == null ? '' : v);
+      return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }
+    $('exportCsvBtn').addEventListener('click', function () {
+      var rows = [['date', 'member', 'description', 'provider', 'amount', 'counts_toward_deductible']];
+      var sorted = state.expenses.slice().sort(function (a, b) {
+        return (a.date || '').localeCompare(b.date || '');
+      });
+      for (var i = 0; i < sorted.length; i++) {
+        var e = sorted[i];
+        rows.push([e.date, e.memberName, e.desc, e.provider, e.amount.toFixed(2), e.counts ? 'yes' : 'no']);
+      }
+      var csv = rows.map(function (r) { return r.map(csvCell).join(','); }).join('\n');
+      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'deductible-tracker-' + state.planYear + '.csv';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 800);
+    });
+
+    // Clear all
+    $('clearAllBtn').addEventListener('click', function () {
+      if (confirm('Erase your plan, members, and all logged expenses? This cannot be undone.')) {
+        try { localStorage.removeItem(KEY); } catch (err) {}
+        state = blank();
+        syncPlanInputs();
+        $('expDate').value = todayISO();
+        $('expCounts').checked = true;
+        save(); render();
+      }
+    });
+
+    // Explanation toggle
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    // Init
+    syncPlanInputs();
+    $('expDate').value = todayISO();
+    render();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

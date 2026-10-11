@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Log HSA-qualified medical expenses for future tax-free reimbursement — no deadline under current IRS rules. Free HSA receipt tracker from Honed Proof — your data stays in your browser, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/hsa-receipt-vault/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"HSA Receipt Vault","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/hsa-receipt-vault/","description":"Log HSA-qualified medical expenses for future tax-free reimbursement, with totals, category and year breakdowns.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>HSA Receipt Vault: Track Expenses for Future Reimbursement | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600}
+    .text-input input[type="date"]{color-scheme:dark}
+    .select-wrap{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .select-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .select-wrap select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600;appearance:none;cursor:pointer}
+    .select-wrap select option{background:var(--surface);color:var(--ink)}
+    .select-wrap:after{content:"▾";position:absolute;right:12px;color:var(--muted);pointer-events:none}
+    .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;min-height:48px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .roadmap{padding:24px;border-radius:22px;margin-top:10px}
+    .road-head{margin-bottom:14px}
+    .road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}
+    .road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .break-row{display:grid;grid-template-columns:1fr auto;gap:8px 14px;padding:8px 4px;border-top:1px solid var(--line);font-size:.78rem}
+    .break-row:first-child{border-top:0}
+    .break-row .bname{font-weight:700}
+    .break-row .bname small{display:block;font-weight:400;color:var(--muted);font-size:.66rem}
+    .break-row .bval{font:500 .78rem "DM Mono",monospace;text-align:right}
+    .break-row.dim{opacity:.55}
+    .log-list{display:grid;gap:8px}
+    .log-row{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:14px 16px;display:grid;gap:8px}
+    .log-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+    .log-top .lamt{font:700 1rem "DM Mono",monospace}
+    .log-top .ldate{color:var(--muted);font:500 .72rem "DM Mono",monospace}
+    .log-mid{font-size:.82rem}
+    .log-mid .lprov{font-weight:700}
+    .log-mid .ldesc{color:var(--muted)}
+    .badge{display:inline-block;margin-top:4px;padding:2px 9px;border-radius:20px;font:600 .64rem "DM Mono",monospace;background:var(--surface-2);color:var(--teal);border:1px solid var(--line)}
+    .log-note{font-size:.72rem;color:var(--muted);font-style:italic}
+    .log-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:4px;padding-top:10px;border-top:1px solid var(--line)}
+    .reimb{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:.78rem;font-weight:700;color:var(--muted);cursor:pointer}
+    .reimb input{width:22px;height:22px;accent-color:var(--teal);cursor:pointer}
+    .log-row.is-reimbursed{opacity:.55}
+    .log-row.is-reimbursed .lamt{text-decoration:line-through}
+    .btn-ghost{border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--muted);min-height:44px;padding:8px 16px;font-size:.76rem;font-weight:700;cursor:pointer}
+    .btn-ghost:hover{border-color:var(--orange);color:var(--orange)}
+    .btn-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    .btn-row .btn-ghost{flex:1;min-width:140px}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:48px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .explain-copy ul{margin:0;padding-left:18px}
+    .explain-copy li{margin-bottom:8px}
+    .explain-copy strong{color:var(--ink)}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.duo{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Pay now. <span class="accent">Reimburse yourself later</span> — tax-free.</h1>
+      </div>
+      <p>There's no deadline to reimburse yourself from an HSA. Pay out of pocket today, let the HSA keep growing, and take your money back years from now. The catch: you need the receipts. This vault logs them.</p>
+    </header>
+
+    <section class="workbench" aria-label="HSA receipt vault">
+      <form class="panel inputs" id="hsaForm" novalidate>
+        <div class="section-head"><h2>Log an expense</h2><span class="step">01 / ADD</span></div>
+        <div class="duo">
+          <div class="field">
+            <label for="expDate">Date paid</label>
+            <div class="text-input"><input id="expDate" type="date" required /></div>
+          </div>
+          <div class="field">
+            <label for="expAmount">Amount</label>
+            <div class="money-input"><span>$</span><input id="expAmount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" required aria-label="Amount paid" /></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="expCategory">Category</label>
+          <div class="select-wrap">
+            <select id="expCategory" aria-label="Expense category">
+              <option value="Medical">Medical</option>
+              <option value="Dental">Dental</option>
+              <option value="Vision">Vision</option>
+              <option value="Pharmacy">Pharmacy</option>
+              <option value="Mental health">Mental health</option>
+              <option value="Other qualified">Other qualified</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="expProvider">Provider</label>
+          <div class="text-input"><input id="expProvider" type="text" placeholder="e.g. City Dental Associates" autocomplete="off" /></div>
+        </div>
+        <div class="field">
+          <label for="expDesc">Description</label>
+          <div class="text-input"><input id="expDesc" type="text" placeholder="e.g. crown on molar" autocomplete="off" /></div>
+        </div>
+        <div class="field">
+          <label for="expNote">Receipt note</label>
+          <div class="text-input"><input id="expNote" type="text" placeholder="e.g. photo saved in Drive folder" autocomplete="off" /></div>
+        </div>
+
+        <button class="calculate" type="submit">Add to vault</button>
+        <p class="hint">Entries save in this browser automatically. Nothing leaves your device — there is no account and no cloud.</p>
+
+        <div class="section-head"><h2>Data</h2><span class="step">02 / MANAGE</span></div>
+        <div class="btn-row" style="margin-top:0">
+          <button class="btn-ghost" id="exportCsv" type="button">Export CSV</button>
+          <button class="btn-ghost" id="clearAll" type="button">Clear all</button>
+        </div>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Your vault is empty</h2>
+            <p>Log your first qualified expense on the left. It'll show up here with your running totals.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow">AVAILABLE TO REIMBURSE</p>
+            <p class="target" id="availTotal">$0</p>
+            <p class="target-note" id="availNote"></p>
+          </section>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>Totals</h3>
+              <dl>
+                <dt>Qualified expenses logged</dt><dd id="dLogged">—</dd>
+                <dt>Already reimbursed</dt><dd id="dReimbursed">—</dd>
+                <dt>Available to reimburse</dt><dd id="dAvailable" style="color:var(--teal);font-weight:700">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>How the no-deadline rule works</h3>
+              <ul>
+                <li><strong>Pay out of pocket now</strong> and keep the receipt — your HSA balance keeps growing tax-free.</li>
+                <li><strong>Reimburse yourself whenever:</strong> next year, in ten years, in retirement. Under current IRS rules there is no time limit.</li>
+                <li><strong>Keep the actual receipts</strong> somewhere safe. This vault is an index — it can't replace the receipt if the IRS asks.</li>
+                <li><strong>Mark entries reimbursed</strong> as you pay yourself back so your available total stays honest.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="panel roadmap" aria-label="Breakdown by category">
+            <div class="road-head">
+              <div><h2>By category</h2><p>Available to reimburse per category.</p></div>
+            </div>
+            <div id="catBreakdown"></div>
+          </section>
+          <section class="panel roadmap" aria-label="Breakdown by year">
+            <div class="road-head">
+              <div><h2>By year</h2><p>When the expense was paid.</p></div>
+            </div>
+            <div id="yearBreakdown"></div>
+          </section>
+          <section class="panel roadmap" aria-label="Expense log">
+            <div class="road-head">
+              <div><h2>Expense log</h2><p>Newest first. Check &ldquo;Reimbursed&rdquo; when you've paid yourself back.</p></div>
+            </div>
+            <div class="log-list" id="expenseList"></div>
+          </section>
+          <section class="explanation" aria-label="Important notes">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Important notes</button>
+            <div class="explain-copy hidden" id="explainCopy">
+              <ul>
+                <li><strong>No time limit — for now.</strong> Under current IRS rules there is no deadline to reimburse yourself for qualified HSA expenses. Tax rules can change, so verify before relying on this years from now.</li>
+                <li><strong>Only qualified expenses count.</strong> The expense must be a qualified medical expense incurred <em>after</em> your HSA was established. Expenses from before you opened the HSA don't qualify.</li>
+                <li><strong>This log is an index, not a receipt.</strong> Keep the actual receipts — paper or photos — somewhere safe. If the IRS asks for proof, this log alone won't cut it.</li>
+                <li><strong>Don't confuse this with an FSA.</strong> Flexible Spending Accounts generally have use-it-or-lose-it deadlines. HSAs don't work that way — but only if you keep the records.</li>
+                <li><strong>This is not tax advice.</strong> It's a record-keeping tool. For your situation, talk to a tax professional.</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment, and not tax advice. Always talk to a qualified health professional about your own care, and a tax professional about your HSA.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofHsaVault';
+    var CATS = ['Medical', 'Dental', 'Vision', 'Pharmacy', 'Mental health', 'Other qualified'];
+
+    function $(id) { return document.getElementById(id); }
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    function yearOf(d) { return (d && d.length >= 4) ? d.slice(0, 4) : '—'; }
+
+    function load() {
+      try {
+        var raw = localStorage.getItem(KEY);
+        var arr = raw ? JSON.parse(raw) : [];
+        return Array.isArray(arr) ? arr : [];
+      } catch (e) { return []; }
+    }
+    function save(entries) {
+      try { localStorage.setItem(KEY, JSON.stringify(entries)); } catch (e) { /* storage unavailable */ }
+    }
+
+    function totals(entries) {
+      var logged = 0, reimbursed = 0;
+      for (var i = 0; i < entries.length; i++) {
+        logged += entries[i].amount;
+        if (entries[i].reimbursed) reimbursed += entries[i].amount;
+      }
+      return { logged: logged, reimbursed: reimbursed, available: logged - reimbursed };
+    }
+
+    function render(entries) {
+      var t = totals(entries);
+      var empty = entries.length === 0;
+      $('emptyState').classList.toggle('hidden', !empty);
+      $('resultState').classList.toggle('hidden', empty);
+      if (empty) return;
+
+      $('availTotal').textContent = fmt(t.available);
+      $('availNote').textContent = t.available > 0
+        ? 'Across ' + entries.length + ' logged expense' + (entries.length === 1 ? '' : 's') + ', you could reimburse yourself ' + fmt(t.available) + ' from your HSA today — tax-free.'
+        : 'Everything logged has been reimbursed. Your vault is settled up.';
+
+      $('dLogged').textContent = fmt(t.logged);
+      $('dReimbursed').textContent = fmt(t.reimbursed);
+      $('dAvailable').textContent = fmt(t.available);
+
+      // Category breakdown (available = unreimbursed per category)
+      var ch = '';
+      for (var c = 0; c < CATS.length; c++) {
+        var loggedC = 0, availC = 0, n = 0;
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].category === CATS[c]) {
+            loggedC += entries[i].amount; n++;
+            if (!entries[i].reimbursed) availC += entries[i].amount;
+          }
+        }
+        if (n === 0) continue;
+        ch += '<div class="break-row' + (availC === 0 ? ' dim' : '') + '">' +
+          '<span class="bname">' + esc(CATS[c]) + '<small>' + n + ' expense' + (n === 1 ? '' : 's') + '</small></span>' +
+          '<span class="bval">' + fmt(availC) + '</span></div>';
+      }
+      $('catBreakdown').innerHTML = ch || '<p class="hint" style="margin:0">No entries yet.</p>';
+
+      // Year breakdown (available = unreimbursed per year)
+      var years = {};
+      for (var j = 0; j < entries.length; j++) {
+        var y = yearOf(entries[j].date);
+        if (!years[y]) years[y] = { n: 0, avail: 0 };
+        years[y].n++;
+        if (!entries[j].reimbursed) years[y].avail += entries[j].amount;
+      }
+      var ykeys = Object.keys(years).sort().reverse();
+      var yh = '';
+      for (var k = 0; k < ykeys.length; k++) {
+        var yy = years[ykeys[k]];
+        yh += '<div class="break-row' + (yy.avail === 0 ? ' dim' : '') + '">' +
+          '<span class="bname">' + esc(ykeys[k]) + '<small>' + yy.n + ' expense' + (yy.n === 1 ? '' : 's') + '</small></span>' +
+          '<span class="bval">' + fmt(yy.avail) + '</span></div>';
+      }
+      $('yearBreakdown').innerHTML = yh;
+
+      // Expense log, newest first
+      var sorted = entries.slice().sort(function (a, b) {
+        return (b.date || '').localeCompare(a.date || '');
+      });
+      var lh = '';
+      for (var m = 0; m < sorted.length; m++) {
+        var e = sorted[m];
+        var title = esc(e.provider) + (e.desc ? ' <span class="ldesc">— ' + esc(e.desc) + '</span>' : '');
+        lh += '<div class="log-row' + (e.reimbursed ? ' is-reimbursed' : '') + '" data-entry="' + e.id + '">' +
+          '<div class="log-top"><span class="ldate">' + esc(e.date || 'No date') + '</span><span class="lamt">' + fmt(e.amount) + '</span></div>' +
+          '<div class="log-mid"><span class="lprov">' + title + '</span><br /><span class="badge">' + esc(e.category) + '</span></div>' +
+          (e.note ? '<div class="log-note">🧾 ' + esc(e.note) + '</div>' : '') +
+          '<div class="log-actions">' +
+            '<label class="reimb"><input type="checkbox" data-act="reimb"' + (e.reimbursed ? ' checked' : '') + ' /> Reimbursed</label>' +
+            '<button class="btn-ghost" type="button" data-act="remove">Remove</button>' +
+          '</div></div>';
+      }
+      $('expenseList').innerHTML = lh;
+    }
+
+    function bindLog(entries) {
+      $('expenseList').addEventListener('click', function (ev) {
+        var btn = ev.target.closest('[data-act="remove"]');
+        if (!btn) return;
+        var row = btn.closest('.log-row');
+        var id = row.getAttribute('data-entry');
+        for (var i = 0; i < entries.length; i++) {
+          if (String(entries[i].id) === id) { entries.splice(i, 1); break; }
+        }
+        save(entries); render(entries);
+      });
+      $('expenseList').addEventListener('change', function (ev) {
+        var box = ev.target.closest('[data-act="reimb"]');
+        if (!box) return;
+        var row = box.closest('.log-row');
+        var id = row.getAttribute('data-entry');
+        for (var i = 0; i < entries.length; i++) {
+          if (String(entries[i].id) === id) { entries[i].reimbursed = box.checked; break; }
+        }
+        save(entries); render(entries);
+      });
+    }
+
+    function csvCell(v) {
+      var s = String(v == null ? '' : v);
+      return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }
+
+    function doExport(entries) {
+      if (!entries.length) return;
+      var rows = [['Date', 'Provider', 'Description', 'Category', 'Amount', 'Reimbursed', 'Receipt note']];
+      var sorted = entries.slice().sort(function (a, b) { return (a.date || '').localeCompare(b.date || ''); });
+      for (var i = 0; i < sorted.length; i++) {
+        var e = sorted[i];
+        rows.push([e.date, e.provider, e.desc, e.category, e.amount.toFixed(2), e.reimbursed ? 'Yes' : 'No', e.note]);
+      }
+      var csv = rows.map(function (r) { return r.map(csvCell).join(','); }).join('\r\n');
+      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'hsa-receipt-vault.csv';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    }
+
+    var entries = load();
+
+    $('hsaForm').addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var date = $('expDate').value;
+      var amount = parseFloat($('expAmount').value);
+      if (!date) { $('expDate').focus(); return; }
+      if (!isFinite(amount) || amount <= 0) { $('expAmount').focus(); return; }
+      entries.push({
+        id: Date.now() + '-' + Math.floor(Math.random() * 1e6),
+        date: date,
+        provider: $('expProvider').value.trim(),
+        desc: $('expDesc').value.trim(),
+        amount: Math.round(amount * 100) / 100,
+        category: $('expCategory').value,
+        note: $('expNote').value.trim(),
+        reimbursed: false
+      });
+      save(entries);
+      $('expDate').value = ''; $('expAmount').value = '';
+      $('expProvider').value = ''; $('expDesc').value = ''; $('expNote').value = '';
+      $('expCategory').selectedIndex = 0;
+      render(entries);
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    $('exportCsv').addEventListener('click', function () { doExport(entries); });
+
+    $('clearAll').addEventListener('click', function () {
+      if (!entries.length) return;
+      if (window.confirm('Delete all ' + entries.length + ' logged expense(s)? This cannot be undone.')) {
+        entries = [];
+        save(entries);
+        render(entries);
+      }
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    bindLog(entries);
+    render(entries);
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Check your medical bill for the 10 most common billing errors — duplicate charges, upcoding, unbundling, illegal balance billing — and get exactly what to say next. Free from Honed Proof, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/medical-bill-error-checker/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Medical Bill Error Checker","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/medical-bill-error-checker/","description":"Plain-English checklist for spotting common medical billing errors, with concrete next steps for each flag.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Medical Bill Error Checker: Spot Billing Mistakes | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 10px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .check-cat{margin-top:20px}
+    .check-cat:first-of-type{margin-top:6px}
+    .check-cat h3{margin:0 0 6px;font:500 .7rem "DM Mono",monospace;color:var(--orange);text-transform:uppercase;letter-spacing:.06em}
+    .check-row{display:flex;gap:12px;align-items:flex-start;min-height:44px;padding:10px 8px;border-radius:10px;cursor:pointer;border:1px solid transparent}
+    .check-row:hover{background:var(--surface-2)}
+    .check-row:focus-within{border-color:var(--blue)}
+    .check-row input{flex:0 0 auto;width:22px;height:22px;margin:2px 0 0;accent-color:var(--teal);cursor:pointer}
+    .check-text strong{display:block;font-size:.88rem}
+    .check-text small{display:block;margin-top:2px;color:var(--muted);font-size:.74rem;line-height:1.55}
+    .check-row.checked{border-color:color-mix(in srgb,var(--teal) 45%,transparent);background:color-mix(in srgb,var(--teal) 9%,transparent)}
+    .check-row.checked .check-text strong{color:var(--teal)}
+    .reset-row{margin-top:18px;text-align:center}
+    .reset-btn{border:0;background:transparent;color:var(--muted);font-size:.76rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:44px;padding:10px 14px}
+    .reset-btn:hover{color:var(--ink)}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .actions{margin-top:10px;display:grid;gap:10px}
+    .action-group{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .action-group h3{margin:0 0 4px;font-size:.92rem;letter-spacing:-.02em}
+    .action-group h3 .kicker{display:block;margin-bottom:4px;font:500 .68rem "DM Mono",monospace;color:var(--orange)}
+    .action-group .lede{margin:0 0 12px;color:var(--muted);font-size:.76rem;line-height:1.6}
+    .action-item{border-top:1px solid var(--line);padding:10px 0}
+    .action-item:first-of-type{border-top:0}
+    .action-item .flag{font-size:.82rem;font-weight:800;color:var(--teal)}
+    .action-item .script{margin:6px 0 0;padding:10px 12px;border-left:3px solid var(--teal);background:var(--surface-2);border-radius:0 8px 8px 0;color:var(--ink);font-size:.8rem;line-height:1.6}
+    .print-btn{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s;min-height:44px}
+    .print-btn:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .next-tool{margin-top:10px;border:1px solid color-mix(in srgb,var(--orange) 45%,var(--line));border-radius:12px;background:var(--orange-soft);padding:19px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .next-tool p{margin:0;font-size:.85rem;color:var(--ink)}
+    .next-tool p small{display:block;margin-top:3px;color:var(--muted);font-size:.72rem}
+    .next-tool a{flex:0 0 auto;min-height:44px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:10px;background:var(--orange);color:var(--orange-ink);font-weight:800;font-size:.82rem;text-decoration:none}
+    .next-tool a:hover{text-decoration:underline}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    #printSheet{display:none}
+    @media print{
+      .page,.hs-legal{display:none!important}
+      #printSheet{display:block!important;color:#000;font-family:Manrope,sans-serif;padding:24px;max-width:720px}
+      #printSheet h1{font-size:1.5rem;margin:0 0 4px}
+      #printSheet .sub{color:#555;font-size:.85rem;margin:0 0 18px}
+      #printSheet .p-item{border-bottom:1px solid #ccc;padding:10px 0}
+      #printSheet .p-item strong{display:block;font-size:1rem}
+      #printSheet .p-item .p-script{margin:6px 0 0;font-size:.9rem;color:#333;font-style:italic}
+      #printSheet .p-foot{margin-top:18px;font-size:.78rem;color:#555}
+    }
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top{padding:19px}.next-tool{flex-direction:column;align-items:stretch;text-align:left}.footer{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Spot the <span class="accent">mistakes</span> in your medical bill.</h1>
+      </div>
+      <p>Industry analyses have found errors in a large share of medical bills — some estimates run as high as 80%. Grab your itemized bill and your EOB, and check each one below. Every flag comes with exactly what to say next.</p>
+    </header>
+
+    <section class="workbench" aria-label="Medical bill error checker">
+      <div class="panel inputs">
+        <div class="section-head"><h2>Bill checklist</h2><span class="step">CHECK AS YOU GO</span></div>
+        <p class="hint" style="margin-top:0">Work from the <strong>itemized</strong> bill (line-by-line with procedure codes), not the summary. If you don't have one, request it — it's free.</p>
+
+        <div class="check-cat">
+          <h3>Charges on the bill</h3>
+          <label class="check-row" for="c_dup">
+            <input type="checkbox" id="c_dup" />
+            <span class="check-text"><strong>Duplicate charges</strong><small>The same procedure, test, or date of service appears more than once. Bills sometimes double-count by mistake.</small></span>
+          </label>
+          <label class="check-row" for="c_never">
+            <input type="checkbox" id="c_never" />
+            <span class="check-text"><strong>Services you never received</strong><small>You're billed for a test, treatment, or supply you never got. Compare each line against what actually happened during your visit.</small></span>
+          </label>
+          <label class="check-row" for="c_math">
+            <input type="checkbox" id="c_math" />
+            <span class="check-text"><strong>Math errors</strong><small>The line items don't add up to the total shown. Add them up yourself — it happens more often than you'd think.</small></span>
+          </label>
+        </div>
+
+        <div class="check-cat">
+          <h3>How it was coded</h3>
+          <label class="check-row" for="c_upcode">
+            <input type="checkbox" id="c_upcode" />
+            <span class="check-text"><strong>Upcoding</strong><small>The bill uses a code for a more complex or expensive procedure than the one performed. The code should match what was actually done.</small></span>
+          </label>
+          <label class="check-row" for="c_unbundle">
+            <input type="checkbox" id="c_unbundle" />
+            <span class="check-text"><strong>Unbundling</strong><small>One procedure is split into several separately billed parts, inflating the total. Many procedures should be billed as a single package.</small></span>
+          </label>
+        </div>
+
+        <div class="check-cat">
+          <h3>Identity on the bill</h3>
+          <label class="check-row" for="c_wronginfo">
+            <input type="checkbox" id="c_wronginfo" />
+            <span class="check-text"><strong>Wrong patient, date, or provider info</strong><small>Even small errors — a wrong date of service or provider name — can make your insurer deny the claim.</small></span>
+          </label>
+        </div>
+
+        <div class="check-cat">
+          <h3>How insurance handled it</h3>
+          <label class="check-row" for="c_ins">
+            <input type="checkbox" id="c_ins" />
+            <span class="check-text"><strong>Insurance processed incorrectly</strong><small>Your EOB shows the claim as out-of-network when the provider is in-network, or your deductible or copay was applied wrong. Compare the EOB line by line with your plan.</small></span>
+          </label>
+          <label class="check-row" for="c_timely">
+            <input type="checkbox" id="c_timely" />
+            <span class="check-text"><strong>Charges denied as past the filing deadline</strong><small>Claims must be filed within your plan's timely-filing window. If the provider filed late, that's their error — not yours.</small></span>
+          </label>
+        </div>
+
+        <div class="check-cat">
+          <h3>Surprise charges</h3>
+          <label class="check-row" for="c_facility">
+            <input type="checkbox" id="c_facility" />
+            <span class="check-text"><strong>Facility fees you didn't expect</strong><small>Hospital-owned clinics can add a "facility fee" on top of the visit charge — sometimes hundreds of dollars — that was never mentioned before the visit.</small></span>
+          </label>
+          <label class="check-row" for="c_balance">
+            <input type="checkbox" id="c_balance" />
+            <span class="check-text"><strong>Balance billing that may be illegal</strong><small>Being billed for the remainder after insurance pays can be illegal for emergency care and many out-of-network situations under the federal No Surprises Act.</small></span>
+          </label>
+        </div>
+
+        <div class="reset-row"><button class="reset-btn" id="resetBtn" type="button">Clear all checks</button></div>
+        <p class="hint">Nothing is saved — your checks stay in this tab only.</p>
+      </div>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Your action list builds here</h2>
+            <p>Check an item on the left whenever you spot it on your bill. Each flag turns into a concrete next step.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow">ERRORS FLAGGED</p>
+            <p class="target" id="flagCount">0 of 10</p>
+            <p class="target-note">Each flag below comes with exactly what to do — and what to say when you call.</p>
+          </section>
+          <div class="actions" id="actionGroups"></div>
+          <button class="print-btn" id="printBtn" type="button">Print my checklist</button>
+          <div class="next-tool">
+            <p><strong>Found an error?</strong><small>Don't stop at fixing mistakes — you may be able to lower what's left, too.</small></p>
+            <a href="/money/medical-bill-negotiation/">Medical Bill Negotiation Savings →</a>
+          </div>
+          <section class="explanation" aria-label="About this checklist">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About this checklist</button>
+            <p class="explain-copy hidden" id="explainCopy">This is an educational checklist, not legal or insurance advice. Work from your itemized bill and explanation of benefits (EOB) — summaries hide errors. If a charge looks wrong, don't pay it under pressure: ask the billing office to pause collection while it's reviewed, and get names, dates, and reference numbers for every call. Appeal deadlines vary by plan and state — check your plan documents and act quickly. Billing and coding rules differ for Medicare and Medicaid, so confirm which rules apply to your coverage.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div id="printSheet" aria-hidden="true">
+    <h1>Medical Bill Error Checklist</h1>
+    <p class="sub">Flagged items and what to say — from Honed Proof (honedsignal.com/health/medical-bill-error-checker/)</p>
+    <div id="printItems"></div>
+    <p class="p-foot">Educational checklist only — not legal or insurance advice. Appeal deadlines vary by plan and state. Confirm what applies to your coverage, and talk to your insurer or a qualified professional about your situation.</p>
+  </div>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. This checklist is not legal or insurance advice. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var CHECKS = [
+      { id: 'c_dup', title: 'Duplicate charges', action: 'call',
+        script: '"I see the same charge listed twice for [procedure] on [date]. Can you remove the duplicate and send a corrected bill?"' },
+      { id: 'c_never', title: 'Services you never received', action: 'call',
+        script: '"I was billed for [service] on [date], but I never received it. Can you verify and remove the charge?"' },
+      { id: 'c_math', title: 'Math errors', action: 'call',
+        script: '"My line items add up to [correct total], not the [billed total] shown. Can you re-check the math and correct the bill?"' },
+      { id: 'c_wronginfo', title: 'Wrong patient, date, or provider info', action: 'call',
+        script: '"The bill lists [wrong detail]. Please correct it and resend so my insurance processes the claim correctly."' },
+      { id: 'c_facility', title: 'Facility fees you didn\'t expect', action: 'call',
+        script: '"I wasn\'t told about a facility fee before my visit. Can you explain what it covers and whether it can be reduced or waived?"' },
+      { id: 'c_upcode', title: 'Upcoding', action: 'appeal',
+        script: '"My bill shows code [code], which describes a more complex procedure than what I received. Please review the coding and correct it."' },
+      { id: 'c_unbundle', title: 'Unbundling', action: 'appeal',
+        script: '"These line items look like one procedure split into separate charges. Can you confirm whether they should be billed as a single code?"' },
+      { id: 'c_ins', title: 'Insurance processed incorrectly', action: 'appeal',
+        script: '"My EOB shows this was processed as [out-of-network / wrong cost-share], but my plan says it should be [correct]. Please reprocess the claim."' },
+      { id: 'c_timely', title: 'Charges denied as past the filing deadline', action: 'appeal',
+        script: '"This claim was denied as untimely, but the filing delay was on the provider\'s side. Please refile — and write off the charge if you can\'t."' },
+      { id: 'c_balance', title: 'Balance billing that may be illegal', action: 'protect',
+        script: '"I\'m getting a balance bill for [emergency / out-of-network] care. I\'d like to confirm this complies with the No Surprises Act before I pay anything."' }
+    ];
+
+    var ACTIONS = [
+      { key: 'call', kicker: 'STEP 1', title: 'Call billing and say\u2026',
+        lede: 'The billing office number is on your bill. Call during business hours, ask for the billing department, and use the script for each flagged item. Get a name, a date, and a reference number.' },
+      { key: 'itemized', kicker: 'STEP 2', title: 'Request an itemized bill',
+        lede: 'One concrete step: call the billing office and say "Please send me an itemized bill with procedure (CPT) codes for [date of service]." It is free, and it is your right. Most bills arrive as summaries that hide exactly the errors above.' },
+      { key: 'appeal', kicker: 'STEP 3', title: 'File an appeal with your insurer',
+        lede: 'If the error involves how insurance processed the claim, appeal in writing — phone calls alone often don\'t count. You usually have 180 days from the denial for an internal appeal; check your plan documents, because deadlines vary by plan and state.' },
+      { key: 'protect', kicker: 'STEP 4', title: 'Check No Surprises Act protections',
+        lede: 'One concrete step: federal law bans surprise balance bills for emergency care and for most out-of-network care received at in-network facilities. Before paying, call the number on your bill and ask whether the No Surprises Act applies to your situation.' }
+    ];
+
+    function $(id) { return document.getElementById(id); }
+
+    function flagged() {
+      var out = [];
+      for (var i = 0; i < CHECKS.length; i++) {
+        var el = $(CHECKS[i].id);
+        if (el && el.checked) out.push(CHECKS[i]);
+      }
+      return out;
+    }
+
+    function esc(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function render() {
+      var f = flagged();
+      var empty = $('emptyState'), res = $('resultState');
+      if (!f.length) {
+        empty.classList.remove('hidden');
+        res.classList.add('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+      res.classList.remove('hidden');
+      $('flagCount').textContent = f.length + ' of ' + CHECKS.length;
+
+      var groups = { call: [], itemized: [], appeal: [], protect: [] };
+      for (var i = 0; i < f.length; i++) groups[f[i].action].push(f[i]);
+      if (f.length) groups.itemized.push(null); // itemized step shows whenever anything is flagged
+
+      var html = '';
+      for (var a = 0; a < ACTIONS.length; a++) {
+        var act = ACTIONS[a], items = groups[act.key];
+        if (!items.length) continue;
+        html += '<section class="action-group"><h3><span class="kicker">' + act.kicker + '</span>' + esc(act.title) + '</h3>' +
+          '<p class="lede">' + esc(act.lede) + '</p>';
+        for (var j = 0; j < items.length; j++) {
+          if (!items[j]) continue;
+          html += '<div class="action-item"><span class="flag">' + esc(items[j].title) + '</span>' +
+            '<p class="script">' + esc(items[j].script) + '</p></div>';
+        }
+        html += '</section>';
+      }
+      $('actionGroups').innerHTML = html;
+    }
+
+    for (var i = 0; i < CHECKS.length; i++) {
+      (function (id) {
+        var el = $(id);
+        el.addEventListener('change', function () {
+          var row = el.closest('.check-row');
+          if (row) row.classList.toggle('checked', el.checked);
+          render();
+        });
+      })(CHECKS[i].id);
+    }
+
+    $('resetBtn').addEventListener('click', function () {
+      for (var i = 0; i < CHECKS.length; i++) {
+        var el = $(CHECKS[i].id);
+        el.checked = false;
+        var row = el.closest('.check-row');
+        if (row) row.classList.remove('checked');
+      }
+      render();
+    });
+
+    $('printBtn').addEventListener('click', function () {
+      var f = flagged();
+      var html = '';
+      if (!f.length) {
+        html = '<div class="p-item"><strong>No items flagged.</strong><div class="p-script">No errors were checked off. Walk through the checklist with your itemized bill and EOB.</div></div>';
+      } else {
+        for (var i = 0; i < f.length; i++) {
+          html += '<div class="p-item"><strong>' + esc(f[i].title) + '</strong>' +
+            '<div class="p-script">' + esc(f[i].script) + '</div></div>';
+        }
+      }
+      $('printItems').innerHTML = html;
+      window.print();
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>
