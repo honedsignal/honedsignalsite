@@ -526,7 +526,24 @@
     @media (prefers-reduced-motion: reduce) {
       .topic-links a, .visual-link, .decision-banner { transition: none; }
     }
-  </style>
+        .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        color: var(--muted);
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      .back-link:hover,
+      .back-link:focus-visible {
+        color: var(--text);
+        text-decoration: underline;
+      }
+    </style>
 
 
 
@@ -575,7 +592,7 @@
     </div>
 
     <div class="sticky-bar">
-      <a class="sticky-home" href="/" aria-label="Back to Honed Signal home">← Home</a>      <form class="search-form search-prominent" action="/money/search/" method="get" role="search">
+      <a class="back-link" href="/" aria-label="Back to Honed Signal home">← <span>Honed Signal</span></a>      <form class="search-form search-prominent" action="/money/search/" method="get" role="search">
         <label class="search-label" for="calculator-search">Search Honed Money calculators</label>
         <input class="search-input" id="calculator-search" name="q" type="search" placeholder="Search 265 calculators…" autocomplete="off" />
         <button class="search-submit" type="submit" aria-label="Search"><span aria-hidden="true">→</span></button>

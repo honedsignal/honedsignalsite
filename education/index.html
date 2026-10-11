@@ -78,11 +78,29 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     .edu-count{font:500 .72rem "DM Mono",monospace;color:var(--muted);white-space:nowrap}
     .edu-blurb{margin:10px 0 0;color:var(--muted);font-size:.95rem;max-width:70ch}
     .edu-section .tool-grid{margin-top:18px}
-  </style>
+        .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        color: var(--muted);
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        text-underline-offset: 4px;
+      }
+
+      .back-link:hover,
+      .back-link:focus-visible {
+        color: var(--text);
+        text-decoration: underline;
+      }
+    </style>
   <link rel="stylesheet" href="/money/print.css" media="print">
 </head>
 <body>
 <main class="page">
+  <a class="back-link" href="/" aria-label="Back to Honed Signal home">← <span>Honed Signal</span></a>
   <header class="hub-hero">
     <div class="hs-hero has-art" role="img" aria-label="A diverse group of students studying together in a sunlit library"><div class="shade"></div><h1 class="hs-hero-title">Tools for <span class="accent">learning</span>.</h1></div>
     <p><strong>Sharpened minds.</strong> Practical tools for students, teachers, and parents. Grades, study plans, reading time, citations — free, private, no account needed.</p>
