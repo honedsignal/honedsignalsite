@@ -177,7 +177,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 28px -16px 18px;
+      margin: 16px -16px 18px;
       padding: 10px 16px;
       background: color-mix(in srgb, #0b0e14 92%, transparent);
       backdrop-filter: blur(8px);
@@ -199,6 +199,10 @@
       white-space: nowrap;
     }
     .sticky-home:hover { border-color: var(--accent); }
+    @media (max-width: 560px) {
+      .sticky-bar { flex-wrap: wrap; row-gap: 10px; }
+      .search-prominent { flex: 1 1 100%; }
+    }
     .benefit-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -571,9 +575,9 @@
     </div>
 
     <div class="sticky-bar">
-      <a class="sticky-home" href="/money/" aria-label="Honed Money home">← Home</a>      <form class="search-form search-prominent" action="/money/search/" method="get" role="search">
+      <a class="sticky-home" href="/" aria-label="Back to Honed Signal home">← Home</a>      <form class="search-form search-prominent" action="/money/search/" method="get" role="search">
         <label class="search-label" for="calculator-search">Search Honed Money calculators</label>
-        <input class="search-input" id="calculator-search" name="q" type="search" placeholder="Search 246 calculators…" autocomplete="off" />
+        <input class="search-input" id="calculator-search" name="q" type="search" placeholder="Search 265 calculators…" autocomplete="off" />
         <button class="search-submit" type="submit" aria-label="Search"><span aria-hidden="true">→</span></button>
       </form>
     </div>
