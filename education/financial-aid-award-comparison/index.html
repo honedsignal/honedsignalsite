@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Financial Aid Award Comparison | Honed Signal</title>
+  <title>Financial Aid Award Comparison | Honed Flint</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -69,7 +69,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
   <link rel="stylesheet" href="/money/print.css" media="print">
 </head>
 <body>
-<a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
+<a class="money-home" href="/education/" aria-label="Back to Honed Flint">← Honed Flint</a>
 <main class="page">
   <header class="intro">
     <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">The bigger award <span class="accent">isn’t always better.</span></h1></div>
@@ -195,7 +195,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
   });
   function summaryText(){
     var d=last||getData();
-    return['Aid comparison \u2014 Honed Signal','','Winner: '+d.winner,'A net: '+money2.format(d.a.net),'B net: '+money2.format(d.b.net)].join('\n');
+    return['Aid comparison \u2014 Honed Flint','','Winner: '+d.winner,'A net: '+money2.format(d.a.net),'B net: '+money2.format(d.b.net)].join('\n');
   }
   document.getElementById('copyResults').addEventListener('click',function(){
     var txt=summaryText(),status=document.getElementById('copyStatus');

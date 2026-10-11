@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:," />
-  <title>Work-Study Income Calculator | Honed Signal</title>
+  <title>Work-Study Income Calculator | Honed Flint</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -69,7 +69,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
   <link rel="stylesheet" href="/money/print.css" media="print">
 </head>
 <body>
-<a class="money-home" href="/" aria-label="Back to Honed Signal">← Honed Signal</a>
+<a class="money-home" href="/education/" aria-label="Back to Honed Flint">← Honed Flint</a>
 <main class="page">
   <header class="intro">
     <div class="hs-hero"><div class="shade"></div><h1 class="hs-hero-title">The award is a ceiling, <span class="accent">not a paycheck.</span></h1></div>
@@ -183,7 +183,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
   });
   function summaryText(){
     var d=last||getData();
-    return['Work-study \u2014 Honed Signal','','Earnings: '+money2.format(d.earn),'Award used: '+d.used.toFixed(0)+'%'].join('\n');
+    return['Work-study \u2014 Honed Flint','','Earnings: '+money2.format(d.earn),'Award used: '+d.used.toFixed(0)+'%'].join('\n');
   }
   document.getElementById('copyResults').addEventListener('click',function(){
     var txt=summaryText(),status=document.getElementById('copyStatus');
