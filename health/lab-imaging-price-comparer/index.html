@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Compare cash/self-pay prices for labs and imaging across up to 3 facilities. Free lab and imaging price comparer from Honed Proof — plain-English results, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/lab-imaging-price-comparer/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Lab & Imaging Price Comparer","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/lab-imaging-price-comparer/","description":"Compare cash prices for the same lab test or imaging scan across up to three facilities.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Lab &amp; Imaging Price Comparer | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--red:#ff7379;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600}
+    .select-wrap{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .select-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .select-wrap select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600;font:inherit}
+    .select-wrap select option{background:var(--surface);color:var(--ink)}
+    .facility-row{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;background:var(--bg)}
+    .facility-row .facility-title{margin:0 0 10px;color:var(--muted);font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .err{color:var(--red);font-size:.75rem;font-weight:700;margin:8px 1px 0;min-height:1.1em}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .plan-block dd.best{color:var(--teal);font-weight:700}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet table{border-collapse:collapse;width:100%;margin:10px 0}
+      .print-sheet th,.print-sheet td{border:1px solid #999;padding:6px 8px;text-align:left}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Same test, <span class="accent">cheapest</span> facility.</h1>
+      </div>
+      <p>The same MRI can cost triple across town. Compare cash quotes from up to three facilities before you book.</p>
+    </header>
+
+    <section class="workbench" aria-label="Lab and imaging price comparer">
+      <form class="panel inputs" id="cmpForm" novalidate>
+        <div class="section-head"><h2>The test</h2><span class="step">01 / TEST</span></div>
+        <div class="field">
+          <label for="proc">Procedure</label>
+          <div class="select-wrap">
+            <select id="proc" aria-label="Procedure">
+              <option value="MRI">MRI</option>
+              <option value="CT scan">CT scan</option>
+              <option value="X-ray">X-ray</option>
+              <option value="Blood panel">Blood panel</option>
+              <option value="Ultrasound">Ultrasound</option>
+              <option value="Mammogram">Mammogram</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>The facilities</h2><span class="step">02 / QUOTES</span></div>
+        <div class="facility-row">
+          <p class="facility-title">Facility 1</p>
+          <div class="field">
+            <label for="facName1">Facility name (optional)</label>
+            <div class="text-input"><input id="facName1" type="text" placeholder="e.g. City Imaging" autocomplete="off" /></div>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label for="facPrice1">Cash / self-pay price</label>
+            <div class="money-input"><span>$</span><input id="facPrice1" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Facility 1 cash price" /></div>
+          </div>
+        </div>
+        <div class="facility-row">
+          <p class="facility-title">Facility 2</p>
+          <div class="field">
+            <label for="facName2">Facility name (optional)</label>
+            <div class="text-input"><input id="facName2" type="text" placeholder="e.g. Quick Scan Center" autocomplete="off" /></div>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label for="facPrice2">Cash / self-pay price</label>
+            <div class="money-input"><span>$</span><input id="facPrice2" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Facility 2 cash price" /></div>
+          </div>
+        </div>
+        <div class="facility-row">
+          <p class="facility-title">Facility 3</p>
+          <div class="field">
+            <label for="facName3">Facility name (optional)</label>
+            <div class="text-input"><input id="facName3" type="text" placeholder="e.g. Hospital Outpatient" autocomplete="off" /></div>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label for="facPrice3">Cash / self-pay price</label>
+            <div class="money-input"><span>$</span><input id="facPrice3" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Facility 3 cash price" /></div>
+          </div>
+        </div>
+        <p class="err" id="err" role="alert"></p>
+
+        <button class="calculate" type="submit">Compare prices</button>
+        <button class="ghost no-print" type="button" id="resetBtn">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Enter prices to compare</h2>
+            <p>Pick the test, add cash quotes from up to three facilities, and see where you'd pay the least.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="verdictEyebrow">VERDICT</p>
+            <p class="target" id="verdictAmount">$0</p>
+            <p class="target-note" id="verdictNote"></p>
+          </section>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>Ranked: cheapest to priciest</h3>
+              <dl id="rankList"></dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>Before you book</h3>
+              <ul>
+                <li><strong>Get the cash price in writing</strong> before the appointment — phone quotes have a way of changing.</li>
+                <li><strong>Ask what's included.</strong> Imaging quotes sometimes exclude the radiologist's reading fee — ask, so there's no second bill.</li>
+                <li><strong>Hospital outpatient departments are usually the priciest</strong> setting for the same test. Independent imaging centers tend to be cheapest.</li>
+                <li><strong>Ask about pay-at-the-time-of-service discounts.</strong> Some facilities cut the cash price further if you pay up front.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle no-print" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About these results</button>
+            <p class="explain-copy hidden" id="explainCopy">This compares the cash/self-pay prices you enter for the same test at different facilities. Prices vary because facilities negotiate different rates — and cash prices are often far lower than what an insurer is billed. Quotes can expire and may not include every fee, so confirm the final written price before you book. This is a planning aid, not medical advice.</p>
+          </section>
+          <button class="ghost no-print" type="button" id="printBtn" style="margin-top:10px">Print summary</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Lab &amp; Imaging Price Comparison — <span id="psProc">Procedure</span></h2>
+      <table>
+        <tr><th>Cheapest facility</th><td id="psCheapest">—</td></tr>
+        <tr><th>Cheapest price</th><td id="psCheapestPrice">—</td></tr>
+        <tr><th>Priciest price</th><td id="psPriciestPrice">—</td></tr>
+        <tr><th>Savings vs priciest</th><td id="psSavings">—</td></tr>
+        <tr><th>Difference</th><td id="psPct">—</td></tr>
+      </table>
+      <p class="ps-note">Cash quotes only — confirm the final written price before booking. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofLabComparer';
+
+    // [TESTABLE-START]
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmt0(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    // list: [{name, price}] with price > 0. Returns a result object with
+    // status 'need-more' | 'tie' | 'ok'.
+    function computeCompare(list) {
+      var valid = list.filter(function (e) { return e && isFinite(e.price) && e.price > 0; });
+      if (valid.length < 2) return { status: 'need-more', count: valid.length };
+      var sorted = valid.slice().sort(function (a, b) { return a.price - b.price; });
+      var min = sorted[0].price;
+      var max = sorted[sorted.length - 1].price;
+      var savings = max - min;
+      var pct = max > 0 ? (savings / max) * 100 : 0;
+      return {
+        status: savings === 0 ? 'tie' : 'ok',
+        sorted: sorted,
+        cheapest: sorted[0],
+        priciest: sorted[sorted.length - 1],
+        savings: savings,
+        pct: pct
+      };
+    }
+
+    function verdictText(r, proc) {
+      if (r.status === 'tie') {
+        return 'Every facility quoted the same price — ' + fmt(r.cheapest.price) + ' for the ' + proc + '. Get it in writing, and check it covers everything (facility fee plus any reading or professional fee).';
+      }
+      return r.cheapest.name + ' saves you ' + fmt0(r.savings) + ' — that\u2019s ' + r.pct.toFixed(1) + '% less than the priciest quote (' + fmt(r.priciest.price) + ' at ' + r.priciest.name + '). Always ask for the cash price in writing before you book.';
+    }
+    // [TESTABLE-END]
+
+    function $(id) { return document.getElementById(id); }
+    function priceOf(id) { var v = parseFloat($(id).value); return (isFinite(v) && v > 0) ? v : 0; }
+
+    var SLOTS = ['1', '2', '3'];
+    var DEFAULT_LABELS = ['Facility A', 'Facility B', 'Facility C'];
+
+    function collect() {
+      return SLOTS.map(function (s, i) {
+        var name = $('facName' + s).value.trim() || DEFAULT_LABELS[i];
+        return { name: name, price: priceOf('facPrice' + s) };
+      });
+    }
+
+    function save() {
+      var data = {
+        proc: $('proc').value,
+        facName1: $('facName1').value, facPrice1: $('facPrice1').value,
+        facName2: $('facName2').value, facPrice2: $('facPrice2').value,
+        facName3: $('facName3').value, facPrice3: $('facPrice3').value
+      };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return;
+      $('proc').value = data.proc || 'MRI';
+      $('facName1').value = data.facName1 || '';
+      $('facPrice1').value = data.facPrice1 || '';
+      $('facName2').value = data.facName2 || '';
+      $('facPrice2').value = data.facPrice2 || '';
+      $('facName3').value = data.facName3 || '';
+      $('facPrice3').value = data.facPrice3 || '';
+    }
+
+    function row(label, value, best) {
+      return '<dt>' + esc(label) + '</dt><dd' + (best ? ' class="best"' : '') + '>' + esc(value) + '</dd>';
+    }
+
+    function render(r) {
+      var proc = $('proc').value;
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+      $('err').textContent = '';
+
+      if (r.status === 'need-more') {
+        $('resultState').classList.add('hidden');
+        $('emptyState').classList.remove('hidden');
+        $('err').textContent = 'Add a cash price for at least two facilities to compare.';
+        return;
+      }
+
+      if (r.status === 'tie') {
+        $('verdictEyebrow').textContent = 'VERDICT — TIE';
+        $('verdictAmount').textContent = '$0';
+      } else {
+        $('verdictEyebrow').textContent = 'VERDICT — CHEAPEST: ' + r.cheapest.name.toUpperCase();
+        $('verdictAmount').textContent = fmt0(r.savings) + ' saved';
+      }
+      $('verdictNote').textContent = verdictText(r, proc);
+
+      $('rankList').innerHTML = r.sorted.map(function (e, i) {
+        return row(e.name + (i === 0 ? ' — cheapest' : ''), fmt(e.price), i === 0);
+      }).join('');
+
+      $('psProc').textContent = proc;
+      $('psCheapest').textContent = r.cheapest.name;
+      $('psCheapestPrice').textContent = fmt(r.cheapest.price);
+      $('psPriciestPrice').textContent = fmt(r.priciest.price);
+      $('psSavings').textContent = fmt0(r.savings);
+      $('psPct').textContent = r.pct.toFixed(1) + '%';
+
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    ['proc', 'facName1', 'facPrice1', 'facName2', 'facPrice2', 'facName3', 'facPrice3'].forEach(function (id) {
+      $(id).addEventListener('input', save);
+      $(id).addEventListener('change', save);
+    });
+
+    $('cmpForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      save();
+      render(computeCompare(collect()));
+    });
+
+    $('resetBtn').addEventListener('click', function () {
+      ['proc', 'facName1', 'facPrice1', 'facName2', 'facPrice2', 'facName3', 'facPrice3'].forEach(function (id) { $(id).value = ''; });
+      $('proc').value = 'MRI';
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      $('err').textContent = '';
+      $('resultState').classList.add('hidden');
+      $('emptyState').classList.remove('hidden');
+      $('facPrice1').focus();
+    });
+
+    $('printBtn').addEventListener('click', function () { window.print(); });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    restore();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

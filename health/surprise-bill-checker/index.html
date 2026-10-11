@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Got a surprise medical bill? Check whether the No Surprises Act protects you and see what to do next. Free surprise bill checker from Honed Proof — plain-English results, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/surprise-bill-checker/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Surprise Bill Checker","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/surprise-bill-checker/","description":"Check whether the No Surprises Act protects you from a surprise out-of-network bill.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Surprise Bill Checker | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--red:#ff7379;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    .seg{display:flex;gap:6px}
+    .seg button{flex:1;min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);cursor:pointer;font-weight:700;font-size:.85rem}
+    .seg button:hover{border-color:var(--blue)}
+    .seg button.active{background:var(--teal);border-color:var(--teal);color:#071009}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .err{color:var(--red);font-size:.75rem;font-weight:700;margin:8px 1px 0;min-height:1.1em}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .result-top.warn:after{border-color:var(--orange)}
+    .result-top.bad:after{border-color:var(--red)}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet table{border-collapse:collapse;width:100%;margin:10px 0}
+      .print-sheet th,.print-sheet td{border:1px solid #999;padding:6px 8px;text-align:left}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Does the <span class="accent">No Surprises Act</span> protect you?</h1>
+      </div>
+      <p>A federal law bans most surprise out-of-network bills. Answer four questions to see where your bill likely falls.</p>
+    </header>
+
+    <section class="workbench" aria-label="Surprise bill checker">
+      <form class="panel inputs" id="chkForm" novalidate>
+        <div class="section-head"><h2>The bill</h2><span class="step">01 / NUMBERS</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="billAmt">Total bill amount</label>
+            <div class="money-input"><span>$</span><input id="billAmt" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Total bill amount" /></div>
+          </div>
+          <div class="field">
+            <label for="oonAmt">Out-of-network amount billed</label>
+            <div class="money-input"><span>$</span><input id="oonAmt" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Out-of-network amount billed" /></div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>The situation</h2><span class="step">02 / CARE</span></div>
+        <div class="field">
+          <label id="emgLabel">Was this emergency care?</label>
+          <div class="seg" role="group" aria-labelledby="emgLabel">
+            <button type="button" id="emgYes">Yes</button>
+            <button type="button" id="emgNo" class="active">No</button>
+          </div>
+        </div>
+        <div class="field">
+          <label id="netLabel">Was the facility in-network?</label>
+          <div class="seg" role="group" aria-labelledby="netLabel">
+            <button type="button" id="netYes" class="active">Yes</button>
+            <button type="button" id="netNo">No</button>
+          </div>
+        </div>
+        <p class="err" id="err" role="alert"></p>
+
+        <button class="calculate" type="submit">Check my bill</button>
+        <button class="ghost no-print" type="button" id="resetBtn">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere. This is general guidance — not legal advice.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Enter your bill to check</h2>
+            <p>Four questions — then a plain-English read on whether the No Surprises Act likely covers your bill, and what to do next.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top" id="resultTop">
+            <p class="eyebrow" id="verdictEyebrow">VERDICT</p>
+            <p class="target" id="verdictAmount">—</p>
+            <p class="target-note" id="verdictNote"></p>
+          </section>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>The numbers</h3>
+              <dl id="numList"></dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>What to do next</h3>
+              <ul>
+                <li><strong>Don't pay the out-of-network portion yet.</strong> Paying it can be treated as accepting the charges.</li>
+                <li><strong>Call your insurer</strong> and ask them to reprocess the claim under the No Surprises Act.</li>
+                <li><strong>You can file a complaint with CMS</strong> — the federal agency that enforces the law — at cms.gov/nosurprises.</li>
+                <li><strong>Keep everything in writing:</strong> the bill, your explanation of benefits, and notes from every call, with dates and names.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About the No Surprises Act">
+            <button class="explain-toggle no-print" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About the No Surprises Act</button>
+            <p class="explain-copy hidden" id="explainCopy">The federal No Surprises Act (in effect since 2022) bans "balance billing" — the practice of charging you the difference between what an out-of-network provider bills and what your insurer pays — in most cases. It covers emergency services (at any facility, in-network or not), and non-emergency care at in-network facilities when out-of-network specialists you didn't choose treat you. Providers can't ask you to waive these protections in an emergency, and for planned care the consent form must be given at least 72 hours ahead. One gap to know: ground ambulance rides are generally not covered by the Act. This tool gives general guidance only — it is not legal advice. For your specific situation, talk to your state's insurance department.</p>
+          </section>
+          <button class="ghost no-print" type="button" id="printBtn" style="margin-top:10px">Print summary</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Surprise Bill Check</h2>
+      <table>
+        <tr><th>Verdict</th><td id="psVerdict">—</td></tr>
+        <tr><th>Total bill</th><td id="psBill">—</td></tr>
+        <tr><th>Out-of-network balance bill</th><td id="psOon">—</td></tr>
+        <tr><th>Emergency care</th><td id="psEmg">—</td></tr>
+        <tr><th>In-network facility</th><td id="psNet">—</td></tr>
+      </table>
+      <p class="ps-note">General guidance only — not legal advice. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofSurpriseBill';
+
+    // [TESTABLE-START]
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmt0(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    // Returns 'likely-protected' | 'maybe' | 'likely-not' | 'none' (no OON amount).
+    function checkBill(bill, oon, emergency, inNetwork) {
+      if (!(oon > 0)) return 'none';
+      if (emergency) return 'likely-protected';
+      if (inNetwork) return 'maybe';
+      return 'likely-not';
+    }
+
+    function verdictCopy(v, oon) {
+      var o = fmt(oon);
+      if (v === 'likely-protected') return {
+        title: 'Likely protected',
+        tone: 'good',
+        note: 'Emergency care is covered by the No Surprises Act no matter which facility you went to. You cannot be charged more than your plan\u2019s normal in-network cost-sharing (your usual deductible, copay, or coinsurance) — the extra ' + o + ' in out-of-network charges should not be your bill.'
+      };
+      if (v === 'maybe') return {
+        title: 'Maybe protected',
+        tone: 'warn',
+        note: 'At an in-network facility, the Act covers out-of-network balance bills from specialists you didn\u2019t choose — anesthesiologists, radiologists, pathologists, assistant surgeons, hospitalists, and intensivists. The big exception: if you signed a written notice-and-consent form (usually required at least 72 hours ahead for planned care), you may have agreed to the extra charges. Find out whether you signed one.'
+      };
+      if (v === 'likely-not') return {
+        title: 'Likely not protected',
+        tone: 'bad',
+        note: 'The Act generally does not cover non-emergency care at an out-of-network facility — that\u2019s the situation where balance billing is still most likely allowed. But some states add extra protections beyond the federal law, so check your state\u2019s rules before you pay.'
+      };
+      return {
+        title: 'No balance bill here',
+        tone: 'good',
+        note: 'You entered no out-of-network amount. The No Surprises Act targets balance bills — unexpected extra charges from out-of-network providers. With no out-of-network charges on this bill, there\u2019s nothing here for the Act to erase.'
+      };
+    }
+    // [TESTABLE-END]
+
+    function $(id) { return document.getElementById(id); }
+    function num(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+
+    var emg = false;
+    var inNet = true;
+
+    function setSeg(yesId, noId, value) {
+      $(yesId).classList.toggle('active', value === true);
+      $(noId).classList.toggle('active', value === false);
+    }
+
+    function syncSeg() {
+      setSeg('emgYes', 'emgNo', emg);
+      setSeg('netYes', 'netNo', inNet);
+    }
+
+    function save() {
+      var data = { billAmt: $('billAmt').value, oonAmt: $('oonAmt').value, emg: emg, inNet: inNet };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return;
+      $('billAmt').value = data.billAmt || '';
+      $('oonAmt').value = data.oonAmt || '';
+      emg = !!data.emg;
+      inNet = data.inNet !== false;
+      syncSeg();
+    }
+
+    function row(l, v) { return '<dt>' + esc(l) + '</dt><dd>' + esc(v) + '</dd>'; }
+
+    function render(v, bill, oon) {
+      var c = verdictCopy(v, oon);
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+      $('err').textContent = '';
+      $('resultTop').className = 'result-top' + (c.tone === 'warn' ? ' warn' : '') + (c.tone === 'bad' ? ' bad' : '');
+      $('verdictEyebrow').textContent = 'VERDICT';
+      $('verdictAmount').textContent = c.title;
+      $('verdictNote').textContent = c.note;
+      $('numList').innerHTML =
+        row('Total bill', fmt(bill)) +
+        row('Out-of-network balance bill', fmt(oon)) +
+        row('At stake under the Act', v === 'none' ? '$0 — no balance bill' : fmt(oon)) +
+        row('What you should owe instead', 'Your plan\u2019s normal in-network cost-sharing — check your explanation of benefits');
+      $('psVerdict').textContent = c.title;
+      $('psBill').textContent = fmt(bill);
+      $('psOon').textContent = fmt(oon);
+      $('psEmg').textContent = emg ? 'Yes' : 'No';
+      $('psNet').textContent = inNet ? 'Yes' : 'No';
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    $('emgYes').addEventListener('click', function () { emg = true; syncSeg(); save(); });
+    $('emgNo').addEventListener('click', function () { emg = false; syncSeg(); save(); });
+    $('netYes').addEventListener('click', function () { inNet = true; syncSeg(); save(); });
+    $('netNo').addEventListener('click', function () { inNet = false; syncSeg(); save(); });
+    ['billAmt', 'oonAmt'].forEach(function (id) { $(id).addEventListener('input', save); });
+
+    $('chkForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bill = num('billAmt');
+      if (!(bill > 0)) { $('err').textContent = 'Enter the total bill amount first.'; $('billAmt').focus(); return; }
+      var oon = num('oonAmt');
+      save();
+      render(checkBill(bill, oon, emg, inNet), bill, oon);
+    });
+
+    $('resetBtn').addEventListener('click', function () {
+      $('billAmt').value = '';
+      $('oonAmt').value = '';
+      emg = false;
+      inNet = true;
+      syncSeg();
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      $('err').textContent = '';
+      $('resultState').classList.add('hidden');
+      $('emptyState').classList.remove('hidden');
+      $('billAmt').focus();
+    });
+
+    $('printBtn').addEventListener('click', function () { window.print(); });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    restore();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

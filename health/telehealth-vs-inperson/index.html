@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Compare the true total cost of a telehealth visit against an in-person visit — including travel and the value of your time. Free telehealth vs in-person cost comparer from Honed Proof — plain-English results, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/telehealth-vs-inperson/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Telehealth vs. In-Person Comparer","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/telehealth-vs-inperson/","description":"Compare the true total cost of a telehealth visit against an in-person visit, including travel and the value of your time.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Telehealth vs. In-Person: Same Visit, True Total Cost | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .share-status{margin:10px 1px 0;color:var(--teal);font-size:.72rem;min-height:1.1em}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .versus{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .vs-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px;text-align:center}
+    .vs-card.winner{border-color:color-mix(in srgb,var(--teal) 55%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--teal) 55%,transparent)}
+    .vs-card h3{margin:0 0 6px;font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .vs-card .amount{margin:0;font:700 1.9rem "DM Mono",monospace;letter-spacing:-.03em}
+    .vs-card.winner .amount{color:var(--teal)}
+    .vs-card p{margin:8px 0 0;font-size:.7rem;color:var(--muted)}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.versus{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet table{border-collapse:collapse;width:100%;margin:10px 0}
+      .print-sheet th,.print-sheet td{border:1px solid #999;padding:6px 8px;text-align:left}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Same visit, <span class="accent">true</span> total cost.</h1>
+      </div>
+      <p>The copay isn't the whole price of an office visit. Add in travel and your time, and the virtual visit often looks very different.</p>
+    </header>
+
+    <section class="workbench" aria-label="Telehealth versus in-person comparer">
+      <form class="panel inputs" id="thForm" novalidate>
+        <div class="section-head"><h2>The visit</h2><span class="step">01 / VISIT</span></div>
+        <div class="field">
+          <label for="reason">Visit reason (optional)</label>
+          <div class="text-input"><input id="reason" type="text" placeholder="e.g. rash check, follow-up" autocomplete="off" /></div>
+        </div>
+        <div class="field">
+          <label for="teleCost">Telehealth visit cost</label>
+          <div class="money-input"><span>$</span><input id="teleCost" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Telehealth visit cost" /></div>
+        </div>
+
+        <div class="section-head"><h2>In-person costs</h2><span class="step">02 / OFFICE</span></div>
+        <div class="field">
+          <label for="inCopay">In-person copay or coinsurance amount</label>
+          <div class="money-input"><span>$</span><input id="inCopay" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="In-person copay or coinsurance amount" /></div>
+        </div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="travelCost">Round-trip travel cost (optional)</label>
+            <div class="money-input"><span>$</span><input id="travelCost" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Round-trip travel cost, optional" /></div>
+          </div>
+          <div class="field">
+            <label for="timeCost">Value of time off work (optional)</label>
+            <div class="money-input"><span>$</span><input id="timeCost" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Value of time off work, optional" /></div>
+          </div>
+        </div>
+
+        <button class="calculate" type="submit">Compare true costs</button>
+        <button class="ghost no-print" type="button" id="resetBtn">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Enter your numbers to compare</h2>
+            <p>Add the visit prices, plus any travel cost and the value of your time, and see which path really costs less.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="verdictEyebrow">VERDICT</p>
+            <p class="target" id="verdictAmount">$0</p>
+            <p class="target-note" id="verdictNote"></p>
+          </section>
+          <div class="versus">
+            <section class="vs-card" id="teleCard" aria-label="Telehealth total cost">
+              <h3>Telehealth</h3>
+              <p class="amount" id="vsTele">$0</p>
+              <p id="vsTeleNote">Just the visit cost — no travel, no time off.</p>
+            </section>
+            <section class="vs-card" id="inCard" aria-label="In-person total cost">
+              <h3>In-person</h3>
+              <p class="amount" id="vsIn">$0</p>
+              <p id="vsInNote">Your estimated true total: copay plus travel and time.</p>
+            </section>
+          </div>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>How the in-person total is built</h3>
+              <dl>
+                <dt>Telehealth visit cost</dt><dd id="bTele">—</dd>
+                <dt>In-person copay / coinsurance</dt><dd id="bInCopay">—</dd>
+                <dt>Round-trip travel</dt><dd id="bInTravel">—</dd>
+                <dt>Time off work (value)</dt><dd id="bInTime">—</dd>
+                <dt><strong>In-person true total</strong></dt><dd id="bInTotal" style="font-weight:700">—</dd>
+                <dt style="color:var(--teal);font-weight:700">Difference</dt><dd id="bDiff" style="color:var(--teal);font-weight:700">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>Before you decide</h3>
+              <ul>
+                <li><strong>Some plans charge the same copay</strong> for virtual and office visits — when they do, travel and time decide it.</li>
+                <li><strong>The travel number is yours to set:</strong> gas, parking, tolls, or a rideshare fare.</li>
+                <li><strong>Time has a real value:</strong> an hourly wage times hours missed is a fair estimate — including the waiting room.</li>
+                <li><strong>Cost-sharing varies by plan.</strong> Confirm your telehealth and office-visit copays before you book.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle no-print" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About these results</button>
+            <p class="explain-copy hidden" id="explainCopy">This compares two totals: the telehealth visit cost you enter, and the in-person visit's true total — your copay or coinsurance plus whatever you entered for round-trip travel and the value of your time. This is a cost comparison only, not medical advice. Confirm cost-sharing with your plan before you book.</p>
+          </section>
+          <button class="ghost no-print" type="button" id="printBtn" style="margin-top:10px">Print summary</button>
+          <button class="ghost no-print" type="button" id="copyBtn">Copy results</button>
+          <button class="ghost no-print" type="button" id="emailBtn">Email my results</button>
+          <p class="share-status no-print" id="shareStatus" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Telehealth vs In-Person — <span id="psReason">Visit</span></h2>
+      <table>
+        <tr><th>Telehealth total</th><td id="psTele">—</td></tr>
+        <tr><th>In-person true total</th><td id="psIn">—</td></tr>
+        <tr><th>Difference</th><td id="psDiff">—</td></tr>
+        <tr><th>Cheaper path</th><td id="psWinner">—</td></tr>
+      </table>
+      <p class="ps-note">Cost comparison only — not medical advice. Confirm cost-sharing with your plan. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofTelehealthCompare';
+    var TIE = 10; // below this dollar gap, call it too close
+
+    function $(id) { return document.getElementById(id); }
+    function num(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmt0(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+    function compute(tele, copay, travel, time) {
+      var inTotal = copay + travel + time;
+      var diff = inTotal - tele; // positive => telehealth cheaper
+      var verdict;
+      if (diff > TIE) verdict = 'tele';
+      else if (diff < -TIE) verdict = 'in';
+      else verdict = 'tie';
+      return { tele: tele, copay: copay, travel: travel, time: time, inTotal: inTotal, diff: diff, verdict: verdict };
+    }
+
+    function summaryText(r, reason) {
+      var label = r.verdict === 'tele' ? 'Telehealth cheaper by ' + fmt0(Math.abs(r.diff))
+        : r.verdict === 'in' ? 'In-person cheaper by ' + fmt0(Math.abs(r.diff))
+        : 'Too close to call (within ' + fmt0(TIE) + ')';
+      var lines = [
+        'Telehealth vs. In-Person Comparer results',
+        reason ? 'Visit reason: ' + reason : 'Visit reason: (not entered)', '',
+        'Telehealth visit cost: ' + fmt(r.tele), '',
+        'In-person copay / coinsurance: ' + fmt(r.copay),
+        'Round-trip travel: ' + fmt(r.travel),
+        'Time off work (value): ' + fmt(r.time),
+        'In-person true total: ' + fmt(r.inTotal), '',
+        'Result: ' + label, '',
+        'Cost comparison only — not medical advice. Confirm cost-sharing with your plan. From Honed Proof.'
+      ];
+      return lines.join('\n');
+    }
+
+    var lastSummary = '';
+
+    function save() {
+      var data = { reason: $('reason').value, teleCost: $('teleCost').value, inCopay: $('inCopay').value, travelCost: $('travelCost').value, timeCost: $('timeCost').value };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return;
+      $('reason').value = data.reason || '';
+      $('teleCost').value = data.teleCost || '';
+      $('inCopay').value = data.inCopay || '';
+      $('travelCost').value = data.travelCost || '';
+      $('timeCost').value = data.timeCost || '';
+    }
+
+    function render(r, reason) {
+      var what = reason || 'This visit';
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+
+      var label, note;
+      if (r.verdict === 'tele') {
+        label = 'Telehealth saves about ' + fmt0(Math.abs(r.diff));
+        note = what + ': once travel and time are counted, the virtual visit costs less out of pocket.';
+        $('verdictEyebrow').textContent = 'VERDICT — TELEHEALTH COSTS LESS';
+      } else if (r.verdict === 'in') {
+        label = 'In-person saves about ' + fmt0(Math.abs(r.diff));
+        note = what + ': the office visit\'s true total is lower, even with travel and time added in.';
+        $('verdictEyebrow').textContent = 'VERDICT — IN-PERSON COSTS LESS';
+      } else {
+        label = 'Too close to call';
+        note = what + ': the two paths are within ' + fmt0(TIE) + ' of each other. On cost alone, neither wins — pick the format you prefer.';
+        $('verdictEyebrow').textContent = 'VERDICT — ABOUT THE SAME';
+      }
+      $('verdictAmount').textContent = label;
+      $('verdictNote').textContent = note;
+
+      $('vsTele').textContent = fmt(r.tele);
+      $('vsIn').textContent = fmt(r.inTotal);
+      $('teleCard').classList.toggle('winner', r.verdict === 'tele');
+      $('inCard').classList.toggle('winner', r.verdict === 'in');
+
+      $('bTele').textContent = fmt(r.tele);
+      $('bInCopay').textContent = fmt(r.copay);
+      $('bInTravel').textContent = fmt(r.travel);
+      $('bInTime').textContent = fmt(r.time);
+      $('bInTotal').textContent = fmt(r.inTotal);
+      $('bDiff').textContent = (r.verdict === 'tele' ? 'Telehealth −' : r.verdict === 'in' ? 'In-person −' : 'Within ') + fmt(Math.abs(r.diff));
+
+      $('psReason').textContent = what;
+      $('psTele').textContent = fmt(r.tele);
+      $('psIn').textContent = fmt(r.inTotal);
+      $('psDiff').textContent = fmt(Math.abs(r.diff));
+      $('psWinner').textContent = r.verdict === 'tele' ? 'Telehealth' : (r.verdict === 'in' ? 'In-person' : 'Too close to call');
+
+      lastSummary = summaryText(r, reason);
+      $('shareStatus').textContent = '';
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function fallbackCopy(text) {
+      var area = document.createElement('textarea');
+      area.value = text; area.setAttribute('readonly', '');
+      area.style.position = 'fixed'; area.style.opacity = '0';
+      document.body.appendChild(area); area.select();
+      var worked = false;
+      try { worked = document.execCommand('copy'); } catch (e) { worked = false; }
+      document.body.removeChild(area);
+      return worked;
+    }
+
+    ['reason', 'teleCost', 'inCopay', 'travelCost', 'timeCost'].forEach(function (id) {
+      $(id).addEventListener('input', save);
+    });
+
+    $('thForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var tele = num('teleCost');
+      var copay = num('inCopay');
+      if (!(tele > 0) && !(copay > 0)) {
+        $('teleCost').focus();
+        return;
+      }
+      save();
+      render(compute(tele, copay, num('travelCost'), num('timeCost')), $('reason').value.trim());
+    });
+
+    $('resetBtn').addEventListener('click', function () {
+      ['reason', 'teleCost', 'inCopay', 'travelCost', 'timeCost'].forEach(function (id) { $(id).value = ''; });
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      lastSummary = '';
+      $('shareStatus').textContent = '';
+      $('resultState').classList.add('hidden');
+      $('emptyState').classList.remove('hidden');
+      $('reason').focus();
+    });
+
+    $('printBtn').addEventListener('click', function () { window.print(); });
+
+    $('copyBtn').addEventListener('click', function () {
+      if (!lastSummary) return;
+      var done = function (ok) { $('shareStatus').textContent = ok ? 'Results copied to your clipboard.' : 'Copy was blocked. Select the results above to copy them manually.'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(lastSummary).then(function () { done(true); }).catch(function () { done(fallbackCopy(lastSummary)); });
+      } else { done(fallbackCopy(lastSummary)); }
+    });
+
+    $('emailBtn').addEventListener('click', function () {
+      if (!lastSummary) return;
+      var link = document.createElement('a');
+      link.href = 'mailto:?subject=' + encodeURIComponent('My telehealth vs in-person comparison') + '&body=' + encodeURIComponent(lastSummary);
+      link.style.display = 'none';
+      document.body.appendChild(link); link.click(); document.body.removeChild(link);
+      $('shareStatus').textContent = 'Opening your email app with the results filled in.';
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    restore();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

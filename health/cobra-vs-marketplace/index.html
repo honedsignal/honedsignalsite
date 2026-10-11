@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Job loss? Compare COBRA against marketplace plans by estimated annual cost. Free COBRA vs. Marketplace comparer from Honed Proof — plain-English results, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/cobra-vs-marketplace/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"COBRA vs. Marketplace Comparer","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/cobra-vs-marketplace/","description":"Compare the estimated annual cost of COBRA continuation coverage against marketplace health plans.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>COBRA vs. Marketplace Comparer | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600}
+    .text-input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600;appearance:none;-webkit-appearance:none}
+    .text-input select option{background:var(--surface);color:var(--ink)}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .radio-row{display:flex;gap:8px;flex-wrap:wrap}
+    .radio-pill{position:relative}
+    .radio-pill input{position:absolute;opacity:0;inset:0}
+    .radio-pill label{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:999px;cursor:pointer;font-weight:700;font-size:.82rem;color:var(--muted);transition:all .15s}
+    .radio-pill input:checked+label{border-color:var(--teal);color:var(--teal);background:color-mix(in srgb,var(--teal) 12%,transparent)}
+    .radio-pill input:focus-visible+label{outline:2px solid var(--blue);outline-offset:2px}
+    .check{display:flex;align-items:center;gap:12px;min-height:44px;padding:4px 0;cursor:pointer;font-size:.82rem;color:var(--muted)}
+    .check input{width:20px;height:20px;accent-color:var(--teal);flex:none;cursor:pointer}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .tool-actions{display:flex;gap:8px;margin-top:10px}
+    .tool-actions .ghost{flex:1;margin-top:0}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .scenario{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .scenario h3{margin:0 0 12px;font-size:.9rem}
+    .scenario table{width:100%;border-collapse:collapse;font-size:.74rem}
+    .scenario th,.scenario td{padding:8px 6px;text-align:right;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+    .scenario th:first-child,.scenario td:first-child{text-align:left}
+    .scenario thead th{border-top:0;color:var(--muted);font-weight:700}
+    .scenario tbody tr.best td{color:var(--teal);font-weight:700}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top{padding:19px}.goal-fields{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>COBRA <span class="accent">vs</span> marketplace: what does a year cost?</h1>
+      </div>
+      <p>Job loss shouldn't mean guessing at coverage. Compare COBRA's full premium against marketplace plans at your real usage level.</p>
+    </header>
+
+    <section class="workbench" aria-label="COBRA versus marketplace comparer">
+      <form class="panel inputs" id="cobraForm" novalidate>
+        <div class="section-head"><h2>COBRA (your old plan)</h2><span class="step">01 / COBRA</span></div>
+        <div class="field">
+          <label for="cobraPrem">COBRA monthly premium (the full price on your election notice)</label>
+          <div class="money-input"><span>$</span><input id="cobraPrem" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="COBRA monthly premium" /></div>
+        </div>
+        <div class="field">
+          <label for="cobraDed">COBRA plan deductible (optional — assumed $0 if blank)</label>
+          <div class="money-input"><span>$</span><input id="cobraDed" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="COBRA plan deductible, optional" /></div>
+        </div>
+        <p class="hint" style="margin-top:-6px">COBRA lets you keep your employer's plan, but you pay the full premium yourself (employer + employee share, plus a small admin fee). That's why it's usually the most expensive option.</p>
+
+        <div class="section-head"><h2>Marketplace plan A</h2><span class="step">02 / MARKETPLACE</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="planAPrem">Monthly premium</label>
+            <div class="money-input"><span>$</span><input id="planAPrem" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Marketplace plan A monthly premium" /></div>
+          </div>
+          <div class="field">
+            <label for="planADed">Deductible</label>
+            <div class="money-input"><span>$</span><input id="planADed" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Marketplace plan A deductible" /></div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>Marketplace plan B <span style="font-weight:400;color:var(--muted)">(optional)</span></h2><span class="step">03 / SECOND PLAN</span></div>
+        <div class="field">
+          <label class="check" for="usePlanB"><input id="usePlanB" type="checkbox" /> Compare a second marketplace plan</label>
+        </div>
+        <div class="goal-fields" id="planBFields" style="display:none">
+          <div class="field">
+            <label for="planBPrem">Monthly premium</label>
+            <div class="money-input"><span>$</span><input id="planBPrem" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Marketplace plan B monthly premium" /></div>
+          </div>
+          <div class="field">
+            <label for="planBDed">Deductible</label>
+            <div class="money-input"><span>$</span><input id="planBDed" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Marketplace plan B deductible" /></div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>Your situation</h2><span class="step">04 / YOU</span></div>
+        <div class="field">
+          <label for="usageSel">Expected annual medical spending</label>
+          <div class="text-input">
+            <select id="usageSel" aria-label="Expected annual medical spending">
+              <option value="low">Low — checkups only (~$1,500/yr)</option>
+              <option value="medium" selected>Medium — a few visits + one procedure (~$6,000/yr)</option>
+              <option value="high">High — ongoing care or a surgery year (~$15,000/yr)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Eligible for a marketplace subsidy (premium tax credit)?</label>
+          <div class="radio-row" role="radiogroup" aria-label="Subsidy eligibility">
+            <span class="radio-pill"><input type="radio" name="subElig" id="subNo" value="no" checked /><label for="subNo">No</label></span>
+            <span class="radio-pill"><input type="radio" name="subElig" id="subYes" value="yes" /><label for="subYes">Yes</label></span>
+            <span class="radio-pill"><input type="radio" name="subElig" id="subUnsure" value="unsure" /><label for="subUnsure">Unsure</label></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="subAmt">Monthly subsidy estimate (optional — from healthcare.gov or the ACA Subsidy Estimator)</label>
+          <div class="money-input"><span>$</span><input id="subAmt" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Monthly subsidy estimate" /></div>
+        </div>
+
+        <button class="calculate" type="submit">Compare annual costs</button>
+        <button class="ghost" type="button" id="resetBtn">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>See your cheapest path after a job loss</h2>
+            <p>Enter the COBRA price from your election notice and one or two marketplace plans — we'll total the year.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="verdictEyebrow">CHEAPEST OPTION</p>
+            <p class="target" id="verdictAmount">$0</p>
+            <p class="target-note" id="verdictNote"></p>
+          </section>
+          <div id="scenarioWrap"></div>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>Break-even check</h3>
+              <p style="margin:0;color:var(--muted);font-size:.78rem;line-height:1.65" id="breakevenNote"></p>
+            </section>
+            <section class="plan-block nudge">
+              <h3>Before you decide</h3>
+              <ul>
+                <li><strong>COBRA is time-limited</strong> — usually 18 months — and it's typically the most expensive option. It buys you continuity: same doctors, same network, no reset deductible mid-year.</li>
+                <li><strong>Losing job coverage triggers a special enrollment period</strong> (usually 60 days) to join a marketplace plan outside open enrollment. Don't miss the window.</li>
+                <li><strong>Check subsidies at healthcare.gov</strong> — many people qualify for premium tax credits that cut the marketplace price far below COBRA.</li>
+                <li><strong>General guidance, not advice.</strong> This is a cost comparison, not a recommendation — confirm plan details with the marketplace or your benefits administrator.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About these results</button>
+            <p class="explain-copy hidden" id="explainCopy">Annual total = 12 months of premiums + estimated cost-sharing. Cost-sharing is simplified: you pay the year's medical spending up to the deductible in full, then 20% coinsurance on spending above it. Real plans vary — copays, separate drug deductibles, and out-of-pocket maximums all shift the numbers, and spending estimates are guesses, not predictions. Use this to compare options side by side, then confirm the details with the marketplace or your benefits administrator. This is a planning aid, not insurance or financial advice.</p>
+          </section>
+          <div class="tool-actions">
+            <button class="ghost" type="button" id="copyBtn">Copy results</button>
+            <button class="ghost" type="button" id="emailBtn">Email results</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofCobraComparer';
+    var USAGE = { low: { label: 'low', spend: 1500 }, medium: { label: 'medium', spend: 6000 }, high: { label: 'high', spend: 15000 } };
+    var CLOSE_CALL = 100; // below this gap, call it a toss-up
+
+    function $(id) { return document.getElementById(id); }
+    function num(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmt0(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    // Simplified cost-sharing: pay spending up to the deductible in full, then 20% coinsurance above it.
+    function costShare(spend, ded) {
+      var toDed = Math.min(ded, spend);
+      return toDed + 0.20 * Math.max(0, spend - toDed);
+    }
+
+    function annual(premMonthly, ded, spend, subMonthly) {
+      var eff = Math.max(0, premMonthly - (subMonthly || 0));
+      var prem = eff * 12;
+      var share = costShare(spend, ded);
+      return { effMonthly: eff, premAnnual: prem, share: share, total: prem + share };
+    }
+
+    // Scan spending 0..$30k for the first level where COBRA beats the cheapest marketplace option.
+    function breakeven(cobraPrem, cobraDed, plans, subMonthly) {
+      var cobra = function (s) { return annual(cobraPrem, cobraDed, s, 0).total; };
+      var bestMkt = function (s) {
+        var b = Infinity;
+        for (var i = 0; i < plans.length; i++) {
+          b = Math.min(b, annual(plans[i].prem, plans[i].ded, s, subMonthly).total);
+        }
+        return b;
+      };
+      if (cobra(0) <= bestMkt(0)) return 0;
+      for (var s = 100; s <= 30000; s += 100) {
+        if (cobra(s) < bestMkt(s) - CLOSE_CALL) return s;
+      }
+      return null;
+    }
+
+    function save() {
+      var sub = 'no';
+      var radios = document.getElementsByName('subElig');
+      for (var i = 0; i < radios.length; i++) if (radios[i].checked) sub = radios[i].value;
+      try {
+        localStorage.setItem(KEY, JSON.stringify({
+          cobraPrem: $('cobraPrem').value, cobraDed: $('cobraDed').value,
+          planAPrem: $('planAPrem').value, planADed: $('planADed').value,
+          usePlanB: $('usePlanB').checked, planBPrem: $('planBPrem').value, planBDed: $('planBDed').value,
+          usage: $('usageSel').value, sub: sub, subAmt: $('subAmt').value
+        }));
+      } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return;
+      $('cobraPrem').value = data.cobraPrem || '';
+      $('cobraDed').value = data.cobraDed || '';
+      $('planAPrem').value = data.planAPrem || '';
+      $('planADed').value = data.planADed || '';
+      $('usePlanB').checked = !!data.usePlanB;
+      $('planBPrem').value = data.planBPrem || '';
+      $('planBDed').value = data.planBDed || '';
+      $('usageSel').value = data.usage || 'medium';
+      $('subAmt').value = data.subAmt || '';
+      var radios = document.getElementsByName('subElig');
+      for (var i = 0; i < radios.length; i++) radios[i].checked = (radios[i].value === (data.sub || 'no'));
+      $('planBFields').style.display = $('usePlanB').checked ? 'grid' : 'none';
+    }
+
+    function tableRows(options, spend) {
+      var best = Infinity;
+      var rows = options.map(function (o) {
+        var r = annual(o.prem, o.ded, spend, o.sub);
+        best = Math.min(best, r.total);
+        return { name: o.name, r: r };
+      });
+      var html = '<table><thead><tr><th>Option</th><th>Annual premiums</th><th>Est. cost-sharing</th><th>Annual total</th></tr></thead><tbody>';
+      rows.forEach(function (row) {
+        var isBest = row.r.total <= best + 0.005 && rows.filter(function (x) { return x.r.total < row.r.total - 0.005; }).length === 0;
+        html += '<tr class="' + (isBest ? 'best' : '') + '"><td>' + esc(row.name) + '</td><td>' + fmt(row.r.premAnnual) + '</td><td>' + fmt(row.r.share) + '</td><td>' + fmt(row.r.total) + '</td></tr>';
+      });
+      html += '</tbody></table>';
+      return { html: html, best: best, rows: rows };
+    }
+
+    function render() {
+      var spend = USAGE[$('usageSel').value].spend;
+      var usageLabel = USAGE[$('usageSel').value].label;
+      var sub = 'no';
+      var radios = document.getElementsByName('subElig');
+      for (var i = 0; i < radios.length; i++) if (radios[i].checked) sub = radios[i].value;
+      var subAmt = num('subAmt');
+
+      var options = [
+        { name: 'COBRA', prem: num('cobraPrem'), ded: num('cobraDed'), sub: 0 }
+      ];
+      var mktPlans = [{ name: 'Marketplace A', prem: num('planAPrem'), ded: num('planADed') }];
+      options.push({ name: 'Marketplace A', prem: num('planAPrem'), ded: num('planADed'), sub: 0 });
+      if ($('usePlanB').checked) {
+        mktPlans.push({ name: 'Marketplace B', prem: num('planBPrem'), ded: num('planBDed') });
+        options.push({ name: 'Marketplace B', prem: num('planBPrem'), ded: num('planBDed'), sub: 0 });
+      }
+
+      var scenarios = [];
+      if (sub === 'unsure') {
+        scenarios.push({ title: 'Without a subsidy', sub: 0 });
+        scenarios.push({ title: 'With your subsidy estimate (' + fmt0(subAmt) + '/mo)', sub: subAmt });
+      } else {
+        scenarios.push({ title: sub === 'yes' ? 'With subsidy (' + fmt0(subAmt) + '/mo)' : 'No subsidy', sub: sub === 'yes' ? subAmt : 0 });
+      }
+
+      var wrap = '';
+      var bestOverall = null;
+      scenarios.forEach(function (sc) {
+        var opts = options.map(function (o) {
+          return { name: o.name, prem: o.prem, ded: o.ded, sub: (o.name === 'COBRA' ? 0 : sc.sub) };
+        });
+        var t = tableRows(opts, spend);
+        wrap += '<div class="scenario"><h3>' + esc(sc.title) + ' — ' + usageLabel + ' usage (~' + fmt0(spend) + '/yr)</h3>' + t.html + '</div>';
+        if (!bestOverall || t.best < bestOverall.total) {
+          var w = t.rows.filter(function (x) { return x.r.total <= t.best + 0.005; })[0];
+          bestOverall = { name: w.name, total: w.r.total, scenario: sc.title };
+        }
+      });
+      $('scenarioWrap').innerHTML = wrap;
+
+      // Cheapest pick + near-tie handling
+      var second = Infinity;
+      scenarios.forEach(function (sc) {
+        var opts = options.map(function (o) {
+          return { name: o.name, prem: o.prem, ded: o.ded, sub: (o.name === 'COBRA' ? 0 : sc.sub) };
+        });
+        opts.forEach(function (o) {
+          var tot = annual(o.prem, o.ded, spend, o.sub).total;
+          if (tot > bestOverall.total + 0.005 && tot < second) second = tot;
+        });
+      });
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+      if (second - bestOverall.total < CLOSE_CALL) {
+        $('verdictEyebrow').textContent = 'VERDICT — TOSS-UP';
+        $('verdictAmount').textContent = 'Too close to call';
+        $('verdictNote').textContent = bestOverall.name + ' (' + bestOverall.scenario.toLowerCase() + ') edges it at ' + fmt(bestOverall.total) + '/yr, but the gap is under ' + fmt0(CLOSE_CALL) + ' — pick on network, doctors, and how long you need coverage, not the math.';
+      } else {
+        $('verdictEyebrow').textContent = 'VERDICT — CHEAPEST OPTION';
+        $('verdictAmount').textContent = fmt(bestOverall.total) + '/yr';
+        $('verdictNote').textContent = bestOverall.name + ' (' + bestOverall.scenario.toLowerCase() + ') wins at ' + usageLabel + ' usage — about ' + fmt0(second - bestOverall.total) + '/yr cheaper than the next option.';
+      }
+
+      // Break-even: spending level where COBRA overtakes the cheapest marketplace option (no-subsidy view)
+      var be = breakeven(num('cobraPrem'), num('cobraDed'), mktPlans, 0);
+      var bn = $('breakevenNote');
+      if (be === 0) {
+        bn.textContent = 'COBRA is already the cheapest at your numbers — usually because its deductible is low. It still ends when the 18 months run out, so price the marketplace for month 19.';
+      } else if (be === null) {
+        bn.textContent = 'COBRA never catches the cheapest marketplace plan in this comparison, even at $30,000/yr in medical spending. You\'d be paying for continuity (same doctors, same network), not savings.';
+      } else {
+        bn.textContent = 'COBRA only starts beating the cheapest marketplace plan once medical spending passes about ' + fmt0(be) + '/yr. Below that, the marketplace wins on cost.';
+      }
+
+      save();
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function resultsText() {
+      var spend = USAGE[$('usageSel').value].spend;
+      var txt = 'COBRA vs. Marketplace — Honed Proof estimate\n';
+      txt += 'Assumed medical spending: $' + spend.toLocaleString('en-US') + '/yr\n';
+      txt += $('verdictEyebrow').textContent + ': ' + $('verdictAmount').textContent + '\n' + $('verdictNote').textContent;
+      var tables = document.querySelectorAll('#scenarioWrap .scenario');
+      for (var i = 0; i < tables.length; i++) {
+        txt += '\n\n' + tables[i].querySelector('h3').textContent + '\n';
+        var rows = tables[i].querySelectorAll('tbody tr');
+        for (var j = 0; j < rows.length; j++) {
+          var cells = rows[j].querySelectorAll('td');
+          txt += '- ' + cells[0].textContent + ': ' + cells[3].textContent + ' (premiums ' + cells[1].textContent + ' + cost-sharing ' + cells[2].textContent + ')\n';
+        }
+      }
+      txt += '\nBreak-even: ' + $('breakevenNote').textContent;
+      txt += '\n\nEstimate only — confirm details with the marketplace or your benefits administrator. Honed Proof is general information, not medical or insurance advice.';
+      return txt;
+    }
+
+    $('usePlanB').addEventListener('change', function () {
+      $('planBFields').style.display = this.checked ? 'grid' : 'none';
+      save();
+    });
+
+    $('cobraForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!(num('cobraPrem') > 0)) { $('cobraPrem').focus(); return; }
+      if (!(num('planAPrem') > 0)) { $('planAPrem').focus(); return; }
+      if ($('usePlanB').checked && !(num('planBPrem') > 0)) { $('planBPrem').focus(); return; }
+      render();
+    });
+
+    var fields = ['cobraPrem', 'cobraDed', 'planAPrem', 'planADed', 'planBPrem', 'planBDed', 'subAmt'];
+    fields.forEach(function (id) { $(id).addEventListener('input', save); });
+    $('usageSel').addEventListener('change', save);
+    var radios = document.getElementsByName('subElig');
+    for (var i = 0; i < radios.length; i++) radios[i].addEventListener('change', save);
+
+    $('resetBtn').addEventListener('click', function () {
+      fields.forEach(function (id) { $(id).value = ''; });
+      $('usageSel').value = 'medium';
+      $('usePlanB').checked = false;
+      $('planBFields').style.display = 'none';
+      for (var i = 0; i < radios.length; i++) radios[i].checked = (radios[i].value === 'no');
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      $('resultState').classList.add('hidden');
+      $('emptyState').classList.remove('hidden');
+      $('cobraPrem').focus();
+    });
+
+    $('copyBtn').addEventListener('click', function () {
+      var txt = resultsText();
+      function done() { $('copyBtn').textContent = 'Copied!'; setTimeout(function () { $('copyBtn').textContent = 'Copy results'; }, 1600); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done, function () { fallbackCopy(txt); done(); });
+      } else { fallbackCopy(txt); done(); }
+      function fallbackCopy(t) {
+        var ta = document.createElement('textarea');
+        ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        ta.remove();
+      }
+    });
+
+    $('emailBtn').addEventListener('click', function () {
+      var subject = encodeURIComponent('My COBRA vs. Marketplace comparison — Honed Proof');
+      var body = encodeURIComponent(resultsText());
+      window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    restore();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

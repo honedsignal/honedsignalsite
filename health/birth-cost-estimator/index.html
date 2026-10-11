@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Estimate what delivery will cost you out of pocket — vaginal, C-section, hospital or birth center — from your plan's deductible, coinsurance, and out-of-pocket max. Free birth cost estimator from Honed Proof — plain-English results, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/birth-cost-estimator/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Birth Cost Estimator","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/birth-cost-estimator/","description":"Estimate your out-of-pocket cost for delivery — vaginal, C-section, hospital or birth center — from your plan's deductible, coinsurance, and out-of-pocket max.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Birth Cost Estimator: What Delivery Really Costs You | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    .pct-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .pct-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .pct-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 5px 9px 10px;min-height:44px;font-weight:700;font-variant-numeric:tabular-nums}
+    .pct-input span{padding-right:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .select-wrap{display:block;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .select-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .select-wrap select{display:block;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 34px 9px 10px;min-height:44px;font-weight:600;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239aa3b5' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;cursor:pointer}
+    .select-wrap select option{background:var(--surface);color:var(--ink)}
+    .assume-box{margin:2px 0 4px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px 16px}
+    .assume-box h3{margin:0 0 8px;font-size:.78rem}
+    .assume-box dl{display:grid;grid-template-columns:1fr auto;gap:6px 14px;margin:0;font-size:.73rem}
+    .assume-box dt{color:var(--muted)}
+    .assume-box dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .assume-box p{margin:10px 0 0;font-size:.68rem;color:var(--muted)}
+    .jargon{margin:12px 1px 0;color:var(--muted);font-size:.72rem;line-height:1.6}
+    .jargon strong{color:var(--ink)}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .proxy-note{margin:6px 1px 0;color:var(--orange);font-size:.68rem;display:none}
+    .share-status{margin:10px 1px 0;color:var(--teal);font-size:.72rem;min-height:1.1em}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .versus{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .vs-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px;text-align:center}
+    .vs-card h3{margin:0 0 6px;font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .vs-card .amount{margin:0;font:700 1.9rem "DM Mono",monospace;letter-spacing:-.03em}
+    .vs-card p{margin:8px 0 0;font-size:.7rem;color:var(--muted)}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.versus{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet table{border-collapse:collapse;width:100%;margin:10px 0}
+      .print-sheet th,.print-sheet td{border:1px solid #999;padding:6px 8px;text-align:left}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>What will <span class="accent">delivery</span> really cost you?</h1>
+      </div>
+      <p>Facility charges vary wildly. Answer a few questions about your plan and see your likely out-of-pocket range — before the bills arrive.</p>
+    </header>
+
+    <section class="workbench" aria-label="Birth cost estimator">
+      <form class="panel inputs" id="birthForm" novalidate>
+        <div class="section-head"><h2>Delivery &amp; facility</h2><span class="step">01 / DELIVERY</span></div>
+        <div class="field">
+          <label for="dType">Delivery type</label>
+          <span class="select-wrap"><select id="dType">
+            <option value="vaginal">Vaginal delivery</option>
+            <option value="csection">C-section</option>
+            <option value="notsure">Not sure (planning vaginal)</option>
+          </select></span>
+        </div>
+        <div class="field">
+          <label for="facility">Where</label>
+          <span class="select-wrap"><select id="facility">
+            <option value="hospital">Hospital</option>
+            <option value="birthcenter">Birth center</option>
+          </select></span>
+        </div>
+        <p class="proxy-note" id="transferNote">A C-section happens at a hospital — birth centers transfer. Using the hospital C-section charge range below.</p>
+        <div class="assume-box">
+          <h3>Typical facility charge ranges we assume</h3>
+          <dl>
+            <dt>Vaginal delivery, hospital</dt><dd>$13,000 – $20,000</dd>
+            <dt>C-section, hospital</dt><dd>$20,000 – $30,000</dd>
+            <dt>Birth center</dt><dd>$6,000 – $10,000</dd>
+          </dl>
+          <p>Typical billed-charge ranges, <strong>not quotes</strong>. Your estimate runs on the low end and the high end of the matching range. Actual charges vary by provider and region.</p>
+        </div>
+
+        <div class="section-head"><h2>Your plan</h2><span class="step">02 / PLAN</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="bDed">Annual deductible</label>
+            <div class="money-input"><span>$</span><input id="bDed" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Annual deductible" /></div>
+          </div>
+          <div class="field">
+            <label for="bCoins">Coinsurance after deductible (your share)</label>
+            <div class="pct-input"><input id="bCoins" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="20" aria-label="Coinsurance percent, your share after deductible" /><span>%</span></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="bOop">Out-of-pocket max (leave blank if unknown)</label>
+          <div class="money-input"><span>$</span><input id="bOop" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Out-of-pocket max, optional" /></div>
+        </div>
+        <p class="jargon"><strong>Deductible:</strong> what you pay each year before insurance starts sharing costs. <strong>Coinsurance:</strong> your percentage share of the bill after the deductible. <strong>Out-of-pocket max:</strong> the yearly ceiling on your share — after you hit it, the plan pays 100% of covered care.</p>
+
+        <button class="calculate" type="submit">Estimate delivery cost</button>
+        <button class="ghost no-print" type="button" id="resetBtn">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Enter your plan details</h2>
+            <p>Pick a delivery type and facility, add your deductible, coinsurance, and out-of-pocket max, and see your estimated range.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="verdictEyebrow">ESTIMATED OUT-OF-POCKET RANGE</p>
+            <p class="target" id="verdictAmount">$0</p>
+            <p class="target-note" id="verdictNote"></p>
+          </section>
+          <div class="versus">
+            <section class="vs-card" aria-label="Low estimate">
+              <h3>Low estimate</h3>
+              <p class="amount" id="vsLow">$0</p>
+              <p id="vsLowNote">If charges land at the low end of the typical range.</p>
+            </section>
+            <section class="vs-card" aria-label="High estimate">
+              <h3>High estimate</h3>
+              <p class="amount" id="vsHigh">$0</p>
+              <p id="vsHighNote">If charges land at the high end of the typical range.</p>
+            </section>
+          </div>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>How each end of the range is built</h3>
+              <dl>
+                <dt>Assumed facility charges (low)</dt><dd id="bLowChg">—</dd>
+                <dt>Applied to deductible (low)</dt><dd id="bLowDed">—</dd>
+                <dt>Coinsurance share (low)</dt><dd id="bLowCoins">—</dd>
+                <dt>Out-of-pocket max applied (low)</dt><dd id="bLowCap">—</dd>
+                <dt><strong>Low total</strong></dt><dd id="bLowTotal" style="font-weight:700">—</dd>
+                <dt>Assumed facility charges (high)</dt><dd id="bHighChg">—</dd>
+                <dt>Applied to deductible (high)</dt><dd id="bHighDed">—</dd>
+                <dt>Coinsurance share (high)</dt><dd id="bHighCoins">—</dd>
+                <dt>Out-of-pocket max applied (high)</dt><dd id="bHighCap">—</dd>
+                <dt><strong>High total</strong></dt><dd id="bHighTotal" style="font-weight:700">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>What drives the number</h3>
+              <ul>
+                <li><strong>Facility fees</strong> — the room, staff, and equipment. Hospital charges dwarf birth-center charges.</li>
+                <li><strong>Anesthesia / epidural</strong> — billed separately at many hospitals; can add hundreds to over a thousand dollars.</li>
+                <li><strong>Length of stay</strong> — hospitals bill per night, and C-sections typically mean more nights.</li>
+                <li><strong>NICU</strong> — if the baby needs neonatal intensive care, costs can rise far above these ranges.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle no-print" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About these results</button>
+            <p class="explain-copy hidden" id="explainCopy">This runs your plan's cost-sharing math twice: once on the low end and once on the high end of the typical facility-charge range for your scenario. You pay the deductible first, then your coinsurance percentage of the rest, with the total capped at your out-of-pocket max. <strong>These are estimates, not quotes</strong> — actual bills vary by provider, region, and how your insurer prices the claim, and separate professional bills (anesthesia, pediatrician) may arrive on their own. Confirm the details with your insurer and provider. This is a planning aid, not insurance advice.</p>
+          </section>
+          <button class="ghost no-print" type="button" id="printBtn" style="margin-top:10px">Print summary</button>
+          <button class="ghost no-print" type="button" id="copyBtn">Copy results</button>
+          <button class="ghost no-print" type="button" id="emailBtn">Email my results</button>
+          <p class="share-status no-print" id="shareStatus" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Birth Cost Estimate — <span id="psScenario">Delivery</span></h2>
+      <table>
+        <tr><th>Assumed facility charges (typical range)</th><td id="psCharges">—</td></tr>
+        <tr><th>Low-end estimate</th><td id="psLow">—</td></tr>
+        <tr><th>High-end estimate</th><td id="psHigh">—</td></tr>
+        <tr><th>Capped by out-of-pocket max</th><td id="psCap">—</td></tr>
+      </table>
+      <p class="ps-note">Estimates only — not quotes. Actual bills vary by provider, region, and insurer pricing. Confirm with your insurer and provider. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofBirthEstimator';
+
+    function $(id) { return document.getElementById(id); }
+    function num(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmt0(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+    function chargesFor(dtype, fac) {
+      if (dtype === 'vaginal') {
+        return fac === 'birthcenter'
+          ? { low: 6000, high: 10000, label: 'Vaginal delivery, birth center', transfer: false }
+          : { low: 13000, high: 20000, label: 'Vaginal delivery, hospital', transfer: false };
+      }
+      if (dtype === 'csection') {
+        return { low: 20000, high: 30000, label: 'C-section, hospital', transfer: fac === 'birthcenter' };
+      }
+      return fac === 'birthcenter'
+        ? { low: 6000, high: 10000, label: 'Birth center (C-sections are transferred to a hospital)', transfer: false }
+        : { low: 13000, high: 30000, label: 'Hospital — vaginal or C-section (full range)', transfer: false };
+    }
+
+    function oopFor(charge, ded, coinsPct, oopMax) {
+      var toDed = Math.min(ded, charge);
+      var coinsAmt = (coinsPct / 100) * Math.max(0, charge - toDed);
+      var total = toDed + coinsAmt;
+      var capped = (oopMax > 0) && (total > oopMax);
+      return { charge: charge, toDed: toDed, coinsAmt: coinsAmt, capped: capped, total: capped ? oopMax : total };
+    }
+
+    function compute() {
+      var c = chargesFor($('dType').value, $('facility').value);
+      var ded = num('bDed'), coins = num('bCoins'), oopMax = num('bOop');
+      return {
+        scenario: c,
+        low: oopFor(c.low, ded, coins, oopMax),
+        high: oopFor(c.high, ded, coins, oopMax),
+        ded: ded, coins: coins, oopMax: oopMax
+      };
+    }
+
+    function capText(r) { return r.capped ? 'Yes — capped at ' + fmt0(r.total) : 'No'; }
+
+    function summaryText(r) {
+      var oopLine = r.oopMax > 0 ? fmt0(r.oopMax) : 'not entered (no cap applied)';
+      var lines = [
+        'Birth Cost Estimator results', '',
+        'Scenario: ' + r.scenario.label,
+        'Assumed facility charges: ' + fmt0(r.scenario.low) + ' – ' + fmt0(r.scenario.high) + ' (typical range, not a quote)',
+        'Deductible: ' + fmt0(r.ded) + ' | Coinsurance (your share): ' + r.coins + '% | Out-of-pocket max: ' + oopLine, '',
+        'Low estimate: ' + fmt(r.low.total) + ' (deductible ' + fmt(r.low.toDed) + ', coinsurance ' + fmt(r.low.coinsAmt) + ', capped: ' + (r.low.capped ? 'yes' : 'no') + ')',
+        'High estimate: ' + fmt(r.high.total) + ' (deductible ' + fmt(r.high.toDed) + ', coinsurance ' + fmt(r.high.coinsAmt) + ', capped: ' + (r.high.capped ? 'yes' : 'no') + ')', '',
+        'Estimated out-of-pocket range: ' + fmt0(r.low.total) + ' – ' + fmt0(r.high.total), '',
+        'Estimates only, not quotes. Actual bills vary by provider, region, and insurer pricing. Confirm with your insurer and provider. From Honed Proof.'
+      ];
+      return lines.join('\n');
+    }
+
+    var lastSummary = '';
+
+    function save() {
+      var data = { dType: $('dType').value, facility: $('facility').value, bDed: $('bDed').value, bCoins: $('bCoins').value, bOop: $('bOop').value };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return;
+      $('dType').value = data.dType || 'vaginal';
+      $('facility').value = data.facility || 'hospital';
+      $('bDed').value = data.bDed || '';
+      $('bCoins').value = data.bCoins || '';
+      $('bOop').value = data.bOop || '';
+      updateTransferNote();
+    }
+
+    function updateTransferNote() {
+      var transfer = $('dType').value === 'csection' && $('facility').value === 'birthcenter';
+      $('transferNote').style.display = transfer ? 'block' : 'none';
+    }
+
+    function render(r) {
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+
+      var same = r.low.total === r.high.total;
+      $('verdictAmount').textContent = same ? fmt0(r.low.total) : fmt0(r.low.total) + ' – ' + fmt0(r.high.total);
+      $('verdictEyebrow').textContent = 'ESTIMATED OUT-OF-POCKET' + (same ? '' : ' RANGE');
+      $('verdictNote').textContent = r.scenario.label + '. Assumes ' + fmt0(r.scenario.low) + '–' + fmt0(r.scenario.high) +
+        ' in facility charges (typical range, not a quote). ' +
+        (r.low.capped || r.high.capped
+          ? 'Your out-of-pocket max caps one or both ends of this range — once you hit it, the plan pays 100% of covered care.'
+          : 'Based on your plan details as entered.');
+
+      $('vsLow').textContent = fmt(r.low.total);
+      $('vsHigh').textContent = fmt(r.high.total);
+
+      $('bLowChg').textContent = fmt(r.low.charge);
+      $('bLowDed').textContent = fmt(r.low.toDed);
+      $('bLowCoins').textContent = fmt(r.low.coinsAmt);
+      $('bLowCap').textContent = capText(r.low);
+      $('bLowTotal').textContent = fmt(r.low.total);
+      $('bHighChg').textContent = fmt(r.high.charge);
+      $('bHighDed').textContent = fmt(r.high.toDed);
+      $('bHighCoins').textContent = fmt(r.high.coinsAmt);
+      $('bHighCap').textContent = capText(r.high);
+      $('bHighTotal').textContent = fmt(r.high.total);
+
+      $('psScenario').textContent = r.scenario.label;
+      $('psCharges').textContent = fmt0(r.scenario.low) + ' – ' + fmt0(r.scenario.high);
+      $('psLow').textContent = fmt(r.low.total);
+      $('psHigh').textContent = fmt(r.high.total);
+      $('psCap').textContent = (r.low.capped || r.high.capped) ? 'Yes' : 'No';
+
+      lastSummary = summaryText(r);
+      $('shareStatus').textContent = '';
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function fallbackCopy(text) {
+      var area = document.createElement('textarea');
+      area.value = text; area.setAttribute('readonly', '');
+      area.style.position = 'fixed'; area.style.opacity = '0';
+      document.body.appendChild(area); area.select();
+      var worked = false;
+      try { worked = document.execCommand('copy'); } catch (e) { worked = false; }
+      document.body.removeChild(area);
+      return worked;
+    }
+
+    $('dType').addEventListener('change', function () { updateTransferNote(); save(); });
+    $('facility').addEventListener('change', function () { updateTransferNote(); save(); });
+
+    ['bDed', 'bCoins', 'bOop'].forEach(function (id) {
+      $(id).addEventListener('input', save);
+    });
+
+    $('birthForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      save();
+      render(compute());
+    });
+
+    $('resetBtn').addEventListener('click', function () {
+      $('dType').value = 'vaginal';
+      $('facility').value = 'hospital';
+      ['bDed', 'bCoins', 'bOop'].forEach(function (id) { $(id).value = ''; });
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      updateTransferNote();
+      lastSummary = '';
+      $('shareStatus').textContent = '';
+      $('resultState').classList.add('hidden');
+      $('emptyState').classList.remove('hidden');
+      $('dType').focus();
+    });
+
+    $('printBtn').addEventListener('click', function () { window.print(); });
+
+    $('copyBtn').addEventListener('click', function () {
+      if (!lastSummary) return;
+      var done = function (ok) { $('shareStatus').textContent = ok ? 'Results copied to your clipboard.' : 'Copy was blocked. Select the results above to copy them manually.'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(lastSummary).then(function () { done(true); }).catch(function () { done(fallbackCopy(lastSummary)); });
+      } else { done(fallbackCopy(lastSummary)); }
+    });
+
+    $('emailBtn').addEventListener('click', function () {
+      if (!lastSummary) return;
+      var link = document.createElement('a');
+      link.href = 'mailto:?subject=' + encodeURIComponent('My birth cost estimate') + '&body=' + encodeURIComponent(lastSummary);
+      link.style.display = 'none';
+      document.body.appendChild(link); link.click(); document.body.removeChild(link);
+      $('shareStatus').textContent = 'Opening your email app with the results filled in.';
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    restore();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

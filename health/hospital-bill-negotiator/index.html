@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Turn your hospital bill details into a plain-English negotiation letter asking for an itemized bill, cash-pay discount, financial assistance, and a payment plan. Free from Honed Proof — no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/hospital-bill-negotiator/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Hospital Bill Negotiator","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/hospital-bill-negotiator/","description":"Generate a plain-English hospital bill negotiation letter with talking points.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Hospital Bill Negotiator | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--red:#ff7379;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600}
+    .select-wrap{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .select-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .select-wrap select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600;font:inherit}
+    .select-wrap select option{background:var(--surface);color:var(--ink)}
+    .textarea-wrap{border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .textarea-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .textarea-wrap textarea{display:block;width:100%;min-height:112px;border:0;outline:0;background:transparent;color:var(--ink);padding:10px;font:inherit;font-size:.9rem;resize:vertical}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .err{color:var(--red);font-size:.75rem;font-weight:700;margin:8px 1px 0;min-height:1.1em}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .letter-body{margin:0;white-space:pre-line;font-size:.85rem;line-height:1.7;color:var(--ink)}
+    .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .action{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:10px 16px;text-decoration:none;cursor:pointer;font-size:.8rem;font-weight:800}
+    .action:hover{border-color:var(--blue);color:var(--blue)}
+    .action.email{background:var(--teal);border-color:var(--teal);color:#071009}
+    .action.email:hover{color:#071009;filter:brightness(1.06)}
+    .copy-status{min-height:1.2em;margin:8px 1px 0;color:var(--teal);font-size:.72rem;font-weight:700}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px;white-space:pre-line}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>A negotiation letter in <span class="accent">plain English.</span></h1>
+      </div>
+      <p>Hospital bills are negotiable. Fill in a few boxes — get a respectful letter that asks for exactly the right things.</p>
+    </header>
+
+    <section class="workbench" aria-label="Hospital bill negotiator">
+      <form class="panel inputs" id="negForm" novalidate>
+        <div class="section-head"><h2>The bill</h2><span class="step">01 / BILL</span></div>
+        <div class="field">
+          <label for="billAmt">Bill amount</label>
+          <div class="money-input"><span>$</span><input id="billAmt" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Bill amount" /></div>
+        </div>
+        <div class="field">
+          <label for="billDesc">What was the bill for?</label>
+          <div class="text-input"><input id="billDesc" type="text" placeholder="e.g. ER visit on March 3" autocomplete="off" /></div>
+        </div>
+
+        <div class="section-head"><h2>Your situation</h2><span class="step">02 / DETAILS</span></div>
+        <div class="field">
+          <label for="insStatus">Insurance status</label>
+          <div class="select-wrap">
+            <select id="insStatus" aria-label="Insurance status">
+              <option value="uninsured">Uninsured</option>
+              <option value="high-deductible">Insured — high-deductible plan</option>
+              <option value="insured">Insured</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="hardship">Hardship notes (optional)</label>
+          <div class="textarea-wrap"><textarea id="hardship" placeholder="A line or two about why the full bill is hard to pay — e.g. lost income, single parent, recent job change. This goes into the letter in your own words."></textarea></div>
+        </div>
+        <p class="err" id="err" role="alert"></p>
+
+        <button class="calculate" type="submit">Write my letter</button>
+        <button class="ghost no-print" type="button" id="resetBtn">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Your letter, ready to send</h2>
+            <p>Enter your bill details and get a negotiation letter with talking points — respectful, specific, and in plain English.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow">NEGOTIATION LETTER</p>
+            <p class="target" id="letterAmount">$0</p>
+            <p class="target-note" id="letterNote">Respectful, specific, and in your own words — ready to copy, print, or email.</p>
+          </section>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>The letter</h3>
+              <p class="letter-body" id="letterBody"></p>
+            </section>
+            <section class="plan-block nudge">
+              <h3>5 talking points</h3>
+              <ul id="talkList"></ul>
+            </section>
+          </div>
+          <div class="actions no-print">
+            <button class="action" id="copyLetter" type="button">Copy letter</button>
+            <a class="action email" id="emailLetter" href="mailto:?">Email letter</a>
+            <button class="action" id="printBtn" type="button">Print letter</button>
+          </div>
+          <p class="copy-status no-print" id="copyStatus" role="status" aria-live="polite"></p>
+          <section class="explanation" aria-label="About this letter">
+            <button class="explain-toggle no-print" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About this letter</button>
+            <p class="explain-copy hidden" id="explainCopy">Hospital bills are rarely take-it-or-leave-it: most hospitals offer self-pay discounts, financial-assistance ("charity care") programs, and interest-free payment plans. The letter asks for an itemized bill first (so you can check for errors), then a cash-pay discount, then financial assistance, with a payment plan as the fallback. Keep copies of everything, and get every agreement in writing. This is a planning aid, not legal advice.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Hospital Bill Negotiation Letter</h2>
+      <div id="psLetter"></div>
+      <p class="ps-note">Generated with your details — sign and send to the hospital's billing department. Keep copies of everything. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofBillNegotiator';
+
+    // [TESTABLE-START]
+    var money0 = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+    function money(n) { return money0.format(Math.round(n) || 0); }
+    function todayStr() { return new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
+
+    var STATUS_SENTENCE = {
+      'uninsured': 'I am uninsured, so the full balance of this bill falls on me directly.',
+      'high-deductible': 'I do have insurance, but I am on a high-deductible plan, so this bill is essentially mine to pay in full out of pocket.',
+      'insured': 'I am insured, and after my plan paid its share, the patient balance below is what remains.'
+    };
+
+    function statusLabel(status) {
+      if (status === 'uninsured') return 'uninsured';
+      if (status === 'high-deductible') return 'high-deductible plan';
+      return 'insured';
+    }
+
+    // d: {amt, desc, status, hardship}
+    function buildLetter(d) {
+      var L = [];
+      L.push(todayStr(), '', 'Dear Billing Department:', '');
+      L.push('I am writing about my hospital bill of ' + money(d.amt) + ' for ' + (d.desc || 'recent care') + '. ' + (STATUS_SENTENCE[d.status] || STATUS_SENTENCE.insured));
+      L.push('');
+      if (d.hardship) {
+        L.push('In my own words, my situation is this: ' + d.hardship);
+      } else {
+        L.push('Paying the full amount as billed would put my household budget under real strain, and I am asking for help bringing the balance to a number I can manage.');
+      }
+      L.push('');
+      L.push('I am respectfully asking for four things, in this order of preference:');
+      L.push('');
+      L.push('1. An itemized bill, so I can verify every charge before I pay anything.');
+      L.push('2. Your best cash-pay or self-pay discount on the balance.');
+      L.push('3. A financial-assistance or charity-care application \u2014 I would like to apply.');
+      L.push('4. If a discount or assistance is not available, an interest-free payment plan with monthly payments I can actually afford.');
+      L.push('');
+      L.push('I want to pay what I owe, and I am asking for help getting there. Please respond in writing, and please do not send this account to collections while we are working this out.');
+      L.push('');
+      L.push('Thank you for your time and consideration.', '', 'Sincerely,', '', '[Your name]', '[Phone number]');
+      return L.join('\n');
+    }
+
+    function talkingPoints() {
+      return [
+        'Call before you write \u2014 a polite phone call often gets the same discount faster, and the letter is your paper trail.',
+        'Start with the itemized bill \u2014 billing errors are common, and you should verify every charge before paying a dollar.',
+        'Ask for the financial-assistance application even if you think you earn too much \u2014 income cutoffs are often higher than people expect, and nonprofit hospitals are required to have a policy.',
+        'Offer a number you can actually pay \u2014 a smaller lump sum or an interest-free monthly plan you won\u2019t miss. Never agree to a payment plan you can\u2019t afford.',
+        'Get every promise in writing \u2014 discounts, plans, and \u201cplease don\u2019t send this to collections\u201d only count if they are written down.'
+      ];
+    }
+    // [TESTABLE-END]
+
+    function $(id) { return document.getElementById(id); }
+    function val(id) { return $(id).value.trim(); }
+    function num(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+
+    var FIELDS = ['billAmt', 'billDesc', 'insStatus', 'hardship'];
+    var lastLetter = '';
+
+    function getData() {
+      return { amt: num('billAmt'), desc: val('billDesc'), status: $('insStatus').value, hardship: val('hardship') };
+    }
+
+    function save() {
+      var data = { billAmt: $('billAmt').value, billDesc: $('billDesc').value, insStatus: $('insStatus').value, hardship: $('hardship').value };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return false;
+      $('billAmt').value = data.billAmt || '';
+      $('billDesc').value = data.billDesc || '';
+      $('insStatus').value = data.insStatus || 'uninsured';
+      $('hardship').value = data.hardship || '';
+      return (data.billAmt && data.billDesc) ? true : false;
+    }
+
+    function render(d) {
+      lastLetter = buildLetter(d);
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+      $('err').textContent = '';
+      $('letterAmount').textContent = money(d.amt);
+      $('letterNote').textContent = 'Asking for an itemized bill, a cash-pay discount, financial assistance, and a payment-plan fallback \u2014 ' + d.desc + '.';
+      $('letterBody').textContent = lastLetter;
+      $('psLetter').textContent = lastLetter;
+      $('talkList').innerHTML = talkingPoints().map(function (t, i) {
+        var li = document.createElement('li');
+        li.innerHTML = '<strong>Point ' + (i + 1) + ':</strong> ';
+        li.appendChild(document.createTextNode(t));
+        return li.outerHTML;
+      }).join('');
+      $('emailLetter').href = 'mailto:?subject=' + encodeURIComponent('Request for help with my hospital bill of ' + money(d.amt)) +
+        '&body=' + encodeURIComponent(lastLetter + '\n\n---\nTalking points:\n' + talkingPoints().map(function (t, i) { return (i + 1) + '. ' + t; }).join('\n'));
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    FIELDS.forEach(function (id) {
+      $(id).addEventListener('input', save);
+      $(id).addEventListener('change', save);
+    });
+
+    $('negForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = getData();
+      if (!(d.amt > 0)) { $('err').textContent = 'Enter the bill amount first.'; $('billAmt').focus(); return; }
+      if (!d.desc) { $('err').textContent = 'Add a short description of the bill (what it was for).'; $('billDesc').focus(); return; }
+      save();
+      render(d);
+    });
+
+    $('resetBtn').addEventListener('click', function () {
+      FIELDS.forEach(function (id) { $(id).value = ''; });
+      $('insStatus').value = 'uninsured';
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      $('err').textContent = '';
+      lastLetter = '';
+      $('resultState').classList.add('hidden');
+      $('emptyState').classList.remove('hidden');
+      $('billAmt').focus();
+    });
+
+    $('copyLetter').addEventListener('click', function () {
+      var txt = lastLetter || buildLetter(getData());
+      var status = $('copyStatus');
+      function done(ok) { status.textContent = ok ? 'Copied — paste it into your email or print it.' : 'Copy failed \u2014 your browser blocked it. Select the letter text and copy it manually.'; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = txt;
+        document.body.appendChild(ta);
+        ta.select();
+        try { done(document.execCommand('copy')); } catch (e) { done(false); }
+        ta.remove();
+      }
+    });
+
+    $('printBtn').addEventListener('click', function () { window.print(); });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    if (restore()) {
+      var d = getData();
+      if (d.amt > 0 && d.desc) render(d);
+    }
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>
