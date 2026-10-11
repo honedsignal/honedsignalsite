@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Don't auto-renew your health plan blind. Work through the 18-point open enrollment checklist from Honed Proof — costs, doctors, drugs, life changes, and fine print. Free, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/open-enrollment-checklist/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Open Enrollment Checklist","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/open-enrollment-checklist/","description":"An 18-point interactive checklist for health insurance open enrollment: costs, doctors, drugs, life changes, and fine print.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Open Enrollment Checklist: Don't Auto-Renew Blind | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    /* progress */
+    .progress-wrap{margin:4px 0 18px}
+    .progress-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;font-size:.8rem;color:var(--muted)}
+    .progress-label strong{color:var(--ink);font:700 .95rem "DM Mono",monospace}
+    .progress-track{height:12px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+    .progress-fill{height:100%;width:0%;border-radius:6px;background:linear-gradient(90deg,var(--teal),var(--blue));transition:width .3s ease}
+    /* checklist */
+    .check-cat{margin-bottom:6px}
+    .check-cat-title{margin:18px 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--teal)}
+    .check-cat-title:first-of-type{margin-top:6px}
+    .check-item{border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--bg);transition:border-color .16s}
+    .check-item.done{border-color:color-mix(in srgb,var(--teal) 45%,var(--line));background:color-mix(in srgb,var(--teal) 7%,var(--bg))}
+    .check-row{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;cursor:pointer;min-height:44px}
+    .check-row input[type="checkbox"]{flex:none;width:22px;height:22px;margin:2px 0 0;accent-color:var(--teal);cursor:pointer}
+    .check-body{min-width:0;flex:1}
+    .check-title{font-weight:700;font-size:.88rem}
+    .check-item.done .check-title{color:var(--teal)}
+    .check-why{margin:4px 0 0;color:var(--muted);font-size:.74rem;line-height:1.55}
+    .check-how{margin:4px 0 0;color:var(--blue);font-size:.72rem}
+    .check-note{padding:0 14px 13px 48px}
+    .check-note input{width:100%;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:9px 10px;font-size:.76rem;outline:0}
+    .check-note input:focus{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .check-note input::placeholder{color:var(--muted);opacity:.7}
+    .reset-btn{width:100%;margin-top:16px;min-height:44px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--muted);cursor:pointer;font-weight:700;font-size:.82rem}
+    .reset-btn:hover{border-color:var(--orange);color:var(--orange)}
+    /* results */
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2rem,4.4vw,3.6rem)/1 "DM Mono",monospace;letter-spacing:-.05em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .roadmap{padding:24px;border-radius:22px;margin-top:10px}
+    .road-head{margin-bottom:14px}
+    .road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}
+    .road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}
+    .sum-list{list-style:none;margin:0;padding:0}
+    .sum-list li{padding:10px 4px;border-top:1px solid var(--line);font-size:.82rem}
+    .sum-list li:first-child{border-top:0}
+    .sum-list .s-title{font-weight:700}
+    .sum-list .s-note{display:block;color:var(--muted);font-size:.72rem;margin-top:3px;font-style:italic}
+    .sum-list .s-flag{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:20px;font-size:.64rem;font-weight:800;letter-spacing:.03em}
+    .flag-done{background:var(--green-soft);color:var(--green)}
+    .flag-todo{background:var(--orange-soft);color:var(--orange)}
+    .todo-block{margin-top:18px;border:1px solid color-mix(in srgb,var(--orange) 40%,var(--line));border-radius:12px;background:color-mix(in srgb,var(--orange) 6%,var(--surface));padding:16px 18px}
+    .todo-block h3{margin:0 0 6px;font-size:.9rem;color:var(--orange)}
+    .todo-block p{margin:0 0 10px;color:var(--muted);font-size:.74rem}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .btn{flex:1 1 180px;min-height:48px;border:0;border-radius:10px;padding:13px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;font-size:.85rem}
+    .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+    .btn.ghost:hover{border-color:var(--blue)}
+    .xlinks{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:18px}
+    .xlinks h3{margin:0 0 10px;font-size:.88rem}
+    .xlinks a{display:block;padding:11px 0;border-top:1px solid var(--line);color:var(--teal);text-decoration:none;font-size:.82rem;font-weight:700;min-height:44px}
+    .xlinks a:first-of-type{border-top:0}
+    .xlinks a:hover{text-decoration:underline}
+    .xlinks a small{display:block;color:var(--muted);font-weight:400;font-size:.7rem;margin-top:2px}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    #printSheet{display:none}
+    @media print{
+      body{background:#fff;color:#111}
+      .page,.hs-legal,.no-print{display:none!important}
+      #printSheet{display:block!important;color:#111;font-family:Manrope,sans-serif;padding:8px}
+      #printSheet h1{font-size:1.4rem;margin:0 0 4px}
+      #printSheet .ps-sub{color:#444;font-size:.8rem;margin:0 0 16px}
+      #printSheet h2{font-size:1rem;margin:18px 0 6px;border-bottom:2px solid #111;padding-bottom:4px}
+      #printSheet ul{margin:0;padding-left:20px}
+      #printSheet li{font-size:.82rem;margin-bottom:6px}
+      #printSheet .ps-note{color:#444;font-style:italic}
+    }
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.footer{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Don't <span class="accent">auto-renew</span> blind.</h1>
+      </div>
+      <p>Plans change every year — premiums, networks, formularies. Auto-renewing without checking is how people get burned. Work this list.</p>
+    </header>
+
+    <section class="workbench" aria-label="Open enrollment checklist">
+      <form class="panel inputs no-print" id="oeForm" novalidate>
+        <div class="section-head"><h2>The checklist</h2><span class="step">18 ITEMS</span></div>
+        <div class="progress-wrap" aria-live="polite">
+          <div class="progress-label"><span>Your progress</span><strong id="progressText">0 of 18 checked</strong></div>
+          <div class="progress-track" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <div id="checklist"></div>
+        <button class="reset-btn" type="button" id="resetBtn">Reset checklist</button>
+        <p class="hint">Your checks and notes save automatically in this browser. Nothing is uploaded anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty no-print" id="emptyState">
+          <div>
+            <h2>Work the list</h2>
+            <p>Check off each item as you verify it. Your enrollment decisions summary builds here as you go.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow">ENROLLMENT READINESS</p>
+            <p class="target" id="readyCount">0 / 18</p>
+            <p class="target-note" id="readyNote">verified. Unchecked items are listed below as still to verify.</p>
+          </section>
+          <section class="panel roadmap">
+            <div class="road-head">
+              <div><h2>My enrollment decisions</h2><p>Checked items with your notes.</p></div>
+            </div>
+            <ul class="sum-list" id="doneList"></ul>
+            <div class="todo-block" id="todoBlock">
+              <h3>Still to verify</h3>
+              <p>Don't enroll until these are checked — or consciously skipped.</p>
+              <ul class="sum-list" id="todoList"></ul>
+            </div>
+            <div class="btn-row no-print">
+              <button class="btn" type="button" id="printBtn">Print my summary</button>
+              <button class="btn ghost" type="button" id="jumpBtn">Back to checklist</button>
+            </div>
+          </section>
+          <section class="xlinks no-print" aria-label="Related tools">
+            <h3>Keep going</h3>
+            <a href="/money/hdhp-vs-ppo-calculator/" target="_top">HDHP vs PPO Calculator<small>Comparing plan types? Run the cost math.</small></a>
+            <a href="/health/plan-coverage-checker/" target="_top">Plan Coverage Checker<small>Checking a specific switch? Verify your doctors and drugs.</small></a>
+          </section>
+          <section class="explanation no-print" aria-label="About this checklist">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About this checklist</button>
+            <p class="explain-copy hidden" id="explainCopy">This is an educational worksheet, not insurance or benefits advice. Plan details, deadlines, and subsidy rules change yearly and vary by employer and state — verify everything against your plan documents and your employer's benefits portal (or healthcare.gov for marketplace plans) before you enroll. Deadlines are firm: missing open enrollment usually locks you in until the next one unless you have a qualifying life event.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div id="printSheet" aria-hidden="true"></div>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofOpenEnrollment';
+
+    var ITEMS = [
+      { cat: 'Your costs', items: [
+        { id: 'premium', title: 'Did the monthly premium change?',
+          why: 'The headline number. A "same plan" can cost 10–20% more with no other changes.',
+          how: 'Compare last year\u2019s pay stub or plan letter to this year\u2019s enrollment materials.' },
+        { id: 'deductible', title: 'Did the deductible change?',
+          why: 'A higher deductible means you pay more out of pocket before insurance kicks in.',
+          how: 'Check the Summary of Benefits for individual and family deductibles.' },
+        { id: 'oopmax', title: 'Did the out-of-pocket max change?',
+          why: 'This is your worst-case ceiling. Know it before you need it.',
+          how: 'Summary of Benefits, same page as the deductible.' },
+        { id: 'copay', title: 'Did copays or coinsurance change?',
+          why: 'A $25 visit becoming 20% coinsurance can triple what you pay per visit.',
+          how: 'Compare the cost-sharing table line by line, especially for visits you use most.' }
+      ]},
+      { cat: 'Your doctors', items: [
+        { id: 'pcp', title: 'Is your primary care doctor still in-network?',
+          why: 'Networks shrink silently. Out-of-network can mean paying full price.',
+          how: 'Check the insurer\u2019s current provider directory \u2014 then call the office to confirm. Directories go stale.' },
+        { id: 'specialists', title: 'Are your specialists and preferred hospital still in-network?',
+          why: 'One out-of-network surgery can cost more than a year of premiums.',
+          how: 'Verify each specialist and the hospital/facility by phone, not just the website.' }
+      ]},
+      { cat: 'Your drugs', items: [
+        { id: 'formulary', title: 'Are your prescriptions still on the formulary?',
+          why: 'Drugs get dropped or moved to higher tiers every year.',
+          how: 'Search the plan\u2019s current formulary PDF for each drug by exact name and dose.' },
+        { id: 'tier', title: 'Did any of your drugs change tiers or gain prior-auth rules?',
+          why: 'A tier jump from 1 to 3 can take a $10 prescription to $80.',
+          how: 'Formulary notes the tier; call the plan if prior authorization is new for your drug.' }
+      ]},
+      { cat: 'Your life', items: [
+        { id: 'family', title: 'Any family changes \u2014 marriage, divorce, baby, adoption?',
+          why: 'Life events change who needs coverage and which plan tier makes sense.',
+          how: 'List everyone who needs coverage next year, then price employee-only vs. family tiers.' },
+        { id: 'income', title: 'Did your income or job change?',
+          why: 'Marketplace subsidies are income-based; a raise can shrink your tax credit.',
+          how: 'Re-run your subsidy estimate at healthcare.gov with next year\u2019s expected income.' },
+        { id: 'dependents', title: 'Any dependent aging off at 26, or an address move?',
+          why: 'Kids age off parents\u2019 plans at 26. A move can change your network and plan options.',
+          how: 'Check dependent birthdays; if you moved, confirm the plan\u2019s service area covers you.' }
+      ]},
+      { cat: 'Plan mechanics', items: [
+        { id: 'hdhp', title: 'Is the HSA-eligible HDHP still the right call?',
+          why: 'Low premium plus triple tax break is great \u2014 unless you\u2019ll blow past the deductible.',
+          how: 'Estimate next year\u2019s care needs, then compare total cost (premium + expected out-of-pocket).' },
+        { id: 'fsa', title: 'Set next year\u2019s FSA contribution amount.',
+          why: 'FSAs are use-it-or-lose-it (with limited rollover). Guess wrong and you forfeit money.',
+          how: 'Tally predictable costs \u2014 prescriptions, dental, vision, copays \u2014 and contribute close to that.' },
+        { id: 'dental-vision', title: 'Review dental and vision plan changes.',
+          why: 'Often elected separately and easy to forget; waiting periods can reset.',
+          how: 'Check annual maximums, waiting periods, and whether your dentist is still in-network.' },
+        { id: 'hsa-limit', title: 'Confirm HSA contribution limits and catch-up eligibility.',
+          why: 'Limits rise most years; 55+ gets an extra $1,000 catch-up.',
+          how: 'Check the IRS figures for the plan year and your payroll deduction setup.' }
+      ]},
+      { cat: 'The fine print', items: [
+        { id: 'priorauth', title: 'Did prior-authorization or referral rules change?',
+          why: 'New gatekeeping rules can delay care you used to get directly.',
+          how: 'Skim the plan\u2019s utilization-review section or call member services.' },
+        { id: 'telehealth', title: 'Check telehealth coverage.',
+          why: 'Pandemic-era telehealth perks have been rolled back on many plans.',
+          how: 'Confirm virtual-visit cost-sharing in the benefits summary.' },
+        { id: 'travel', title: 'Check out-of-area and travel coverage.',
+          why: 'HMOs especially can leave you uncovered away from home except for emergencies.',
+          how: 'Look for guest membership, travel benefit, or out-of-area urgent-care rules.' }
+      ]}
+    ];
+
+    var ALL = [];
+    ITEMS.forEach(function (g) { g.items.forEach(function (it) { ALL.push(it); }); });
+    var TOTAL = ALL.length;
+
+    function $(id) { return document.getElementById(id); }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function loadState() {
+      try {
+        var raw = localStorage.getItem(KEY);
+        if (!raw) return { checked: {}, notes: {} };
+        var d = JSON.parse(raw);
+        return { checked: d.checked || {}, notes: d.notes || {} };
+      } catch (e) { return { checked: {}, notes: {} }; }
+    }
+    var state = loadState();
+    var saveTimer = null;
+    function save() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(function () {
+        try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+      }, 250);
+    }
+
+    function renderChecklist() {
+      var host = $('checklist');
+      var html = '';
+      ITEMS.forEach(function (g) {
+        html += '<div class="check-cat"><h3 class="check-cat-title">' + escapeHtml(g.cat) + '</h3>';
+        g.items.forEach(function (it) {
+          var done = !!state.checked[it.id];
+          var note = state.notes[it.id] || '';
+          html += '<div class="check-item' + (done ? ' done' : '') + '" data-item="' + it.id + '">' +
+            '<label class="check-row">' +
+              '<input type="checkbox" id="chk-' + it.id + '" data-check="' + it.id + '"' + (done ? ' checked' : '') + ' />' +
+              '<span class="check-body">' +
+                '<span class="check-title">' + escapeHtml(it.title) + '</span>' +
+                '<p class="check-why">' + escapeHtml(it.why) + '</p>' +
+                '<p class="check-how">How to check: ' + escapeHtml(it.how) + '</p>' +
+              '</span>' +
+            '</label>' +
+            '<div class="check-note"><input type="text" id="note-' + it.id + '" data-note="' + it.id + '" placeholder="Your note (e.g. premium $412 \u2192 $468)" value="' + escapeHtml(note) + '" aria-label="Note for: ' + escapeHtml(it.title) + '" maxlength="200" /></div>' +
+          '</div>';
+        });
+        html += '</div>';
+      });
+      host.innerHTML = html;
+    }
+
+    function countChecked() {
+      var n = 0;
+      ALL.forEach(function (it) { if (state.checked[it.id]) n++; });
+      return n;
+    }
+
+    function renderSummary() {
+      var n = countChecked();
+      $('progressText').textContent = n + ' of ' + TOTAL + ' checked';
+      $('progressFill').style.width = (TOTAL ? (n / TOTAL * 100) : 0) + '%';
+      $('progressBar').setAttribute('aria-valuenow', String(n));
+
+      if (n === 0) {
+        $('emptyState').classList.remove('hidden');
+        $('resultState').classList.add('hidden');
+        return;
+      }
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+
+      $('readyCount').textContent = n + ' / ' + TOTAL;
+      $('readyNote').textContent = n === TOTAL
+        ? 'verified \u2014 every item checked. Print this and keep it with your enrollment confirmation.'
+        : 'verified. Unchecked items are listed below as still to verify.';
+
+      var doneHtml = '', todoHtml = '';
+      ALL.forEach(function (it) {
+        var note = (state.notes[it.id] || '').trim();
+        if (state.checked[it.id]) {
+          doneHtml += '<li><span class="s-title">' + escapeHtml(it.title) + '</span>' +
+            '<span class="s-flag flag-done">VERIFIED</span>' +
+            (note ? '<span class="s-note">\u201c' + escapeHtml(note) + '\u201d</span>' : '') + '</li>';
+        } else {
+          todoHtml += '<li><span class="s-title">' + escapeHtml(it.title) + '</span>' +
+            '<span class="s-flag flag-todo">STILL TO VERIFY</span></li>';
+        }
+      });
+      $('doneList').innerHTML = doneHtml;
+      $('todoList').innerHTML = todoHtml;
+      $('todoBlock').style.display = todoHtml ? '' : 'none';
+    }
+
+    function buildPrintSheet() {
+      var n = countChecked();
+      var html = '<h1>Open Enrollment Checklist \u2014 My Summary</h1>' +
+        '<p class="ps-sub">Honed Proof \u00b7 ' + n + ' of ' + TOTAL + ' items verified \u00b7 Printed ' +
+        escapeHtml(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })) + '</p>';
+      html += '<h2>Verified</h2><ul>';
+      ALL.forEach(function (it) {
+        if (!state.checked[it.id]) return;
+        var note = (state.notes[it.id] || '').trim();
+        html += '<li>' + escapeHtml(it.title) +
+          (note ? ' <span class="ps-note">\u2014 ' + escapeHtml(note) + '</span>' : '') + '</li>';
+      });
+      html += '</ul>';
+      var remaining = ALL.filter(function (it) { return !state.checked[it.id]; });
+      if (remaining.length) {
+        html += '<h2>Still to verify</h2><ul>';
+        remaining.forEach(function (it) { html += '<li>' + escapeHtml(it.title) + '</li>'; });
+        html += '</ul>';
+      }
+      $('printSheet').innerHTML = html;
+    }
+
+    // Event delegation for checkboxes and notes (single listeners, no per-item IDs needed beyond markup)
+    $('checklist').addEventListener('change', function (e) {
+      var t = e.target;
+      if (t && t.getAttribute('data-check')) {
+        var id = t.getAttribute('data-check');
+        state.checked[id] = t.checked;
+        var card = t.closest('.check-item');
+        if (card) card.classList.toggle('done', t.checked);
+        save();
+        renderSummary();
+      }
+    });
+    $('checklist').addEventListener('input', function (e) {
+      var t = e.target;
+      if (t && t.getAttribute('data-note')) {
+        state.notes[t.getAttribute('data-note')] = t.value;
+        save();
+        // Update summary notes live (debounced via save); re-render notes cheaply
+        var n = countChecked();
+        if (n > 0) renderSummaryNotesOnly();
+      }
+    });
+
+    function renderSummaryNotesOnly() {
+      // Light re-render of the done list so notes update without rebuilding everything
+      var doneHtml = '';
+      ALL.forEach(function (it) {
+        if (!state.checked[it.id]) return;
+        var note = (state.notes[it.id] || '').trim();
+        doneHtml += '<li><span class="s-title">' + escapeHtml(it.title) + '</span>' +
+          '<span class="s-flag flag-done">VERIFIED</span>' +
+          (note ? '<span class="s-note">\u201c' + escapeHtml(note) + '\u201d</span>' : '') + '</li>';
+      });
+      if ($('doneList')) $('doneList').innerHTML = doneHtml;
+    }
+
+    $('resetBtn').addEventListener('click', function () {
+      if (!confirm('Clear all checks and notes? This cannot be undone.')) return;
+      state = { checked: {}, notes: {} };
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      renderChecklist();
+      renderSummary();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    $('printBtn').addEventListener('click', function () {
+      buildPrintSheet();
+      window.print();
+    });
+
+    $('jumpBtn').addEventListener('click', function () {
+      $('oeForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    renderChecklist();
+    renderSummary();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

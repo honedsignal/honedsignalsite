@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="FSA dollars are mostly use-it-or-lose-it. Enter your balance and deadline, build a spend plan from eligible-expense ideas, and see exactly what's left. Free FSA spend-down planner from Honed Proof — no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/fsa-spend-down-planner/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"FSA Spend-Down Planner","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/fsa-spend-down-planner/","description":"Plan how to spend down a flexible spending account balance before the use-it-or-lose-it deadline.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>FSA Spend-Down Planner: Use It Before You Lose It | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;font-weight:600}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    select.sel{width:100%;min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:9px 10px;font-weight:600}
+    select.sel:focus{border-color:var(--blue);outline:0}
+    input[type="date"].date-input{width:100%;min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);padding:9px 10px;font-weight:600;color-scheme:dark}
+    input[type="date"].date-input:focus{border-color:var(--blue);outline:0}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .hint strong{color:var(--ink)}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .roadmap{padding:24px;border-radius:22px;margin-top:10px}
+    .road-head{margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .road-head h2{margin:0;font-size:1.08rem;letter-spacing:-.025em}
+    .road-head p{margin:4px 0 0;color:var(--muted);font-size:.72rem}
+    .warn-box{border:1px solid color-mix(in srgb,var(--orange) 55%,var(--line));background:var(--orange-soft);border-radius:12px;padding:14px 16px;font-size:.8rem;color:var(--ink);margin:0 0 14px;line-height:1.55}
+    .warn-box strong{color:var(--orange)}
+    .ok-box{border:1px solid color-mix(in srgb,var(--teal) 45%,var(--line));background:color-mix(in srgb,var(--teal) 12%,var(--surface));border-radius:12px;padding:14px 16px;font-size:.8rem;color:var(--ink);margin:0 0 14px;line-height:1.55}
+    .ok-box strong{color:var(--teal)}
+    .idea-cat{margin:0 0 14px}
+    .idea-cat>h3{margin:0 0 6px;font-size:.78rem;letter-spacing:.02em;color:var(--muted);text-transform:uppercase}
+    .idea-item{display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);margin-bottom:6px;cursor:pointer}
+    .idea-item:hover{border-color:var(--blue)}
+    .idea-item input{width:22px;height:22px;flex:none;accent-color:var(--teal);cursor:pointer;margin:0}
+    .idea-item .iname{flex:1;min-width:0;font-size:.82rem;font-weight:600}
+    .idea-item .irange{font:500 .72rem "DM Mono",monospace;color:var(--muted);white-space:nowrap}
+    .idea-item.checked{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 9%,var(--bg))}
+    .plan-row{display:grid;grid-template-columns:1fr 130px 44px;gap:10px;align-items:center;padding:10px 4px;border-top:1px solid var(--line)}
+    .plan-row:first-child{border-top:0}
+    .plan-row .pname{font-size:.82rem;font-weight:700}
+    .plan-row .pname small{display:block;font-weight:400;color:var(--muted);font-size:.68rem}
+    .plan-row .money-input input{padding:7px 7px 7px 4px}
+    .remove-btn{width:44px;height:44px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1}
+    .remove-btn:hover{border-color:var(--orange);color:var(--orange)}
+    .bar{height:12px;border-radius:6px;background:var(--surface-2);overflow:hidden;margin:10px 0 4px}
+    .bar>i{display:block;height:100%;border-radius:6px;background:var(--teal);transition:width .25s}
+    .bar.over>i{background:var(--orange)}
+    .totals{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:14px 0 0;font-size:.8rem}
+    .totals dt{color:var(--muted)}
+    .totals dd{margin:0;font:500 .8rem "DM Mono",monospace;text-align:right}
+    .btn-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+    .ghost-btn{min-height:44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);padding:10px 16px;font-weight:700;font-size:.8rem;cursor:pointer}
+    .ghost-btn:hover{border-color:var(--blue)}
+    .custom-add{display:grid;grid-template-columns:1fr 120px;gap:8px;margin-top:8px}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .plan-block li{margin-bottom:6px}
+    .plan-block li strong{color:var(--ink)}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}.plan-row{grid-template-columns:1fr 110px 44px}}
+    @media print{
+      body{background:#fff;color:#111}
+      .back-link,.workbench .inputs,.btn-row,.explanation,.footer,.hs-legal,.idea-bank{display:none!important}
+      .page{width:100%;padding:0}
+      .intro{border:0;padding:0}
+      .intro p{display:none}
+      h1{font-size:1.6rem;color:#111}
+      .workbench{display:block;margin-top:12px}
+      .result-top{background:#fff;color:#111;border:2px solid #111;border-radius:0}
+      .result-top:after{display:none}
+      .roadmap,.plan-block,.explanation{border:1px solid #999;background:#fff}
+      .warn-box,.ok-box{border:1px solid #999;background:#fff;color:#111}
+      .plan-row .remove-btn{display:none}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Spend it <span class="accent">before you lose it.</span></h1>
+      </div>
+      <p>FSA dollars are mostly use-it-or-lose-it. Enter your balance and deadline, build a spend plan from eligible-expense ideas, and see exactly what's left.</p>
+    </header>
+
+    <section class="workbench" aria-label="FSA spend-down planner">
+      <form class="panel inputs" id="fsaForm" novalidate>
+        <div class="section-head"><h2>Your FSA</h2><span class="step">01 / BALANCE</span></div>
+        <div class="field">
+          <label for="balance">Current FSA balance</label>
+          <div class="money-input"><span>$</span><input id="balance" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" /></div>
+        </div>
+        <div class="field">
+          <label for="endDate">Plan-year end date</label>
+          <input id="endDate" type="date" class="date-input" />
+        </div>
+        <div class="field">
+          <label for="graceMode">What happens to unspent dollars?</label>
+          <select id="graceMode" class="sel">
+            <option value="none">Use-it-or-lose-it — nothing carries over</option>
+            <option value="grace25">2.5-month grace period to spend</option>
+            <option value="rollover">$ rollover to next year</option>
+          </select>
+          <p class="hint" style="margin-top:8px"><strong>None:</strong> unspent money is forfeited at year-end. <strong>Grace period:</strong> up to 2&frac12; extra months to incur expenses. <strong>Rollover:</strong> a capped amount carries to next year — your employer picks one option, so confirm which applies to you.</p>
+        </div>
+        <div class="field hidden" id="rolloverField">
+          <label for="rolloverCap">Rollover cap ($)</label>
+          <div class="money-input"><span>$</span><input id="rolloverCap" type="number" min="0" step="1" inputmode="decimal" value="640" /></div>
+          <p class="hint" style="margin-top:8px">The IRS adjusts this cap yearly — <strong>verify the current limit</strong> with your plan documents or benefits team before relying on it.</p>
+        </div>
+
+        <div class="section-head"><h2>Idea bank</h2><span class="step">02 / IDEAS</span></div>
+        <p class="hint" style="margin-top:0">Eligible-expense ideas with typical cost ranges. Check an item to add it to your plan at the range midpoint — amounts are editable in the plan.</p>
+        <div class="idea-bank" id="ideaBank"></div>
+
+        <div class="section-head"><h2>Custom item</h2><span class="step">03 / ADD</span></div>
+        <div class="custom-add">
+          <div class="text-input"><input id="customName" type="text" placeholder="e.g. prescription refill" autocomplete="off" aria-label="Custom item name" /></div>
+          <div class="money-input"><span>$</span><input id="customAmt" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Custom item amount" /></div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="ghost-btn" id="addCustom">+ Add to plan</button>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="ghost-btn" id="printBtn">Print my plan</button>
+          <button type="button" class="ghost-btn" id="clearBtn">Clear all</button>
+        </div>
+        <p class="hint">Everything stays in this browser — nothing is uploaded. Your plan is saved automatically as you build it.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Build your spend-down plan</h2>
+            <p>Enter your FSA balance and deadline, then check ideas from the bank to start your plan.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="countdownLabel">TIME LEFT TO SPEND</p>
+            <p class="target" id="daysLeft">—</p>
+            <p class="target-note" id="deadlineNote"></p>
+          </section>
+          <section class="panel roadmap" id="planPanel">
+            <div class="road-head">
+              <div><h2>Your spend plan</h2><p>Amounts are editable — tap any number to adjust.</p></div>
+            </div>
+            <div id="verdictBox"></div>
+            <div id="planList"></div>
+            <div class="bar" id="spendBar" role="img" aria-label="Spending progress"><i id="spendFill" style="width:0%"></i></div>
+            <dl class="totals">
+              <dt>Plan-year balance</dt><dd id="tBalance">—</dd>
+              <dt>Planned spending</dt><dd id="tPlanned">—</dd>
+              <dt>Remaining unspent</dt><dd id="tUnspent">—</dd>
+              <dt id="tForfeitLabel">At risk of forfeit</dt><dd id="tForfeit" style="color:var(--orange);font-weight:700">—</dd>
+            </dl>
+          </section>
+          <div class="plan">
+            <section class="plan-block nudge">
+              <h3>Don't leave money behind</h3>
+              <ul>
+                <li><strong>Stock up smart:</strong> contact lenses, sunscreen (SPF 15+), first-aid supplies, and OTC meds are all eligible — buy what you'll actually use.</li>
+                <li><strong>Book the appointments:</strong> eye exams, dental cleanings, and physicals you've been postponing count, as long as the visit happens before your deadline.</li>
+                <li><strong>Glasses are the classic:</strong> a second pair or prescription sunglasses is one of the easiest ways to use a few hundred dollars well.</li>
+                <li><strong>Keep receipts:</strong> your plan administrator can ask for substantiation — save the receipt for everything on this plan.</li>
+              </ul>
+            </section>
+            <section class="plan-block">
+              <h3>Timing rules that trip people up</h3>
+              <ul>
+                <li>Expenses must generally be <strong>incurred</strong> — the service received or item purchased — by your deadline, not merely ordered.</li>
+                <li>Your <strong>run-out period</strong> (time to file claims) is not extra spending time — it's just paperwork time.</li>
+                <li>Grace periods and rollovers are <strong>employer choices</strong>, not guarantees. Confirm yours in writing.</li>
+                <li>Eligibility lists change — when in doubt, check your plan's eligible-expense list before buying.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About this planner">
+            <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About this planner</button>
+            <p class="explain-copy hidden" id="explainCopy">This planner does arithmetic on the numbers you enter — it does not know your employer's actual plan rules. FSA deadlines, grace periods, rollover caps, and eligible-expense lists vary by employer and change over time; verify everything against your plan documents or benefits team before spending. Cost ranges are typical U.S. retail ranges, not quotes. This is general information, not tax or benefits advice.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var LS_KEY = 'honedProofFsaSpendDown';
+    var GRACE_DAYS = 75; // ~2.5 months
+
+    var IDEAS = [
+      { id: 'eye-exam', cat: 'Vision', name: 'Eye exam', lo: 50, hi: 250 },
+      { id: 'glasses', cat: 'Vision', name: 'Prescription glasses', lo: 100, hi: 400 },
+      { id: 'contacts', cat: 'Vision', name: 'Contact lenses (year supply)', lo: 200, hi: 500 },
+      { id: 'rx-sunglasses', cat: 'Vision', name: 'Prescription sunglasses', lo: 150, hi: 400 },
+      { id: 'dental-cleaning', cat: 'Dental', name: 'Dental cleaning', lo: 75, hi: 200 },
+      { id: 'filling', cat: 'Dental', name: 'Dental filling', lo: 150, hi: 400 },
+      { id: 'night-guard', cat: 'Dental', name: 'Custom night guard', lo: 300, hi: 800 },
+      { id: 'otc-meds', cat: 'Pharmacy', name: 'OTC medications stock-up', lo: 25, hi: 100 },
+      { id: 'first-aid', cat: 'Pharmacy', name: 'First-aid kit', lo: 20, hi: 60 },
+      { id: 'copay-visit', cat: 'Medical', name: 'Specialist copay visit', lo: 30, hi: 75 },
+      { id: 'lab-work', cat: 'Medical', name: 'Lab work / blood panel', lo: 50, hi: 200 },
+      { id: 'pt-session', cat: 'Medical', name: 'Physical therapy session', lo: 75, hi: 150 },
+      { id: 'sunscreen', cat: 'Health gear', name: 'Sunscreen SPF 15+ stock-up', lo: 15, hi: 40 },
+      { id: 'reading-glasses', cat: 'Health gear', name: 'Reading glasses', lo: 10, hi: 50 },
+      { id: 'bp-monitor', cat: 'Health gear', name: 'Blood pressure monitor', lo: 40, hi: 100 }
+    ];
+
+    function $(id) { return document.getElementById(id); }
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+    function mid(lo, hi) { return Math.round(((lo + hi) / 2) * 100) / 100; }
+    function rangeStr(lo, hi) { return '$' + lo + '–$' + hi; }
+    function parseDate(str) {
+      if (!str) return null;
+      var parts = str.split('-');
+      if (parts.length !== 3) return null;
+      var d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+      return isNaN(d.getTime()) ? null : d;
+    }
+    function fmtDate(d) {
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    var state = { balance: 0, endDate: '', graceMode: 'none', rolloverCap: 640, items: [] };
+    // items: { key, name, amount, custom, range }
+
+    function save() {
+      try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+    function load() {
+      try {
+        var raw = localStorage.getItem(LS_KEY);
+        if (!raw) return;
+        var s = JSON.parse(raw);
+        if (s && typeof s === 'object') {
+          if (isFinite(s.balance) && s.balance >= 0) state.balance = s.balance;
+          if (typeof s.endDate === 'string') state.endDate = s.endDate;
+          if (['none', 'grace25', 'rollover'].indexOf(s.graceMode) !== -1) state.graceMode = s.graceMode;
+          if (isFinite(s.rolloverCap) && s.rolloverCap >= 0) state.rolloverCap = s.rolloverCap;
+          if (Array.isArray(s.items)) state.items = s.items.filter(function (it) {
+            return it && typeof it.name === 'string' && isFinite(it.amount) && it.amount >= 0;
+          });
+        }
+      } catch (e) {}
+    }
+
+    function buildIdeaBank() {
+      var bank = $('ideaBank');
+      var cats = [];
+      var html = '';
+      for (var i = 0; i < IDEAS.length; i++) {
+        if (cats.indexOf(IDEAS[i].cat) === -1) cats.push(IDEAS[i].cat);
+      }
+      for (var c = 0; c < cats.length; c++) {
+        html += '<div class="idea-cat"><h3>' + esc(cats[c]) + '</h3>';
+        for (var i = 0; i < IDEAS.length; i++) {
+          var it = IDEAS[i];
+          if (it.cat !== cats[c]) continue;
+          var checked = hasItem(it.id);
+          html += '<label class="idea-item' + (checked ? ' checked' : '') + '">' +
+            '<input type="checkbox" data-idea="' + it.id + '"' + (checked ? ' checked' : '') + ' aria-label="' + esc(it.name) + ', typical cost ' + esc(rangeStr(it.lo, it.hi)) + '" />' +
+            '<span class="iname">' + esc(it.name) + '</span>' +
+            '<span class="irange">' + esc(rangeStr(it.lo, it.hi)) + '</span></label>';
+        }
+        html += '</div>';
+      }
+      bank.innerHTML = html;
+    }
+
+    function hasItem(key) {
+      for (var i = 0; i < state.items.length; i++) {
+        if (state.items[i].key === key) return true;
+      }
+      return false;
+    }
+    function findIdea(id) {
+      for (var i = 0; i < IDEAS.length; i++) if (IDEAS[i].id === id) return IDEAS[i];
+      return null;
+    }
+    function addIdea(id) {
+      var idea = findIdea(id);
+      if (!idea || hasItem(id)) return;
+      state.items.push({ key: id, name: idea.name, amount: mid(idea.lo, idea.hi), custom: false, range: rangeStr(idea.lo, idea.hi) });
+    }
+    function removeItem(key) {
+      state.items = state.items.filter(function (it) { return it.key !== key; });
+    }
+
+    function effectiveDeadline() {
+      var d = parseDate(state.endDate);
+      if (!d) return null;
+      if (state.graceMode === 'grace25') {
+        var g = new Date(d.getTime());
+        g.setDate(g.getDate() + GRACE_DAYS);
+        return g;
+      }
+      return d;
+    }
+    function daysLeft() {
+      var dl = effectiveDeadline();
+      if (!dl) return null;
+      var now = new Date();
+      var a = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+      var b = new Date(dl.getFullYear(), dl.getMonth(), dl.getDate()).getTime();
+      return Math.round((b - a) / 86400000);
+    }
+
+    function totals() {
+      var planned = 0;
+      for (var i = 0; i < state.items.length; i++) planned += state.items[i].amount;
+      planned = Math.round(planned * 100) / 100;
+      var unspent = Math.round((state.balance - planned) * 100) / 100;
+      var forfeit = 0, rolls = 0;
+      if (state.graceMode === 'rollover') {
+        rolls = Math.min(Math.max(unspent, 0), state.rolloverCap);
+        forfeit = Math.max(0, unspent - state.rolloverCap);
+      } else {
+        forfeit = Math.max(0, unspent);
+      }
+      return { planned: planned, unspent: unspent, forfeit: forfeit, rolls: rolls };
+    }
+
+    function render() {
+      buildIdeaBank();
+      var hasData = state.balance > 0 || state.items.length > 0;
+      $('emptyState').classList.toggle('hidden', hasData);
+      $('resultState').classList.toggle('hidden', !hasData);
+      if (!hasData) return;
+
+      var t = totals();
+      var dl = daysLeft();
+      var deadline = effectiveDeadline();
+
+      if (dl === null) {
+        $('daysLeft').textContent = '—';
+        $('deadlineNote').textContent = 'Enter your plan-year end date to start the countdown.';
+      } else if (dl < 0) {
+        $('daysLeft').textContent = 'Expired';
+        $('deadlineNote').textContent = 'Your deadline (' + fmtDate(deadline) + ') has passed. This plan is for reference — check whether your run-out period still lets you file claims.';
+      } else if (dl === 0) {
+        $('daysLeft').textContent = 'Today';
+        $('deadlineNote').textContent = 'Your deadline is today (' + fmtDate(deadline) + '). Expenses must generally be incurred today.';
+      } else {
+        $('daysLeft').textContent = dl + (dl === 1 ? ' day' : ' days');
+        var note = 'Until ' + fmtDate(deadline);
+        if (state.graceMode === 'grace25') note += ' (includes your 2.5-month grace period)';
+        note += '.';
+        $('deadlineNote').textContent = note;
+      }
+
+      // Verdict box
+      var vb = '';
+      if (t.forfeit > 0) {
+        var msg = 'You still have <strong>' + fmt(t.forfeit) + '</strong> at risk of being forfeited.';
+        if (state.graceMode === 'rollover' && t.rolls > 0) {
+          msg = 'Up to <strong>' + fmt(t.rolls) + '</strong> rolls over, but <strong>' + fmt(t.forfeit) + '</strong> is still at risk of forfeit.';
+        } else if (state.graceMode === 'grace25' && dl !== null && dl >= 0) {
+          msg += ' Your grace period gives you extra time — book the appointments now.';
+        }
+        vb = '<div class="warn-box" role="alert">' + msg + '</div>';
+      } else if (state.items.length > 0) {
+        vb = '<div class="ok-box">Your plan covers your full balance. <strong>Nothing at risk.</strong></div>';
+      }
+      if (t.planned > state.balance && state.balance > 0) {
+        vb = '<div class="warn-box" role="alert">Your plan totals <strong>' + fmt(t.planned) + '</strong> — that\'s <strong>' + fmt(t.planned - state.balance) + '</strong> over your balance. Trim an item or two.</div>';
+      }
+      $('verdictBox').innerHTML = vb;
+
+      // Plan list
+      var html = '';
+      for (var i = 0; i < state.items.length; i++) {
+        var it = state.items[i];
+        html += '<div class="plan-row">' +
+          '<span class="pname">' + esc(it.name) + (it.range ? '<small>Typical ' + esc(it.range) + '</small>' : '<small>Custom item</small>') + '</span>' +
+          '<span class="money-input"><span>$</span><input type="number" min="0" step="0.01" inputmode="decimal" value="' + it.amount.toFixed(2) + '" data-amt="' + esc(it.key) + '" aria-label="Amount for ' + esc(it.name) + '" /></span>' +
+          '<button type="button" class="remove-btn" data-remove="' + esc(it.key) + '" aria-label="Remove ' + esc(it.name) + '">&times;</button></div>';
+      }
+      $('planList').innerHTML = html || '<p class="hint" style="margin:0 0 10px">No items yet — check ideas from the bank.</p>';
+
+      var pct = state.balance > 0 ? Math.min(100, (t.planned / state.balance) * 100) : 0;
+      $('spendFill').style.width = pct + '%';
+      $('spendBar').classList.toggle('over', t.planned > state.balance);
+
+      $('tBalance').textContent = fmt(state.balance);
+      $('tPlanned').textContent = fmt(t.planned);
+      $('tUnspent').textContent = fmt(Math.max(0, t.unspent));
+      $('tForfeit').textContent = fmt(t.forfeit);
+      if (state.graceMode === 'rollover') {
+        $('tForfeitLabel').textContent = 'Forfeited (after rollover)';
+      } else {
+        $('tForfeitLabel').textContent = 'At risk of forfeit';
+      }
+    }
+
+    function readInputs() {
+      var b = parseFloat($('balance').value);
+      state.balance = (isFinite(b) && b >= 0) ? Math.round(b * 100) / 100 : 0;
+      state.endDate = $('endDate').value || '';
+      state.graceMode = $('graceMode').value;
+      var rc = parseFloat($('rolloverCap').value);
+      state.rolloverCap = (isFinite(rc) && rc >= 0) ? rc : 640;
+      $('rolloverField').classList.toggle('hidden', state.graceMode !== 'rollover');
+    }
+
+    var customSeq = 0;
+    function uid() { customSeq++; return 'custom-' + Date.now().toString(36) + '-' + customSeq; }
+
+    // Events
+    $('ideaBank').addEventListener('change', function (e) {
+      var cb = e.target;
+      if (!cb || !cb.getAttribute('data-idea')) return;
+      var id = cb.getAttribute('data-idea');
+      if (cb.checked) addIdea(id); else removeItem(id);
+      save();
+      render();
+    });
+
+    $('planList').addEventListener('input', function (e) {
+      var inp = e.target;
+      if (!inp || !inp.getAttribute('data-amt')) return;
+      var key = inp.getAttribute('data-amt');
+      var v = parseFloat(inp.value);
+      for (var i = 0; i < state.items.length; i++) {
+        if (state.items[i].key === key) {
+          state.items[i].amount = (isFinite(v) && v >= 0) ? Math.round(v * 100) / 100 : 0;
+          break;
+        }
+      }
+      save();
+      // update totals without full re-render (keeps focus in the input)
+      var t = totals();
+      var pct = state.balance > 0 ? Math.min(100, (t.planned / state.balance) * 100) : 0;
+      $('spendFill').style.width = pct + '%';
+      $('spendBar').classList.toggle('over', t.planned > state.balance);
+      $('tPlanned').textContent = fmt(t.planned);
+      $('tUnspent').textContent = fmt(Math.max(0, t.unspent));
+      $('tForfeit').textContent = fmt(t.forfeit);
+    });
+
+    $('planList').addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-remove]');
+      if (!btn) return;
+      removeItem(btn.getAttribute('data-remove'));
+      save();
+      render();
+    });
+
+    $('addCustom').addEventListener('click', function () {
+      var name = $('customName').value.trim();
+      var amt = parseFloat($('customAmt').value);
+      if (!name) { $('customName').focus(); return; }
+      if (!isFinite(amt) || amt <= 0) { $('customAmt').focus(); return; }
+      state.items.push({ key: uid(), name: name, amount: Math.round(amt * 100) / 100, custom: true, range: '' });
+      $('customName').value = '';
+      $('customAmt').value = '';
+      save();
+      render();
+    });
+
+    ['balance', 'endDate', 'graceMode', 'rolloverCap'].forEach(function (id) {
+      $(id).addEventListener('input', function () { readInputs(); save(); render(); });
+      $(id).addEventListener('change', function () { readInputs(); save(); render(); });
+    });
+
+    $('printBtn').addEventListener('click', function () { window.print(); });
+
+    $('clearBtn').addEventListener('click', function () {
+      if (!confirm('Clear your entire spend-down plan? This cannot be undone.')) return;
+      state = { balance: 0, endDate: '', graceMode: 'none', rolloverCap: 640, items: [] };
+      $('balance').value = '';
+      $('endDate').value = '';
+      $('graceMode').value = 'none';
+      $('rolloverCap').value = '640';
+      $('rolloverField').classList.add('hidden');
+      save();
+      render();
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    // Init
+    load();
+    $('balance').value = state.balance > 0 ? state.balance.toFixed(2) : '';
+    $('endDate').value = state.endDate;
+    $('graceMode').value = state.graceMode;
+    $('rolloverCap').value = state.rolloverCap;
+    readInputs();
+    render();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Compare the cash/self-pay price against your insurance cost for a medical service. Free cash vs insurance price comparator from Honed Proof — plain-English results, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/cash-vs-insurance-comparator/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Cash vs Insurance Price Comparator","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/cash-vs-insurance-comparator/","description":"Compare a medical service's cash price against your out-of-pocket cost through insurance.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Cash vs Insurance: Which Way Is Cheaper? | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    .pct-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .pct-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .pct-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 5px 9px 10px;min-height:44px;font-weight:700;font-variant-numeric:tabular-nums}
+    .pct-input span{padding-right:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .proxy-note{margin:6px 1px 0;color:var(--orange);font-size:.68rem;display:none}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .versus{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .vs-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px;text-align:center}
+    .vs-card.winner{border-color:color-mix(in srgb,var(--teal) 55%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--teal) 55%,transparent)}
+    .vs-card h3{margin:0 0 6px;font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .vs-card .amount{margin:0;font:700 1.9rem "DM Mono",monospace;letter-spacing:-.03em}
+    .vs-card.winner .amount{color:var(--teal)}
+    .vs-card p{margin:8px 0 0;font-size:.7rem;color:var(--muted)}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.versus{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet table{border-collapse:collapse;width:100%;margin:10px 0}
+      .print-sheet th,.print-sheet td{border:1px solid #999;padding:6px 8px;text-align:left}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Cash <span class="accent">vs</span> insurance: which way is cheaper?</h1>
+      </div>
+      <p>Sometimes paying cash is cheaper than running it through insurance — especially with a high deductible. Compare before you book.</p>
+    </header>
+
+    <section class="workbench" aria-label="Cash versus insurance price comparator">
+      <form class="panel inputs" id="cmpForm" novalidate>
+        <div class="section-head"><h2>The service</h2><span class="step">01 / SERVICE</span></div>
+        <div class="field">
+          <label for="svc">Service / procedure name</label>
+          <div class="text-input"><input id="svc" type="text" placeholder="e.g. MRI of knee" autocomplete="off" /></div>
+        </div>
+        <div class="field">
+          <label for="cashPrice">Cash / self-pay price you were quoted</label>
+          <div class="money-input"><span>$</span><input id="cashPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Cash or self-pay price quoted" /></div>
+        </div>
+
+        <div class="section-head"><h2>Your plan</h2><span class="step">02 / PLAN</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="remDed">Remaining deductible</label>
+            <div class="money-input"><span>$</span><input id="remDed" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Remaining deductible" /></div>
+          </div>
+          <div class="field">
+            <label for="coins">Coinsurance after deductible</label>
+            <div class="pct-input"><input id="coins" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="20" aria-label="Coinsurance percent after deductible" /><span>%</span></div>
+          </div>
+        </div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="copay">Copay for this service type (if any)</label>
+            <div class="money-input"><span>$</span><input id="copay" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Copay for this service type" /></div>
+          </div>
+          <div class="field">
+            <label for="allowed">Insurer's allowed amount (optional)</label>
+            <div class="money-input"><span>$</span><input id="allowed" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Insurer negotiated allowed amount, optional" /></div>
+          </div>
+        </div>
+        <p class="proxy-note" id="proxyNote">No allowed amount entered — using the cash price as a rough proxy. The real allowed amount may be higher or lower; check your plan's cost estimator.</p>
+
+        <button class="calculate" type="submit">Compare cash vs insurance</button>
+        <button class="ghost no-print" type="button" id="resetBtn">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Enter your numbers to compare</h2>
+            <p>Add the cash price and your plan details, and see which path costs you less out of pocket.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="verdictEyebrow">VERDICT</p>
+            <p class="target" id="verdictAmount">$0</p>
+            <p class="target-note" id="verdictNote"></p>
+          </section>
+          <div class="versus">
+            <section class="vs-card" id="cashCard" aria-label="Cash path cost">
+              <h3>Pay cash</h3>
+              <p class="amount" id="vsCash">$0</p>
+              <p id="vsCashNote">Self-pay price, no insurance involved.</p>
+            </section>
+            <section class="vs-card" id="insCard" aria-label="Insurance path cost">
+              <h3>Use insurance</h3>
+              <p class="amount" id="vsIns">$0</p>
+              <p id="vsInsNote">Your estimated out-of-pocket through the plan.</p>
+            </section>
+          </div>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>How the insurance number is built</h3>
+              <dl>
+                <dt>Allowed amount</dt><dd id="bAllowed">—</dd>
+                <dt>Applied to deductible</dt><dd id="bToDed">—</dd>
+                <dt>Coinsurance share</dt><dd id="bCoins">—</dd>
+                <dt>Copay</dt><dd id="bCopay">—</dd>
+                <dt><strong>Insurance total</strong></dt><dd id="bIns" style="font-weight:700">—</dd>
+                <dt><strong>Cash total</strong></dt><dd id="bCash" style="font-weight:700">—</dd>
+                <dt style="color:var(--teal);font-weight:700">Difference</dt><dd id="bDiff" style="color:var(--teal);font-weight:700">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>Before you decide</h3>
+              <ul>
+                <li><strong>Cash usually doesn't count toward your deductible.</strong> If you're close to meeting it, the insurance path may win even when it looks pricier today.</li>
+                <li><strong>Get the cash price in writing</strong> before the appointment — quotes over the phone have a way of changing.</li>
+                <li><strong>HSA or FSA funds</strong> can pay either way, so the tax advantage doesn't pick a side.</li>
+                <li><strong>Near your out-of-pocket max?</strong> Run it through insurance — every covered dollar gets you closer to $0 cost-sharing.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle no-print" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About these results</button>
+            <p class="explain-copy hidden" id="explainCopy">This compares two estimates: the cash price you enter and your out-of-pocket cost through insurance (remaining deductible, then your coinsurance share of the allowed amount, plus any copay). Plans vary — some apply the copay instead of the deductible, some count cash payments toward the deductible, and the real allowed amount may differ from the estimate. Confirm the details with your insurer and the provider before you book. This is a planning aid, not insurance advice.</p>
+          </section>
+          <button class="ghost no-print" type="button" id="printBtn" style="margin-top:10px">Print summary</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Cash vs Insurance — <span id="psSvc">Service</span></h2>
+      <table>
+        <tr><th>Cash price</th><td id="psCash">—</td></tr>
+        <tr><th>Insurance out-of-pocket (est.)</th><td id="psIns">—</td></tr>
+        <tr><th>Difference</th><td id="psDiff">—</td></tr>
+        <tr><th>Cheaper path</th><td id="psWinner">—</td></tr>
+      </table>
+      <p class="ps-note">Estimate only — confirm with your insurer and provider. Cash payments usually do not count toward your deductible. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofCashVsInsurance';
+    var CLOSE_CALL = 25; // below this dollar gap, call it too close
+
+    function $(id) { return document.getElementById(id); }
+    function num(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmt0(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+    function compute(cash, remDed, coinsPct, copay, allowedRaw) {
+      var proxy = !(allowedRaw > 0);
+      var allowed = proxy ? cash : allowedRaw;
+      var toDed = Math.min(remDed, allowed);
+      var afterDed = Math.max(0, allowed - toDed);
+      var coinsAmt = (coinsPct / 100) * afterDed;
+      var ins = toDed + coinsAmt + copay;
+      var diff = cash - ins; // positive => insurance cheaper
+      var verdict;
+      if (diff >= CLOSE_CALL) verdict = 'ins';
+      else if (diff <= -CLOSE_CALL) verdict = 'cash';
+      else verdict = 'close';
+      return { allowed: allowed, proxy: proxy, toDed: toDed, coinsAmt: coinsAmt, copay: copay, ins: ins, cash: cash, diff: diff, verdict: verdict };
+    }
+
+    function save() {
+      var data = {
+        svc: $('svc').value, cashPrice: $('cashPrice').value, remDed: $('remDed').value,
+        coins: $('coins').value, copay: $('copay').value, allowed: $('allowed').value
+      };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return;
+      $('svc').value = data.svc || '';
+      $('cashPrice').value = data.cashPrice || '';
+      $('remDed').value = data.remDed || '';
+      $('coins').value = data.coins || '';
+      $('copay').value = data.copay || '';
+      $('allowed').value = data.allowed || '';
+      updateProxyNote();
+    }
+
+    function updateProxyNote() {
+      var allowedRaw = parseFloat($('allowed').value);
+      $('proxyNote').style.display = !(allowedRaw > 0) ? 'block' : 'none';
+    }
+
+    function render(r) {
+      var svc = $('svc').value.trim() || 'This service';
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+
+      var label, note;
+      if (r.verdict === 'cash') {
+        label = 'Cash saves you about ' + fmt0(Math.abs(r.diff));
+        note = svc + ': the self-pay price beats your estimated insurance cost. Ask for it in writing before you book.';
+        $('verdictEyebrow').textContent = 'VERDICT — CASH WINS';
+      } else if (r.verdict === 'ins') {
+        label = 'Insurance is cheaper by about ' + fmt0(r.diff);
+        note = svc + ': running it through your plan costs less out of pocket — and it counts toward your deductible.';
+        $('verdictEyebrow').textContent = 'VERDICT — INSURANCE WINS';
+      } else {
+        label = 'Too close to call';
+        note = svc + ': the two paths are within ' + fmt0(CLOSE_CALL) + ' of each other. With a gap this small, the insurance path has the edge — it counts toward your deductible and out-of-pocket max.';
+        $('verdictEyebrow').textContent = 'VERDICT — TOSS-UP';
+      }
+      $('verdictAmount').textContent = label;
+      $('verdictNote').textContent = note;
+
+      $('vsCash').textContent = fmt(r.cash);
+      $('vsIns').textContent = fmt(r.ins);
+      $('cashCard').classList.toggle('winner', r.verdict === 'cash');
+      $('insCard').classList.toggle('winner', r.verdict === 'ins');
+
+      $('bAllowed').textContent = fmt(r.allowed) + (r.proxy ? ' (proxy)' : '');
+      $('bToDed').textContent = fmt(r.toDed);
+      $('bCoins').textContent = fmt(r.coinsAmt);
+      $('bCopay').textContent = fmt(r.copay);
+      $('bIns').textContent = fmt(r.ins);
+      $('bCash').textContent = fmt(r.cash);
+      $('bDiff').textContent = (r.diff >= 0 ? 'Insurance −' : 'Cash −') + fmt(Math.abs(r.diff));
+
+      $('psSvc').textContent = svc;
+      $('psCash').textContent = fmt(r.cash);
+      $('psIns').textContent = fmt(r.ins);
+      $('psDiff').textContent = fmt(Math.abs(r.diff));
+      $('psWinner').textContent = r.verdict === 'cash' ? 'Cash' : (r.verdict === 'ins' ? 'Insurance' : 'Too close to call');
+
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    $('allowed').addEventListener('input', updateProxyNote);
+
+    var fields = ['svc', 'cashPrice', 'remDed', 'coins', 'copay', 'allowed'];
+    fields.forEach(function (id) {
+      $(id).addEventListener('input', save);
+    });
+
+    $('cmpForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var cash = num('cashPrice');
+      if (!(cash > 0)) {
+        $('cashPrice').focus();
+        return;
+      }
+      var r = compute(cash, num('remDed'), num('coins'), num('copay'), parseFloat($('allowed').value));
+      save();
+      render(r);
+    });
+
+    $('resetBtn').addEventListener('click', function () {
+      fields.forEach(function (id) { $(id).value = ''; });
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      updateProxyNote();
+      $('resultState').classList.add('hidden');
+      $('emptyState').classList.remove('hidden');
+      $('svc').focus();
+    });
+
+    $('printBtn').addEventListener('click', function () { window.print(); });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    restore();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>
