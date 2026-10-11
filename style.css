@@ -85,6 +85,12 @@ body {
 /* Keep the lockup on one line */
 .wordmark { white-space: nowrap; }
 
+/* High-contrast keyboard focus ring (WCAG 2.2 focus appearance) */
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
 /* The wordmark lockup's orange round period */
 .dot {
   display: inline-block;
