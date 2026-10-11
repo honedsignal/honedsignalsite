@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="What does FDA approved actually mean? The full path from lab to pharmacy — clinical trial phases, what approval guarantees and doesn't, and the fast lanes decoded. Free guide from Honed Proof." />
+  <link rel="canonical" href="https://honedsignal.com/health/fda-approval-explainer/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"What 'FDA Approved' Actually Means","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/fda-approval-explainer/","description":"A plain-English guide to the FDA drug approval process: trial phases, what approval means, and expedited pathways.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>What 'FDA Approved' Actually Means | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .article{max-width:760px;margin-top:32px}
+    .article h2{margin:38px 0 12px;font-size:1.5rem;letter-spacing:-.02em}
+    .article h2:first-child{margin-top:0}
+    .article p{color:var(--muted);font-size:.95rem;line-height:1.75;margin:0 0 14px}
+    .article p strong{color:var(--ink)}
+    .article ul{color:var(--muted);font-size:.95rem;line-height:1.75;margin:0 0 14px;padding-left:20px}
+    .article li{margin-bottom:8px}
+    .article li strong{color:var(--ink)}
+    .steps{display:grid;gap:0;margin:18px 0 8px}
+    .phase{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+    .phase:last-child{border-bottom:1px solid var(--line)}
+    .phase-num{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 .8rem "DM Mono",monospace;background:var(--surface-2);color:var(--teal);flex:none}
+    .phase h3{margin:0 0 6px;font-size:1.02rem;letter-spacing:-.01em}
+    .phase h3 .tag{font:500 .68rem "DM Mono",monospace;color:var(--orange);margin-left:8px}
+    .phase p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.7}
+    .duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+    .duo-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:20px}
+    .duo-block h3{margin:0 0 10px;font-size:.95rem}
+    .duo-block ul{margin:0;padding-left:18px;color:var(--muted);font-size:.82rem;line-height:1.7}
+    .duo-block li{margin-bottom:6px}
+    .duo-block.yes{border-color:color-mix(in srgb,var(--teal) 40%,var(--line))}
+    .duo-block.no{border-color:color-mix(in srgb,var(--orange) 40%,var(--line))}
+    .lane{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:20px;margin:0 0 12px}
+    .lane h3{margin:0 0 6px;font-size:.95rem}
+    .lane h3 .tag{font:500 .68rem "DM Mono",monospace;color:var(--orange);margin-left:8px}
+    .lane p{margin:0;color:var(--muted);font-size:.85rem;line-height:1.7}
+    .callout{margin:22px 0;border-left:3px solid var(--teal);padding:4px 0 4px 18px;color:var(--muted);font-size:.9rem;line-height:1.75}
+    .callout strong{color:var(--ink)}
+    .xlink{margin-top:26px;color:var(--muted);font-size:.88rem}
+    .xlink a{color:var(--teal);font-weight:700;text-decoration:none}
+    .xlink a:hover{text-decoration:underline}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .footer strong{color:var(--ink)}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.duo{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.footer{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/whats-new-in-medicine/" target="_top" aria-label="Back to What's New in Medicine">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>What <span class="accent">"FDA approved"</span> actually means.</h1>
+      </div>
+      <p>The stamp of approval is real — but it's narrower than most headlines make it sound. Here's the full path from lab to pharmacy, in plain English.</p>
+    </header>
+
+    <div class="article">
+      <h2>The path, step by step</h2>
+      <p>Before a drug can be sold in the U.S., it has to survive a gauntlet. Most candidates don't — roughly 9 out of 10 drugs that enter human testing never make it to approval. Here's the gauntlet:</p>
+      <div class="steps">
+        <div class="phase"><div class="phase-num" aria-hidden="true">0</div><div>
+          <h3>Preclinical <span class="tag">lab + animals</span></h3>
+          <p>Years of lab work and animal testing to check basic safety and whether the idea even works biologically. No humans yet.</p>
+        </div></div>
+        <div class="phase"><div class="phase-num" aria-hidden="true">1</div><div>
+          <h3>Phase 1 <span class="tag">dozens of people</span></h3>
+          <p>The first human tests — usually 20 to 100 healthy volunteers. The question isn't "does it work?" yet; it's "is it safe, and what dose can people tolerate?"</p>
+        </div></div>
+        <div class="phase"><div class="phase-num" aria-hidden="true">2</div><div>
+          <h3>Phase 2 <span class="tag">hundreds of people</span></h3>
+          <p>Now in patients who actually have the condition — a few hundred. Does it work? What's the right dose? Side effects start coming into focus. This is where most drugs fail.</p>
+        </div></div>
+        <div class="phase"><div class="phase-num" aria-hidden="true">3</div><div>
+          <h3>Phase 3 <span class="tag">thousands of people</span></h3>
+          <p>Large trials — often thousands of patients, multiple sites, compared against the current standard treatment or a placebo. This is the evidence the FDA weighs most heavily.</p>
+        </div></div>
+        <div class="phase"><div class="phase-num" aria-hidden="true">4</div><div>
+          <h3>FDA review <span class="tag">~6–10 months</span></h3>
+          <p>The drugmaker submits everything — all the trial data, manufacturing details, proposed labeling. FDA scientists review it independently and can say yes, no, or "we need more data."</p>
+        </div></div>
+      </div>
+
+      <h2>What approval actually means</h2>
+      <p>When the FDA approves a drug, it's saying one specific thing: <strong>for the approved use, in the studied population, the benefits outweigh the known risks.</strong> That's it. That's the whole stamp.</p>
+      <div class="duo">
+        <div class="duo-block yes">
+          <h3>Approval means</h3>
+          <ul>
+            <li>It beat the evidence bar in controlled trials for a specific condition and use.</li>
+            <li>Its risks were measured, weighed, and judged acceptable <em>for that use</em>.</li>
+            <li>It's manufactured under inspected quality standards.</li>
+            <li>Its label must describe known risks and side effects.</li>
+          </ul>
+        </div>
+        <div class="duo-block no">
+          <h3>Approval does not mean</h3>
+          <ul>
+            <li>It's a cure — many approved drugs manage a condition rather than curing it.</li>
+            <li>It's risk-free — every drug has side effects; approval means the trade-off was judged worth it.</li>
+            <li>It was tested in everyone — trials often exclude the elderly, pregnant people, and those with multiple conditions.</li>
+            <li>It works for <em>your</em> situation — that's between you and your doctor.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout"><strong>Approval can be withdrawn.</strong> If post-market surveillance turns up serious problems the trials missed, the FDA can pull a drug. Approval is a judgment on the evidence available at the time — not a lifetime guarantee.</div>
+
+      <h2>The fast lanes, decoded</h2>
+      <p>You'll see these terms in headlines. They speed up the <em>process</em> — they don't lower the bar for safety and effectiveness:</p>
+      <div class="lane">
+        <h3>Priority Review <span class="tag">faster review</span></h3>
+        <p>The FDA reviews the application in about 6 months instead of 10. Same evidence standard, shorter queue.</p>
+      </div>
+      <div class="lane">
+        <h3>Fast Track <span class="tag">more meetings</span></h3>
+        <p>For drugs treating serious conditions with unmet need. The company gets more frequent FDA meetings and can submit data in pieces. Doesn't guarantee approval.</p>
+      </div>
+      <div class="lane">
+        <h3>Breakthrough Therapy <span class="tag">intensive guidance</span></h3>
+        <p>For drugs with early evidence of big improvement over existing options. Extra FDA hand-holding through development — the trials still have to deliver.</p>
+      </div>
+      <div class="lane">
+        <h3>Accelerated Approval <span class="tag">surrogate endpoints</span></h3>
+        <p>The one that actually differs: the FDA can approve based on a <em>surrogate endpoint</em> — a lab measure thought to predict benefit (like tumor shrinkage) — instead of waiting to prove patients live longer. The company must run follow-up trials to confirm the real benefit. If they don't, approval can be revoked.</p>
+      </div>
+
+      <h2>"Approved" vs "cleared" vs "authorized"</h2>
+      <p>Headlines mix these up. <strong>Approved</strong> is the full drug process above. <strong>Cleared</strong> usually refers to medical devices, through a shorter path showing the device is substantially similar to one already on the market — a lower bar than drug approval. <strong>Authorized</strong> (as in Emergency Use Authorization) is temporary permission during a declared emergency, based on less complete evidence; it ends when the emergency declaration ends.</p>
+
+      <h2>The timeline reality</h2>
+      <p>From discovery to pharmacy shelf, a new drug typically takes <strong>10 to 15 years</strong> and costs over a billion dollars — which is part of why new drugs are expensive. When a headline says "new drug approved," you're seeing the finish line of a marathon that started when flip phones were still a thing.</p>
+
+      <p class="xlink">Reading about a specific breakthrough? Run it through the <a href="/health/breakthrough-evidence-checker/" target="_top">Breakthrough Evidence Checker</a> — seven quick checks, one plain-English verdict. And to see how we grade evidence generally, visit <a href="/health/does-it-work/" target="_top">Does It Work?</a></p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. This page explains regulatory processes, not whether any treatment is right for you. Always talk to a qualified health professional about your own care.</div>
+
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Breakthrough or hype? Paste a health headline, answer 7 quick evidence checks, and get a plain-English verdict. Free tool from Honed Proof — no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/breakthrough-evidence-checker/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Breakthrough or Hype? Check the Evidence","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/breakthrough-evidence-checker/","description":"Answer 7 evidence checks on a health headline and get a plain-English verdict: solid, promising, preliminary, or hype.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Breakthrough or Hype? Check the Evidence | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--red:#ff7a7a;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,a,input,textarea{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input textarea{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:10px;font-weight:600;resize:vertical;min-height:76px;font-family:Manrope,sans-serif;font-size:.9rem;line-height:1.5}
+    .check{border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px;background:var(--bg)}
+    .check h3{margin:0 0 4px;font-size:.92rem}
+    .check h3 .step{margin-right:8px}
+    .check p.why{margin:0 0 12px;color:var(--muted);font-size:.76rem;line-height:1.6}
+    .tri{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+    .tri button{min-height:48px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer;font-weight:700;font-size:.8rem}
+    .tri button:hover{border-color:var(--blue)}
+    .tri button.on-yes{background:var(--teal);border-color:var(--teal);color:#071009}
+    .tri button.on-unsure{background:var(--orange);border-color:var(--orange);color:var(--orange-ink)}
+    .tri button.on-no{background:var(--surface-2);border-color:var(--muted);color:var(--muted)}
+    .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .action{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:10px 16px;cursor:pointer;font-size:.8rem;font-weight:800;text-decoration:none}
+    .action:hover{border-color:var(--blue)}
+    .action.primary{background:var(--teal);border-color:var(--teal);color:#071009}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:800 clamp(2.2rem,5vw,3.8rem)/1 Manrope,sans-serif;letter-spacing:-.03em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .score-line{position:relative;z-index:1;margin:10px 0 0;font:500 .85rem "DM Mono",monospace;opacity:.72}
+    .breakdown{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:20px}
+    .breakdown h3{margin:0 0 12px;font-size:.95rem}
+    .bd-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:.82rem}
+    .bd-row:first-of-type{border-top:0}
+    .bd-row .ans{font:700 .72rem "DM Mono",monospace;padding:5px 10px;border-radius:6px;min-width:76px;text-align:center}
+    .ans.yes{background:var(--teal);color:#071009}
+    .ans.unsure{background:var(--orange);color:var(--orange-ink)}
+    .ans.no{background:var(--surface-2);color:var(--muted)}
+    .verdict-meaning{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:20px}
+    .verdict-meaning h3{margin:0 0 10px;font-size:.95rem}
+    .verdict-meaning p{margin:0 0 10px;color:var(--muted);font-size:.84rem;line-height:1.7}
+    .verdict-meaning p:last-child{margin-bottom:0}
+    .verdict-meaning strong{color:var(--ink)}
+    .xlink{margin-top:16px;color:var(--muted);font-size:.85rem;line-height:1.7}
+    .xlink a{color:var(--teal);font-weight:700;text-decoration:none}
+    .xlink a:hover{text-decoration:underline}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .footer strong{color:var(--ink)}
+    #printSummary{display:none}
+    @media print{
+      body.printing .page,body.printing .hs-legal{display:none!important}
+      body.printing #printSummary{display:block!important;color:#000;max-width:700px;margin:0 auto;padding:20px;font-family:Manrope,sans-serif}
+      body.printing #printSummary h1{font-size:1.6rem;margin:0 0 8px}
+      body.printing #printSummary h2{font-size:1.1rem;margin:18px 0 6px}
+      body.printing #printSummary p,body.printing #printSummary li{font-size:.85rem;line-height:1.6;color:#222}
+      body.printing #printSummary ul{padding-left:20px}
+    }
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.breakdown,.verdict-meaning{padding:19px}.footer{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/whats-new-in-medicine/" target="_top" aria-label="Back to What's New in Medicine">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Breakthrough <span class="accent">or hype?</span></h1>
+      </div>
+      <p>Paste the headline, answer 7 quick checks, and get a plain-English verdict on the evidence behind the claim.</p>
+    </header>
+
+    <section class="workbench" aria-label="Breakthrough evidence checker">
+      <div class="panel inputs">
+        <div class="section-head"><h2>Your claim</h2><span class="step">STEP 1</span></div>
+        <div class="field">
+          <label for="claimInput">Headline or claim (optional — helps your printout)</label>
+          <div class="text-input"><textarea id="claimInput" placeholder="e.g. &quot;New pill cuts heart attack risk in half, study finds&quot;" aria-describedby="claimHint"></textarea></div>
+          <p class="hint" id="claimHint">Nothing you type leaves your browser. It's saved only on this device.</p>
+        </div>
+        <div class="section-head"><h2>The 7 checks</h2><span class="step">STEP 2</span></div>
+        <div id="checkList"></div>
+        <div class="actions">
+          <button class="action primary" id="printBtn" type="button">Print summary</button>
+          <button class="action" id="resetBtn" type="button">Start over</button>
+        </div>
+      </div>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Your verdict appears here</h2>
+            <p>Answer the 7 checks on the left. The score updates live — "Unsure" is always an honest answer.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden">
+          <section class="result-top" aria-live="polite">
+            <p class="eyebrow">EVIDENCE VERDICT</p>
+            <p class="target" id="verdictWord">—</p>
+            <p class="score-line" id="verdictScore">—</p>
+            <p class="target-note" id="verdictTagline">—</p>
+          </section>
+          <section class="breakdown" aria-label="Your answers">
+            <h3>Your answers</h3>
+            <div id="breakdownRows"></div>
+          </section>
+          <section class="verdict-meaning" aria-label="What this verdict means">
+            <h3>What this means — and doesn't</h3>
+            <p id="verdictMeans"></p>
+            <p id="verdictNotMeans"></p>
+          </section>
+          <p class="xlink">Want the full framework behind these checks? See <a href="/health/does-it-work/" target="_top">how Honed Proof grades evidence</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. This tool grades the strength of evidence behind a claim, not whether any treatment is right for you. Always talk to a qualified health professional about your own care.</div>
+
+  <div id="printSummary" aria-hidden="true"></div>
+
+  <script>
+  (function () {
+    'use strict';
+    var LS_KEY = 'honedProofBreakthroughCheck';
+
+    var CHECKS = [
+      { id: 'c1', title: 'Tested in people', q: 'Was it tested in humans — not just animals, cells, or computer models?', why: 'Most things that work in mice fail in people. Human data is the minimum bar for a health claim.' },
+      { id: 'c2', title: 'Decent size', q: 'Did it involve hundreds of people or more?', why: 'Tiny studies can produce dramatic results by pure chance. Bigger groups make flukes less likely.' },
+      { id: 'c3', title: 'Peer-reviewed', q: 'Published in a peer-reviewed journal — not just a press release, preprint, or conference talk?', why: 'Peer review means independent experts checked the methods before publication. A press release checked nothing.' },
+      { id: 'c4', title: 'Replicated', q: 'Has an independent team gotten similar results?', why: 'One study is a hint. A second, independent study is the beginning of evidence.' },
+      { id: 'c5', title: 'Independent funding', q: 'Was the funder free of a financial stake in the result?', why: 'Industry-funded studies are more likely to report favorable results. Independent funding — or transparent disclosure — is the cleaner signal.' },
+      { id: 'c6', title: 'Absolute numbers', q: 'Does the reporting give absolute numbers (e.g. "3 in 1,000 vs 6 in 1,000"), not just relative claims like "50% lower"?', why: '"50% lower risk" can mean going from 2 cases to 1 case in a thousand. Absolute numbers tell you how much it actually matters.' },
+      { id: 'c7', title: 'Randomized controlled trial', q: 'Was it a randomized controlled trial — participants randomly assigned and compared against a control group?', why: 'Randomization is what separates "this happened alongside the treatment" from "the treatment caused this." Observational studies can only show correlation.' }
+    ];
+
+    var VERDICTS = {
+      solid: {
+        word: 'Solid', color: '#2fbfae', tagline: 'This has the hallmarks of a genuine finding.',
+        means: 'Tested in people, at a decent size, peer-reviewed, replicated, independently funded, honestly numbered, and properly trialed. This is about as strong as medical evidence gets.',
+        notMeans: 'It does not mean the science is settled forever, that it applies to everyone, or that it is right for you. Even solid findings get refined — and treatment decisions still belong between you and your doctor.'
+      },
+      promising: {
+        word: 'Promising', color: '#79a8d9', tagline: 'Real signals — but gaps worth knowing about.',
+        means: 'Several strong evidence checks passed. There is something here worth paying attention to, and worth watching as more research comes in.',
+        notMeans: 'It does not mean the case is closed. The missing checks are exactly where promising findings most often fall apart — usually on replication or independent confirmation.'
+      },
+      preliminary: {
+        word: 'Preliminary', color: '#f7931a', tagline: 'Interesting — but not actionable.',
+        means: 'Early days. The finding might be real, but the evidence isn\'t strong enough to act on. File it under "worth a follow-up study," not "worth changing your life over."',
+        notMeans: 'It does not mean the claim is false — absence of strong evidence is not evidence of absence. But right now, believing it would be getting ahead of the science.'
+      },
+      hype: {
+        word: 'Hype', color: '#ff7a7a', tagline: 'This has the shape of hype, not evidence.',
+        means: 'Most of the basic evidence checks failed. Treat the claim as marketing or speculation until real human data shows up.',
+        notMeans: 'It does not mean the underlying idea is impossible — some real breakthroughs started as hype-shaped claims. But the burden of proof is entirely on whoever is making the claim.'
+      }
+    };
+
+    var POINTS = { yes: 2, unsure: 1, no: 0 };
+
+    function $(id) { return document.getElementById(id); }
+
+    function defaultState() {
+      var answers = {};
+      for (var i = 0; i < CHECKS.length; i++) answers[CHECKS[i].id] = null;
+      return { claim: '', answers: answers };
+    }
+
+    function load() {
+      try {
+        var raw = localStorage.getItem(LS_KEY);
+        if (!raw) return defaultState();
+        var s = JSON.parse(raw);
+        var base = defaultState();
+        if (typeof s.claim === 'string') base.claim = s.claim.slice(0, 2000);
+        if (s.answers && typeof s.answers === 'object') {
+          for (var i = 0; i < CHECKS.length; i++) {
+            var v = s.answers[CHECKS[i].id];
+            base.answers[CHECKS[i].id] = (v === 'yes' || v === 'unsure' || v === 'no') ? v : null;
+          }
+        }
+        return base;
+      } catch (e) { return defaultState(); }
+    }
+
+    function save() {
+      try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+
+    var state = load();
+
+    function score() {
+      var total = 0, answered = 0;
+      for (var i = 0; i < CHECKS.length; i++) {
+        var a = state.answers[CHECKS[i].id];
+        if (a !== null) { total += POINTS[a]; answered++; }
+      }
+      return { total: total, answered: answered };
+    }
+
+    function verdictFor(total) {
+      if (total >= 14) return 'solid';
+      if (total >= 10) return 'promising';
+      if (total >= 5) return 'preliminary';
+      return 'hype';
+    }
+
+    function esc(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function buildChecks() {
+      var host = $('checkList');
+      host.innerHTML = '';
+      for (var i = 0; i < CHECKS.length; i++) {
+        (function (c, n) {
+          var wrap = document.createElement('div');
+          wrap.className = 'check';
+          var h = document.createElement('h3');
+          var num = document.createElement('span');
+          num.className = 'step';
+          num.textContent = String(n + 1).padStart(2, '0');
+          h.appendChild(num);
+          h.appendChild(document.createTextNode(c.title));
+          var q = document.createElement('p');
+          q.className = 'why';
+          q.textContent = c.q + ' ' + c.why;
+          var tri = document.createElement('div');
+          tri.className = 'tri';
+          tri.setAttribute('role', 'group');
+          tri.setAttribute('aria-label', c.title);
+          var opts = [['yes', 'Yes'], ['unsure', 'Unsure'], ['no', 'No']];
+          for (var k = 0; k < opts.length; k++) {
+            (function (val, label) {
+              var b = document.createElement('button');
+              b.type = 'button';
+              b.id = 'check-' + c.id + '-' + val;
+              b.textContent = label;
+              b.setAttribute('aria-pressed', state.answers[c.id] === val ? 'true' : 'false');
+              if (state.answers[c.id] === val) b.classList.add('on-' + val);
+              b.addEventListener('click', function () {
+                state.answers[c.id] = (state.answers[c.id] === val) ? null : val;
+                save();
+                refreshButtons();
+                render();
+              });
+              tri.appendChild(b);
+            })(opts[k][0], opts[k][1]);
+          }
+          wrap.appendChild(h);
+          wrap.appendChild(q);
+          wrap.appendChild(tri);
+          host.appendChild(wrap);
+        })(CHECKS[i], i);
+      }
+    }
+
+    function refreshButtons() {
+      for (var i = 0; i < CHECKS.length; i++) {
+        var c = CHECKS[i];
+        var vals = ['yes', 'unsure', 'no'];
+        for (var k = 0; k < vals.length; k++) {
+          var b = $('check-' + c.id + '-' + vals[k]);
+          if (!b) continue;
+          var on = state.answers[c.id] === vals[k];
+          b.classList.toggle('on-' + vals[k], on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        }
+      }
+    }
+
+    function render() {
+      var s = score();
+      if (s.answered === 0) {
+        $('emptyState').classList.remove('hidden');
+        $('resultState').classList.add('hidden');
+        return;
+      }
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+      var v = VERDICTS[verdictFor(s.total)];
+      var vw = $('verdictWord');
+      vw.textContent = v.word;
+      vw.style.color = v.color;
+      $('verdictScore').textContent = 'Evidence score: ' + s.total + ' / 14  ·  ' + s.answered + ' of 7 checks answered';
+      $('verdictTagline').textContent = v.tagline;
+      var rows = '';
+      for (var i = 0; i < CHECKS.length; i++) {
+        var c = CHECKS[i];
+        var a = state.answers[c.id];
+        var label = a === null ? '—' : a.charAt(0).toUpperCase() + a.slice(1);
+        var cls = a === null ? 'no' : a;
+        rows += '<div class="bd-row"><span>' + esc(c.title) + '</span><span class="ans ' + cls + '">' + label + '</span></div>';
+      }
+      $('breakdownRows').innerHTML = rows;
+      $('verdictMeans').textContent = 'What it means: ' + v.means;
+      $('verdictNotMeans').textContent = "What it doesn't mean: " + v.notMeans;
+    }
+
+    function buildPrint() {
+      var s = score();
+      var v = VERDICTS[verdictFor(s.total)];
+      var html = '<h1>Breakthrough Evidence Check</h1>';
+      html += '<p><strong>Claim:</strong> ' + (state.claim ? esc(state.claim) : '(none entered)') + '</p>';
+      html += '<h2>Verdict: ' + v.word + ' (' + s.total + '/14)</h2>';
+      html += '<p>' + esc(v.tagline) + '</p>';
+      html += '<h2>Answers</h2><ul>';
+      for (var i = 0; i < CHECKS.length; i++) {
+        var c = CHECKS[i];
+        var a = state.answers[c.id];
+        html += '<li><strong>' + esc(c.title) + ':</strong> ' + (a === null ? 'Not answered' : a.charAt(0).toUpperCase() + a.slice(1)) + '</li>';
+      }
+      html += '</ul>';
+      html += '<h2>What this means</h2><p>' + esc(v.means) + '</p>';
+      html += '<h2>What it doesn\'t mean</h2><p>' + esc(v.notMeans) + '</p>';
+      html += '<p><em>From Honed Proof — Evidence + Cost = Clarity. Informational only, not medical advice.</em></p>';
+      var ps = $('printSummary');
+      ps.innerHTML = html;
+    }
+
+    $('claimInput').value = state.claim || '';
+    $('claimInput').addEventListener('input', function () {
+      state.claim = this.value.slice(0, 2000);
+      save();
+    });
+
+    $('resetBtn').addEventListener('click', function () {
+      if (!window.confirm('Clear your claim and all 7 answers?')) return;
+      state = defaultState();
+      save();
+      $('claimInput').value = '';
+      refreshButtons();
+      render();
+    });
+
+    $('printBtn').addEventListener('click', function () {
+      buildPrint();
+      document.body.classList.add('printing');
+      window.print();
+      setTimeout(function () { document.body.classList.remove('printing'); }, 500);
+    });
+
+    buildChecks();
+    render();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/honed-proof-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="How to find a clinical trial in plain English: searching ClinicalTrials.gov, what trial phases and statuses mean, eligibility, questions to ask, and red flags. Free guide from Honed Proof." />
+  <link rel="canonical" href="https://honedsignal.com/health/clinical-trial-finder-guide/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"How to Find a Clinical Trial: A Plain-English Guide","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/clinical-trial-finder-guide/","description":"A plain-English guide to finding clinical trials: searching, phases, eligibility, questions to ask, and red flags.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>How to Find a Clinical Trial: A Plain-English Guide | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .article{max-width:760px;margin-top:32px}
+    .article h2{margin:38px 0 12px;font-size:1.5rem;letter-spacing:-.02em}
+    .article h2:first-child{margin-top:0}
+    .article p{color:var(--muted);font-size:.95rem;line-height:1.75;margin:0 0 14px}
+    .article p strong{color:var(--ink)}
+    .article ul,.article ol{color:var(--muted);font-size:.95rem;line-height:1.75;margin:0 0 14px;padding-left:20px}
+    .article li{margin-bottom:8px}
+    .article li strong{color:var(--ink)}
+    .step-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:20px;margin:0 0 12px}
+    .step-card h3{margin:0 0 6px;font-size:.98rem}
+    .step-card h3 .step{font:500 .7rem "DM Mono",monospace;color:var(--orange);margin-right:8px}
+    .step-card p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.7}
+    .step-card p code{font:500 .8rem "DM Mono",monospace;color:var(--teal);background:var(--surface-2);padding:1px 6px;border-radius:4px}
+    .flag{border:1px solid color-mix(in srgb,var(--orange) 45%,var(--line));border-radius:12px;background:var(--orange-soft);padding:20px;margin:0 0 12px}
+    .flag h3{margin:0 0 6px;font-size:.95rem;color:var(--ink)}
+    .flag p{margin:0;color:var(--muted);font-size:.85rem;line-height:1.7}
+    .qa{border-top:1px solid var(--line);padding:14px 0}
+    .qa:last-of-type{border-bottom:1px solid var(--line)}
+    .qa strong.q{display:block;color:var(--ink);font-size:.92rem;margin-bottom:4px}
+    .qa span.a{color:var(--muted);font-size:.85rem;line-height:1.7}
+    .callout{margin:22px 0;border-left:3px solid var(--teal);padding:4px 0 4px 18px;color:var(--muted);font-size:.9rem;line-height:1.75}
+    .callout strong{color:var(--ink)}
+    .xlink{margin-top:26px;color:var(--muted);font-size:.88rem}
+    .xlink a{color:var(--teal);font-weight:700;text-decoration:none}
+    .xlink a:hover{text-decoration:underline}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .footer strong{color:var(--ink)}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.footer{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/whats-new-in-medicine/" target="_top" aria-label="Back to What's New in Medicine">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>How to find a <span class="accent">clinical trial</span>.</h1>
+      </div>
+      <p>A plain-English guide to searching for trials, reading the listings, asking the right questions, and spotting the red flags.</p>
+    </header>
+
+    <div class="article">
+      <div class="callout"><strong>First step: talk to your doctor.</strong> Before you search for anything, bring it up with your doctor or specialist. They can tell you whether a trial makes sense for your situation, help you interpret eligibility rules, and sometimes know about trials that aren't widely listed yet.</div>
+
+      <h2>How to search</h2>
+      <p>The main public registry is <strong>ClinicalTrials.gov</strong>, run by the U.S. National Library of Medicine. It lists trials worldwide — tens of thousands of them. Here's how to narrow it down:</p>
+      <div class="step-card">
+        <h3><span class="step">01</span> Search by condition</h3>
+        <p>Start with the condition name (e.g. <code>type 2 diabetes</code>). Use the medical term if you know it — it matches more listings than casual descriptions.</p>
+      </div>
+      <div class="step-card">
+        <h3><span class="step">02</span> Filter by location</h3>
+        <p>Trials happen at specific hospitals and research centers. Filter by your city or state, and decide how far you're willing to travel — many trials require regular in-person visits.</p>
+      </div>
+      <div class="step-card">
+        <h3><span class="step">03</span> Filter by phase</h3>
+        <p>Phase 1 trials test safety in small groups; Phase 2 tests whether it works in a few hundred people; Phase 3 is the large trial comparing against standard treatment. Earlier phases carry more unknowns — later phases have more safety data behind them.</p>
+      </div>
+      <div class="step-card">
+        <h3><span class="step">04</span> Check the status</h3>
+        <p>Only some listings are actually enrolling. See the status decoder below.</p>
+      </div>
+
+      <h2>Status decoder</h2>
+      <div class="step-card">
+        <h3><span class="step">●</span> Recruiting</h3>
+        <p>Currently enrolling participants. This is the status you want.</p>
+      </div>
+      <div class="step-card">
+        <h3><span class="step">●</span> Active, not recruiting</h3>
+        <p>The trial is running but full — no new participants being accepted.</p>
+      </div>
+      <div class="step-card">
+        <h3><span class="step">●</span> Completed</h3>
+        <p>Finished. Results may or may not be posted yet — completed doesn't mean successful.</p>
+      </div>
+      <div class="step-card">
+        <h3><span class="step">●</span> Terminated or Withdrawn</h3>
+        <p>Stopped early. Sometimes for business reasons, sometimes for safety or because it clearly wasn't working. Worth knowing before you get excited about an old listing.</p>
+      </div>
+
+      <h2>Eligibility criteria, in plain English</h2>
+      <p>Every trial lists who can and can't join. <strong>Inclusion criteria</strong> describe who they're looking for (age range, diagnosis, disease stage). <strong>Exclusion criteria</strong> describe who can't join (other conditions, medications you're taking, prior treatments). These rules exist to keep participants safe and the results clean — being excluded isn't a judgment on you, it's how the science stays valid.</p>
+
+      <h2>Questions to ask the study team</h2>
+      <p>Every listing has contact information. Before committing, ask:</p>
+      <div class="qa"><strong class="q">What phase is this, and what happened in earlier phases?</strong><span class="a">You want to know the safety record so far — not just the hoped-for benefit.</span></div>
+      <div class="qa"><strong class="q">What will actually happen to me — visits, tests, time commitment?</strong><span class="a">Get the concrete schedule: how many visits, how long each takes, how far you travel.</span></div>
+      <div class="qa"><strong class="q">What are the known risks and side effects?</strong><span class="a">They're required to tell you. If the answer is vague, that's information too.</span></div>
+      <div class="qa"><strong class="q">Will I know whether I'm getting the treatment or a placebo?</strong><span class="a">Many trials are blinded — you might not get the experimental treatment at all.</span></div>
+      <div class="qa"><strong class="q">What does it cost me?</strong><span class="a">The study usually covers trial-related care, but ask about travel, parking, time off work, and what happens if you have side effects.</span></div>
+      <div class="qa"><strong class="q">Can I leave if I change my mind?</strong><span class="a">The answer is always yes — see below. If anyone hesitates on this one, walk away.</span></div>
+
+      <h2>Red flags</h2>
+      <div class="flag">
+        <h3>They want you to pay to join</h3>
+        <p>Legitimate trials do not charge participants an enrollment fee. If someone asks for money to get you into a trial, it's a scam — full stop.</p>
+      </div>
+      <div class="flag">
+        <h3>Guaranteed results or miracle language</h3>
+        <p>"Guaranteed cure," "no side effects," "doctors don't want you to know" — real research doesn't talk like this. Uncertainty is the honest signal.</p>
+      </div>
+      <div class="flag">
+        <h3>Pressure to decide immediately</h3>
+        <p>A real study team gives you time, encourages you to talk to your doctor, and puts everything in writing first. Urgency is a sales tactic, not a science tactic.</p>
+      </div>
+      <div class="flag">
+        <h3>No institutional review board (IRB) mentioned</h3>
+        <p>Legitimate trials are overseen by an ethics board. If there's no mention of IRB oversight or informed consent documents, that's a serious problem.</p>
+      </div>
+
+      <h2>Your rights as a participant</h2>
+      <p>Before anything happens, you'll go through <strong>informed consent</strong> — a written document (and a conversation) explaining the trial's purpose, procedures, risks, and your rights. And the most important right: <strong>you can leave at any time, for any reason, with no penalty.</strong> Your regular medical care continues regardless.</p>
+
+      <p class="xlink">Want to understand what trial phases actually test? Read <a href="/health/fda-approval-explainer/" target="_top">What "FDA Approved" Actually Means</a>. And when a headline calls something a breakthrough, run it through the <a href="/health/breakthrough-evidence-checker/" target="_top">Breakthrough Evidence Checker</a>.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. This page explains how clinical trials work, not whether joining one is right for you. Always talk to a qualified health professional about your own care.</div>
+
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>
