@@ -410,6 +410,7 @@
   <url><loc>https://honedsignal.com/health/aging-caregiving/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/protecting-family/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/does-it-work/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/dental-vision/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/prescription-price-finder/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/deductible-tracker/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/medical-bill-error-checker/</loc><changefreq>monthly</changefreq></url>
@@ -431,6 +432,9 @@
   <url><loc>https://honedsignal.com/health/lab-imaging-price-comparer/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/hospital-bill-negotiator/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/surprise-bill-checker/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/dental-procedure-cost-estimator/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/dental-insurance-vs-discount-plan/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/braces-cost-planner/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/education/accommodation-tracker/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/education/after-school-activity-scheduler/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/education/certification-vs-degree-cost/</loc><changefreq>monthly</changefreq></url>
@@ -451,9 +455,17 @@
   <url><loc>https://honedsignal.com/education/section-504-plan-request-builder/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/education/substitute-day-plan-builder/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/whats-new-in-medicine/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/mental-health-costs/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/therapy-cost-comparer/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/therapy-budget-planner/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/fda-approval-explainer/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/clinical-trial-finder-guide/</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://honedsignal.com/health/breakthrough-evidence-checker/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/medical-debt/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/medical-debt-payoff-planner/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/hospital-financial-assistance-guide/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/charity-care-eligibility-explainer/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/health/bill-negotiation-scripts/</loc><changefreq>monthly</changefreq></url>
   <url>
     <loc>https://honedsignal.com/nightstone/</loc>
   </url>

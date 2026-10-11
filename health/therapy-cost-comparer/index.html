@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Compare therapy costs: in-network copay, out-of-network with reimbursement, sliding-scale rates, and therapy apps — monthly and annual, side by side. Free calculator from Honed Proof." />
+  <link rel="canonical" href="https://honedsignal.com/health/therapy-cost-comparer/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Therapy Cost Comparer","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/therapy-cost-comparer/","description":"Compare the monthly and annual cost of therapy paths: in-network copay, out-of-network with reimbursement, sliding scale, and therapy apps.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Therapy Cost Comparer | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    .pct-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .pct-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .pct-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 5px 9px 10px;min-height:44px;font-weight:700;font-variant-numeric:tabular-nums}
+    .pct-input span{padding-right:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .opt-note{margin:6px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .versus{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .vs-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px;text-align:center}
+    .vs-card.winner{border-color:color-mix(in srgb,var(--teal) 55%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--teal) 55%,transparent)}
+    .vs-card h3{margin:0 0 6px;font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .vs-card .amount{margin:0;font:700 1.9rem "DM Mono",monospace;letter-spacing:-.03em}
+    .vs-card .annual{margin:6px 0 0;font:500 .8rem "DM Mono",monospace;color:var(--muted)}
+    .vs-card.winner .amount{color:var(--teal)}
+    .vs-card p.note-line{margin:8px 0 0;font-size:.7rem;color:var(--muted)}
+    .vs-card.not-entered{opacity:.55}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .share-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.versus{grid-template-columns:1fr}.share-row{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet table{border-collapse:collapse;width:100%;margin:10px 0}
+      .print-sheet th,.print-sheet td{border:1px solid #999;padding:6px 8px;text-align:left}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Mental Health Costs</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Therapy costs, <span class="accent">compared</span>.</h1>
+      </div>
+      <p>In-network, out-of-network, sliding scale, or app — enter your numbers once and see the monthly and annual cost of each path side by side. Cost only; nothing here is clinical advice.</p>
+    </header>
+
+    <section class="workbench" aria-label="Therapy cost comparer">
+      <form class="panel inputs" id="tccForm" novalidate>
+        <div class="section-head"><h2>How often</h2><span class="step">01 / SESSIONS</span></div>
+        <div class="field">
+          <label for="tccSessions">Sessions per month (a number you set)</label>
+          <div class="text-input"><input id="tccSessions" type="number" min="0" step="1" inputmode="numeric" placeholder="4" aria-label="Sessions per month" /></div>
+        </div>
+
+        <div class="section-head"><h2>In-network</h2><span class="step">02 / COPAY</span></div>
+        <div class="field">
+          <label for="tccCopay">Your copay per session</label>
+          <div class="money-input"><span>$</span><input id="tccCopay" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="In-network copay per session" /></div>
+        </div>
+
+        <div class="section-head"><h2>Out-of-network</h2><span class="step">03 / OPTIONAL</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="tccOonFee">Session fee you pay upfront</label>
+            <div class="money-input"><span>$</span><input id="tccOonFee" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Out-of-network session fee" /></div>
+          </div>
+          <div class="field">
+            <label for="tccOonReimb">Plan reimburses you</label>
+            <div class="pct-input"><input id="tccOonReimb" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="0" aria-label="Out-of-network reimbursement percent" /><span>%</span></div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>Sliding scale &amp; apps</h2><span class="step">04 / OPTIONAL</span></div>
+        <div class="field">
+          <label for="tccSlidingFee">Sliding-scale fee quote per session</label>
+          <div class="money-input"><span>$</span><input id="tccSlidingFee" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Sliding-scale fee per session" /></div>
+        </div>
+        <div class="field">
+          <label for="tccAppPrice">Therapy app monthly price</label>
+          <div class="money-input"><span>$</span><input id="tccAppPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Therapy app monthly price" /></div>
+        </div>
+        <p class="opt-note">Leave any path blank to skip it. Blank = not compared.</p>
+
+        <button class="calculate" type="submit">Compare the four paths</button>
+        <button class="ghost no-print" type="button" id="tccReset">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="tccEmpty">
+          <div>
+            <h2>Enter your numbers to compare</h2>
+            <p>Add your copay and any other quotes you have — the comparer shows each path's monthly and annual cost side by side.</p>
+          </div>
+        </div>
+        <div id="tccResult" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="tccVerdictEyebrow">CHEAPEST ON PAPER</p>
+            <p class="target" id="tccVerdictAmount">$0</p>
+            <p class="target-note" id="tccVerdictNote"></p>
+          </section>
+          <div class="versus">
+            <section class="vs-card" id="tccInCard" aria-label="In-network path cost">
+              <h3>In-network</h3>
+              <p class="amount" id="tccInAmt">$0</p>
+              <p class="annual" id="tccInAnnual">$0 / year</p>
+              <p class="note-line" id="tccInNote"></p>
+            </section>
+            <section class="vs-card" id="tccOonCard" aria-label="Out-of-network path cost">
+              <h3>Out-of-network</h3>
+              <p class="amount" id="tccOonAmt">$0</p>
+              <p class="annual" id="tccOonAnnual">$0 / year</p>
+              <p class="note-line" id="tccOonNote"></p>
+            </section>
+            <section class="vs-card" id="tccSlideCard" aria-label="Sliding scale path cost">
+              <h3>Sliding scale</h3>
+              <p class="amount" id="tccSlideAmt">$0</p>
+              <p class="annual" id="tccSlideAnnual">$0 / year</p>
+              <p class="note-line" id="tccSlideNote"></p>
+            </section>
+            <section class="vs-card" id="tccAppCard" aria-label="Therapy app path cost">
+              <h3>Therapy app</h3>
+              <p class="amount" id="tccAppAmt">$0</p>
+              <p class="annual" id="tccAppAnnual">$0 / year</p>
+              <p class="note-line" id="tccAppNote"></p>
+            </section>
+          </div>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>How each number is built</h3>
+              <dl>
+                <dt>In-network monthly</dt><dd id="tccBIn">—</dd>
+                <dt>Out-of-network monthly</dt><dd id="tccBOon">—</dd>
+                <dt>Sliding scale monthly</dt><dd id="tccBSlide">—</dd>
+                <dt>Therapy app monthly</dt><dd id="tccBApp">—</dd>
+                <dt style="color:var(--teal);font-weight:700">Cheapest − priciest</dt><dd id="tccBDiff" style="color:var(--teal);font-weight:700">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>What each path usually looks like</h3>
+              <ul>
+                <li><strong>In-network:</strong> you pay the copay per session; the therapist bills your insurer for the rest.</li>
+                <li><strong>Out-of-network:</strong> you usually pay the full fee upfront, then file a claim and get reimbursed at your plan's percentage — reimbursement can take weeks.</li>
+                <li><strong>Sliding scale:</strong> a reduced fee some therapists offer based on income; availability and eligibility vary by practice.</li>
+                <li><strong>Therapy apps:</strong> a flat monthly subscription; many plans are message-based and may not include live sessions — check what the plan actually includes.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle no-print" id="tccExplainToggle" type="button" aria-expanded="false" aria-controls="tccExplainCopy">About these results</button>
+            <p class="explain-copy hidden" id="tccExplainCopy">Monthly costs multiply your per-session price by the number of sessions you entered; the app price is a flat monthly fee that does not change with session count. The out-of-network number subtracts your plan's reimbursement percentage from the fee — confirm that percentage and any deductible requirements with your insurer before relying on it. This comparison covers cost only; it says nothing about quality, fit, or clinical approach, and is not medical advice.</p>
+          </section>
+          <div class="share-row no-print">
+            <button class="ghost" type="button" id="tccCopy" style="margin-top:0">Copy results</button>
+            <button class="ghost" type="button" id="tccEmail" style="margin-top:0">Email results</button>
+          </div>
+          <button class="ghost no-print" type="button" id="tccPrint" style="margin-top:10px">Print summary</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Therapy Cost Comparer</h2>
+      <table>
+        <tr><th>Sessions / month</th><td id="tccPsSessions">—</td></tr>
+        <tr><th>In-network</th><td id="tccPsIn">—</td></tr>
+        <tr><th>Out-of-network</th><td id="tccPsOon">—</td></tr>
+        <tr><th>Sliding scale</th><td id="tccPsSlide">—</td></tr>
+        <tr><th>Therapy app</th><td id="tccPsApp">—</td></tr>
+        <tr><th>Cheapest on paper</th><td id="tccPsWinner">—</td></tr>
+      </table>
+      <p class="ps-note">Estimates only — confirm coverage with your insurer and quotes with providers. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  'use strict';
+  /* Pure calculator functions — no DOM. Extractable for tests. */
+  function tccFmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function tccFmt0(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function tccEntered(raw) { return typeof raw === 'string' ? raw.trim() !== '' : raw > 0; }
+
+  /* d = {sessions, copay, oonFee, oonFeeEntered, oonReimb, slidingFee, slidingEntered, appPrice, appEntered} */
+  function tccCompute(d) {
+    var s = Math.max(0, d.sessions);
+    var paths = [];
+    if (d.copayEntered) {
+      var m = s * d.copay;
+      paths.push({ key: 'in', label: 'In-network', monthly: m, annual: m * 12 });
+    }
+    if (d.oonFeeEntered) {
+      var net = d.oonFee * (1 - Math.min(100, Math.max(0, d.oonReimb)) / 100);
+      var m2 = s * net;
+      paths.push({ key: 'oon', label: 'Out-of-network', monthly: m2, annual: m2 * 12 });
+    }
+    if (d.slidingEntered) {
+      var m3 = s * d.slidingFee;
+      paths.push({ key: 'slide', label: 'Sliding scale', monthly: m3, annual: m3 * 12 });
+    }
+    if (d.appEntered) {
+      paths.push({ key: 'app', label: 'Therapy app', monthly: d.appPrice, annual: d.appPrice * 12 });
+    }
+    var winner = null;
+    if (paths.length) {
+      winner = paths[0];
+      for (var i = 1; i < paths.length; i++) {
+        if (paths[i].monthly < winner.monthly) winner = paths[i];
+      }
+    }
+    var spread = 0;
+    if (paths.length > 1) {
+      var min = paths[0].monthly, max = paths[0].monthly;
+      for (var j = 1; j < paths.length; j++) {
+        if (paths[j].monthly < min) min = paths[j].monthly;
+        if (paths[j].monthly > max) max = paths[j].monthly;
+      }
+      spread = max - min;
+    }
+    return { sessions: s, paths: paths, winner: winner, spread: spread };
+  }
+  </script>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofTherapyCostComparer';
+
+    function $(id) { return document.getElementById(id); }
+    function numRaw(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+    function entered(id) { return $(id).value.trim() !== ''; }
+
+    function save() {
+      var data = {
+        sessions: $('tccSessions').value, copay: $('tccCopay').value, oonFee: $('tccOonFee').value,
+        oonReimb: $('tccOonReimb').value, slidingFee: $('tccSlidingFee').value, appPrice: $('tccAppPrice').value
+      };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return;
+      ['sessions', 'copay', 'oonFee', 'oonReimb', 'slidingFee', 'appPrice'].forEach(function (k) {
+        var id = 'tcc' + k.charAt(0).toUpperCase() + k.slice(1);
+        $(id).value = data[k] || '';
+      });
+    }
+
+    function fillCard(prefix, r) {
+      var card = $(prefix + 'Card'), amt = $(prefix + 'Amt'), ann = $(prefix + 'Annual'), note = $(prefix + 'Note');
+      var p = null;
+      var map = { tccIn: 'in', tccOon: 'oon', tccSlide: 'slide', tccApp: 'app' };
+      for (var i = 0; i < r.paths.length; i++) { if (r.paths[i].key === map[prefix]) p = r.paths[i]; }
+      if (p) {
+        amt.textContent = tccFmt(p.monthly);
+        ann.textContent = tccFmt0(p.annual) + ' / year';
+        note.textContent = r.winner && r.winner.key === p.key && r.paths.length > 1 ? 'Lowest monthly cost.' : '';
+        card.classList.toggle('winner', !!(r.winner && r.winner.key === p.key && r.paths.length > 1));
+        card.classList.remove('not-entered');
+      } else {
+        amt.textContent = '—'; ann.textContent = '—'; note.textContent = 'Not entered — skipped.';
+        card.classList.add('not-entered'); card.classList.remove('winner');
+      }
+    }
+
+    function lastResult() { return window.__tccLast || null; }
+
+    function render(r, raw) {
+      window.__tccLast = r;
+      $('tccEmpty').classList.add('hidden');
+      $('tccResult').classList.remove('hidden');
+
+      if (!r.paths.length) {
+        $('tccVerdictEyebrow').textContent = 'NO PATHS ENTERED';
+        $('tccVerdictAmount').textContent = '—';
+        $('tccVerdictNote').textContent = 'Enter at least one cost — a copay, a quote, or an app price — to compare.';
+      } else if (r.paths.length === 1) {
+        var p = r.paths[0];
+        $('tccVerdictEyebrow').textContent = p.label.toUpperCase() + ' — YOUR ONLY ENTERED PATH';
+        $('tccVerdictAmount').textContent = tccFmt(p.monthly) + '/mo';
+        $('tccVerdictNote').textContent = p.label + ' runs ' + tccFmt(p.monthly) + ' per month (' + tccFmt0(p.annual) + ' per year) at ' + r.sessions + ' session' + (r.sessions === 1 ? '' : 's') + ' per month. Enter another path to compare.';
+      } else {
+        $('tccVerdictEyebrow').textContent = 'CHEAPEST ON PAPER';
+        $('tccVerdictAmount').textContent = tccFmt(r.winner.monthly) + '/mo';
+        $('tccVerdictNote').textContent = r.winner.label + ' is the lowest at ' + tccFmt(r.winner.monthly) + ' per month (' + tccFmt0(r.winner.annual) + ' per year). The gap between the cheapest and priciest entered path is ' + tccFmt0(r.spread) + ' per month. Cost only — nothing here is a recommendation about which path fits you clinically.';
+      }
+
+      fillCard('tccIn', r);
+      fillCard('tccOon', r);
+      fillCard('tccSlide', r);
+      fillCard('tccApp', r);
+
+      function val(prefix) {
+        var map = { tccIn: 'in', tccOon: 'oon', tccSlide: 'slide', tccApp: 'app' };
+        for (var i = 0; i < r.paths.length; i++) { if (r.paths[i].key === map[prefix]) return tccFmt(r.paths[i].monthly); }
+        return '—';
+      }
+      $('tccBIn').textContent = val('tccIn');
+      $('tccBOon').textContent = val('tccOon');
+      $('tccBSlide').textContent = val('tccSlide');
+      $('tccBApp').textContent = val('tccApp');
+      $('tccBDiff').textContent = r.paths.length > 1 ? tccFmt0(r.spread) + '/mo' : '—';
+
+      $('tccPsSessions').textContent = String(r.sessions);
+      $('tccPsIn').textContent = val('tccIn');
+      $('tccPsOon').textContent = val('tccOon');
+      $('tccPsSlide').textContent = val('tccSlide');
+      $('tccPsApp').textContent = val('tccApp');
+      $('tccPsWinner').textContent = r.winner ? r.winner.label + ' — ' + tccFmt(r.winner.monthly) + '/mo' : '—';
+
+      $('tccResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function summaryText(r) {
+      var lines = ['Therapy Cost Comparer — Honed Proof', 'Sessions per month: ' + r.sessions, ''];
+      var map = { in: 'In-network', oon: 'Out-of-network', slide: 'Sliding scale', app: 'Therapy app' };
+      r.paths.forEach(function (p) {
+        lines.push(map[p.key] + ': ' + tccFmt(p.monthly) + '/mo (' + tccFmt0(p.annual) + '/yr)');
+      });
+      if (r.winner && r.paths.length > 1) lines.push('', 'Cheapest on paper: ' + map[r.winner.key] + ' at ' + tccFmt(r.winner.monthly) + '/mo.');
+      lines.push('', 'Cost comparison only — not medical advice.');
+      return lines.join('\n');
+    }
+
+    $('tccForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = {
+        sessions: numRaw('tccSessions'),
+        copay: numRaw('tccCopay'), copayEntered: entered('tccCopay'),
+        oonFee: numRaw('tccOonFee'), oonFeeEntered: entered('tccOonFee'), oonReimb: numRaw('tccOonReimb'),
+        slidingFee: numRaw('tccSlidingFee'), slidingEntered: entered('tccSlidingFee'),
+        appPrice: numRaw('tccAppPrice'), appEntered: entered('tccAppPrice')
+      };
+      var r = tccCompute(d);
+      save();
+      render(r);
+    });
+
+    $('tccReset').addEventListener('click', function () {
+      ['tccSessions', 'tccCopay', 'tccOonFee', 'tccOonReimb', 'tccSlidingFee', 'tccAppPrice'].forEach(function (id) { $(id).value = ''; });
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      window.__tccLast = null;
+      $('tccResult').classList.add('hidden');
+      $('tccEmpty').classList.remove('hidden');
+      $('tccSessions').focus();
+    });
+
+    $('tccCopy').addEventListener('click', function () {
+      var r = lastResult();
+      if (!r) return;
+      var t = summaryText(r);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(function () { $('tccCopy').textContent = 'Copied!'; }, function () { $('tccCopy').textContent = 'Copy failed'; });
+        setTimeout(function () { $('tccCopy').textContent = 'Copy results'; }, 1800);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = t; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); $('tccCopy').textContent = 'Copied!'; } catch (err) {}
+        document.body.removeChild(ta);
+        setTimeout(function () { $('tccCopy').textContent = 'Copy results'; }, 1800);
+      }
+    });
+
+    $('tccEmail').addEventListener('click', function () {
+      var r = lastResult();
+      if (!r) return;
+      var subject = encodeURIComponent('My therapy cost comparison — Honed Proof');
+      var body = encodeURIComponent(summaryText(r));
+      window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+    });
+
+    $('tccPrint').addEventListener('click', function () { window.print(); });
+
+    $('tccExplainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('tccExplainCopy').classList.toggle('hidden', open);
+    });
+
+    var fields = ['tccSessions', 'tccCopay', 'tccOonFee', 'tccOonReimb', 'tccSlidingFee', 'tccAppPrice'];
+    fields.forEach(function (id) { $(id).addEventListener('input', save); });
+
+    restore();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

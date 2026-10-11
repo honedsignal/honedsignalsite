@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Plan the real cost of braces or aligners: monthly payments, insurance ortho benefits, and FSA/HSA funds. Free planner from Honed Proof — plain-English results, no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/braces-cost-planner/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Braces & Aligner Cost Planner","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/braces-cost-planner/","description":"Plan the real cost of braces or aligners: monthly payments, insurance orthodontic benefits, and FSA/HSA funds.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Braces &amp; Aligner Cost Planner | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .select-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .select-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .select-input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600;appearance:auto}
+    .select-input select option{background:var(--surface);color:var(--ink)}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:700;font-variant-numeric:tabular-nums}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top{padding:19px}.goal-fields{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet table{border-collapse:collapse;width:100%;margin:10px 0}
+      .print-sheet th,.print-sheet td{border:1px solid #999;padding:6px 8px;text-align:left}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Braces &amp; aligner <span class="accent">cost</span> planner</h1>
+      </div>
+      <p>The orthodontist quotes one number; insurance and FSA/HSA funds change what you actually pay — and what you owe each month.</p>
+    </header>
+
+    <section class="workbench" aria-label="Braces and aligner cost planner">
+      <form class="panel inputs" id="brzForm" novalidate>
+        <div class="section-head"><h2>Treatment</h2><span class="step">01 / TREATMENT</span></div>
+        <div class="field">
+          <label for="brzType">Treatment type</label>
+          <div class="select-input">
+            <select id="brzType">
+              <option value="metal">Metal braces (typical: $3,000–$7,000)</option>
+              <option value="ceramic">Ceramic braces (typical: $4,000–$8,000)</option>
+              <option value="aligner">Invisalign-style aligners (typical: $3,500–$8,000)</option>
+            </select>
+          </div>
+        </div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="brzQuoted">Quoted total</label>
+            <div class="money-input"><span>$</span><input id="brzQuoted" type="number" min="0" step="1" inputmode="decimal" placeholder="6000" aria-label="Quoted total treatment cost" /></div>
+          </div>
+          <div class="field">
+            <label for="brzDown">Down payment</label>
+            <div class="money-input"><span>$</span><input id="brzDown" type="number" min="0" step="1" inputmode="decimal" placeholder="1000" aria-label="Down payment" /></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="brzMonths">Payment plan length (months)</label>
+          <div class="text-input"><input id="brzMonths" type="number" min="0" step="1" inputmode="numeric" placeholder="24" aria-label="Payment plan length in months" /></div>
+        </div>
+
+        <div class="section-head"><h2>Help paying</h2><span class="step">02 / OFFSETS</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="brzOrtho">Insurance ortho lifetime max</label>
+            <div class="money-input"><span>$</span><input id="brzOrtho" type="number" min="0" step="1" inputmode="decimal" placeholder="1500" aria-label="Insurance orthodontic lifetime maximum" /></div>
+          </div>
+          <div class="field">
+            <label for="brzFsa">FSA / HSA contribution for this</label>
+            <div class="money-input"><span>$</span><input id="brzFsa" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="FSA or HSA contribution toward treatment" /></div>
+          </div>
+        </div>
+
+        <button class="calculate" type="submit">Plan my payments</button>
+        <button class="ghost no-print" type="button" id="brzReset">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="brzEmpty">
+          <div>
+            <h2>Enter your quote to plan</h2>
+            <p>We'll split the quoted total into a monthly payment and show what insurance and tax-free dollars cover.</p>
+          </div>
+        </div>
+        <div id="brzResults" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="brzEyebrow">ESTIMATED MONTHLY PAYMENT</p>
+            <p class="target" id="brzAmount">$0</p>
+            <p class="target-note" id="brzNote"></p>
+          </section>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>Where the money goes</h3>
+              <dl>
+                <dt>Treatment</dt><dd id="brzBType">—</dd>
+                <dt>Quoted total</dt><dd id="brzBQuoted">—</dd>
+                <dt>Insurance pays (ortho benefit)</dt><dd id="brzBIns">—</dd>
+                <dt>Your remaining balance</dt><dd id="brzBRem">—</dd>
+                <dt>FSA / HSA covers</dt><dd id="brzBFsa">—</dd>
+                <dt>Cash you owe</dt><dd id="brzBCash">—</dd>
+                <dt>Down payment</dt><dd id="brzBDown">—</dd>
+                <dt>Financed balance</dt><dd id="brzBFin">—</dd>
+                <dt style="color:var(--teal);font-weight:700">True out-of-pocket</dt><dd id="brzBOop" style="color:var(--teal);font-weight:700">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>Before you sign</h3>
+              <ul>
+                <li><strong>Ortho benefits are lifetime, not annual.</strong> A $1,500 ortho max is once per person, ever — check how much is left before you plan.</li>
+                <li><strong>Ask about the in-office payment plan.</strong> Many orthodontists split the balance interest-free over treatment.</li>
+                <li><strong>FSA/HSA dollars are still your money</strong> — they're just pre-tax, so the real cost is a bit less than it looks.</li>
+                <li><strong>Retainers and follow-up visits</strong> may bill separately from the quoted total.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle no-print" id="brzExplainToggle" type="button" aria-expanded="false" aria-controls="brzExplainCopy">About these results</button>
+            <p class="explain-copy hidden" id="brzExplainCopy">Treatment types show typical U.S. price ranges as reference only — your plan uses the quote you enter. The ortho benefit is applied as a flat lifetime maximum against the quoted total (real insurers often pay it out in installments, but the total is the same). FSA/HSA funds reduce the cash you owe but are your own pre-tax money. Monthly payment spreads the remaining financed balance evenly over the months you enter. Estimates only — confirm the payment plan, what's included, and the insurance payout schedule with the orthodontist and your insurer. A cost plan is not dental advice.</p>
+          </section>
+          <button class="ghost no-print" type="button" id="brzPrint">Print summary</button>
+          <button class="ghost no-print" type="button" id="brzCopy">Copy results</button>
+          <button class="ghost no-print" type="button" id="brzEmail">Email my results</button>
+          <p class="share-status no-print" id="brzShareStatus" role="status" style="color:var(--muted);font-size:.75rem;margin:8px 1px 0"></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Braces Cost Plan — <span id="brzPsType">Treatment</span></h2>
+      <table>
+        <tr><th>Quoted total</th><td id="brzPsQuoted">—</td></tr>
+        <tr><th>Insurance ortho benefit</th><td id="brzPsIns">—</td></tr>
+        <tr><th>Monthly payment</th><td id="brzPsMonthly">—</td></tr>
+        <tr><th>True out-of-pocket</th><td id="brzPsOop">—</td></tr>
+      </table>
+      <p class="ps-note">Estimates only — confirm the payment plan and insurance payout schedule with the orthodontist and your insurer. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofBraces';
+    var lastSummary = '';
+
+    var TYPES = {
+      metal:   { name: 'Metal braces',           range: '$3,000 \u2013 $7,000' },
+      ceramic: { name: 'Ceramic braces',         range: '$4,000 \u2013 $8,000' },
+      aligner: { name: 'Invisalign-style aligners', range: '$3,500 \u2013 $8,000' }
+    };
+
+    function $(id) { return document.getElementById(id); }
+    function num(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+    function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    function fmt2(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+    function compute(type, quoted, down, months, orthoMax, fsa) {
+      var insurancePays = Math.min(orthoMax, quoted);
+      var remaining = Math.max(0, quoted - insurancePays);
+      var fsaUsed = Math.min(fsa, remaining);
+      var cash = Math.max(0, remaining - fsaUsed);
+      var financed = Math.max(0, cash - Math.min(down, cash));
+      var monthly, monthlyNote;
+      if (financed <= 0) { monthly = 0; monthlyNote = ''; }
+      else if (months >= 1) { monthly = financed / months; monthlyNote = ''; }
+      else { monthly = financed; monthlyNote = 'no monthly plan entered — this is the full balance due'; }
+      var trueOop = remaining;
+      return {
+        type: TYPES[type], insurancePays: insurancePays, remaining: remaining,
+        fsaUsed: fsaUsed, cash: cash, down: down, financed: financed,
+        months: months, monthly: monthly, monthlyNote: monthlyNote, trueOop: trueOop
+      };
+    }
+
+    function summaryText(r) {
+      var lines = [
+        'Braces & Aligner Cost Plan (Honed Proof)',
+        'Treatment: ' + r.type.name,
+        'Quoted total: ' + fmt(num('brzQuoted')),
+        'Insurance ortho benefit: ' + fmt(r.insurancePays),
+        'FSA/HSA covers: ' + fmt(r.fsaUsed),
+        'Estimated monthly payment: ' + fmt2(r.monthly) + (r.months >= 1 && r.financed > 0 ? ' x ' + r.months + ' months' : ''),
+        'True out-of-pocket: ' + fmt(r.trueOop),
+        'Estimates only. Confirm the payment plan and insurance payout schedule with the orthodontist and your insurer.'
+      ];
+      return lines.join('\n');
+    }
+
+    function save() {
+      var data = {
+        type: $('brzType').value, quoted: $('brzQuoted').value, down: $('brzDown').value,
+        months: $('brzMonths').value, ortho: $('brzOrtho').value, fsa: $('brzFsa').value
+      };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (data) {
+        if (TYPES[data.type]) $('brzType').value = data.type;
+        $('brzQuoted').value = data.quoted || '';
+        $('brzDown').value = data.down || '';
+        $('brzMonths').value = data.months || '';
+        $('brzOrtho').value = data.ortho || '';
+        $('brzFsa').value = data.fsa || '';
+      }
+    }
+
+    function fallbackCopy(text) {
+      var area = document.createElement('textarea');
+      area.value = text; area.setAttribute('readonly', '');
+      area.style.position = 'fixed'; area.style.opacity = '0';
+      document.body.appendChild(area); area.select();
+      var worked = false;
+      try { worked = document.execCommand('copy'); } catch (e) { worked = false; }
+      document.body.removeChild(area);
+      return worked;
+    }
+
+    function render(r) {
+      $('brzEmpty').classList.add('hidden');
+      $('brzResults').classList.remove('hidden');
+
+      var head, note;
+      if (r.financed <= 0) {
+        head = '$0/mo';
+        note = r.remaining <= 0
+          ? r.type.name + ': insurance covers the full quoted total — nothing left to finance.'
+          : r.type.name + ': your FSA/HSA and down payment cover the whole balance — no monthly payment.';
+      } else if (r.months >= 1) {
+        head = fmt2(r.monthly) + '/mo';
+        note = r.type.name + ': ' + fmt(r.financed) + ' financed over ' + r.months + ' months, after insurance and your FSA/HSA.';
+      } else {
+        head = fmt2(r.monthly);
+        note = r.type.name + ': ' + r.monthlyNote + '.';
+      }
+      $('brzAmount').textContent = head;
+      $('brzEyebrow').textContent = r.financed > 0 && r.months >= 1 ? 'ESTIMATED MONTHLY PAYMENT' : 'ESTIMATED BALANCE DUE';
+      $('brzNote').textContent = note;
+
+      $('brzBType').textContent = r.type.name + ' (typical ' + r.type.range + ')';
+      $('brzBQuoted').textContent = fmt(num('brzQuoted'));
+      $('brzBIns').textContent = fmt(r.insurancePays);
+      $('brzBRem').textContent = fmt(r.remaining);
+      $('brzBFsa').textContent = fmt(r.fsaUsed);
+      $('brzBCash').textContent = fmt(r.cash);
+      $('brzBDown').textContent = fmt(r.down);
+      $('brzBFin').textContent = fmt(r.financed);
+      $('brzBOop').textContent = fmt(r.trueOop);
+
+      lastSummary = summaryText(r);
+      $('brzShareStatus').textContent = '';
+
+      $('brzPsType').textContent = r.type.name;
+      $('brzPsQuoted').textContent = fmt(num('brzQuoted'));
+      $('brzPsIns').textContent = fmt(r.insurancePays);
+      $('brzPsMonthly').textContent = head;
+      $('brzPsOop').textContent = fmt(r.trueOop);
+
+      $('brzResults').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    ['brzType', 'brzQuoted', 'brzDown', 'brzMonths', 'brzOrtho', 'brzFsa'].forEach(function (id) {
+      $(id).addEventListener('input', save);
+      $(id).addEventListener('change', save);
+    });
+
+    $('brzForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var quoted = num('brzQuoted');
+      if (!(quoted > 0)) { $('brzQuoted').focus(); return; }
+      save();
+      render(compute($('brzType').value, quoted, num('brzDown'), num('brzMonths'), num('brzOrtho'), num('brzFsa')));
+    });
+
+    $('brzReset').addEventListener('click', function () {
+      $('brzType').value = 'metal';
+      ['brzQuoted', 'brzDown', 'brzMonths', 'brzOrtho', 'brzFsa'].forEach(function (id) { $(id).value = ''; });
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      lastSummary = '';
+      $('brzResults').classList.add('hidden');
+      $('brzEmpty').classList.remove('hidden');
+      $('brzQuoted').focus();
+    });
+
+    $('brzPrint').addEventListener('click', function () { window.print(); });
+
+    $('brzCopy').addEventListener('click', function () {
+      if (!lastSummary) return;
+      var done = function (ok) { $('brzShareStatus').textContent = ok ? 'Results copied to your clipboard.' : 'Copy was blocked. Select the results above to copy them manually.'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(lastSummary).then(function () { done(true); }).catch(function () { done(fallbackCopy(lastSummary)); });
+      } else { done(fallbackCopy(lastSummary)); }
+    });
+
+    $('brzEmail').addEventListener('click', function () {
+      if (!lastSummary) return;
+      var link = document.createElement('a');
+      link.href = 'mailto:?subject=' + encodeURIComponent('My braces cost plan') + '&body=' + encodeURIComponent(lastSummary);
+      link.style.display = 'none';
+      document.body.appendChild(link); link.click(); document.body.removeChild(link);
+      $('brzShareStatus').textContent = 'Opening your email app with the results filled in.';
+    });
+
+    $('brzExplainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('brzExplainCopy').classList.toggle('hidden', open);
+    });
+
+    restore();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

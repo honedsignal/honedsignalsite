@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Can your budget fit therapy? See therapy's share of your discretionary income and how far HSA/FSA funds stretch. Free budget planner from Honed Proof." />
+  <link rel="canonical" href="https://honedsignal.com/health/therapy-budget-planner/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Therapy Session Budget Planner","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/therapy-budget-planner/","description":"See whether therapy fits your monthly budget and how HSA/FSA funds change the math.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Therapy Session Budget Planner | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    .select-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .select-input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600;appearance:none;-webkit-appearance:none}
+    .select-input select option{color:#111}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .versus{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px}
+    .vs-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px;text-align:center}
+    .vs-card h3{margin:0 0 6px;font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .vs-card .amount{margin:0;font:700 1.9rem "DM Mono",monospace;letter-spacing:-.03em}
+    .vs-card p.note-line{margin:8px 0 0;font-size:.7rem;color:var(--muted)}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .share-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.versus{grid-template-columns:1fr}.share-row{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet table{border-collapse:collapse;width:100%;margin:10px 0}
+      .print-sheet th,.print-sheet td{border:1px solid #999;padding:6px 8px;text-align:left}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Mental Health Costs</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Can your budget fit <span class="accent">therapy</span>?</h1>
+      </div>
+      <p>See what sessions cost as a share of your discretionary income, and how far your HSA or FSA funds stretch. Budget math only — not clinical advice.</p>
+    </header>
+
+    <section class="workbench" aria-label="Therapy session budget planner">
+      <form class="panel inputs" id="tbpForm" novalidate>
+        <div class="section-head"><h2>Your money</h2><span class="step">01 / INCOME</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="tbpTakehome">Monthly take-home pay</label>
+            <div class="money-input"><span>$</span><input id="tbpTakehome" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Monthly take-home pay" /></div>
+          </div>
+          <div class="field">
+            <label for="tbpFixed">Fixed expenses per month</label>
+            <div class="money-input"><span>$</span><input id="tbpFixed" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Total fixed expenses per month" /></div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>The sessions</h2><span class="step">02 / COST</span></div>
+        <div class="goal-fields">
+          <div class="field">
+            <label for="tbpFee">Session fee</label>
+            <div class="money-input"><span>$</span><input id="tbpFee" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Session fee" /></div>
+          </div>
+          <div class="field">
+            <label for="tbpSessions">Sessions per month (a number you set)</label>
+            <div class="text-input"><input id="tbpSessions" type="number" min="0" step="1" inputmode="numeric" placeholder="4" aria-label="Sessions per month" /></div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>HSA / FSA</h2><span class="step">03 / OPTIONAL</span></div>
+        <div class="field">
+          <label for="tbpHsaYes">Do you have HSA or FSA funds to use?</label>
+          <div class="select-input"><select id="tbpHsaYes" aria-label="HSA or FSA funds available">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select></div>
+        </div>
+        <div class="field">
+          <label for="tbpHsaBalance">HSA / FSA available balance</label>
+          <div class="money-input"><span>$</span><input id="tbpHsaBalance" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="HSA or FSA available balance" /></div>
+        </div>
+
+        <button class="calculate" type="submit">Check the budget fit</button>
+        <button class="ghost no-print" type="button" id="tbpReset">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="tbpEmpty">
+          <div>
+            <h2>Enter your numbers to check</h2>
+            <p>Add your take-home pay, fixed expenses, and session cost — see how therapy fits and what levers you can pull.</p>
+          </div>
+        </div>
+        <div id="tbpResult" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="tbpVerdictEyebrow">BUDGET FIT</p>
+            <p class="target" id="tbpVerdictAmount">$0</p>
+            <p class="target-note" id="tbpVerdictNote"></p>
+          </section>
+          <div class="versus">
+            <section class="vs-card" aria-label="Monthly therapy cost">
+              <h3>Monthly cost</h3>
+              <p class="amount" id="tbpMonthly">$0</p>
+              <p class="note-line" id="tbpMonthlyNote">sessions × fee.</p>
+            </section>
+            <section class="vs-card" aria-label="Share of discretionary income">
+              <h3>Of discretionary income</h3>
+              <p class="amount" id="tbpShare">—</p>
+              <p class="note-line" id="tbpShareNote"></p>
+            </section>
+            <section class="vs-card" aria-label="HSA FSA adjusted annual cost">
+              <h3>HSA/FSA-adjusted year</h3>
+              <p class="amount" id="tbpAdj">$0</p>
+              <p class="note-line" id="tbpAdjNote"></p>
+            </section>
+          </div>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>How the numbers are built</h3>
+              <dl>
+                <dt>Monthly therapy cost</dt><dd id="tbpBMonthly">—</dd>
+                <dt>Annual therapy cost</dt><dd id="tbpBAnnual">—</dd>
+                <dt>Discretionary income / mo</dt><dd id="tbpBDisc">—</dd>
+                <dt>HSA/FSA covers about</dt><dd id="tbpBCovers">—</dd>
+                <dt>Out-of-pocket after HSA/FSA</dt><dd id="tbpBOop">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block nudge" id="tbpLevers">
+              <h3>Cost levers you control</h3>
+              <ul>
+                <li><strong>Ask about sliding-scale rates</strong> — many therapists adjust fees by income.</li>
+                <li><strong>Check out-of-network reimbursement</strong> — compare paths with the Therapy Cost Comparer.</li>
+                <li><strong>Sessions per month is a cost dial</strong> — fewer sessions lowers the total. How often to go is a clinical question for your provider, not a cost recommendation.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle no-print" id="tbpExplainToggle" type="button" aria-expanded="false" aria-controls="tbpExplainCopy">About these results</button>
+            <p class="explain-copy hidden" id="tbpExplainCopy">Discretionary income is take-home pay minus fixed expenses. Verdicts use rough bands: up to 10% of discretionary is a comfortable fit, up to 25% is workable, above 25% is tight. Bands are a budgeting shorthand, not financial advice. HSA/FSA math assumes the balance is used for therapy until it runs out; it doesn't change the sticker price, just the source of payment. This is budget planning only — not medical advice.</p>
+          </section>
+          <div class="share-row no-print">
+            <button class="ghost" type="button" id="tbpCopy" style="margin-top:0">Copy results</button>
+            <button class="ghost" type="button" id="tbpEmail" style="margin-top:0">Email results</button>
+          </div>
+          <button class="ghost no-print" type="button" id="tbpPrint" style="margin-top:10px">Print summary</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Therapy Session Budget Planner</h2>
+      <table>
+        <tr><th>Monthly therapy cost</th><td id="tbpPsMonthly">—</td></tr>
+        <tr><th>Share of discretionary income</th><td id="tbpPsShare">—</td></tr>
+        <tr><th>HSA/FSA covers</th><td id="tbpPsCovers">—</td></tr>
+        <tr><th>Annual out-of-pocket after HSA/FSA</th><td id="tbpPsOop">—</td></tr>
+        <tr><th>Verdict</th><td id="tbpPsVerdict">—</td></tr>
+      </table>
+      <p class="ps-note">Budget estimates only — not medical advice. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  'use strict';
+  /* Pure calculator functions — no DOM. Extractable for tests. */
+  function tbpFmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function tbpFmt0(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+  function tbpPct(n) { return (Math.round(n * 10) / 10) + '%'; }
+
+  /* d = {takehome, fixed, fee, sessions, hsaYes, hsaBalance} */
+  function tbpCompute(d) {
+    var s = Math.max(0, d.sessions);
+    var monthly = s * Math.max(0, d.fee);
+    var annual = monthly * 12;
+    var discretionary = d.takehome - d.fixed;
+    var pctOfDisc = discretionary > 0 ? (monthly / discretionary) * 100 : null;
+    var useHsa = !!d.hsaYes && d.hsaBalance > 0;
+    var monthsCovered = (useHsa && monthly > 0) ? d.hsaBalance / monthly : 0;
+    var adjustedAnnual = useHsa ? Math.max(0, annual - d.hsaBalance) : annual;
+    var verdict;
+    if (discretionary <= 0) verdict = 'none';
+    else if (pctOfDisc <= 10) verdict = 'comfortable';
+    else if (pctOfDisc <= 25) verdict = 'workable';
+    else verdict = 'tight';
+    return {
+      monthly: monthly, annual: annual, discretionary: discretionary, pctOfDisc: pctOfDisc,
+      useHsa: useHsa, monthsCovered: monthsCovered, adjustedAnnual: adjustedAnnual, verdict: verdict
+    };
+  }
+  </script>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofTherapyBudgetPlanner';
+
+    function $(id) { return document.getElementById(id); }
+    function numRaw(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+
+    function save() {
+      var data = {
+        takehome: $('tbpTakehome').value, fixed: $('tbpFixed').value, fee: $('tbpFee').value,
+        sessions: $('tbpSessions').value, hsaYes: $('tbpHsaYes').value, hsaBalance: $('tbpHsaBalance').value
+      };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return;
+      ['takehome', 'fixed', 'fee', 'sessions', 'hsaBalance'].forEach(function (k) {
+        var id = 'tbp' + k.charAt(0).toUpperCase() + k.slice(1);
+        $(id).value = data[k] || '';
+      });
+      $('tbpHsaYes').value = data.hsaYes === 'yes' ? 'yes' : 'no';
+    }
+
+    function monthsText(m) {
+      if (m >= 12) return 'the full year';
+      if (m < 1) return 'less than a month';
+      var r = Math.floor(m * 10) / 10;
+      return 'about ' + r + ' month' + (r === 1 ? '' : 's');
+    }
+
+    function lastResult() { return window.__tbpLast || null; }
+
+    function render(r) {
+      window.__tbpLast = r;
+      $('tbpEmpty').classList.add('hidden');
+      $('tbpResult').classList.remove('hidden');
+
+      var labels = {
+        comfortable: 'Comfortable fit',
+        workable: 'Workable, but watch it',
+        tight: 'Tight',
+        none: 'No room in the budget'
+      };
+      $('tbpVerdictEyebrow').textContent = 'BUDGET FIT — ' + labels[r.verdict].toUpperCase();
+
+      var note;
+      if (r.verdict === 'none') {
+        note = 'Fixed expenses already use up your take-home pay, so there is no discretionary income left for therapy on this math. The cost levers below can still lower the number.';
+        $('tbpVerdictAmount').textContent = tbpFmt(r.monthly) + '/mo';
+      } else if (r.verdict === 'comfortable') {
+        note = 'At ' + tbpFmt(r.monthly) + ' a month, therapy takes up about ' + tbpPct(r.pctOfDisc) + ' of your discretionary income — a comfortable fit on this budget math.';
+        $('tbpVerdictAmount').textContent = tbpPct(r.pctOfDisc);
+      } else if (r.verdict === 'workable') {
+        note = 'At ' + tbpFmt(r.monthly) + ' a month, therapy takes up about ' + tbpPct(r.pctOfDisc) + ' of your discretionary income — workable, but worth watching. The levers below can lower the number.';
+        $('tbpVerdictAmount').textContent = tbpPct(r.pctOfDisc);
+      } else {
+        note = 'At ' + tbpFmt(r.monthly) + ' a month, therapy takes up about ' + tbpPct(r.pctOfDisc) + ' of your discretionary income — that is tight. Look at the cost levers below.';
+        $('tbpVerdictAmount').textContent = tbpPct(r.pctOfDisc);
+      }
+      $('tbpVerdictNote').textContent = note;
+
+      $('tbpMonthly').textContent = tbpFmt(r.monthly);
+      $('tbpMonthlyNote').textContent = tbpFmt0(r.annual) + ' per year before HSA/FSA.';
+      $('tbpShare').textContent = r.pctOfDisc === null ? '—' : tbpPct(r.pctOfDisc);
+      $('tbpShareNote').textContent = r.pctOfDisc === null
+        ? 'No discretionary income left to measure against.'
+        : 'of ' + tbpFmt0(r.discretionary) + '/mo discretionary income.';
+      $('tbpAdj').textContent = tbpFmt(r.adjustedAnnual);
+      $('tbpAdjNote').textContent = r.useHsa
+        ? 'Your HSA/FSA covers ' + monthsText(r.monthsCovered) + ' at this monthly cost.'
+        : 'No HSA/FSA funds entered.';
+
+      $('tbpBMonthly').textContent = tbpFmt(r.monthly);
+      $('tbpBAnnual').textContent = tbpFmt(r.annual);
+      $('tbpBDisc').textContent = tbpFmt(r.discretionary);
+      $('tbpBCovers').textContent = r.useHsa ? monthsText(r.monthsCovered) : '—';
+      $('tbpBOop').textContent = tbpFmt(r.adjustedAnnual) + '/yr';
+
+      $('tbpPsMonthly').textContent = tbpFmt(r.monthly);
+      $('tbpPsShare').textContent = r.pctOfDisc === null ? '—' : tbpPct(r.pctOfDisc);
+      $('tbpPsCovers').textContent = r.useHsa ? monthsText(r.monthsCovered) : '—';
+      $('tbpPsOop').textContent = tbpFmt(r.adjustedAnnual) + '/yr';
+      $('tbpPsVerdict').textContent = labels[r.verdict];
+
+      $('tbpResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function summaryText(r) {
+      var labels = { comfortable: 'Comfortable fit', workable: 'Workable, but watch it', tight: 'Tight', none: 'No room in the budget' };
+      var lines = ['Therapy Session Budget Planner — Honed Proof', ''];
+      lines.push('Monthly therapy cost: ' + tbpFmt(r.monthly));
+      lines.push('Annual therapy cost: ' + tbpFmt(r.annual));
+      lines.push('Discretionary income: ' + tbpFmt(r.discretionary) + '/mo');
+      lines.push('Share of discretionary: ' + (r.pctOfDisc === null ? 'n/a' : tbpPct(r.pctOfDisc)));
+      if (r.useHsa) lines.push('HSA/FSA covers: ' + monthsText(r.monthsCovered));
+      lines.push('Annual out-of-pocket after HSA/FSA: ' + tbpFmt(r.adjustedAnnual));
+      lines.push('Verdict: ' + labels[r.verdict]);
+      lines.push('', 'Budget math only — not medical advice.');
+      return lines.join('\n');
+    }
+
+    $('tbpForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = {
+        takehome: numRaw('tbpTakehome'),
+        fixed: numRaw('tbpFixed'),
+        fee: numRaw('tbpFee'),
+        sessions: numRaw('tbpSessions'),
+        hsaYes: $('tbpHsaYes').value === 'yes',
+        hsaBalance: numRaw('tbpHsaBalance')
+      };
+      var r = tbpCompute(d);
+      save();
+      render(r);
+    });
+
+    $('tbpReset').addEventListener('click', function () {
+      ['tbpTakehome', 'tbpFixed', 'tbpFee', 'tbpSessions', 'tbpHsaBalance'].forEach(function (id) { $(id).value = ''; });
+      $('tbpHsaYes').value = 'no';
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      window.__tbpLast = null;
+      $('tbpResult').classList.add('hidden');
+      $('tbpEmpty').classList.remove('hidden');
+      $('tbpTakehome').focus();
+    });
+
+    $('tbpCopy').addEventListener('click', function () {
+      var r = lastResult();
+      if (!r) return;
+      var t = summaryText(r);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(function () { $('tbpCopy').textContent = 'Copied!'; }, function () { $('tbpCopy').textContent = 'Copy failed'; });
+        setTimeout(function () { $('tbpCopy').textContent = 'Copy results'; }, 1800);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = t; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); $('tbpCopy').textContent = 'Copied!'; } catch (err) {}
+        document.body.removeChild(ta);
+        setTimeout(function () { $('tbpCopy').textContent = 'Copy results'; }, 1800);
+      }
+    });
+
+    $('tbpEmail').addEventListener('click', function () {
+      var r = lastResult();
+      if (!r) return;
+      var subject = encodeURIComponent('My therapy budget check — Honed Proof');
+      var body = encodeURIComponent(summaryText(r));
+      window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+    });
+
+    $('tbpPrint').addEventListener('click', function () { window.print(); });
+
+    $('tbpExplainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('tbpExplainCopy').classList.toggle('hidden', open);
+    });
+
+    var fields = ['tbpTakehome', 'tbpFixed', 'tbpFee', 'tbpSessions', 'tbpHsaBalance'];
+    fields.forEach(function (id) { $(id).addEventListener('input', save); });
+    $('tbpHsaYes').addEventListener('change', save);
+
+    restore();
+  })();
+  </script>
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

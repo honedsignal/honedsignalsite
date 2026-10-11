@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Build a payoff plan for medical bills: enter up to 5 debts, pick avalanche or snowball, and see your payoff order, months to debt-free, and total cost. Free tool from Honed Proof — no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/medical-debt-payoff-planner/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Medical Debt Payoff Planner","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/medical-debt-payoff-planner/","description":"Build a payoff plan for medical bills: payoff order, months to debt-free, and total cost across up to 5 debts.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Medical Debt Payoff Planner | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    .pct-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .pct-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .pct-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 5px 9px 10px;min-height:44px;font-weight:700;font-variant-numeric:tabular-nums}
+    .pct-input span{padding-right:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .proxy-note{margin:6px 1px 0;color:var(--orange);font-size:.68rem;display:none}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .versus{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .vs-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px;text-align:center}
+    .vs-card.winner{border-color:color-mix(in srgb,var(--teal) 55%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--teal) 55%,transparent)}
+    .vs-card h3{margin:0 0 6px;font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .vs-card .amount{margin:0;font:700 1.9rem "DM Mono",monospace;letter-spacing:-.03em}
+    .vs-card.winner .amount{color:var(--teal)}
+    .vs-card p{margin:8px 0 0;font-size:.7rem;color:var(--muted)}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.versus{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet table{border-collapse:collapse;width:100%;margin:10px 0}
+      .print-sheet th,.print-sheet td{border:1px solid #999;padding:6px 8px;text-align:left}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  
+    /* Medical debt payoff planner additions */
+    .debt-row{display:grid;grid-template-columns:1.2fr 1fr .62fr 1fr;gap:10px;margin-bottom:12px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+    .debt-row .field{margin-bottom:0}
+    .text-input select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600;appearance:none}
+    .text-input select option{color:#0b0e14}
+    #orderList{margin:0;padding-left:0;list-style:none}
+    #orderList li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:.82rem}
+    #orderList li:last-child{border-bottom:0}
+    #orderList .ord{color:var(--orange);font:700 .78rem "DM Mono",monospace;margin-right:8px}
+    #orderList .onm{font-weight:700}
+    #orderList .odt{color:var(--muted);font-size:.74rem;text-align:right}
+    .sched-wrap{overflow-x:auto}
+    .sched-table{border-collapse:collapse;width:100%;font-size:.76rem}
+    .sched-table th,.sched-table td{padding:9px 8px;text-align:right;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+    .sched-table th:first-child,.sched-table td:first-child{text-align:left}
+    .sched-table th{color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em}
+    .warn{border:1px solid color-mix(in srgb,var(--orange) 45%,var(--line));border-radius:12px;background:var(--orange-soft);padding:19px;margin-top:10px;font-size:.82rem;color:var(--muted);line-height:1.7}
+    .warn strong{color:var(--ink)}
+    .err{color:var(--orange);font-size:.78rem;margin:8px 1px 0;display:none}
+    @media(max-width:560px){.debt-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Your <span class="accent">debt-free</span> date, mapped out.</h1>
+      </div>
+      <p>Enter your medical bills — most carry 0% interest — pick a strategy, and get a month-by-month payoff plan in plain English.</p>
+    </header>
+
+    <section class="workbench" aria-label="Medical debt payoff planner">
+      <form class="panel inputs" id="mdpForm" novalidate>
+        <div class="section-head"><h2>Your debts</h2><span class="step">01 / DEBTS</span></div>
+        <div class="debt-row">
+          <div class="field">
+            <label for="d1name">Creditor 1</label>
+            <div class="text-input"><input id="d1name" type="text" placeholder="e.g. City Hospital ER" autocomplete="off" /></div>
+          </div>
+          <div class="field">
+            <label for="d1bal">Balance</label>
+            <div class="money-input"><span>$</span><input id="d1bal" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Balance for creditor 1" /></div>
+          </div>
+          <div class="field">
+            <label for="d1apr">APR %</label>
+            <div class="pct-input"><input id="d1apr" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="0" aria-label="APR for creditor 1" /><span>%</span></div>
+          </div>
+          <div class="field">
+            <label for="d1pay">Monthly payment</label>
+            <div class="money-input"><span>$</span><input id="d1pay" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Monthly payment for creditor 1" /></div>
+          </div>
+        </div>
+        <div class="debt-row">
+          <div class="field">
+            <label for="d2name">Creditor 2</label>
+            <div class="text-input"><input id="d2name" type="text" placeholder="e.g. City Hospital ER" autocomplete="off" /></div>
+          </div>
+          <div class="field">
+            <label for="d2bal">Balance</label>
+            <div class="money-input"><span>$</span><input id="d2bal" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Balance for creditor 2" /></div>
+          </div>
+          <div class="field">
+            <label for="d2apr">APR %</label>
+            <div class="pct-input"><input id="d2apr" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="0" aria-label="APR for creditor 2" /><span>%</span></div>
+          </div>
+          <div class="field">
+            <label for="d2pay">Monthly payment</label>
+            <div class="money-input"><span>$</span><input id="d2pay" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Monthly payment for creditor 2" /></div>
+          </div>
+        </div>
+        <div class="debt-row">
+          <div class="field">
+            <label for="d3name">Creditor 3</label>
+            <div class="text-input"><input id="d3name" type="text" placeholder="e.g. City Hospital ER" autocomplete="off" /></div>
+          </div>
+          <div class="field">
+            <label for="d3bal">Balance</label>
+            <div class="money-input"><span>$</span><input id="d3bal" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Balance for creditor 3" /></div>
+          </div>
+          <div class="field">
+            <label for="d3apr">APR %</label>
+            <div class="pct-input"><input id="d3apr" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="0" aria-label="APR for creditor 3" /><span>%</span></div>
+          </div>
+          <div class="field">
+            <label for="d3pay">Monthly payment</label>
+            <div class="money-input"><span>$</span><input id="d3pay" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Monthly payment for creditor 3" /></div>
+          </div>
+        </div>
+        <div class="debt-row">
+          <div class="field">
+            <label for="d4name">Creditor 4</label>
+            <div class="text-input"><input id="d4name" type="text" placeholder="e.g. City Hospital ER" autocomplete="off" /></div>
+          </div>
+          <div class="field">
+            <label for="d4bal">Balance</label>
+            <div class="money-input"><span>$</span><input id="d4bal" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Balance for creditor 4" /></div>
+          </div>
+          <div class="field">
+            <label for="d4apr">APR %</label>
+            <div class="pct-input"><input id="d4apr" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="0" aria-label="APR for creditor 4" /><span>%</span></div>
+          </div>
+          <div class="field">
+            <label for="d4pay">Monthly payment</label>
+            <div class="money-input"><span>$</span><input id="d4pay" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Monthly payment for creditor 4" /></div>
+          </div>
+        </div>
+        <div class="debt-row">
+          <div class="field">
+            <label for="d5name">Creditor 5</label>
+            <div class="text-input"><input id="d5name" type="text" placeholder="e.g. City Hospital ER" autocomplete="off" /></div>
+          </div>
+          <div class="field">
+            <label for="d5bal">Balance</label>
+            <div class="money-input"><span>$</span><input id="d5bal" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Balance for creditor 5" /></div>
+          </div>
+          <div class="field">
+            <label for="d5apr">APR %</label>
+            <div class="pct-input"><input id="d5apr" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="0" aria-label="APR for creditor 5" /><span>%</span></div>
+          </div>
+          <div class="field">
+            <label for="d5pay">Monthly payment</label>
+            <div class="money-input"><span>$</span><input id="d5pay" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Monthly payment for creditor 5" /></div>
+          </div>
+        </div>
+        <p class="hint">Leave APR at 0 for bills that don&rsquo;t charge interest — most medical debt doesn&rsquo;t. Fill in as few as one debt; ignore the rest.</p>
+        <div class="section-head"><h2>Strategy</h2><span class="step">02 / STRATEGY</span></div>
+        <div class="field">
+          <label for="strategy">Payoff order</label>
+          <div class="text-input"><select id="strategy">
+            <option value="avalanche">Avalanche — highest APR first (least interest)</option>
+            <option value="snowball">Snowball — smallest balance first (quick wins)</option>
+          </select></div>
+        </div>
+        <p class="err" id="formErr">Add at least one debt with a balance and a monthly payment above $0.</p>
+        <button class="calculate" type="submit">Build my payoff plan</button>
+        <button class="ghost no-print" type="button" id="resetBtn">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>Enter your bills to get a plan</h2>
+            <p>Add each medical debt, what you pay per month, and pick a strategy — avalanche attacks the costliest balance first, snowball clears the smallest ones first.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="verdictEyebrow">DEBT-FREE IN</p>
+            <p class="target" id="verdictAmount">—</p>
+            <p class="target-note" id="verdictNote"></p>
+          </section>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>Your payoff order</h3>
+              <ol id="orderList"></ol>
+            </section>
+            <section class="plan-block">
+              <h3>The big numbers</h3>
+              <dl>
+                <dt>Total debt today</dt><dd id="bTotal">—</dd>
+                <dt>Paying per month (all debts)</dt><dd id="bBudget">—</dd>
+                <dt>Total you&rsquo;ll pay</dt><dd id="bPaid" style="font-weight:700">—</dd>
+                <dt>Total interest</dt><dd id="bInterest">—</dd>
+                <dt style="color:var(--teal);font-weight:700">Months to debt-free</dt><dd id="bMonths" style="color:var(--teal);font-weight:700">—</dd>
+              </dl>
+            </section>
+          </div>
+          <div class="warn hidden" id="stuckNote"></div>
+          <section class="plan-block" style="margin-top:10px" aria-label="Per-debt schedule">
+            <h3>Per-debt schedule</h3>
+            <div class="sched-wrap"><table class="sched-table">
+              <thead><tr><th scope="col">Debt</th><th scope="col">Balance</th><th scope="col">APR</th><th scope="col">Paid off</th><th scope="col">Total paid</th><th scope="col">Interest</th></tr></thead>
+              <tbody id="scheduleBody"></tbody>
+            </table></div>
+          </section>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle no-print" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About these results</button>
+            <p class="explain-copy hidden" id="explainCopy">This plan pays each debt&rsquo;s monthly minimum, then throws everything left over at the top-priority debt. When that debt is gone, its payment rolls into attacking the next one — that&rsquo;s how the snowball (or avalanche) accelerates. Avalanche orders by highest APR first, which costs the least in interest; snowball orders by smallest balance first, which clears debts fastest for quick wins. With mostly 0% medical debt, the two strategies often land within dollars of each other. This is a planning aid, not financial advice — confirm payment-plan terms with each provider before you commit.</p>
+          </section>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <button class="ghost no-print" type="button" id="copyBtn">Copy results</button>
+            <button class="ghost no-print" type="button" id="emailBtn">Email my results</button>
+          </div>
+          <button class="ghost no-print" type="button" id="printBtn" style="margin-top:10px">Print summary</button>
+          <p class="hint" id="shareStatus" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Medical Debt Payoff Plan — <span id="psStrategy">Avalanche</span></h2>
+      <table>
+        <tr><th>Payoff order</th><td id="psOrder">—</td></tr>
+        <tr><th>Months to debt-free</th><td id="psMonths">—</td></tr>
+        <tr><th>Total paid</th><td id="psTotal">—</td></tr>
+        <tr><th>Total interest</th><td id="psInterest">—</td></tr>
+      </table>
+      <p class="ps-note">Estimate only — confirm payment terms with each provider. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofMedicalDebtPayoff';
+
+    function $(id) { return document.getElementById(id); }
+    function num(id) { var v = parseFloat($(id).value); return (isFinite(v) && v >= 0) ? v : 0; }
+    function fmt(n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmt0(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+    function planDebts(debts, strategy) {
+      var list = debts
+        .filter(function (d) { return d.balance > 0.005 && d.pay >= 0; })
+        .map(function (d) { return { name: d.name, balance: d.balance, apr: d.apr, pay: d.pay, bal: d.balance }; });
+      if (list.length === 0) return null;
+      list.sort(function (a, b) {
+        if (strategy === 'snowball') {
+          if (a.balance !== b.balance) return a.balance - b.balance;
+          return b.apr - a.apr;
+        }
+        if (a.apr !== b.apr) return b.apr - a.apr;
+        return a.balance - b.balance;
+      });
+      var budget = list.reduce(function (x, d) { return x + d.pay; }, 0);
+      if (!(budget > 0)) return null;
+      var per = {};
+      list.forEach(function (d, i) { per[i] = { name: d.name, balance: d.balance, apr: d.apr, paid: 0, interest: 0, payoffMonth: null }; });
+      var month = 0, totalPaid = 0, totalInterest = 0, stuck = false, MAXM = 600;
+      function remaining() { return list.some(function (d) { return d.bal > 0.005; }); }
+      while (remaining()) {
+        month++;
+        var prevSum = list.reduce(function (x, d) { return x + d.bal; }, 0);
+        list.forEach(function (d, i) {
+          if (d.bal > 0.005) { var it = d.bal * d.apr / 1200; d.bal += it; per[i].interest += it; totalInterest += it; }
+        });
+        var leftover = budget;
+        list.forEach(function (d, i) {
+          if (d.bal > 0.005) { var p = Math.min(d.pay, d.bal); d.bal -= p; per[i].paid += p; totalPaid += p; leftover -= p; }
+        });
+        for (var k = 0; k < list.length; k++) {
+          var d = list[k];
+          if (d.bal > 0.005) { var p = Math.min(leftover, d.bal); d.bal -= p; per[k].paid += p; totalPaid += p; leftover -= p; break; }
+        }
+        list.forEach(function (d, i) {
+          if (d.bal <= 0.005 && per[i].payoffMonth === null) { per[i].payoffMonth = month; d.bal = 0; }
+        });
+        var sum = list.reduce(function (x, d2) { return x + d2.bal; }, 0);
+        if (sum >= prevSum - 1e-9) { stuck = true; break; }
+        if (month >= MAXM) { stuck = true; break; }
+      }
+      var schedule = list.map(function (d, i) { return per[i]; });
+      return {
+        months: stuck ? null : month, totalPaid: totalPaid, totalInterest: totalInterest,
+        stuck: stuck, schedule: schedule, budget: budget,
+        totalDebt: list.reduce(function (x, d) { return x + d.balance; }, 0)
+      };
+    }
+
+    function fallbackCopy(text) {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta); return ok;
+      } catch (e) { return false; }
+    }
+
+    var lastSummary = '';
+    var FIELDS = [];
+    for (var n = 1; n <= 5; n++) {
+      ['name', 'bal', 'apr', 'pay'].forEach(function (f) { FIELDS.push('d' + n + f); });
+    }
+
+    function save() {
+      var data = { strategy: $('strategy').value };
+      FIELDS.forEach(function (id) { data[id] = $(id).value; });
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return;
+      FIELDS.forEach(function (id) { if (data[id] !== undefined) $(id).value = data[id]; });
+      if (data.strategy) $('strategy').value = data.strategy;
+    }
+
+    function monthsLabel(m) {
+      if (m < 12) return m + (m === 1 ? ' month' : ' months');
+      var y = Math.floor(m / 12), r = m % 12;
+      return y + (y === 1 ? ' year' : ' years') + (r ? ' ' + r + (r === 1 ? ' month' : ' months') : '');
+    }
+
+    function freeDate(m) {
+      var d = new Date();
+      var target = new Date(d.getFullYear(), d.getMonth() + m, 1);
+      return target.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    }
+
+    function render(r, strategy) {
+      var strategyName = strategy === 'snowball' ? 'Snowball' : 'Avalanche';
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+
+      var ord = [];
+      r.schedule.forEach(function (d, i) { ord.push((i + 1) + '. ' + d.name); });
+
+      if (r.stuck) {
+        var bad = r.schedule.filter(function (d) { return d.payoffMonth === null; });
+        $('verdictEyebrow').textContent = 'PLAN STALLS';
+        $('verdictAmount').textContent = 'Not at these payments';
+        $('verdictNote').textContent = bad.length + (bad.length === 1 ? ' debt' : ' debts') +
+          ' never get paid off at the current monthly amounts — the payment doesn\u2019t cover the interest being charged.';
+        var sn = $('stuckNote');
+        sn.classList.remove('hidden');
+        sn.innerHTML = '<strong>Heads up:</strong> ' + bad.map(function (d) { return esc(d.name); }).join(', ') +
+          (bad.length === 1 ? ' is' : ' are') + ' growing faster than ' +
+          (bad.length === 1 ? 'it is' : 'they are') + ' being paid. Options: raise the monthly payment, ask the provider for a 0% payment plan (most medical bills don\u2019t charge interest until they go to collections), or see the Charity Care Eligibility Explainer to check for free or discounted care.';
+      } else {
+        $('verdictEyebrow').textContent = strategyName.toUpperCase() + ' — DEBT-FREE IN';
+        $('verdictAmount').textContent = monthsLabel(r.months);
+        $('verdictNote').textContent = 'Paying ' + fmt0(r.budget) + '/month across ' + r.schedule.length +
+          (r.schedule.length === 1 ? ' debt' : ' debts') + ', you\u2019d be debt-free around ' + freeDate(r.months) + '.';
+        $('stuckNote').classList.add('hidden');
+      }
+
+      var ol = $('orderList');
+      ol.innerHTML = '';
+      r.schedule.forEach(function (d, i) {
+        var li = document.createElement('li');
+        var when = d.payoffMonth === null ? 'never at these payments' : 'paid off in month ' + d.payoffMonth;
+        li.innerHTML = '<span><span class="ord">' + (i + 1) + '</span><span class="onm">' + esc(d.name) + '</span></span>' +
+                       '<span class="odt">' + when + '</span>';
+        ol.appendChild(li);
+      });
+
+      $('bTotal').textContent = fmt(r.totalDebt);
+      $('bBudget').textContent = fmt(r.budget) + '/mo';
+      $('bPaid').textContent = fmt(r.totalPaid);
+      $('bInterest').textContent = fmt(r.totalInterest);
+      $('bMonths').textContent = r.stuck ? '—' : monthsLabel(r.months);
+
+      var tb = $('scheduleBody');
+      tb.innerHTML = '';
+      r.schedule.forEach(function (d) {
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + esc(d.name) + '</td><td>' + fmt(d.balance) + '</td><td>' + d.apr.toFixed(2) + '%</td>' +
+          '<td>' + (d.payoffMonth === null ? '—' : d.payoffMonth) + '</td>' +
+          '<td>' + fmt(d.paid) + '</td><td>' + fmt(d.interest) + '</td>';
+        tb.appendChild(tr);
+      });
+
+      lastSummary = 'Medical Debt Payoff Plan (' + strategyName + ')\n' +
+        'Payoff order: ' + ord.join(' -> ') + '\n' +
+        (r.stuck ? 'At current payments, some debts never get paid off — raise payments or ask for a 0% plan.\n'
+                 : 'Debt-free in ' + monthsLabel(r.months) + ' (around ' + freeDate(r.months) + ').\n') +
+        'Total debt: ' + fmt(r.totalDebt) + ' | Monthly budget: ' + fmt(r.budget) + '/mo | Total paid: ' +
+        fmt(r.totalPaid) + ' | Interest: ' + fmt(r.totalInterest) + '\n' +
+        'Estimate from Honed Proof — confirm payment terms with each provider.';
+
+      $('psStrategy').textContent = strategyName;
+      $('psOrder').textContent = ord.join(' -> ');
+      $('psMonths').textContent = r.stuck ? 'Never at these payments' : monthsLabel(r.months);
+      $('psTotal').textContent = fmt(r.totalPaid);
+      $('psInterest').textContent = fmt(r.totalInterest);
+      $('shareStatus').textContent = '';
+
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    FIELDS.forEach(function (id) { $(id).addEventListener('input', save); });
+    $('strategy').addEventListener('change', save);
+
+    $('mdpForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var debts = [];
+      for (var n = 1; n <= 5; n++) {
+        var name = $('d' + n + 'name').value.trim() || 'Debt ' + n;
+        debts.push({ name: name, balance: num('d' + n + 'bal'), apr: num('d' + n + 'apr'), pay: num('d' + n + 'pay') });
+      }
+      var r = planDebts(debts, $('strategy').value);
+      if (!r) { $('formErr').style.display = 'block'; $('d1bal').focus(); return; }
+      $('formErr').style.display = 'none';
+      save();
+      render(r, $('strategy').value);
+    });
+
+    $('resetBtn').addEventListener('click', function () {
+      FIELDS.forEach(function (id) { $(id).value = ''; });
+      $('strategy').value = 'avalanche';
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      lastSummary = '';
+      $('shareStatus').textContent = '';
+      $('formErr').style.display = 'none';
+      $('resultState').classList.add('hidden');
+      $('emptyState').classList.remove('hidden');
+      $('d1name').focus();
+    });
+
+    $('printBtn').addEventListener('click', function () { window.print(); });
+
+    $('copyBtn').addEventListener('click', function () {
+      if (!lastSummary) return;
+      var done = function (ok) { $('shareStatus').textContent = ok ? 'Results copied to your clipboard.' : 'Copy was blocked. Select the results above to copy them manually.'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(lastSummary).then(function () { done(true); }).catch(function () { done(fallbackCopy(lastSummary)); });
+      } else { done(fallbackCopy(lastSummary)); }
+    });
+
+    $('emailBtn').addEventListener('click', function () {
+      if (!lastSummary) return;
+      var link = document.createElement('a');
+      link.href = 'mailto:?subject=' + encodeURIComponent('My medical debt payoff plan') + '&body=' + encodeURIComponent(lastSummary);
+      link.style.display = 'none';
+      document.body.appendChild(link); link.click(); document.body.removeChild(link);
+      $('shareStatus').textContent = 'Opening your email app with the results filled in.';
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    restore();
+  })();
+
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>

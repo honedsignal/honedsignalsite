@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/health/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/health/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/health/icons/apple-touch-icon.png" />
+  <meta property="og:image" content="https://honedsignal.com/health/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Do you qualify for hospital charity care? Enter your household size and income to see where you land against the 2026 federal poverty level. Free eligibility information from Honed Proof — no signup." />
+  <link rel="canonical" href="https://honedsignal.com/health/charity-care-eligibility-explainer/" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Charity Care Eligibility Explainer","applicationCategory":"HealthApplication","operatingSystem":"Any","url":"https://honedsignal.com/health/charity-care-eligibility-explainer/","description":"See your income as a percentage of the 2026 federal poverty level and learn the typical hospital charity-care thresholds. Eligibility information only — not a benefits determination.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <title>Charity Care Eligibility Explainer | Honed Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}
+    .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
+    .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
+    .back-link .brand-mark{width:30px;height:30px;border-radius:8px;flex:none}
+    .page{width:min(1220px,calc(100% - 40px));margin:0 auto;padding:28px 0 70px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:44px;align-items:end;padding:0 0 31px;border-bottom:1px solid var(--line)}
+    h1{margin:0;max-width:850px;font-size:clamp(2.35rem,5.6vw,5.45rem);line-height:.96;letter-spacing:-.058em;font-weight:800}
+    .accent{color:var(--teal)}
+    .intro p{margin:0 0 7px;color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:37ch}
+    .workbench{display:grid;grid-template-columns:minmax(340px,435px) minmax(0,1fr);align-items:start;gap:22px;margin-top:32px}
+    .panel{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .inputs{padding:25px;border-radius:22px 6px 22px 22px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0 14px}
+    .section-head:first-child{margin-top:0}
+    .section-head h2{margin:0;font-size:1.03rem;letter-spacing:-.02em}
+    .step{font:500 .7rem "DM Mono",monospace;color:var(--orange)}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin:0 0 5px;color:var(--muted);font-size:.72rem;font-weight:700}
+    .text-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .text-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .text-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 10px;min-height:44px;font-weight:600}
+    .goal-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .money-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg);transition:border-color .16s,box-shadow .16s}
+    .money-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .money-input span{padding-left:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    .money-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 9px 9px 5px;min-height:44px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+    .pct-input{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+    .pct-input:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 20%,transparent)}
+    .pct-input input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--ink);padding:9px 5px 9px 10px;min-height:44px;font-weight:700;font-variant-numeric:tabular-nums}
+    .pct-input span{padding-right:10px;color:var(--muted);font:500 .74rem "DM Mono",monospace}
+    input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .calculate{width:100%;margin-top:19px;border:0;border-radius:10px;padding:14px 18px;background:var(--teal);color:#071009;font-weight:800;cursor:pointer;box-shadow:0 6px 0 color-mix(in srgb,var(--teal) 45%,#09200d);transition:transform .1s,box-shadow .1s}
+    .calculate:active{transform:translateY(3px);box-shadow:0 3px 0 color-mix(in srgb,var(--teal) 45%,#09200d)}
+    .ghost{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:12px 18px;background:transparent;color:var(--muted);font-weight:700;cursor:pointer}
+    .ghost:hover{color:var(--ink);border-color:var(--blue)}
+    .hint{margin:14px 1px 0;color:var(--muted);font-size:.68rem}
+    .proxy-note{margin:6px 1px 0;color:var(--orange);font-size:.68rem;display:none}
+    .results{min-width:0}
+    .empty{min-height:420px;border:1px dashed var(--line);border-radius:6px 22px 22px 22px;display:grid;place-items:center;text-align:center;padding:38px;background:color-mix(in srgb,var(--surface) 74%,transparent)}
+    .empty h2{margin:0 0 7px;font-size:1.45rem;letter-spacing:-.035em}
+    .empty p{margin:0 auto;color:var(--muted);max-width:40ch}
+    .hidden{display:none!important}
+    .result-top{position:relative;overflow:hidden;padding:30px;border-radius:6px 22px 22px 22px;background:var(--ink);color:var(--bg)}
+    .result-top:after{content:"";position:absolute;width:155px;height:155px;right:-65px;bottom:-72px;border:22px solid var(--teal);border-radius:50%}
+    .eyebrow{margin:0 0 8px;font:500 .68rem "DM Mono",monospace;opacity:.62}
+    .target{position:relative;z-index:1;margin:0;font:500 clamp(2.45rem,5vw,4.4rem)/1 "DM Mono",monospace;letter-spacing:-.065em}
+    .target-note{position:relative;z-index:1;margin:12px 0 0;max-width:52ch;font-size:.85rem;opacity:.72}
+    .versus{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .vs-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px;text-align:center}
+    .vs-card.winner{border-color:color-mix(in srgb,var(--teal) 55%,var(--line));box-shadow:0 0 0 1px color-mix(in srgb,var(--teal) 55%,transparent)}
+    .vs-card h3{margin:0 0 6px;font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .vs-card .amount{margin:0;font:700 1.9rem "DM Mono",monospace;letter-spacing:-.03em}
+    .vs-card.winner .amount{color:var(--teal)}
+    .vs-card p{margin:8px 0 0;font-size:.7rem;color:var(--muted)}
+    .plan{display:grid;grid-template-columns:1.12fr .88fr;gap:10px;margin-top:10px}
+    .plan-block{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:19px}
+    .plan-block h3{margin:0 0 12px;font-size:.9rem}
+    .plan-block dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;margin:0;font-size:.73rem}
+    .plan-block dt{color:var(--muted)}
+    .plan-block dd{margin:0;font:500 .73rem "DM Mono",monospace;text-align:right}
+    .nudge{background:var(--orange-soft);border-color:color-mix(in srgb,var(--orange) 38%,var(--line))}
+    .nudge ul{margin:0;padding-left:18px;color:var(--muted);font-size:.73rem;line-height:1.7}
+    .nudge li{margin-bottom:6px}
+    .nudge li strong{color:var(--ink)}
+    .explanation{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+    .explain-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;border:0;background:transparent;color:var(--ink);padding:15px 18px;cursor:pointer;text-align:left;font-size:.78rem;font-weight:800;min-height:44px}
+    .explain-toggle:hover{color:var(--blue)}
+    .explain-toggle:after{content:"+";flex:0 0 auto;color:var(--orange);font:500 1.15rem/1 "DM Mono",monospace}
+    .explain-toggle[aria-expanded="true"]:after{content:"\2212"}
+    .explain-copy{margin:0;padding:0 18px 18px;color:var(--muted);font-size:.8rem;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:28px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.68rem}
+    .footer p{margin:0;max-width:79ch}
+    .print-sheet{display:none}
+    @media(max-width:880px){.page{width:min(100% - 28px,700px)}.intro{grid-template-columns:1fr;gap:15px}.workbench{grid-template-columns:1fr}.inputs{border-radius:22px}.empty,.result-top{border-radius:22px}.plan{grid-template-columns:1fr}}
+    @media(max-width:560px){.page{width:min(100% - 22px,520px)}.intro{padding-bottom:23px}h1{font-size:clamp(2.3rem,13vw,3.75rem)}.intro p{font-size:.94rem}.inputs,.result-top,.roadmap{padding:19px}.goal-fields{grid-template-columns:1fr}.versus{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
+    @media print{
+      .back-link,.intro,.inputs,.footer,.hs-legal,.no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .page{width:100%;padding:0}
+      .workbench{display:block}
+      .print-sheet{display:block;color:#111;font-size:12px}
+      .print-sheet h2{margin:0 0 8px;font-size:18px}
+      .print-sheet table{border-collapse:collapse;width:100%;margin:10px 0}
+      .print-sheet th,.print-sheet td{border:1px solid #999;padding:6px 8px;text-align:left}
+      .print-sheet .ps-note{color:#444;font-size:11px}
+    }
+  
+    /* Charity care explainer additions */
+    .verdict-card{border:1px solid color-mix(in srgb,var(--teal) 55%,var(--line));border-radius:12px;background:var(--surface);padding:19px;margin-top:10px}
+    .verdict-card h3{margin:0 0 8px;font-size:1.05rem}
+    .verdict-card p{margin:0 0 8px;color:var(--muted);font-size:.82rem;line-height:1.65}
+    .verdict-card p:last-child{margin-bottom:0}
+    .verdict-card .big{font:700 1.25rem "DM Mono",monospace;color:var(--teal);letter-spacing:-.02em}
+    .err{color:var(--orange);font-size:.78rem;margin:8px 1px 0;display:none}
+    .fpl-note{margin:14px 1px 0;color:var(--muted);font-size:.68rem;line-height:1.6}
+</style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
+
+    <header class="intro" style="margin-top:18px">
+      <div>
+        <h1>Do you <span class="accent">qualify</span> for charity care?</h1>
+      </div>
+      <p>Many hospitals forgive or discount bills based on your income as a percentage of the federal poverty level. See where you land — in plain English.</p>
+    </header>
+
+    <section class="workbench" aria-label="Charity care eligibility explainer">
+      <form class="panel inputs" id="cceForm" novalidate>
+        <div class="section-head"><h2>Your household</h2><span class="step">01 / HOUSEHOLD</span></div>
+        <div class="field">
+          <label for="hhSize">People in your household</label>
+          <div class="text-input"><input id="hhSize" type="number" min="1" max="20" step="1" inputmode="numeric" placeholder="e.g. 3" aria-label="Number of people in your household" /></div>
+        </div>
+        <div class="field">
+          <label for="hhIncome">Annual household income (before taxes)</label>
+          <div class="money-input"><span>$</span><input id="hhIncome" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Annual household income before taxes" /></div>
+        </div>
+        <div class="field">
+          <label for="hhState">State (optional — for Alaska/Hawaii figures)</label>
+          <div class="text-input"><input id="hhState" type="text" placeholder="e.g. Texas" autocomplete="off" aria-label="State, optional" /></div>
+        </div>
+        <p class="hint">Figures use the 2026 federal poverty guidelines published by the U.S. Department of Health and Human Services (HHS) in January 2026.</p>
+        <p class="err" id="formErr">Enter a household size of 1 or more and your annual income.</p>
+        <button class="calculate" type="submit">Check my eligibility info</button>
+        <button class="ghost no-print" type="button" id="resetBtn">Start over</button>
+        <p class="hint">Your entries are saved in this browser only. Nothing is sent anywhere.</p>
+      </form>
+
+      <div class="results">
+        <div class="empty" id="emptyState">
+          <div>
+            <h2>See where you stand</h2>
+            <p>Enter your household size and income. We&rsquo;ll show your income as a percentage of the 2026 federal poverty level and what hospitals typically do at that level.</p>
+          </div>
+        </div>
+        <div id="resultState" class="hidden" aria-live="polite">
+          <section class="result-top">
+            <p class="eyebrow" id="verdictEyebrow">YOUR INCOME VS. THE POVERTY LEVEL</p>
+            <p class="target" id="verdictAmount">—</p>
+            <p class="target-note" id="verdictNote"></p>
+          </section>
+          <div class="plan">
+            <section class="plan-block">
+              <h3>Your numbers</h3>
+              <dl>
+                <dt>Household size</dt><dd id="bSize">—</dd>
+                <dt>Annual income</dt><dd id="bIncome">—</dd>
+                <dt>Poverty level (100%)</dt><dd id="bFpl">—</dd>
+                <dt>200% of poverty level</dt><dd id="b200">—</dd>
+                <dt>400% of poverty level</dt><dd id="b400">—</dd>
+                <dt style="color:var(--teal);font-weight:700">Your % of poverty level</dt><dd id="bPct" style="color:var(--teal);font-weight:700">—</dd>
+              </dl>
+            </section>
+            <section class="plan-block nudge">
+              <h3>What &ldquo;% of poverty level&rdquo; means</h3>
+              <ul>
+                <li><strong>100%</strong> is the poverty line itself — for a single person in most states, $15,960 in 2026.</li>
+                <li><strong>200%</strong> is double the poverty line. Many nonprofit hospitals write off bills entirely below this line.</li>
+                <li><strong>400%</strong> is four times the line. Many hospitals offer sliding-scale discounts up to here.</li>
+                <li><strong>These are typical thresholds, not rules.</strong> Every hospital sets its own policy — some are more generous.</li>
+              </ul>
+            </section>
+          </div>
+          <section class="verdict-card" aria-label="Typical eligibility verdict">
+            <h3 id="verdictTitle">—</h3>
+            <p class="big" id="verdictBig">—</p>
+            <p id="verdictBody"></p>
+            <p><strong>Important:</strong> this is eligibility <strong>information</strong>, not a benefits determination. Only the hospital&rsquo;s financial assistance office can decide what you actually qualify for — call them and ask.</p>
+          </section>
+          <section class="explanation" aria-label="About these results">
+            <button class="explain-toggle no-print" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">About these results</button>
+            <p class="explain-copy hidden" id="explainCopy">This tool divides your annual household income by the 2026 HHS federal poverty guideline for your household size (Alaska and Hawaii use their own higher figures) and reports the percentage. The 200% and 400% cutoffs are widely cited typical hospital charity-care thresholds — many nonprofit hospitals offer free care under about 200% of the poverty level and discounted care up to about 400%. They are typical, not universal: each hospital publishes its own financial assistance policy, and some help people above 400%. This page explains the math; it does not determine your eligibility. Confirm with the hospital&rsquo;s financial assistance office.</p>
+          </section>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <button class="ghost no-print" type="button" id="copyBtn">Copy results</button>
+            <button class="ghost no-print" type="button" id="emailBtn">Email my results</button>
+          </div>
+          <button class="ghost no-print" type="button" id="printBtn" style="margin-top:10px">Print summary</button>
+          <p class="hint" id="shareStatus" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-sheet" aria-hidden="true">
+      <h2>Charity Care Eligibility Info</h2>
+      <table>
+        <tr><th>Household</th><td id="psSize">—</td></tr>
+        <tr><th>Annual income</th><td id="psIncome">—</td></tr>
+        <tr><th>% of poverty level</th><td id="psPct">—</td></tr>
+        <tr><th>Typical threshold</th><td id="psVerdict">—</td></tr>
+      </table>
+      <p class="ps-note">Eligibility information only — not a benefits determination. Only the hospital&rsquo;s financial assistance office decides. Printed from Honed Proof.</p>
+    </div>
+
+    <footer class="footer">
+      <p><strong>Honed Proof.</strong> Evidence + Cost = Clarity.</p>
+      <p>Last reviewed: October 2026.</p>
+    </footer>
+  </main>
+
+  <div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Proof provides health information for general purposes only &mdash; not medical advice, diagnosis, or treatment. Always talk to a qualified health professional about your own care.</div>
+
+  <script>
+  (function () {
+    'use strict';
+    var KEY = 'honedProofCharityCare';
+
+    // 2026 HHS federal poverty guidelines (published January 2026)
+    var FPL = {
+      contiguous: [15960, 21640, 27320, 33000, 38680, 44360, 50040, 55720],
+      addContiguous: 5680,
+      alaska: [19950, 27050, 34150, 41250, 48350, 55450, 62550, 69650],
+      addAlaska: 7100,
+      hawaii: [18360, 24890, 31420, 37950, 44480, 51010, 57540, 64070],
+      addHawaii: 6530
+    };
+
+    function regionFor(stateText) {
+      var t = (stateText || '').trim().toLowerCase();
+      if (t === 'alaska' || t === 'ak') return 'alaska';
+      if (t === 'hawaii' || t === 'hi') return 'hawaii';
+      return 'contiguous';
+    }
+
+    function fplFor(size, region) {
+      var table, add;
+      if (region === 'alaska') { table = FPL.alaska; add = FPL.addAlaska; }
+      else if (region === 'hawaii') { table = FPL.hawaii; add = FPL.addHawaii; }
+      else { table = FPL.contiguous; add = FPL.addContiguous; }
+      if (size <= 8) return table[size - 1];
+      return table[7] + (size - 8) * add;
+    }
+
+    function $(id) { return document.getElementById(id); }
+    function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+    function fmtPct(p) { return p.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%'; }
+
+    function fallbackCopy(text) {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta); return ok;
+      } catch (e) { return false; }
+    }
+
+    var lastSummary = '';
+
+    function save() {
+      var data = { hhSize: $('hhSize').value, hhIncome: $('hhIncome').value, hhState: $('hhState').value };
+      try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    }
+
+    function restore() {
+      var data = null;
+      try { data = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+      if (!data) return;
+      $('hhSize').value = data.hhSize || '';
+      $('hhIncome').value = data.hhIncome || '';
+      $('hhState').value = data.hhState || '';
+    }
+
+    function render(size, income, region) {
+      var fpl = fplFor(size, region);
+      var pct = fpl > 0 ? (income / fpl) * 100 : 0;
+      var regionLabel = region === 'alaska' ? ' (Alaska figures)' : (region === 'hawaii' ? ' (Hawaii figures)' : '');
+
+      $('emptyState').classList.add('hidden');
+      $('resultState').classList.remove('hidden');
+
+      var title, body, short;
+      if (pct < 200) {
+        title = 'You may qualify for free care';
+        short = 'Under ~200% of poverty level';
+        body = 'Many nonprofit hospitals write off the entire bill for patients under about 200% of the federal poverty level. With your income at ' +
+          fmtPct(pct) + ' of the poverty level, you land in the range where free care is common — but each hospital sets its own policy, so ask.';
+      } else if (pct <= 400) {
+        title = 'You may qualify for discounted care';
+        short = '200–400% of poverty level';
+        body = 'Many nonprofit hospitals offer sliding-scale discounts up to about 400% of the federal poverty level. Your income at ' +
+          fmtPct(pct) + ' of the poverty level lands in the range where partial write-offs are typical — the exact discount depends on the hospital’s policy.';
+      } else {
+        title = 'Charity care is less typical here — but ask anyway';
+        short = 'Above ~400% of poverty level';
+        body = 'Most hospital charity-care policies top out around 400% of the federal poverty level, and your income at ' + fmtPct(pct) +
+          ' is above that typical ceiling. Still ask: some hospitals make exceptions for large bills, and you can always negotiate a discount or payment plan separately.';
+      }
+
+      $('verdictEyebrow').textContent = 'YOUR INCOME VS. THE POVERTY LEVEL';
+      $('verdictAmount').textContent = fmtPct(pct);
+      $('verdictNote').textContent = 'A household of ' + size + ' with ' + fmt(income) + '/year is at ' + fmtPct(pct) +
+        ' of the 2026 federal poverty level' + regionLabel + ' (' + fmt(fpl) + ' for a household of ' + size + ').';
+
+      $('bSize').textContent = size + (size === 1 ? ' person' : ' people');
+      $('bIncome').textContent = fmt(income) + '/year';
+      $('bFpl').textContent = fmt(fpl) + '/year';
+      $('b200').textContent = fmt(fpl * 2) + '/year';
+      $('b400').textContent = fmt(fpl * 4) + '/year';
+      $('bPct').textContent = fmtPct(pct);
+
+      $('verdictTitle').textContent = title;
+      $('verdictBig').textContent = short;
+      $('verdictBody').textContent = body;
+
+      lastSummary = 'Charity Care Eligibility Info (2026 HHS poverty guidelines)\n' +
+        'Household of ' + size + ', income ' + fmt(income) + '/year = ' + fmtPct(pct) + ' of poverty level' + regionLabel + '.\n' +
+        title + ' — ' + short + '.\n' +
+        'This is eligibility INFORMATION, not a benefits determination. Only the hospital\u2019s financial assistance office can decide.\n' +
+        'From Honed Proof.';
+
+      $('psSize').textContent = size;
+      $('psIncome').textContent = fmt(income) + '/year';
+      $('psPct').textContent = fmtPct(pct);
+      $('psVerdict').textContent = title;
+      $('shareStatus').textContent = '';
+
+      $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    ['hhSize', 'hhIncome', 'hhState'].forEach(function (id) {
+      $(id).addEventListener('input', save);
+    });
+
+    $('cceForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var size = Math.round(parseFloat($('hhSize').value));
+      var income = parseFloat($('hhIncome').value);
+      if (!(size >= 1) || !(income >= 0) || !isFinite(size) || !isFinite(income)) {
+        $('formErr').style.display = 'block';
+        $('hhSize').focus();
+        return;
+      }
+      $('formErr').style.display = 'none';
+      save();
+      render(size, income, regionFor($('hhState').value));
+    });
+
+    $('resetBtn').addEventListener('click', function () {
+      $('hhSize').value = ''; $('hhIncome').value = ''; $('hhState').value = '';
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      lastSummary = '';
+      $('shareStatus').textContent = '';
+      $('formErr').style.display = 'none';
+      $('resultState').classList.add('hidden');
+      $('emptyState').classList.remove('hidden');
+      $('hhSize').focus();
+    });
+
+    $('printBtn').addEventListener('click', function () { window.print(); });
+
+    $('copyBtn').addEventListener('click', function () {
+      if (!lastSummary) return;
+      var done = function (ok) { $('shareStatus').textContent = ok ? 'Results copied to your clipboard.' : 'Copy was blocked. Select the results above to copy them manually.'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(lastSummary).then(function () { done(true); }).catch(function () { done(fallbackCopy(lastSummary)); });
+      } else { done(fallbackCopy(lastSummary)); }
+    });
+
+    $('emailBtn').addEventListener('click', function () {
+      if (!lastSummary) return;
+      var link = document.createElement('a');
+      link.href = 'mailto:?subject=' + encodeURIComponent('My charity care eligibility check') + '&body=' + encodeURIComponent(lastSummary);
+      link.style.display = 'none';
+      document.body.appendChild(link); link.click(); document.body.removeChild(link);
+      $('shareStatus').textContent = 'Opening your email app with the results filled in.';
+    });
+
+    $('explainToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', open ? 'false' : 'true');
+      $('explainCopy').classList.toggle('hidden', open);
+    });
+
+    restore();
+  })();
+
+  <script src="/money/input-hints.js" defer></script>
+</body>
+</html>
