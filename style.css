@@ -243,6 +243,7 @@ section > h2, .about > h2 {
   .wordmark .dot { display: none; }
   .nav-links { gap: 0.9rem; margin-left: auto; }
   .nav-links a { font-size: 0.88rem; }
+  .nav-links .brand-mark-sm { display: none; }
 }
 
 @media (min-width: 640px) {
