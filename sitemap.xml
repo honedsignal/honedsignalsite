@@ -473,4 +473,6 @@
   <url>
     <loc>https://honedsignal.com/nightstone/</loc>
   </url>
+  <url><loc>https://honedsignal.com/reports/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://honedsignal.com/reports/meta-publishing/</loc><changefreq>monthly</changefreq></url>
 </urlset>

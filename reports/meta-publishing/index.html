@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Should Meta Become a Publisher? | Honed Signal</title>
+    <meta name="description" content="We asked five AI systems — including Meta's own — whether Meta should start a publishing division for AI-assisted creators. The verdict was 5–0 against. The evidence, including the two real-world experiments that already ran: Apple's photo books and ByteDance's 8th Note Press." />
+    <link rel="canonical" href="https://honedsignal.com/reports/meta-publishing/" />
+    <meta property="og:title" content="Should Meta Become a Publisher? | Honed Signal" />
+    <meta property="og:description" content="Five AIs, asked blind, all said pass. The market math, the legal wall, and the platform publishing experiment that already failed." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://honedsignal.com/reports/meta-publishing/" />
+    <meta property="og:image" content="https://honedsignal.com/assets/og-signal.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://honedsignal.com/assets/og-signal.png" />
+    <meta name="theme-color" content="#0B0E14" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f7f5f1;
+        --surface: #ffffff;
+        --surface-2: #efede8;
+        --ink: #14161c;
+        --ink-soft: #454a55;
+        --ink-faint: #6d7280;
+        --line: #d9d5cc;
+        --navy: #0b0e14;
+        --orange: #e04a1c;
+        --orange-strong: #c93e14;
+        --teal: #0d7a6e;
+        --teal-strong: #0a665c;
+        --hero-bg: #0b0e14;
+        --hero-ink: #f4f2ec;
+        --hero-soft: #b9bec9;
+        --hero-line: #2a2f3a;
+        --chart-grid: #d9d5cc;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0e14;
+          --surface: #12161f;
+          --surface-2: #171c27;
+          --ink: #f0eee8;
+          --ink-soft: #c3c8d2;
+          --ink-faint: #8b919e;
+          --line: #262c38;
+          --orange: #ff6b35;
+          --orange-strong: #ff6b35;
+          --teal: #2ec4b6;
+          --teal-strong: #2ec4b6;
+          --hero-bg: #07090d;
+          --hero-ink: #f4f2ec;
+          --hero-soft: #a7adba;
+          --hero-line: #222834;
+          --chart-grid: #262c38;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+        font-size: 18px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .sans { font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        background: var(--hero-bg);
+        color: var(--hero-ink);
+        padding: 56px 24px 48px;
+      }
+      .hero-inner { max-width: 880px; margin: 0 auto; }
+      .masthead {
+        display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+        color: var(--hero-soft);
+        border-bottom: 1px solid var(--hero-line);
+        padding-bottom: 18px; margin-bottom: 34px;
+      }
+      .masthead .brand { color: var(--hero-ink); font-weight: 600; font-size: 15px; letter-spacing: .02em; text-transform: none; }
+      .masthead .brand .dot { color: #ff6b35; }
+      .hero h1 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700; letter-spacing: -0.02em;
+        font-size: clamp(34px, 6.4vw, 58px); line-height: 1.06;
+        margin: 0 0 18px;
+      }
+      .hero h1 .q { color: #2ec4b6; }
+      .hero .dek {
+        font-size: clamp(18px, 2.6vw, 22px); line-height: 1.5;
+        color: var(--hero-soft); margin: 0 0 30px; max-width: 44em;
+      }
+      .verdict-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
+      .verdict-badge {
+        background: #ff6b35; color: #14100c;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        border-radius: 10px; padding: 14px 20px;
+        display: flex; flex-direction: column; justify-content: center;
+      }
+      .verdict-badge .big { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.01em; }
+      .verdict-badge .small { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-top: 5px; }
+      .verdict-note {
+        border: 1px solid var(--hero-line); border-radius: 10px;
+        padding: 14px 20px; flex: 1 1 300px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 15px; line-height: 1.5; color: var(--hero-soft);
+        display: flex; align-items: center;
+      }
+      .verdict-note strong { color: var(--hero-ink); }
+
+      /* ---------- Layout ---------- */
+      .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+      article { padding: 44px 0 8px; }
+      section { margin-bottom: 52px; }
+      h2 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 600; letter-spacing: -0.015em;
+        font-size: clamp(24px, 3.6vw, 32px); line-height: 1.2;
+        margin: 0 0 16px;
+      }
+      h2 .wall-no {
+        display: inline-block; font-size: 13px; font-weight: 700;
+        letter-spacing: .12em; text-transform: uppercase;
+        color: var(--orange-strong); vertical-align: 4px; margin-right: 10px;
+      }
+      p { margin: 0 0 16px; }
+      p.lede { font-size: 20px; line-height: 1.6; }
+      strong { font-weight: 600; }
+      .accent-o { color: var(--orange-strong); }
+      .accent-t { color: var(--teal-strong); }
+
+      .bottom-line {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-top: 4px solid var(--orange);
+        border-radius: 6px;
+        padding: 26px 28px;
+        margin-bottom: 52px;
+      }
+      .bottom-line .label {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 12.5px; font-weight: 700; letter-spacing: .14em;
+        text-transform: uppercase; color: var(--orange-strong);
+        margin-bottom: 10px;
+      }
+      .bottom-line p { margin: 0; font-size: 19px; line-height: 1.6; }
+
+      /* ---------- Stats & charts ---------- */
+      .stat-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+        margin: 26px 0;
+      }
+      .stat {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 6px; padding: 20px;
+      }
+      .stat .num {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700; font-size: clamp(26px, 4vw, 36px);
+        line-height: 1.05; letter-spacing: -0.02em;
+      }
+      .stat .num.o { color: var(--orange-strong); }
+      .stat .num.t { color: var(--teal-strong); }
+      .stat .cap { font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); margin-top: 8px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .chart-card {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 6px; padding: 24px 24px 14px; margin: 26px 0;
+      }
+      .chart-card h3 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 15px; font-weight: 600; margin: 0 0 4px;
+      }
+      .chart-card .sub { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 13px; color: var(--ink-faint); margin: 0 0 14px; }
+      .chart-card svg { display: block; width: 100%; height: auto; }
+      .chart-src { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 12px; color: var(--ink-faint); margin-top: 10px; }
+      .bar-label { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 13px; fill: var(--ink-soft); }
+      .bar-value { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 14px; font-weight: 700; fill: var(--ink); }
+      .axis-note { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 11.5px; fill: var(--ink-faint); }
+
+      /* ---------- Verdict table ---------- */
+      .verdict-table { width: 100%; border-collapse: collapse; margin: 22px 0 8px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .verdict-table th, .verdict-table td { text-align: left; padding: 13px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+      .verdict-table thead th { font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 2px solid var(--line); }
+      .verdict-table td.ai { font-weight: 600; font-size: 16.5px; white-space: nowrap; }
+      .verdict-table td.alt { font-size: 15px; color: var(--ink-soft); line-height: 1.45; }
+      .pass {
+        display: inline-block; font-size: 11.5px; font-weight: 700;
+        letter-spacing: .1em; text-transform: uppercase;
+        color: var(--orange-strong); border: 1.5px solid var(--orange);
+        border-radius: 999px; padding: 2px 10px; margin-right: 10px;
+        vertical-align: 2px;
+      }
+
+      /* ---------- Pull quote / callouts ---------- */
+      blockquote.pull {
+        margin: 28px 0; padding: 4px 0 4px 26px;
+        border-left: 3px solid var(--teal);
+        font-size: 22px; line-height: 1.45; font-style: italic;
+      }
+      blockquote.pull .attr { display: block; font-style: normal; font-size: 14px; font-family: "Space Grotesk", system-ui, sans-serif; color: var(--ink-faint); margin-top: 10px; letter-spacing: .04em; }
+      .big-figure {
+        display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: baseline;
+        margin: 24px 0; padding: 22px 26px;
+        background: var(--surface-2); border-radius: 6px;
+      }
+      .big-figure .n {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700; font-size: clamp(34px, 6vw, 52px); line-height: 1;
+        letter-spacing: -0.02em; color: var(--orange-strong);
+      }
+      .big-figure .t { flex: 1 1 260px; font-size: 16.5px; line-height: 1.5; color: var(--ink-soft); font-family: "Space Grotesk", system-ui, sans-serif; }
+
+      /* ---------- Experiment timelines ---------- */
+      .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 26px 0; }
+      .exp {
+        border: 1px solid var(--line); border-radius: 6px; padding: 22px;
+        background: var(--surface);
+      }
+      .exp .who { font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 700; font-size: 19px; }
+      .exp .what { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 13.5px; color: var(--ink-faint); margin: 2px 0 16px; }
+      .exp .track { height: 12px; background: var(--surface-2); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
+      .exp .fill { height: 100%; border-radius: 999px; }
+      .exp .fill.short { width: 12.5%; background: var(--orange); }
+      .exp .fill.long { width: 100%; background: var(--teal); }
+      .exp .years { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 14px; font-weight: 600; }
+      .exp .years span { color: var(--ink-faint); font-weight: 400; }
+
+      ul.points { margin: 0 0 16px; padding-left: 22px; }
+      ul.points li { margin-bottom: 10px; }
+      ul.points li::marker { color: var(--teal-strong); }
+
+      .versus { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 26px 0; }
+      .versus .col { border: 1px solid var(--line); border-radius: 6px; padding: 22px; background: var(--surface); }
+      .versus h3 { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 16px; margin: 0 0 12px; }
+      .versus h3.fixes { color: var(--teal-strong); }
+      .versus h3.stuck { color: var(--orange-strong); }
+      .versus ul { margin: 0; padding-left: 20px; font-size: 16px; }
+      .versus li { margin-bottom: 9px; }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 20px; padding: 30px 0 56px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+      }
+      footer .src-label { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+      footer .sources { font-size: 13.5px; line-height: 1.7; color: var(--ink-soft); }
+      footer .disclaimer { font-size: 13px; line-height: 1.6; color: var(--ink-faint); margin-top: 22px; font-style: italic; font-family: "Source Serif 4", Georgia, serif; }
+      footer .signoff { margin-top: 26px; font-size: 14px; color: var(--ink-soft); }
+      footer .signoff .dot { color: var(--orange-strong); }
+
+      @media (max-width: 680px) {
+        body { font-size: 17px; }
+        .stat-grid { grid-template-columns: 1fr; }
+        .exp-grid, .versus { grid-template-columns: 1fr; }
+        .hero { padding: 40px 20px 36px; }
+        .wrap { padding: 0 20px; }
+        .verdict-table td.ai { white-space: normal; }
+        blockquote.pull { font-size: 20px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .hs-util { background: #0B0E14; border-bottom: 1px solid #2a2f3a; }
+      .hs-util-inner { max-width: 1120px; margin: 0 auto; padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+      .hs-util a, .hs-util button { font-family: "Space Grotesk", system-ui, sans-serif; }
+      .hs-back { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 14px; border: 1px solid #3a4356; border-radius: 10px; background: #161c28; color: #f5f5f5; font-size: .85rem; font-weight: 700; text-decoration: none; }
+      .hs-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .hs-actions .hs-label { color: #9AA3B2; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-right: 2px; }
+      .hs-btn { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 12px; border: 1px solid #3a4356; border-radius: 10px; background: transparent; color: #f5f5f5; font-size: .82rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+      .hs-btn:hover, .hs-back:hover { border-color: #FF6B35; color: #ffffff; }
+      @media print {
+        .hs-util { display: none !important; }
+        :root { --hero-bg: #ffffff !important; --hero-ink: #14161c !important; --hero-soft: #454a55 !important; --hero-line: #d9d5cc !important; --bg: #ffffff !important; }
+        body { background: #ffffff !important; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="hs-util">
+      <div class="hs-util-inner">
+        <a class="hs-back" href="/reports/">← Reports</a>
+        <div class="hs-actions" aria-label="Print, email, or share this report">
+          <span class="hs-label">Share</span>
+          <button class="hs-btn" type="button" onclick="window.print()">Print</button>
+          <a class="hs-btn" href="mailto:?subject=Should%20Meta%20Become%20a%20Publisher%3F%20%E2%80%94%20Honed%20Signal&amp;body=Should%20Meta%20Become%20a%20Publisher%3F%20We%20asked%20five%20AIs%20%E2%80%94%20including%20Meta%27s%20own.%20The%20verdict%20was%205%E2%80%930.%0A%0Ahttps%3A%2F%2Fhonedsignal.com%2Freports%2Fmeta-publishing%2F">Email</a>
+          <a class="hs-btn" href="https://twitter.com/intent/tweet?text=Should%20Meta%20Become%20a%20Publisher%3F%20We%20asked%20five%20AIs%20%E2%80%94%20including%20Meta%27s%20own.%20The%20verdict%3A%205%E2%80%930%20pass.&amp;url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fmeta-publishing%2F" target="_blank" rel="noopener">X</a>
+          <a class="hs-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhonedsignal.com%2Freports%2Fmeta-publishing%2F" target="_blank" rel="noopener">Facebook</a>
+          <a class="hs-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fmeta-publishing%2F" target="_blank" rel="noopener">LinkedIn</a>
+          <button class="hs-btn" type="button" id="hs-copy">Copy link</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="masthead">
+          <span class="brand">Honed Signal<span class="dot">.</span></span>
+          <span>Markets &amp; Platforms</span>
+          <span>October 2026</span>
+        </div>
+        <h1>Should Meta Become a Publisher<span class="q">?</span></h1>
+        <p class="dek">We asked five AIs — including Meta&rsquo;s own. Meta AI helps millions of people write, illustrate, and design. So why not let them publish through Meta too — a real book, printed and shipped, sold to the audience they already have?</p>
+        <div class="verdict-row">
+          <div class="verdict-badge">
+            <span class="big">5&ndash;0</span>
+            <span class="small">Verdict: Pass</span>
+          </div>
+          <div class="verdict-note">
+            <span><strong>Five AI systems, five different makers, one conclusion:</strong> no publishing division. But every one of them left the same door open — a quiet &ldquo;make this a book&rdquo; button.</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <article>
+
+        <div class="bottom-line">
+          <div class="label">The Bottom Line</div>
+          <p>Meta should not start a publishing division. The market is real, but it is far too small to matter to a company Meta&rsquo;s size, the legal timing could hardly be worse, and the one social-media giant that already tried running a publishing house shut it down within about two years. All five AIs left the same door open, though: not a publisher, but a quiet &ldquo;make this a book&rdquo; feature. The idea may not be wrong. It may simply be early — and shaped differently than it first appears.</p>
+        </div>
+
+        <section>
+          <h2>The question</h2>
+          <p class="lede">The idea is simple. Meta&rsquo;s AI tools can already help someone draft a manuscript, generate illustrations, and design a cover. Meta also owns the largest audience network on earth — Facebook, Instagram, and Threads.</p>
+          <p>A publishing division would connect those two halves: create the book inside Meta AI, publish it through a Meta imprint (an imprint is a brand name a publisher uses for a line of books), print copies one at a time as orders come in — a method called print-on-demand, which avoids warehouses and unsold inventory — and sell it to the creator&rsquo;s existing followers.</p>
+          <p>We asked five AI systems — Claude, Perplexity, ChatGPT, Gemini, and Meta AI itself — to analyze whether Meta should do this. Each was given the same neutral prompt, framed as platform-strategy research, with no indication that the person asking had any stake in the answer. Each was asked for the case for, the case against, the historical precedents, the likely shape of the business, and a verdict.</p>
+        </section>
+
+        <section>
+          <h2>The market is real</h2>
+          <p>Nobody disputed the opportunity itself. Self-publishing has become a major channel:</p>
+          <div class="stat-grid">
+            <div class="stat">
+              <div class="num o">3.5M+</div>
+              <div class="cap">Self-published books with ISBNs issued in the U.S. in 2025 — up 38.7% in a single year</div>
+            </div>
+            <div class="stat">
+              <div class="num t">$2.16B</div>
+              <div class="cap">Estimated size of the global self-publishing market in 2025, projected to reach $6.16B by 2033</div>
+            </div>
+            <div class="stat">
+              <div class="num o">~$70M</div>
+              <div class="cap">Paid to authors by Amazon KDP in a single month in mid-2026, through its subscription reading program alone — a record</div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>U.S. book output, 2025 — titles with ISBNs</h3>
+            <p class="sub">Self-published vs. traditionally published titles</p>
+            <svg viewBox="0 0 640 148" role="img" aria-label="Bar chart: 3.53 million self-published titles versus 642,242 traditionally published titles in the United States in 2025">
+              <text class="bar-label" x="0" y="26">Self-published</text>
+              <rect x="0" y="34" width="600" height="26" rx="3" fill="#ff6b35"></rect>
+              <text class="bar-value" x="0" y="82">3.53 million</text>
+              <text class="bar-label" x="0" y="104">Traditionally published</text>
+              <rect x="0" y="112" width="109" height="26" rx="3" fill="#2ec4b6"></rect>
+              <text class="bar-value" x="121" y="130">642,242</text>
+            </svg>
+            <div class="chart-src">Source: Bowker data reported by Publishers Weekly. Title counts are not sales figures — an ISBN does not mean a book sold.</div>
+          </div>
+
+          <p>And every AI identified the same genuine gap: for independent authors, writing the book is no longer the hard part. Being discovered is. Meta owns discovery — billions of people, precise ad targeting, and direct relationships between creators and their audiences. That is the one asset no existing publisher can match.</p>
+        </section>
+
+        <section>
+          <h2>The verdict: five to zero</h2>
+          <table class="verdict-table">
+            <thead>
+              <tr><th scope="col">AI system</th><th scope="col">Verdict on a Meta publishing division</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ai">Claude</td>
+                <td class="alt"><span class="pass">Pass</span>Thin &ldquo;send to print&rdquo; feature through a partner instead</td>
+              </tr>
+              <tr>
+                <td class="ai">Perplexity</td>
+                <td class="alt"><span class="pass">Pass</span>Narrow creator-commerce pilot instead</td>
+              </tr>
+              <tr>
+                <td class="ai">ChatGPT</td>
+                <td class="alt"><span class="pass">Pass</span>Limited pilot, not a division</td>
+              </tr>
+              <tr>
+                <td class="ai">Gemini</td>
+                <td class="alt"><span class="pass">Pass</span>Export tools into existing stores instead</td>
+              </tr>
+              <tr>
+                <td class="ai">Meta AI</td>
+                <td class="alt"><span class="pass">Pass</span>A constrained print-on-demand export inside Meta AI</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Five systems, five different makers, one conclusion. Even Meta&rsquo;s own AI — the one with every reason to cheer for its parent company — advised Meta not to do it. Three walls explain why.</p>
+        </section>
+
+        <section>
+          <h2><span class="wall-no">Wall One</span>The math is too small</h2>
+          <p>Meta reported about <strong>$201 billion</strong> in revenue for 2025, almost all of it advertising. Against that scale, publishing barely registers. Run the generous case: suppose a Meta publishing service captured a tenth of the entire self-publishing market and kept a healthy platform share of it.</p>
+          <div class="big-figure">
+            <div class="n">~$120&ndash;150M</div>
+            <div class="t">a year — about <strong>0.05% of Meta&rsquo;s revenue</strong>. In everyday terms, roughly <strong>four hours</strong> of Meta&rsquo;s advertising income. Two of the AIs reached that same range independently, starting from different assumptions.</div>
+          </div>
+
+          <div class="chart-card">
+            <h3>The scale problem, drawn to proportion</h3>
+            <p class="sub">Annual revenue, same scale</p>
+            <svg viewBox="0 0 640 150" role="img" aria-label="Proportional bars: Meta's 2025 revenue of about 201 billion dollars dwarfs a generous publishing outcome of about 150 million dollars, which is barely visible at the same scale">
+              <text class="bar-label" x="0" y="24">Meta, total revenue 2025</text>
+              <rect x="0" y="32" width="600" height="26" rx="3" fill="#2ec4b6"></rect>
+              <text class="bar-value" x="0" y="80">~$201 billion</text>
+              <text class="bar-label" x="0" y="102">A generous Meta publishing outcome</text>
+              <rect x="0" y="110" width="2" height="26" rx="1" fill="#ff6b35"></rect>
+              <text class="bar-value" x="10" y="128">~$150 million — the orange sliver, drawn to scale</text>
+            </svg>
+            <div class="chart-src">Generous-case estimate from the panel&rsquo;s analysis: 10% of the self-publishing market at a platform share. Meta revenue: FY2025 results.</div>
+          </div>
+
+          <p>A business can be real, growing, and profitable — and still be too small for the company being asked to run it. Every hour of executive attention, engineering, and legal review spent on books is an hour not spent on the advertising and AI infrastructure businesses that are hundreds of times larger.</p>
+        </section>
+
+        <section>
+          <h2><span class="wall-no">Wall Two</span>The legal timing is terrible</h2>
+          <p>Meta is currently being sued over books — by the book industry. In May 2026, five major publishers (Elsevier, Cengage, Hachette, Macmillan, and McGraw Hill) joined author Scott Turow in a class-action lawsuit alleging that Meta pirated millions of works to train its AI. French publishers sued in Paris in March 2025.</p>
+          <p>Meta did win an important ruling in June 2025 in a case called <em>Kadrey v. Meta</em>, but the win was narrow: the judge found for Meta largely because those particular authors had failed to build the argument that AI training harms the market for their books — and signaled that argument could succeed if made properly.</p>
+          <p>That is where publishing becomes dangerous for Meta in a way it wouldn&rsquo;t be for anyone else. If Meta starts competing directly with publishers — selling books to the same readers — it hands its opponents the very market-harm evidence the <em>Kadrey</em> judge found missing.</p>
+          <div class="big-figure">
+            <div class="n">$1.5B</div>
+            <div class="t">The settlement AI company Anthropic agreed to pay over pirated training books — roughly <strong>$3,000 per work</strong>, the largest copyright settlement in U.S. history, given final approval in July 2026. Entering publishing during this fight risks billions in exposure to chase millions in revenue.</div>
+          </div>
+        </section>
+
+        <section>
+          <h2><span class="wall-no">Wall Three</span>The flood, and the follow-through</h2>
+          <p>Open the door to AI-assisted publishing at Meta&rsquo;s scale and the predictable result is a flood of low-effort, repetitive, or misleading books — the &ldquo;AI slop&rdquo; problem. Amazon, which runs the largest self-publishing platform in the world, has already been forced into defensive measures: mandatory disclosure of AI-generated content since September 2023, and a cap of three new titles per author per day. Meta would inherit the same moderation, rights-dispute, and refund workload from day one, attached to its own name.</p>
+          <p>Meta also has a track record here, and it is not encouraging. Its newsletter platform, Bulletin, was shut down. Facebook&rsquo;s Instant Articles — a publishing partnership with major news organizations — failed and was discontinued. Its podcast push lasted barely a year. The pattern the AIs kept citing: Meta builds creator products enthusiastically and abandons them when they don&rsquo;t strengthen the core business.</p>
+        </section>
+
+        <section>
+          <h2>The experiment that already failed</h2>
+          <p class="lede">The strongest evidence in this entire analysis is not an opinion. It is a fact: a social-media giant already tried this.</p>
+          <p>ByteDance, the parent company of TikTok, launched a publishing imprint called <strong>8th Note Press</strong> in 2023. Its logic was identical to the Meta idea. TikTok&rsquo;s BookTok community is the most powerful book-discovery force in the industry — authors with large BookTok followings sold 41 million print books in 2024, up 23% in a year. If any platform could convert discovery into a publishing business, it was this one. 8th Note acquired more than 30 novels, signed a print-distribution partnership, and launched its first physical books in early 2025.</p>
+          <p>Within about two years, ByteDance shut it down. Authors&rsquo; rights were returned; the imprint&rsquo;s online presence was quietly deleted. Reporting on the closure points to a consistent cause: the platform could generate attention, but it could not do the unglamorous work of publishing — editing, author support, long-term career care.</p>
+          <blockquote class="pull">
+            &ldquo;Distribution is not the same as demand.&rdquo;
+            <span class="attr">— ChatGPT, the sharpest sentence of the panel</span>
+          </blockquote>
+          <p>8th Note suggests a harder version: distribution is not the same as publishing, either. And ByteDance attempted it with no AI-training lawsuits, no AI-content stigma, and the best book-discovery engine on earth. Meta would be attempting it with all three disadvantages.</p>
+        </section>
+
+        <section>
+          <h2>The other experiment — the one that lasted sixteen years</h2>
+          <p class="lede">There is a second real-world test of this idea, older and quieter — and it came from Apple.</p>
+          <p>In 2002, Apple added a feature to its iPhoto software: arrange your own photographs, press a button, and Apple would deliver a professionally bound hardcover book, with the printing contracted out to outside printers. The service later grew to include albums and calendars, and the people who used it loved the quality.</p>
+          <p>Apple never became a publisher. There was no imprint, no editorial staff, no bookstore — just a button inside the software where the photos already lived, and fulfillment handled by others. And it was never a business worth mentioning: Apple ran it for <strong>sixteen years</strong> without its revenue ever becoming significant enough to report, and the service never even made the jump from the Mac to the iPhone, where everyone&rsquo;s photos had moved. In 2018, Apple shut it down and pointed customers to third-party printing apps such as Shutterfly and Mimeo. Its parting move was to replace its own service with an interface that lets outside printers plug directly into the Photos app. In the end, even the button was outsourced.</p>
+          <p>The reason it lasted sixteen years is the same reason it never mattered: it skipped everything hard about publishing. The books were personal keepsakes made from the buyer&rsquo;s own photographs — nothing that had to be sold to strangers, no rights to dispute, no audience to find.</p>
+
+          <div class="exp-grid">
+            <div class="exp">
+              <div class="who">8th Note Press</div>
+              <div class="what">ByteDance &middot; a real publishing imprint &middot; 2023 &ndash; ~2025</div>
+              <div class="track"><div class="fill short"></div></div>
+              <div class="years">~2 years <span>— then shut down, rights returned to authors</span></div>
+            </div>
+            <div class="exp">
+              <div class="who">Apple Photo Books</div>
+              <div class="what">Apple &middot; a button, fulfillment outsourced &middot; 2002 &ndash; 2018</div>
+              <div class="track"><div class="fill long"></div></div>
+              <div class="years">16 years <span>— a beloved feature that earned nothing worth reporting</span></div>
+            </div>
+          </div>
+
+          <p>Set the two experiments side by side and they frame the entire question. The platform that tried to be a <strong>publisher</strong> was gone in about two years. The platform that offered only a <strong>button</strong> lasted sixteen — as a beloved feature that earned nothing worth reporting.</p>
+        </section>
+
+        <section>
+          <h2>The door all five left open</h2>
+          <p>Not one AI said the underlying idea was worthless. All five converged on the same smaller shape:</p>
+          <ul class="points">
+            <li><strong>Print-on-demand only, fulfilled by partners.</strong> No printing presses, no inventory, no warehouses. This model is already being proven in public: in February 2026, Spotify began selling physical books inside its app through Bookshop.org, which handles pricing, inventory, and shipping while Spotify keeps an affiliate fee of about 10%. Spotify entered books without becoming a publisher.</li>
+            <li><strong>An export, not an imprint.</strong> The most-repeated proposal — from Claude, Gemini, and Meta AI alike, in nearly the same words — is a &ldquo;send to print&rdquo; or export feature inside the AI tools: finish your work in Meta AI, send it to print-on-demand or to existing stores like Amazon&rsquo;s, with the AI-use disclosure attached automatically. Gemini&rsquo;s version adds the twist that fits Meta best: authors already spend heavily advertising their books on Instagram and Facebook. Meta could serve the publishing world profitably by owning the promotion layer, without publishing anything.</li>
+            <li><strong>Honest labels as the price of entry.</strong> Where the AIs went beyond Amazon&rsquo;s standard, they agreed Meta should too: AI-generated versus AI-assisted disclosure shown to readers before purchase, not just reported privately to the platform. That direction is already becoming law — the European Union&rsquo;s AI Act transparency rules, including labeling of AI-generated content, became applicable on August 2, 2026.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Too early, or never?</h2>
+          <p>The fairest reading of all five analyses, plus the 8th Note evidence, is that timing explains part of the verdict — but not all of it.</p>
+          <div class="versus">
+            <div class="col">
+              <h3 class="fixes">What time fixes</h3>
+              <ul>
+                <li><strong>The lawsuits become licenses.</strong> The litigation era will eventually settle into licensing, the way the music industry&rsquo;s lawsuits settled into streaming.</li>
+                <li><strong>The labels become routine.</strong> AI-use disclosure is becoming paperwork, not a stigma.</li>
+                <li><strong>Wearables change the supply.</strong> AI glasses that capture daily life could make book-shaped creations — journals, travel logs, family histories, photo books — a normal byproduct of using AI at all, the way smartphones made photo books normal.</li>
+              </ul>
+            </div>
+            <div class="col">
+              <h3 class="stuck">What time doesn&rsquo;t fix</h3>
+              <ul>
+                <li><strong>The ratio.</strong> Meta&rsquo;s revenue grows just as fast as the book market does, so the size problem never closes.</li>
+                <li><strong>The craft.</strong> Publishing is editing and author care — a trade that resists platform automation. 8th Note failed at it in peacetime, with no lawsuits and no slop problem.</li>
+              </ul>
+            </div>
+          </div>
+          <p>So the prediction this research supports is modest and specific: if Meta ever enters publishing, it will not announce a publishing division. One day there will simply be a button inside Meta AI — <em>make this a book</em> — with printing and storefronts handled quietly behind it, honest labels attached, and Meta earning its money from the tools and the promotion rather than the books. It will look obvious in hindsight. The five AIs, asked blind, all pointed at that same button. None of them pointed at a publishing house.</p>
+        </section>
+
+        <footer>
+          <div class="src-label">Sources</div>
+          <p class="sources">Bowker / Publishers Weekly, U.S. book output data for 2025 &middot; Publishing by the Numbers 2026 (selfpublishing.com) &middot; Meta Platforms Q2 2026 earnings release and FY2025 results &middot; Amazon KDP, KDP Select Global Fund announcements, 2026 &middot; Publishers.org (AAP), May 2026 class-action announcement &middot; Reuters, French publishers&rsquo; lawsuit against Meta, March 2025 &middot; Court records and reporting on Kadrey v. Meta (2025) and the Bartz v. Anthropic settlement (2025&ndash;2026) &middot; Publishers Weekly and The Bookseller reporting on Spotify&ndash;Bookshop.org (2026) and ByteDance&rsquo;s 8th Note Press (2023&ndash;2025) &middot; 9to5Mac and VentureBeat reporting on Apple&rsquo;s Photo Print Products service (2002&ndash;2018) &middot; European Commission, EU AI Act transparency provisions (2026).</p>
+          <p class="disclaimer">This report is for informational and educational purposes only and does not constitute investment advice, legal advice, or a recommendation regarding any company or security.</p>
+          <p class="signoff">Honed Signal<span class="dot">.</span> &middot; Research by Muse &middot; Analysis reviewed with Claude, Perplexity, ChatGPT, Gemini, and Meta AI &middot; No hype. No noise.</p>
+        </footer>
+
+      </article>
+    </div>
+    <script>
+      (function () {
+        var btn = document.getElementById('hs-copy');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var url = 'https://honedsignal.com/reports/meta-publishing/';
+          function done() { btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = 'Copy link'; }, 2000); }
+          if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, done); }
+          else { window.prompt('Copy this link:', url); }
+        });
+      })();
+    </script>
+  </body>
+</html>
