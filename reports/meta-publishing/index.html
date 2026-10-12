@@ -301,7 +301,7 @@
         <div class="hs-actions" aria-label="Print, email, or share this report">
           <span class="hs-label">Share</span>
           <button class="hs-btn" type="button" onclick="window.print()">Print</button>
-          <a class="hs-btn" href="mailto:?subject=Should%20Meta%20Become%20a%20Publisher%3F%20%E2%80%94%20Honed%20Signal&amp;body=Should%20Meta%20Become%20a%20Publisher%3F%20We%20asked%20five%20AIs%20%E2%80%94%20including%20Meta%27s%20own.%20The%20verdict%20was%205%E2%80%930.%0A%0Ahttps%3A%2F%2Fhonedsignal.com%2Freports%2Fmeta-publishing%2F">Email</a>
+          <button class="hs-btn" type="button" id="hs-email">Email</button>
           <a class="hs-btn" href="https://twitter.com/intent/tweet?text=Should%20Meta%20Become%20a%20Publisher%3F%20We%20asked%20five%20AIs%20%E2%80%94%20including%20Meta%27s%20own.%20The%20verdict%3A%205%E2%80%930%20pass.&amp;url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fmeta-publishing%2F" target="_blank" rel="noopener">X</a>
           <a class="hs-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhonedsignal.com%2Freports%2Fmeta-publishing%2F" target="_blank" rel="noopener">Facebook</a>
           <a class="hs-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fmeta-publishing%2F" target="_blank" rel="noopener">LinkedIn</a>
@@ -536,6 +536,14 @@
     </div>
     <script>
       (function () {
+        var em = document.getElementById('hs-email');
+        if (em) {
+          em.addEventListener('click', function () {
+            var subject = 'Should Meta Become a Publisher? — Honed Signal';
+            var body = 'Should Meta Become a Publisher? We asked five AIs — including Meta\'s own. The verdict was 5–0.\n\nhttps://honedsignal.com/reports/meta-publishing/';
+            window.location.href = 'mail' + 'to:' + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+          });
+        }
         var btn = document.getElementById('hs-copy');
         if (!btn) return;
         btn.addEventListener('click', function () {
