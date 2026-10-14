@@ -192,6 +192,14 @@ section > h2, .about > h2 {
 .card p:last-child { margin: 0; color: var(--muted); }
 
 .about { max-width: 640px; margin: 0 auto; }
+.about-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid #1E2635;
+  margin: 0 0 1.5rem;
+}
 .about p { color: var(--muted); margin: 0; }
 .about p strong { color: var(--paper); }
 
