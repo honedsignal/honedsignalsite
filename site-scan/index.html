@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Website Health Check — Creator Site Scan | Honed Signal</title>
+  <meta name="description" content="Paste your website address and get a free health score plus your top three technical problems — broken pages, canonical mistakes, dead links — in plain English. From the scanner that checks honedsignal.com every morning.">
+  <link rel="canonical" href="https://honedsignal.com/site-scan/">
+  <meta property="og:title" content="Creator Site Scan — Free Website Health Check | Honed Signal">
+  <meta property="og:description" content="A free scan for the silent problems that cost small sites their search presence. Score + top three issues, in plain English.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://honedsignal.com/assets/og-signal.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://honedsignal.com/assets/og-signal.png">
+  <meta name="theme-color" content="#0B0E14">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/style.css?v=2">
+  <style>:root { --good: #2EC4B6; --warn: #F7931A; --bad: #E4572E; }
+    .hero { text-align: center; padding: 3.5rem 1.25rem 2.5rem; max-width: 720px; margin: 0 auto; }
+    .hero h1 { font-size: 2.4rem; line-height: 1.15; margin: 0 0 0.75rem; }
+    .hero .tagline { color: var(--blue); font-size: 1.25rem; font-weight: 600; margin: 0 0 1rem; }
+    .hero .descriptor { color: var(--muted); font-size: 1.05rem; max-width: 36rem; margin: 0 auto 2rem; }
+    .scan-form { display: flex; gap: 0.6rem; max-width: 560px; margin: 0 auto; }
+    .scan-form input { flex: 1; min-width: 0; background: var(--card); border: 1px solid #2A3448;
+      border-radius: var(--radius); color: var(--paper); padding: 0.85rem 1rem; font-size: 1rem; }
+    .scan-form input::placeholder { color: var(--muted); }
+    .microcopy { color: var(--muted); font-size: 0.9rem; margin: 1rem auto 0; max-width: 34rem; }
+    .samples { margin-top: 1.25rem; display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+    .sample-btn { background: transparent; color: var(--blue); border: 1px solid #2A3448;
+      border-radius: var(--radius); padding: 0.5rem 1rem; cursor: pointer; font-size: 0.92rem; }
+    .sample-btn:hover, .sample-btn:focus { border-color: var(--blue); }
+    .notice { max-width: 560px; margin: 1.25rem auto 0; background: var(--card); border: 1px solid #2A3448;
+      border-radius: var(--radius); padding: 0.9rem 1.1rem; color: var(--muted); font-size: 0.95rem; display: none; }
+    .notice.show { display: block; }
+    .notice.error { border-color: var(--bad); color: var(--paper); }
+    .results { max-width: 860px; margin: 0 auto; display: none; }
+    .results.show { display: block; }
+    .results.stale .stale-target { opacity: 0.45; }
+    .stale-note { display: none; background: #2A2118; border: 1px solid var(--warn); color: var(--paper);
+      border-radius: var(--radius); padding: 0.7rem 1rem; font-size: 0.92rem; margin-bottom: 1.25rem; }
+    .results.stale .stale-note { display: block; }
+    .score-row { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .score-big { font-size: 4.2rem; font-weight: 800; line-height: 1; }
+    .score-big.good { color: var(--good); } .score-big.warn { color: var(--warn); } .score-big.bad { color: var(--bad); }
+    .score-meta .band { font-size: 1.3rem; font-weight: 700; margin: 0; }
+    .score-meta .scanline { color: var(--muted); margin: 0.25rem 0 0; }
+    .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+    .count { background: var(--card); border: 1px solid #1E2635; border-radius: var(--radius); padding: 0.9rem; text-align: center; }
+    .count .n { font-size: 1.6rem; font-weight: 700; display: block; }
+    .count .l { color: var(--muted); font-size: 0.82rem; }
+    .issue-card { background: var(--card); border: 1px solid #1E2635; border-left: 4px solid var(--warn);
+      border-radius: var(--radius); padding: 1.1rem 1.25rem; margin-bottom: 0.9rem; }
+    .issue-card h3 { margin: 0 0 0.3rem; font-size: 1.08rem; }
+    .issue-card p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+    .issue-card .url { color: var(--blue); word-break: break-all; font-size: 0.88rem; }
+    .clean-note { background: var(--card); border: 1px solid #1E2635; border-left: 4px solid var(--good);
+      border-radius: var(--radius); padding: 1.1rem 1.25rem; color: var(--muted); }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    .how table { width: 100%; border-collapse: collapse; font-size: 0.96rem; }
+    .how th, .how td { text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid #1E2635; }
+    .how th { color: var(--blue); }
+    .how td:last-child { text-align: right; white-space: nowrap; }
+    .dogfood { text-align: center; }
+    .dogfood .big { font-size: 1.5rem; font-weight: 700; margin: 0 0 0.5rem; }
+    .dogfood p { color: var(--muted); max-width: 38rem; margin: 0 auto; }
+    .report-cta { background: var(--card); border: 1px solid #1E2635; border-radius: var(--radius);
+      padding: 1.75rem; text-align: center; max-width: 860px; margin: 0 auto; }
+    .report-cta h2 { color: var(--paper); margin-top: 0; }
+    .report-cta p { color: var(--muted); max-width: 36rem; margin: 0 auto 1.25rem; }
+    .soon { color: var(--muted); font-size: 0.92rem; margin-top: 0.9rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="wordmark" href="/" aria-label="Honed Signal home">
+        <img class="brand-mark" src="/assets/logos/honed-signal-mark.png" alt="" width="34" height="34">
+        Honed Signal<span class="dot" aria-hidden="true"></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/money/"><img class="brand-mark-sm" src="/assets/logos/honed-money-mark.png" alt="" width="22" height="22">Honed Money</a></li>
+        <li><a href="/education/"><img class="brand-mark-sm" src="/assets/logos/honed-flint-mark.png" alt="" width="22" height="22">Honed Flint</a></li>
+        <li><a href="/health/"><img class="brand-mark-sm" src="/assets/logos/honed-proof-mark.png" alt="" width="22" height="22">Honed Proof</a></li>
+        <li><a href="/reports/">Reports</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-label="Free website health check">
+      <h1>Is your site quietly broken?</h1>
+      <p class="tagline">The Creator Site Scan — a free health check for your website.</p>
+      <p class="descriptor">Some problems never announce themselves: a page that errors out, a canonical tag handing your ranking to the wrong address, links leading nowhere. Paste your site's address and get a health score plus your top three problems — in plain English, no jargon, no email required.</p>
+      <form class="scan-form" id="scan-form">
+        <input type="text" id="scan-url" inputmode="url" autocomplete="url" spellcheck="false"
+               placeholder="yourwebsite.com" aria-label="Your website address">
+        <button class="cta" type="submit" id="scan-btn">Scan my site</button>
+      </form>
+      <p class="microcopy">Free. We scan up to 25 pages and check every link we find on them. This is a technical health check — not an SEO audit, and we will never promise you rankings. What we find is what we show you.</p>
+      <div class="samples">
+        <button class="sample-btn" type="button" data-sample="honedsignal">See a sample: our own site (scans daily)</button>
+        <button class="sample-btn" type="button" data-sample="example">See a sample: a one-page site</button>
+      </div>
+      <div class="notice" id="notice" role="status"></div>
+    </section>
+
+    <section class="results" id="results" aria-label="Scan results">
+      <div class="stale-note">You changed the address — these results are from your previous scan. Run it again for the new site.</div>
+      <div class="stale-target">
+        <div class="score-row">
+          <div class="score-big" id="score-big">–</div>
+          <div class="score-meta">
+            <p class="band" id="score-band"></p>
+            <p class="scanline" id="score-scanline"></p>
+          </div>
+        </div>
+        <div class="counts" id="counts"></div>
+        <h2 style="color:var(--blue);font-size:1.3rem;margin:0 0 1rem;">Your top problems</h2>
+        <div id="top-issues"></div>
+        <p class="microcopy" id="cap-note" style="margin-left:0;"></p>
+      </div>
+    </section>
+
+    <section class="how wrap" aria-label="How scoring works">
+      <h2>How the score works</h2>
+      <p style="color:var(--muted);max-width:42rem;margin:0 auto 1.5rem;text-align:center;">Every scan starts at 100 and loses points for real problems — the same table for every site, including ours. No black box.</p>
+      <table>
+        <tr><th>Problem</th><th>Why it matters</th><th>Points off</th></tr>
+        <tr><td>Page returns an error (4xx / 5xx)</td><td>Visitors and search engines hit a wall</td><td>−10 each (max −30)</td></tr>
+        <tr><td>Canonical tag missing or pointing elsewhere</td><td>Ranking signals split, or handed to another page</td><td>−6 each (max −24)</td></tr>
+        <tr><td>Broken internal link</td><td>Dead ends for visitors and crawlers</td><td>−4 each (max −20)</td></tr>
+        <tr><td>Pages sharing one title</td><td>Search results can't tell your pages apart</td><td>−3 per extra page (max −12)</td></tr>
+        <tr><td>Page with no title</td><td>No headline in search results</td><td>−4 each (max −12)</td></tr>
+        <tr><td>No sitemap.xml</td><td>New pages get discovered late, or never</td><td>−8</td></tr>
+      </table>
+      <p style="color:var(--muted);font-size:0.92rem;">90–100 Healthy · 70–89 Needs attention · under 70 — problems are costing you. The free scan covers up to 25 pages; the Full Site Report covers the whole site.</p>
+    </section>
+
+    <section class="dogfood" aria-label="We run this on our own site">
+      <h2>We run this scanner on our own site. Every morning.</h2>
+      <p class="big">honedsignal.com — 474 pages, scanned daily.</p>
+      <p>Latest sweep (October 18, 2026): 0 page errors, 0 canonical problems, 0 duplicate titles, 0 broken links. The same engine that produced that report is the one scanning your site — when our own number drops, it drops in public, right here.</p>
+    </section>
+
+    <section aria-label="Full Site Report">
+      <div class="report-cta">
+        <h2>The Full Site Report</h2>
+        <p>The free scan shows your top three problems on up to 25 pages. The Full Site Report covers <strong>every page</strong> — every problem located exactly, explained in plain English, with how to fix it and the order to fix it in. One-time price — <strong style="color:var(--paper)">$19</strong>. No subscription, no sales call.</p>
+        <ul style="text-align:left;color:var(--muted);max-width:30rem;margin:0 auto 1.25rem;line-height:1.9;">
+          <li><strong style="color:var(--paper)">Full site inventory</strong> — every page we can reach, checked (our own site's report covers 474).</li>
+          <li><strong style="color:var(--paper)">Every problem, located</strong> — the exact page it's on, what it is, and why it matters.</li>
+          <li><strong style="color:var(--paper)">Fix instructions</strong> — written for a non-technical owner, in the order to fix them: indexing blockers first.</li>
+          <li><strong style="color:var(--paper)">One free re-scan</strong> — same site, within 30 days, so you can verify your fixes landed.</li>
+        </ul>
+        <p style="color:var(--muted);max-width:36rem;margin:0 auto 1.25rem;">Want to see exactly what $19 buys before you spend it? Our own site's Full Report is the sample — same format, same depth, real data.</p>
+        <a class="cta" href="https://www.etsy.com/shop/HonedSignal" target="_blank" rel="noopener">Visit the Honed Signal shop</a>
+        <p class="soon">Full reports open soon — the shop is where they'll live.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="disclaimer">The Creator Site Scan checks technical health only. It is not a security audit, and it does not guarantee search rankings or traffic. Scans fetch public pages only and identify themselves (HonedSignalSiteScan) when they visit.</p>
+    <p class="copyright">© 2026 Honed Signal — No hype. No noise.</p>
+  </footer>
+  <script>
+    // Scanner Worker base URL (Creator Site Scan, deployed 2026-10-18).
+    // The sample results below remain as a demo of the results UI.
+    const SCAN_API = "https://scan.honedsignal.com";
+    const SAMPLES = {
+ "honedsignal": {
+  "ok": true,
+  "input": "https://honedsignal.com",
+  "origin": "https://honedsignal.com",
+  "has_sitemap": true,
+  "pages_found": 474,
+  "pages_scanned": 25,
+  "capped": true,
+  "discovered_links_total": 0,
+  "discovered_links_checked": 0,
+  "score": 100,
+  "band": "Healthy",
+  "deductions": {
+   "http_errors": 0,
+   "canonical": 0,
+   "broken_links": 0,
+   "duplicate_title_pages": 0,
+   "missing_titles": 0,
+   "no_sitemap": 0
+  },
+  "counts": {
+   "http_errors": 0,
+   "canonical": 0,
+   "broken_links": 0,
+   "duplicate_title_pages": 0,
+   "missing_titles": 0
+  },
+  "top_issues": [],
+  "issues": {
+   "http_errors": [],
+   "canonical": [],
+   "broken_links": [],
+   "duplicate_titles": {},
+   "missing_titles": []
+  },
+  "duration_ms": 5181
+ },
+ "example": {
+  "ok": true,
+  "input": "example.com",
+  "origin": "https://example.com",
+  "has_sitemap": false,
+  "pages_found": 1,
+  "pages_scanned": 1,
+  "capped": false,
+  "discovered_links_total": 0,
+  "discovered_links_checked": 0,
+  "score": 86,
+  "band": "Needs attention",
+  "deductions": {
+   "http_errors": 0,
+   "canonical": 6,
+   "broken_links": 0,
+   "duplicate_title_pages": 0,
+   "missing_titles": 0,
+   "no_sitemap": 8
+  },
+  "counts": {
+   "http_errors": 0,
+   "canonical": 1,
+   "broken_links": 0,
+   "duplicate_title_pages": 0,
+   "missing_titles": 0
+  },
+  "top_issues": [
+   {
+    "type": "canonical",
+    "url": "https://example.com/",
+    "headline": "A page with no canonical tag",
+    "detail": "https://example.com/ doesn't tell search engines which address is the real one, so its ranking signals can split across duplicates."
+   },
+   {
+    "type": "no_sitemap",
+    "url": "https://example.com/sitemap.xml",
+    "headline": "No sitemap found",
+    "detail": "Without a sitemap.xml, search engines have to discover every page by following links — new pages get found late or not at all."
+   }
+  ],
+  "issues": {
+   "http_errors": [],
+   "canonical": [
+    {
+     "url": "https://example.com/",
+     "problem": "missing canonical"
+    }
+   ],
+   "broken_links": [],
+   "duplicate_titles": {},
+   "missing_titles": []
+  },
+  "duration_ms": 1280
+ }
+};
+
+    const form = document.getElementById("scan-form");
+    const input = document.getElementById("scan-url");
+    const btn = document.getElementById("scan-btn");
+    const notice = document.getElementById("notice");
+    const results = document.getElementById("results");
+
+    function showNotice(msg, isError) {
+      notice.textContent = msg;
+      notice.className = "notice show" + (isError ? " error" : "");
+    }
+    function hideNotice() { notice.className = "notice"; }
+
+    function bandClass(score) { return score >= 90 ? "good" : score >= 70 ? "warn" : "bad"; }
+
+    function render(r, label) {
+      hideNotice();
+      results.classList.remove("stale");
+      document.getElementById("score-big").textContent = r.score;
+      document.getElementById("score-big").className = "score-big " + bandClass(r.score);
+      document.getElementById("score-band").textContent = r.band + (label ? " — " + label : "");
+      document.getElementById("score-scanline").textContent =
+        r.origin + " · scanned " + r.pages_scanned + " of " + r.pages_found + " pages" +
+        (r.has_sitemap ? "" : " · no sitemap found");
+      const cells = [
+        [r.pages_scanned, "pages scanned"],
+        [r.counts.http_errors, "page errors"],
+        [r.counts.canonical, "canonical problems"],
+        [r.counts.broken_links, "broken links"],
+        [r.counts.duplicate_title_pages, "duplicate-title pages"],
+        [r.counts.missing_titles, "missing titles"],
+      ];
+      document.getElementById("counts").innerHTML = cells.map(([n, l]) =>
+        '<div class="count"><span class="n">' + n + '</span><span class="l">' + l + "</span></div>").join("");
+      const top = document.getElementById("top-issues");
+      if (r.top_issues.length === 0) {
+        top.innerHTML = '<div class="clean-note"><strong style="color:var(--paper)">Nothing in the top three — because there is no top three.</strong><br>' +
+          "No problems found in the pages scanned. That's what a clean sweep looks like; the Full Site Report still checks every remaining page.</div>";
+      } else {
+        top.innerHTML = r.top_issues.map(i =>
+          '<article class="issue-card"><h3>' + i.headline + '</h3><p>' + i.detail + '</p>' +
+          '<p class="url">' + i.url + "</p></article>").join("");
+      }
+      document.getElementById("cap-note").textContent = r.capped
+        ? "This free scan covered the first " + r.pages_scanned + " of " + r.pages_found + " pages. The Full Site Report covers all of them."
+        : "This free scan covered every page it could find on the site.";
+      results.classList.add("show");
+      results.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // Staleness (house pattern, from the Debt Scan): editing the address
+    // after a result dims it and says so.
+    input.addEventListener("input", () => {
+      if (results.classList.contains("show")) results.classList.add("stale");
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const url = input.value.trim();
+      if (!url) { showNotice("Enter your website address first — like yourwebsite.com.", true); return; }
+      if (!SCAN_API) {
+        showNotice("Live scanning switches on when the scanner deploys — this staged page runs in demo mode. Use the sample buttons above to see exactly what a result looks like.");
+        return;
+      }
+      btn.disabled = true; btn.textContent = "Scanning…";
+      showNotice("Scanning " + url + " — a few seconds while we crawl up to 25 pages.");
+      try {
+        const resp = await fetch(SCAN_API + "/scan", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ url }),
+        });
+        const data = await resp.json();
+        if (!data.ok) throw new Error(data.error || "The scan failed.");
+        render(data);
+      } catch (err) {
+        showNotice(String(err.message || err), true);
+      } finally {
+        btn.disabled = false; btn.textContent = "Scan my site";
+      }
+    });
+
+    document.querySelectorAll("[data-sample]").forEach((b) => {
+      b.addEventListener("click", () => {
+        const key = b.getAttribute("data-sample");
+        render(SAMPLES[key], key === "honedsignal" ? "sample result" : "sample result");
+        input.value = SAMPLES[key].origin;
+      });
+    });
+  </script>
+</body>
+</html>
