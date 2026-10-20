@@ -389,6 +389,26 @@
       .add-row-bar .secondary { width: 100%; }
     }
 
+    .email-capture { margin-top: 14px; background: var(--surface); border: 1px solid var(--line); padding: 22px; }
+    .email-capture h3 { margin: 0 0 8px; font-size: 1.15rem; letter-spacing: -.01em; }
+    .email-capture p { margin: 0 0 12px; color: var(--muted); }
+    .capture-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 6px 0 4px; }
+    .capture-label { font-weight: 600; font-size: .92rem; }
+    .capture-row input, .capture-row select {
+      flex: 1 1 220px; min-height: 46px; padding: 10px 12px;
+      background: var(--surface-2); color: var(--ink);
+      border: 1px solid var(--line); border-radius: 5px;
+    }
+    .capture-row button { min-height: 46px; }
+    .capture-note { font-size: .85rem; }
+    .capture-status { min-height: 1.2em; font-size: .92rem; color: var(--teal); margin: 8px 0 0; }
+    .capture-status.error { color: var(--red); }
+    .plan-actions { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 14px; }
+    .plan-ready { color: var(--ink) !important; }
+    .save-note { margin: 10px 26px 0; color: var(--muted); font-size: .88rem; }
+    .save-note button { background: none; border: 0; color: var(--teal); font-weight: 700; cursor: pointer; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 820px) { .save-note { margin: 10px 18px 0; } .capture-row button { width: 100%; } }
+
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
 
@@ -506,11 +526,42 @@
 
       <div class="summary-banner" id="verdict"></div>
 
-      <div class="plan-teaser">
+      <div class="email-capture" id="email-capture">
+        <h3>Email me my scan results</h3>
+        <p>Numbers vanish when the tab closes. Get this scan's headline results in your inbox so you can come back to them.</p>
+        <div class="capture-row">
+          <label class="capture-label" for="capture-email">Email address</label>
+          <input id="capture-email" type="email" autocomplete="email" placeholder="you@example.com" />
+          <button class="primary" type="button" id="capture-send">Email my results</button>
+        </div>
+        <p class="capture-note">We'll send the numbers you see on this screen to that address — nothing is sent unless you tap the button, and the scan itself never transmits your entries.</p>
+        <p class="capture-status" id="capture-status" role="status"></p>
+      </div>
+
+      <div class="plan-teaser" id="plan-panel">
         <h3>Your full Payoff Plan</h3>
         <p>The scan is the diagnosis. The Payoff Plan is the fix: your month-by-month payoff schedule, your payoff order with dates, and what an extra $50, $100, or $200 a month would do to the timeline — generated from these exact numbers as a printable plan you can follow.</p>
-        <a href="#" id="plan-link">Payoff Plan — launches with the Etsy listing</a>
-        <p class="teaser-note">Coming soon: the Payoff Plan launches alongside its Etsy listing. The scan stays free either way.</p>
+        <p><strong>$9.00</strong> on its own, or <strong>$14.95</strong> bundled with the Pack 1 Debt Payoff Tracker — one-time, on Etsy. Already bought it? Enter the unlock code from your Etsy delivery:</p>
+        <div class="capture-row" id="unlock-row">
+          <label class="capture-label" for="unlock-code">Unlock code</label>
+          <input id="unlock-code" type="text" autocomplete="off" spellcheck="false" placeholder="HMPLAN-XXXX-XXXX" />
+          <button class="primary" type="button" id="unlock-btn">Unlock my plan</button>
+        </div>
+        <p class="capture-status" id="unlock-status" role="status"></p>
+        <div class="plan-actions" id="plan-actions" hidden>
+          <p class="plan-ready"><strong>Plan unlocked on this device.</strong> Your plan is generated here in your browser from the numbers in your scan — nothing is uploaded.</p>
+          <div class="capture-row">
+            <label class="capture-label" for="plan-method">Payoff method</label>
+            <select id="plan-method">
+              <option value="recommended">Recommended (from your scan)</option>
+              <option value="avalanche">Avalanche — highest APR first</option>
+              <option value="snowball">Snowball — smallest balance first</option>
+            </select>
+            <button class="primary" type="button" id="plan-download">Download my Payoff Plan (PDF)</button>
+          </div>
+          <p class="capture-status" id="plan-status" role="status"></p>
+        </div>
+        <p class="teaser-note">The scan stays free either way. The unlock is remembered on this device, so you only enter the code once.</p>
       </div>
 
       <details>
@@ -666,13 +717,15 @@
         };
       }
 
-      function simulatePlan(inputDebts, method, budget, capMonths) {
+      function simulatePlan(inputDebts, method, budget, capMonths, ledger) {
         var cap = capMonths || 1200;
         var debts = cloneDebts(inputDebts);
         var interest = 0;
         var months = 0;
         var payoffOrder = [];
         var payoffMonths = {};
+        var paidMap = null;
+        var monthInterest = 0;
 
         var priority = debts.slice().sort(function (a, b) {
           if (method === "snowball") return a.originalBalance - b.originalBalance || b.apr - a.apr || a.id - b.id;
@@ -691,12 +744,14 @@
 
         while (debts.some(function (d) { return d.balance > 0.005; }) && months < cap) {
           months++;
+          if (ledger) { paidMap = {}; monthInterest = 0; }
           var active = debts.filter(function (d) { return d.balance > 0.005; });
           active.forEach(function (d) {
             d.startBalance = d.balance;
             d.monthInterest = d.balance * (d.apr / 1200);
             d.balance += d.monthInterest;
             interest += d.monthInterest;
+            monthInterest += d.monthInterest;
           });
 
           var remaining = budget;
@@ -704,6 +759,7 @@
             var payment = Math.min(currentMinimum(d, d.startBalance), d.balance, remaining);
             d.balance -= payment;
             remaining -= payment;
+            if (ledger) paidMap[d.id] = (paidMap[d.id] || 0) + payment;
             markPaid(d);
           });
 
@@ -716,8 +772,15 @@
               var extraPayment = Math.min(remaining, target.balance);
               target.balance -= extraPayment;
               remaining -= extraPayment;
+              if (ledger) paidMap[target.id] = (paidMap[target.id] || 0) + extraPayment;
               markPaid(target);
             }
+          }
+
+          if (ledger) {
+            var totalNow = 0;
+            debts.forEach(function (d) { totalNow += d.balance; });
+            ledger.push({ month: months, interest: monthInterest, paid: paidMap, balances: debts.map(function (d) { return Math.round(d.balance * 100) / 100; }), total: Math.round(totalNow * 100) / 100 });
           }
         }
 
@@ -1012,6 +1075,12 @@
           verdict.innerHTML = "<strong>At " + money(budget) + " a month, neither method pays this off.</strong> The interest outruns the payments before either plan can get traction. Add what you can to the monthly amount — even $100 changes the picture — and run the scan again.";
         }
 
+        window.__debtScan = {
+          debts: debts, budget: budget, totalDebt: totalDebt, minimumsTotal: minimumsTotal,
+          minResult: minResult, snowball: snowball, avalanche: avalanche,
+          plan: plan, planMethod: planMethod, tie: tie, ranAt: new Date().toISOString()
+        };
+
         results.classList.add("show");
         results.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
       }
@@ -1053,9 +1122,318 @@
         }, 0);
       });
 
-      document.getElementById("plan-link").addEventListener("click", function (event) {
-        event.preventDefault();
+      /* ===== Step 3: save/restore, email capture, unlock, Payoff Plan PDF ===== */
+      var SAVE_KEY = "hm_ds_save_v1";
+      var UNLOCK_KEY = "hm_ds_unlock_v1";
+      var MAKE_WEBHOOK = "__MAKE_WEBHOOK_URL__";
+      var CODE_HASHES = {
+        "38536eb03df15844ab05603d7af55bc7fd53a98f44d319862243119273870d0b": "A",
+        "667bed53f096dc2aecc6a642f55941496b8cb2a7600693a9e954ae2ad7f639ef": "A",
+        "b44eeaeeb7418c283f8173a9bdb50979bbd15bc2c384063feb91aaefe42a826f": "B",
+        "1672aff35e0e23e4fba9b0a86ec62f694faafec3c0ab5934dc2dc647a2906fae": "B"
+      };
+
+      function saveState() {
+        try {
+          var rows = rowElements().map(function (row) {
+            return {
+              name: row.querySelector(".f-name").value,
+              balance: row.querySelector(".f-balance").value,
+              apr: row.querySelector(".f-apr").value,
+              minimum: row.querySelector(".f-minimum").value,
+              estimate: row.querySelector(".f-estimate").checked
+            };
+          });
+          var hasData = rows.some(function (r) { return r.balance !== "" || r.name !== ""; });
+          if (!hasData && monthlyEl.value === "") { localStorage.removeItem(SAVE_KEY); return; }
+          localStorage.setItem(SAVE_KEY, JSON.stringify({ rows: rows, monthly: monthlyEl.value, savedAt: Date.now() }));
+        } catch (e) { /* storage unavailable — save is best-effort */ }
+      }
+
+      var saveNote = document.createElement("p");
+      saveNote.className = "save-note";
+      saveNote.id = "save-note";
+      saveNote.hidden = true;
+      form.insertBefore(saveNote, form.querySelector(".form-actions"));
+
+      function restoreState() {
+        var raw = null;
+        try { raw = localStorage.getItem(SAVE_KEY); } catch (e) { return; }
+        if (!raw) return;
+        var data = null;
+        try { data = JSON.parse(raw); } catch (e) { return; }
+        if (!data || !data.rows || !data.rows.length) return;
+        clearRows();
+        data.rows.forEach(function (r) {
+          var row = createRow();
+          row.querySelector(".f-name").value = r.name || "";
+          row.querySelector(".f-balance").value = r.balance || "";
+          row.querySelector(".f-apr").value = r.apr || "";
+          row.querySelector(".f-minimum").value = r.minimum || "";
+          var box = row.querySelector(".f-estimate");
+          box.checked = !!r.estimate;
+          box.dispatchEvent(new Event("change"));
+        });
+        monthlyEl.value = data.monthly || "";
+        saveNote.hidden = false;
+        saveNote.innerHTML = "Your saved scan from this device was restored. <button type=\"button\" id=\"clear-save\">Clear saved scan</button>";
+        document.getElementById("clear-save").addEventListener("click", function () {
+          try { localStorage.removeItem(SAVE_KEY); } catch (e) {}
+          saveNote.hidden = true;
+        });
+      }
+
+      form.addEventListener("input", saveState);
+      form.addEventListener("change", saveState);
+      form.addEventListener("submit", saveState);
+      form.addEventListener("reset", function () {
+        window.setTimeout(function () { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} saveNote.hidden = true; }, 5);
       });
+      restoreState();
+
+      /* --- Email capture (spec §7, Option A: Make -> Sheet + results email) --- */
+      var captureStatus = document.getElementById("capture-status");
+      document.getElementById("capture-send").addEventListener("click", function () {
+        var scan = window.__debtScan;
+        captureStatus.classList.remove("error");
+        if (!scan) { captureStatus.textContent = "Run your scan first — the button sends the results on this screen."; captureStatus.classList.add("error"); return; }
+        var email = document.getElementById("capture-email").value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { captureStatus.textContent = "Enter a valid email address."; captureStatus.classList.add("error"); return; }
+        captureStatus.textContent = "Sending…";
+        var payload = {
+          email: email,
+          scan: "debt",
+          total_debt: Math.round(scan.totalDebt * 100) / 100,
+          debts_count: scan.debts.length,
+          monthly_budget: Math.round(scan.budget * 100) / 100,
+          minimums_total: Math.round(scan.minimumsTotal * 100) / 100,
+          mins_complete: scan.minResult.complete,
+          mins_months: scan.minResult.complete ? scan.minResult.months : null,
+          mins_interest: scan.minResult.complete ? Math.round(scan.minResult.interest * 100) / 100 : null,
+          plan_method: scan.planMethod,
+          plan_months: scan.plan ? scan.plan.months : null,
+          plan_interest: scan.plan ? Math.round(scan.plan.interest * 100) / 100 : null,
+          interest_saved: (scan.plan && scan.minResult.complete) ? Math.round((scan.minResult.interest - scan.plan.interest) * 100) / 100 : null,
+          ran_at: scan.ranAt
+        };
+        fetch(MAKE_WEBHOOK, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+          .then(function (r) {
+            if (!r.ok) throw new Error("send failed");
+            captureStatus.textContent = "Sent — your scan results are on their way to " + email + ".";
+          })
+          .catch(function () {
+            captureStatus.textContent = "That didn't go through. Check your connection and try again — your scan is still on this screen.";
+            captureStatus.classList.add("error");
+          });
+      });
+
+      /* --- Unlock (spec §5, Option A: code-gated, soft enforcement) --- */
+      var unlockStatus = document.getElementById("unlock-status");
+      var planActions = document.getElementById("plan-actions");
+      function applyUnlock(sku) {
+        try { localStorage.setItem(UNLOCK_KEY, sku); } catch (e) {}
+        document.getElementById("unlock-row").hidden = true;
+        unlockStatus.textContent = sku === "B" ? "Unlocked with your bundle code (Plan + Tracker)." : "Unlocked with your Payoff Plan code.";
+        planActions.hidden = false;
+        var sel = document.getElementById("plan-method");
+        var scan = window.__debtScan;
+        if (scan && scan.planMethod) sel.value = "recommended";
+      }
+      function sha256Hex(text) {
+        return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(function (buf) {
+          return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
+        });
+      }
+      document.getElementById("unlock-btn").addEventListener("click", function () {
+        var code = document.getElementById("unlock-code").value.trim().toUpperCase().replace(/\s+/g, "");
+        unlockStatus.classList.remove("error");
+        if (!code) { unlockStatus.textContent = "Enter the code from your Etsy delivery."; unlockStatus.classList.add("error"); return; }
+        if (!crypto.subtle) { unlockStatus.textContent = "This browser can't verify codes here — open this page over https and try again."; unlockStatus.classList.add("error"); return; }
+        sha256Hex(code).then(function (hex) {
+          var sku = CODE_HASHES[hex];
+          if (sku) { applyUnlock(sku); }
+          else { unlockStatus.textContent = "That code isn't recognized. Check it against your Etsy delivery note and try again."; unlockStatus.classList.add("error"); }
+        });
+      });
+      (function restoreUnlock() {
+        var sku = null;
+        try { sku = localStorage.getItem(UNLOCK_KEY); } catch (e) {}
+        if (sku === "A" || sku === "B") applyUnlock(sku);
+      })();
+
+      /* --- Payoff Plan PDF (generated on-device; spec §5 contents) --- */
+      var planStatus = document.getElementById("plan-status");
+      function loadScript(src) {
+        return new Promise(function (resolve, reject) {
+          var s = document.createElement("script");
+          s.src = src; s.onload = resolve; s.onerror = reject;
+          document.head.appendChild(s);
+        });
+      }
+      var pdfLibs = null;
+      function ensurePdfLibs() {
+        if (pdfLibs) return pdfLibs;
+        pdfLibs = loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")
+          .then(function () { return loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"); });
+        return pdfLibs;
+      }
+
+      function fmtDate(months) { return futureDateLabel(months); }
+
+      document.getElementById("plan-download").addEventListener("click", function () {
+        var scan = window.__debtScan;
+        planStatus.classList.remove("error");
+        if (!scan || !scan.plan) { planStatus.textContent = "Run your scan first — the plan is generated from the numbers on this screen."; planStatus.classList.add("error"); return; }
+        planStatus.textContent = "Building your plan…";
+        ensurePdfLibs().then(function () { buildPlanPdf(scan); })
+          .catch(function () { planStatus.textContent = "The PDF library couldn't load. Check your connection and try again."; planStatus.classList.add("error"); });
+      });
+
+      function buildPlanPdf(scan) {
+        var jsPDF = window.jspdf.jsPDF;
+        var doc = new jsPDF({ unit: "pt", format: "letter" });
+        var W = 612, M = 48, NAVY = [11, 14, 20], ORANGE = [247, 147, 26], TEAL = [46, 196, 182], GREY = [90, 98, 110], LIGHT = [238, 240, 243];
+        var sku = null;
+        try { sku = localStorage.getItem(UNLOCK_KEY); } catch (e) {}
+        var methodSel = document.getElementById("plan-method").value;
+        var method = methodSel === "recommended" ? scan.planMethod : methodSel;
+        var otherMethod = method === "avalanche" ? "snowball" : "avalanche";
+        var ledger = [];
+        var plan = simulatePlan(scan.debts, method, scan.budget, 1200, ledger);
+        var other = method === "avalanche" ? scan.snowball : scan.avalanche;
+        var today = new Date();
+        var dateStr = today.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+        function footer() {
+          var n = doc.getNumberOfPages();
+          for (var i = 1; i <= n; i++) {
+            doc.setPage(i);
+            doc.setFontSize(8); doc.setTextColor(GREY[0], GREY[1], GREY[2]);
+            doc.text("Honed Money — The Debt Scan · Payoff Plan", M, 756);
+            doc.text("Page " + i + " of " + n, W - M, 756, { align: "right" });
+          }
+        }
+        function heading(text, y) {
+          doc.setFont("helvetica", "bold"); doc.setFontSize(15); doc.setTextColor(NAVY[0], NAVY[1], NAVY[2]);
+          doc.text(text, M, y);
+          doc.setDrawColor(ORANGE[0], ORANGE[1], ORANGE[2]); doc.setLineWidth(2);
+          doc.line(M, y + 6, M + 42, y + 6);
+          return y + 26;
+        }
+        function body(text, y, size) {
+          doc.setFont("helvetica", "normal"); doc.setFontSize(size || 10.5); doc.setTextColor(40, 44, 52);
+          var lines = doc.splitTextToSize(text, W - 2 * M);
+          doc.text(lines, M, y);
+          return y + lines.length * ((size || 10.5) * 1.45) + 6;
+        }
+        function table(head, rows, y, widths) {
+          doc.autoTable({
+            head: [head], body: rows, startY: y, margin: { left: M, right: M },
+            styles: { fontSize: 9.5, cellPadding: 5, textColor: [40, 44, 52] },
+            headStyles: { fillColor: NAVY, textColor: [255, 255, 255], fontStyle: "bold" },
+            alternateRowStyles: { fillColor: LIGHT },
+            columnStyles: widths || {}
+          });
+          return doc.lastAutoTable.finalY + 18;
+        }
+
+        /* 1 — Cover */
+        doc.setFillColor(NAVY[0], NAVY[1], NAVY[2]); doc.rect(0, 0, W, 792, "F");
+        doc.setFillColor(ORANGE[0], ORANGE[1], ORANGE[2]); doc.rect(0, 300, W, 5, "F");
+        doc.setTextColor(255, 255, 255); doc.setFont("helvetica", "bold"); doc.setFontSize(30);
+        doc.text("Your Payoff Plan", M, 258);
+        doc.setFontSize(13); doc.setFont("helvetica", "normal"); doc.setTextColor(TEAL[0], TEAL[1], TEAL[2]);
+        doc.text("Honed Money — Money makes sense.", M, 284);
+        doc.setTextColor(220, 224, 230); doc.setFontSize(12);
+        doc.text("Generated " + dateStr + " from your Debt Scan.", M, 348);
+        doc.text("Total debt: " + money(scan.totalDebt) + " across " + scan.debts.length + (scan.debts.length === 1 ? " debt" : " debts"), M, 374);
+        doc.text("Monthly plan budget: " + money(scan.budget), M, 398);
+        doc.text("Method: " + (method === "avalanche" ? "Avalanche — highest APR first" : "Snowball — smallest balance first"), M, 422);
+        doc.setFontSize(10); doc.setTextColor(160, 166, 176);
+        doc.text("This plan was generated in your browser. Your numbers were never uploaded.", M, 700);
+
+        /* 2 — Inventory + verdict */
+        doc.addPage();
+        var y = heading("Your debt inventory", 64);
+        var invRows = scan.debts.map(function (d) {
+          return [d.name, money(d.balance), d.apr.toFixed(2) + "%", money(currentMinimum(d, d.balance)) + (d.estimate ? " (est.)" : "")];
+        });
+        y = table(["Debt", "Balance", "APR", "Minimum / mo"], invRows, y);
+        y = heading("The verdict", y + 6);
+        var verdictText = scan.minResult.complete
+          ? "Paying only minimums, you would be debt-free in " + fmtDate(scan.minResult.months) + " — " + monthsLabel(scan.minResult.months) + " — and pay " + money(scan.minResult.interest) + " in interest. On this plan (" + method + "), you are debt-free in " + fmtDate(plan.months) + " — " + monthsLabel(plan.months) + " — and pay " + money(plan.interest) + " in interest. That is " + money(scan.minResult.interest - plan.interest) + " less interest and " + monthsLabel(scan.minResult.months - plan.months) + " sooner."
+          : "Paying only minimums never pays these debts off — the interest outruns the payments. On this plan (" + method + "), you are debt-free in " + fmtDate(plan.months) + " — " + monthsLabel(plan.months) + " — and pay " + money(plan.interest) + " in interest.";
+        y = body(verdictText, y);
+
+        /* 3 — Method comparison */
+        y = heading("Snowball vs. Avalanche, on your debts", y + 6);
+        function firstPayoff(res) {
+          if (!res.complete) return "—";
+          var firstId = null, firstMonth = null;
+          Object.keys(res.payoffMonths).forEach(function (id) { if (firstMonth === null || res.payoffMonths[id] < firstMonth) { firstMonth = res.payoffMonths[id]; firstId = id; } });
+          return res.order[0] + " · " + fmtDate(firstMonth);
+        }
+        var comp = [
+          ["Avalanche", scan.avalanche.complete ? fmtDate(scan.avalanche.months) : "Never at this budget", scan.avalanche.complete ? money(scan.avalanche.interest) : "—", firstPayoff(scan.avalanche)],
+          ["Snowball", scan.snowball.complete ? fmtDate(scan.snowball.months) : "Never at this budget", scan.snowball.complete ? money(scan.snowball.interest) : "—", firstPayoff(scan.snowball)]
+        ];
+        y = table(["Method", "Debt-free date", "Total interest", "First debt gone"], comp, y);
+        y = body("Your plan uses " + (method === "avalanche" ? "Avalanche" : "Snowball") + ". Both methods pay every minimum first; they differ only in where the extra money goes.", y);
+
+        /* 4 — Payoff order */
+        doc.addPage();
+        y = heading("Your payoff order", 64);
+        var orderedIds = Object.keys(plan.payoffMonths).map(Number).sort(function (a, b) { return plan.payoffMonths[a] - plan.payoffMonths[b]; });
+        var orderRows = orderedIds.map(function (id, i) {
+          return [String(i + 1), scan.debts[id].name, fmtDate(plan.payoffMonths[id])];
+        });
+        y = table(["#", "Debt", "Paid off"], orderRows, y);
+
+        /* 5 — Month-by-month schedule */
+        y = heading("Month-by-month schedule", y + 6);
+        var schedRows = [];
+        var condensed = ledger.length > 72;
+        ledger.forEach(function (row, idx) {
+          var show = !condensed || idx < 12 || (idx - 11) % 3 === 0 || idx === ledger.length - 1;
+          if (!show) return;
+          var paidTotal = 0; Object.keys(row.paid).forEach(function (k) { paidTotal += row.paid[k]; });
+          var closedNames = scan.debts.filter(function (d, di) { return plan.payoffMonths[di] === row.month; }).map(function (d) { return d.name || "Debt"; }).join(", ");
+          schedRows.push([fmtDate(row.month), money(paidTotal), money(row.interest), money(row.total), closedNames || ""]);
+        });
+        y = body(condensed ? "Condensed: every month for the first year, then quarterly snapshots, with the final month shown. Interest is the interest added that month; balances are what remains after that month's payments." : "Interest is the interest added that month; balances are what remains after that month's payments.", y);
+        y = table(["Month", "Paid", "Interest added", "Balance left", "Debt closed"], schedRows, y);
+
+        /* 6 — Scenarios + milestones */
+        doc.addPage();
+        y = heading("What extra money does", 64);
+        var scenRows = [50, 100, 200].map(function (x) {
+          var r = simulatePlan(scan.debts, method, scan.budget + x);
+          return ["+" + money(x) + " / mo", r.complete ? fmtDate(r.months) : "—", r.complete ? money(plan.interest - r.interest) + " saved" : "—"];
+        });
+        y = table(["Extra payment", "New debt-free date", "Interest saved vs. your plan"], scenRows, y);
+        y = heading("Milestones", y + 6);
+        var half = ledger.filter(function (r) { return r.total <= scan.totalDebt / 2; })[0];
+        var mileRows = [
+          ["First debt gone", orderedIds.length ? scan.debts[orderedIds[0]].name + " — " + fmtDate(plan.payoffMonths[orderedIds[0]]) : "—"],
+          ["Halfway (balance halved)", half ? fmtDate(half.month) : "—"],
+          ["Final payment", fmtDate(plan.months)]
+        ];
+        y = table(["Milestone", "When"], mileRows, y);
+        y = heading("When a windfall lands", y + 6);
+        y = body("Send extra one-off money — a bonus, a tax refund, a sold item — to the debts in your payoff order: " + plan.order.join(", then ") + ". Clear the first unfinished debt in the order, then move down the list. Keep your monthly budget the same afterward; the freed minimums roll into the next debt automatically in this plan's math.", y);
+
+        /* 7 — Back page */
+        y = heading("Keep going", y + 6);
+        y = body(sku === "B"
+          ? "Your bundle included the Pack 1 Debt Payoff Tracker — use it to log each month against this schedule. The free tools behind this plan live at honedsignal.com/money/debt/ — the Minimum Payment Trap, the Credit Card Payoff Analyzer, and the Snowball vs. Avalanche comparison run the same math whenever your numbers change."
+          : "The Pack 1 Debt Payoff Tracker (printable, on Etsy) pairs with this plan for month-by-month logging. The free tools behind this plan live at honedsignal.com/money/debt/ — the Minimum Payment Trap, the Credit Card Payoff Analyzer, and the Snowball vs. Avalanche comparison run the same math whenever your numbers change.", y);
+        y = body("Assumptions: interest is added monthly at balance × APR ÷ 12 before that month's payment; estimated minimums are modeled at 2% of the current balance with a $25 floor, recalculated monthly; typed-in minimums are held fixed; no new charges, no fees, APRs never change, every payment on time. Treat the dates as a map, not a promise.", y);
+        y = body("For informational and educational purposes only. This plan is an estimate generated from the numbers you entered and does not constitute financial advice, a recommendation, or a debt-relief service. Actual payoff timing and amounts may differ by lender.", y);
+
+        footer();
+        doc.save("honed-money-payoff-plan.pdf");
+        planStatus.textContent = "Your Payoff Plan PDF is downloading.";
+      }
     })();
   </script>
 <script>
