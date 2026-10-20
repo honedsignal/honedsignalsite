@@ -581,7 +581,21 @@
       <div class="plan-teaser" id="plan-panel">
         <h3>The Cut-List Action Plan</h3>
         <p>The scan finds the leaks. The Cut-List is the fix: a keep / downgrade / negotiate / cancel verdict for every charge on your list, the exact cancel path for each one, a 15-minute statement audit for the leaks no form can see, and a renewal calendar so next year's charges get caught before they hit. Generated from these exact numbers as a printable plan.</p>
-        <p><strong>$9.00</strong> on its own, or <strong>$14.95</strong> bundled with the Pack 2 Budget Planner — one-time, on Etsy, arriving with the shop launch. The scan stays free either way.</p>
+        <p><strong>$9.00</strong> on its own, or <strong>$14.95</strong> bundled with the Pack 2 Budget Planner — one-time, on Etsy. Already bought it? Enter the unlock code from your Etsy delivery:</p>
+        <div class="capture-row" id="unlock-row">
+          <label class="capture-label" for="unlock-code">Unlock code</label>
+          <input id="unlock-code" type="text" autocomplete="off" spellcheck="false" placeholder="HMCUT-XXXX-XXXX" />
+          <button class="primary" type="button" id="unlock-btn">Unlock my plan</button>
+        </div>
+        <p class="capture-status" id="unlock-status" role="status"></p>
+        <div class="plan-actions" id="plan-actions" hidden>
+          <p class="plan-ready"><strong>Plan unlocked on this device.</strong> Your Cut-List is generated here in your browser from the numbers in your scan — nothing is uploaded.</p>
+          <div class="capture-row">
+            <button class="primary" type="button" id="plan-download">Download my Cut-List Action Plan (PDF)</button>
+          </div>
+          <p class="capture-status" id="plan-status" role="status"></p>
+        </div>
+        <p class="teaser-note">The scan stays free either way. The unlock is remembered on this device, so you only enter the code once.</p>
       </div>
 
       <details>
@@ -914,6 +928,7 @@
           weldBtn.disabled = false;
         }
 
+        window.__leakScanFull = scan;
         window.__leakScan = {
           total_annual: scan.totalAnnual.toFixed(2),
           monthly_equiv: scan.monthlyEquiv.toFixed(2),
@@ -1052,6 +1067,320 @@
         }).catch(function () {
           captureStatus.textContent = "The send didn't go through. Your results are still on this screen — try again in a moment.";
           captureStatus.classList.add("error");
+        });
+      });
+
+      /* ===== Step 3: unlock + Cut-List Action Plan PDF ===== */
+      var UNLOCK_KEY = "hm_ls_unlock_v1";
+      var CODE_HASHES = {
+        "1c1d9ef9228f8896403030f3fc24479270de06ed60bfb2416af38467877e2e3d": "A",
+        "47df6f87447800011154fc08e06084bd2426698f88648d977cc0e18738875ddd": "A",
+        "fa1f9b36770505fb93073287d1f9641bcb366d2b06ec45baa19ef33bbbf26415": "B",
+        "deb8c56b06d4ebd70fca02bcbae9e2cc5c28fb1c2169ed37f0bc82c52ffca6dd": "B"
+      };
+
+      var unlockStatus = document.getElementById("unlock-status");
+      var planActions = document.getElementById("plan-actions");
+      function applyUnlock(sku) {
+        try { localStorage.setItem(UNLOCK_KEY, sku); } catch (e) {}
+        document.getElementById("unlock-row").hidden = true;
+        unlockStatus.textContent = sku === "B" ? "Unlocked with your bundle code (Cut-List + Budget Planner)." : "Unlocked with your Cut-List code.";
+        planActions.hidden = false;
+      }
+      function sha256Hex(text) {
+        return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(function (buf) {
+          return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
+        });
+      }
+      document.getElementById("unlock-btn").addEventListener("click", function () {
+        var code = document.getElementById("unlock-code").value.trim().toUpperCase().replace(/\s+/g, "");
+        unlockStatus.classList.remove("error");
+        if (!code) { unlockStatus.textContent = "Enter the code from your Etsy delivery."; unlockStatus.classList.add("error"); return; }
+        if (!crypto.subtle) { unlockStatus.textContent = "This browser can't verify codes here — open this page over https and try again."; unlockStatus.classList.add("error"); return; }
+        sha256Hex(code).then(function (hex) {
+          var sku = CODE_HASHES[hex];
+          if (sku) { applyUnlock(sku); }
+          else { unlockStatus.textContent = "That code isn't recognized. Check it against your Etsy delivery note and try again."; unlockStatus.classList.add("error"); }
+        });
+      });
+      (function restoreUnlock() {
+        var sku = null;
+        try { sku = localStorage.getItem(UNLOCK_KEY); } catch (e) {}
+        if (sku === "A" || sku === "B") applyUnlock(sku);
+      })();
+
+      /* CUTLIST-GEN-START */
+      function pfmt(n) {
+        return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+      function pfmt0(n) {
+        return "$" + Math.round(n).toLocaleString("en-US");
+      }
+
+      var KNOWN_PATHS = [
+        { keys: ["netflix"], path: "netflix.com > profile icon > Account > Cancel Membership. Access runs to the end of the paid period.", alt: "The ad-supported tier runs about half the standard price." },
+        { keys: ["disney"], path: "disneyplus.com > Profile > Account > Subscription > Cancel. If it bills through Apple, Roku, or Amazon, cancel in that store instead.", alt: "An ad-supported tier, or the Disney+/Hulu bundle, undercuts the standalone price." },
+        { keys: ["hulu"], path: "hulu.com > Account > under Your Subscription, Cancel. Bundled billing (Apple/Roku/Amazon) is cancelled in that store.", alt: "The Disney+/Hulu bundle usually beats two standalone bills." },
+        { keys: ["spotify"], path: "spotify.com/account > Manage your plan > Cancel Premium. Web only — the app can't cancel.", alt: "The free tier still plays the catalogue; Duo or Family splits one bill across the household." },
+        { keys: ["icloud", "apple"], path: "iPhone: Settings > your name > Subscriptions > tap it > Cancel. Anything billed by Apple is cancelled there, never inside the service's own app.", alt: "A photo-library cleanup often drops you a storage tier." },
+        { keys: ["youtube"], path: "youtube.com/paid_memberships > Deactivate, or YouTube app > Purchases and memberships.", alt: "Check for a Lite tier where offered — most of the ad-free benefit for less." },
+        { keys: ["prime", "amazon"], path: "amazon.com > Account > Prime Membership > End Membership. Expect several retention screens; the confirmation page is the finish line.", alt: "Prime Video is sold on its own for less than full Prime." },
+        { keys: ["gym", "fitness", "health club"], path: "Most gyms require written notice or an in-person visit. Check your contract for the notice window (often 30 days) and get the cancellation confirmed in writing or by email.", alt: "" },
+        { keys: ["dropbox"], path: "dropbox.com > avatar > Settings > Plan > Cancel plan. Download anything you need first if you're over the free quota.", alt: "" },
+        { keys: ["cloud", "storage", "drive"], path: "Download or move your files FIRST, then downgrade from the account's storage page — shrinking the quota before you've moved files is the one irreversible move here.", alt: "" }
+      ];
+      function knownFor(name) {
+        var n = name.toLowerCase();
+        for (var i = 0; i < KNOWN_PATHS.length; i++) {
+          for (var j = 0; j < KNOWN_PATHS[i].keys.length; j++) {
+            if (n.indexOf(KNOWN_PATHS[i].keys[j]) !== -1) return KNOWN_PATHS[i];
+          }
+        }
+        return null;
+      }
+      function genericPath(item) {
+        if (item.category === "apps") return "If it came from an app store, the cancel lives there: iPhone Settings > your name > Subscriptions, or Google Play > Payments & subscriptions > Subscriptions. Otherwise the provider's website > Account > Subscription.";
+        if (item.category === "streaming") return "Provider website or app > Account > Subscription > Cancel. If a bundle bills it through Apple, Roku, or Amazon, cancel in that store instead.";
+        if (item.category === "memberships") return "Memberships usually cancel from the provider's website (Account > Membership), but read the terms — some require notice before the renewal date, and a few require a call or a letter. Get the confirmation in writing.";
+        if (item.category === "fees") return "Call the bank and ask for the fee to be removed, waived going forward, or the account converted to a no-fee tier. Get the answer in the chat transcript or in writing.";
+        return "Start from the service's website: Account > Subscription or Billing > Cancel. If you subscribed through Apple, Google Play, Roku, or Amazon, the cancel lives in that store's subscription screen, not in the app.";
+      }
+
+      function computeVerdicts(items) {
+        var nameCounts = {};
+        items.forEach(function (i) { var k = i.name.toLowerCase(); nameCounts[k] = (nameCounts[k] || 0) + 1; });
+        var biggestAnnual = 0;
+        items.forEach(function (i) { if (i.annual > biggestAnnual) biggestAnnual = i.annual; });
+        return items.map(function (item) {
+          var v, reason, saving, savingKind;
+          var dup = nameCounts[item.name.toLowerCase()] > 1;
+          if (item.zombie && item.category === "fees") {
+            v = "Negotiate"; saving = item.annual; savingKind = "ceiling";
+            reason = "A fee attached to something you no longer use. Ask the bank to remove it or move the account — no-fee accounts exist, and this is " + pfmt(item.annual) + " a year for nothing.";
+          } else if (item.zombie) {
+            v = "Cancel"; saving = item.annual; savingKind = "firm";
+            reason = "You marked this " + (item.lastUsed === "cant" ? "\"can't remember\"" : "\"months ago\"") + " for last use — it's charging " + pfmt(item.annual) + " a year for something that isn't in your life right now. If you miss it, it will happily sell itself back to you.";
+          } else if (item.annual === biggestAnnual && item.lastUsed === "week" && items.length > 1) {
+            v = "Keep"; saving = 0; savingKind = "none";
+            reason = "Your biggest charge, and you used it this week — it's earning its keep. The only job here is a price check at renewal.";
+          } else if (item.category === "fees" && item.annual >= 60) {
+            v = "Negotiate"; saving = item.annual; savingKind = "ceiling";
+            reason = "Fees this size are worth one phone call — waiver and retention offers exist because customers ask. " + pfmt(item.annual) + " a year is the prize.";
+          } else if (item.cadence === "monthly" && item.annual >= 120) {
+            v = "Downgrade"; saving = Math.round(item.annual * 0.15); savingKind = "modeled";
+            reason = "In regular use, but monthly billing is the expensive way to pay: most services discount annual billing by roughly 10–20%. Check the annual plan and the cheaper tier before the next renewal.";
+          } else {
+            v = "Keep"; saving = 0; savingKind = "none";
+            reason = item.annual < 60
+              ? "Small, and in use — not worth the switching effort. It stays on the list so next year's scan can catch a price rise."
+              : "In regular use at a reasonable share of your list. Keep it, and let the yearly re-scan watch its price.";
+          }
+          if (dup) reason += " You listed this name twice — check you aren't being billed twice for the same service.";
+          var known = knownFor(item.name);
+          return {
+            item: item, verdict: v, reason: reason, saving: saving, savingKind: savingKind,
+            path: known ? known.path : genericPath(item),
+            alt: known ? known.alt : ""
+          };
+        });
+      }
+
+      function buildCutlistPdf(scan) {
+        var jsPDF = window.jspdf.jsPDF;
+        var doc = new jsPDF({ unit: "pt", format: "letter" });
+        var W = 612, M = 48, NAVY = [11, 14, 20], ORANGE = [247, 147, 26], TEAL = [46, 196, 182], GREY = [90, 98, 110], LIGHT = [238, 240, 243];
+        var sku = null;
+        try { sku = localStorage.getItem("hm_ls_unlock_v1"); } catch (e) {}
+        var today = new Date();
+        var dateStr = today.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+        var verdicts = computeVerdicts(scan.ranked);
+        var firm = 0, modeled = 0, ceiling = 0;
+        verdicts.forEach(function (r) {
+          if (r.savingKind === "firm") firm += r.saving;
+          else if (r.savingKind === "modeled") modeled += r.saving;
+          else if (r.savingKind === "ceiling") ceiling += r.saving;
+        });
+
+        function footer() {
+          var n = doc.getNumberOfPages();
+          for (var i = 1; i <= n; i++) {
+            doc.setPage(i);
+            doc.setFontSize(8); doc.setTextColor(GREY[0], GREY[1], GREY[2]);
+            doc.text("Honed Money — The Leak Scan · Cut-List Action Plan", M, 756);
+            doc.text("Page " + i + " of " + n, W - M, 756, { align: "right" });
+          }
+        }
+        function heading(text, y) {
+          doc.setFont("helvetica", "bold"); doc.setFontSize(15); doc.setTextColor(NAVY[0], NAVY[1], NAVY[2]);
+          doc.text(text, M, y);
+          doc.setDrawColor(ORANGE[0], ORANGE[1], ORANGE[2]); doc.setLineWidth(2);
+          doc.line(M, y + 6, M + 42, y + 6);
+          return y + 26;
+        }
+        function body(text, y, size) {
+          doc.setFont("helvetica", "normal"); doc.setFontSize(size || 10.5); doc.setTextColor(40, 44, 52);
+          var lines = doc.splitTextToSize(text, W - 2 * M);
+          doc.text(lines, M, y);
+          return y + lines.length * ((size || 10.5) * 1.45) + 6;
+        }
+        function table(head, rows, y, widths, fontSize) {
+          doc.autoTable({
+            head: [head], body: rows, startY: y, margin: { left: M, right: M },
+            styles: { fontSize: fontSize || 9.5, cellPadding: 5, textColor: [40, 44, 52] },
+            headStyles: { fillColor: NAVY, textColor: [255, 255, 255], fontStyle: "bold" },
+            alternateRowStyles: { fillColor: LIGHT },
+            columnStyles: widths || {}
+          });
+          return doc.lastAutoTable.finalY + 18;
+        }
+
+        /* 1 — Cover */
+        doc.setFillColor(NAVY[0], NAVY[1], NAVY[2]); doc.rect(0, 0, W, 792, "F");
+        doc.setFillColor(ORANGE[0], ORANGE[1], ORANGE[2]); doc.rect(0, 300, W, 5, "F");
+        doc.setTextColor(255, 255, 255); doc.setFont("helvetica", "bold"); doc.setFontSize(30);
+        doc.text("Your Cut-List Action Plan", M, 258);
+        doc.setFontSize(13); doc.setFont("helvetica", "normal"); doc.setTextColor(TEAL[0], TEAL[1], TEAL[2]);
+        doc.text("Honed Money — Money makes sense.", M, 284);
+        doc.setTextColor(220, 224, 230); doc.setFontSize(12);
+        doc.text("Generated " + dateStr + " from your Leak Scan.", M, 348);
+        doc.text("Total annual leak: " + pfmt(scan.totalAnnual) + " across " + scan.ranked.length + (scan.ranked.length === 1 ? " charge" : " charges"), M, 374);
+        doc.text("Zombie subtotal: " + pfmt(scan.zombieAnnual) + " a year", M, 398);
+        doc.text("Firm savings from cancels alone: " + pfmt(firm) + " a year", M, 422);
+        doc.setFontSize(10); doc.setTextColor(160, 166, 176);
+        doc.text("This plan was generated in your browser. Your numbers were never uploaded.", M, 700);
+
+        /* 2 — Verdicts */
+        doc.addPage();
+        var y = heading("The verdicts — every charge, one call", 64);
+        y = body("Verdicts are educational, built from your own entries and your last-used answers. Keep is a real verdict: a plan that says cancel everything is a plan nobody follows.", y);
+        var vRows = verdicts.map(function (r) {
+          var saving = r.savingKind === "firm" ? pfmt(r.saving) + "/yr"
+            : r.savingKind === "modeled" ? "~" + pfmt(r.saving) + "/yr"
+            : r.savingKind === "ceiling" ? "up to " + pfmt(r.saving) + "/yr" : "—";
+          return [r.item.name, pfmt(r.item.annual), r.verdict, r.reason, saving];
+        });
+        y = table(["Charge", "$ / yr", "Verdict", "Why", "Saving"], vRows, y, { 0: { cellWidth: 82 }, 1: { cellWidth: 52 }, 2: { cellWidth: 58 }, 4: { cellWidth: 66 } });
+
+        /* 3 — Savings summary */
+        if (y > 560) { doc.addPage(); y = 64; }
+        y = heading("What acting on this list is worth", y + 6);
+        var sRows = [
+          ["Cancel verdicts (firm)", pfmt(firm) + " / yr", pfmt(firm / 12) + " / mo"],
+          ["Downgrade verdicts (modeled at ~15%)", "~" + pfmt(modeled) + " / yr", "~" + pfmt(modeled / 12) + " / mo"],
+          ["Negotiate verdicts (ceiling, if fully won)", "up to " + pfmt(ceiling) + " / yr", "up to " + pfmt(ceiling / 12) + " / mo"]
+        ];
+        y = table(["Bucket", "Per year", "Per month"], sRows, y);
+        y = body("Only the first row is money you can count on the day you act. The downgrade row models the typical 10–20% annual-billing discount at 15%; the negotiate row is the ceiling, not a promise — real outcomes land between the firm row and the ceiling.", y);
+
+        /* 4 — Cancel paths */
+        doc.addPage();
+        y = heading("Cancel and negotiation paths", 64);
+        y = body("For every charge marked Cancel or Negotiate. Paths are as of October 2026 — they change, and if a step has moved, the in-app or account subscription screen is the source of truth.", y);
+        var actionRows = verdicts.filter(function (r) { return r.verdict === "Cancel" || r.verdict === "Negotiate"; })
+          .map(function (r) { return [r.item.name, r.path + (r.alt ? " Cheaper tier worth checking: " + r.alt : "")]; });
+        if (actionRows.length) {
+          y = table(["Charge", "How"], actionRows, y, { 0: { cellWidth: 110 } });
+        } else {
+          y = body("Nothing on your list carries a Cancel or Negotiate verdict — this section is here for the next scan.", y);
+        }
+        y = body("One rule for every path: never end a cancellation without the confirmation screen, email, or chat transcript. A cancellation you can't prove is a charge that comes back.", y);
+
+        /* 5 — Statement audit */
+        doc.addPage();
+        y = heading("The 15-minute statement audit", 64);
+        y = body("Your scan totals what you entered. These are the places the charges you didn't enter are hiding — work through them once, and write in anything new you find.", y);
+        var audit = [
+          "1. Phone subscription screens: iPhone Settings > your name > Subscriptions; Android: Google Play > Payments & subscriptions. Cancel the dead ones on the spot.",
+          "2. PayPal: Settings > Payments > Manage automatic payments — the pre-approved charges nobody remembers approving.",
+          "3. Bank and card statements, last 3 months: scan for small monthly amounts, the word \"recurring\", and any annual charge you forgot exists.",
+          "4. Email inbox, last 60 days: search \"renewal\", \"receipt\", \"trial ends\", \"price increase\".",
+          "5. Free trials started in the last 90 days — converted trials bill quietly and rarely announce themselves.",
+          "6. Household duplicates: two people in the same home paying separately for the same service.",
+          "7. Annual renewals landing in the next 90 days — decide before they charge, not after.",
+          "8. Bundled add-ons: phone plans, warehouse clubs, streaming bundles — the extras you never activated still bill."
+        ];
+        audit.forEach(function (line) { y = body(line, y); });
+        var blankRows = [];
+        for (var b = 0; b < 6; b++) blankRows.push(["", "", "", "", ""]);
+        y = table(["Charge found", "$", "Billed", "Last used", "Verdict"], blankRows, y + 4);
+
+        /* 6 — Rate leaks (checklist kind) */
+        if (y > 520) { doc.addPage(); y = 64; }
+        y = heading("Rate leaks — the checklist kind", y + 6);
+        y = body("Not subscriptions, so the scan doesn't compute them — but each of these quietly out-leaks most subscription lists. Check them once a year.", y);
+        var rates = [
+          "Insurance: has your auto or home coverage been requoted in the last two years? Rates creep at renewal; a requote is the audit.",
+          "Idle cash: a checking account paying ~0.01% beside high-yield savings paying several percent is a slow leak. The fix is a transfer habit, not a new-account spree.",
+          "Internet and phone: intro rates expire quietly, and tiers above what the household uses bill forever. Check the current bill against the current advertised price.",
+          "Utility plan (where you can choose): fixed vs. variable — read the renewal letter, not the teaser rate.",
+          "Interest running the other way: a card balance at 25%+ APR out-leaks every subscription on your list combined. That one has its own scan — the Debt Scan."
+        ];
+        rates.forEach(function (line) { y = body("•  " + line, y); });
+
+        /* 7 — Renewal pattern */
+        doc.addPage();
+        y = heading("Your year of charges", 64);
+        y = body("When each charge hits, by month, starting next month. The pattern is projected from your billing cycles — pin the exact renewal dates in the Subscription Tracker (or Pack 2's tracker pages) and this becomes a calendar that catches renewals before they charge.", y);
+        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var startMonth = (today.getMonth() + 1) % 12;
+        var head = ["Charge"];
+        for (var mi = 0; mi < 12; mi++) head.push(monthNames[(startMonth + mi) % 12]);
+        var calRows = scan.ranked.map(function (item) {
+          var perYear = CADENCES[item.cadence] ? CADENCES[item.cadence].perYear : 12;
+          var row = [item.name];
+          for (var k = 0; k < 12; k++) {
+            var hits = perYear >= 12 ? true : (k % (12 / perYear)) === 0;
+            row.push(hits ? "•" : "·");
+          }
+          return row;
+        });
+        y = table(head, calRows, y, { 0: { cellWidth: 128 } }, 8);
+
+        /* 8 — Redirect */
+        doc.addPage();
+        y = heading("Put the freed money to work", 64);
+        var freedMo = firm / 12;
+        y = body("Cancelling just the firm verdicts frees " + pfmt(freedMo) + " a month — " + pfmt(firm) + " a year. Money that vague usually evaporates; money with a job doesn't. The highest-paid job most households can give it is an extra payment on their most expensive debt.", y);
+        y = body("Worked example: the Debt Scan's demo household carries about $55,300 across six debts. On minimums alone that stack takes nearly a decade and over $31,000 in interest. Adding a freed " + pfmt0(freedMo) + " a month on top of the minimums is exactly the kind of move the Debt Scan models — run your real numbers there, and use the button on your Leak Scan results: it carries this figure across for you.", y);
+        y = body(sku === "B"
+          ? "Your bundle includes Pack 2 — the Budget Planner. Its Subscriptions page and Subscription Tracker page are the system this list lives in from now on: verdicts decided here, renewal dates watched there."
+          : "Keeping the list current is a system, not a memory: the free Subscription Tracker on Honed Money — or Pack 2, the Budget Planner, whose Subscriptions and Subscription Tracker pages were built for exactly this — holds the renewal dates so next year's scan starts from a list, not from scratch.", y);
+        y = heading("About this plan", y + 8);
+        y = body("Generated on your device from your Leak Scan entries; nothing was uploaded. Annualized figures use weekly ×52, monthly ×12, quarterly ×4, every 6 months ×2, yearly ×1. Verdicts are educational and based on your entries and last-used answers. Downgrade savings are modeled at roughly 15% (typical annual-billing discounts run 10–20% where offered); negotiation figures are ceilings, not promises. Cancel paths are as of October 2026 and change without notice. Free tools behind this plan: the Leak Scan, Subscription Cost Analyzer, Subscription Tracker, and the Debt Scan — all at honedsignal.com/money.", y);
+        y = body("For informational and educational purposes only. Figures are money you could redirect based on your own entries — not a savings guarantee, and not financial advice.", y);
+
+        footer();
+        return doc;
+      }
+      /* CUTLIST-GEN-END */
+
+      var planStatus = document.getElementById("plan-status");
+      function loadScript(src) {
+        return new Promise(function (resolve, reject) {
+          var s = document.createElement("script");
+          s.src = src; s.onload = resolve; s.onerror = reject;
+          document.head.appendChild(s);
+        });
+      }
+      var pdfLibs = null;
+      function ensurePdfLibs() {
+        if (pdfLibs) return pdfLibs;
+        pdfLibs = loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")
+          .then(function () { return loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"); });
+        return pdfLibs;
+      }
+      document.getElementById("plan-download").addEventListener("click", function () {
+        var scan = window.__leakScanFull;
+        planStatus.classList.remove("error");
+        if (!scan || !scan.ranked || !scan.ranked.length) { planStatus.textContent = "Run your scan first — the plan is generated from the numbers on this screen."; planStatus.classList.add("error"); return; }
+        planStatus.textContent = "Building your Cut-List…";
+        ensurePdfLibs().then(function () {
+          var doc = buildCutlistPdf(scan);
+          doc.save("cut-list-action-plan.pdf");
+          planStatus.textContent = "Your Cut-List Action Plan downloaded — check your downloads folder.";
+        }).catch(function () {
+          planStatus.textContent = "The PDF library couldn't load. Check your connection and try again.";
+          planStatus.classList.add("error");
         });
       });
     })();
