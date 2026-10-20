@@ -538,6 +538,15 @@
         <p class="capture-status" id="capture-status" role="status"></p>
       </div>
 
+      <style>.btn-link{display:inline-flex;align-items:center;min-height:46px;padding:10px 18px;border-radius:5px;font-weight:700;text-decoration:none}</style>
+      <div class="email-capture" id="leak-crosslink">
+        <h3>Need to find the extra money first?</h3>
+        <p>Subscriptions and fees you no longer use are the fastest extra payment you'll ever find. The free Leak Scan totals them in about three minutes — and the zombie money it finds lands right back here as an extra payment on this scan.</p>
+        <div class="capture-row">
+          <a class="primary btn-link" href="/money/leak-scan/">Run the free Leak Scan</a>
+        </div>
+      </div>
+
       <div class="plan-teaser" id="plan-panel">
         <h3>Your full Payoff Plan</h3>
         <p>The scan is the diagnosis. The Payoff Plan is the fix: your month-by-month payoff schedule, your payoff order with dates, and what an extra $50, $100, or $200 a month would do to the timeline — generated from these exact numbers as a printable plan you can follow.</p>
@@ -808,6 +817,13 @@
       var budgetNote = document.getElementById("budget-note");
       var monthlyEl = document.getElementById("monthly-amount");
       var staleNote = document.getElementById("stale-note");
+      /* Leak Scan weld: ?extra= carries freed zombie money in as an extra payment. */
+      var leakExtra = 0;
+      try {
+        var extraParam = new URLSearchParams(window.location.search).get("extra");
+        var extraVal = extraParam === null ? 0 : Number(extraParam);
+        if (isFinite(extraVal) && extraVal > 0 && extraVal <= 100000) leakExtra = Math.round(extraVal * 100) / 100;
+      } catch (e) { leakExtra = 0; }
       var nextRowId = 0;
 
       function markStale() {
@@ -975,7 +991,7 @@
         var clamped = false;
         var entered = null;
         if (monthlyEl.value === "") {
-          budget = minimumsTotal;
+          budget = leakExtra > 0 ? minimumsTotal + leakExtra : minimumsTotal;
         } else {
           entered = Number(monthlyEl.value);
           if (!isFinite(entered) || entered < 0) {
@@ -1025,6 +1041,11 @@
 
         if (clamped) {
           budgetNote.textContent = "You entered " + money(entered) + ", which is less than your " + money(minimumsTotal) + " minimums — lenders require the minimums, so the plan uses " + money(budget) + "/mo.";
+          budgetNote.classList.add("show");
+        }
+
+        if (!clamped && monthlyEl.value === "" && leakExtra > 0) {
+          budgetNote.textContent = "Your plan budget includes the " + money(leakExtra) + "/mo you freed in the Leak Scan, on top of your " + money(minimumsTotal) + " minimums — " + money(budget) + "/mo in total. Enter your own monthly amount above any time to override it.";
           budgetNote.classList.add("show");
         }
 
