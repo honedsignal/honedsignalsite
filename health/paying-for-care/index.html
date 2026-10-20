@@ -168,9 +168,9 @@
         background: var(--accent);
       }
 
-      .tool-card:nth-child(1) { --accent: var(--blue); --icon-bg: var(--blue-soft); }
-      .tool-card:nth-child(2) { --accent: var(--orange); --icon-bg: var(--orange-soft); }
-      .tool-card:nth-child(3) { --accent: var(--green); --icon-bg: var(--green-soft); }
+      .tool-card:nth-child(3n+1) { --accent: var(--blue); --icon-bg: var(--blue-soft); }
+      .tool-card:nth-child(3n+2) { --accent: var(--orange); --icon-bg: var(--orange-soft); }
+      .tool-card:nth-child(3n) { --accent: var(--green); --icon-bg: var(--green-soft); }
 
       .card-inner {
         display: flex;
