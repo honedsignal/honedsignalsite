@@ -79,7 +79,7 @@
       </div>
       <p>What it never does: <strong>log in, submit forms, create accounts, or bypass paywalls or bot checks.</strong> If a site stops it, the scan reports "blocked" and ends. It does not retry in disguise, rotate identities, or pretend to be a browser.</p>
       <div class="callout">
-        <p><strong>One wrinkle, stated plainly:</strong> the free scan on this site introduces itself with a sibling name — <code>HonedSignalSiteScan/1.0 (+https://honedsignal.com/site-scan/)</code>. The allowlist steps below match on the word <strong>HonedSignal</strong>, which covers both names with one rule.</p>
+        <p><strong>One name, everywhere:</strong> the free scan on this site and the Full Site Report use this same scanner and this same user-agent string. The allowlist steps below match on the word <strong>HonedSignal</strong> — one rule lets both in.</p>
       </div>
 
       <h2>Why the scan came back "blocked"</h2>
@@ -91,7 +91,7 @@
         <li>Log in to your Cloudflare dashboard and select your site.</li>
         <li>Go to <strong>Security &rarr; WAF &rarr; Custom rules</strong>, then <strong>Create rule</strong>. (On the newer dashboard layout this lives under <strong>Security &rarr; Security rules &rarr; Create rule &rarr; Custom rules</strong> — same rule, new hallway.)</li>
         <li>Name it something like <em>Allow Honed Signal scanner</em>.</li>
-        <li>Under <strong>When incoming requests match</strong>: set Field to <strong>User Agent</strong>, Operator to <strong>contains</strong>, and Value to <strong>HonedSignal</strong>. That one word matches both of our scanner names.</li>
+        <li>Under <strong>When incoming requests match</strong>: set Field to <strong>User Agent</strong>, Operator to <strong>contains</strong>, and Value to <strong>HonedSignal</strong>. That one word is the scanner's name, so the rule matches its full user-agent string.</li>
         <li>Under <strong>Then take action</strong>: choose <strong>Skip</strong>, and tick the components your plan offers — Super Bot Fight Mode rules, WAF Managed Rules, Rate Limiting rules. If your plan doesn't offer Skip, choose <strong>Allow</strong> instead: that gets the scanner past the firewall rules, though it can't excuse it from Super Bot Fight Mode (see the notes below).</li>
         <li>Drag the rule to the <strong>top</strong> of your custom rules list — rules run in order, and a blocking rule above it wins — then click <strong>Deploy</strong>.</li>
       </ol>
@@ -106,7 +106,7 @@
         <code>HonedSignalBot/1.0 (+https://honedsignal.com/)</code>
       </div>
       <ul>
-        <li><strong>WordPress security plugins (Wordfence and similar):</strong> look for an allowlist or whitelist for user agents or bot rules in the firewall settings, and add the string above. Matching just <strong>HonedSignal</strong> covers both scanner names.</li>
+        <li><strong>WordPress security plugins (Wordfence and similar):</strong> look for an allowlist or whitelist for user agents or bot rules in the firewall settings, and add the string above. Matching just <strong>HonedSignal</strong> is enough — it's the name both the free scan and the Full Report use.</li>
         <li><strong>Host firewalls and ModSecurity setups:</strong> the setting may be buried or support-only. Paste the string to your host's support team and ask them to allow that user agent through the firewall — it's a routine request, and they will know where it goes.</li>
         <li><strong>Another CDN or firewall:</strong> same idea — an allowlist entry for the user agent, wherever that product keeps its bot rules.</li>
       </ul>
