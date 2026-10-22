@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etsy authorization — Honed Signal shop tools</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://honedsignal.com/oauth/etsy-callback">
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+  <style>
+    body { background:#0b0e14; color:#e8ecf1; font-family: system-ui, -apple-system, sans-serif; margin:0; padding:32px 20px; }
+    .wrap { max-width:640px; margin:0 auto; }
+    h1 { font-size:24px; color:#2EC4B6; }
+    p { font-size:17px; line-height:1.55; }
+    .codebox { background:#131926; border:2px solid #FF6B35; border-radius:12px; padding:18px; margin:22px 0; word-break:break-all; font-family: ui-monospace, Menlo, monospace; font-size:15px; line-height:1.6; }
+    button { background:#FF6B35; color:#0b0e14; border:0; border-radius:10px; font-size:18px; font-weight:700; padding:14px 22px; width:100%; }
+    .ok { color:#2EC4B6; font-weight:700; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 id="headline">Etsy authorization</h1>
+    <p id="msg">Reading the authorization code…</p>
+    <div class="codebox" id="codebox" style="display:none"></div>
+    <button id="copybtn" style="display:none">Copy the full callback address</button>
+    <p id="done" class="ok" style="display:none">Copied. Now paste it into your chat with Huxley.</p>
+  </div>
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var code = params.get('code');
+    var box = document.getElementById('codebox');
+    var msg = document.getElementById('msg');
+    var btn = document.getElementById('copybtn');
+    if (code) {
+      document.getElementById('headline').textContent = 'Authorization received';
+      msg.innerHTML = 'Etsy sent back a one-time code. <strong>Copy the address below and paste it into your chat with Huxley</strong> — or just take a screenshot of this page and send that.';
+      box.textContent = window.location.href;
+      box.style.display = 'block';
+      btn.style.display = 'block';
+      btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(window.location.href).then(function () {
+          document.getElementById('done').style.display = 'block';
+        });
+      });
+    } else {
+      msg.textContent = 'This page is the landing spot for the Honed Signal Etsy shop-tools authorization. If you arrived here without a code, start the authorization from the link Huxley sent you.';
+    }
+  </script>
+</body>
+</html>
