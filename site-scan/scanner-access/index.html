@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let the Honed Signal scanner in — instructions for site owners | Creator Site Scan</title>
+  <meta name="description" content="Your bot protection blocked our scanner? Nothing is broken — here's what HonedSignalBot is, why it got stopped, and the two-minute allowlist rule (Cloudflare and others) that lets it in.">
+  <link rel="canonical" href="https://honedsignal.com/site-scan/scanner-access/">
+  <meta property="og:title" content="Let the Honed Signal scanner in — instructions for site owners | Creator Site Scan">
+  <meta property="og:description" content="What our scanner is, why your bot protection stopped it, and the two-minute allowlist fix.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://honedsignal.com/assets/og-signal.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://honedsignal.com/assets/og-signal.png">
+  <meta name="theme-color" content="#0B0E14">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/style.css?v=2">
+  <style>
+    .doc { max-width: 760px; margin: 0 auto; padding: 2.5rem 1.25rem 1rem; }
+    .doc h1 { font-size: 2.1rem; line-height: 1.2; margin: 0 0 0.75rem; }
+    .doc .lede { color: var(--muted); font-size: 1.08rem; margin: 0 0 2rem; }
+    .doc h2 { color: var(--paper); font-size: 1.35rem; margin: 2.25rem 0 0.6rem; }
+    .doc p { color: var(--muted); margin: 0 0 1rem; }
+    .doc p strong, .doc li strong { color: var(--paper); }
+    .doc ul, .doc ol { color: var(--muted); margin: 0 0 1rem; padding-left: 1.4rem; }
+    .doc li { margin-bottom: 0.45rem; }
+    .doc a { color: var(--blue); }
+    .ua-block { background: var(--card); border: 1px solid #2A3448; border-radius: var(--radius);
+      padding: 1rem 1.1rem; margin: 0 0 1rem; }
+    .ua-block code { display: block; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.98rem; color: var(--paper); word-break: break-all; margin-bottom: 0.7rem; }
+    .copy-btn { background: transparent; color: var(--blue); border: 1px solid #2A3448;
+      border-radius: var(--radius); padding: 0.45rem 0.95rem; cursor: pointer; font-size: 0.92rem; }
+    .copy-btn:hover, .copy-btn:focus { border-color: var(--blue); }
+    .callout { background: var(--card); border: 1px solid #1E2635; border-left: 4px solid var(--blue);
+      border-radius: var(--radius); padding: 1.1rem 1.25rem; margin: 0 0 1rem; }
+    .callout p { margin: 0 0 0.6rem; }
+    .callout p:last-child { margin-bottom: 0; }
+    .steps li { margin-bottom: 0.65rem; }
+    .back { max-width: 760px; margin: 0 auto; padding: 1.25rem 1.25rem 0; }
+    .back a { color: var(--blue); text-decoration: none; font-size: 0.95rem; }
+    .back a:hover, .back a:focus { text-decoration: underline; }
+  </style>
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="wordmark" href="/" aria-label="Honed Signal home">
+        <img class="brand-mark" src="/assets/logos/honed-signal-mark.png" alt="" width="34" height="34">
+        Honed Signal<span class="dot" aria-hidden="true"></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/money/"><img class="brand-mark-sm" src="/assets/logos/honed-money-mark.png" alt="" width="22" height="22">Honed Money</a></li>
+        <li><a href="/education/"><img class="brand-mark-sm" src="/assets/logos/honed-flint-mark.png" alt="" width="22" height="22">Honed Flint</a></li>
+        <li><a href="/health/"><img class="brand-mark-sm" src="/assets/logos/honed-proof-mark.png" alt="" width="22" height="22">Honed Proof</a></li>
+        <li><a href="/reports/">Reports</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <p class="back"><a href="/site-scan/">&larr; Back to the Creator Site Scan</a></p>
+    <article class="doc">
+      <h1>Blocked our scanner? Here's how to let it in.</h1>
+      <p class="lede">If you ran the free Creator Site Scan — or asked us for a Full Site Report — and got "blocked" instead of a score, nothing is wrong with your site. Your bot protection did exactly its job. This page is the fix: what our scanner is, why it got stopped, and the two-minute allowlist change that lets it through.</p>
+
+      <h2>Meet the scanner</h2>
+      <p>Our scanner is called <strong>HonedSignalBot</strong>, run by Honed Signal. It fetches <strong>public pages only</strong> — the same pages any visitor can open — and checks their technical health: page titles, canonical tags, broken links, and whether a sitemap exists. That is the whole list.</p>
+      <p>It identifies itself honestly, with this exact user-agent string on every visit:</p>
+      <div class="ua-block">
+        <code id="ua-string">HonedSignalBot/1.0 (+https://honedsignal.com/)</code>
+        <button class="copy-btn" type="button" id="copy-ua">Copy the user-agent string</button>
+      </div>
+      <p>What it never does: <strong>log in, submit forms, create accounts, or bypass paywalls or bot checks.</strong> If a site stops it, the scan reports "blocked" and ends. It does not retry in disguise, rotate identities, or pretend to be a browser.</p>
+      <div class="callout">
+        <p><strong>One wrinkle, stated plainly:</strong> the free scan on this site introduces itself with a sibling name — <code>HonedSignalSiteScan/1.0 (+https://honedsignal.com/site-scan/)</code>. The allowlist steps below match on the word <strong>HonedSignal</strong>, which covers both names with one rule.</p>
+      </div>
+
+      <h2>Why the scan came back "blocked"</h2>
+      <p>Bot protection — Cloudflare's is the one we meet most — treats unknown bots as threats by default. That's the safe default, and it's the protection working as intended. Our scanner doesn't pretend to be a person's browser, so it gets the "Just a moment…" challenge page or a flat 403 instead of your site.</p>
+      <p>The fix is to tell the protection that one named guest is expected: an <strong>allowlist rule for our user agent</strong>. It takes about two minutes, and it can be undone in one click.</p>
+
+      <h2>If your site is on Cloudflare</h2>
+      <ol class="steps">
+        <li>Log in to your Cloudflare dashboard and select your site.</li>
+        <li>Go to <strong>Security &rarr; WAF &rarr; Custom rules</strong>, then <strong>Create rule</strong>. (On the newer dashboard layout this lives under <strong>Security &rarr; Security rules &rarr; Create rule &rarr; Custom rules</strong> — same rule, new hallway.)</li>
+        <li>Name it something like <em>Allow Honed Signal scanner</em>.</li>
+        <li>Under <strong>When incoming requests match</strong>: set Field to <strong>User Agent</strong>, Operator to <strong>contains</strong>, and Value to <strong>HonedSignal</strong>. That one word matches both of our scanner names.</li>
+        <li>Under <strong>Then take action</strong>: choose <strong>Skip</strong>, and tick the components your plan offers — Super Bot Fight Mode rules, WAF Managed Rules, Rate Limiting rules. If your plan doesn't offer Skip, choose <strong>Allow</strong> instead: that gets the scanner past the firewall rules, though it can't excuse it from Super Bot Fight Mode (see the notes below).</li>
+        <li>Drag the rule to the <strong>top</strong> of your custom rules list — rules run in order, and a blocking rule above it wins — then click <strong>Deploy</strong>.</li>
+      </ol>
+      <div class="callout">
+        <p><strong>Free plan, Bot Fight Mode on?</strong> Cloudflare's free Bot Fight Mode can't be skipped by any custom rule — Cloudflare doesn't allow exceptions to it. If it's switched on and it's the thing stopping the scan, the choices are turning Bot Fight Mode off, or moving to a paid plan, where Super Bot Fight Mode does honor the Skip rule above.</p>
+        <p><strong>Paid plan, Super Bot Fight Mode?</strong> It's configured under <strong>Security &rarr; Bots</strong>, but it has no per-bot guest list of its own. The Skip custom rule in the steps above is Cloudflare's own documented way to excuse one named tool — labels vary a little by plan and dashboard version, but the rule itself is the same.</p>
+      </div>
+
+      <h2>Other setups: hosts, firewalls, and security plugins</h2>
+      <p>Any system that filters visitors by user agent can make the same exception. Hand it this exact string:</p>
+      <div class="ua-block">
+        <code>HonedSignalBot/1.0 (+https://honedsignal.com/)</code>
+      </div>
+      <ul>
+        <li><strong>WordPress security plugins (Wordfence and similar):</strong> look for an allowlist or whitelist for user agents or bot rules in the firewall settings, and add the string above. Matching just <strong>HonedSignal</strong> covers both scanner names.</li>
+        <li><strong>Host firewalls and ModSecurity setups:</strong> the setting may be buried or support-only. Paste the string to your host's support team and ask them to allow that user agent through the firewall — it's a routine request, and they will know where it goes.</li>
+        <li><strong>Another CDN or firewall:</strong> same idea — an allowlist entry for the user agent, wherever that product keeps its bot rules.</li>
+      </ul>
+
+      <h2>A word about robots.txt</h2>
+      <p>Our scanner does not read robots.txt. So editing yours won't let the scanner in — and robots.txt isn't what kept it out, either. robots.txt is a notice board for crawlers, not a lock. The lock is your firewall or bot protection, and the allowlist rule above is the key.</p>
+
+      <h2>Done? Run the scan again</h2>
+      <p>Once the rule is deployed, <a href="/site-scan/">re-run the free scan</a> — it should come back with a score instead of "blocked". If you've ordered a Full Site Report, email us and we'll re-run the full sweep; one free re-scan is already part of every report.</p>
+      <p><button class="copy-btn" type="button" id="email-us">Email us about a scan</button></p>
+
+      <h2>For the cautious</h2>
+      <ul>
+        <li><strong>It's reversible.</strong> The rule can be deleted in one click, any time. Nothing about it is permanent.</li>
+        <li><strong>It's visible.</strong> Every one of the scanner's visits appears in your logs under its real name — no disguises, so you can see exactly what it fetched and when.</li>
+        <li><strong>It's narrow.</strong> The rule matches one named user agent on public pages — not a network, not a company, not a back door.</li>
+        <li><strong>One honest caveat:</strong> a user-agent string is a name tag, not an ID card — anything can claim a name. That makes UA allowlists a good gate for a scanner that only reads public pages, and a bad lock for anything private. Don't use one to protect pages that need real security.</li>
+      </ul>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p class="disclaimer">The Creator Site Scan checks technical health only. It is not a security audit, and it does not guarantee search rankings or traffic. Scans fetch public pages only and identify themselves (HonedSignalBot) when they visit.</p>
+    <p class="copyright">© 2026 Honed Signal — No hype. No noise.</p>
+  </footer>
+  <script>
+    document.getElementById("copy-ua").addEventListener("click", function () {
+      var btn = this;
+      function done(msg) {
+        btn.textContent = msg;
+        setTimeout(function () { btn.textContent = "Copy the user-agent string"; }, 2000);
+      }
+      var text = document.getElementById("ua-string").textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done("Copied!"); }, function () { done("Copy failed — select the text above"); });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); done("Copied!"); } catch (e) { done("Copy failed — select the text above"); }
+        document.body.removeChild(ta);
+      }
+    });
+
+    // Compose the address at click time so it is never a literal in the page.
+    document.getElementById("email-us").addEventListener("click", function () {
+      var addr = "contact" + "@" + "honedsignal.com";
+      var link = document.createElement("a");
+      link.href = "mail" + "to:" + addr + "?subject=" + encodeURIComponent("Creator Site Scan — scanner allowlisted");
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  </script>
+</body>
+</html>
