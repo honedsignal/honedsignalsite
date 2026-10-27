@@ -450,7 +450,7 @@
           <ul class="breakdown" id="breakdown" aria-label="Budget breakdown"></ul>
 
           <div class="actions">
-            <a class="action email" id="emailResults" href="mailto:">Email my results</a>
+            <a class="action email" id="emailResults" href="#">Email my results</a>
             <button class="action copy" id="copyResults" type="button">Copy results</button>
           </div>
           <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
@@ -596,7 +596,7 @@
           'For informational purposes only. This estimate is based on the amounts entered and is not a vendor quote.'
         ];
         latestText = lines.join('\n');
-        emailEl.href = 'mailto:?subject=' + encodeURIComponent('My wedding budget estimate') + '&body=' + encodeURIComponent(latestText);
+        emailEl.href = 'mail'+'to:?subject=' + encodeURIComponent('My wedding budget estimate') + '&body=' + encodeURIComponent(latestText);
 
         emptyState.style.display = 'none';
         results.classList.add('active');

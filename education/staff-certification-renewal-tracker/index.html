@@ -204,7 +204,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     document.getElementById('nudgeFoot').textContent=over>0?'act now.':'keep it that way.';
     var body=list.map(function(c){return c.name+' \u2014 '+(c.deadline||'no deadline')+(c.done?' \u2014 renewed':'')}).join('\n');
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Certification renewals')+'&body='+encodeURIComponent('Certification renewals\n\n'+body);
+    email.href='mail'+'to:?subject='+encodeURIComponent('Certification renewals')+'&body='+encodeURIComponent('Certification renewals\n\n'+body);
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

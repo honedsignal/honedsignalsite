@@ -187,7 +187,7 @@
     document.getElementById('nudgeFoot').textContent='See the deduction bunching calculator in What\u2019s next below.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Tithing tax savings results')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Tithing tax savings results')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

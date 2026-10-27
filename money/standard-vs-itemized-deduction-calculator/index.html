@@ -193,7 +193,7 @@
           </section>
 
           <section class="share">
-            <div class="share-head"><h2>Take the comparison with you</h2><div class="actions"><button class="action" id="copyButton" type="button">Copy results</button><a class="action email" id="emailButton" href="mailto:">Email my results</a></div></div>
+            <div class="share-head"><h2>Take the comparison with you</h2><div class="actions"><button class="action" id="copyButton" type="button">Copy results</button><a class="action email" id="emailButton" href="#">Email my results</a></div></div>
             <p class="notice" id="copyNotice" role="status"></p>
           </section>
         </div>
@@ -286,7 +286,7 @@
     currentText=[
       "2026 Standard vs. Itemized Deduction Comparison","",rule.label,"Adjusted gross income: "+moneyExact(agi),"Standard deduction: "+moneyExact(standard),"Mortgage interest entered: "+moneyExact(mortgage),"State and local taxes entered: "+moneyExact(salt),"State and local taxes counted: "+moneyExact(saltAllowed),"Charitable gifts entered: "+moneyExact(charity),"Medical expenses entered: "+moneyExact(medical),"Medical-expense floor: "+moneyExact(medicalFloor),"Medical expenses counted: "+moneyExact(medicalAllowed),"Estimated itemized deductions: "+moneyExact(itemized),"Difference: "+moneyExact(difference),winnerSentence,"","Estimate only — not tax advice. This simplified comparison does not determine eligibility or calculate every federal deduction limit."
     ].join("\n");
-    emailButton.href="mailto:?subject="+encodeURIComponent("My 2026 deduction comparison")+"&body="+encodeURIComponent(currentText);
+    emailButton.href="mail"+"to:?subject="+encodeURIComponent("My 2026 deduction comparison")+"&body="+encodeURIComponent(currentText);
     requestAnimationFrame(function(){resultState.scrollIntoView({behavior:"smooth",block:"nearest"});});
   });
 

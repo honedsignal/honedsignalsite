@@ -601,7 +601,7 @@
       <div class="plain-english"><p id="plain-summary"></p></div>
 
       <div class="result-actions">
-        <a class="secondary email-button action-link" id="email-button" href="mailto:">Email my results</a>
+        <a class="secondary email-button action-link" id="email-button" href="#">Email my results</a>
         <button class="secondary" id="copy-button" type="button">Copy results</button>
         <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
       </div>
@@ -755,7 +755,7 @@
         }
 
         latestSummary = makeSummary(a, b, winner, rawDifference, tie);
-        document.getElementById("email-button").href = "mailto:?subject=" + encodeURIComponent("My job offer comparison") + "&body=" + encodeURIComponent(latestSummary);
+        document.getElementById("email-button").href = "mail"+"to:?subject=" + encodeURIComponent("My job offer comparison") + "&body=" + encodeURIComponent(latestSummary);
         results.hidden = false;
         requestAnimationFrame(function () {
           results.scrollIntoView({ behavior: "smooth", block: "start" });

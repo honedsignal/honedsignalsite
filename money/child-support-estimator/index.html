@@ -607,7 +607,7 @@
           </div>
 
           <div class="result-tools">
-            <a class="tool-btn" id="emailResults" href="mailto:" aria-label="Email these child support estimate results">Email my results</a>
+            <a class="tool-btn" id="emailResults" href="#" aria-label="Email these child support estimate results">Email my results</a>
             <button class="tool-btn" type="button" id="copyResults">Copy results</button>
             <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
           </div>
@@ -717,7 +717,7 @@
       }
 
       function updateEmail() {
-        emailLink.href = 'mailto:?subject=' + encodeURIComponent('My child support estimate') + '&body=' + encodeURIComponent(summaryText());
+        emailLink.href = 'mail'+'to:?subject=' + encodeURIComponent('My child support estimate') + '&body=' + encodeURIComponent(summaryText());
       }
 
       function copyResults() {

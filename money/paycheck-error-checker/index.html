@@ -179,7 +179,7 @@
     document.getElementById('nudgeFoot').textContent='Every payday. Two minutes.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Paycheck error check')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Paycheck error check')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

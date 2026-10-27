@@ -254,7 +254,7 @@
         </div>
         <p class="plain-verdict" id="verdict"></p>
         <div class="actions">
-          <a class="action email" id="emailResults" href="mailto:">Email my results</a>
+          <a class="action email" id="emailResults" href="#">Email my results</a>
           <button class="action copy" id="copyResults" type="button">Copy results</button>
           <button class="explain-btn" id="explainResults" type="button" aria-expanded="false" aria-controls="explanation">Explain these results</button>
         </div>
@@ -378,7 +378,7 @@
           "Difference in today's dollars: "+money(data.difference)+" in favor of the "+winner.toLowerCase()+"\n"+
           "Break-even point: "+(data.never?"the annuity never breaks even at this return rate":data.breakEvenYears.toFixed(1)+" years")+"\n\n"+
           verdict+"\n\nThis calculator is for informational purposes only and is not financial, tax, legal, investment, or insurance advice.";
-        document.getElementById("emailResults").href="mailto:?subject="+encodeURIComponent("Pension lump sum vs annuity results")+"&body="+encodeURIComponent(lastSummary);
+        document.getElementById("emailResults").href="mail"+"to:?subject="+encodeURIComponent("Pension lump sum vs annuity results")+"&body="+encodeURIComponent(lastSummary);
         copyStatus.textContent="";
         results.hidden=false;
         results.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});

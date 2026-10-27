@@ -398,7 +398,7 @@
             </div>
 
             <div class="actions">
-              <a class="action email" id="emailResults" href="mailto:">Email my results</a>
+              <a class="action email" id="emailResults" href="#">Email my results</a>
               <button class="action" id="copyResults" type="button">Copy results</button>
               <button class="action explain" id="explainResults" type="button" aria-expanded="false" aria-controls="explanation">Explain these results</button>
             </div>
@@ -634,7 +634,7 @@
           "This calculator is for informational purposes only and is not financial, tax, legal, investment, or insurance advice."
         ].filter(Boolean).join("\n");
 
-        document.getElementById("emailResults").href = "mailto:?subject=" + encodeURIComponent("My retirement income-gap estimate") + "&body=" + encodeURIComponent(summaryText);
+        document.getElementById("emailResults").href = "mail"+"to:?subject=" + encodeURIComponent("My retirement income-gap estimate") + "&body=" + encodeURIComponent(summaryText);
         copyStatus.textContent = "";
         placeholder.style.display = "none";
         results.classList.add("is-visible");

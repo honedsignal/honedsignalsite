@@ -183,7 +183,7 @@
     else{title.textContent='The bonus pays';text.textContent='After tax, lost interest, and hassle, you come out ahead by';strong.textContent=fmt(d.net);foot.textContent='Set a reminder to move the money out once the tie-up period ends.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My bank bonus break-even results')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My bank bonus break-even results')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.bonus<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}

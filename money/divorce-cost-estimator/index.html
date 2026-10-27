@@ -530,7 +530,7 @@
             <p class="difference" id="difference-line"></p>
 
             <div class="actions">
-              <a class="action-btn email-btn" id="email-results" href="mailto:">Email my results</a>
+              <a class="action-btn email-btn" id="email-results" href="#">Email my results</a>
               <button class="action-btn copy-btn" id="copy-results" type="button">Copy results</button>
             </div>
             <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
@@ -638,7 +638,7 @@
           '',
           'Informational purposes only. Not legal advice.'
         ].join('\n');
-        email.href = 'mailto:?subject=' + encodeURIComponent('My divorce cost estimate') + '&body=' + encodeURIComponent(lastText);
+        email.href = 'mail'+'to:?subject=' + encodeURIComponent('My divorce cost estimate') + '&body=' + encodeURIComponent(lastText);
         empty.hidden = true;
         results.hidden = false;
         toast.hidden = true;

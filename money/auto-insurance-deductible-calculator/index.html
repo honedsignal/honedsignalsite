@@ -663,7 +663,7 @@
       document.getElementById("emailBtn").addEventListener("click", function () {
         if (!latestText) return;
         var emailLink = document.createElement("a");
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My auto insurance deductible comparison") + "&body=" + encodeURIComponent(latestText);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My auto insurance deductible comparison") + "&body=" + encodeURIComponent(latestText);
         emailLink.click();
       });
 

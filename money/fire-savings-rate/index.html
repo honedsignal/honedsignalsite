@@ -193,7 +193,7 @@
     else{t.textContent='Coast mode';tx.textContent='A '+(d.s*100).toFixed(0)+'% savings rate finishes the job in '+d.years.toFixed(1)+' years.';st.textContent='Protect the rate';ft.textContent='Lifestyle creep is the biggest threat from here.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My FIRE savings rate results')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My FIRE savings rate results')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
   }
   function emailBody(d){

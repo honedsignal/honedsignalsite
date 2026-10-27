@@ -612,7 +612,7 @@
           "Annual: " + money.format(annual) + "\n\n" +
           "Estimate assumes 52 working weeks per year. Informational purposes only.";
 
-        emailResults.href = "mailto:?subject=" + encodeURIComponent("My salary vs. hourly results") + "&body=" + encodeURIComponent(latestCopyText);
+        emailResults.href = "mail"+"to:?subject=" + encodeURIComponent("My salary vs. hourly results") + "&body=" + encodeURIComponent(latestCopyText);
         copyStatus.textContent = "";
         emptyState.style.display = "none";
         resultContent.classList.add("visible");

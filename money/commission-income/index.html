@@ -186,7 +186,7 @@
     document.getElementById('nudgeFoot').textContent='Roughly 22% of expected income may be withheld federally on commission checks — your actual tax depends on total income and deductions.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My commission income plan')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My commission income plan')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function emailBody(d){var lines=['Commission Income Planner results','',
     'Base salary: '+money2.format(d.base),

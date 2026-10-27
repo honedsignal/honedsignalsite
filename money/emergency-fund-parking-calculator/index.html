@@ -186,7 +186,7 @@
     else{title.textContent='Liquidity wins too';text.textContent='The top earner here is also fully liquid, which is ideal for emergency money. No tradeoff needed.';strong.textContent=fmt(d.net[d.winner])+' after tax';foot.textContent='Confirm the current APY before moving money — rates change often.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Where to park my emergency fund')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Where to park my emergency fund')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

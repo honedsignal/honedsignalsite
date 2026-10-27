@@ -184,7 +184,7 @@
     else{title.textContent='You may owe at filing';text.textContent='To avoid a surprise bill — and a possible underpayment penalty — withhold '+fmt(fixAbs)+' more per paycheck using W-4 Step 4(c):';strong.textContent='Add '+fmt(fixAbs)+' extra withholding per paycheck';foot.textContent='That is Step 4(c), "Extra withholding". If the bill is large, the IRS estimator can also set up estimated payments.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My withholding check')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My withholding check')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

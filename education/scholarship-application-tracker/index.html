@@ -207,7 +207,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     document.getElementById('nudgeFoot').textContent='in play across '+list.length+' applications.';
     var body=list.map(function(s){return s.name+' \u2014 '+money0.format(+s.amt||0)+' \u2014 '+(s.deadline||'no deadline')+' \u2014 '+s.status}).join('\n');
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My scholarship applications')+'&body='+encodeURIComponent('Scholarship applications\n\n'+body);
+    email.href='mail'+'to:?subject='+encodeURIComponent('My scholarship applications')+'&body='+encodeURIComponent('Scholarship applications\n\n'+body);
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

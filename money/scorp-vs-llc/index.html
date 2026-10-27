@@ -237,7 +237,7 @@
     else if(d.net<=0){title.textContent='Probably not worth it yet';text.textContent='At these numbers, admin costs eat the payroll-tax savings.';strong.textContent=(d.net<0?'-':'')+fmt(Math.abs(d.net))+' net';foot.textContent='S-corps tend to pay off around $50,000+ in profit. Revisit when profit grows.'}
     else{title.textContent='The math favors an S-corp';text.textContent='Estimated net savings after admin costs:';strong.textContent=fmt(d.net)+' per year';foot.textContent=d.lowSalary?'But your salary looks low — the IRS may challenge it. Document your reasoning.':'Make sure the salary is defensible for the work you do, then talk to a CPA.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My S-corp vs LLC comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My S-corp vs LLC comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
   }
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.profit<=0&&d.salary<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   ['profit','salary','admin'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){updateSubtotal();if(last)render(getData())})});

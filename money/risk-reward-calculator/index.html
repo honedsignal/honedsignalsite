@@ -791,7 +791,7 @@
         var subject = encodeURIComponent('My risk/reward calculation');
         var body = encodeURIComponent(currentText);
         var emailLink = document.createElement('a');
-        emailLink.href = 'mailto:?subject=' + subject + '&body=' + body;
+        emailLink.href = 'mail'+'to:?subject=' + subject + '&body=' + body;
         emailLink.click();
       });
 

@@ -553,7 +553,7 @@
       emailBtn.addEventListener('click', function () {
         if (!lastSummary) return;
         var mailLink = document.createElement('a');
-        mailLink.href = 'mailto:?subject=' + encodeURIComponent('My vacation budget results') + '&body=' + encodeURIComponent(lastSummary);
+        mailLink.href = 'mail'+'to:?subject=' + encodeURIComponent('My vacation budget results') + '&body=' + encodeURIComponent(lastSummary);
         mailLink.style.display = 'none';
         document.body.appendChild(mailLink);
         mailLink.click();

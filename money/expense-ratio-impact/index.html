@@ -205,7 +205,7 @@
     else{var costlyName=d.cheapName==='A'?'B':'A',costlyFee=d.cheapName==='A'?d.feeCostB:d.feeCostA;
       title.textContent='The eye-opener';text.textContent='A '+(pct(Math.abs(d.feeA-d.feeB))).replace('%','')+'-point fee difference costs you this over '+duration(d.years)+':';strong.textContent=fmt(Math.abs(d.gap))+' lost';foot.textContent='Fund '+costlyName+' paid '+fmt(costlyFee)+' in fees and lost growth. Nobody feels 1% a year — everyone feels the missing dollars.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('What fund fees are costing me')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('What fund fees are costing me')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();if(!validInputs()){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(getData())}
   ['balance','contrib','ret','feeA','feeB','years'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last&&validInputs())render(getData())})});
   form.addEventListener('submit',calculate);

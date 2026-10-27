@@ -425,7 +425,7 @@
         <p class="verdict" id="verdict"></p>
 
         <div class="actions">
-          <a class="action primary" id="email-results" href="mailto:">Email my results</a>
+          <a class="action primary" id="email-results" href="#">Email my results</a>
           <button class="action" id="copy-results" type="button">Copy results</button>
           <button class="action explain" id="explain-results" type="button" aria-expanded="false" aria-controls="explanation">Explain these results</button>
           <span class="copy-status" id="copy-status" role="status"></span>
@@ -621,7 +621,7 @@
           "Warning: Refinancing federal loans into a private loan forfeits federal protections.",
           "Informational purposes only; not financial, tax, legal, investment, or insurance advice."
         ].join("\n");
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My student loan refinance vs IDR comparison") + "&body=" + encodeURIComponent(resultText);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My student loan refinance vs IDR comparison") + "&body=" + encodeURIComponent(resultText);
         copyStatus.textContent = "";
         results.hidden = false;
         results.scrollIntoView({ behavior:"smooth", block:"start" });

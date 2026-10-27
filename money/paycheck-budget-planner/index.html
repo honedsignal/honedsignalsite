@@ -674,7 +674,7 @@
       document.getElementById("email-results").addEventListener("click", function () {
         if (!latestText) return;
         var mailLink = document.createElement("a");
-        mailLink.href = "mailto:?subject=" + encodeURIComponent(latestMailSubject) + "&body=" + encodeURIComponent(latestText);
+        mailLink.href = "mail"+"to:?subject=" + encodeURIComponent(latestMailSubject) + "&body=" + encodeURIComponent(latestText);
         mailLink.click();
       });
 

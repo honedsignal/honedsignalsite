@@ -251,7 +251,7 @@
     document.getElementById('nudgeFoot').textContent='Shop at least two quotes for the same coverage — identical policies can differ by $100 or more a year.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My renters insurance plan')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My renters insurance plan')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false
   }
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.belongings<=0&&!d.hasA&&!d.hasB){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}

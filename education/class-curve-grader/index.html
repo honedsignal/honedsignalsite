@@ -222,7 +222,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
   });
   document.getElementById('explainToggle').addEventListener('click',function(){var copy=document.getElementById('explainCopy'),expanded=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',String(!expanded));copy.classList.toggle('hidden',expanded)});
   document.getElementById('downloadCsv').addEventListener('click',function(){if(!last)return;var rows=csvRows(getData()||last);var csv=rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='class-curve-grader.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)});
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('Class curve results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function enableActions(d){var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('Class curve results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
 })();
 </script>
 <p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: October 2026.</p>

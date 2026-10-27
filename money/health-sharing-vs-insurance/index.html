@@ -189,7 +189,7 @@
     document.getElementById('nudgeFoot').textContent='Check the ministry\u2019s guidelines for pre-existing limits and what never gets shared.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Health sharing vs. insurance comparison')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Health sharing vs. insurance comparison')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

@@ -211,7 +211,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
   function enableActions(){
     var t=resultsText();
     var email=$('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Random student picks')+'&body='+encodeURIComponent(t);
+    email.href='mail'+'to:?subject='+encodeURIComponent('Random student picks')+'&body='+encodeURIComponent(t);
     email.setAttribute('aria-disabled','false');
     $('copyResults').dataset.shareText=t;
     $('copyResults').disabled=false;

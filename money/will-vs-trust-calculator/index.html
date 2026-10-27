@@ -514,7 +514,7 @@
           </div>
 
           <div class="result-actions">
-            <a class="email" id="emailResults" href="mailto:">Email my results</a>
+            <a class="email" id="emailResults" href="#">Email my results</a>
             <button class="copy" id="copyResults" type="button">Copy results</button>
           </div>
           <p class="status" id="copyStatus" role="status" aria-live="polite"></p>
@@ -636,7 +636,7 @@
           (willTotal === trustCost ? "Estimated costs are equal." : "Estimated lower-cost option: " + winner + ".") + "\n\n" +
           "For informational purposes only. Not legal advice.";
 
-        document.getElementById("emailResults").href = "mailto:?subject=" + encodeURIComponent("My will vs. trust cost comparison") + "&body=" + encodeURIComponent(latestSummary);
+        document.getElementById("emailResults").href = "mail"+"to:?subject=" + encodeURIComponent("My will vs. trust cost comparison") + "&body=" + encodeURIComponent(latestSummary);
         emptyState.hidden = true;
         results.hidden = false;
       });

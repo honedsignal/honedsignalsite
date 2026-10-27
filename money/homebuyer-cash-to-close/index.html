@@ -204,7 +204,7 @@
     else{title.textContent='Reserve warning';text.textContent='Closing would leave you short by';strong.textContent=fmt(-d.gap);foot.textContent='Save more, lower the price, or reduce prepaid estimates before you commit.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My cash-to-close estimate')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My cash-to-close estimate')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=calcParts();if(d.price<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}

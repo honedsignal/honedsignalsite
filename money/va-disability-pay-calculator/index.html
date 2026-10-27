@@ -394,7 +394,7 @@
               <div id="breakdownLines"></div>
             </div>
             <div class="action-row">
-              <a class="action" id="emailButton" href="mailto:?subject=VA%20disability%20pay%20estimate">Email my results</a>
+              <a class="action" id="emailButton" href="#">Email my results</a>
               <button class="action" id="copyButton" type="button">Copy results</button>
             </div>
             <div class="toast" id="toast" role="status"></div>
@@ -566,7 +566,7 @@
           annual: annual,
           text: "VA Disability Pay Estimate (2026 rates)\nCombined rating: " + rating + "%\nHousehold: " + household + "\nEstimated monthly compensation: " + money(total) + "\n12-month equivalent: " + money(annual) + "\n\nRates effective December 1, 2025. Informational estimate only; actual VA awards may differ."
         };
-        document.getElementById("emailButton").href = "mailto:?subject=" + encodeURIComponent("My VA disability pay estimate") + "&body=" + encodeURIComponent(latest.text);
+        document.getElementById("emailButton").href = "mail"+"to:?subject=" + encodeURIComponent("My VA disability pay estimate") + "&body=" + encodeURIComponent(latest.text);
 
         emptyState.hidden = true;
         results.hidden = false;

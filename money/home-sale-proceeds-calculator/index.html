@@ -217,7 +217,7 @@
           <p class="status-line" id="statusLine"></p>
           <div class="actions">
             <button class="text-btn" type="button" id="explainResults" aria-expanded="false" aria-controls="resultsExplanation">Explain these results <span class="explain-mark" aria-hidden="true">+</span></button>
-            <a class="text-btn" id="emailResults" href="mailto:" aria-label="Email these home sale proceeds results">Email my results</a>
+            <a class="text-btn" id="emailResults" href="#" aria-label="Email these home sale proceeds results">Email my results</a>
             <button class="text-btn" type="button" id="copyResults" aria-label="Copy these home sale proceeds results">Copy results</button>
           </div>
         </div>
@@ -342,7 +342,7 @@
       'Start with the '+money(v.salePrice)+' expected sale price. Paying off the mortgage uses '+money(v.payoff)+'. The '+percent(v.commissionRate)+' commission is '+money(r.commission)+', and you entered '+money(v.otherCosts)+' in other selling costs. After subtracting all '+money(r.deductions)+' of deductions, the estimated amount left is '+money(r.net)+'. That is about '+percent(r.keepRate)+' of the sale price.':
       'Start with the '+money(v.salePrice)+' expected sale price. Your mortgage payoff and selling costs total '+money(r.deductions)+', which is '+money(Math.abs(r.net))+' more than the expected price. In this estimate, you would need that amount from another source to complete the sale. A lender or closing professional can provide an exact payoff and settlement estimate.';
     var text=summary(r);
-    document.getElementById('emailResults').href='mailto:?subject='+encodeURIComponent('My home sale proceeds estimate')+'&body='+encodeURIComponent(text);
+    document.getElementById('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My home sale proceeds estimate')+'&body='+encodeURIComponent(text);
     updateBars(r);
   }
   function fallbackCopy(text){

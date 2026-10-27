@@ -214,7 +214,7 @@
     document.getElementById('nudgeStrong').textContent=fmtCurrency(d.markup,d.to);
     document.getElementById('nudgeFoot').textContent='Travel cards with no foreign-transaction fee still use a marked-up rate — the fee being $0 is not the same as the rate being fair.';
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('Currency conversion result')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('Currency conversion result')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
   }
   function calculate(e){if(e)e.preventDefault();var d=getData();
     if(!isFinite(d.amount)||d.amount<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}

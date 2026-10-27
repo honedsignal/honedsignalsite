@@ -387,7 +387,7 @@
           <p class="explanation"><strong>Why this amount?</strong> Umbrella insurance adds liability protection after the liability limits on an auto or homeowners policy are exhausted. Many insurance professionals use a range of 1 to 2 times net worth as a reference. It can also help address the risk that a court judgment reaches future wages after a serious lawsuit.</p>
 
           <div class="actions">
-            <a class="action email-button" id="emailResults" href="mailto:">Email my results</a>
+            <a class="action email-button" id="emailResults" href="#">Email my results</a>
             <button class="action neutral" id="copyResults" type="button">Copy results</button>
             <button class="action explain-button" id="explainResults" type="button" aria-expanded="false" aria-controls="plainExplanation">Explain these results</button>
           </div>
@@ -535,7 +535,7 @@
         exposedEl.textContent = formatMoney(exposed);
         upperReferenceEl.textContent = formatMoney(upperReference);
         latestResultsText = buildResultsText(exposed, recommended, upperReference);
-        emailResults.href = "mailto:?subject=" + encodeURIComponent("My umbrella insurance estimate") + "&body=" + encodeURIComponent(latestResultsText);
+        emailResults.href = "mail"+"to:?subject=" + encodeURIComponent("My umbrella insurance estimate") + "&body=" + encodeURIComponent(latestResultsText);
         plainExplanation.hidden = true;
         explainResults.setAttribute("aria-expanded", "false");
         explainResults.textContent = "Explain these results";

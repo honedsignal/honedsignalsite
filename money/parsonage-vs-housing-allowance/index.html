@@ -184,7 +184,7 @@
     document.getElementById('nudgeFoot').textContent='Ask the pastor before the board votes \u2014 housing is personal.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Parsonage vs. housing allowance')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Parsonage vs. housing allowance')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

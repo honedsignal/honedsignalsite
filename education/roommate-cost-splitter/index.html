@@ -233,7 +233,7 @@ function calcRoommateSplit(rent,utils,subs,mode,weights){
       'Weights total 100%. Revisit the split if rooms change \u2014 and put the agreement in writing before move-in.';
     document.getElementById('explainCopy').textContent='Total shared cost = rent + utilities + all subscriptions. Even split divides it equally. Weighted split gives each roommate total \u00d7 (their % \u00f7 100); weights must add up to exactly 100%.';
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Our monthly cost split')+'&body='+encodeURIComponent(summaryText());
+    email.href='mail'+'to:?subject='+encodeURIComponent('Our monthly cost split')+'&body='+encodeURIComponent(summaryText());
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

@@ -254,7 +254,7 @@
     else{text.textContent='Care needs usually grow over time, and costs rise 4–6% a year. If siblings share the cost, put the split in writing while everyone is calm.';strong.textContent=fmt(d.annual)+' a year';foot.textContent='An elder law attorney can explain Medicaid, VA Aid & Attendance, and other programs that may help.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My elder care cost plan')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My elder care cost plan')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

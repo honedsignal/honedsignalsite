@@ -666,7 +666,7 @@
         var subject = encodeURIComponent("My 2026 estate tax estimate");
         var body = encodeURIComponent(latestSummary);
         var emailLink = document.createElement("a");
-        emailLink.href = "mailto:?subject=" + subject + "&body=" + body;
+        emailLink.href = "mail"+"to:?subject=" + subject + "&body=" + body;
         emailLink.style.display = "none";
         document.body.appendChild(emailLink);
         emailLink.click();

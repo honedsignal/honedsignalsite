@@ -498,7 +498,7 @@
         </div>
 
         <div class="actions">
-          <a class="action-link" id="email-results" href="mailto:">Email my results</a>
+          <a class="action-link" id="email-results" href="#">Email my results</a>
           <button class="action-button" id="copy-results" type="button">Copy results</button>
           <button class="action-button" id="explain-results" type="button" aria-expanded="false" aria-controls="explanation">Explain these results</button>
         </div>
@@ -629,7 +629,7 @@
           'For informational purposes only; not financial, tax, legal, investment, or insurance advice.'
         ].join('\n');
 
-        emailLink.href = 'mailto:?subject=' + encodeURIComponent('My disability insurance estimate') + '&body=' + encodeURIComponent(currentResultsText);
+        emailLink.href = 'mail'+'to:?subject=' + encodeURIComponent('My disability insurance estimate') + '&body=' + encodeURIComponent(currentResultsText);
         results.hidden = false;
         results.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });

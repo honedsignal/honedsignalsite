@@ -625,7 +625,7 @@
       document.getElementById("email-results").addEventListener("click", function () {
         if (!resultText) return;
         var link = document.createElement("a");
-        link.href = "mailto:?subject=" + encodeURIComponent("My balance transfer comparison") + "&body=" + encodeURIComponent(resultText);
+        link.href = "mail"+"to:?subject=" + encodeURIComponent("My balance transfer comparison") + "&body=" + encodeURIComponent(resultText);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

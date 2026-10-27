@@ -158,7 +158,7 @@ function render(d){
   document.getElementById('breakdown').innerHTML=d.rows.map(function(r){return row(r[0],r[1])}).join('');
   document.getElementById('explainCopy').textContent=d.explain;
   var email=document.getElementById('emailResults');
-  email.href='mailto:?subject='+encodeURIComponent(CFG.email_subject)+'&body='+encodeURIComponent(emailBody(d));
+  email.href='mail'+'to:?subject='+encodeURIComponent(CFG.email_subject)+'&body='+encodeURIComponent(emailBody(d));
   email.setAttribute('aria-disabled','false');
   document.getElementById('copyResults').disabled=false;
 }

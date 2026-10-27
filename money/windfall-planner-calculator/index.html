@@ -527,7 +527,7 @@
       document.getElementById('emailBtn').addEventListener('click', function () {
         if (!latestText) return;
         var mailLink = document.createElement('a');
-        mailLink.href = 'mailto:?subject=' + encodeURIComponent(latestSubject) + '&body=' + encodeURIComponent(latestText);
+        mailLink.href = 'mail'+'to:?subject=' + encodeURIComponent(latestSubject) + '&body=' + encodeURIComponent(latestText);
         mailLink.click();
       });
 

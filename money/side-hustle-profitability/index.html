@@ -194,7 +194,7 @@
     else if(d.hourly>=d.alt){title.textContent='The hustle wins';text.textContent='Your true rate beats the part-time job by';strong.textContent=fmtHr(d.hourly-d.alt);foot.textContent='That is '+fmt(d.profit)+' in your pocket for '+d.hours+' hours — keep doing what works.'}
     else{title.textContent='The job pays more';text.textContent='A part-time job at your comparison rate would beat the hustle by';strong.textContent=fmtHr(d.alt-d.hourly);foot.textContent='Options: raise prices, cut costs, or put the same hours into higher-paying work.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My side hustle profitability results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My side hustle profitability results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.gross<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   expenseInputs.concat([document.getElementById('gross'),document.getElementById('hours'),document.getElementById('taxRate'),document.getElementById('altRate')]).forEach(function(input){input.addEventListener('input',function(){updateSubtotals();if(last&&num('gross')>0)render(getData())})});
   form.addEventListener('submit',calculate);

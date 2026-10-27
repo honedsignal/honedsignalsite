@@ -244,7 +244,7 @@
     }
     document.getElementById('explainCopy').textContent=explanationText(r);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My financial aid offer comparison')+'&body='+encodeURIComponent(emailBody(r));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My financial aid offer comparison')+'&body='+encodeURIComponent(emailBody(r));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

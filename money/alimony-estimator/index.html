@@ -461,7 +461,7 @@
         <p class="result-message" id="result-message"></p>
 
         <div class="actions">
-          <a class="email-btn" id="email-results" href="mailto:">Email my results</a>
+          <a class="email-btn" id="email-results" href="#">Email my results</a>
           <button class="copy-btn" id="copy-results" type="button">Copy results</button>
           <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
         </div>
@@ -589,7 +589,7 @@
           "Rough duration benchmark: " + durationText + "\n\n" +
           "Method: 20%–30% of the annual gross income gap, divided by 12. Actual awards vary widely by state, judge, and circumstances. For informational purposes only; not legal advice.";
 
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My alimony estimate") + "&body=" + encodeURIComponent(currentText);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My alimony estimate") + "&body=" + encodeURIComponent(currentText);
         results.hidden = false;
         results.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
       });

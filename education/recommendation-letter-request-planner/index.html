@@ -247,7 +247,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     document.getElementById('emailDraft').textContent='Subject: Letter of recommendation request\n\n'+draftFor(list[0]).replace(/Hello [^,]+,/,'Hello [Name],');
     document.getElementById('explainCopy').textContent='The best recommendations come from people who know you well and have time to write well. Ask early, provide materials, waive FERPA, and always send a thank-you note after.';
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Recommendation letter request')+'&body='+encodeURIComponent('Subject: Letter of recommendation request\n\n'+draftFor(list[0]));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Recommendation letter request')+'&body='+encodeURIComponent('Subject: Letter of recommendation request\n\n'+draftFor(list[0]));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

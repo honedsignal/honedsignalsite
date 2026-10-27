@@ -165,7 +165,7 @@ function calcTuitionBenefit(tuition,cap,threshold){
     document.getElementById('nudgeFoot').textContent=nudge;
     document.getElementById('explainCopy').textContent='Benefit applied = min(employer cap, tuition). Out-of-pocket = tuition \u2212 benefit applied. The first '+money(r.threshold)+' of an employer\u2019s education benefit is excluded from your taxable income under IRC Section 127 when the employer has a written plan; anything above that is taxable wages. IRS confirmed $5,250 for 2025 and 2026 (Fact Sheet 2026-10, April 2026); the limit is indexed for inflation for tax years after 2026, so confirm it\u2019s current. You also can\u2019t claim the Lifetime Learning Credit on expenses the benefit paid for.';
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('What my employer tuition benefit covers')+'&body='+encodeURIComponent(summaryText());
+    email.href='mail'+'to:?subject='+encodeURIComponent('What my employer tuition benefit covers')+'&body='+encodeURIComponent(summaryText());
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

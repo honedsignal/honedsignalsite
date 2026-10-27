@@ -454,7 +454,7 @@
 
         <div class="result-bottom">
           <div class="actions">
-            <a class="action email" id="emailResults" href="mailto:">Email my results</a>
+            <a class="action email" id="emailResults" href="#">Email my results</a>
             <button class="action copy" id="copyResults" type="button">Copy results</button>
           </div>
           <p class="copy-status" id="copyStatus" role="status"></p>
@@ -627,7 +627,7 @@
           'For informational purposes only. Not legal, tax, or financial advice.'
         ].join('\n');
 
-        document.getElementById('emailResults').href = 'mailto:?subject=' + encodeURIComponent('My divorce asset split estimate') + '&body=' + encodeURIComponent(lastResultText);
+        document.getElementById('emailResults').href = 'mail'+'to:?subject=' + encodeURIComponent('My divorce asset split estimate') + '&body=' + encodeURIComponent(lastResultText);
         document.getElementById('copyStatus').textContent = '';
         emptyState.style.display = 'none';
         result.classList.add('visible');

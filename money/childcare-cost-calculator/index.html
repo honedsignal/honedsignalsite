@@ -415,7 +415,7 @@
           'Share of gross income: ' + share.toFixed(1) + '%\n\n' +
           'Assumes 52 paid weeks per year. Informational purposes only.';
 
-        emailLink.href = 'mailto:?subject=' + encodeURIComponent('My childcare cost estimate') + '&body=' + encodeURIComponent(latestText);
+        emailLink.href = 'mail'+'to:?subject=' + encodeURIComponent('My childcare cost estimate') + '&body=' + encodeURIComponent(latestText);
         empty.hidden = true;
         results.classList.add('is-visible');
       }

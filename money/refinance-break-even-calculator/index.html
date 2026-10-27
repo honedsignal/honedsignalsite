@@ -648,7 +648,7 @@
       document.getElementById('email-results').addEventListener('click', function () {
         if (!lastResultText) return;
         var mailLink = document.createElement('a');
-        mailLink.href = 'mailto:?subject=' + encodeURIComponent('My refinance break-even estimate') + '&body=' + encodeURIComponent(lastResultText);
+        mailLink.href = 'mail'+'to:?subject=' + encodeURIComponent('My refinance break-even estimate') + '&body=' + encodeURIComponent(lastResultText);
         mailLink.click();
       });
 

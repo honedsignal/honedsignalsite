@@ -247,7 +247,7 @@
     else{title.textContent='It depends on the year';text.textContent='Each plan wins in some scenarios and loses in others.';strong.textContent='Match the plan to your likely year';foot.textContent='Healthy year ahead? Favor the low-premium plan. Big procedures planned? Favor the lower out-of-pocket max.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My FEHB plan comparison')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My FEHB plan comparison')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

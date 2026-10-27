@@ -182,7 +182,7 @@
     if(d.gap===0){title.textContent='No borrowing needed';text.textContent='Your gift aid and other funding cover the full cost of attendance.';strong.textContent=fmt(d.cost)+' fully covered';foot.textContent='Double-check scholarship renewal terms so this holds next year.'}
     else{title.textContent='Scholarship needed to avoid borrowing';text.textContent='You would need about this much more in scholarships to cover the bill without loans:';strong.textContent=fmt(d.gap);foot.textContent='That is roughly '+fmt(d.semester)+' per semester.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My college cost after scholarships')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My college cost after scholarships')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.cost<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   expenseInputs.concat(['scholarships','grants','savings','family','earnings'].map(function(id){return document.getElementById(id)})).forEach(function(input){input.addEventListener('input',function(){updateSubtotals();if(last&&totalCosts()>0)render(getData())})});
   form.addEventListener('submit',calculate);

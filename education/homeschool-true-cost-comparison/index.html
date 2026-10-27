@@ -217,7 +217,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
   }
   function enableActions(d){
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Homeschool vs private vs public cost comparison')+'&body='+encodeURIComponent(emailBody());
+    email.href='mail'+'to:?subject='+encodeURIComponent('Homeschool vs private vs public cost comparison')+'&body='+encodeURIComponent(emailBody());
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

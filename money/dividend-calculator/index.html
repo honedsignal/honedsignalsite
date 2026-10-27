@@ -935,7 +935,7 @@
         });
         lines.push("", "For informational and educational purposes only. These results are estimates based on the assumptions entered and do not constitute investment, tax, or legal advice.");
         latestResultsText = lines.join("\r\n");
-        link.href = "mailto:?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(latestResultsText);
+        link.href = "mail"+"to:?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(latestResultsText);
         link.setAttribute("aria-disabled", "false");
         document.getElementById("copyButton").disabled = false;
       }

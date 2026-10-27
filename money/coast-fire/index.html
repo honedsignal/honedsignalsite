@@ -218,7 +218,7 @@
     else{var lump=d.coast-d.saved;title.textContent='What gets you coasting';text.textContent='A one-time lump sum today would close the gap — or keep saving and recheck.';strong.textContent=fmt(Math.max(0,lump))+' more today';foot.textContent='That is the present value of the shortfall at your assumed return.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My Coast FIRE results')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My Coast FIRE results')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

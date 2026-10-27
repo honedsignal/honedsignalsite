@@ -186,7 +186,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     document.getElementById('explainCopy').textContent='Audiences forgive a short talk and punish a long one. Budget backwards from your total: Q&A first, then sections. If you\u2019re over, cut whole examples \u2014 never just talk faster.';
     var txt=planText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Presentation timing plan')+'&body='+encodeURIComponent(txt);
+    email.href='mail'+'to:?subject='+encodeURIComponent('Presentation timing plan')+'&body='+encodeURIComponent(txt);
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

@@ -183,7 +183,7 @@
     document.getElementById('nudgeFoot').textContent=d.wasted>0?'Move it to salary \u2014 same tax, cleaner books.':'The allowance sits at or under the excludable limit.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Pastor compensation package')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Pastor compensation package')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

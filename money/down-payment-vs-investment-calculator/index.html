@@ -567,7 +567,7 @@
       document.getElementById('email').addEventListener('click', function () {
         if (!lastText) return;
         var mailLink = document.createElement('a');
-        mailLink.href = 'mailto:?subject=' + encodeURIComponent('My down payment vs. investment results') + '&body=' + encodeURIComponent(lastText);
+        mailLink.href = 'mail'+'to:?subject=' + encodeURIComponent('My down payment vs. investment results') + '&body=' + encodeURIComponent(lastText);
         mailLink.style.display = 'none';
         document.body.appendChild(mailLink);
         mailLink.click();

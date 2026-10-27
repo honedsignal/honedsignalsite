@@ -224,7 +224,7 @@
     else{title.textContent='Mind the gap';text.textContent='Your employer covers part of the cost. Setting aside the remainder each month keeps renewals painless.';strong.textContent=fmt(d.oop/12)+'/mo to set aside';foot.textContent='Ask HR whether the reimbursement cap resets yearly.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My license & certification costs')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My license & certification costs')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

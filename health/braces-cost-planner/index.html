@@ -392,7 +392,7 @@
     $('brzEmail').addEventListener('click', function () {
       if (!lastSummary) return;
       var link = document.createElement('a');
-      link.href = 'mailto:?subject=' + encodeURIComponent('My braces cost plan') + '&body=' + encodeURIComponent(lastSummary);
+      link.href = 'mail'+'to:?subject=' + encodeURIComponent('My braces cost plan') + '&body=' + encodeURIComponent(lastSummary);
       link.style.display = 'none';
       document.body.appendChild(link); link.click(); document.body.removeChild(link);
       $('brzShareStatus').textContent = 'Opening your email app with the results filled in.';

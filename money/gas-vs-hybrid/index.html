@@ -190,7 +190,7 @@
     document.getElementById('detailPremium').textContent=fmtSigned(d.premium);document.getElementById('detailYears').textContent=d.years;
     var v=verdict(d);document.getElementById('nudgeTitle').textContent=v.t;document.getElementById('nudgeText').textContent=v.s;document.getElementById('nudgeStrong').textContent=v.n;document.getElementById('nudgeFoot').textContent=v.f;
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My gas vs hybrid comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My gas vs hybrid comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.gasMpg<=0||d.hybMpg<=0||d.miles<=0||d.gasCost<=0||d.years<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   Array.prototype.slice.call(form.querySelectorAll('input')).forEach(function(input){input.addEventListener('input',function(){updateSubtotal();if(last)render(getData())})});
   form.addEventListener('submit',calculate);

@@ -455,7 +455,7 @@
           "Method: 25/33 for the comfortable target and 28/36 for the upper guideline. Assumes 1.2% annual property tax and 0.35% annual homeowners insurance. Excludes PMI, HOA dues, closing costs, maintenance, and utilities.",
           "For informational and educational purposes only; not a loan offer or approval."
         ].join("\n");
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My mortgage affordability estimate") + "&body=" + encodeURIComponent(lastSummary);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My mortgage affordability estimate") + "&body=" + encodeURIComponent(lastSummary);
         emptyState.style.display = "none";
         results.classList.add("visible");
         if (window.innerWidth < 861) results.scrollIntoView({ behavior: "smooth", block: "start" });

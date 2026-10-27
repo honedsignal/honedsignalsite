@@ -179,7 +179,7 @@
     else if(d.savings>0){t.textContent='Cheaper than renting';x.textContent='House hacking beats renting your unit by';s.textContent=fmtS(d.savings)+'/mo';f.textContent='Plus you are building equity every month.'}
     else{t.textContent='Costs more than renting';x.textContent='This hack does not pencil out — renting wins by';s.textContent=fmtS(-d.savings)+'/mo';f.textContent='Look for more rent, a lower price, or more units.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('House hacking analysis')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('House hacking analysis')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.price<=0||d.totalRent<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   Array.prototype.slice.call(form.querySelectorAll('input')).forEach(function(input){input.addEventListener('input',function(){if(last){var d=getData();if(d.price>0&&d.totalRent>0)render(d)}})});
   form.addEventListener('submit',calculate);

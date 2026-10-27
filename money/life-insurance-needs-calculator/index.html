@@ -235,7 +235,7 @@
           </section>
 
           <section class="share">
-            <div class="share-head"><h2>Take the estimate with you</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
+            <div class="share-head"><h2>Take the estimate with you</h2><div class="actions"><a class="action email" id="emailResults" href="#">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
             <p class="notice" id="copyNotice" role="status"></p>
           </section>
         </div>
@@ -279,7 +279,7 @@
     byId("debtRow").textContent=money(r.x.debts);byId("incomeRow").textContent=money(r.incomeNeed);byId("mortgageRow").textContent=money(r.x.mortgage);byId("educationRow").textContent=money(r.x.education);byId("grossRow").textContent=money(r.gross);byId("existingRow").textContent="− "+money(r.x.existing);byId("netRow").textContent=money(r.net);
     byId("heroNote").textContent=r.net>0?"The gap after subtracting existing coverage.":"Existing coverage meets or exceeds this DIME estimate.";
     byId("explainCopy").textContent=explanation(r);byId("explainCopy").hidden=true;byId("explainToggle").setAttribute("aria-expanded","false");
-    byId("emailResults").href="mailto:?subject="+encodeURIComponent("My life insurance needs estimate")+"&body="+encodeURIComponent(summary(r));byId("copyNotice").textContent="";
+    byId("emailResults").href="mail"+"to:?subject="+encodeURIComponent("My life insurance needs estimate")+"&body="+encodeURIComponent(summary(r));byId("copyNotice").textContent="";
     if(window.matchMedia("(max-width: 850px)").matches){setTimeout(function(){byId("resultLead").scrollIntoView({behavior:"smooth",block:"start"})},50)}
   }
   function explanation(r){

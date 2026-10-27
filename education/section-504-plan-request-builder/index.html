@@ -250,7 +250,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     document.getElementById('nextOut').innerHTML=row('1','Send it in a way you can prove: email or hand-deliver with a date stamp.')+row('2','Keep a copy of everything.')+row('3','If the school delays or refuses, ask for the reason in writing.');
     document.getElementById('explainCopy').textContent='A 504 request works best in writing: dated, specific about what you observe, and listing the supports you want considered. Verbal requests are easy to lose \u2014 paper starts the clock.';
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Request for Section 504 evaluation \u2014 '+d.stName)+'&body='+encodeURIComponent(letter);
+    email.href='mail'+'to:?subject='+encodeURIComponent('Request for Section 504 evaluation \u2014 '+d.stName)+'&body='+encodeURIComponent(letter);
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

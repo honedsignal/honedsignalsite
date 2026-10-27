@@ -268,7 +268,7 @@
     if(d.hours>0){var doublePerHour=(d.fixed+d.variable*2)/(d.hours*2);title.textContent='Fly twice as much?';text.textContent='At '+(d.hours*2)+' hours a year, fixed costs spread thinner and your cost per hour drops to';strong.textContent=fmt(doublePerHour)+'/hr';foot.textContent='The more you fly, the cheaper each hour gets — fixed costs don\'t care about airtime.'}
     else{title.textContent='Add flight hours';text.textContent='Enter your annual flight hours to unlock the per-hour cost and charter comparison.';strong.textContent='—';foot.textContent='Most private owners fly 100–300 hours a year.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My aircraft cost estimate')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My aircraft cost estimate')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.price<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   document.getElementById('acType').addEventListener('change',function(){setPreset(this.value)});
   ['price','downPct','rate','term','hours','burn','fuelPrice','hangar','insurance','maintPct','crew'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last&&num('price')>0)render(getData())})});

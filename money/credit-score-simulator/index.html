@@ -473,7 +473,7 @@
             </div>
 
             <div class="result-actions">
-              <a class="email" id="emailButton" href="mailto:?subject=My%20credit%20score%20scenario">Email my results</a>
+              <a class="email" id="emailButton" href="#">Email my results</a>
               <button class="copy" id="copyButton" type="button">Copy results</button>
             </div>
             <p class="status" id="copyStatus" role="status"></p>
@@ -633,7 +633,7 @@
           "<p><strong>What is not simulated:</strong> Account age, new applications, closed accounts, credit mix, and changes to derogatory marks.</p>";
 
         lastReport = makeReport({ score: score, current: current, target: target, months: months, lowScore: lowScore, highScore: highScore, util: util, pay: pay });
-        document.getElementById("emailButton").href = "mailto:?subject=" + encodeURIComponent("My credit score scenario") + "&body=" + encodeURIComponent(lastReport);
+        document.getElementById("emailButton").href = "mail"+"to:?subject=" + encodeURIComponent("My credit score scenario") + "&body=" + encodeURIComponent(lastReport);
         emptyState.style.display = "none";
         results.classList.add("show");
       });

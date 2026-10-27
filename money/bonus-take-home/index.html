@@ -215,7 +215,7 @@
     else{title.textContent='Withholding nailed it';text.textContent='The flat 22% withholding matches your actual marginal tax almost exactly, so there is little to settle:';strong.textContent='About even at tax time';foot.textContent='You truly keep '+fmt(d.trueKeep)+' of the bonus — a '+pct(d.keepRate)+' keep rate.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My bonus take-home results')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My bonus take-home results')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

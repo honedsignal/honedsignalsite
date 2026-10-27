@@ -158,7 +158,7 @@
           </section>
 
           <section class="share">
-            <div class="share-head"><h2>Price check</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
+            <div class="share-head"><h2>Price check</h2><div class="actions"><a class="action email" id="emailResults" href="#">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
             <p class="calculation" id="calculation">—</p>
           </section>
         </div>
@@ -209,7 +209,7 @@
     byId('explainCopy').textContent=explanation(r);byId('explainCopy').hidden=true;byId('explainToggle').setAttribute('aria-expanded','false');
     var gapText=even?'The sale price is exactly at break-even.':(r.gap>0?'The sale price is '+money(r.gap)+' above break-even.':'The sale price is '+money(Math.abs(r.gap))+' below break-even.');
     byId('calculation').innerHTML='<strong>Break-even: '+money(r.breakEven)+'</strong><br>'+gapText+' Profit is '+money(r.sale)+' − '+money(x.cost)+' = '+(r.profit<0?'−':'')+money(Math.abs(r.profit))+'.';
-    byId('emailResults').href='mailto:?subject='+encodeURIComponent('My profit margin calculation')+'&body='+encodeURIComponent(summary(r));
+    byId('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My profit margin calculation')+'&body='+encodeURIComponent(summary(r));
     if(window.matchMedia('(max-width: 850px)').matches){setTimeout(function(){byId('heroResult').scrollIntoView({behavior:'smooth',block:'start'})},50)}
   }
   function explanation(r){

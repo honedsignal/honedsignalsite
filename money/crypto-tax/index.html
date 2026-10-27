@@ -208,7 +208,7 @@
     else if(d.total===0&&d.netST+d.netLT>0){title.textContent='Zero tax this time';text.textContent='Your long-term gains fit inside the 0% bracket at your income level.';strong.textContent=fmt(d.total)+' owed';foot.textContent='Higher income or bigger gains would start using the 15% band.'}
     else{title.textContent='The holding-period edge';text.textContent='All of your gains already qualify for long-term rates.';strong.textContent=fmt(d.ltTaxAmt)+' at 0% / 15% / 20%';foot.textContent='Short-term trading would have been taxed as ordinary income.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My crypto tax estimate')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My crypto tax estimate')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
   }
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.used.length===0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   document.querySelectorAll('.status-btn').forEach(function(btn){btn.addEventListener('click',function(){status=btn.dataset.status;document.querySelectorAll('.status-btn').forEach(function(b){b.classList.toggle('active',b===btn)});if(last)render(getData())})});

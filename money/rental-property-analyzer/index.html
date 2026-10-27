@@ -183,7 +183,7 @@
     document.getElementById('nudgeTitle').textContent=d.verdict;document.getElementById('nudgeText').textContent=d.verdictNote;
     document.getElementById('nudgeStrong').textContent=d.verdictStrong;document.getElementById('nudgeFoot').textContent='Cap rate '+pct1(d.capRate)+' · cash-on-cash '+pct1(d.coc)+'.';
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('Rental property analysis')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('Rental property analysis')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.price<=0||d.rent<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   Array.prototype.slice.call(form.querySelectorAll('input')).forEach(function(input){input.addEventListener('input',function(){if(last){var d=getData();if(d.price>0&&d.rent>0)render(d)}})});
   form.addEventListener('submit',calculate);

@@ -732,7 +732,7 @@
         if (!latestText) return;
         var subject = "My solar panel payback estimate";
         var mailLink = document.createElement("a");
-        mailLink.href = "mailto:?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(latestText);
+        mailLink.href = "mail"+"to:?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(latestText);
         mailLink.hidden = true;
         document.body.appendChild(mailLink);
         mailLink.click();

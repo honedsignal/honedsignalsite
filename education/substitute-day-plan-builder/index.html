@@ -194,7 +194,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     document.getElementById('explainCopy').textContent='A good sub plan fits on one page: who, when, what each period does, and what matters most. Print this and leave it on the desk \u2014 subs rarely have time to log in to anything.';
     var txt=planText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Substitute day plan'+(d.date?' \u2014 '+fmtDate(d.date):''))+'&body='+encodeURIComponent(txt);
+    email.href='mail'+'to:?subject='+encodeURIComponent('Substitute day plan'+(d.date?' \u2014 '+fmtDate(d.date):''))+'&body='+encodeURIComponent(txt);
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

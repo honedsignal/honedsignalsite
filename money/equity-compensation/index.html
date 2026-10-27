@@ -252,7 +252,7 @@
     else if(d.grant==='rsu'){title.textContent='Withholding rarely covers it';text.textContent='Employers often withhold at a flat 22% supplemental rate at vesting. If your marginal rate is higher, you will owe the difference at tax time.';strong.textContent=fmt(d.tax)+' estimated tax on this vest';foot.textContent='Consider whether to sell-to-cover or hold — either way, the tax is due.'}
     else{title.textContent='Cash to exercise';text.textContent='Exercising NSOs costs '+fmt(d.strike*d.shares)+' out of pocket plus an estimated '+fmt(d.tax)+' in tax — make sure you have both before you exercise.';strong.textContent=fmt(d.strike*d.shares+d.tax)+' total cash needed';foot.textContent='Some employers allow cashless exercise; taxes are still due.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My equity compensation results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My equity compensation results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
     // ISO: strike row stays; RSU: hide it
     document.getElementById('strikeRow').style.display=d.grant==='rsu'?'none':'';
   }

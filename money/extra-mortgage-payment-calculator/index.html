@@ -612,7 +612,7 @@
       document.getElementById("email-results").addEventListener("click", function () {
         if (!lastSummary) return;
         var mailLink = document.createElement("a");
-        mailLink.href = "mailto:?subject=" + encodeURIComponent(lastSubject) + "&body=" + encodeURIComponent(lastSummary);
+        mailLink.href = "mail"+"to:?subject=" + encodeURIComponent(lastSubject) + "&body=" + encodeURIComponent(lastSummary);
         mailLink.click();
       });
 

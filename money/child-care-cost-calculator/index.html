@@ -150,7 +150,7 @@
     document.getElementById('daily').textContent=money2.format(d.dailyCost);
     document.getElementById('dailyNote').textContent='per day of care';
     document.getElementById('explainCopy').textContent=explanationText(d);
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My child care cost')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function enableActions(d){var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My child care cost')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
 
   }
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.rate<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}

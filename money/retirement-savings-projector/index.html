@@ -559,7 +559,7 @@
           "Informational and educational purposes only; not investment advice."
         ].join("\n");
 
-        document.getElementById("email-results").href = "mailto:?subject=" + encodeURIComponent("My retirement savings projection") + "&body=" + encodeURIComponent(latestText);
+        document.getElementById("email-results").href = "mail"+"to:?subject=" + encodeURIComponent("My retirement savings projection") + "&body=" + encodeURIComponent(latestText);
         results.hidden = false;
         empty.hidden = true;
         copyStatus.textContent = "";

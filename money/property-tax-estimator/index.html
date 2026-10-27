@@ -152,7 +152,7 @@
           <div class="share-head">
             <h2>Take the estimate with you</h2>
             <div class="actions">
-              <a class="action email" id="emailResults" href="mailto:">Email my results</a>
+              <a class="action email" id="emailResults" href="#">Email my results</a>
               <button class="action" id="copyResults" type="button">Copy results</button>
             </div>
           </div>
@@ -231,7 +231,7 @@
     copyNotice.textContent='';
 
     lastSummary='Property Tax Estimate\n\nHome value: '+money(value)+'\nEffective property tax rate: '+rateText(rate)+'\n\nEstimated annual property tax: '+money(annual)+'\nEstimated monthly property tax: '+money(monthly)+'\nEstimated quarterly property tax: '+money(quarterly)+'\nEstimated weekly property tax: '+money(weekly)+'\n\nMethod: home value × effective property tax rate. Actual bills may use taxable assessed value after exemptions, and local rates vary.\n\nFor informational and educational purposes only.';
-    emailResults.href='mailto:?subject='+encodeURIComponent('My property tax estimate')+'&body='+encodeURIComponent(lastSummary);
+    emailResults.href='mail'+'to:?subject='+encodeURIComponent('My property tax estimate')+'&body='+encodeURIComponent(lastSummary);
     emptyState.classList.add('hidden');
     resultState.classList.remove('hidden');
   });

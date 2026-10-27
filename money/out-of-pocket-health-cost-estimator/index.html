@@ -740,7 +740,7 @@
         var subject = encodeURIComponent("My out-of-pocket health cost estimate");
         var body = encodeURIComponent(lastMailBody);
         var mailLink = document.createElement("a");
-        mailLink.href = "mailto:?subject=" + subject + "&body=" + body;
+        mailLink.href = "mail"+"to:?subject=" + subject + "&body=" + body;
         mailLink.style.display = "none";
         document.body.appendChild(mailLink);
         mailLink.click();

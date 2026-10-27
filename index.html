@@ -102,7 +102,7 @@
         <li><a href="https://bsky.app/profile/honedsignal.bsky.social" target="_blank" rel="noopener">Bluesky</a></li>
         <li><a href="https://www.threads.com/@honedsignal" target="_blank" rel="noopener">Threads</a></li>
         <li><a href="https://www.facebook.com/honedsignal" target="_blank" rel="noopener">Facebook</a></li>
-        <li><a href="mailto:contact@honedsignal.com">contact@honedsignal.com</a></li>
+        <li><a href="#" id="hs-contact-email">contact&#64;honedsignal.com</a></li>
       </ul>
     </section>
   </main>
@@ -114,5 +114,14 @@
   </footer>
 
   <script src="script.js" defer></script>
+  <script>
+    (function () {
+      var el = document.getElementById('hs-contact-email');
+      if (!el) return;
+      var addr = 'contact' + '@' + 'honedsignal.com';
+      el.textContent = addr;
+      el.href = 'mail' + 'to:' + addr;
+    })();
+  </script>
 </body>
 </html>

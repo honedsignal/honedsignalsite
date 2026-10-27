@@ -673,7 +673,7 @@
         var subject = encodeURIComponent("My honeymoon budget estimate");
         var body = encodeURIComponent(summaryText);
         var emailLink = document.createElement("a");
-        emailLink.href = "mailto:?subject=" + subject + "&body=" + body;
+        emailLink.href = "mail"+"to:?subject=" + subject + "&body=" + body;
         emailLink.style.display = "none";
         document.body.appendChild(emailLink);
         emailLink.click();

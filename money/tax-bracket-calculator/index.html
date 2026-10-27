@@ -240,7 +240,7 @@
         </section>
 
         <section class="breakdown">
-          <div class="breakdown-head"><h2>How the brackets stack</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:" aria-label="Email these tax bracket results">Email my results</a><button type="button" class="action" id="copyResults" aria-live="polite">Copy results</button></div></div>
+          <div class="breakdown-head"><h2>How the brackets stack</h2><div class="actions"><a class="action email" id="emailResults" href="#" aria-label="Email these tax bracket results">Email my results</a><button type="button" class="action" id="copyResults" aria-live="polite">Copy results</button></div></div>
           <div class="ladder" id="bracketLadder"></div>
           <div class="method"><strong>What is included:</strong> the 2026 federal ordinary-income rate schedule for the filing status selected. This simplified estimate does not include deductions, tax credits, capital gains rates, self-employment tax, the alternative minimum tax, the net investment income tax, or state taxes.</div>
         </section>
@@ -337,7 +337,7 @@
     if(r.current&&r.current.upper!==Infinity){lines.push('Room before the next bracket: '+money(r.current.upper-r.income,true));}else if(r.current){lines.push('Current bracket: highest 2026 ordinary-income bracket');}
     lines.push('','A marginal rate applies only to the dollars inside that bracket, not to all taxable income. Estimate uses the 2026 federal ordinary-income rate schedule. Informational purposes only, not tax advice.');return lines.join('\n');
   }
-  function updateEmail(r){byId('emailResults').href='mailto:?subject='+encodeURIComponent('My 2026 federal tax bracket')+'&body='+encodeURIComponent(summary(r))}
+  function updateEmail(r){byId('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My 2026 federal tax bracket')+'&body='+encodeURIComponent(summary(r))}
   function copyResults(){
     if(!lastResult)return;var button=byId('copyResults'),text=summary(lastResult);
     var done=function(){button.textContent='Copied';clearTimeout(button._timer);button._timer=setTimeout(function(){button.textContent='Copy results'},1600)};

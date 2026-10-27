@@ -315,7 +315,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
   function enableActions(subject, bodyText){
     var email = document.getElementById('emailResults');
     if (email){
-      email.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
+      email.href = 'mail'+'to:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
       email.setAttribute('aria-disabled','false');
     }
     var cp = document.getElementById('copyResults');

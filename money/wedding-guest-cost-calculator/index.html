@@ -412,7 +412,7 @@
             <p class="summary" id="summaryText"></p>
             <div class="breakdown" id="breakdown"></div>
             <div class="result-actions">
-              <a class="email action-link" id="emailButton" href="mailto:?subject=My%20wedding%20guest%20cost%20estimate">Email my results</a>
+              <a class="email action-link" id="emailButton" href="#">Email my results</a>
               <button class="copy" id="copyButton" type="button">Copy results</button>
             </div>
             <p class="copy-status" id="copyStatus" role="status"></p>
@@ -566,7 +566,7 @@
 
       emailButton.addEventListener('click', function () {
         if (!lastText) return;
-        window.location.href = 'mailto:?subject=' + encodeURIComponent('My wedding guest cost estimate') + '&body=' + encodeURIComponent(lastText);
+        window.location.href = 'mail'+'to:?subject=' + encodeURIComponent('My wedding guest cost estimate') + '&body=' + encodeURIComponent(lastText);
       });
 
       function fallbackCopy(text) {

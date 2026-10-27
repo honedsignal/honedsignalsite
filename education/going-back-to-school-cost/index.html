@@ -185,7 +185,7 @@ function calcBackToSchool(tuition,books,years,salary,factor,aid,empAid){
     document.getElementById('nudgeFoot').textContent=nudge;
     document.getElementById('explainCopy').textContent='Sticker cost = (yearly tuition + books) \u00d7 years. Lost income = current salary \u00d7 years \u00d7 work factor (1 for not working, 0.5 part-time, 0 full-time). True total = sticker + lost income \u2212 grants \u2212 employer help. This ignores taxes, raises, loan interest, and the salary bump after graduation \u2014 directional math, not a financial plan.';
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My true cost of going back to school')+'&body='+encodeURIComponent(summaryText());
+    email.href='mail'+'to:?subject='+encodeURIComponent('My true cost of going back to school')+'&body='+encodeURIComponent(summaryText());
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

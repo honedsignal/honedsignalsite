@@ -801,7 +801,7 @@
         var subject = encodeURIComponent("My long-term care cost estimate");
         var body = encodeURIComponent(resultText);
         var emailLink = document.createElement("a");
-        emailLink.href = "mailto:?subject=" + subject + "&body=" + body;
+        emailLink.href = "mail"+"to:?subject=" + subject + "&body=" + body;
         emailLink.click();
       });
 

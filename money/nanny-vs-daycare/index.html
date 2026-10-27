@@ -225,7 +225,7 @@
     document.getElementById('nudgeStrong').textContent=fmt(d.nanny.tax)+' / year in employer taxes';
     document.getElementById('nudgeFoot').textContent='Underpaying or skipping these taxes risks back taxes and penalties.';
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My nanny vs daycare results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My nanny vs daycare results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.perMonth<=0&&d.rate<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   ['kids','daycareMonthly','daycareFees','nannyRate','nannyHours','nannyWeeks','nannyTax'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){updateSubtotals();if(last)render(getData())})});
   form.addEventListener('submit',calculate);

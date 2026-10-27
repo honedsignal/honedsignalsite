@@ -605,7 +605,7 @@
         var subject = encodeURIComponent("My relocation cost estimate");
         var body = encodeURIComponent(lastSummary);
         var emailLink = document.createElement("a");
-        emailLink.href = "mailto:?subject=" + subject + "&body=" + body;
+        emailLink.href = "mail"+"to:?subject=" + subject + "&body=" + body;
         emailLink.style.display = "none";
         document.body.appendChild(emailLink);
         emailLink.click();

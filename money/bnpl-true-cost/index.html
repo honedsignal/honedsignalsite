@@ -155,7 +155,7 @@
     document.getElementById('markup').textContent=d.markup.toFixed(1)+'%';
     document.getElementById('markupNote').textContent=d.markup<5?'modest':(d.markup<15?'pricey':'very pricey');
     document.getElementById('explainCopy').textContent=explanationText(d);
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My BNPL true cost')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function enableActions(d){var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My BNPL true cost')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
 
   }
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.price<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}

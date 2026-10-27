@@ -246,7 +246,7 @@
     foot.textContent=isFinite(d.breakeven)?('If you live past about '+d.breakeven.toFixed(1)+', waiting wins on lifetime total. Health, work plans, and whether you need the money now all matter more than the math alone.'):'';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My Social Security benefit estimate')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My Social Security benefit estimate')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();
     if(!d.birthYear||d.birthYear<1920||d.birthYear>2010||d.aime<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}

@@ -608,7 +608,7 @@
           <div class="breakdown-list" id="breakdown-list"></div>
 
           <div class="result-actions">
-            <a class="email" id="email-results" href="mailto:">Email my results</a>
+            <a class="email" id="email-results" href="#">Email my results</a>
             <button class="secondary" id="copy-results" type="button">Copy results</button>
           </div>
           <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
@@ -779,7 +779,7 @@
         explanation.appendChild(ul);
 
         latestSummary = buildSummary(income, items, total, remaining);
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My monthly budget results") + "&body=" + encodeURIComponent(latestSummary);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My monthly budget results") + "&body=" + encodeURIComponent(latestSummary);
         copyStatus.textContent = "";
         emptyState.hidden = true;
         results.hidden = false;

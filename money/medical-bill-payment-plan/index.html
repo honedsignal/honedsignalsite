@@ -163,7 +163,7 @@
     document.getElementById('markupNote').textContent='per month';
     document.getElementById('explainCopy').textContent=explanationText(d);
   }
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My medical bill payoff plan')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function enableActions(d){var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My medical bill payoff plan')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.total<=0||d.monthly<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d);enableActions(d)}
   form.addEventListener('submit',calculate);
   ['billTotal','monthlyPay','apr'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('input',function(){if(last)render(getData())});if(el&&el.tagName==='SELECT')el.addEventListener('change',function(){if(last)render(getData())})});

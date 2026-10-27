@@ -440,7 +440,7 @@
       document.getElementById("email-button").addEventListener("click", function () {
         if (!latestText) return;
         var emailLink = document.createElement("a");
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My mortgage scenario comparison") + "&body=" + encodeURIComponent(latestText);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My mortgage scenario comparison") + "&body=" + encodeURIComponent(latestText);
         emailLink.click();
       });
 

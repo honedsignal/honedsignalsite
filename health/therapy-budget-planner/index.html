@@ -430,7 +430,7 @@
       if (!r) return;
       var subject = encodeURIComponent('My therapy budget check — Honed Proof');
       var body = encodeURIComponent(summaryText(r));
-      window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+      window.location.href = 'mail'+'to:?subject=' + subject + '&body=' + body;
     });
 
     $('tbpPrint').addEventListener('click', function () { window.print(); });

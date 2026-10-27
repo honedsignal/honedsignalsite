@@ -202,7 +202,7 @@
           </section>
 
           <section class="share">
-            <div class="share-head"><h2>Take the estimate with you</h2><div class="actions"><button class="action" id="copyButton" type="button">Copy results</button><a class="action email" id="emailButton" href="mailto:">Email my results</a></div></div>
+            <div class="share-head"><h2>Take the estimate with you</h2><div class="actions"><button class="action" id="copyButton" type="button">Copy results</button><a class="action email" id="emailButton" href="#">Email my results</a></div></div>
             <p class="notice" id="copyNotice" role="status"></p>
           </section>
         </div>
@@ -257,7 +257,7 @@
     else if(r.difference>0){diff.textContent="Estimated VA opening payment advantage: "+money(r.difference)+" per month (about "+money(r.difference*12)+" in the first year).";}
     else{diff.textContent="Estimated VA opening payment is "+money(Math.abs(r.difference))+" higher per month because of the financed funding fee and the entered PMI assumption.";}
     el("explainCopy").innerHTML=explanation(r);el("explainCopy").hidden=true;el("explainToggle").setAttribute("aria-expanded","false");
-    currentText=summary(r);el("emailButton").href="mailto:?subject="+encodeURIComponent("My VA home loan estimate")+"&body="+encodeURIComponent(currentText);
+    currentText=summary(r);el("emailButton").href="mail"+"to:?subject="+encodeURIComponent("My VA home loan estimate")+"&body="+encodeURIComponent(currentText);
     if(window.matchMedia("(max-width: 880px)").matches){requestAnimationFrame(function(){el("resultLead").scrollIntoView({behavior:"smooth",block:"start"})})}
   }
   function explanation(r){

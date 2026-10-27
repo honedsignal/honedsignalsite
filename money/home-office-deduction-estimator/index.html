@@ -186,7 +186,7 @@
           </section>
 
           <section class="share">
-            <div class="share-head"><h2>Take the comparison with you</h2><div class="actions"><button class="action" id="copyButton" type="button">Copy results</button><a class="action email" id="emailButton" href="mailto:">Email my results</a></div></div>
+            <div class="share-head"><h2>Take the comparison with you</h2><div class="actions"><button class="action" id="copyButton" type="button">Copy results</button><a class="action email" id="emailButton" href="#">Email my results</a></div></div>
             <p class="notice" id="copyNotice" role="status"></p>
           </section>
         </div>
@@ -276,7 +276,7 @@
       "",
       "Estimate only — not tax advice. Eligibility, income limits, records, and unmodeled expenses can change the allowable deduction."
     ].join("\n");
-    emailButton.href="mailto:?subject="+encodeURIComponent("My home office deduction estimate")+"&body="+encodeURIComponent(currentText);
+    emailButton.href="mail"+"to:?subject="+encodeURIComponent("My home office deduction estimate")+"&body="+encodeURIComponent(currentText);
     requestAnimationFrame(function(){resultState.scrollIntoView({behavior:"smooth",block:"nearest"});});
   });
 

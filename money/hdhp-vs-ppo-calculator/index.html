@@ -659,7 +659,7 @@
       </div>
 
       <div class="actions">
-        <a id="email-results" class="action-btn primary" href="mailto:">Email my results</a>
+        <a id="email-results" class="action-btn primary" href="#">Email my results</a>
         <button id="copy-results" class="action-btn" type="button">Copy results</button>
         <button id="explain-results" class="action-btn outline" type="button" aria-expanded="false" aria-controls="explanation">Explain these results</button>
         <span id="copy-status" class="copy-status" role="status"></span>
@@ -878,7 +878,7 @@
           "Informational only; not financial, tax, legal, investment, or insurance advice."
         ].join("\n");
 
-        document.getElementById("email-results").href = "mailto:?subject=" + encodeURIComponent("My HDHP vs PPO comparison") + "&body=" + encodeURIComponent(lastResultText);
+        document.getElementById("email-results").href = "mail"+"to:?subject=" + encodeURIComponent("My HDHP vs PPO comparison") + "&body=" + encodeURIComponent(lastResultText);
         results.hidden = false;
         explanation.hidden = true;
         document.getElementById("explain-results").setAttribute("aria-expanded", "false");

@@ -239,7 +239,7 @@
       title.textContent='Take the credit';text.textContent='The Child and Dependent Care Credit wins here — at your income the credit rate beats FSA savings.';strong.textContent=fmt(d.credit)+' credit';foot.textContent='You can still pair a smaller FSA with the credit on remaining expenses.';
     }
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My dependent care FSA comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My dependent care FSA comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
   }
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.costs<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   ['costs','agi','fsa'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){updateSubtotal();if(last&&num('costs')>0)render(getData())})});

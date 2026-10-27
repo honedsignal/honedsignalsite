@@ -523,7 +523,7 @@
           <p class="notice"><strong>Important:</strong> PPM profit is taxable income. Your actual payment and reimbursable expenses are determined by your transportation office and official counseling paperwork.</p>
 
           <div class="actions">
-            <a class="action-button" id="emailButton" href="mailto:" role="button">Email my results</a>
+            <a class="action-button" id="emailButton" href="#" role="button">Email my results</a>
             <button class="action-button" type="button" id="copyButton">Copy results</button>
             <p class="copy-status" id="copyStatus" aria-live="polite"></p>
           </div>
@@ -643,7 +643,7 @@
         }
         var subject = encodeURIComponent("My PPM move profit estimate");
         var body = encodeURIComponent(lastSummary);
-        this.setAttribute("href", "mailto:?subject=" + subject + "&body=" + body);
+        this.setAttribute("href", "mail"+"to:?subject=" + subject + "&body=" + body);
       });
 
       document.getElementById("copyButton").addEventListener("click", function () {

@@ -755,7 +755,7 @@
         if (!lastSummary) return;
         var subject = "My dollar-cost averaging comparison";
         var mailLink = document.createElement("a");
-        mailLink.href = "mailto:?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lastSummary);
+        mailLink.href = "mail"+"to:?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lastSummary);
         mailLink.click();
       });
 

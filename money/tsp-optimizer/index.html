@@ -222,7 +222,7 @@
     else if(d.room>0){var toMax=Math.min(d.room,d.salary*0.05);title.textContent='Match secured — consider maxing';text.textContent='You get the full match. Your 2026 elective limit is '+fmt(d.limit)+', leaving';strong.textContent=fmt(d.room)+' of contribution room';foot.textContent='Maxing the limit is the next milestone if your budget allows.'}
     else{title.textContent='You are maxing it out';text.textContent='You hit the 2026 elective limit of '+fmt(d.limit)+' and capture the full match.';strong.textContent=fmt(d.projected)+' projected';foot.textContent='That projection assumes smooth '+ (d.ret*100).toFixed(1) +'% annual returns for '+d.years+' years.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My TSP contribution check')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My TSP contribution check')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false;
   }
   function updateSubtotal(){document.getElementById('contribTotal').textContent=fmt(num('salary')*num('contribPct')/100);document.getElementById('limitTotal').textContent=fmt(ELECTIVE+catchup)}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.salary<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}

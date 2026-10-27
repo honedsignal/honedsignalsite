@@ -202,7 +202,7 @@
     document.getElementById('nudgeFoot').textContent='Some banks have dropped overdraft fees entirely — if yours has not, it may be worth switching.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My overdraft fee cost results')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My overdraft fee cost results')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

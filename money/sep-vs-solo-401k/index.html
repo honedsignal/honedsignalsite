@@ -237,7 +237,7 @@
     document.getElementById('nudgeFoot').textContent=v.foot;
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My SEP-IRA vs Solo 401(k) comparison')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My SEP-IRA vs Solo 401(k) comparison')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

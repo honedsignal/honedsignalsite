@@ -224,7 +224,7 @@
     document.getElementById('nudgeFoot').textContent='Most of the gap is auto insurance — get real quotes, since your driving record moves that number more than anything else.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My nomad domicile comparison')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My nomad domicile comparison')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

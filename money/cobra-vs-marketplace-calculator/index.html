@@ -583,7 +583,7 @@
           resultText = "COBRA vs Marketplace comparison\nLower-cost option: " + winner + "\nEstimated total savings: " + money(totalDifference) + "\nEstimated monthly savings: " + money(monthlyDifference) + "\nCOBRA: " + money(cobraMonthly) + "/month, " + money(cobraTotal) + " total.\nMarketplace after subsidy: " + money(marketplaceMonthly) + "/month, " + money(marketplaceTotal) + " total.\nCoverage period: " + values.months + " month" + (values.months === 1 ? "" : "s") + ".\n\nCOBRA keeps your current plan and doctors. Marketplace networks should be checked before enrolling.";
         }
 
-        document.getElementById("email-results").href = "mailto:?subject=" + encodeURIComponent("My COBRA vs Marketplace comparison") + "&body=" + encodeURIComponent(resultText);
+        document.getElementById("email-results").href = "mail"+"to:?subject=" + encodeURIComponent("My COBRA vs Marketplace comparison") + "&body=" + encodeURIComponent(resultText);
         explanation.hidden = true;
         toggleExplanation.setAttribute("aria-expanded", "false");
         toggleExplanation.textContent = "Explain these results";

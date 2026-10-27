@@ -681,7 +681,7 @@
           "<p>The calculator keeps your monthly debt budget at <strong>" + money(snowball.budget) + "</strong>. It applies interest monthly, pays every minimum, then sends what remains to the current target. A payoff plan only works if you keep making the full payment and avoid adding new charges.</p>";
 
         resultText = buildResultText(parsed.debts, snowball, avalanche, extra);
-        document.getElementById("email-results").href = "mailto:?subject=" + encodeURIComponent("My debt payoff comparison") + "&body=" + encodeURIComponent(resultText);
+        document.getElementById("email-results").href = "mail"+"to:?subject=" + encodeURIComponent("My debt payoff comparison") + "&body=" + encodeURIComponent(resultText);
         results.classList.add("show");
         results.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
       });

@@ -310,7 +310,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
 
   function enableShare(text){
     var email=$('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My assignment deadlines')+'&body='+encodeURIComponent(text);
+    email.href='mail'+'to:?subject='+encodeURIComponent('My assignment deadlines')+'&body='+encodeURIComponent(text);
     email.setAttribute('aria-disabled','false');
     $('copyResults').dataset.shareText=text;
     $('copyResults').disabled=false;

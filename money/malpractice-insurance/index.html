@@ -252,7 +252,7 @@
     else if(d.quotes.length===2){title.textContent=d.winner.name+' is cheaper';text.textContent='The annual gap compounds fast. Over 5 years the cheaper quote saves you';strong.textContent=fmt(d.gap*5);foot.textContent='Compare on identical limits and policy type before you decide.'}
     else{title.textContent='One quote in hand';text.textContent='Get a second quote on the same limits to find the real market price.';strong.textContent=fmt(d.winner.annual)+'/yr';foot.textContent='A 10% swing on a $10,000 premium is $1,000 a year.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My malpractice insurance comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My malpractice insurance comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(!d.winner){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   ['quoteA','quoteB','tailCost','income'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(last)render(getData())})});
   form.addEventListener('submit',calculate);

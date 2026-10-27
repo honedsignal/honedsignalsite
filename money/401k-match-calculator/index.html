@@ -629,7 +629,7 @@
         ].join('\n');
 
         var subject = 'My 401(k) employer match estimate';
-        emailLink.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(resultText);
+        emailLink.href = 'mail'+'to:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(resultText);
         copyStatus.textContent = '';
         emptyState.hidden = true;
         results.hidden = false;

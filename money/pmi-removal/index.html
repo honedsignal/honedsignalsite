@@ -224,7 +224,7 @@
     else{title.textContent='Check your numbers';text.textContent='The payment does not cover the interest, so the balance never falls.';strong.textContent='Verify rate and P&I';foot.textContent='Your P&I payment must exceed the monthly interest charge.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My PMI removal timeline')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My PMI removal timeline')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

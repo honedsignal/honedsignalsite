@@ -243,7 +243,7 @@
     else{title.textContent='Run the escape hatch';text.textContent='Rolling your pre-tax IRA balance into a 401(k) removes it from the pro-rata pool.';strong.textContent=fmt(d.taxCost)+' at stake';foot.textContent='Check whether your 401(k) accepts incoming rollovers.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My backdoor Roth check')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My backdoor Roth check')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

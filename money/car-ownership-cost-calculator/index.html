@@ -500,7 +500,7 @@
             </ul>
 
             <div class="actions">
-              <a class="action email" id="email-results" href="mailto:" role="button">Email my results</a>
+              <a class="action email" id="email-results" href="#" role="button">Email my results</a>
               <button class="action" id="copy-results" type="button">Copy results</button>
             </div>
 
@@ -655,7 +655,7 @@
           "This estimate treats the full purchase price as a cost and does not subtract future resale value. It excludes loan interest, taxes, registration, parking, tolls, and unexpected repairs.",
           "For informational purposes only."
         ].join("\n");
-        document.getElementById("email-results").href = "mailto:?subject=" + encodeURIComponent("My car ownership cost estimate") + "&body=" + encodeURIComponent(resultText);
+        document.getElementById("email-results").href = "mail"+"to:?subject=" + encodeURIComponent("My car ownership cost estimate") + "&body=" + encodeURIComponent(resultText);
 
         emptyState.hidden = true;
         results.hidden = false;

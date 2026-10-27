@@ -666,7 +666,7 @@
         if (!lastSummary) return;
         var subject = "My Roth vs. Traditional IRA comparison";
         var link = document.createElement("a");
-        link.href = "mailto:?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lastSummary);
+        link.href = "mail"+"to:?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lastSummary);
         link.style.display = "none";
         document.body.appendChild(link);
         link.click();

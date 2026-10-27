@@ -560,7 +560,7 @@
           </div>
 
           <div class="result-tools" id="resultTools">
-            <a class="tool-btn" id="emailResults" href="mailto:" aria-label="Email these debt-to-income results">Email my results</a>
+            <a class="tool-btn" id="emailResults" href="#" aria-label="Email these debt-to-income results">Email my results</a>
             <button class="tool-btn" type="button" id="copyResults">Copy results</button>
             <button class="tool-btn explain-toggle" type="button" id="explainResults" aria-expanded="false" aria-controls="resultsExplanation">Explain these results</button>
             <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
@@ -672,7 +672,7 @@
       }
 
       function updateEmail() {
-        var href = 'mailto:?subject=' + encodeURIComponent('My debt-to-income ratio results') + '&body=' + encodeURIComponent(buildSummary());
+        var href = 'mail'+'to:?subject=' + encodeURIComponent('My debt-to-income ratio results') + '&body=' + encodeURIComponent(buildSummary());
         document.getElementById('emailResults').setAttribute('href', href);
       }
 

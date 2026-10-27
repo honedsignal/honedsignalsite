@@ -190,7 +190,7 @@
 
         <div class="action-row">
           <button class="action" type="button" id="explainButton" aria-expanded="false" aria-controls="explanation">Explain these results</button>
-          <a class="action email" id="emailResults" href="mailto:" aria-label="Email my mortgage results">Email my results</a>
+          <a class="action email" id="emailResults" href="#" aria-label="Email my mortgage results">Email my results</a>
           <button class="action" type="button" id="copyResults">Copy results</button>
         </div>
         <p class="copy-status" id="copyStatus" aria-live="polite"></p>
@@ -284,7 +284,7 @@
     explainButton.setAttribute('aria-expanded','false');
     explainButton.textContent='Explain these results';
     lastSummary=summary(r);
-    document.getElementById('emailResults').href='mailto:?subject='+encodeURIComponent('My mortgage payment results')+'&body='+encodeURIComponent(lastSummary);
+    document.getElementById('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My mortgage payment results')+'&body='+encodeURIComponent(lastSummary);
     document.getElementById('copyStatus').textContent='';
   }
 

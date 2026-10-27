@@ -413,7 +413,7 @@
             </div>
           </div>
           <div class="actions">
-            <a id="email" class="action email" href="mailto:?subject=My%20position%20size%20calculation" role="button">Email my results</a>
+            <a id="email" class="action email" href="#" role="button">Email my results</a>
             <button id="copy" class="action" type="button">Copy results</button>
           </div>
           <div id="copyStatus" class="copy-status" role="status"></div>
@@ -607,7 +607,7 @@
         }
         var subject = encodeURIComponent("My position size calculation");
         var body = encodeURIComponent(buildText(lastResult));
-        this.setAttribute("href", "mailto:?subject=" + subject + "&body=" + body);
+        this.setAttribute("href", "mail"+"to:?subject=" + subject + "&body=" + body);
       });
 
       document.getElementById("copy").addEventListener("click", function () {

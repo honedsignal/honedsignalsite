@@ -284,7 +284,7 @@
       document.getElementById("email-results").addEventListener("click", function () {
         if (!lastSummary) return;
         var emailLink = document.createElement("a");
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My cat ownership cost estimate") + "&body=" + encodeURIComponent(lastSummary);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My cat ownership cost estimate") + "&body=" + encodeURIComponent(lastSummary);
         emailLink.click();
       });
       document.getElementById("copy-results").addEventListener("click", function () {

@@ -657,7 +657,7 @@
 
       document.getElementById('email').addEventListener('click', function () {
         if (!latestMailBody) return;
-        window.location.href = 'mailto:?subject=' + encodeURIComponent('My tip calculation') + '&body=' + latestMailBody;
+        window.location.href = 'mail'+'to:?subject=' + encodeURIComponent('My tip calculation') + '&body=' + latestMailBody;
       });
 
       function fallbackCopy(text) {

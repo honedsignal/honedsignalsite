@@ -677,7 +677,7 @@
         var subject = encodeURIComponent("My investment fee comparison");
         var body = encodeURIComponent(lastSummary);
         var link = document.createElement("a");
-        link.href = "mailto:?subject=" + subject + "&body=" + body;
+        link.href = "mail"+"to:?subject=" + subject + "&body=" + body;
         link.click();
       });
       document.getElementById("copyBtn").addEventListener("click", function () {

@@ -206,7 +206,7 @@
     document.getElementById('nudgeFoot').textContent=state.campaign?'Endorsements can\u2019t be un-rung \u2014 counsel, now.':'Election seasons are when good boards slip.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Church tax-exempt risk audit')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Church tax-exempt risk audit')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

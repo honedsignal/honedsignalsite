@@ -321,7 +321,7 @@
             <p class="tradeoff">Whole life can last your lifetime and builds cash value, but it usually costs far more per dollar of death benefit. Term life covers the years your family depends on your income, often at a fraction of the price.</p>
           </div>
           <div class="actions">
-            <a class="action primary" id="email-results" href="mailto:">Email my results</a>
+            <a class="action primary" id="email-results" href="#">Email my results</a>
             <button class="action" id="copy-results" type="button">Copy results</button>
             <button class="action" id="explain-results" type="button" aria-expanded="false" aria-controls="explanation">Explain these results</button>
           </div>
@@ -475,7 +475,7 @@
           "",
           "Informational purposes only; not financial, tax, legal, investment, or insurance advice."
         ].join("\n");
-        document.getElementById("email-results").href = "mailto:?subject=" + encodeURIComponent("My term vs whole life comparison") + "&body=" + encodeURIComponent(latestText);
+        document.getElementById("email-results").href = "mail"+"to:?subject=" + encodeURIComponent("My term vs whole life comparison") + "&body=" + encodeURIComponent(latestText);
 
         explanation.classList.remove("show");
         explainButton.setAttribute("aria-expanded", "false");

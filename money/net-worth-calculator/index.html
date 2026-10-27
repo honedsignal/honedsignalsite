@@ -391,7 +391,7 @@
             <div class="legend"><span>Assets</span><span>Liabilities</span></div>
           </div>
           <div class="result-actions">
-            <a class="mail-button" id="emailResults" href="mailto:">Email my results</a>
+            <a class="mail-button" id="emailResults" href="#">Email my results</a>
             <button class="copy-button" id="copyResults" type="button">Copy results</button>
           </div>
           <details>
@@ -466,7 +466,7 @@
           'Total assets: ' + dollars(assets) + '\n' +
           'Total liabilities: ' + dollars(liabilities) + '\n\n' +
           status + '\n\nFor informational purposes only.';
-        document.getElementById('emailResults').href = 'mailto:?subject=' + encodeURIComponent('My net worth snapshot') + '&body=' + encodeURIComponent(resultText);
+        document.getElementById('emailResults').href = 'mail'+'to:?subject=' + encodeURIComponent('My net worth snapshot') + '&body=' + encodeURIComponent(resultText);
         document.getElementById('emptyState').classList.add('hide');
         document.getElementById('results').classList.add('show');
       }

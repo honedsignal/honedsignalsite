@@ -491,7 +491,7 @@
           </div>
 
           <div class="actions">
-            <a class="action email" id="emailResults" href="mailto:">Email my results</a>
+            <a class="action email" id="emailResults" href="#">Email my results</a>
             <button class="action" id="copyResults" type="button">Copy results</button>
             <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
           </div>
@@ -616,7 +616,7 @@
           "This is a simple estimate for informational purposes only."
         ].join("\n");
 
-        emailResults.href = "mailto:?subject=" + encodeURIComponent("My inflation calculator results") + "&body=" + encodeURIComponent(resultText);
+        emailResults.href = "mail"+"to:?subject=" + encodeURIComponent("My inflation calculator results") + "&body=" + encodeURIComponent(resultText);
         error.textContent = "";
         emptyState.hidden = true;
         resultContent.hidden = false;

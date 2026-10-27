@@ -151,7 +151,7 @@
     document.getElementById('saveAmt').textContent=d.diff>0.0005?money2.format(d.diff):'$0.00';
     document.getElementById('saveNote').textContent=d.diff>0.0005?'per unit with '+d.winner:'no difference';
     document.getElementById('explainCopy').textContent=explanationText(d);
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My unit price comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function enableActions(d){var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My unit price comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
 
   }
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.qtyA<=0||d.qtyB<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}

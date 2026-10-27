@@ -470,7 +470,7 @@
           </section>
 
           <div class="result-tools">
-            <a class="tool-button email-button" id="emailButton" href="mailto:" role="button">Email my results</a>
+            <a class="tool-button email-button" id="emailButton" href="#" role="button">Email my results</a>
             <button class="tool-button copy-button" id="copyButton" type="button">Copy results</button>
           </div>
           <p class="copy-status" id="copyStatus" aria-live="polite"></p>
@@ -631,7 +631,7 @@
         summaryLines.push("", "For informational purposes only. Not investment advice or a promise of future results.");
         latestText = summaryLines.join("\n");
         latestEmailBody = latestText;
-        document.getElementById("emailButton").setAttribute("href", "mailto:?subject=" + encodeURIComponent("My investment return projection") + "&body=" + encodeURIComponent(latestEmailBody));
+        document.getElementById("emailButton").setAttribute("href", "mail"+"to:?subject=" + encodeURIComponent("My investment return projection") + "&body=" + encodeURIComponent(latestEmailBody));
 
         emptyState.hidden = true;
         resultContent.hidden = false;

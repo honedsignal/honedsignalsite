@@ -196,7 +196,7 @@ function calcPaths(aWage,aRaise,jSalary,cCost,cEarn,cSalary,cRaise){
     document.getElementById('nudgeFoot').textContent=v.text;
     document.getElementById('explainCopy').textContent='Apprenticeship years 1\u20134: starting wage grown by the yearly raise %. Years 5\u201310: journeyman salary. College years 1\u20134: in-school earnings minus one-quarter of the total 4-year cost. Years 5\u201310: graduate starting salary grown by the yearly raise %. Cumulative net adds each year\u2019s result. No taxes, no loan interest, no inflation \u2014 directional math, not a financial plan.';
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Apprenticeship vs. college: 10-year comparison')+'&body='+encodeURIComponent(summaryText());
+    email.href='mail'+'to:?subject='+encodeURIComponent('Apprenticeship vs. college: 10-year comparison')+'&body='+encodeURIComponent(summaryText());
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

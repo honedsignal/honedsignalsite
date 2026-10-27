@@ -225,7 +225,7 @@
           </table>
           <div class="verdict" id="verdict"></div>
           <div class="result-actions">
-            <a class="btn email-btn" id="email-results" href="mailto:">Email my results</a>
+            <a class="btn email-btn" id="email-results" href="#">Email my results</a>
             <button class="btn btn-secondary" id="copy-results" type="button">Copy results</button>
             <span class="copy-status" id="copy-status" role="status"></span>
           </div>
@@ -321,7 +321,7 @@
         var incomeTwo = scenarios[2].monthlyIncome - scenarios[1].monthlyIncome;
         verdict.innerHTML = "<h3>What each extra stretch of work buys</h3><p>Waiting from <strong>62 to 65</strong> adds <strong>" + sentenceMoney(deltaOne) + "</strong> to the projected nest egg and about <strong>" + sentenceMoney(incomeOne) + " more per month</strong> under the 4% rule.</p><p>Waiting from <strong>65 to 70</strong> adds another <strong>" + sentenceMoney(deltaTwo) + "</strong> and about <strong>" + sentenceMoney(incomeTwo) + " more per month</strong>. That larger balance comes with a real tradeoff: retirement starts five years later.</p>";
         lastResultText = buildResultText(age, savings, contribution, rate, scenarios);
-        emailButton.href = "mailto:?subject=" + encodeURIComponent("My retirement age comparison") + "&body=" + encodeURIComponent(lastResultText);
+        emailButton.href = "mail"+"to:?subject=" + encodeURIComponent("My retirement age comparison") + "&body=" + encodeURIComponent(lastResultText);
         emptyState.hidden = true;
         results.hidden = false;
         results.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });

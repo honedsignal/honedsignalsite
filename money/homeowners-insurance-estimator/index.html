@@ -557,7 +557,7 @@
       </div>
 
       <div class="actions">
-        <a class="action action-primary" id="emailResults" href="mailto:">Email my results</a>
+        <a class="action action-primary" id="emailResults" href="#">Email my results</a>
         <button class="action action-neutral" id="copyResults" type="button">Copy results</button>
         <button class="action action-outline" id="explainResults" type="button" aria-expanded="false" aria-controls="plainExplanation">Explain these results</button>
         <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
@@ -711,7 +711,7 @@
           deductibleDirection: deductibleDirection
         };
         latestResultText = buildResultText(data);
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My homeowners insurance estimate") + "&body=" + encodeURIComponent(latestResultText);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My homeowners insurance estimate") + "&body=" + encodeURIComponent(latestResultText);
 
         explanation.hidden = true;
         explainButton.setAttribute("aria-expanded", "false");

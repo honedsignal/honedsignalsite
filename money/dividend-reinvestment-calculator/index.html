@@ -741,7 +741,7 @@
       document.getElementById('emailButton').addEventListener('click', function () {
         if (!lastResultText) return;
         var emailLink = document.createElement('a');
-        emailLink.href = 'mailto:?subject=' + encodeURIComponent('My dividend reinvestment estimate') + '&body=' + encodeURIComponent(lastResultText);
+        emailLink.href = 'mail'+'to:?subject=' + encodeURIComponent('My dividend reinvestment estimate') + '&body=' + encodeURIComponent(lastResultText);
         emailLink.click();
       });
     }());

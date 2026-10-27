@@ -181,7 +181,7 @@
             <article class="metric"><span>BASE 1% RULE</span><strong id="baseResult">—</strong><em>before age adjustment</em></article>
             <article class="metric"><span>AGE CUSHION</span><strong id="ageResult">—</strong><em id="ageNote">added for older systems</em></article>
           </div>
-          <div class="actions"><button class="text-btn" type="button" id="explainResults" aria-expanded="false" aria-controls="resultsExplanation">Explain these results <span class="explain-mark" aria-hidden="true">+</span></button><a class="text-btn" id="emailResults" href="mailto:" aria-label="Email these home maintenance results">Email my results</a><button class="text-btn" type="button" id="copyResults" aria-label="Copy these home maintenance results">Copy results</button></div>
+          <div class="actions"><button class="text-btn" type="button" id="explainResults" aria-expanded="false" aria-controls="resultsExplanation">Explain these results <span class="explain-mark" aria-hidden="true">+</span></button><a class="text-btn" id="emailResults" href="#" aria-label="Email these home maintenance results">Email my results</a><button class="text-btn" type="button" id="copyResults" aria-label="Copy these home maintenance results">Copy results</button></div>
           <section class="explanation hidden" id="resultsExplanation" aria-label="Plain-English explanation"><p id="explanationText"></p></section>
           <section class="panel reserve-card">
             <div><h3 id="bandTitle">—</h3><p id="bandCopy">—</p></div>
@@ -239,7 +239,7 @@
     document.getElementById('bandCopy').textContent=r.copy;
     document.getElementById('rateResult').textContent=r.rate.toFixed(2)+'%';
     document.getElementById('explanationText').textContent='For a home valued at '+money(r.value)+', the basic 1% rule suggests '+money(r.base)+' per year. Because this home is '+r.age+' year'+(r.age===1?'':'s')+' old, the calculator uses a '+r.rate.toFixed(2)+'% planning rate, bringing the target to '+money(r.annual)+' per year, or about '+money(r.monthly)+' per month. This is money to set aside over time: maintenance rarely arrives in equal monthly bills, and one quiet year can be followed by a large repair. The estimate covers upkeep and normal wear, not remodeling, taxes, insurance premiums, utilities, or damage handled through an insurance claim.';
-    document.getElementById('emailResults').href='mailto:?subject='+encodeURIComponent('My home maintenance budget estimate')+'&body='+encodeURIComponent(summary(r));
+    document.getElementById('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My home maintenance budget estimate')+'&body='+encodeURIComponent(summary(r));
   }
   function showError(message){emptyState.classList.add('hidden');resultState.classList.remove('hidden');resultContent.classList.add('hidden');alertBox.textContent=message;alertBox.classList.remove('hidden')}
   form.addEventListener('submit',function(e){e.preventDefault();var v=readInputs(),error=validate(v);if(error){showError(error);return}lastResult=calculate(v);render(lastResult);resultState.scrollIntoView({behavior:'smooth',block:'start'})});

@@ -185,7 +185,7 @@
     document.getElementById('nudgeFoot').textContent=d.ratio>40?'Above the danger zone \u2014 reconsider.':'Inside the usual comfort zone.';
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Church building affordability')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Church building affordability')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

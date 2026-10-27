@@ -513,7 +513,7 @@
           </section>
 
           <div class="actions-row">
-            <a class="text-btn" id="emailResults" href="mailto:" aria-label="Email these credit utilization results">Email my results</a>
+            <a class="text-btn" id="emailResults" href="#" aria-label="Email these credit utilization results">Email my results</a>
             <button type="button" class="text-btn" id="copyResults" aria-live="polite">Copy results</button>
             <button type="button" class="text-btn explain-toggle" id="explainResults" aria-expanded="false" aria-controls="resultsExplanation">Explain these results</button>
           </div>
@@ -667,7 +667,7 @@
       }
 
       function updateEmail(result) {
-        document.getElementById('emailResults').href = 'mailto:?subject=' + encodeURIComponent('My credit utilization results') + '&body=' + encodeURIComponent(buildSummary(result));
+        document.getElementById('emailResults').href = 'mail'+'to:?subject=' + encodeURIComponent('My credit utilization results') + '&body=' + encodeURIComponent(buildSummary(result));
       }
 
       function updateExplanation(result) {

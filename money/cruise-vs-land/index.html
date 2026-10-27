@@ -217,7 +217,7 @@
     else if(share>=0.35){title.textContent='The extras trap is real';text.textContent='Extras make up '+(share*100).toFixed(0)+'% of this cruise — the fare is only part of the story.';strong.textContent=fmt(d.cp.extras)+' in extras per person';foot.textContent='Drinks, Wi-Fi, excursions, and tips are where cruises quietly get expensive.'}
     else{title.textContent='Check the fine print';text.textContent='Extras are a modest slice here, but cruise lines price the little things aggressively.';strong.textContent=fmt(d.cp.extras)+' in extras per person';foot.textContent='Specialty dining, photos, and spa visits are the usual budget-breakers not modeled here.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My cruise vs land comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My cruise vs land comparison')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();render(getData())}
   [document.getElementById('people'),document.getElementById('nights')].concat(cruiseInputs,landInputs).forEach(function(input){input.addEventListener('input',function(){updateSubtotals();if(last)render(getData())})});
   form.addEventListener('submit',calculate);

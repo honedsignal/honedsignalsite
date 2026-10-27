@@ -307,7 +307,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     ].join('');
     document.getElementById('explainCopy').textContent='Appeal letters work best when they are short, specific, and documented: one page, a named dollar amount, and evidence attached. Colleges expect these requests \u2014 asking cannot reduce your existing award. Always follow the school\u2019s own process first.';
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Request for reconsideration of financial aid \u2014 '+d.stName)+'&body='+encodeURIComponent(emailBody(d,letter));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Request for reconsideration of financial aid \u2014 '+d.stName)+'&body='+encodeURIComponent(emailBody(d,letter));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
     d._letter=letter;

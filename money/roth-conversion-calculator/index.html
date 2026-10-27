@@ -228,7 +228,7 @@
           </section>
 
           <section class="share">
-            <div class="share-head"><h2>Your Roth conversion estimate</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
+            <div class="share-head"><h2>Your Roth conversion estimate</h2><div class="actions"><a class="action email" id="emailResults" href="#">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
             <p class="calculation" id="calculation">—</p>
           </section>
         </div>
@@ -327,7 +327,7 @@
     byId('breakevenCopy').innerHTML=breakevenText(r);
     byId('explainCopy').innerHTML=explanation(r);byId('explainCopy').hidden=true;byId('explainToggle').setAttribute('aria-expanded','false');
     byId('calculation').innerHTML='<strong>'+money(r.amount)+' × (1 + '+pct(r.returnRate)+')<sup>'+r.years+'</sup> = '+money(r.futureValue)+'</strong><br>Future rate: '+pct(r.futureRate)+(r.futureWasDefault?' (same as today)':'')+' · Conversion tax assumed paid from outside cash.';
-    byId('emailResults').href='mailto:?subject='+encodeURIComponent('My Roth conversion estimate')+'&body='+encodeURIComponent(summary(r));
+    byId('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My Roth conversion estimate')+'&body='+encodeURIComponent(summary(r));
     if(window.matchMedia('(max-width: 850px)').matches){setTimeout(function(){hero.scrollIntoView({behavior:'smooth',block:'start'})},50)}
   }
   function breakevenText(r){

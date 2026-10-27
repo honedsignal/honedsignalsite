@@ -180,7 +180,7 @@
           </div>
           <div class="actions no-print">
             <button class="action" id="copyLetter" type="button">Copy letter</button>
-            <a class="action email" id="emailLetter" href="mailto:?">Email letter</a>
+            <a class="action email" id="emailLetter" href="#">Email letter</a>
             <button class="action" id="printBtn" type="button">Print letter</button>
           </div>
           <p class="copy-status no-print" id="copyStatus" role="status" aria-live="polite"></p>
@@ -306,7 +306,7 @@
         li.appendChild(document.createTextNode(t));
         return li.outerHTML;
       }).join('');
-      $('emailLetter').href = 'mailto:?subject=' + encodeURIComponent('Request for help with my hospital bill of ' + money(d.amt)) +
+      $('emailLetter').href = 'mail'+'to:?subject=' + encodeURIComponent('Request for help with my hospital bill of ' + money(d.amt)) +
         '&body=' + encodeURIComponent(lastLetter + '\n\n---\nTalking points:\n' + talkingPoints().map(function (t, i) { return (i + 1) + '. ' + t; }).join('\n'));
       $('resultState').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }

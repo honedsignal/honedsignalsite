@@ -176,7 +176,7 @@
     if(d.interest<=0){title.textContent='No interest here';text.textContent='At 0% APR the financed plan costs the same as a 0% hospital plan.';strong.textContent=fmt2(d.total)+' total';foot.textContent='Still ask the hospital about payment plans — terms and billing errors are worth checking.'}
     else{title.textContent='Ask for the 0% plan';text.textContent='Most hospitals offer interest-free payment plans if you ask before agreeing to financed terms. Switching would save you';strong.textContent=fmt(d.savings)+' in interest';foot.textContent='That is '+fmt2(d.zeroPay)+' a month with zero interest, versus '+fmt2(d.payment)+' financed.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My medical debt interest results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My medical debt interest results')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.bill<=0||d.months<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   ['bill','apr','months'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){document.getElementById('billTotal').textContent=fmt(num('bill'));if(last)render(getData())})});
   form.addEventListener('submit',calculate);

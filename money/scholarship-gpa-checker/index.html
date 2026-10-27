@@ -647,7 +647,7 @@
           "Next steps:\n- " + steps.join("\n- ") + "\n\n" +
           "For informational purposes only. Confirm renewal terms with your financial aid office.";
 
-        document.getElementById("emailButton").href = "mailto:?subject=" + encodeURIComponent("Will I keep my scholarship?") + "&body=" + encodeURIComponent(lastResultText);
+        document.getElementById("emailButton").href = "mail"+"to:?subject=" + encodeURIComponent("Will I keep my scholarship?") + "&body=" + encodeURIComponent(lastResultText);
         copyState.textContent = "";
         document.getElementById("explanation").open = false;
         emptyState.style.display = "none";

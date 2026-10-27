@@ -175,7 +175,7 @@
     else{title.textContent='You cannot control the order';text.textContent='Nobody knows which years will be bad. What you can control is exposure to them.';strong.textContent='Bond buffer - lower rate - flexible spending';foot.textContent='A 2-3 year cash buffer means never selling stocks in a crash. A lower starting withdrawal rate and spending that tightens after down years do the rest.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My sequence of returns results')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My sequence of returns results')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.P<=0||d.seq.length<2){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}

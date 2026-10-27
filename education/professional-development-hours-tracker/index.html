@@ -195,7 +195,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     document.getElementById('nudgeFoot').textContent='logged so far.';
     var body=list.map(function(e){return e.name+' \u2014 '+hrs(e.hours)+' hrs'}).join('\n');
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My PD hours log')+'&body='+encodeURIComponent('PD hours log\n\n'+body+'\n\nTotal: '+hrs(logged)+' hrs');
+    email.href='mail'+'to:?subject='+encodeURIComponent('My PD hours log')+'&body='+encodeURIComponent('PD hours log\n\n'+body+'\n\nTotal: '+hrs(logged)+' hrs');
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

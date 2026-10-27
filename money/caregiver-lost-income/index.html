@@ -226,7 +226,7 @@
     strong.textContent='Ways to shrink the real cost';
     foot.textContent='Check paid family leave in your state, caregiver tax credits, respite care programs, and whether part-time or flexible work keeps some income — and some retirement contributions — flowing.';
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My caregiver cost plan')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My caregiver cost plan')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.current<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   ['currentIncome','reducedIncome','contribPct','returnPct'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){updateSubtotal();if(last&&num('currentIncome')>0)render(getData())})});
   document.querySelectorAll('.month-btn').forEach(function(btn){btn.addEventListener('click',function(){years=parseInt(btn.dataset.years,10);document.querySelectorAll('.month-btn').forEach(function(b){b.classList.toggle('active',b===btn)});document.getElementById('yearsOutput').textContent=years+(years===1?' year':' years');if(last&&num('currentIncome')>0)render(getData())})});

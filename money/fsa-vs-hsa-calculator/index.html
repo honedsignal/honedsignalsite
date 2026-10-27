@@ -616,7 +616,7 @@
       <p class="growth-note"><strong>Not included:</strong> potential HSA investment growth. This comparison looks only at contributions and simplified federal tax savings.</p>
 
       <div class="actions" aria-label="Result actions">
-        <a class="action-btn primary" id="email-results" href="mailto:">Email my results</a>
+        <a class="action-btn primary" id="email-results" href="#">Email my results</a>
         <button class="action-btn" id="copy-results" type="button">Copy results</button>
         <button class="action-btn" id="explain-results" type="button" aria-expanded="false" aria-controls="explanation">Explain these results</button>
       </div>
@@ -824,7 +824,7 @@
           "Informational purposes only; not financial, tax, legal, investment, or insurance advice."
         ].join("\n");
 
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My FSA vs HSA comparison") + "&body=" + encodeURIComponent(latestResultText);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My FSA vs HSA comparison") + "&body=" + encodeURIComponent(latestResultText);
         explanation.classList.remove("show");
         explainButton.setAttribute("aria-expanded", "false");
         explainButton.textContent = "Explain these results";

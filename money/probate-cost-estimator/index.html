@@ -659,7 +659,7 @@
           'For informational and educational purposes only. This is not legal, tax, or financial advice. Probate costs and timelines vary by state and by case.'
         ].join('\n');
 
-        emailResults.href = 'mailto:?subject=' + encodeURIComponent('My probate cost estimate') + '&body=' + encodeURIComponent(latestText);
+        emailResults.href = 'mail'+'to:?subject=' + encodeURIComponent('My probate cost estimate') + '&body=' + encodeURIComponent(latestText);
         emptyState.hidden = true;
         results.hidden = false;
 

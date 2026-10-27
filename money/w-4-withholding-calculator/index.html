@@ -683,7 +683,7 @@
           'Informational and educational purposes only; not tax advice.'
         ].join('\n');
 
-        email.href = 'mailto:?subject=' + encodeURIComponent('My 2026 W-4 withholding estimate') + '&body=' + encodeURIComponent(currentSummary);
+        email.href = 'mail'+'to:?subject=' + encodeURIComponent('My 2026 W-4 withholding estimate') + '&body=' + encodeURIComponent(currentSummary);
         empty.style.display = 'none';
         results.classList.add('show');
         results.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });

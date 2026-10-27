@@ -798,7 +798,7 @@
       document.getElementById('email-results').addEventListener('click', function () {
         if (!currentSummary) return;
         var emailLink = document.createElement('a');
-        emailLink.href = 'mailto:?subject=' + encodeURIComponent('My Social Security benefit estimate') + '&body=' + encodeURIComponent(currentSummary);
+        emailLink.href = 'mail'+'to:?subject=' + encodeURIComponent('My Social Security benefit estimate') + '&body=' + encodeURIComponent(currentSummary);
         emailLink.rel = 'noopener';
         document.body.appendChild(emailLink);
         emailLink.click();

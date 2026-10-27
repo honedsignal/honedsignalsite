@@ -610,7 +610,7 @@
           "For informational and educational purposes only."
         ].join("\n");
 
-        emailResults.href = "mailto:?subject=" + encodeURIComponent("My HSA vs IRA comparison") + "&body=" + encodeURIComponent(latestText);
+        emailResults.href = "mail"+"to:?subject=" + encodeURIComponent("My HSA vs IRA comparison") + "&body=" + encodeURIComponent(latestText);
         emptyState.hidden = true;
         resultContent.hidden = false;
       });

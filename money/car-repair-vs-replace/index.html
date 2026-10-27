@@ -159,7 +159,7 @@
     document.getElementById('diffAnnual').textContent=money2.format(d.diff);
     document.getElementById('diffNote').textContent=d.winner==='Repair'?'saved yearly by repairing':'saved yearly by replacing';
     document.getElementById('explainCopy').textContent=explanationText(d);
-  function enableActions(d){var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My repair vs replace numbers')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+  function enableActions(d){var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My repair vs replace numbers')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
 
   }
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.repairCost<=0||d.replaceCost<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}

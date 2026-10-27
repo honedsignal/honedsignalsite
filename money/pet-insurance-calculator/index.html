@@ -462,7 +462,7 @@
           </div>
 
           <div class="actions">
-            <a class="action email" id="email" href="mailto:">Email my results</a>
+            <a class="action email" id="email" href="#">Email my results</a>
             <button class="action" id="copy" type="button">Copy results</button>
           </div>
           <p class="status" id="status" role="status" aria-live="polite"></p>
@@ -590,7 +590,7 @@
           "Estimated annual break-even bill level: " + money(breakEven) + "\n\n" +
           "This estimate assumes the same premium and bills each year and does not include caps, exclusions, premium increases, or investment returns. For informational purposes only.";
 
-        document.getElementById("email").setAttribute("href", "mailto:?subject=" + encodeURIComponent("My pet insurance cost comparison") + "&body=" + encodeURIComponent(lastSummary));
+        document.getElementById("email").setAttribute("href", "mail"+"to:?subject=" + encodeURIComponent("My pet insurance cost comparison") + "&body=" + encodeURIComponent(lastSummary));
 
         emptyState.style.display = "none";
         results.classList.add("visible");

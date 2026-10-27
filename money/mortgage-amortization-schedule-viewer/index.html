@@ -436,7 +436,7 @@
             </div>
 
             <div class="actions">
-              <a class="action email" id="email-results" href="mailto:">Email my results</a>
+              <a class="action email" id="email-results" href="#">Email my results</a>
               <button class="action" id="copy-results" type="button">Copy results</button>
               <button class="action" id="explain-results" type="button" aria-expanded="false" aria-controls="explanation">Explain these results</button>
               <div class="action-status" id="action-status" role="status" aria-live="polite"></div>
@@ -645,7 +645,7 @@
         lines.push("", "Informational purposes only; not financial, tax, legal, investment, or insurance advice.");
         currentResultText = lines.join("\n");
 
-        document.getElementById("email-results").href = "mailto:?subject=" + encodeURIComponent("My mortgage amortization results") + "&body=" + encodeURIComponent(currentResultText);
+        document.getElementById("email-results").href = "mail"+"to:?subject=" + encodeURIComponent("My mortgage amortization results") + "&body=" + encodeURIComponent(currentResultText);
         explanation.classList.remove("visible");
         explainButton.setAttribute("aria-expanded", "false");
         explainButton.textContent = "Explain these results";

@@ -537,7 +537,7 @@
     $('emailBtn').addEventListener('click', function () {
       if (!lastSummary) return;
       var link = document.createElement('a');
-      link.href = 'mailto:?subject=' + encodeURIComponent('My medical debt payoff plan') + '&body=' + encodeURIComponent(lastSummary);
+      link.href = 'mail'+'to:?subject=' + encodeURIComponent('My medical debt payoff plan') + '&body=' + encodeURIComponent(lastSummary);
       link.style.display = 'none';
       document.body.appendChild(link); link.click(); document.body.removeChild(link);
       $('shareStatus').textContent = 'Opening your email app with the results filled in.';

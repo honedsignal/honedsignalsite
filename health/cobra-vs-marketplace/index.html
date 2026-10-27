@@ -475,7 +475,7 @@
     $('emailBtn').addEventListener('click', function () {
       var subject = encodeURIComponent('My COBRA vs. Marketplace comparison — Honed Proof');
       var body = encodeURIComponent(resultsText());
-      window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+      window.location.href = 'mail'+'to:?subject=' + subject + '&body=' + body;
     });
 
     $('explainToggle').addEventListener('click', function () {

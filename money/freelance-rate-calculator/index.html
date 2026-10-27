@@ -157,7 +157,7 @@
         </section>
 
         <section class="share">
-          <div class="share-head"><h2>Your working assumptions</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:" aria-label="Email these freelance rate results">Email my results</a><button type="button" class="action" id="copyResults" aria-live="polite">Copy results</button></div></div>
+          <div class="share-head"><h2>Your working assumptions</h2><div class="actions"><a class="action email" id="emailResults" href="#" aria-label="Email these freelance rate results">Email my results</a><button type="button" class="action" id="copyResults" aria-live="polite">Copy results</button></div></div>
           <div class="context">
             <div><span>WORKING WEEKS</span><strong id="workingWeeks">—</strong></div>
             <div><span>ANNUAL BILLABLE HOURS</span><strong id="annualHours">—</strong></div>
@@ -229,7 +229,7 @@
     byId('formulaRows').innerHTML=row(goalLabel,x.type==='takehome'?'Amount you want to keep':'Salary you want the business to replace',money(x.goal,true))+row('Profit needed before tax',grossNote,money(r.profitBeforeTax,true))+row('Annual business expenses','Costs the work needs to cover','+ '+money(x.expenses,true))+row('Revenue needed','Income goal plus business expenses',money(r.revenue,true),'total')+row('Annual billable hours',number(x.billable)+' hours × '+number(r.workingWeeks)+' working weeks','÷ '+number(r.annualHours))+row('Minimum hourly rate','Revenue needed ÷ billable hours',money(r.hourly,true),'rate-row');
     byId('workingWeeks').textContent=number(r.workingWeeks);byId('annualHours').textContent=number(r.annualHours)+' hrs';byId('utilization').textContent=x.billable>=40?'100%+':pct(r.utilization);
     byId('explainCopy').textContent=explanation(r);byId('explainCopy').hidden=true;byId('explainToggle').setAttribute('aria-expanded','false');
-    byId('emailResults').href='mailto:?subject='+encodeURIComponent('My freelance rate estimate')+'&body='+encodeURIComponent(summary(r));
+    byId('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My freelance rate estimate')+'&body='+encodeURIComponent(summary(r));
     if(window.matchMedia('(max-width: 880px)').matches){setTimeout(function(){byId('heroResult').scrollIntoView({behavior:'smooth',block:'start'})},50)}
   }
   function summary(r){var x=r.x;return[

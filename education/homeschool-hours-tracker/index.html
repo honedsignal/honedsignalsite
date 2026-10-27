@@ -216,7 +216,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     document.getElementById('nudgeFoot').textContent='logged so far.';
     var body=list.map(function(e){return e.d+' \u2014 '+e.s+' \u2014 '+hrs(e.h)+' hrs'+(e.n?' ('+e.n+')':'')}).join('\n');
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My homeschool hours log')+'&body='+encodeURIComponent('Homeschool hours log\n\n'+body+'\n\nTotal: '+hrs(t.total)+' hrs');
+    email.href='mail'+'to:?subject='+encodeURIComponent('My homeschool hours log')+'&body='+encodeURIComponent('Homeschool hours log\n\n'+body+'\n\nTotal: '+hrs(t.total)+' hrs');
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

@@ -635,7 +635,7 @@
         calculate();
         var subject = 'My 2026 self-employment tax estimate';
         var link = document.createElement('a');
-        link.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(resultsText());
+        link.href = 'mail'+'to:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(resultsText());
         link.style.display = 'none';
         document.body.appendChild(link);
         link.click();

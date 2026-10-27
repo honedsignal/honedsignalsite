@@ -559,7 +559,7 @@
           </details>
 
           <div class="actions">
-            <a class="action email" id="email-results" href="mailto:?subject=My%20lease%20vs%20buy%20comparison">Email my results</a>
+            <a class="action email" id="email-results" href="#">Email my results</a>
             <button class="action copy" id="copy-results" type="button">Copy results</button>
           </div>
           <p class="copy-status" id="copy-status" aria-live="polite"></p>
@@ -698,7 +698,7 @@
           "For informational and educational purposes only."
         ].join("\n");
 
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My lease vs buy comparison") + "&body=" + encodeURIComponent(resultText);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My lease vs buy comparison") + "&body=" + encodeURIComponent(resultText);
         emptyState.hidden = true;
         results.hidden = false;
         if (window.matchMedia("(max-width: 820px)").matches) {

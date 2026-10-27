@@ -891,7 +891,7 @@
 
         resultsText = buildResultsText(items, current, planned, annual, annualSavings);
         copyBtn.disabled = false;
-        emailBtn.href = "mailto:?subject=" + encodeURIComponent("My subscription cost analysis") + "&body=" + encodeURIComponent(resultsText);
+        emailBtn.href = "mail"+"to:?subject=" + encodeURIComponent("My subscription cost analysis") + "&body=" + encodeURIComponent(resultsText);
         emailBtn.setAttribute("aria-disabled", "false");
         emailBtn.removeAttribute("tabindex");
         resultActionsHint.textContent = "Results are ready to email or copy.";

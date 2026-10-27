@@ -341,7 +341,7 @@
 
       <div class="contact-block">
         <span class="contact-label">Email Honed Money</span>
-        <a class="email-link" href="mailto:contact@honedsignal.com">contact@honedsignal.com</a>
+        <a class="email-link" id="email-link" href="#">contact&#64;honedsignal.com</a>
         <button class="copy-email-btn" type="button" id="copy-email">Copy email address</button>
         <p class="contact-note">This link opens your email app. There’s no contact form, and this page doesn’t collect anything you type.</p>
       </div>
@@ -388,6 +388,9 @@
     </footer>
   </main>
 <script>
+var hsAddr = 'contact' + '@' + 'honedsignal.com';
+var hsEmailLink = document.getElementById('email-link');
+if (hsEmailLink) { hsEmailLink.textContent = hsAddr; hsEmailLink.href = 'mail' + 'to:' + hsAddr; }
 document.getElementById('copy-email').addEventListener('click', function () {
   var btn = this;
   function done(msg) {
@@ -395,10 +398,10 @@ document.getElementById('copy-email').addEventListener('click', function () {
     setTimeout(function () { btn.textContent = 'Copy email address'; }, 2000);
   }
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText('contact@honedsignal.com').then(function () { done('Copied!'); }, function () { done('Copy failed'); });
+    navigator.clipboard.writeText(hsAddr).then(function () { done('Copied!'); }, function () { done('Copy failed'); });
   } else {
     var ta = document.createElement('textarea');
-    ta.value = 'contact@honedsignal.com';
+    ta.value = hsAddr;
     document.body.appendChild(ta);
     ta.select();
     try { document.execCommand('copy'); done('Copied!'); } catch (e) { done('Copy failed'); }

@@ -149,7 +149,7 @@
           </section>
 
           <section class="share">
-            <div class="share-head"><h2>Employee cost estimate</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
+            <div class="share-head"><h2>Employee cost estimate</h2><div class="actions"><a class="action email" id="emailResults" href="#">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
             <p class="calculation" id="calculation">—</p>
           </section>
         </div>
@@ -193,7 +193,7 @@
     byId('breakdownRows').innerHTML=rows.filter(function(row){return row[1]>0||row[0]==='Base salary'}).map(function(row){return'<div class="breakdown-row"><span>'+row[0]+'</span><strong>'+money(row[1])+'</strong></div>'}).join('')+'<div class="breakdown-row total"><span>Total annual cost</span><strong>'+money(r.total)+'</strong></div>';
     byId('explainCopy').textContent=explanation(r);byId('explainCopy').hidden=true;byId('explainToggle').setAttribute('aria-expanded','false');
     byId('calculation').innerHTML='<strong>'+money(r.x.salary)+' salary + '+money(r.aboveSalary)+' in added costs = '+money(r.total)+' total.</strong><br>Federal employer payroll taxes contribute '+money(r.ss+r.medicare+r.futa)+' of the added cost.';
-    byId('emailResults').href='mailto:?subject='+encodeURIComponent('My employee cost estimate')+'&body='+encodeURIComponent(summary(r));
+    byId('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My employee cost estimate')+'&body='+encodeURIComponent(summary(r));
     if(window.matchMedia('(max-width: 850px)').matches){setTimeout(function(){byId('heroResult').scrollIntoView({behavior:'smooth',block:'start'})},50)}
   }
   function explanation(r){

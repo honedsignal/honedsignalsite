@@ -189,7 +189,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     document.getElementById('bodyOut').textContent=b.body;
     document.getElementById('explainCopy').textContent='Parent emails land best when they are short, specific, and human: name the student, name the facts, say what you need. Warm for good news, neutral for routine, firm for things that cannot wait.';
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent(b.subj)+'&body='+encodeURIComponent(b.body);
+    email.href='mail'+'to:?subject='+encodeURIComponent(b.subj)+'&body='+encodeURIComponent(b.body);
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

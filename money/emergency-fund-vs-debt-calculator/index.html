@@ -214,7 +214,7 @@
     else{title.textContent='One clear path';text.textContent='With these numbers the strategies converge — pick the one that feels most sustainable.';strong.textContent=duration(recS.res.months)+' to done';foot.textContent='The best plan is the one you will actually follow.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('Emergency fund vs debt: my comparison')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('Emergency fund vs debt: my comparison')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

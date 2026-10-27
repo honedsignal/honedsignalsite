@@ -548,7 +548,7 @@
           'For informational purposes only. Check your loan servicer’s figures.'
         ].join('\n');
 
-        emailLink.href = 'mailto:?subject=' + encodeURIComponent('My student loan payoff estimate') + '&body=' + encodeURIComponent(resultText);
+        emailLink.href = 'mail'+'to:?subject=' + encodeURIComponent('My student loan payoff estimate') + '&body=' + encodeURIComponent(resultText);
         empty.style.display = 'none';
         results.classList.add('active');
         if (window.innerWidth < 761 && event) results.scrollIntoView({ behavior: 'smooth', block: 'start' });

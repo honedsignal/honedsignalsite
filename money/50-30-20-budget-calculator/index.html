@@ -260,7 +260,7 @@
     document.getElementById('savingsAmount').textContent=money.format(data.savings);
     document.getElementById('annualSavings').textContent=money.format(data.savings*12)+' toward savings goals';
     document.getElementById('explainMath').textContent='From '+money.format(data.income)+' in monthly take-home pay, the rule sets aside '+money.format(data.needs)+' for needs, '+money.format(data.wants)+' for wants, and '+money.format(data.savings)+' for savings goals and extra debt payoff.';
-    document.getElementById('emailResults').href='mailto:?subject='+encodeURIComponent('My 50/30/20 budget')+'&body='+encodeURIComponent(resultText(data));
+    document.getElementById('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My 50/30/20 budget')+'&body='+encodeURIComponent(resultText(data));
   }
 
   function calculate(event){

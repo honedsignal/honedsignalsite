@@ -207,7 +207,7 @@
     else{title.textContent='Ask HR about after-tax';text.textContent='Your elective is maxed and this much after-tax room is open. The move is a plan question, not a math question.';strong.textContent=fmt(d.room)+' available';foot.textContent='Confirm in-plan Roth conversion is offered.'}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My mega backdoor Roth room')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My mega backdoor Roth room')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

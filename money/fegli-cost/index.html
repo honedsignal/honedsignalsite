@@ -274,7 +274,7 @@
     else{title.textContent='How FEGLI compares';text.textContent='FEGLI is guaranteed-issue group term — no medical exam, which is valuable if health issues would raise private rates. The tradeoff: optional premiums are age-banded and rise every band, while private level term locks a rate for 20–30 years.';strong.textContent=money2.format(d.annual)+' per year at your choices';foot.textContent='Younger healthy feds often find private term cheaper per $1,000; compare quotes before you buy, and remember FEGLI can be carried into retirement.';}
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My FEGLI cost estimate')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My FEGLI cost estimate')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

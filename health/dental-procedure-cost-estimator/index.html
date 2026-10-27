@@ -399,7 +399,7 @@
     $('dcmpEmail').addEventListener('click', function () {
       if (!lastSummary) return;
       var link = document.createElement('a');
-      link.href = 'mailto:?subject=' + encodeURIComponent('My dental procedure cost estimate') + '&body=' + encodeURIComponent(lastSummary);
+      link.href = 'mail'+'to:?subject=' + encodeURIComponent('My dental procedure cost estimate') + '&body=' + encodeURIComponent(lastSummary);
       link.style.display = 'none';
       document.body.appendChild(link); link.click(); document.body.removeChild(link);
       $('dcmpShareStatus').textContent = 'Opening your email app with the results filled in.';

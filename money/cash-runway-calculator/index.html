@@ -133,7 +133,7 @@
 
           <section class="explain" aria-label="Plain-English results explanation"><button type="button" class="explain-toggle" id="explainToggle" aria-expanded="false" aria-controls="explainCopy"><span>Explain these results</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p class="explain-copy" id="explainCopy" hidden></p></section>
 
-          <section class="share"><div class="share-head"><h2>Keep this snapshot</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div><p class="notice" id="notice" role="status"></p><p class="calculation" id="calculation">—</p></section>
+          <section class="share"><div class="share-head"><h2>Keep this snapshot</h2><div class="actions"><a class="action email" id="emailResults" href="#">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div><p class="notice" id="notice" role="status"></p><p class="calculation" id="calculation">—</p></section>
         </div>
       </div>
     </div>
@@ -169,7 +169,7 @@
     byId("revenueScenarioRunway").textContent=runwayLabel(rev.months);byId("revenueScenarioBurn").textContent=burnLabel(rev.burn);byId("revenueScenarioDate").textContent=dateLabel(rev);byId("revenueScenarioNote").textContent=improvementText(base,rev);
     byId("expenseScenarioRunway").textContent=runwayLabel(exp.months);byId("expenseScenarioBurn").textContent=burnLabel(exp.burn);byId("expenseScenarioDate").textContent=dateLabel(exp);byId("expenseScenarioNote").textContent=improvementText(base,exp);
     byId("explainCopy").textContent=explanation(r);byId("explainCopy").hidden=true;byId("explainToggle").setAttribute("aria-expanded","false");byId("calculation").innerHTML=base.burn>0?"<strong>Runway = cash ÷ monthly burn</strong><br>"+exactMoney(r.cash)+" ÷ "+exactMoney(base.burn)+" = "+monthsFmt.format(base.months)+" months.":"<strong>No positive burn to divide into cash.</strong><br>At the current pace, monthly cash change is "+(base.burn<0?"+"+exactMoney(Math.abs(base.burn)):exactMoney(0))+".";
-    byId("emailResults").href="mailto:?subject="+encodeURIComponent("My cash runway calculation")+"&body="+encodeURIComponent(summary(r));byId("notice").textContent="";lastResult=r;
+    byId("emailResults").href="mail"+"to:?subject="+encodeURIComponent("My cash runway calculation")+"&body="+encodeURIComponent(summary(r));byId("notice").textContent="";lastResult=r;
     if(window.matchMedia("(max-width: 850px)").matches){setTimeout(function(){byId("heroResult").scrollIntoView({behavior:"smooth",block:"start"})},50)}
   }
   function calculate(event){event.preventDefault();var cash=readNumber("cash"),revenue=readNumber("revenue"),expenses=readNumber("expenses"),err=validate(cash,revenue,expenses);if(err){showError(err);return}var result={cash:cash,revenue:revenue,expenses:expenses,base:model(cash,revenue,expenses),revenueScenario:model(cash,revenue*1.2,expenses),expenseScenario:model(cash,revenue,expenses*.8)};render(result)}

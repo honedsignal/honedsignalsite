@@ -811,7 +811,7 @@
       emailButton.addEventListener('click', function () {
         if (!currentResultsText) return;
         var mailLink = document.createElement('a');
-        mailLink.href = 'mailto:?subject=' + encodeURIComponent('My EV vs gas car comparison') + '&body=' + encodeURIComponent(currentResultsText);
+        mailLink.href = 'mail'+'to:?subject=' + encodeURIComponent('My EV vs gas car comparison') + '&body=' + encodeURIComponent(currentResultsText);
         mailLink.click();
       });
     }());

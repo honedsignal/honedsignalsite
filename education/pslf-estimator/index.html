@@ -181,7 +181,7 @@ function addMonthsToDate(baseY,baseM,baseD,months){
       row('Estimated balance forgiven (rough)',money(r.balance));
     document.getElementById('explainCopy').textContent='PSLF forgives the remaining balance on Direct Loans after 120 qualifying monthly payments (about 10 years) while working full-time for a qualifying employer \u2014 government or 501(c)(3) nonprofit. Payments must be on-time, for the full amount, under a qualifying repayment plan. Consolidating can reset your count. This is a rough estimate \u2014 verify current requirements at studentaid.gov.';
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My PSLF estimate')+'&body='+encodeURIComponent(summaryText());
+    email.href='mail'+'to:?subject='+encodeURIComponent('My PSLF estimate')+'&body='+encodeURIComponent(summaryText());
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

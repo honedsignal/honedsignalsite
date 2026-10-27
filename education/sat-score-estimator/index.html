@@ -139,7 +139,7 @@ textarea.edu{width:100%;min-height:150px;border:1px solid var(--line);border-rad
     document.getElementById('breakdown').innerHTML=row('Reading & Writing',d.rw+' of 54 correct \u2192 '+d.sRW)+row('Math',d.math+' of 44 correct \u2192 '+d.sM)+row('Method','Linear 200\u2013800 mapping, nearest 10');
     document.getElementById('explainCopy').textContent=explanationText(d);
     var email=document.getElementById('emailResults');
-    email.href='mailto:?subject='+encodeURIComponent('My estimated SAT score')+'&body='+encodeURIComponent(emailBody(d));
+    email.href='mail'+'to:?subject='+encodeURIComponent('My estimated SAT score')+'&body='+encodeURIComponent(emailBody(d));
     email.setAttribute('aria-disabled','false');
     document.getElementById('copyResults').disabled=false;
   }

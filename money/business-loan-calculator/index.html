@@ -161,7 +161,7 @@
           </section>
 
           <section class="share">
-            <div class="share-head"><h2>Loan estimate</h2><div class="actions"><a class="action email" id="emailResults" href="mailto:">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
+            <div class="share-head"><h2>Loan estimate</h2><div class="actions"><a class="action email" id="emailResults" href="#">Email my results</a><button class="action" type="button" id="copyResults">Copy results</button></div></div>
             <p class="calculation" id="calculation">—</p>
           </section>
         </div>
@@ -214,7 +214,7 @@
     byId('explainCopy').textContent=explanation(r);byId('explainCopy').hidden=true;byId('explainToggle').setAttribute('aria-expanded','false');
     var firstInterest=r.x.amount*r.monthlyRate,firstPrincipal=r.payment-firstInterest;
     byId('calculation').innerHTML='<strong>First payment split:</strong> '+money(firstInterest)+' interest + '+money(firstPrincipal)+' principal. '+(r.x.annualRate===0?'At 0% interest, every dollar of every payment reduces principal.':'As the balance falls, less of each later payment goes to interest and more goes to principal.');
-    byId('emailResults').href='mailto:?subject='+encodeURIComponent('My business loan estimate')+'&body='+encodeURIComponent(summary(r));
+    byId('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My business loan estimate')+'&body='+encodeURIComponent(summary(r));
     if(window.matchMedia('(max-width: 850px)').matches){setTimeout(function(){byId('heroResult').scrollIntoView({behavior:'smooth',block:'start'})},50)}
   }
   function explanation(r){

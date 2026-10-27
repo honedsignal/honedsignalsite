@@ -505,7 +505,7 @@
           </div>
 
           <div class="actions">
-            <a class="button-link action-primary" id="email-results" href="mailto:">Email my results</a>
+            <a class="button-link action-primary" id="email-results" href="#">Email my results</a>
             <button class="action action-neutral" id="copy-results" type="button">Copy results</button>
             <button class="action action-outline" id="explain-results" type="button" aria-expanded="false" aria-controls="explanation">Explain these results</button>
           </div>
@@ -684,7 +684,7 @@
           "This estimate is for informational purposes only and is not financial advice."
         ].join("\n");
 
-        emailResults.href = "mailto:?subject=" + encodeURIComponent("My auto loan estimate") + "&body=" + encodeURIComponent(latestText);
+        emailResults.href = "mail"+"to:?subject=" + encodeURIComponent("My auto loan estimate") + "&body=" + encodeURIComponent(latestText);
 
         if (window.matchMedia("(max-width: 860px)").matches) {
           results.scrollIntoView({ behavior: "smooth", block: "start" });

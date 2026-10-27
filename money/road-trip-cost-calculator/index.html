@@ -503,7 +503,7 @@
           </ul>
 
           <div class="actions">
-            <a id="email-results" class="action email" href="mailto:">Email my results</a>
+            <a id="email-results" class="action email" href="#">Email my results</a>
             <button id="copy-results" class="action copy" type="button">Copy results</button>
           </div>
           <p id="copy-status" class="status" role="status"></p>
@@ -631,7 +631,7 @@
           "For informational purposes only. Actual costs may vary."
         ].join("\n");
 
-        emailLink.href = "mailto:?subject=" + encodeURIComponent("My road trip cost estimate") + "&body=" + encodeURIComponent(resultText);
+        emailLink.href = "mail"+"to:?subject=" + encodeURIComponent("My road trip cost estimate") + "&body=" + encodeURIComponent(resultText);
         emptyState.hidden = true;
         results.hidden = false;
 

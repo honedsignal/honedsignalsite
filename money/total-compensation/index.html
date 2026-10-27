@@ -189,7 +189,7 @@
     document.getElementById('compareWrap').classList.toggle('hidden',!d.hasB);
     if(d.hasB)renderCompare(d);
     document.getElementById('explainCopy').textContent=explanationText(d);
-    var email=document.getElementById('emailResults');email.href='mailto:?subject='+encodeURIComponent('My total compensation')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
+    var email=document.getElementById('emailResults');email.href='mail'+'to:?subject='+encodeURIComponent('My total compensation')+'&body='+encodeURIComponent(emailBody(d));email.setAttribute('aria-disabled','false');document.getElementById('copyResults').disabled=false}
   function calculate(e){if(e)e.preventDefault();var d=getData();if(d.a.salary<=0){document.getElementById('emptyState').scrollIntoView({behavior:'smooth',block:'center'});return}render(d)}
   ['salaryA','matchA','healthA','ptoA','bonusesA','otherA','hoursA','salaryB','matchB','healthB','ptoB','bonusesB','otherB','hoursB'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){updateSubtotals();if(last&&num('salaryA')>0)render(getData())})});
   form.addEventListener('submit',calculate);
