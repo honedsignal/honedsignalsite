@@ -28,7 +28,7 @@ NEXT = {
     "debt-consolidation-calculator": [("Compare payoff strategies", "/money/debt-payoff-strategy-comparison/"), ("Balance transfer check", "/money/balance-transfer-calculator/")],
     "balance-transfer-calculator": [("Analyze a card payoff", "/money/credit-card-payoff-analyzer/")],
     "take-home-pay-calculator": [("Build a 50/30/20 budget", "/money/50-30-20-budget-calculator/"), ("Find your tax bracket", "/money/tax-bracket-calculator/")],
-    "tax-bracket-calculator": [("Estimate take-home pay", "/money/take-home-pay-calculator/"), ("Roth vs traditional", "/money/roth-vs-traditional-calculator/")],
+    "tax-bracket-calculator": [("Estimate take-home pay", "/money/take-home-pay-calculator/"), ("Roth vs traditional", "/money/roth-vs-traditional-ira-calculator/")],
     "50-30-20-budget-calculator": [("Build your emergency fund", "/money/emergency-fund-calculator/"), ("Estimate take-home pay", "/money/take-home-pay-calculator/")],
     "emergency-fund-calculator": [("Build a 50/30/20 budget", "/money/50-30-20-budget-calculator/"), ("High-yield savings options", "/money/cd-treasury-ladder-calculator/")],
     "compound-interest-calculator": [("Project retirement savings", "/money/retirement-savings-projector/"), ("I-bond calculator", "/money/i-bond-calculator/")],
@@ -39,8 +39,8 @@ NEXT = {
     "medicare-retiree-health-cost-estimator": [("Long-term care costs", "/money/long-term-care-cost-calculator/"), ("Am I on track?", "/money/retirement-income-gap-calculator/")],
     "pension-lump-sum-vs-annuity-calculator": [("Am I on track?", "/money/retirement-income-gap-calculator/")],
     "rmd-calculator": [("Roth conversion check", "/money/roth-conversion-calculator/")],
-    "roth-conversion-calculator": [("Roth vs traditional", "/money/roth-vs-traditional-calculator/"), ("Find your tax bracket", "/money/tax-bracket-calculator/")],
-    "roth-vs-traditional-calculator": [("Roth conversion check", "/money/roth-conversion-calculator/")],
+    "roth-conversion-calculator": [("Roth vs traditional", "/money/roth-vs-traditional-ira-calculator/"), ("Find your tax bracket", "/money/tax-bracket-calculator/")],
+    "roth-vs-traditional-ira-calculator": [("Roth conversion check", "/money/roth-conversion-calculator/")],
     "401k-match-calculator": [("Project retirement savings", "/money/retirement-savings-projector/")],
     "i-bond-calculator": [("Build a CD/Treasury ladder", "/money/cd-treasury-ladder-calculator/"), ("Compound interest", "/money/compound-interest-calculator/")],
     "cd-treasury-ladder-calculator": [("I-bond calculator", "/money/i-bond-calculator/"), ("Build your emergency fund", "/money/emergency-fund-calculator/")],
@@ -64,7 +64,7 @@ NEXT = {
     "windfall-planner-calculator": [("Compare debt strategies", "/money/debt-payoff-strategy-comparison/"), ("Build your emergency fund", "/money/emergency-fund-calculator/")],
     "salary-vs-hourly-calculator": [("Estimate take-home pay", "/money/take-home-pay-calculator/")],
     "freelance-rate-calculator": [("Self-employment tax", "/money/self-employment-tax-estimator/")],
-    "self-employment-tax-estimator": [("Freelance rate", "/money/freelance-rate-calculator/"), ("Quarterly tax check", "/money/quarterly-tax-estimator/")],
+    "self-employment-tax-estimator": [("Freelance rate", "/money/freelance-rate-calculator/"), ("Quarterly tax check", "/money/quarterly-estimated-tax-calculator/")],
 }
 
 BOX_CSS = """<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>"""
