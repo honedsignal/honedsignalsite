@@ -102,7 +102,7 @@
                placeholder="yourwebsite.com" aria-label="Your website address">
         <button class="cta" type="submit" id="scan-btn">Scan my site</button>
       </form>
-      <p class="microcopy">Free. We scan up to 25 pages and check every link we find on them. This is a technical health check — not an SEO audit, and we will never promise you rankings. What we find is what we show you.</p>
+      <p class="microcopy">Free. We scan up to 25 pages and check every link and image we find on them — up to 500 checks per scan, which covers most sites completely. This is a technical health check — not an SEO audit, and we will never promise you rankings. What we find is what we show you.</p>
       <div class="samples">
         <button class="sample-btn" type="button" data-sample="honedsignal">See a sample: our own site (scans daily)</button>
         <button class="sample-btn" type="button" data-sample="example">See a sample: a one-page site</button>
@@ -134,7 +134,7 @@
         <tr><th>Problem</th><th>Why it matters</th><th>Points off</th></tr>
         <tr><td>Page returns an error (4xx / 5xx)</td><td>Visitors and search engines hit a wall</td><td>−10 each (max −30)</td></tr>
         <tr><td>Canonical tag missing or pointing elsewhere</td><td>Ranking signals split, or handed to another page</td><td>−6 each (max −24)</td></tr>
-        <tr><td>Broken internal link</td><td>Dead ends for visitors and crawlers</td><td>−4 each (max −20)</td></tr>
+        <tr><td>Broken internal link or image</td><td>Dead ends for visitors and crawlers, and holes where a picture should be</td><td>−4 each (max −20)</td></tr>
         <tr><td>Pages sharing one title</td><td>Search results can't tell your pages apart</td><td>−3 per extra page (max −12)</td></tr>
         <tr><td>Page with no title</td><td>No headline in search results</td><td>−4 each (max −12)</td></tr>
         <tr><td>No sitemap.xml</td><td>New pages get discovered late, or never</td><td>−8</td></tr>
@@ -179,11 +179,13 @@
   "input": "https://honedsignal.com",
   "origin": "https://honedsignal.com",
   "has_sitemap": true,
-  "pages_found": 474,
+  "pages_found": 479,
   "pages_scanned": 25,
   "capped": true,
-  "discovered_links_total": 0,
-  "discovered_links_checked": 0,
+  "discovered_links_total": 107,
+  "discovered_links_checked": 107,
+  "discovered_images_total": 30,
+  "discovered_images_checked": 30,
   "score": 100,
   "band": "Healthy",
   "deductions": {
@@ -198,6 +200,7 @@
    "http_errors": 0,
    "canonical": 0,
    "broken_links": 0,
+   "broken_images": 0,
    "duplicate_title_pages": 0,
    "missing_titles": 0
   },
@@ -206,10 +209,11 @@
    "http_errors": [],
    "canonical": [],
    "broken_links": [],
+   "broken_images": [],
    "duplicate_titles": {},
    "missing_titles": []
   },
-  "duration_ms": 5181
+  "duration_ms": 2716
  },
  "example": {
   "ok": true,
@@ -221,6 +225,8 @@
   "capped": false,
   "discovered_links_total": 0,
   "discovered_links_checked": 0,
+  "discovered_images_total": 0,
+  "discovered_images_checked": 0,
   "score": 86,
   "band": "Needs attention",
   "deductions": {
@@ -235,6 +241,7 @@
    "http_errors": 0,
    "canonical": 1,
    "broken_links": 0,
+   "broken_images": 0,
    "duplicate_title_pages": 0,
    "missing_titles": 0
   },
@@ -261,6 +268,7 @@
     }
    ],
    "broken_links": [],
+   "broken_images": [],
    "duplicate_titles": {},
    "missing_titles": []
   },
@@ -296,6 +304,7 @@
         [r.counts.http_errors, "page errors"],
         [r.counts.canonical, "canonical problems"],
         [r.counts.broken_links, "broken links"],
+        [r.counts.broken_images || 0, "broken images"],
         [r.counts.duplicate_title_pages, "duplicate-title pages"],
         [r.counts.missing_titles, "missing titles"],
       ];
@@ -310,9 +319,15 @@
           '<article class="issue-card"><h3>' + i.headline + '</h3><p>' + i.detail + '</p>' +
           '<p class="url">' + i.url + "</p></article>").join("");
       }
-      document.getElementById("cap-note").textContent = r.capped
+      const discTotal = (r.discovered_links_total || 0) + (r.discovered_images_total || 0);
+      const checkedTotal = (r.discovered_links_checked || 0) + (r.discovered_images_checked || 0);
+      let capNote = r.capped
         ? "This free scan covered the first " + r.pages_scanned + " of " + r.pages_found + " pages. The Full Site Report covers all of them."
         : "This free scan covered every page it could find on the site.";
+      if (discTotal > checkedTotal) {
+        capNote += " It verified " + checkedTotal + " of the " + discTotal + " links and images found on those pages — the free scan verifies up to 500 per scan. The Full Site Report verifies every one.";
+      }
+      document.getElementById("cap-note").textContent = capNote;
       results.classList.add("show");
       results.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -332,7 +347,7 @@
         return;
       }
       btn.disabled = true; btn.textContent = "Scanning…";
-      showNotice("Scanning " + url + " — a few seconds while we crawl up to 25 pages.");
+      showNotice("Scanning " + url + " — we crawl up to 25 pages and verify up to 500 links and images. Most sites finish in seconds; a slow, link-heavy site can take a few minutes.");
       try {
         const resp = await fetch(SCAN_API + "/scan", {
           method: "POST",
