@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>What AI Is Actually Doing to California's Music Economy | Honed Signal</title>
+    <meta name="description" content="California is where the AI-music companies, the streaming platforms, the lawsuits and the new laws are concentrated. The verified record does not show AI measurably hollowing out California musicians' income or jobs. The clearest documented harm is impersonation — and the one alarming collapse in the federal payroll data turned out to be a bookkeeping change, not a loss of jobs." />
+    <link rel="canonical" href="https://honedsignal.com/reports/california-music-economy/" />
+    <meta property="og:title" content="What AI Is Actually Doing to California's Music Economy | Honed Signal" />
+    <meta property="og:description" content="What is documented, what is alleged, what the federal data shows, and what is still unknown — the California AI-music record, sorted by evidence." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://honedsignal.com/reports/california-music-economy/" />
+    <meta property="og:image" content="https://honedsignal.com/reports/images/california-music-economy-hero.webp" />
+    <meta property="og:image:width" content="2048" />
+    <meta property="og:image:height" content="1152" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://honedsignal.com/reports/images/california-music-economy-hero.webp" />
+    <meta name="theme-color" content="#0B0E14" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f7f5f1;
+        --surface: #ffffff;
+        --surface-2: #efede8;
+        --ink: #14161c;
+        --ink-soft: #454a55;
+        --ink-faint: #6d7280;
+        --line: #d9d5cc;
+        --navy: #0b0e14;
+        --orange: #e04a1c;
+        --orange-strong: #c93e14;
+        --teal: #0d7a6e;
+        --teal-strong: #0a665c;
+        --hero-bg: #0b0e14;
+        --hero-ink: #f4f2ec;
+        --hero-soft: #b9bec9;
+        --hero-line: #2a2f3a;
+        --chart-grid: #d9d5cc;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0e14;
+          --surface: #12161f;
+          --surface-2: #171c27;
+          --ink: #f0eee8;
+          --ink-soft: #c3c8d2;
+          --ink-faint: #8b919e;
+          --line: #262c38;
+          --orange: #ff6b35;
+          --orange-strong: #ff6b35;
+          --teal: #2ec4b6;
+          --teal-strong: #2ec4b6;
+          --hero-bg: #07090d;
+          --hero-ink: #f4f2ec;
+          --hero-soft: #a7adba;
+          --hero-line: #222834;
+          --chart-grid: #262c38;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+        font-size: 18px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .sans { font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        background: var(--hero-bg);
+        color: var(--hero-ink);
+        padding: 56px 24px 48px;
+      }
+      .hero-inner { max-width: 880px; margin: 0 auto; }
+      .masthead {
+        display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+        color: var(--hero-soft);
+        border-bottom: 1px solid var(--hero-line);
+        padding-bottom: 18px; margin-bottom: 34px;
+      }
+      .masthead .brand { color: var(--hero-ink); font-weight: 600; font-size: 15px; letter-spacing: .02em; text-transform: none; }
+      .masthead .brand .dot { color: #ff6b35; }
+      .hero h1 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700; letter-spacing: -0.02em;
+        font-size: clamp(34px, 6.4vw, 58px); line-height: 1.06;
+        margin: 0 0 18px;
+      }
+      .hero h1 .q { color: #2ec4b6; }
+      .hero .dek {
+        font-size: clamp(18px, 2.6vw, 22px); line-height: 1.5;
+        color: var(--hero-soft); margin: 0 0 30px; max-width: 44em;
+      }
+      .verdict-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
+      .verdict-badge {
+        background: #ff6b35; color: #14100c;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        border-radius: 10px; padding: 14px 20px;
+        display: flex; flex-direction: column; justify-content: center;
+      }
+      .verdict-badge .big { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.01em; }
+      .verdict-badge .small { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-top: 5px; }
+      .verdict-note {
+        border: 1px solid var(--hero-line); border-radius: 10px;
+        padding: 14px 20px; flex: 1 1 300px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 15px; line-height: 1.5; color: var(--hero-soft);
+        display: flex; align-items: center;
+      }
+      .verdict-note strong { color: var(--hero-ink); }
+      .byline-row {
+        display: flex; flex-wrap: wrap; gap: 6px 22px;
+        margin-top: 26px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 14px; color: var(--hero-soft);
+      }
+      .byline-row strong { color: var(--hero-ink); font-weight: 600; }
+
+      /* ---------- Layout ---------- */
+      .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+      article { padding: 44px 0 8px; }
+      section { margin-bottom: 52px; }
+      h2 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 600; letter-spacing: -0.015em;
+        font-size: clamp(24px, 3.6vw, 32px); line-height: 1.2;
+        margin: 0 0 16px;
+      }
+      h3 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 600; letter-spacing: -0.01em;
+        font-size: clamp(19px, 2.6vw, 23px); line-height: 1.25;
+        margin: 34px 0 12px;
+      }
+      section > h3:first-of-type { margin-top: 26px; }
+      p { margin: 0 0 16px; }
+      p.lede { font-size: 20px; line-height: 1.6; }
+      strong { font-weight: 600; }
+      .accent-o { color: var(--orange-strong); }
+      .accent-t { color: var(--teal-strong); }
+
+      .hs-hero { margin: 0 0 44px; }
+      .hs-hero img {
+        display: block; width: 100%; height: auto;
+        aspect-ratio: 16 / 9;
+        border: 1px solid var(--line); border-radius: 12px;
+      }
+
+      .bottom-line {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-top: 4px solid var(--orange);
+        border-radius: 6px;
+        padding: 26px 28px;
+        margin-bottom: 52px;
+      }
+      .bottom-line .label {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 12.5px; font-weight: 700; letter-spacing: .14em;
+        text-transform: uppercase; color: var(--orange-strong);
+        margin-bottom: 10px;
+      }
+      .bottom-line p { margin: 0; font-size: 19px; line-height: 1.6; }
+      .bottom-line p + p { margin-top: 14px; }
+
+      ul.points { margin: 0 0 16px; padding-left: 22px; }
+      ul.points li { margin-bottom: 10px; }
+      ul.points li::marker { color: var(--teal-strong); }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 20px; padding: 30px 0 56px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+      }
+      footer .src-label { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+      footer .sources { font-size: 13.5px; line-height: 1.7; color: var(--ink-soft); }
+      footer .signoff { margin-top: 26px; font-size: 14px; color: var(--ink-soft); }
+      footer .signoff .dot { color: var(--orange-strong); }
+
+      @media (max-width: 680px) {
+        body { font-size: 17px; }
+        .hero { padding: 40px 20px 36px; }
+        .wrap { padding: 0 20px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .hs-util { background: #0B0E14; border-bottom: 1px solid #2a2f3a; }
+      .hs-util-inner { max-width: 1120px; margin: 0 auto; padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+      .hs-util a, .hs-util button { font-family: "Space Grotesk", system-ui, sans-serif; }
+      .hs-back { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 14px; border: 1px solid #3a4356; border-radius: 10px; background: #161c28; color: #f5f5f5; font-size: .85rem; font-weight: 700; text-decoration: none; }
+      .hs-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .hs-actions .hs-label { color: #9AA3B2; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-right: 2px; }
+      .hs-btn { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 12px; border: 1px solid #3a4356; border-radius: 10px; background: transparent; color: #f5f5f5; font-size: .82rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+      .hs-btn:hover, .hs-back:hover { border-color: #FF6B35; color: #ffffff; }
+      @media print {
+        .hs-util { display: none !important; }
+        :root { --hero-bg: #ffffff !important; --hero-ink: #14161c !important; --hero-soft: #454a55 !important; --hero-line: #d9d5cc !important; --bg: #ffffff !important; }
+        body { background: #ffffff !important; }
+      }
+    </style>
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+</head>
+  <body>
+
+    <div class="hs-util">
+      <div class="hs-util-inner">
+        <a class="hs-back" href="/reports/">← Reports</a>
+        <div class="hs-actions" aria-label="Print, email, or share this report">
+          <span class="hs-label">Share</span>
+          <button class="hs-btn" type="button" onclick="window.print()">Print</button>
+          <button class="hs-btn" type="button" id="hs-email">Email</button>
+          <a class="hs-btn" href="https://twitter.com/intent/tweet?text=What%20AI%20Is%20Actually%20Doing%20to%20California%27s%20Music%20Economy%20%E2%80%94%20what%20is%20documented%2C%20what%20is%20alleged%2C%20what%20the%20federal%20data%20shows%2C%20and%20what%20is%20still%20unknown.&amp;url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fcalifornia-music-economy%2F" target="_blank" rel="noopener">X</a>
+          <a class="hs-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhonedsignal.com%2Freports%2Fcalifornia-music-economy%2F" target="_blank" rel="noopener">Facebook</a>
+          <a class="hs-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fcalifornia-music-economy%2F" target="_blank" rel="noopener">LinkedIn</a>
+          <button class="hs-btn" type="button" id="hs-copy">Copy link</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="masthead">
+          <span class="brand">Honed Signal<span class="dot">.</span></span>
+          <span>AI &amp; Music</span>
+          <span>October 2026</span>
+        </div>
+        <h1>What AI Is Actually Doing to California&rsquo;s Music Economy</h1>
+        <p class="dek">California is where the AI-music companies, the streaming platforms, the lawsuits and the new laws are concentrated. The verified record does not show AI measurably hollowing out California musicians&rsquo; income or jobs.</p>
+        <div class="verdict-row">
+          <div class="verdict-badge">
+            <span class="big">4 tiers</span>
+            <span class="small">Sorted by evidence</span>
+          </div>
+          <div class="verdict-note">
+            <span>What follows is sorted into four tiers: what is <strong>documented</strong>, what is <strong>alleged</strong>, what the <strong>federal data</strong> shows, and what is still <strong>unknown</strong>. Where the evidence stops, this article says so.</span>
+          </div>
+        </div>
+        <div class="byline-row">
+          <span><strong>Research by Muse</strong> · Edited by Freddie Avalos</span>
+          <span>Research current as of October 31, 2026</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <article>
+
+        <figure class="hs-hero">
+          <img src="/reports/images/california-music-economy-hero.webp" width="2048" height="1152" alt="A young street musician with a guitar faces a glowing teal holographic performer made of light and musical notes, on a small stage at golden hour with palm trees and the Los Angeles skyline behind them" />
+        </figure>
+
+        <div class="bottom-line">
+          <div class="label">The Bottom Line</div>
+          <p>California is where the AI-music companies, the streaming platforms, the lawsuits and the new laws are concentrated. The verified record does not show AI measurably hollowing out California musicians&rsquo; income or jobs.</p>
+          <p>The clearest documented harm is impersonation: fake AI releases appearing on real artists&rsquo; streaming profiles, with no dollar loss reported. The biggest numbers in the story are either allegations in lawsuits or business deals whose values are kept secret. And the one alarming collapse in the federal payroll data turned out to be a bookkeeping change, not a loss of jobs. The state agency that owns the data confirmed it.</p>
+          <p>What follows is sorted into four tiers: what is documented, what is alleged, what the federal data shows, and what is still unknown. Where the evidence stops, this article says so.</p>
+        </div>
+
+        <section>
+          <h2>Documented: what the record verifies</h2>
+
+          <h3>Fake AI releases on real artists&rsquo; profiles</h3>
+          <p>The most concrete harm in California is not a lost job. It is a stolen name. AI-generated tracks have appeared on the streaming profiles of Father John Misty and Jakob Dylan, credited as if they were the artists&rsquo; own work, according to Digital Music News.</p>
+          <p>Los Angeles musician Luke Temple, of the band Here We Go Magic, found a fake AI single, &ldquo;Water Spring Mountain,&rdquo; on his band&rsquo;s streaming profiles. NPR reported that Tidal removed it and Spotify said it would be removed.</p>
+          <p>The late jazz saxophonist Sonny Criss, who died in 1977, had AI tracks credited to him. Spotify removed them, Futurism reported. Yet songs crediting Criss were still live on YouTube in October 2026.</p>
+          <p>No dollar loss has been reported for any of these artists. Who uploaded the tracks, and through which distributor, is not public.</p>
+
+          <h3>A songwriter using the tool, on the record</h3>
+          <p>The clearest benefit-side example is Encinitas songwriter Jack Tempchin, who released two albums performed by the AI music generator Suno, as the San Diego Union-Tribune reported. He wrote the songs; the machine performed them. It is a real change in how music gets made. No revenue figure exists for these albums, so whether it paid off cannot be said.</p>
+
+          <h3>An AI Tupac in Long Beach</h3>
+          <p>On June 6, 2026, the F&amp;M Bank Amphitheater in Long Beach opened with a Snoop Dogg show that included an AI-generated Tupac segment. Who made that segment, and whether Tupac Shakur&rsquo;s estate consented, is documented nowhere in the public record. The City of Long Beach, which built the venue, told Honed Signal in response to a public-records request that it holds no responsive records.</p>
+          <p>There is context, though it is not proof either way. The day before the show, Sega announced an estate-approved Tupac cameo in its game Stranger Than Heaven, made expressly without AI, with the estate&rsquo;s permission and ongoing supervision. The estate&rsquo;s wider record is mixed: it approved the 2012 Tupac image at Coachella, and in 2024 it blocked Drake&rsquo;s use of an AI Tupac verse.</p>
+
+          <h3>Licensing deals exist, but the money is sealed</h3>
+          <p>The major record companies have moved from suing AI music firms to licensing them. Universal Music Group settled with Udio. Warner Music Group reached a deal with Suno. On June 10, 2026, the National Music Publishers&rsquo; Association announced industry-wide deals: one concluded with Udio, and an agreement in principle with KLAY, the first to value songs and recordings equally on the training side.</p>
+          <p>Every dollar value and every payout rate in these deals is undisclosed. No payment to any California artist under any of them is documented.</p>
+
+          <h3>California&rsquo;s laws are real and in force</h3>
+          <p>California has enacted more AI likeness and disclosure laws than any other state in this project&rsquo;s review. According to California Legislative Information:</p>
+          <ul class="points">
+            <li>AB 2602 and AB 1836 set rules for digital-replica contracts and for the likenesses of deceased performers. Both have been in force since January 1, 2025.</li>
+            <li>SB 683 updated the state&rsquo;s right-of-publicity statute (Civil Code §3344), effective January 1, 2026.</li>
+            <li>The AI Transparency Act (SB 942, as amended by AB 853, SB 1000 and AB 2713) phases in disclosure duties: AI providers from August 2, 2026, large platforms from January 1, 2027, and capture devices from January 1, 2028. Violations carry $5,000 each, enforced only by government.</li>
+            <li>SB 1050, signed September 16, 2026 and effective January 1, 2027, requires disclosure when synthetic performers appear in advertising, including audio ads. It applies to advertising only.</li>
+          </ul>
+          <p>No reported case or enforcement action under any of these laws involves a musician.</p>
+
+          <h3>Union protections</h3>
+          <p>SAG-AFTRA&rsquo;s Sound Recordings Code contains collectively bargained AI guardrails: separate written consent for each project, paid sessions for creating a voice replica, and payment when a recording with a synthetic vocal is streamed. Those terms run through December 31, 2026.</p>
+        </section>
+
+        <section>
+          <h2>Alleged: what is claimed in court</h2>
+          <p>Everything in this tier is a claim, not a finding. No case below has produced a ruling on the merits in this record.</p>
+
+          <h3>The lawsuits are concentrated here</h3>
+          <p>Federal court in Northern California hears cases against Anthropic, Suno and NVIDIA. These are two different kinds of claim. The suits against Anthropic are about song lyrics and AI-generated text. The suits against Suno and NVIDIA are about AI-generated audio and the recordings used to train it.</p>
+          <p>Los Angeles record labels are plaintiffs in the fights against Suno, Udio and the distributor DistroKid. They are also defendants in a suit by the American Federation of Musicians over &ldquo;new use&rdquo; payments to session musicians.</p>
+          <p>In Concord v. Anthropic, the music publishers&rsquo; lyrics case, the summary-judgment hearing was held on October 21, 2026. No order had been issued at the last check.</p>
+
+          <h3>The biggest priced claim is still a claim</h3>
+          <p>The largest dollar figure tied to a California musician&rsquo;s AI work comes from a lawsuit, Doe v. Ye, Los Angeles Superior Court No. 26STCV24490. A producer pleads at least $110,000 in unpaid work on AI voice models, potentially doubled to $220,000 under Los Angeles&rsquo;s freelance-worker ordinance. That is what the producer asks for. It has not been proven.</p>
+
+          <h3>A chart hit, attributed to AI</h3>
+          <p>Fenix Flexin&rsquo;s &ldquo;Rubberz&rdquo; reached No. 58 on the Billboard Hot 100. The claim that it was made with a particular AI model comes from Treblo, the company behind that model. It is the company&rsquo;s claim, not an established fact.</p>
+        </section>
+
+        <section>
+          <h2>Federal data: what the numbers actually show</h2>
+
+          <h3>The Los Angeles &ldquo;collapse&rdquo; that wasn&rsquo;t</h3>
+          <p>Federal payroll data from the Bureau of Labor Statistics&rsquo; Quarterly Census of Employment and Wages (QCEW) shows a startling drop. In Los Angeles, payroll jobs at &ldquo;musical groups and artists&rdquo; (industry code NAICS 711130) fell from 4,448 in December 2024 to 2,042 in January 2025. The annual average fell from 4,105 in 2024 to 2,680 in 2025.</p>
+          <p>It looks like a collapse, and it would be easy to blame AI. It is not one.</p>
+          <p>On October 21, 2026, the Labor Market Information Division of California&rsquo;s Employment Development Department (EDD) answered Honed Signal&rsquo;s inquiry. The drop was a noneconomic industry code change. One large employer was reclassified in the first quarter of 2025, out of musical groups and artists and into payroll services (NAICS 541214). The jobs were counted under a different code. They did not disappear, and AI did not displace them. The EDD did not name the employer.</p>
+
+          <h3>The rest of the state held steady</h3>
+          <p>Outside Los Angeles, the same category shows no drop. Musical groups and artists had 3,079 payroll jobs in 2024 and 3,058 in 2025, a change of −0.7%, and the 2025 figure was 26.8% above 2019. January 2025 was 170 jobs above January 2024. There was no January step anywhere but Los Angeles.</p>
+          <p>Sound-recording payroll jobs outside Los Angeles (NAICS 5122) rose from 737 in 2019 to 999 in 2025. The number of music employers outside the three largest metro areas also grew from 2019 to 2025: bands and artists from 144 to 211, and sound-recording businesses from 119 to 173.</p>
+          <p>One limit matters here. These figures count people on payrolls. Most working musicians are self-employed and do not show up in them.</p>
+
+          <h3>The wider creative economy</h3>
+          <p>A study by Otis College finds roughly 114,000 California creative-economy jobs lost since late 2022. Its authors state that AI is not the primary cause. That figure covers the whole creative economy, not music alone, and should not be read as a measure of musicians&rsquo; jobs.</p>
+        </section>
+
+        <section>
+          <h2>Unknown: where the evidence stops</h2>
+          <ul class="points">
+            <li>No verified dollar loss or gain exists for any California musician from AI.</li>
+            <li>Every settlement and license value is undisclosed, along with every payout rate for licensed AI models. Whether licensing pays artists meaningfully cannot be determined.</li>
+            <li>The Long Beach Tupac segment: who made it, and whether the estate consented.</li>
+            <li>The fake releases: who uploaded them, and which distributor carried them.</li>
+            <li>The net effect on jobs and wages. Whether AI has changed California musicians&rsquo; employment or pay overall is something the available data cannot show.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>What it adds up to</h2>
+          <p>California has the companies, the courtrooms and the densest set of AI likeness laws reviewed, so it is where the future of AI music is being argued. For now, the evidence shows a narrower picture than the headlines. Real artists&rsquo; names are being used on fake releases. A songwriter has used AI to put out albums. Large deals have been struck on undisclosed terms. And one frightening jobs number turned out to be a coding change. The lawsuits and the new laws could change this picture. None of them has yet produced a ruling or an enforcement action involving a musician.</p>
+        </section>
+
+        <section>
+          <h2>Inquiries</h2>
+
+          <h3>Answered</h3>
+          <ul class="points">
+            <li>California EDD, Labor Market Information Division: answered October 21, 2026 (the reclassification explanation above).</li>
+            <li>City of Long Beach, California Public Records Act request C032128-101926: answered October 28, 2026. The City holds no responsive records; request closed.</li>
+          </ul>
+
+          <h3>No reply received as of October 31, 2026</h3>
+          <ul class="points">
+            <li>Howard King, King, Holmes, Paterno &amp; Soriano LLP, for the Tupac Shakur estate / Amaru Entertainment: emailed October 20, 2026.</li>
+            <li>SMAC Entertainment (via Boss Lady Entertainment): Instagram message, October 20, 2026.</li>
+            <li>F&amp;M Bank Amphitheater / Legends Global (venue): contact form and Messenger, October 19, 2026.</li>
+          </ul>
+        </section>
+
+        <footer>
+          <div class="src-label">Sources</div>
+          <p class="sources">U.S. Bureau of Labor Statistics, Quarterly Census of Employment and Wages (QCEW) · California Employment Development Department, Labor Market Information Division · City of Long Beach, Public Records Act response · California Legislative Information · SAG-AFTRA, Sound Recordings Code · NPR · Digital Music News · Futurism · San Diego Union-Tribune · Otis College, California creative economy study · Court dockets (N.D. Cal.; Los Angeles Superior Court; related federal cases) · National Music Publishers&rsquo; Association · Kotaku; Forbes (Tupac estate context) · Billboard Hot 100; Treblo (company claim)</p>
+          <p class="signoff">Honed Signal<span class="dot">.</span> · Research by Muse · Edited by Freddie Avalos · No hype. No noise.</p>
+        </footer>
+
+      </article>
+    </div>
+    <script>
+      (function () {
+        var em = document.getElementById('hs-email');
+        if (em) {
+          em.addEventListener('click', function () {
+            var subject = 'What AI Is Actually Doing to California\'s Music Economy — Honed Signal';
+            var body = 'What AI Is Actually Doing to California\'s Music Economy — what is documented, what is alleged, what the federal data shows, and what is still unknown.\n\nhttps://honedsignal.com/reports/california-music-economy/';
+            window.location.href = 'mail' + 'to:' + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+          });
+        }
+        var btn = document.getElementById('hs-copy');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var url = 'https://honedsignal.com/reports/california-music-economy/';
+          function done() { btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = 'Copy link'; }, 2000); }
+          if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, done); }
+          else { window.prompt('Copy this link:', url); }
+        });
+      })();
+    </script>
+  </body>
+</html>
