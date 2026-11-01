@@ -23,6 +23,7 @@ XTAGS = {
     "w-4-withholding-calculator": ["Career"],
     "quarterly-estimated-tax-calculator": ["Business"],
     "self-employment-tax-estimator": ["Business"],
+    "etsy-fee-calculator": ["Business"],
     "capital-gains-tax-calculator": ["Investing"],
     "tax-loss-harvesting-calculator": ["Investing"],
     "hsa-tax-savings-calculator": ["Health", "Investing"],

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="/money/manifest.json" />
+  <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0b0e14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Honed Money" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/money/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/money/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
+  <title>Etsy Fee Calculator | Honed Money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#11161c;--surface:#181f27;--surface-2:#202a34;--ink:#f5f5f5;--muted:#b7c0c9;
+      --line:#34404b;--line-strong:#596570;--orange:#f7931a;--orange-soft:#392917;
+      --blue:#82acd5;--blue-soft:#192d40;--green:#39ff14;--green-soft:#17351a;
+      --red:#ff747b;--red-soft:#402027;--shadow:0 24px 70px rgba(0,0,0,.28);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#0b0e14;--surface:#121820;--surface-2:#1a232d;--ink:#f5f5f5;--muted:#aeb7c0;
+      --line:#2b3540;--line-strong:#46525d;--orange:#f7931a;--orange-soft:#332313;
+      --blue:#78a6d2;--blue-soft:#16293a;--green:#39ff14;--green-soft:#143118;
+      --red:#ff7379;--red-soft:#3a1c22;--shadow:0 24px 70px rgba(0,0,0,.4);
+    }}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;overflow-x:hidden;background:var(--bg);color:var(--ink);font:16px/1.5 "IBM Plex Sans",sans-serif;-webkit-font-smoothing:antialiased}button,input,select{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}.page{width:min(1220px,100%);margin:0 auto;padding:clamp(26px,4.2vw,54px) clamp(16px,4vw,48px) max(56px,env(safe-area-inset-bottom))}
+    .home-link{position:sticky;top:0;z-index:20;display:inline-flex;align-items:center;min-height:36px;margin:0 0 18px;padding:7px 11px;border:1px solid var(--line);background:var(--bg);color:var(--muted);text-decoration:none;font-size:.74rem;font-weight:700;box-shadow:0 8px 18px rgba(0,0,0,.16)}.home-link:hover{color:var(--ink);border-color:var(--line-strong)}.home-link:focus-visible{outline:3px solid color-mix(in srgb,var(--orange) 45%,transparent);outline-offset:3px}
+    .intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(270px,.65fr);gap:clamp(28px,6vw,82px);align-items:end;padding:8px 0 clamp(27px,4vw,42px);border-bottom:1px solid var(--line)}.intro h1{margin:0;max-width:800px;font-size:clamp(2.6rem,6.8vw,6.3rem);line-height:.9;letter-spacing:-.065em;font-weight:700}.intro h1 span{color:var(--orange)}.intro p{margin:0 0 4px;max-width:38ch;color:var(--muted);font-size:clamp(1rem,1.65vw,1.2rem)}
+    .workbench{display:grid;grid-template-columns:minmax(320px,410px) minmax(0,1fr);margin-top:30px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}.inputs{padding:clamp(20px,2.7vw,30px);border-right:1px solid var(--line)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:23px}.section-head h2{margin:0;font-size:.86rem;letter-spacing:.085em;text-transform:uppercase}.step{color:var(--orange);font:600 .68rem "IBM Plex Mono",monospace}.field{margin-bottom:17px}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;margin-bottom:7px;color:var(--muted);font-size:.78rem;font-weight:600}.control{display:flex;align-items:center;min-height:47px;background:var(--bg);border:1px solid var(--line-strong);transition:border-color .15s,box-shadow .15s}.control:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px color-mix(in srgb,var(--orange) 18%,transparent)}.affix{padding-left:12px;color:var(--muted);font:500 .8rem "IBM Plex Mono",monospace}.affix.end{padding:0 11px 0 0}.control input,.control select{width:100%;min-width:0;border:0;outline:0;background:transparent;padding:11px 10px;font-weight:600;font-variant-numeric:tabular-nums}.control select{cursor:pointer}.micro{display:block;margin-top:5px;color:var(--muted);font-size:.68rem;line-height:1.42}.divider{display:flex;align-items:center;gap:10px;margin:23px 0 14px}.divider span{color:var(--ink);font-size:.72rem;font-weight:700}.divider::after{content:"";height:1px;flex:1;background:var(--line)}.calculate{width:100%;border:0;margin-top:7px;padding:14px 18px;background:var(--orange);color:#181108;font-weight:700;cursor:pointer;box-shadow:0 6px 0 #8f4d04;transition:transform .1s,box-shadow .1s}.calculate:active{transform:translateY(3px);box-shadow:0 3px 0 #8f4d04}.privacy{margin:15px 0 0;color:var(--muted);font-size:.67rem}
+    .results{min-width:0;padding:clamp(20px,3vw,34px);background:linear-gradient(135deg,color-mix(in srgb,var(--surface-2) 54%,transparent),transparent 58%)}.empty{min-height:660px;display:grid;place-items:center;text-align:center}.empty-mark{width:104px;height:104px;margin:0 auto 22px;position:relative;border:1px solid var(--line-strong);display:grid;place-items:center}.empty-mark::before{content:"$";font:600 2.5rem "IBM Plex Mono",monospace;color:var(--blue)}.empty-mark::after{content:"";position:absolute;width:29px;height:29px;right:-10px;bottom:-10px;border:8px solid var(--orange);border-radius:50%}.empty h2{margin:0 0 8px;font-size:1.6rem;letter-spacing:-.035em}.empty p{margin:0 auto;max-width:42ch;color:var(--muted);font-size:.9rem}.hidden{display:none!important}.error{margin:0 0 14px;padding:12px 14px;background:var(--red-soft);color:var(--red);font-size:.82rem;font-weight:600;border:1px solid color-mix(in srgb,var(--red) 35%,transparent)}
+    .hero-result{position:relative;overflow:hidden;padding:clamp(24px,4vw,40px);background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.hero-result{background:#f2f4f5;color:#0b0e14}}.hero-result::after{content:"";position:absolute;width:164px;height:164px;right:-65px;bottom:-82px;border:22px solid var(--orange);border-radius:50%}.eyebrow{margin:0 0 9px;font:600 .68rem "IBM Plex Mono",monospace;letter-spacing:.07em;opacity:.6}.rate{position:relative;z-index:1;margin:0;font:600 clamp(3.15rem,7vw,6.25rem)/.9 "IBM Plex Mono",monospace;letter-spacing:-.075em}.rate-label{position:relative;z-index:1;margin:11px 0 0;font-weight:700}.quick-rates{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:1px;background:var(--line)}.quick{padding:18px;background:var(--surface)}.quick span{display:block;color:var(--muted);font-size:.66rem;font-weight:700}.quick strong{display:block;margin-top:5px;font:600 clamp(1.12rem,2.4vw,1.55rem) "IBM Plex Mono",monospace;letter-spacing:-.03em}.quick em{display:block;margin-top:5px;color:var(--muted);font-size:.63rem;font-style:normal}
+    .math{margin-top:16px;padding:22px;background:var(--surface);border:1px solid var(--line)}.math-head,.share-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:14px}.math h2,.share h2{margin:0;font-size:1rem;letter-spacing:-.02em}.formula{border-top:1px solid var(--line)}.formula-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.formula-row span{font-size:.78rem}.formula-row span small{display:block;margin-top:2px;color:var(--muted);font-size:.65rem}.formula-row strong{font:600 .78rem "IBM Plex Mono",monospace;text-align:right}.formula-row.total{color:var(--green)}.formula-row.rate-row{color:var(--orange);font-weight:700}
+    .explain{margin-top:14px;border:1px solid var(--line);background:var(--blue-soft)}.explain-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;border:0;background:transparent;padding:15px 17px;cursor:pointer;text-align:left;font-weight:700}.explain-toggle:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}.explain-toggle:focus-visible,.action:focus-visible,.calculate:focus-visible{outline:3px solid color-mix(in srgb,var(--orange) 45%,transparent);outline-offset:3px}.explain-toggle svg{width:18px;flex:0 0 auto;color:var(--blue);transition:transform .18s}.explain-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}.explain-copy{margin:0;padding:0 17px 18px;color:var(--muted);font-size:.84rem;line-height:1.68}.explain-copy strong{color:var(--ink)}.explain-copy[hidden]{display:none}
+    .share{margin-top:14px;padding:19px 22px;background:var(--surface);border:1px solid var(--line)}.actions{display:flex;gap:8px}.action{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 12px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;font-size:.7rem;font-weight:700}.action.email{background:var(--orange);border-color:var(--orange);color:#181108}.context{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.context div{padding-top:12px;border-top:1px solid var(--line)}.context span{display:block;color:var(--muted);font-size:.63rem;font-weight:700}.context strong{display:block;margin-top:5px;font:600 .78rem "IBM Plex Mono",monospace}.note{margin:15px 0 0;color:var(--muted);font-size:.66rem;line-height:1.5}.note strong{color:var(--ink)}
+    .footer{display:grid;grid-template-columns:1fr auto;gap:28px;margin-top:25px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.67rem}.footer p{margin:0;max-width:86ch}.footer strong{color:var(--ink)}
+    @media(max-width:880px){.intro{grid-template-columns:1fr;gap:16px}.intro p{max-width:52ch}.workbench{grid-template-columns:1fr}.inputs{border-right:0;border-bottom:1px solid var(--line)}.empty{min-height:430px}}
+    @media(max-width:560px){.page{padding-left:12px;padding-right:12px}.intro h1{font-size:clamp(2.55rem,13vw,4rem)}.field-row{grid-template-columns:1fr;gap:0}.results{padding:12px}.hero-result,.math{padding:19px}.quick-rates{grid-template-columns:1fr}.math-head,.share-head{align-items:flex-start;flex-direction:column}.actions{width:100%}.action{flex:1}.context{grid-template-columns:1fr}.footer{grid-template-columns:1fr;gap:8px}.rate{font-size:clamp(2.55rem,13vw,4rem)}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- honed-seo-start -->
+<meta name="description" content="See what you actually keep from an Etsy sale. Free Etsy fee calculator for digital and printable sellers — forward and reverse pricing, listing renewals, bundles, and Offsite Ads." />
+<link rel="canonical" href="https://honedsignal.com/money/etsy-fee-calculator/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Etsy Fee Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any",
+"url":"https://honedsignal.com/money/etsy-fee-calculator/","description":"See what you actually keep from an Etsy sale. Free Etsy fee calculator for digital and printable sellers — forward and reverse pricing, listing renewals, bundles, and Offsite Ads.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<!-- honed-seo-end -->
+  <link rel="stylesheet" href="/money/print.css" media="print">
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+</head>
+<body>
+<main class="page">
+  <a class="home-link" href="/money/">← Honed Money</a>
+  <header class="intro">
+    <style data-hs-hero>
+.hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;aspect-ratio:16/9;display:flex;align-items:flex-end;background:#121720}
+.hs-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hs-hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,20,.08) 0%,rgba(11,14,20,.82) 100%)}
+.hs-hero h1{position:relative;z-index:1;margin:0;padding:30px clamp(20px,4vw,38px);font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.18;color:#f5f5f5;font-weight:700;letter-spacing:-.01em}
+@media(max-width:640px){.hs-hero{min-height:0;margin:14px 0 22px}.hs-hero h1{padding:22px 20px}}
+</style>
+<div class="hs-hero">
+  <img src="/money/images/business.webp" alt="" aria-hidden="true">
+  <div class="shade"></div>
+  <h1 class="hs-hero-title">Know what a sale <span>really pays.</span></h1>
+</div>
+    <p>Every Etsy fee on one digital sale — transaction, payment processing, and the listing renewals most calculators skip — plus the list price you need to net what you want. Money makes sense.</p>
+  </header>
+
+  <section class="workbench" aria-label="Etsy fee calculator">
+    <form class="inputs" id="etsyForm" novalidate>
+      <div class="section-head"><h2>Your listing</h2><span class="step">01 / 03</span></div>
+      <div class="field">
+        <label for="mode">What are you starting from?</label>
+        <div class="control"><select id="mode"><option value="forward">A list price — show what I keep</option><option value="reverse">A target net — show the price to set</option></select></div>
+        <small class="micro" id="modeHelp">Forward mode breaks down the fees on a price you already have.</small>
+      </div>
+      <div class="field">
+        <label for="amount" id="amountLabel">List price</label>
+        <div class="control"><span class="affix">$</span><input id="amount" type="number" min="0.01" step="0.05" inputmode="decimal" value="9.95"></div>
+        <small class="micro">Defaults to a $9.95 digital download — the price of Honed Signal's own Etsy packs.</small>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="discount">Sale discount</label><div class="control"><input id="discount" type="number" min="0" max="90" step="1" inputmode="decimal" value="0"><span class="affix end">%</span></div><small class="micro">Etsy charges its percentage fees on the discounted price the buyer actually pays.</small></div>
+        <div class="field"><label for="monthsListed">Months between sales</label><div class="control"><input id="monthsListed" type="number" min="0" max="60" step="1" inputmode="decimal" value="1"><span class="affix end">mo</span></div><small class="micro">How long this listing typically sits before a sale. A listing costs $0.20 when it sells, plus $0.20 every 4 months it sits unsold.</small></div>
+      </div>
+
+      <div class="divider"><span>Bundle check</span></div>
+      <div class="field-row">
+        <div class="field"><label for="bundleItems">Items in the bundle</label><div class="control"><input id="bundleItems" type="number" min="1" max="50" step="1" inputmode="decimal" value="1"></div><small class="micro">Above 1 if the price covers several products sold as one download.</small></div>
+        <div class="field"><label for="bundleSeparate">Separate prices total</label><div class="control"><span class="affix">$</span><input id="bundleSeparate" type="number" min="0" step="0.05" inputmode="decimal" value="0"></div><small class="micro">What the same items cost bought one by one — used to compare bundle vs. separate sales.</small></div>
+      </div>
+
+      <div class="divider"><span>Optional fees</span></div>
+      <div class="field">
+        <label for="offsite">Offsite Ads fee</label>
+        <div class="control"><select id="offsite"><option value="0">Off — no Offsite Ads fee</option><option value="12">12% — shops over $10,000 in the last year</option><option value="15">15% — shops under $10,000 in the last year</option></select></div>
+        <small class="micro">Only charged when a sale actually arrives through an Offsite Ad, and capped at $100 per order. Most digital sales never carry it.</small>
+      </div>
+
+      <div class="divider"><span>Fee rates — US defaults</span></div>
+      <div class="field-row">
+        <div class="field"><label for="txnRate">Transaction fee</label><div class="control"><input id="txnRate" type="number" min="0" max="30" step="0.1" inputmode="decimal" value="6.5"><span class="affix end">%</span></div></div>
+        <div class="field"><label for="regRate">Regulatory operating fee</label><div class="control"><input id="regRate" type="number" min="0" max="10" step="0.01" inputmode="decimal" value="0"><span class="affix end">%</span></div><small class="micro">US sellers pay 0% — Etsy charges this only in certain other countries. Set yours if it applies.</small></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="procRate">Payment processing</label><div class="control"><input id="procRate" type="number" min="0" max="30" step="0.1" inputmode="decimal" value="3"><span class="affix end">%</span></div></div>
+        <div class="field"><label for="procFlat">Processing flat fee</label><div class="control"><span class="affix">$</span><input id="procFlat" type="number" min="0" step="0.01" inputmode="decimal" value="0.25"></div></div>
+      </div>
+
+      <button class="calculate" type="submit">Calculate my net</button>
+      <p class="privacy">Your entries stay in this tab and are not saved.</p>
+    </form>
+
+    <div class="results">
+      <div class="empty" id="emptyState">
+        <div><div class="empty-mark" aria-hidden="true"></div><h2>The list price is not the payout.</h2><p>Etsy takes its cut in four places before a dollar reaches you. Run your price and see what a sale actually pays.</p></div>
+      </div>
+
+      <div id="resultState" class="hidden" aria-live="polite">
+        <div class="error hidden" id="errorBox"></div>
+        <section class="hero-result" id="heroResult">
+          <p class="eyebrow" id="heroEyebrow">NET PER SALE</p>
+          <p class="rate" id="heroValue">—</p>
+          <p class="rate-label" id="heroLabel">kept from each sale</p>
+        </section>
+        <div class="quick-rates">
+          <article class="quick"><span>TOTAL FEES PER SALE</span><strong id="feesTotal">—</strong><em id="feesNote">—</em></article>
+          <article class="quick"><span>EFFECTIVE FEE RATE</span><strong id="effRate">—</strong><em>share of the sale price Etsy keeps</em></article>
+        </div>
+
+        <section class="math">
+          <div class="math-head"><h2>Where the price goes</h2><span class="step">THE MATH</span></div>
+          <div class="formula" id="formulaRows"></div>
+        </section>
+
+        <section class="explain" aria-label="Plain-English results explanation">
+          <button type="button" class="explain-toggle" id="explainToggle" aria-expanded="false" aria-controls="explainCopy"><span>Explain these results</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <p class="explain-copy" id="explainCopy" hidden></p>
+        </section>
+
+        <section class="share">
+          <div class="share-head"><h2>Your working assumptions</h2><div class="actions"><a class="action email" id="emailResults" href="#" aria-label="Email these Etsy fee results">Email my results</a><button type="button" class="action" id="copyResults" aria-live="polite">Copy results</button><button type="button" class="action" id="downloadCsv">Download CSV</button></div></div>
+          <div class="context">
+            <div><span>FEES VERIFIED</span><strong>November 2026 — Etsy Help Centre</strong></div>
+            <div><span>SELLER COUNTRY DEFAULT</span><strong>United States</strong></div>
+            <div><span>REGULATORY OPERATING FEE</span><strong>0% for US sellers</strong></div>
+          </div>
+          <p class="note"><strong>Digital math is different math.</strong> No shipping means no fees on postage — but the flat $0.25 processing fee and the $0.20 listing charge land on every sale, so they bite hardest on cheap downloads. A $3 item and a $30 item pay the same $0.45 in flat charges.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p><strong>Method:</strong> Percentage fees — transaction, payment processing, regulatory operating, and Offsite Ads — are charged on the price the buyer actually pays, after any sale discount. The flat $0.25 processing fee and the listing charge ($0.20 when the item sells, plus $0.20 for every 4 months the listing sits unsold) are counted per sale. Reverse mode solves for the list price that leaves your target net after the same fees. Fee schedule verified against Etsy's Help Centre in November 2026.</p>
+    <p>Planning estimate only. Not tax, legal, or financial advice.</p>
+  </footer>
+</main>
+<script>
+(function(){'use strict';
+  var form=document.getElementById('etsyForm'),lastResult=null;
+  function byId(id){return document.getElementById(id)}
+  function num(id){return parseFloat(byId(id).value)}
+  function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(n)}
+  function pct(n){return new Intl.NumberFormat('en-US',{style:'percent',minimumFractionDigits:1,maximumFractionDigits:1}).format(n)}
+  function values(){return{mode:byId('mode').value,amount:num('amount'),discount:num('discount')/100,months:num('monthsListed'),items:num('bundleItems'),separate:num('bundleSeparate'),offsite:num('offsite')/100,txn:num('txnRate')/100,reg:num('regRate')/100,proc:num('procRate')/100,procFlat:num('procFlat')}}
+  function listingPerSale(months){var renewals=months>=1?Math.floor((months-1)/4):0;return 0.20+0.20*renewals}
+  function feesOn(paid,x,listing){var txn=paid*x.txn,proc=paid*x.proc+x.procFlat,reg=paid*x.reg,off=paid*x.offsite;return{txn:txn,proc:proc,reg:reg,off:off,listing:listing,total:txn+proc+reg+off+listing}}
+  function validate(x){
+    if(!Number.isFinite(x.amount)||x.amount<=0)return x.mode==='reverse'?'Enter a target net greater than zero.':'Enter a list price greater than zero.';
+    if(!Number.isFinite(x.discount)||x.discount<0||x.discount>0.9)return'Enter a sale discount from 0% to 90%.';
+    if(!Number.isFinite(x.months)||x.months<0||x.months>60)return'Enter between 0 and 60 months between sales.';
+    if(!Number.isFinite(x.items)||x.items<1||x.items>50)return'Enter between 1 and 50 items in the bundle.';
+    if(!Number.isFinite(x.separate)||x.separate<0)return'The separate-prices total cannot be negative.';
+    if(!Number.isFinite(x.txn)||x.txn<0||!Number.isFinite(x.proc)||x.proc<0||!Number.isFinite(x.reg)||x.reg<0||!Number.isFinite(x.procFlat)||x.procFlat<0)return'Fee rates cannot be negative.';
+    if(x.mode==='reverse'&&(x.txn+x.proc+x.reg+x.offsite)>=1)return'Those fee rates add up to 100% or more — no list price can reach that target net.';
+    return'';
+  }
+  function calculate(e){
+    if(e)e.preventDefault();
+    var x=values(),err=validate(x);if(err){showError(err);return}
+    var listing=listingPerSale(x.months),price,paid,fees;
+    if(x.mode==='forward'){price=x.amount;paid=price*(1-x.discount);fees=feesOn(paid,x,listing)}
+    else{var rateSum=x.txn+x.proc+x.reg+x.offsite;paid=(x.amount+x.procFlat+listing)/(1-rateSum);price=x.discount>0?paid/(1-x.discount):paid;fees=feesOn(paid,x,listing)}
+    var net=paid-fees.total;
+    var bundle=null;
+    if(x.items>1&&x.separate>0){
+      var bPaid=price*(1-x.discount);
+      var perItem=x.separate/x.items,sepNet=0;
+      for(var i=0;i<x.items;i++){var p=perItem*(1-x.discount);sepNet+=p-feesOn(p,x,listing).total}
+      bundle={items:x.items,bundleNet:net,separateNet:sepNet,diff:net-sepNet};
+    }
+    lastResult={x:x,price:price,paid:paid,fees:fees,net:net,listing:listing,bundle:bundle};
+    render(lastResult);
+  }
+  function showError(message){
+    byId('emptyState').classList.add('hidden');byId('resultState').classList.remove('hidden');byId('errorBox').textContent=message;byId('errorBox').classList.remove('hidden');
+    byId('resultState').querySelectorAll('.hero-result,.quick-rates,.math,.explain,.share').forEach(function(el){el.classList.add('hidden')});
+  }
+  function row(label,note,value,cls){return'<div class="formula-row '+(cls||'')+'"><span>'+label+'<small>'+note+'</small></span><strong>'+value+'</strong></div>'}
+  function explanation(r){
+    var x=r.x,f=r.fees,parts=[];
+    if(x.mode==='forward'){parts.push('On a '+money(r.price)+' listing'+(x.discount>0?', your buyer pays '+money(r.paid)+' after the '+pct(x.discount)+' sale discount':'')+', Etsy takes '+money(f.total)+' in fees and you keep '+money(r.net)+' — a '+pct(r.net/r.price)+' margin on the list price.')}
+    else{parts.push('To keep '+money(x.amount)+' per download, set the list price to '+money(r.price)+(x.discount>0?' — your buyer pays '+money(r.paid)+' after the '+pct(x.discount)+' discount':'')+'. At that price Etsy takes '+money(f.total)+' and you keep exactly your target.')}
+    parts.push('The percentage fees — '+pct(x.txn)+' transaction, '+pct(x.proc)+' payment processing'+(x.reg>0?', '+pct(x.reg)+' regulatory operating':'')+(x.offsite>0?', '+pct(x.offsite)+' Offsite Ads':'')+' — come off the price the buyer pays. The flat charges do not scale: $0.25 of processing plus '+money(r.listing)+' of listing cost land on every sale, which is why they take a far bigger bite out of a $3 download than a $30 one.');
+    if(x.months>4){parts.push('Because this listing typically sits about '+x.months+' months between sales, its $0.20 renewal every 4 months is counted in the listing cost per sale. A listing that sells in its first 4 months only pays the single $0.20.')}
+    if(x.reg===0){parts.push('Note the regulatory operating fee line is $0.00: US sellers do not pay it. Etsy charges that fee only in certain other countries — calculators that add ~0.29% for a US shop are using another country\'s old rate.')}
+    if(r.bundle){parts.push('Bundle check: selling these '+r.bundle.items+' items as one '+money(r.price)+' bundle nets '+money(r.bundle.bundleNet)+', versus '+money(r.bundle.separateNet)+' selling them one by one — bundling '+(r.bundle.diff>=0?'saves ':'costs ')+money(Math.abs(r.bundle.diff))+' because each separate sale pays its own $0.25 flat processing fee and $0.20 listing charge.')}
+    return parts.join(' ');
+  }
+  function render(r){
+    var x=r.x,f=r.fees;byId('emptyState').classList.add('hidden');byId('resultState').classList.remove('hidden');byId('errorBox').classList.add('hidden');byId('resultState').querySelectorAll('.hero-result,.quick-rates,.math,.explain,.share').forEach(function(el){el.classList.remove('hidden')});
+    if(x.mode==='forward'){byId('heroEyebrow').textContent='NET PER SALE';byId('heroValue').textContent=money(r.net);byId('heroLabel').textContent='kept from a '+money(r.price)+' list price'}
+    else{byId('heroEyebrow').textContent='LIST PRICE TO SET';byId('heroValue').textContent=money(r.price);byId('heroLabel').textContent='to net '+money(x.amount)+' per download'}
+    byId('feesTotal').textContent=money(f.total);byId('feesNote').textContent='of the '+money(r.paid)+' your buyer pays';byId('effRate').textContent=pct(f.total/r.price);
+    var rows=row('List price','What the listing shows',money(r.price));
+    if(x.discount>0)rows+=row('Price your buyer pays','After the '+pct(x.discount)+' sale discount',money(r.paid));
+    rows+=row('Transaction fee',pct(x.txn)+' of the price paid','− '+money(f.txn));
+    rows+=row('Payment processing',pct(x.proc)+' + '+money(x.procFlat)+' flat','− '+money(f.proc));
+    rows+=row('Regulatory operating fee',x.reg>0?pct(x.reg)+' of the price paid':'US sellers pay 0% — certain other countries only','− '+money(f.reg));
+    if(x.offsite>0)rows+=row('Offsite Ads fee',pct(x.offsite)+' of the price paid, only on ad-driven sales','− '+money(f.off));
+    rows+=row('Listing cost per sale','$0.20 when it sells'+(r.listing>0.20?' + renewals while it sat':'')+'','− '+money(f.listing));
+    rows+=row('Total fees','Everything Etsy keeps',money(f.total),'total');
+    rows+=row('Net per sale','What reaches your payment account',money(r.net),'rate-row');
+    if(r.bundle){rows+=row('Bundle vs. separate','Bundle nets '+money(r.bundle.bundleNet)+' vs. '+money(r.bundle.separateNet)+' sold one by one',(r.bundle.diff>=0?'+ ':'− ')+money(Math.abs(r.bundle.diff)))}
+    byId('formulaRows').innerHTML=rows;
+    byId('explainCopy').textContent=explanation(r);byId('explainCopy').hidden=true;byId('explainToggle').setAttribute('aria-expanded','false');
+    byId('emailResults').href='mail'+'to:?subject='+encodeURIComponent('My Etsy fee estimate')+'&body='+encodeURIComponent(summary(r));
+    if(window.matchMedia('(max-width: 880px)').matches){setTimeout(function(){byId('heroResult').scrollIntoView({behavior:'smooth',block:'start'})},50)}
+  }
+  function summary(r){var x=r.x,f=r.fees;var lines=[
+    'Etsy Fee Calculator results','',
+    'Mode: '+(x.mode==='forward'?'Forward (from list price)':'Reverse (from target net)'),
+    'List price: '+money(r.price),
+    'Price buyer pays: '+money(r.paid)+(x.discount>0?' (after '+pct(x.discount)+' sale discount)':''),
+    'Transaction fee ('+pct(x.txn)+'): '+money(f.txn),
+    'Payment processing ('+pct(x.proc)+' + '+money(x.procFlat)+'): '+money(f.proc),
+    'Regulatory operating fee ('+pct(x.reg)+'): '+money(f.reg),
+    'Offsite Ads fee ('+pct(x.offsite)+'): '+money(f.off),
+    'Listing cost per sale: '+money(f.listing),
+    'Total fees: '+money(f.total),
+    'Net per sale: '+money(r.net),
+    '',
+    'US fee defaults verified against Etsy\'s Help Centre, November 2026. Planning estimate only — actual fees vary by seller country, currency, and shop status. Not tax, legal, or financial advice.'
+  ];if(r.bundle){lines.splice(12,0,'Bundle vs. separate: bundle '+money(r.bundle.bundleNet)+' vs. separate '+money(r.bundle.separateNet))}return lines.join('\n')}
+  function copyResults(){if(!lastResult)return;var button=byId('copyResults'),text=summary(lastResult);function done(){button.textContent='Copied';clearTimeout(button._timer);button._timer=setTimeout(function(){button.textContent='Copy results'},1600)}function fallback(){var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();try{if(document.execCommand('copy'))done();else button.textContent='Select & copy'}finally{area.remove()}}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done).catch(fallback)}else{fallback()}}
+  function downloadCsv(){if(!lastResult)return;var r=lastResult,x=r.x,f=r.fees;var rows=[['Etsy Fee Calculator','Amount'],['Mode',x.mode],['List price',r.price.toFixed(2)],['Price buyer pays',r.paid.toFixed(2)],['Transaction fee',f.txn.toFixed(2)],['Payment processing',f.proc.toFixed(2)],['Regulatory operating fee',f.reg.toFixed(2)],['Offsite Ads fee',f.off.toFixed(2)],['Listing cost per sale',f.listing.toFixed(2)],['Total fees',f.total.toFixed(2)],['Net per sale',r.net.toFixed(2)]];var csv=rows.map(function(row){return row.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n');var blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='etsy-fee-calculator.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
+  function toggleExplanation(){var button=byId('explainToggle'),copy=byId('explainCopy'),open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',open?'true':'false');copy.hidden=!open}
+  function updateModeCopy(){var reverse=byId('mode').value==='reverse';byId('amountLabel').textContent=reverse?'Target net per download':'List price';byId('modeHelp').textContent=reverse?'Reverse mode solves for the list price that leaves your target after every fee.':'Forward mode breaks down the fees on a price you already have.'}
+  form.addEventListener('submit',calculate);byId('copyResults').addEventListener('click',copyResults);byId('downloadCsv').addEventListener('click',downloadCsv);byId('explainToggle').addEventListener('click',toggleExplanation);byId('mode').addEventListener('change',updateModeCopy);
+})();
+</script>
+<p class="hs-reviewed" style="text-align:center;color:#8a93a3;font-size:.75rem;margin:16px auto 0;max-width:640px;padding:0 16px;">Last reviewed: November 2026.</p>
+<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>
+<div class="hs-next"><h3>What's next?</h3><ul><li><a href="/money/self-employment-tax-estimator/"><span class="arr">→</span>Self-employment tax</a></li><li><a href="/money/side-hustle-profitability/"><span class="arr">→</span>Side hustle profitability</a></li><li><a href="/money/profit-margin-calculator/"><span class="arr">→</span>Profit margin calculator</a></li></ul></div>
+<div class="hs-legal" style="max-width:680px;margin:28px auto 0;padding:20px 16px 0;border-top:1px solid #232c3d;color:#7d8698;font-size:.78rem;line-height:1.6;text-align:center;">Honed Money provides calculators and educational information for general purposes only. It is not financial, tax, legal, investment, or insurance advice. Estimates are based on the information you enter and the assumptions shown. Actual results will vary. For taxes, retirement, and government benefits, verify with <a href="https://www.irs.gov" style="color:#9aa3b5;">IRS.gov</a>, <a href="https://www.ssa.gov" style="color:#9aa3b5;">SSA.gov</a>, or <a href="https://www.va.gov" style="color:#9aa3b5;">VA.gov</a>. We don&rsquo;t sell financial products and aren&rsquo;t paid for calculator results. Use at your own risk.</div>
+<script>
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/money/sw.js', { scope: '/money/' }).catch(function () {});
+  });
+}
+</script>
+<script src="/money/recent-tools.js" defer></script>
+<script src="/money/share-result.js" defer></script>
+</body>
+</html>

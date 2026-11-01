@@ -3059,5 +3059,15 @@
    "Overtime"
   ],
   "kind": "tool"
+ },
+ {
+  "t": "Etsy Fee Calculator",
+  "d": "What do you actually keep from each Etsy sale?",
+  "u": "/money/etsy-fee-calculator/",
+  "tags": [
+   "Business",
+   "Side Hustles"
+  ],
+  "kind": "tool"
  }
 ]
