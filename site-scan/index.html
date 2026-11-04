@@ -138,6 +138,7 @@
         <tr><td>Pages sharing one title</td><td>Search results can't tell your pages apart</td><td>−3 per extra page (max −12)</td></tr>
         <tr><td>Page with no title</td><td>No headline in search results</td><td>−4 each (max −12)</td></tr>
         <tr><td>No sitemap.xml</td><td>New pages get discovered late, or never</td><td>−8</td></tr>
+        <tr><td>Email addresses hidden by Cloudflare</td><td>Cloudflare's obfuscation turns each address into a script-only placeholder — invisible without JavaScript, and counted as a broken link by tools like Ahrefs</td><td>Flagged, no points off</td></tr>
       </table>
       <p style="color:var(--muted);font-size:0.92rem;">90–100 Healthy · 70–89 Needs attention · under 70 — problems are costing you. The free scan covers up to 25 pages; the Full Site Report covers the whole site.</p>
     </section>
@@ -202,7 +203,8 @@
    "broken_links": 0,
    "broken_images": 0,
    "duplicate_title_pages": 0,
-   "missing_titles": 0
+   "missing_titles": 0,
+   "email_obfuscation": 0
   },
   "top_issues": [],
   "issues": {
@@ -211,7 +213,8 @@
    "broken_links": [],
    "broken_images": [],
    "duplicate_titles": {},
-   "missing_titles": []
+   "missing_titles": [],
+   "email_obfuscation": []
   },
   "duration_ms": 2716
  },
@@ -308,6 +311,7 @@
         [r.counts.duplicate_title_pages, "duplicate-title pages"],
         [r.counts.missing_titles, "missing titles"],
       ];
+      if (r.counts.email_obfuscation) cells.push([r.counts.email_obfuscation, "pages with Cloudflare-hidden emails"]);
       document.getElementById("counts").innerHTML = cells.map(([n, l]) =>
         '<div class="count"><span class="n">' + n + '</span><span class="l">' + l + "</span></div>").join("");
       const top = document.getElementById("top-issues");
