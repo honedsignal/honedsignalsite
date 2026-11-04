@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Tool Briefs | Honed Signal</title>
-  <meta name="description" content="Every AI tool Honed Signal has checked — what it is, what it costs on the maker's own site, what the catch is, and a straight USE, WATCH, or SKIP verdict. No hype. No noise.">
+  <meta name="description" content="Every AI tool Honed Signal has checked — what it is, what it costs on the maker's own site, what the catch is, and a straight USE IT, TRACK IT, or SKIP IT verdict. No hype. No noise.">
   <link rel="canonical" href="https://honedsignal.com/ai-tools/">
   <meta property="og:title" content="AI Tool Briefs | Honed Signal">
   <meta property="og:description" content="AI tools checked against a real working stack — prices verified on the maker's own site, verdicts in plain language.">
@@ -37,10 +37,11 @@
     .at-card { background: #161c28; border: 1px solid #3a4356; border-radius: 18px; padding: 1.75rem; margin-top: 1.5rem; }
     .at-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
     .at-card h2 { color: #f5f5f5; font-size: clamp(1.35rem, 3.5vw, 1.8rem); letter-spacing: -.02em; margin: 0; line-height: 1.25; }
-    .at-chip { flex: none; font-size: .72rem; font-weight: 800; letter-spacing: .12em; padding: 5px 10px; border-radius: 999px; border: 1px solid; margin-top: .3rem; }
-    .at-chip-use { color: #2EC4B6; border-color: #2EC4B6; }
-    .at-chip-watch { color: #F0B429; border-color: #F0B429; }
-    .at-chip-skip { color: #e5484d; border-color: #e5484d; }
+    .at-chip { flex: none; display: inline-flex; align-items: center; gap: .45rem; font-size: .72rem; font-weight: 800; letter-spacing: .12em; margin-top: .45rem; cursor: default; }
+    .at-chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; flex: none; }
+    .at-chip-use { color: #2EC4B6; }
+    .at-chip-track { color: #F0B429; }
+    .at-chip-skip { color: #e5484d; }
     .at-meta { color: #9AA3B2; font-size: .85rem; margin: .55rem 0 1rem; }
     .at-what { color: #c8cfdb; line-height: 1.65; margin: 0 0 1rem; }
     .at-cost { color: #c8cfdb; line-height: 1.65; margin: 0 0 1rem; }
@@ -67,23 +68,23 @@
     <div class="at-wrap">
       <img class="at-art" src="/assets/ai-tool-briefs.webp" width="2048" height="1152" alt="Illustration of Freddie Avalos in his bright green glasses, hand to his forehead, overwhelmed by a huge holographic list of AI tools stamped WATCH and SKIP, presented by Huxley, a red octopus wearing silver headphones">
       <div class="at-intro">
-        <p>What it is. Who's behind it. What it does. What it costs. What the catch is. And whether it earns a place in a real working stack. Every price below was checked on the maker's own site — never the launch post, never the ad — and every verdict is graded against the tools that actually run Honed Signal today: <strong>USE</strong>, <strong>WATCH</strong>, or <strong>SKIP</strong>.</p>
+        <p>What it is. Who's behind it. What it does. What it costs. What the catch is. And whether it earns a place in a real working stack. Every price below was checked on the maker's own site — never the launch post, never the ad — and every verdict is graded against the tools that actually run Honed Signal today: <strong>USE IT</strong>, <strong>TRACK IT</strong>, or <strong>SKIP IT</strong>.</p>
         <p>41 tools briefed so far, newest first. The list grows as new briefs land — if a tool isn't here, it hasn't been checked yet.</p>
       </div>
       <p class="at-byline">Research by Muse · Edited by Freddie Avalos</p>
 
       <div class="at-filters" role="group" aria-label="Filter briefs by verdict">
         <button type="button" class="at-filter" data-filter="all" aria-pressed="true">All · 41</button>
-        <button type="button" class="at-filter" data-filter="USE" aria-pressed="false">USE · 0</button>
-        <button type="button" class="at-filter" data-filter="WATCH" aria-pressed="false">WATCH · 29</button>
-        <button type="button" class="at-filter" data-filter="SKIP" aria-pressed="false">SKIP · 12</button>
+        <button type="button" class="at-filter" data-filter="USE" aria-pressed="false">USE IT · 0</button>
+        <button type="button" class="at-filter" data-filter="TRACK" aria-pressed="false">TRACK IT · 29</button>
+        <button type="button" class="at-filter" data-filter="SKIP" aria-pressed="false">SKIP IT · 12</button>
       </div>
-      <p class="at-empty" id="at-empty">Nothing here yet. No tool has earned a USE verdict — the bar is a working stack that already does the job, and a new tool has to beat it, not just demo well.</p>
+      <p class="at-empty" id="at-empty">Nothing here yet. No tool has earned a USE IT verdict — the bar is a working stack that already does the job, and a new tool has to beat it, not just demo well.</p>
 
-      <article class="at-card" id="riverside-agents" data-verdict="WATCH">
+      <article class="at-card" id="riverside-agents" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Riverside Agents</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Riverside · Briefed Nov 2, 2026</p>
         <p class="at-what">Four AI agents inside Riverside, the remote recording and editing platform — a production team for video and podcasts that launched October 26, 2026 and was listed on Product Hunt on November 1, 2026 (#3 Product of the Day).</p>
@@ -96,14 +97,14 @@
             <p><strong>What it does:</strong> Verified across Riverside's release and its own site: Producer preps the session (questions, talking points, layouts, branding), Editor builds an editing plan and turns the raw recording into a finished episode with layouts, B-roll, captions and audio polish, Clipper finds the moments worth sharing and cuts them for social, and Marketer writes captions and show notes, then posts or schedules once you approve — nothing is published without approval. Agents run on web and iOS, are included on every plan (some capabilities follow plan tier), and per Riverside's agent overview, chatting is free while a task that costs AI credits shows its price and asks before spending.</p>
             <p><strong>What it costs:</strong> No separate Agents price — but there is no free plan anymore. Verified on Riverside's own pricing explainer (riverside.com, updated September 10, 2026): Pro $35/mo billed monthly or $29/mo billed annually, Grow $45/mo or $39/mo annually, Webinar $99/mo or $79/mo annually, Business custom. A 14-day free trial of Pro/Grow/Webinar requires a credit card and converts to a paid subscription on day 15 unless cancelled.</p>
             <p><strong>The catch:</strong> The trial is the auto-converting kind Freddie is wary of (card up front, charged on day 15). Multi-track export is capped (15 hours/mo on Pro), agent tasks burn AI credits on top of the subscription, and the whole workflow lives inside Riverside's platform — recordings, edits and hosting move there.</p>
-            <p><strong>Fit:</strong> WATCH — the approval-before-posting shape is right and it maps onto Freddie's podcast/video work, but he has no remote-guest recording bottleneck today, his current pipeline works, and a $29–$35/mo minimum spend fails the debt-first cost rule without a proven need. Revisit if a guest-based show starts.</p>
+            <p><strong>Fit:</strong> TRACK IT — the approval-before-posting shape is right and it maps onto Freddie's podcast/video work, but he has no remote-guest recording bottleneck today, his current pipeline works, and a $29–$35/mo minimum spend fails the debt-first cost rule without a proven need. Revisit if a guest-based show starts.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="hera-ai-creative-canvas" data-verdict="WATCH">
+      <article class="at-card" id="hera-ai-creative-canvas" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Hera — AI Creative Canvas</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Hera · Briefed Nov 2, 2026</p>
         <p class="at-what">A canvas where you generate images, design, and animate in one place, directing several AI agents at once and keeping every result as editable layers; the Creative Canvas topped Product Hunt on November 2, 2026.</p>
@@ -116,14 +117,14 @@
             <p><strong>What it does:</strong> Verified on hera.video: paste your website and it builds a brand kit (logo, colours, fonts, product photos); one prompt returns six drafts and you can run multiple agents on the same brief and compare side by side; any result can be split into editable layers, restyled in your brand formats (1:1, 4:5, 9:16), and animated on the same canvas; exports include MP4, GIF and transparent MOV, and Hera's own FAQ says exported animations carry full commercial rights.</p>
             <p><strong>What it costs:</strong> "Get started for free" on hera.video, and the official pages list the product at $0 to start — but Hera publishes no public pricing page on its own site as of this check, so paid-tier prices are unverified, not free. Secondary review sites consistently report Standard $20/mo monthly or $12/mo billed annually, Pro $40/$24, Mega $100/$60 — treat those as their claim until Hera publishes them.</p>
             <p><strong>The catch:</strong> No maker-published pricing means it cannot pass the cost rule today — the same position as SurgePix on October 26. Co-founder Peter's own Product Hunt post also says plainly this first canvas version is "still rough" in parts.</p>
-            <p><strong>Fit:</strong> WATCH — the multi-agent, editable-layer canvas is the exact edit-don't-regenerate shape that fits Honed Signal social and ad graphics, and starting is free, but Freddie's house artwork runs on his locked luminous storybook pipeline (navy/orange/teal), and there is no price list to approve. Revisit when Hera publishes pricing.</p>
+            <p><strong>Fit:</strong> TRACK IT — the multi-agent, editable-layer canvas is the exact edit-don't-regenerate shape that fits Honed Signal social and ad graphics, and starting is free, but Freddie's house artwork runs on his locked luminous storybook pipeline (navy/orange/teal), and there is no price list to approve. Revisit when Hera publishes pricing.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="screen-studio-4-0" data-verdict="WATCH">
+      <article class="at-card" id="screen-studio-4-0" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Screen Studio 4.0</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Screen Studio · Briefed Nov 2, 2026</p>
         <p class="at-what">The 4.0 update of the Mac screen recorder that turns raw screen recordings into polished demos and tutorials automatically; it was Product Hunt's top product on November 1, 2026, headlined by Glass Loupe, Camera Cutout, and Edit by Transcript.</p>
@@ -136,14 +137,14 @@
             <p><strong>What it does:</strong> Verified on screen.studio: automatic and manual zooms that follow your clicks, smoothed cursor motion with optics-style motion blur, camera layouts including a background-removed Camera Cutout (processed on your Mac), one recording reframed for wide/square/vertical with zooms, layouts and captions adjusting automatically, edit-by-transcript (delete a sentence to cut it, filler words and pauses cleared in one pass), local Whisper captions, on-device noise reduction, and MP4 export up to 4K at 60 fps or shareable links. Recordings, transcripts and voice cleanup run locally; cloud features are optional and flagged before anything leaves the Mac.</p>
             <p><strong>What it costs:</strong> Verified on screen.studio's own pricing section: $29/mo billed monthly, or $9/mo billed annually ($108/yr), every feature included on both; free to download and use, but exporting video files requires a paid plan.</p>
             <p><strong>The catch:</strong> Mac only — its own FAQ says there are no near-future plans for Windows. It is also subscription-only now: one-time licences are no longer sold to new buyers (existing ones stay valid), so the cheap yearly rate is a recurring cost, not an owned tool.</p>
-            <p><strong>Fit:</strong> WATCH — genuinely strong for polished walkthroughs of Honed tools and calculators, local-first processing fits the least-privilege rule, and $9/mo on annual billing is the cheapest paid entry in this batch. But it only pays on a Mac-based recording workflow, Freddie's video route currently runs through his existing pipeline, and no screen-demo bottleneck is proven. Note it; no purchase.</p>
+            <p><strong>Fit:</strong> TRACK IT — genuinely strong for polished walkthroughs of Honed tools and calculators, local-first processing fits the least-privilege rule, and $9/mo on annual billing is the cheapest paid entry in this batch. But it only pays on a Mac-based recording workflow, Freddie's video route currently runs through his existing pipeline, and no screen-demo bottleneck is proven. Note it; no purchase.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="xmind-agent-xmind-2027" data-verdict="WATCH">
+      <article class="at-card" id="xmind-agent-xmind-2027" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Xmind Agent / Xmind 2027</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Xmind · Briefed Nov 2, 2026</p>
         <p class="at-what">An AI agent that lives inside Xmind mind maps and builds and develops them with you through conversation; Xmind Agent launched October 28, 2026, and "Xmind 2027 — your mind map is now an AI thinking partner" was a top Product Hunt launch on November 2, 2026.</p>
@@ -156,14 +157,14 @@
             <p><strong>What it does:</strong> Verified on xmind.com/ai: start from an idea, file, image or link and the Agent organises it into a map, grows or reshapes branches through chat, turns a map into next steps with order and due dates, and presents straight from the map. Xmind also shipped a ChatGPT plugin and an MCP server, so Claude and other compatible assistants can create, find and update maps in your Xmind workspace. Available on web, desktop and Android, with iOS coming soon per the launch coverage.</p>
             <p><strong>What it costs:</strong> Verified on Xmind's own site pages: Free $0; Pro $4.92/mo billed annually ($10/mo monthly); Premium $8.25/mo billed annually ($15/mo monthly) with 500 AI credits/mo. The Agent runs on credits on every plan — per Xmind's launch coverage, Free and Pro users get a one-time grant of 50 Agent credits, and only Premium subscribers get a recurring 500/mo.</p>
             <p><strong>The catch:</strong> Credits are the real meter: the free and Pro tiers' Agent allowance is a one-time 50 credits, and a single task can use anywhere from a few to several dozen credits, so sustained agent use effectively requires Premium. The Agent is also not on iOS yet.</p>
-            <p><strong>Fit:</strong> WATCH — the cheapest credible entry in this batch, and the MCP opening (outside agents editing maps) is the interesting pattern for Freddie's report and project planning. But his planning lives in Muse and Google Docs today, mind-mapping is not a proven bottleneck, and even $8.25/mo needs a job to do under the cost rule. Signal only, no spend.</p>
+            <p><strong>Fit:</strong> TRACK IT — the cheapest credible entry in this batch, and the MCP opening (outside agents editing maps) is the interesting pattern for Freddie's report and project planning. But his planning lives in Muse and Google Docs today, mind-mapping is not a proven bottleneck, and even $8.25/mo needs a job to do under the cost rule. Signal only, no spend.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="curiouslm" data-verdict="WATCH">
+      <article class="at-card" id="curiouslm" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>CuriousLM</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">CuriousLM · Briefed Nov 2, 2026</p>
         <p class="at-what">A private AI chat app that runs its language model entirely on your own phone or laptop — no account, no chat server; it launched on Product Hunt on November 2, 2026 ("Private AI that runs on your device. No account.").</p>
@@ -176,14 +177,14 @@
             <p><strong>What it does:</strong> Verified on the builder's own CuriousLM write-up: for normal chat the model runs on the device and prompts and responses never go to a CuriousLM inference server; chats, projects, memories, imported files and retrieval indexes are stored on the device (encrypted on Android via Android Keystore, per that write-up). The network is used only for initial delivery, model/runtime downloads and updates; optional web search and response reports use the network only after showing the content and asking for confirmation, and disclosed cookieless aggregate analytics can be disabled in settings. A beginner guide to the launch adds voice, an offline Pocket Wikipedia and a journal, plus optional Android notification/calendar reads that stay on-device — guide-reported, not maker-stated.</p>
             <p><strong>What it costs:</strong> Listed at $0 on Product Hunt, and the launch guide describes it as a free app with no account and no subscription step. CuriousLM publishes no pricing page on its own site as of this check, so "free" is the listing's claim, not a maker-published price list.</p>
             <p><strong>The catch:</strong> A small on-device model is the trade: the launch guide itself concedes local models are slower, know less, and are more likely to make factual mistakes than frontier cloud models. Model files run from hundreds of megabytes to several gigabytes, there is no account — so no cloud sync — and "works offline" applies after the one-time setup downloads.</p>
-            <p><strong>Fit:</strong> WATCH — this is the least-privilege pattern in its purest form (no account, no server, per-action network consent) and it costs nothing to know about, but Freddie's agent work needs frontier capability, web research and cross-device context that a small local model cannot carry. Useful as an offline/private scratchpad concept, not a replacement for Muse. No action.</p>
+            <p><strong>Fit:</strong> TRACK IT — this is the least-privilege pattern in its purest form (no account, no server, per-action network consent) and it costs nothing to know about, but Freddie's agent work needs frontier capability, web research and cross-device context that a small local model cannot carry. Useful as an offline/private scratchpad concept, not a replacement for Muse. No action.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="elephant-goldfish-model-egm" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>Elephant-Goldfish Model / EGM</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Google · Briefed Nov 2, 2026</p>
         <p class="at-what">A free, open-source plugin of skills for AI coding agents: a deep-context "elephant" agent drafts a spec, then zero-context "goldfish" reviewer subagents attack the draft before any code is written. Surfaced via Julian Goldie's Nov 1, 2026 video (436K subs), assessed in the video thread.</p>
@@ -196,14 +197,14 @@
             <p><strong>What it does:</strong> Seven skills in a chain — brainstorm, draft, review, review loop, resolve findings, document a codebase, compare documents against source. Installs into Claude Code (2.1.271+ needed for verified reviewer isolation), Codex, and Antigravity; setup notes exist for Claude Cowork / ChatGPT Work, where isolation is not fully verified.</p>
             <p><strong>What it costs:</strong> $0 — Apache-2.0; the underlying coding-agent subscription is on you.</p>
             <p><strong>The catch:</strong> It is a software-spec workflow at v0.1.0, not a general content tool. Goldie's marketing adaptations (audience-check / storyboard skills) are his own and sit inside his paid Skool community (price not stated in the video); his five demo builds were judged subjectively, with the only score coming from an AI persona grading ads (2.0 → 5.7 of 10).</p>
-            <p><strong>Fit:</strong> SKIP the install — Freddie does not run Claude Code (settled Oct 21, 2026: Muse is his coding layer, and a second at-the-keyboard tool adds a bill for no new capability). The underlying move — fresh-context adversarial review before building — is already his adopted plan-review system (Standard/Deep tiers, Oct 18, 2026), and Huxley's subagents provide the isolation natively. The one borrowable twist is persona-based fresh-eyes review for public-facing pages/listings; available on request, no purchase needed.</p>
+            <p><strong>Fit:</strong> SKIP IT the install — Freddie does not run Claude Code (settled Oct 21, 2026: Muse is his coding layer, and a second at-the-keyboard tool adds a bill for no new capability). The underlying move — fresh-context adversarial review before building — is already his adopted plan-review system (Standard/Deep tiers, Oct 18, 2026), and Huxley's subagents provide the isolation natively. The one borrowable twist is persona-based fresh-eyes review for public-facing pages/listings; available on request, no purchase needed.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="viktor" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>Viktor</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Viktor · Briefed Nov 2, 2026</p>
         <p class="at-what">An "AI employee" that lives in Slack and Microsoft Teams (also web app/Discord) — not a chatbot, a packaged hire with its own cloud computer.</p>
@@ -216,14 +217,14 @@
             <p><strong>What it does:</strong> Executes end-to-end across 9,800+ connected tools — writes and runs code, builds/deploys apps, runs scheduled tasks, keeps persistent memory and self-written "skills"; proposes next steps and asks for approval before anything irreversible.</p>
             <p><strong>What it costs:</strong> Free start with up to $100 in credits, no credit card; Team $100/month per workspace (no per-seat fee) for 40,000 shared credits/month (quick tasks ~100–300 credits, full projects 2,000–5,000; unused credits roll over one month); Enterprise custom. (Verified on viktor.com/pricing 2026-11-02; older Viktor blog posts and reviews still quote a superseded $50/20,000-credit tier.)</p>
             <p><strong>The catch:</strong> Credit-metered and built for teams whose work lives in Slack/Teams; scheduled tasks burn credits every run. Same structural problem as Grokbot: a less controllable, less customizable version of the agent architecture Freddie already runs.</p>
-            <p><strong>Fit:</strong> SKIP — duplicates Muse/Huxley, $100/month fails the cost rule, and Freddie's one-man operation doesn't run on Slack/Teams. Surfaced via Stacy La's sponsored video "I asked an AI employee to make me as much money as possible" (2026-11-02); the three money routes Viktor picked for her — vibe-code an app, create a digital product, grow YouTube views — are already Freddie's Fits #6, #3, and #1.</p>
+            <p><strong>Fit:</strong> SKIP IT — duplicates Muse/Huxley, $100/month fails the cost rule, and Freddie's one-man operation doesn't run on Slack/Teams. Surfaced via Stacy La's sponsored video "I asked an AI employee to make me as much money as possible" (2026-11-02); the three money routes Viktor picked for her — vibe-code an app, create a digital product, grow YouTube views — are already Freddie's Fits #6, #3, and #1.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="litpal" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>LitPal</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">LitPal · Briefed Nov 2, 2026</p>
         <p class="at-what">An AI book-generation platform for KDP: generate, illustrate, and edit coloring books, children's stories, non-fiction, word search/word fit/Sudoku books, and covers in one workspace, with PDF exports and a niche-research tool.</p>
@@ -236,14 +237,14 @@
             <p><strong>What it does:</strong> One Create page generates whole book interiors per type — the video demo made five books (mandala coloring, large-print sudoku, seniors' trivia, 2nd-grade math workbook, gratitude journal); includes an editor for text/art regeneration and layout, plus cover tools.</p>
             <p><strong>What it costs:</strong> Credit-based subscriptions, priced as annual billing: Basic $20/mo ($239.99/yr, 720 credits/yr), Standard $33.33/mo ($399.99/yr, 1,800 credits), Premium $66.67/mo ($799.99/yr, 4,800 credits), Unlimited $133.33/mo ($1,599.99/yr, fair-use). Generation is cheap in credits (30 coloring pages = 10 credits; AI cover +5; 30-page word search = 5), but edits/regenerations cost extra. (Verified on litpal.ai 2026-11-02.)</p>
             <p><strong>The catch:</strong> It is the volume-generation model Freddie's Flint line is positioned against: his demand check found buyers literally searching "puzzle book for adults no ai," his puzzle line's stated edge is programmatically generated puzzles with every solution verified before the Claude proofing loop, and the 50-state series rule is "genuinely researched, not a template swap." LitPal's own FAQ concedes AI output can contain errors and marketplace acceptance is not guaranteed — the QC burden stays on the publisher. Also the Book Bolt precedent (assessed 2026-10-19, PARK/CUT): a paid generator duplicating his $0 KDP pipeline, with even one month exceeding the KDP test budget; LitPal's cheapest plan is $20/mo billed annually against $11.08 left in the cap.</p>
-            <p><strong>Fit:</strong> SKIP — duplicates the $0 in-house pipeline (Muse generation + Claude proof loop + in-house KDP research tool), fails the cost rule, and its output profile is the one his buyers are searching to avoid.</p>
+            <p><strong>Fit:</strong> SKIP IT — duplicates the $0 in-house pipeline (Muse generation + Claude proof loop + in-house KDP research tool), fails the cost rule, and its output profile is the one his buyers are searching to avoid.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="publisher-rocket" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>Publisher Rocket</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Kindlepreneur · Briefed Nov 1, 2026</p>
         <p class="at-what">Desktop software for Amazon KDP keyword and category research — the tool Caroline's Self Publishing Central video links as an affiliate. Not an AI tool; briefed on Freddie's "what is Publisher Rocket?" ask, restating his existing panel verdict (assessed 2026-10-19 in the Book Bolt alternatives panel; price re-verified 2026-11-01).</p>
@@ -256,14 +257,14 @@
             <p><strong>What it does:</strong> Keyword Search (estimated Amazon search volumes/competition), Competition Analyzer, Category Search (surfaces winnable categories and sales needed to hit #1/top 10), Reverse ASIN (pull a competitor book's keywords; capped, ~50 lookups/mo per the Oct 2026 audit), and Amazon Ads keyword lists.</p>
             <p><strong>What it costs:</strong> $199 one-time, lifetime access, free updates, 30-day money-back guarantee; NO free trial (price re-verified Nov 1, 2026 across Kindlepreneur and current reviews; raised from $97 in 2024; only regular discount is Black Friday, ~$30 off in 2025).</p>
             <p><strong>The catch:</strong> Every number is an estimate — Amazon publishes no search volumes, so volumes and sales-needed figures are modeled, not measured. The vendor's own sales page warns the one-time model may become an annual subscription (urgency framing, not a reason to rush). At Freddie's $4.95 Texas Wildlife royalty, $199 ≈ 41 copies — more than his whole 60-day pass gate (30 copies = $148.50) and ~8× the remaining $25 KDP test cap.</p>
-            <p><strong>Fit:</strong> SKIP — and closed out. Parked by Freddie's Oct 19, 2026 ruling with a royalties-based reopen trigger; on Nov 1, 2026, after the in-house KDP research tool was built and verified (`~/workspace/kdp-research-tool/`), Freddie retired it outright ("Might as well dump Publisher Rocket now"). The trigger is deleted, not met: the function is covered at $0 in-house, so there is nothing left for a purchase to reopen.</p>
+            <p><strong>Fit:</strong> SKIP IT — and closed out. Parked by Freddie's Oct 19, 2026 ruling with a royalties-based reopen trigger; on Nov 1, 2026, after the in-house KDP research tool was built and verified (`~/workspace/kdp-research-tool/`), Freddie retired it outright ("Might as well dump Publisher Rocket now"). The trigger is deleted, not met: the function is covered at $0 in-house, so there is nothing left for a purchase to reopen.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="mistral-large-4-open-weights" data-verdict="WATCH">
+      <article class="at-card" id="mistral-large-4-open-weights" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Mistral Large 4 open weights</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Mistral AI · Briefed Oct 30, 2026</p>
         <p class="at-what">The open-weights release of Mistral's 1-trillion-parameter multimodal model "Le Chonk" — the weights dropped on October 29, 2026, three weeks after its October 6 public preview; surfaced via ai0.news (leads only — verified below on Mistral's own docs and announcement).</p>
@@ -276,14 +277,14 @@
             <p><strong>What it does:</strong> Verified on mistral.ai and docs.mistral.ai: a mixture-of-experts model (1.05T total parameters, 52B active, 1.6B vision encoder, 1M-token context) for agentic coding, multimodal/document work and defensive cybersecurity, downloadable from Hugging Face for self-hosting (vLLM/SGLang) and also served via the Mistral API/Studio, OpenRouter, NVIDIA endpoints and Microsoft Foundry; three reasoning modes (Low/Medium/High).</p>
             <p><strong>What it costs:</strong> Verified on Mistral's own model docs (docs.mistral.ai, read October 30): $0.70 per million input tokens, $0.07 per million cached input tokens, $2.10 per million output tokens — roughly half the preview list price of $1.36 / $4.18. Weights are free to download under the license below.</p>
             <p><strong>The catch:</strong> The license is a modified MIT ("Mistral Ecosystem Open-Weight"): free to use, modify, fine-tune and commercialize, but anyone running it as a Model-as-a-Service needs a separate commercial license from Mistral. Self-hosting is datacenter-scale (the FP8 checkpoint is ~1,061 GB per Hugging Face reporting), the headline benchmarks are Mistral's own, and an independent review put it at 26.02 on the Artificial Analysis Intelligence Index v5.0 against 58.41 for Claude Opus 5.5 (Max).</p>
-            <p><strong>Fit:</strong> WATCH — another verified step in the open-weight / inference-price direction Freddie tracks, and the sovereignty angle is real, but his work runs on Muse / Muse Wonder, he has no hardware or workload for a 1T self-host, and no second model API is needed today. Signal only, no spend.</p>
+            <p><strong>Fit:</strong> TRACK IT — another verified step in the open-weight / inference-price direction Freddie tracks, and the sovereignty angle is real, but his work runs on Muse / Muse Wonder, he has no hardware or workload for a 1T self-host, and no second model API is needed today. Signal only, no spend.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="gemini-4-carbon" data-verdict="WATCH">
+      <article class="at-card" id="gemini-4-carbon" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Gemini 4 Carbon</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Google DeepMind · Briefed Oct 30, 2026</p>
         <p class="at-what">Google DeepMind's newest frontier model, announced October 28, 2026, built for cybersecurity defense and long-horizon agentic coding; surfaced via Product Hunt's October 30 launches and ai0.news (leads only — verified below on DeepMind's own blog).</p>
@@ -296,14 +297,14 @@
             <p><strong>What it does:</strong> Verified on deepmind.google: built for sustained agentic workflows — DeepMind says its teams have seen it run for days root-causing and patching bugs across large codebases — with state-of-the-art claims across the defense cycle: 88.2% on SEC-bench Pro (finding vulnerabilities), 54.8% on ExploitGym (exploitation) and 71.0% on CWE-bench (patching), all run without guardrails, and a #1 ranking at 59 on the updated Artificial Analysis Intelligence Index v5.0 (DeepMind's report of that index).</p>
             <p><strong>What it costs:</strong> Verified on DeepMind's post: introductory API pricing matches Gemini 4 Argon at $2 per million input tokens and $10 per million output tokens, with cached input at 95% off; secondary summaries of the same post list the post-introductory price as $4 / $20, with no end date given for the introductory period.</p>
             <p><strong>The catch:</strong> Almost nobody can use it: rollout starts this week only to a subset of cyber defenders, then gradually to trusted partners through the Fairwind Program, while Google takes part in the U.S. government's voluntary pre-release testing — developers, businesses and consumers get it "as soon as possible" with no date. The benchmark scores are Google's own (run without guardrails), and the undated introductory price is exactly the expiring-promo shape Freddie is wary of.</p>
-            <p><strong>Fit:</strong> WATCH — a frontier capability signal (especially prompt-injection resistance at 0.0% on Gray Swan's benchmark, per DeepMind), but there is no access to buy, no Google AI plan justification follows from it — Freddie has already ruled out building Google AI Pro math on a Premium downgrade — and his agent work runs on Muse. Note it, no action.</p>
+            <p><strong>Fit:</strong> TRACK IT — a frontier capability signal (especially prompt-injection resistance at 0.0% on Gray Swan's benchmark, per DeepMind), but there is no access to buy, no Google AI plan justification follows from it — Freddie has already ruled out building Google AI Pro math on a Premium downgrade — and his agent work runs on Muse. Note it, no action.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="canva-brush" data-verdict="WATCH">
+      <article class="at-card" id="canva-brush" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Canva Brush</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Canva · Briefed Oct 30, 2026</p>
         <p class="at-what">Canva's first vision-language model for design — instead of generating a new image, it edits a design you already have; launched October 29, 2026 and listed on Product Hunt on October 30, 2026.</p>
@@ -316,14 +317,14 @@
             <p><strong>What it does:</strong> Per Canva's launch post (quoted across launch coverage and Canva's own LinkedIn post): Brush sees a design's layout, layers and structure, then makes the change you ask for — from a single line of copy to restyling every slide in a deck — running an agentic loop that writes and runs code, inspects the result, and iterates; every element (text, images, colours, layout) stays fully editable afterward. It was post-trained from an unnamed leading open-weights model on real design/editing tasks.</p>
             <p><strong>What it costs:</strong> No separate Brush price — it powers supported design edits in Canva AI for Canva Pro subscribers at launch, with wider availability promised and no date given. Canva Pro is $18/mo or $144/yr for one person in the US, per Canva's own pricing page as read in October 2026 pricing checks.</p>
             <p><strong>The catch:</strong> The headline figures — up to 69% faster and 46% lower cost per task than its previous design agent — are Canva's own, with no test method or outside benchmark published. Version one has no Brand Kit support yet (Canva says it is coming), and access is Pro-only for now.</p>
-            <p><strong>Fit:</strong> WATCH — the edit-don't-regenerate shape is the same pain point SurgePix flagged last run and it fits Honed Signal social/deck graphics, but Freddie's house artwork runs on his locked luminous storybook pipeline (navy/orange/teal), not Canva templates, and a new $18/mo Pro subscription fails the debt-first cost rule without a concrete bottleneck. If he is already on Pro for another reason, it costs nothing extra to test on a throwaway graphic.</p>
+            <p><strong>Fit:</strong> TRACK IT — the edit-don't-regenerate shape is the same pain point SurgePix flagged last run and it fits Honed Signal social/deck graphics, but Freddie's house artwork runs on his locked luminous storybook pipeline (navy/orange/teal), not Canva templates, and a new $18/mo Pro subscription fails the debt-first cost rule without a concrete bottleneck. If he is already on Pro for another reason, it costs nothing extra to test on a throwaway graphic.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="suno-mcp" data-verdict="WATCH">
+      <article class="at-card" id="suno-mcp" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Suno MCP</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Suno · Briefed Oct 30, 2026</p>
         <p class="at-what">Suno's official Model Context Protocol server — it lets an AI assistant you're already chatting with make Suno music for you, instead of you switching to Suno's own site; launched in beta on October 28, 2026 and listed on Product Hunt this week ("The music layer for your AI stack" — Product Hunt tagline, their wording).</p>
@@ -336,14 +337,14 @@
             <p><strong>What it does:</strong> Verified via Suno's MCP page and help coverage: you add the hosted endpoint (api.suno.com/mcp) to Claude, ChatGPT, Gemini, Claude Code or Cursor, sign in to your Suno account and grant permission — no API key — then ask in-chat to generate a song, extend it, cover it, mash it up, or build a track from an uploaded voice recording/loop, using the conversation's context (lyrics, a project, a video plan); finished songs save to your Suno library.</p>
             <p><strong>What it costs:</strong> No separate MCP charge — generations burn the credits on your existing Suno plan, and it works on all plans including free. Suno's own pricing page (as read in October 2026 checks): Free $0 with 50 credits/day; Pro $10/mo ($8/mo billed annually) with 2,500 credits/mo; Premier $30/mo ($24/mo billed annually) with 10,000 credits/mo. Commercial rights come only with paid plans, per Suno's terms summaries.</p>
             <p><strong>The catch:</strong> Beta means early-access sign-up only, with no general-availability date or published rate limits, and some chat apps only allow custom connectors on certain paid plans — so the "free" route can still be gated by the assistant's plan. Generating through an agent also spends from the same single Suno credit pool with no per-agent budget described.</p>
-            <p><strong>Fit:</strong> WATCH — directly material to Freddie's AI-in-music report (Suno is a central subject, and an official MCP is the agent-integration step his report tracks), and the no-API-key, your-account-credits design is the least-privilege shape. But briefs are information only — no sign-up here — and Freddie has no Suno generation workflow to move today. Worth citing as a development, not adopting.</p>
+            <p><strong>Fit:</strong> TRACK IT — directly material to Freddie's AI-in-music report (Suno is a central subject, and an official MCP is the agent-integration step his report tracks), and the no-API-key, your-account-credits design is the least-privilege shape. But briefs are information only — no sign-up here — and Freddie has no Suno generation workflow to move today. Worth citing as a development, not adopting.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="assemblyai-tts-1" data-verdict="WATCH">
+      <article class="at-card" id="assemblyai-tts-1" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>AssemblyAI-TTS-1</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">AssemblyAI · Briefed Oct 30, 2026</p>
         <p class="at-what">AssemblyAI's first text-to-speech model, built for live voice agents — the company was previously speech-to-text only; it launched on Product Hunt on October 29, 2026 ("text-to-speech built for voice agents").</p>
@@ -356,14 +357,14 @@
             <p><strong>What it does:</strong> Verified on assemblyai.com docs: streams synthesized speech back over WebSocket, HTTP or an OpenAI-compatible endpoint so playback starts before a sentence finishes (about 90 ms time to first audio, AssemblyAI's figure); 4,000+ voices plus instant voice cloning, word boundaries for synced highlighting, US and EU data zones, in six languages — English, Spanish, French, German, Italian and Portuguese — and pairs with its Universal-3.6 Pro Realtime transcription on one API key.</p>
             <p><strong>What it costs:</strong> Verified on AssemblyAI's own models/pricing docs (read October 30): $15 per 1 million input characters, billed per character including spaces/punctuation, with volume discounts available; launch coverage of AssemblyAI's pricing notes no annual contract, minimum or concurrency fee at that rate.</p>
             <p><strong>The catch:</strong> API only — there is no app, so using it means building a pipeline — and it is tuned for short conversational agent replies, not long-form narration; its speed/quality comparisons are AssemblyAI's own tests. It is also slightly above the per-character TTS price briefed on October 21 for Mistral's Voxtral Speech 3 ($13 per 1M characters).</p>
-            <p><strong>Fit:</strong> WATCH — relevant to Freddie's podcast/voice-note and queued Spanish-edition audio direction (Spanish is one of its six languages, and per-character pricing has no monthly lock-in, which suits his cost rule), but his narration pipeline already works and no episode or Spanish workflow needs a second TTS API today. Signal only, no build.</p>
+            <p><strong>Fit:</strong> TRACK IT — relevant to Freddie's podcast/voice-note and queued Spanish-edition audio direction (Spanish is one of its six languages, and per-character pricing has no monthly lock-in, which suits his cost rule), but his narration pipeline already works and no episode or Spanish workflow needs a second TTS API today. Signal only, no build.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="gpt-6-1-terra" data-verdict="WATCH">
+      <article class="at-card" id="gpt-6-1-terra" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>GPT-6.1 Terra</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">OpenAI · Briefed Oct 28, 2026</p>
         <p class="at-what">A cheaper OpenAI model built for computer use, visual reasoning and everyday office work, released October 26, 2026 and surfaced via ai0.news (leads only — verified below on OpenAI's own site).</p>
@@ -376,14 +377,14 @@
             <p><strong>What it does:</strong> Reads screens and documents and acts across apps — drafting proposals, interpreting technical drawings, filling forms, editing video, entering invoice data — available to Plus, Pro, Enterprise and Edu users in ChatGPT Work and Codex, and to developers through the API as <code>gpt-6.1-terra</code> (verified on openai.com).</p>
             <p><strong>What it costs:</strong> Verified on OpenAI's own launch post: standard API pricing $1 per million input tokens, $0.05 per million cached input tokens, $5 per million output tokens — 50% lower than GPT-5.6 Terra and GPT-6.1 Sol.</p>
             <p><strong>The catch:</strong> Every headline benchmark is OpenAI's own (Agents' Last Exam, Terminal-Bench 4.0, the error-rate drop); OpenAI itself still steers the hardest coding and research work to Sol and Astra, and the model meets its Preparedness Framework's "Critical" threshold for cybersecurity capability.</p>
-            <p><strong>Fit:</strong> WATCH — the verified math continues the agent-inference price collapse Freddie tracks (MiniMax M3.1 Flash last run, same pattern), but his work runs on Muse / Muse Wonder and no workload needs a second model API or a ChatGPT plan. Signal only, no spend.</p>
+            <p><strong>Fit:</strong> TRACK IT — the verified math continues the agent-inference price collapse Freddie tracks (MiniMax M3.1 Flash last run, same pattern), but his work runs on Muse / Muse Wonder and no workload needs a second model API or a ChatGPT plan. Signal only, no spend.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="genie-4" data-verdict="WATCH">
+      <article class="at-card" id="genie-4" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Genie 4</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Google DeepMind · Briefed Oct 28, 2026</p>
         <p class="at-what">A world model that generates a real-time, explorable simulated scene — with native audio and dialogue — that you steer with keyboard controls and plain-language prompts while it runs; announced October 27, 2026 and surfaced via ai0.news (leads only — verified below on DeepMind's own blog).</p>
@@ -396,14 +397,14 @@
             <p><strong>What it does:</strong> Gemini models anchor the scene's look and keep it coherent (Gemini 3.8 Flash acts as an in-loop guiding agent, per DeepMind) while Genie generates the world pixel by pixel: physics, natural human motion, ambient sound, music and characters who converse and react in real time; you can change weather, camera or add people/objects mid-simulation. All output carries SynthID watermarking.</p>
             <p><strong>What it costs:</strong> No standalone Genie 4 price has been published. Verified on DeepMind's post: it is a research preview for trusted testers, coming first to Google AI Ultra subscribers in Project Genie and to early-access partners of the Gemini API and Google AI Studio, with a waitlist for others.</p>
             <p><strong>The catch:</strong> DeepMind's own limits list: visual details and object permanence drift over time, sessions last only a few minutes, and complex physics, real-time audio accuracy, legible text and spatial accuracy are still research problems. There is nothing a solo creator can actually open today.</p>
-            <p><strong>Fit:</strong> WATCH — the film pre-visualization and interactive-prototype uses its testers describe are genuinely relevant to Freddie's video work, but access is gated behind trusted testers and a top-tier Google subscription he has already declined to justify, and his video/visual route is Meta AI by his settled judgment. Note it, no action.</p>
+            <p><strong>Fit:</strong> TRACK IT — the film pre-visualization and interactive-prototype uses its testers describe are genuinely relevant to Freddie's video work, but access is gated behind trusted testers and a top-tier Google subscription he has already declined to justify, and his video/visual route is Meta AI by his settled judgment. Note it, no action.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="apple-creator-studio-ai-update" data-verdict="WATCH">
+      <article class="at-card" id="apple-creator-studio-ai-update" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Apple Creator Studio AI update</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Apple · Briefed Oct 28, 2026</p>
         <p class="at-what">A November update to Apple's Creator Studio bundle adding AI assistants and generative tools across its creative and productivity apps; announced October 27, 2026 in Apple's own newsroom release.</p>
@@ -416,14 +417,14 @@
             <p><strong>What it does:</strong> Verified on apple.com: Final Cut Pro gains built-in MotionVFX (thousands of effects, templates, titles, transitions, rotoscoping/tracking tools) and Content Hub video assets; Pixelmator Pro gains Generate Fill (describe a change to a selected area, matched to surrounding light/texture); Logic Pro gains a beta intelligent assistant and a Stem Splitter that now isolates drums; Keynote, Pages and Numbers gain beta assistants that understand the open document, plus MCP support letting external AI agents read, edit and automate in those apps.</p>
             <p><strong>What it costs:</strong> Verified in Apple's release: free update for existing subscribers in November; new subscribers pay $12.99/mo or $129/yr (US pricing per Apple's plan-renewal footnote), with a one-month free trial. One-time-purchase versions of the pro apps remain on the Mac App Store.</p>
             <p><strong>The catch:</strong> The assistants are beta, U.S. English only, and require an Apple Intelligence-capable device running iOS 27 / iPadOS 27 / macOS 27 (MCP is Mac-only, macOS 27). The intelligence features are subscriber-only even though Keynote/Pages/Numbers themselves stay free.</p>
-            <p><strong>Fit:</strong> WATCH — Freddie actually uses Pages (his music-collection lists) and the MCP opening is the interesting move (outside agents editing his documents), but he is not a Creator Studio subscriber, his docs live in Google Docs/Drive, and $12.99/mo fails the cost rule until a concrete Final Cut/Logic need appears. Nothing to buy today.</p>
+            <p><strong>Fit:</strong> TRACK IT — Freddie actually uses Pages (his music-collection lists) and the MCP opening is the interesting move (outside agents editing his documents), but he is not a Creator Studio subscriber, his docs live in Google Docs/Drive, and $12.99/mo fails the cost rule until a concrete Final Cut/Logic need appears. Nothing to buy today.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="opusclip-agent-2-0" data-verdict="WATCH">
+      <article class="at-card" id="opusclip-agent-2-0" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>OpusClip Agent 2.0</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Agent Opus · Briefed Oct 28, 2026</p>
         <p class="at-what">The 2.0 launch of Agent Opus, OpusClip's video agent — instead of clipping footage you already shot, it creates a complete short video from one prompt; it launched on Product Hunt on October 27, 2026 ("Turn your ideas into viral videos with one prompt" — Product Hunt tagline, their wording).</p>
@@ -436,14 +437,14 @@
             <p><strong>What it does:</strong> Verified on opus.pro and its official blog: you feed it a prompt, script, outline, blog URL or audio file, and it assembles scenes by auto-selecting among multiple video models (its blog lists Kling, Hailuo/MiniMax, Veo, Runway, Sora, Seedance, Luma and Pika), then adds motion graphics, royalty-free imagery, voiceover (including voice clone) or avatars, soundtrack and platform-ready exports; OpusClip also offers an agent skill/MCP route so Claude Code, Codex and other agents can call it (per its official help docs).</p>
             <p><strong>What it costs:</strong> Verified on opus.pro/pricing: Free $0; Starter $15/mo; Pro $29/mo; Business custom. Usage runs on credits/processing minutes (Free plan: 60 processing minutes/mo per OpusClip's help docs, with watermarked animated captions on the pricing page).</p>
             <p><strong>The catch:</strong> Credits are the real meter — generation-heavy work burns them fast, and "viral" is a marketing claim, not a measured result. Output is fully AI-generated video, so Freddie's standing Facebook Page AI-disclosure caption and Meta AI label steps would apply to anything posted.</p>
-            <p><strong>Fit:</strong> WATCH — squarely in Freddie's video workflow and the multi-model routing is a smart shape, but his video and visuals run through Meta AI by his settled judgment, he is not short a working video route, and $15–$29/mo against the debt-first cost rule needs a bottleneck first. Revisit if Shorts volume ever outgrows his current pipeline.</p>
+            <p><strong>Fit:</strong> TRACK IT — squarely in Freddie's video workflow and the multi-model routing is a smart shape, but his video and visuals run through Meta AI by his settled judgment, he is not short a working video route, and $15–$29/mo against the debt-first cost rule needs a bottleneck first. Revisit if Shorts volume ever outgrows his current pipeline.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="website-builder" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>Website Builder</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">TruLata · Briefed Oct 28, 2026</p>
         <p class="at-what">An AI website builder for small businesses that writes a site in minutes and holds every sentence to a source the owner provided; it launched on Product Hunt on Tuesday, October 27, 2026.</p>
@@ -456,14 +457,14 @@
             <p><strong>What it does:</strong> Verified on trulata.com/product/sites/builder: answer a few questions (or hand it your current site or Google Business Profile) and it writes a first version; edit by clicking, adding blocks, or asking the assistant in plain words; every change is undoable. Reviews appear word for word, claims about results/guarantees/awards wait for a TruLata reviewer, and if you ask for a rating you haven't shown, the assistant asks where it comes from.</p>
             <p><strong>What it costs:</strong> Verified on TruLata's own builder page: building and editing are free, no card required; going live on your own domain is $49/mo, or $39/mo billed yearly ($468), cancel any time. TruLata's wider marketing plans start at $400/mo, per its own site.</p>
             <p><strong>The catch:</strong> A per-month hosted-builder fee and platform lock-in, forever — the same shape as the Framer SKIP on 2026-10-21 — and the free build is the funnel into those $400/mo marketing plans.</p>
-            <p><strong>Fit:</strong> SKIP — honedsignal.com is ~480 hand-built pages on Cloudflare Pages at $0 with git-push deploys, so a $39–$49/mo builder solves no problem he has. The takeaway worth keeping is its discipline — never write what you can't point to a source for — which is already Freddie's own verification rule.</p>
+            <p><strong>Fit:</strong> SKIP IT — honedsignal.com is ~480 hand-built pages on Cloudflare Pages at $0 with git-push deploys, so a $39–$49/mo builder solves no problem he has. The takeaway worth keeping is its discipline — never write what you can't point to a source for — which is already Freddie's own verification rule.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="strawberry-1-0" data-verdict="WATCH">
+      <article class="at-card" id="strawberry-1-0" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Strawberry 1.0</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Strawberry · Briefed Oct 26, 2026</p>
         <p class="at-what">A web browser with built-in AI "Companions" that work inside your signed-in tabs — Strawberry 1.0 is its out-of-beta release, launched on Product Hunt on October 26, 2026.</p>
@@ -476,14 +477,14 @@
             <p><strong>What it does:</strong> You hire or create a Companion, teach it preferences and workflows, and it researches, drafts, extracts data, takes meeting notes and runs recurring routines in the browser; you set per-app, per-action approvals, and paid plans let you pick models from Claude, OpenAI, Google, xAI and others (verified on strawberrybrowser.com).</p>
             <p><strong>What it costs:</strong> Verified on strawberrybrowser.com/pricing: Free $0 with 500 credits/mo; Intern $20/mo with 6,000 credits; Part-Time $85/mo with 25,000 credits; Full-Time $250/mo with 75,000 credits. Browsing is free — credits burn only when a Companion acts; plan credits do not roll over, top-ups cost $0.01 per credit and do roll over.</p>
             <p><strong>The catch:</strong> Metered credits are the real price — heavy routines eat the allowance and queue or top up. Its own site testimonials lead with lead generation ("270+ leads, no manual work") and sourcing/outreach, which is outbound work. Passwords are stated to stay encrypted on-device, but Companions act inside your live signed-in sessions.</p>
-            <p><strong>Fit:</strong> WATCH — a credible rival shape to Muse/Huxley (browser-native, approval-gated, model-choice on paid plans) and the free tier costs nothing to observe, but Freddie already runs this job through Muse, the useful tiers are $20–$250/mo against the debt-first cost rule, and its headline sales/outreach use cases fail his no-outreach rule. No switch today.</p>
+            <p><strong>Fit:</strong> TRACK IT — a credible rival shape to Muse/Huxley (browser-native, approval-gated, model-choice on paid plans) and the free tier costs nothing to observe, but Freddie already runs this job through Muse, the useful tiers are $20–$250/mo against the debt-first cost rule, and its headline sales/outreach use cases fail his no-outreach rule. No switch today.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="surgepix" data-verdict="WATCH">
+      <article class="at-card" id="surgepix" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>SurgePix</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">SurgePix · Briefed Oct 26, 2026</p>
         <p class="at-what">An AI visual generator with a layer editor — you generate a visual, then edit it layer by layer instead of regenerating from scratch; it launched on Product Hunt on October 26, 2026.</p>
@@ -496,14 +497,14 @@
             <p><strong>What it does:</strong> Verified on surgepix.ai and the maker's launch post: brush over an area to repaint it, split a flat image into editable layers, pull text off an image to retype it, and keep outputs on-brand from uploaded brand assets; its built-in design agent can search the live web, and open-source agent skills let Claude Code, Cursor or another agent generate and edit visuals from the terminal.</p>
             <p><strong>What it costs:</strong> "Try it free" on surgepix.ai and the Product Hunt listing ($0 listed) — no pricing page or paid-plan prices were published on the maker's site as of this check (surgepix.ai/pricing returns no page). Paid cost is therefore unverified, not free.</p>
             <p><strong>The catch:</strong> No published pricing means it cannot pass the cost rule today; it is early and shipping fast by its maker's own account; and layer-editable output is template/design-style, not Freddie's locked luminous storybook brand look.</p>
-            <p><strong>Fit:</strong> WATCH — the edit-don't-regenerate idea directly addresses Freddie's real pain (fixing a headline or colour without redoing a whole Honed visual) and the agent-callable skills fit his pipeline, but with no price list there is nothing to approve. Revisit when pricing is published.</p>
+            <p><strong>Fit:</strong> TRACK IT — the edit-don't-regenerate idea directly addresses Freddie's real pain (fixing a headline or colour without redoing a whole Honed visual) and the agent-callable skills fit his pipeline, but with no price list there is nothing to approve. Revisit when pricing is published.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="articos" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>Articos</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Articos · Briefed Oct 26, 2026</p>
         <p class="at-what">An AI user-research platform that tests your messaging, concepts and landing pages against synthetic audience personas and returns a report in under 30 minutes; it appeared in Product Hunt's October 26 top products.</p>
@@ -516,14 +517,14 @@
             <p><strong>What it does:</strong> You upload up to three variants (ad copy, subject lines, headlines, a landing page), define the audience, and synthetic personas modelled on Big Five traits and cultural dimensions react, giving clarity/resonance scores, segment winners and objection patterns; it also runs simulated user interviews, ICP discovery and an MCP connection for Claude/ChatGPT/Cursor.</p>
             <p><strong>What it costs:</strong> Verified on articos.com/pricing: 14-day free trial with 1,000 credits (about 2 studies, no card); Starter $79/mo (3,000 credits, about 7 studies); Pro $199/mo (7,000 credits, about 17 studies); about 400 credits per study, roughly $8–$10 per study at plan rates. Monthly credits reset — they do not roll over.</p>
             <p><strong>The catch:</strong> The audience is synthetic — Articos's own blog concedes a synthetic test is a directional read and should be paired with live research for high-stakes calls. The entry price after the trial is $79/mo, every month, for simulated feedback.</p>
-            <p><strong>Fit:</strong> SKIP — $79–$199/mo for AI-invented audience reactions fails the cost-efficiency rule when Freddie's real checks (his blind multi-AI panel pattern, Ground News, and live page data) already cover message testing at $0; revisit only if a paid launch ever needs a fast pre-test and a pay-per-study option is on the official pricing page.</p>
+            <p><strong>Fit:</strong> SKIP IT — $79–$199/mo for AI-invented audience reactions fails the cost-efficiency rule when Freddie's real checks (his blind multi-AI panel pattern, Ground News, and live page data) already cover message testing at $0; revisit only if a paid launch ever needs a fast pre-test and a pay-per-study option is on the official pricing page.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="norton-safe-ai" data-verdict="WATCH">
+      <article class="at-card" id="norton-safe-ai" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Norton Safe AI</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Norton · Briefed Oct 26, 2026</p>
         <p class="at-what">A new set of protections inside Norton 360 that watches what AI chat and agent tools do on your device; announced October 26, 2026 in Norton's own PR Newswire release.</p>
@@ -536,14 +537,14 @@
             <p><strong>What it does:</strong> Action Shield blocks unwanted AI actions and prompt injections before they run; Safe Zone lets you set full, read-only or blocked access for files an AI tool can open; Safe Links flags risky links surfaced through AI chats. Built into Norton 360 on Windows and Mac.</p>
             <p><strong>What it costs:</strong> No separate Safe AI price was stated in the launch release — it is included in Norton 360. Norton 360 plans on us.norton.com run on first-year promo pricing (for example Standard $39.99 first year, Deluxe $49.99 first year) against much higher renewal prices ($94.99/yr and $124.99/yr respectively on the store page checked).</p>
             <p><strong>The catch:</strong> Coverage is narrow at launch, per the release's own footnote: Safe Zone is Windows only; Safe Links currently supports only ChatGPT and Claude in browsers; Action Shield currently supports only Claude, Cursor, OpenClaw and VS Code. And Norton 360's first-year discounts renew at full price — the expiring-promo pattern Freddie is wary of.</p>
-            <p><strong>Fit:</strong> WATCH — the pattern is exactly Freddie's least-privilege rule (per-file permissions and a block on unintended agent actions), and it names Claude in its first supported set. But it only pays if he were a Norton 360 subscriber, which he is not, so there is nothing to adopt today; note the pattern, watch coverage widen.</p>
+            <p><strong>Fit:</strong> TRACK IT — the pattern is exactly Freddie's least-privilege rule (per-file permissions and a block on unintended agent actions), and it names Claude in its first supported set. But it only pays if he were a Norton 360 subscriber, which he is not, so there is nothing to adopt today; note the pattern, watch coverage widen.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="minimax-m3-1-flash" data-verdict="WATCH">
+      <article class="at-card" id="minimax-m3-1-flash" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>MiniMax M3.1 Flash</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">MiniMax · Briefed Oct 26, 2026</p>
         <p class="at-what">A low-cost AI model built for agent work — coding, computer use and multi-step tasks — released October 19, 2026 and surfaced on Product Hunt this week; it is part of the inference price collapse ai0.news flagged on October 26 (leads only — pricing below is verified on MiniMax's own docs).</p>
@@ -556,14 +557,14 @@
             <p><strong>What it does:</strong> A 1-million-token-context multimodal model (text, image, video inputs, per MiniMax) accessed through OpenAI- and Anthropic-compatible APIs; MiniMax says reasoning is always on, with tunable thinking depth. Open weights were released on October 23, 2026 (reported by independent coverage of the Hugging Face release).</p>
             <p><strong>What it costs:</strong> Verified on MiniMax's official pricing docs (platform.minimax.io): $0.15 per million input tokens, $0.60 per million output tokens, $0.015 per million cached-input tokens, flat with no long-context surcharge.</p>
             <p><strong>The catch:</strong> API-only — there is no app to open, so using it means building a pipeline; its headline claims (70% cheaper per agent task, 200+ tokens/second, benchmark leads) are MiniMax's own claims, not independent measurements; and as a China-based lab it carries the same data-access trust context previously noted for DeepSeek.</p>
-            <p><strong>Fit:</strong> WATCH — the verified per-token math is genuinely cheap and confirms the direction Freddie cares about (agent inference getting cheaper fast), but his work runs on Muse / Muse Wonder today and no workload needs a second model API. Signal only, no build and no spend.</p>
+            <p><strong>Fit:</strong> TRACK IT — the verified per-token math is genuinely cheap and confirms the direction Freddie cares about (agent inference getting cheaper fast), but his work runs on Muse / Muse Wonder today and no workload needs a second model API. Signal only, no build and no spend.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="muse-code" data-verdict="WATCH">
+      <article class="at-card" id="muse-code" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Muse Code</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Meta · Briefed Oct 25, 2026</p>
         <p class="at-what">Meta's terminal coding agent — you run <code>muse</code> in a project folder and it plans, edits files, and runs commands to complete coding tasks.</p>
@@ -576,14 +577,14 @@
             <p><strong>What it does:</strong> Works multi-agent by default — parallel workers in isolated git worktrees, background reviewers, a replay-exact / restart-safe event log of every model call, tool run, approval and edit, with approvals and an OS sandbox on from the first run.</p>
             <p><strong>What it costs:</strong> Verified on Meta's own Muse Code page (developer.meta.com): Everyday $5/mo (10–50 prompts every 5 hours), High $15/mo (5x Everyday), Power $50/mo (20x Everyday, early access). Pay-per-token via the Meta Model API is the alternative route. Muse Wonder is included in every Muse Code plan (base Wonder); Muse Wonder Full is only in the $50 Power and $200 Maximum Muse Code plans — not to be confused with Freddie's separate Muse Power $20/mo subscription, under which this Muse already runs Muse Wonder (checked 2026-10-13).</p>
             <p><strong>The catch:</strong> The cheap Contributor route / default tier may use your sessions and code to improve Muse Code — the Standard private tier costs more per token ($1.25 / 1M input, $4.25 / 1M output per Meta pricing summaries) and is the fair comparison for private code. Check the tier before pointing it at unpublished work.</p>
-            <p><strong>Fit:</strong> WATCH — genuinely cheap entry for a frontier-lab coding agent and it's Meta's own harness, but Freddie already gets this job done through Muse/Huxley on his sites and tools, so there is no switch to make today; worth watching as Muse Wonder rolls into it, and the specific team/project link he shared is being checked separately.</p>
+            <p><strong>Fit:</strong> TRACK IT — genuinely cheap entry for a frontier-lab coding agent and it's Meta's own harness, but Freddie already gets this job done through Muse/Huxley on his sites and tools, so there is no switch to make today; worth watching as Muse Wonder rolls into it, and the specific team/project link he shared is being checked separately.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="claude-duet" data-verdict="WATCH">
+      <article class="at-card" id="claude-duet" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Claude Duet</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Anthropic · Briefed Oct 23, 2026</p>
         <p class="at-what">A proactive AI agent app from Anthropic — instead of waiting for you to open a chat, it watches your connected apps, sends a morning brief, and works on tasks in the background on its own cloud computer.</p>
@@ -596,14 +597,14 @@
             <p><strong>What it does:</strong> Briefs you every morning on what needs attention across inbox/calendar, drafts next steps and replies for approval, builds docs/sheets/decks/dashboards, flags unpaid invoices and prepares payroll/contracts for review, and can buy through Stripe Link / Shop Pay — asking before it sends, pays, signs or deletes; securities trading and moving money between accounts are off-limits entirely. It inherits your Claude memory, skills and 6,000+ Marketplace connectors.</p>
             <p><strong>What it costs:</strong> No separate charge in the preview — included in Claude Pro ($20/mo, $17/mo billed annually) and Max (from $100/mo), US subscribers only, waitlist access; Team/Enterprise not included yet. Verified plan prices are Claude's standard Pro/Max prices; the Duet page itself confirms it is included in Pro and Max with no separate fee.</p>
             <p><strong>The catch:</strong> Its background checks count toward the same plan usage limits as your chats, and bigger jobs burn more — an always-on agent quietly spending your allowance. Anthropic says plainly it may misread a thread or misjudge what's urgent, and it cannot show you its browser as it works.</p>
-            <p><strong>Fit:</strong> WATCH — this is a direct rival shape to the Muse/Huxley setup Freddie already runs, from a different lab, with sensible approval gates; but it would mean a new Claude subscription, a waitlist, and a second agent holding broad app access. Nothing to switch today; worth watching as the preview widens.</p>
+            <p><strong>Fit:</strong> TRACK IT — this is a direct rival shape to the Muse/Huxley setup Freddie already runs, from a different lab, with sensible approval gates; but it would mean a new Claude subscription, a waitlist, and a second agent holding broad app access. Nothing to switch today; worth watching as the preview widens.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="1password-for-agents" data-verdict="WATCH">
+      <article class="at-card" id="1password-for-agents" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>1Password for Agents</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta"> · Briefed Oct 23, 2026</p>
         <p class="at-what">A sign-in layer that lets a personal AI agent log into your accounts without the agent — or the model behind it — ever seeing your password or one-time code.</p>
@@ -616,14 +617,14 @@
             <p><strong>What it does:</strong> When an agent hits a sign-in form it proves its identity to 1Password with a unique digital key; you see which credential it wants and why and approve or deny on your own device; 1Password then fills the form itself and the agent only learns access was granted. Launch partners: Meta Muse and Grok Bot rolling out first, Claude Duet, ChatGPT Work/dots and Town Townie listed as coming soon.</p>
             <p><strong>What it costs:</strong> Included at no extra cost in 1Password Individual and Family plans on 1Password.com (per 1Password's launch FAQ/coverage); 1Password plans start at $3.99/mo billed annually, with a 14-day free trial for new users. Accounts hosted on 1Password.eu / .ca are not supported at launch.</p>
             <p><strong>The catch:</strong> The password stays hidden, but the signed-in session does not — once in, the agent can see and act inside that account, so a fast approval is the weak point. Coverage is uneven at launch (agent, region, device and sign-in method all vary), and it only helps if your credentials live in 1Password.</p>
-            <p><strong>Fit:</strong> WATCH — this is exactly the least-privilege pattern Freddie's rules favour (per-login, per-approval, revocable — the opposite of the Composio broker model he SKIPped), and it names Muse as a launch partner. But Freddie's credentials live in Muse's Secure Vault, not 1Password, so there is nothing to adopt today; the pattern is the takeaway.</p>
+            <p><strong>Fit:</strong> TRACK IT — this is exactly the least-privilege pattern Freddie's rules favour (per-login, per-approval, revocable — the opposite of the Composio broker model he SKIPped), and it names Muse as a launch partner. But Freddie's credentials live in Muse's Secure Vault, not 1Password, so there is nothing to adopt today; the pattern is the takeaway.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="canva-craft" data-verdict="WATCH">
+      <article class="at-card" id="canva-craft" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Canva Craft</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta"> · Briefed Oct 23, 2026</p>
         <p class="at-what">Canva's first image-generation model built in-house — it plans a design's layout and text first, then renders the picture, instead of going straight from prompt to pixels.</p>
@@ -636,14 +637,14 @@
             <p><strong>What it does:</strong> Generates up to 2K images in 30+ aspect ratios (or custom), with text in 55 languages and prompts in any language, trained on millions of human-made Canva templates (posters, social posts, presentations, infographics, menus) rather than photographs; outputs feed Magic Layers so a flat image becomes editable layers. Live in Dream Lab for all Canva users and via Canva's public API; MCP access for agents is coming soon.</p>
             <p><strong>What it costs:</strong> Available to all Canva users globally, free and paid, through Dream Lab — Canva has not published a separate Craft price or per-plan image allowance in its announcement; its developer notes say starting a Craft job uses the user's existing AI credits, same as Canva's other models. API per-image pricing was not stated in the launch posts.</p>
             <p><strong>The catch:</strong> The headline rankings are Canva's own claim (fourth overall on DesignArena, #1 for People &amp; Portraits and Landscapes &amp; Nature — their launch figures); it plans before it renders, so a job takes roughly 50–60 seconds per its developer notes; and the output style is template-design, not Freddie's locked luminous storybook brand look.</p>
-            <p><strong>Fit:</strong> WATCH — genuinely useful shape for Honed Signal social graphics, posters and text-heavy images (legible text is the usual AI-image failure), and it costs nothing extra to test inside an existing Canva account. It does not replace the house artwork pipeline or its navy/orange/teal palette rules, so no switch — test on a throwaway graphic first if tried at all.</p>
+            <p><strong>Fit:</strong> TRACK IT — genuinely useful shape for Honed Signal social graphics, posters and text-heavy images (legible text is the usual AI-image failure), and it costs nothing extra to test inside an existing Canva account. It does not replace the house artwork pipeline or its navy/orange/teal palette rules, so no switch — test on a throwaway graphic first if tried at all.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="ehunt-ai-product-image-video-generators" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>EHunt AI Product Image &amp; Video Generators</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">EHunt AI · Briefed Oct 23, 2026</p>
         <p class="at-what">Two new generators inside EHunt, the Etsy seller research/operations platform — one turns a single product photo or an Etsy listing URL into a full set of listing images, the other turns the same into a listing video.</p>
@@ -656,14 +657,14 @@
             <p><strong>What it does:</strong> Image generator produces infographics, lifestyle scenes, close-ups and white-background shots in one pass, with output language, category style, brand colours and dimensions adjustable; video generator builds showcase videos in lifelike settings from a listing URL or uploaded image, with per-scene prompt regeneration.</p>
             <p><strong>What it costs:</strong> No separate price for the new generators was published in the launch release (which pitches "no upfront financial commitment" — their claim). EHunt's platform plans, as checked against its official pricing page by independent reviewers on Oct 15, 2026: Free $0 (limited daily searches), Basic $9.99/mo ($7.99 billed yearly), Pro $19.99/mo ($15.99 yearly) with a 3-day $1 trial that renews at $19.99/mo unless cancelled, Elite $59.99/mo ($29.99 yearly), Team $79.99/mo.</p>
             <p><strong>The catch:</strong> Three stacked problems: (1) Freddie's Etsy publishing is on HOLD since Oct 23 under Etsy's new Creativity Standards, and his packs' compliance rule is actual page renders, not AI mockups — AI-generated listing visuals cut against that; (2) independent reviews flag unexpected renewal charges and refused refunds on EHunt's Trustpilot pages (small sample, 2.4–2.6/5), and refunds are narrow (first order within 24 hours / system error only, per its policy summaries); (3) the $1 trial auto-converts — exactly the expiring-promo lock-in Freddie is wary of.</p>
-            <p><strong>Fit:</strong> SKIP — solves a listing-visual problem he does not have while his shop is held, adds a recurring subscription against the debt-first cost rule, and its core output conflicts with his real-renders rule. Revisit only if the Etsy hold lifts and a real listing needs a lifestyle shot he cannot make himself.</p>
+            <p><strong>Fit:</strong> SKIP IT — solves a listing-visual problem he does not have while his shop is held, adds a recurring subscription against the debt-first cost rule, and its core output conflicts with his real-renders rule. Revisit only if the Etsy hold lifts and a real listing needs a lifestyle shot he cannot make himself.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="radaric" data-verdict="WATCH">
+      <article class="at-card" id="radaric" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Radaric</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Kirill (Zhurnalus) · Briefed Oct 23, 2026</p>
         <p class="at-what">An AI feed reader that learns your editorial taste — you teach it what belongs in your digest, not just which keywords match.</p>
@@ -676,14 +677,14 @@
             <p><strong>What it does:</strong> Pulls RSS, Telegram (including private channels) and YouTube into one feed (X/Twitter on Pro); you describe what matters in plain language, then approve/reject posts with reasons, and the filter learns from that feedback — you can see its reasoning and revisit what it filtered out. Duplicate coverage of the same event is grouped into one story with original links kept.</p>
             <p><strong>What it costs:</strong> Maker-stated on his Product Hunt launch post: Lite $9/mo, Pro $59/mo (adds X), with a 30-day money-back guarantee. No free tier was announced.</p>
             <p><strong>The catch:</strong> The filter knows nothing on day one — the value only arrives after sustained approve/reject training, which is time-for-money labour up front; Pro at $59/mo is steep for adding one source (X); and it is a one-person product, so longevity/support is unproven.</p>
-            <p><strong>Fit:</strong> WATCH — the teach-the-filter idea maps directly onto Freddie's research curation (Honed reports, Ground News as a lens), and $9 Lite is the cheapest plausible entry in this batch. But Ground News + Muse's scans already cover his intake, and a new $9–59/mo subscription fails the cost rule until feed overload is a proven bottleneck. Note the pattern, don't buy.</p>
+            <p><strong>Fit:</strong> TRACK IT — the teach-the-filter idea maps directly onto Freddie's research curation (Honed reports, Ground News as a lens), and $9 Lite is the cheapest plausible entry in this batch. But Ground News + Muse's scans already cover his intake, and a new $9–59/mo subscription fails the cost rule until feed overload is a proven bottleneck. Note the pattern, don't buy.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="useit-studio" data-verdict="WATCH">
+      <article class="at-card" id="useit-studio" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>UseIt Studio</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">UseIt · Briefed Oct 21, 2026</p>
         <p class="at-what">An AI design studio that turns a one-sentence description into a real, editable, production-ready design file for a physical thing — stickers, pins, gift boxes, pop-up cards, brand kits.</p>
@@ -696,14 +697,14 @@
             <p><strong>What it does:</strong> Asks the questions a designer would ask, then the agent works directly in design software instead of generating a flat picture; circle any part to change just that part, preview in 3D in real materials, and export an editable file with real dimensions, bleed and dielines (Illustrator files shown on its site). Runs in the browser or as a Windows desktop app.</p>
             <p><strong>What it costs:</strong> No pricing published on useit.im as of this check — it runs on credits, and the Product Hunt launch code PHP-01-0002 gives 15,000 credits to people who join today (their launch offer). Dollar cost is therefore unverified, not free.</p>
             <p><strong>The catch:</strong> Very early — the founder says plainly it won't get everything right yet; no public price list, so there is no way to judge what a credit actually buys; browser/Windows only so far.</p>
-            <p><strong>Fit:</strong> WATCH — unusually relevant to Freddie's physical-product work (Etsy packaging, stickers/merch, KDP) because the output is an editable production file, not a picture; but with no published pricing it cannot pass the cost rule today, and his current design route works.</p>
+            <p><strong>Fit:</strong> TRACK IT — unusually relevant to Freddie's physical-product work (Etsy packaging, stickers/merch, KDP) because the output is an editable production file, not a picture; but with no published pricing it cannot pass the cost rule today, and his current design route works.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="mausbot" data-verdict="WATCH">
+      <article class="at-card" id="mausbot" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>MausBot</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">OpenMausBot · Briefed Oct 21, 2026</p>
         <p class="at-what">A free, open-source app for running a team of AI bots in a chat interface — built and positioned as the open alternative to xAI's Grokbot.</p>
@@ -716,14 +717,14 @@
             <p><strong>What it does:</strong> Each bot gets a job, a model and a computer; bots run on the Claude, Codex and Grok CLIs already installed on your machine, using your own logins and subscriptions, with a local harness (transcripts and keys stay in a local folder on your disk); it connects Gmail, Slack, GitHub, Notion and more via Composio, builds automations from one sentence, and shows approval requests in chat.</p>
             <p><strong>What it costs:</strong> Verified on mausbot.com: the desktop app is free and open source — you bring a provider account or API key and pay your provider's own fees. Optional Cloud hosting (bots keep working with your laptop closed) is Starter $15/mo, Pro $49/mo, Max $99/mo, each with a 3-day trial (card required, includes $5 of Claude credit).</p>
             <p><strong>The catch:</strong> App connections route through Composio — the single-broker credential model Freddie already SKIPped; MausBot's own FAQ warns approval coverage depends on the engine/tool and is not a guarantee every action pauses; local bots stop when the computer sleeps unless you pay for Cloud.</p>
-            <p><strong>Fit:</strong> WATCH — it fixes exactly what killed Grokbot ($200/mo flat, no model choice, no cost controls) with a free, local-first, your-keys design, and is the right shape if Freddie ever wants a second agent team; today Muse/Huxley already does this job, so there is nothing to switch.</p>
+            <p><strong>Fit:</strong> TRACK IT — it fixes exactly what killed Grokbot ($200/mo flat, no model choice, no cost controls) with a free, local-first, your-keys design, and is the right shape if Freddie ever wants a second agent team; today Muse/Huxley already does this job, so there is nothing to switch.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="framer-ai-agents" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>Framer AI Agents</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Framer · Briefed Oct 21, 2026</p>
         <p class="at-what">AI agents that live inside Framer's website canvas and design, write, analyze and organize a site for you, shipped with branching and a creator Community (Product Hunt launch "Framer AI Agents," Oct 13; Framer 3.0 in today's Product Hunt top list).</p>
@@ -736,14 +737,14 @@
             <p><strong>What it does:</strong> Prompt on the canvas and the agent builds pages, layouts, components and code, connects the CMS and handles SEO, all editable by hand afterward; outside agents such as Claude Code and Cursor can plug into the project; branching lets you trial ideas before publishing; hosting, CMS and analytics are built into the platform.</p>
             <p><strong>What it costs:</strong> Verified on framer.com/pricing: Free $0 with 500 credits to try Agents (Framer subdomain, no custom domain); Basic $10/mo billed yearly with 1,000 AI credits/mo; Pro $30/mo billed yearly with 3,000 credits/mo and staging/branching. Credits are shared across the workspace and meter every AI action.</p>
             <p><strong>The catch:</strong> A per-site subscription plus metered AI credits, forever, and the site lives on Framer's platform — real lock-in against Freddie's owned-infrastructure setup.</p>
-            <p><strong>Fit:</strong> SKIP — honedsignal.com is ~480 hand-built pages on Cloudflare Pages at $0 with git-push deploys; a paid per-site builder solves no problem he has. The free tier is fine for a throwaway prototype, nothing more.</p>
+            <p><strong>Fit:</strong> SKIP IT — honedsignal.com is ~480 hand-built pages on Cloudflare Pages at $0 with git-push deploys; a paid per-site builder solves no problem he has. The free tier is fine for a throwaway prototype, nothing more.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="twinmind-for-desktop" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>TwinMind for Desktop</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta"> · Briefed Oct 21, 2026</p>
         <p class="at-what">The desktop version of TwinMind's always-listening "second brain" — it captures meetings and conversations on your computer and turns them into searchable memory.</p>
@@ -756,14 +757,14 @@
             <p><strong>What it does:</strong> Transcribes meetings, calls and in-person conversations in the background with no bot joining, builds daily digests and drafts, and files people, places and projects into a personal wiki; per twinmind.com, that context can also power ChatGPT, Claude and Gemini through its MCP connection. Transcription is on-device, with optional cloud backup.</p>
             <p><strong>What it costs:</strong> Verified on twinmind.com: Free $0 (unlimited transcription, summaries and AI chats, daily digests); Pro $15/mo or $11.99/mo billed annually (speaker identification, premium ChatGPT/Gemini/Claude models, phone-call recording, audio uploads); Max $23.99/mo, flagged on the page as a 40%-off promo (10x Pro limits, email auto-tagging and drafts, extended-thinking models).</p>
             <p><strong>The catch:</strong> The product is continuous capture of your day — and of everyone around you. That is the maximum data surface, the opposite of least-privilege, and the "on-device" claim covers transcription, not the premium-model answers.</p>
-            <p><strong>Fit:</strong> SKIP — Freddie's solo workflow has no meeting load worth capturing, Muse already holds his memory and context, and an always-on recorder in a shared household is a privacy cost with no matching payoff.</p>
+            <p><strong>Fit:</strong> SKIP IT — Freddie's solo workflow has no meeting load worth capturing, Muse already holds his memory and context, and an always-on recorder in a shared household is a privacy cost with no matching payoff.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="woven-video" data-verdict="WATCH">
+      <article class="at-card" id="woven-video" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Woven Video</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta"> · Briefed Oct 21, 2026</p>
         <p class="at-what">A native Mac video editor where you describe the edit in chat and then fine-tune it by hand on a real multi-track timeline.</p>
@@ -776,14 +777,14 @@
             <p><strong>What it does:</strong> Imports your footage, applies the chat-requested cut to the timeline, and adds captions ($1.00/hr of audio from credits), transitions, sound effects, text animation, and generated images/video/music when a shot is missing; projects are local folders on the Mac; Claude Code and Codex can also drive it on the Mac. Made for YouTube, Shorts, podcasts, Reels and TikTok.</p>
             <p><strong>What it costs:</strong> Verified on woven.video: 3-day free trial (card required, $5 trial credits, $0 due today), then $25/mo billed yearly ($299/yr) or $39/mo; every plan includes $10/mo of AI credits; top-ups from $5, never expire. Requires macOS 15+.</p>
             <p><strong>The catch:</strong> Mac-only today (no Windows/Linux), a short 3-day trial that converts to the chosen paid plan, and AI work beyond the $10/mo credit burns top-ups at per-model rates.</p>
-            <p><strong>Fit:</strong> WATCH — directly matches Freddie's video workflow and keeps edits editable instead of black-box, but it's a new $299/yr spend against the debt-first cost rule and he is not short a working video route today; revisit if editing time becomes the bottleneck and a Mac is the edit machine.</p>
+            <p><strong>Fit:</strong> TRACK IT — directly matches Freddie's video workflow and keeps edits editable instead of black-box, but it's a new $299/yr spend against the debt-first cost rule and he is not short a working video route today; revisit if editing time becomes the bottleneck and a Mac is the edit machine.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="tend" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>Tend</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Tend · Briefed Oct 21, 2026</p>
         <p class="at-what">A personal AI assistant you text in iMessage or SMS that works inside your own accounts instead of giving you a to-do list.</p>
@@ -796,14 +797,14 @@
             <p><strong>What it does:</strong> Connect Gmail, calendar, Shopify, QuickBooks or HubSpot and text tasks ("reply that Thursday works," "what sold today?"); it drafts/acts only after your approval, stores what it learns in a readable/correctable "Brain," and can text first on monitors (price drops, flight changes); its site also pitches flight/hotel, restaurant and ticket booking with the final tap left to you.</p>
             <p><strong>What it costs:</strong> No pricing published on heytend.me as of this check — invite-only early access, request access by phone number. Cost is therefore unverified, not free.</p>
             <p><strong>The catch:</strong> One service holding connections to mail, calendar, shop and accounting is credential concentration; no public price to judge; and a headline use case in its own pitch — "find me 10 leads and draft outreach emails" — is outbound lead work.</p>
-            <p><strong>Fit:</strong> SKIP — duplicates Muse/Huxley, adds a broker over Freddie's accounts against least-privilege, has no published price to pass the cost rule, and its lead/outreach pitch fails his no sales calls / no client outreach rule.</p>
+            <p><strong>Fit:</strong> SKIP IT — duplicates Muse/Huxley, adds a broker over Freddie's accounts against least-privilege, has no published price to pass the cost rule, and its lead/outreach pitch fails his no sales calls / no client outreach rule.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="notion-auto" data-verdict="WATCH">
+      <article class="at-card" id="notion-auto" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Notion Auto</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Notion · Briefed Oct 21, 2026</p>
         <p class="at-what">Notion's rebuilt in-workspace AI agents — they now run much longer tasks, route each job to a cheaper/faster model automatically, and bill under one credit system.</p>
@@ -816,14 +817,14 @@
             <p><strong>What it does:</strong> Agents get their own computer and browser, can run up to 24 hours (up from minutes, per Notion), include a "Review for me" check by a separate model, and an "Auto" router Notion claims matches Opus 5.5 / Astra-quality results on 20+ common tasks at about 90% lower average cost (their claim); you can connect a ChatGPT Plus/Pro/Go plan to your personal agent, and the overhauled Notion MCP lets outside agents use Notion as shared context/memory.</p>
             <p><strong>What it costs:</strong> Verified on notion.com/pricing: full Notion Agent is a Business-plan feature — $20/member/mo billed annually ($24 monthly); Free/Plus get only a limited AI trial. Custom Agents are free to try, then $10 per 1,000 monthly Notion credits, on top of the plan; the new system unifies AI usage into Standard/Select credits (Product Hunt launch summary, per Notion: Business/Enterprise include 1,500 Standard + 500 Select credits/mo).</p>
             <p><strong>The catch:</strong> The real AI tier is per-member Business pricing plus a second metered credit pot for Custom Agents — easy for costs to creep once agents run for hours; value only exists inside a Notion-centred workspace.</p>
-            <p><strong>Fit:</strong> WATCH — a genuine capability/cost step for Notion users, but Freddie's notes/docs live in Google Docs/Drive, not Notion, so there is nothing to switch for today; note the Auto-router pattern (route simple work to cheap models) as the takeaway.</p>
+            <p><strong>Fit:</strong> TRACK IT — a genuine capability/cost step for Notion users, but Freddie's notes/docs live in Google Docs/Drive, not Notion, so there is nothing to switch for today; note the Auto-router pattern (route simple work to cheap models) as the takeaway.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="voxtral-3" data-verdict="WATCH">
+      <article class="at-card" id="voxtral-3" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Voxtral 3</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Mistral AI · Briefed Oct 21, 2026</p>
         <p class="at-what">A family of speech models — transcription, text-to-speech, and a voice-agent SDK that listens, reasons, calls tools, and speaks in one real-time pipeline.</p>
@@ -836,14 +837,14 @@
             <p><strong>What it does:</strong> Voxtral Small/Mini Transcribe 3 cover 50+ languages with diarization and context-biasing for names/terms; a realtime variant runs at sub-500ms in 35+ languages; Voxtral Speech 3 does TTS in 35+ languages / 50+ dialects with emotion/pacing control and Pro Voice adaptation from 30+ minutes of audio; the SDK runs over SIP (phone) and WebRTC (browser/app), hosted on Mistral's EU/US/global API or self-deployed.</p>
             <p><strong>What it costs:</strong> Verified in Mistral's own launch pricing table: transcription $0.0035/min (Mini batch), $0.0040/min (Small), $0.008/min (Mini Realtime); TTS $13 per 1M characters; full voice-agent API $0.04/min with Mistral Small 4 reasoning, $0.08/min with another reasoning model. No subscription — pure usage metering.</p>
             <p><strong>The catch:</strong> API/SDK only — there is no app to just open; using it means building (or having Huxley build) a pipeline, and Mistral's headline accuracy claims (e.g. beating Whisper / Scribe v2 / Gemini 3.5 Transcribe on FLEURS) are their claim from their launch post.</p>
-            <p><strong>Fit:</strong> WATCH — the per-minute math is genuinely cheap for Freddie's podcast/voice-note and transcription work and for the queued Spanish-edition audio/QA direction, with no monthly lock-in; no build justified until a concrete episode or Spanish workflow needs it.</p>
+            <p><strong>Fit:</strong> TRACK IT — the per-minute math is genuinely cheap for Freddie's podcast/voice-note and transcription work and for the queued Spanish-edition audio/QA direction, with no monthly lock-in; no build justified until a concrete episode or Spanish workflow needs it.</p>
           </div>
         </details>
       </article>
-      <article class="at-card" id="deepseek-search-fetch-apis" data-verdict="WATCH">
+      <article class="at-card" id="deepseek-search-fetch-apis" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>DeepSeek Search &amp; Fetch APIs</h2>
-          <span class="at-chip at-chip-watch">WATCH</span>
+          <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">DeepSeek · Briefed Oct 21, 2026</p>
         <p class="at-what">Two paid web-access APIs for agents: one searches the web and returns structured results, the other fetches a page and returns it as Markdown.</p>
@@ -856,14 +857,14 @@
             <p><strong>What it does:</strong> Search (POST /v1/tools/search) is powered by DeepSeek's in-house search engine (their claim), returns up to 50 results per query with rerank score, authority tier, snippet and a 600–800-character summary, and supports site:/lang:/after:/before: operators; Fetch (POST /v1/tools/fetch) returns one URL's title + Markdown content. Both are read-only.</p>
             <p><strong>What it costs:</strong> Verified in DeepSeek's official docs: $0.75 per 1,000 successful requests for each API; failed, empty, and timed-out requests are not billed, and result count does not change the price. Note: calls made through DeepSeek Harness / Claude Code / Codex are currently free, with per-request billing starting 00:00 Beijing time on 2026-11-01.</p>
             <p><strong>The catch:</strong> Price is far under Brave ($5/1,000) and Kagi ($12/1,000) figures cited in launch coverage, but the index is a black box — coverage and ranking quality are unverified — and on 2026-10-19 DHS ordered DeepSeek products removed from U.S. federal civilian systems over data-access concerns (that order covers federal systems, not private users, but it is the trust context). The token cost of reading 50 long summaries is also yours, on top of the $0.00075 search.</p>
-            <p><strong>Fit:</strong> WATCH — cost-efficiency is excellent on paper for Honed Signal research volume, but Freddie's standing rule is verify against primary sources and use Ground News as a lens; a cheap, opaque search index does not replace that, and no switch is warranted until its results are tested side-by-side on his actual queries.</p>
+            <p><strong>Fit:</strong> TRACK IT — cost-efficiency is excellent on paper for Honed Signal research volume, but Freddie's standing rule is verify against primary sources and use Ground News as a lens; a cheap, opaque search index does not replace that, and no switch is warranted until its results are tested side-by-side on his actual queries.</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="composio" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>Composio</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta"> · Briefed Oct 21, 2026</p>
         <p class="at-what">A connection layer that gives AI agents access to 1,000+ apps (Gmail, Slack, Notion, GitHub, ...) through a single connection.</p>
@@ -876,14 +877,14 @@
             <p><strong>What it does:</strong> Handles OAuth for the agent — first use of an app generates an approval link, the connection persists across sessions; the agent discovers and fetches tools on demand instead of loading the whole catalog.</p>
             <p><strong>What it costs:</strong> Free tier; paid plans scale with usage (tool calls).</p>
             <p><strong>The catch:</strong> One third-party broker holds the access tokens for everything connected — credential concentration.</p>
-            <p><strong>Fit:</strong> SKIP — Muse's per-service connectors already do this job with individual, revocable grants; Composio's value case is for people building agents from raw frameworks across many agent environments (the Remy Gaskell pattern).</p>
+            <p><strong>Fit:</strong> SKIP IT — Muse's per-service connectors already do this job with individual, revocable grants; Composio's value case is for people building agents from raw frameworks across many agent environments (the Remy Gaskell pattern).</p>
           </div>
         </details>
       </article>
       <article class="at-card" id="grokbot" data-verdict="SKIP">
         <div class="at-card-head">
           <h2>Grokbot</h2>
-          <span class="at-chip at-chip-skip">SKIP</span>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">xAI · Briefed Oct 21, 2026</p>
         <p class="at-what">xAI's packaged AI-agent product — "AI teammates" with a computer of their own, routines, and an iOS app.</p>
@@ -896,7 +897,7 @@
             <p><strong>What it does:</strong> Cloud/local agent runs, scheduled routines (e.g., a morning brief, inbox triage), app connections via Composio/plugins, a skills marketplace; agents can package a taught workflow into a private skill unprompted. Deliberately low customizability — no model choice, no cost controls.</p>
             <p><strong>What it costs:</strong> $200/month flat; no free plan, no mid tier; 7-day trial. (One video reviewed claimed flat pricing with no metering mentioned; an earlier Andrew Warner video described metered pay-per-use overage of ~$259 in days — unresolved discrepancy between tiers/eras.)</p>
             <p><strong>The catch:</strong> $2,400/yr for a less controllable version of an architecture Freddie already runs; demo job (inbound brand-deal management) doesn't exist in his product/inbound business.</p>
-            <p><strong>Fit:</strong> SKIP — duplicates Muse/Huxley with the customizability removed.</p>
+            <p><strong>Fit:</strong> SKIP IT — duplicates Muse/Huxley with the customizability removed.</p>
           </div>
         </details>
       </article>
