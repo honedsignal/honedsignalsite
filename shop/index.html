@@ -22,7 +22,12 @@
     .sh-hero { text-align: center; padding: 2.5rem 1.25rem 1.5rem; max-width: 720px; margin: 0 auto; }
     .sh-hero h1 { margin: 0 0 .5rem; font-size: clamp(2.2rem, 6vw, 3.2rem); letter-spacing: -.03em; color: #f5f5f5; }
     .sh-hero .tagline { color: #9AA3B2; font-size: 1.05rem; line-height: 1.6; }
-    .sh-section { margin-top: 2.5rem; }
+    .sh-pills { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-top: 1.25rem; }
+    .sh-pills a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 18px; border: 1px solid #3a4356; border-radius: 999px; background: #161c28; color: #f5f5f5; font-size: .92rem; font-weight: 800; text-decoration: none; }
+    .sh-pills a:hover { border-color: #FF6B35; color: #FF6B35; }
+    .sh-hero-art { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem 1.5rem; }
+    .sh-hero-art img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 16px; }
+    .sh-section { margin-top: 2.5rem; scroll-margin-top: 1.25rem; }
     .sh-section > h2 { color: #f5f5f5; font-size: 1.6rem; letter-spacing: -.02em; margin: 0 0 .4rem; }
     .sh-section > p { color: #9AA3B2; line-height: 1.6; margin: 0 0 1rem; }
     .sh-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
@@ -53,11 +58,20 @@
     <header class="sh-hero">
       <h1>Shop</h1>
       <p class="tagline">Everything Honed Signal makes, in one place. The tools on this site are free — these are the printable packs, plans, and books that go with them. Checkout happens on Etsy and Amazon, where each product lives.</p>
+      <nav class="sh-pills" aria-label="Shop sections">
+        <a href="#packs">Printable Money Packs</a>
+        <a href="#scans">Scan Plans</a>
+        <a href="#books">Books</a>
+      </nav>
     </header>
+
+    <div class="sh-hero-art">
+      <img src="/shop/images/shop-hero-workshop.webp" width="2096" height="1184" alt="Huxley the red octopus and Freddie in their workshop, designing books, PDF packs, and merch together on a floating holographic display">
+    </div>
 
     <div class="sh-wrap">
 
-      <section class="sh-section" aria-label="Printable money packs">
+      <section class="sh-section" id="packs" aria-label="Printable money packs">
         <h2>Printable Money Packs</h2>
         <p>From Honed Money — “Money makes sense.” Print-at-home PDF packs, in US Letter and A4, sold on Etsy.</p>
         <div class="sh-grid">
@@ -114,7 +128,7 @@
         </div>
       </section>
 
-      <section class="sh-section" aria-label="Scan plans">
+      <section class="sh-section" id="scans" aria-label="Scan plans">
         <h2>Scan Plans</h2>
         <p>Run the free scans on this site first. The paid plans turn your results into a step-by-step action plan — unlock codes are sold on Etsy.</p>
         <div class="sh-grid">
@@ -152,7 +166,7 @@
         </div>
       </section>
 
-      <section class="sh-section" aria-label="Books">
+      <section class="sh-section" id="books" aria-label="Books">
         <h2>Books by Honed Flint</h2>
         <p>From Honed Flint — “Sharpen minds.” Paperback books for kids, sold on Amazon.</p>
         <div class="sh-grid">
