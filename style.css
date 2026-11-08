@@ -200,7 +200,8 @@ section > h2, .about > h2 {
   border: 1px solid #1E2635;
   margin: 0 0 1.5rem;
 }
-.about p { color: var(--muted); margin: 0; }
+.about p { color: var(--muted); margin: 0 0 1.6em; }
+.about p:last-child { margin-bottom: 0; }
 .about p strong { color: var(--paper); }
 
 .connect { max-width: 720px; margin: 0 auto; text-align: center; }
