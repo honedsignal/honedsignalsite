@@ -286,3 +286,8 @@ section > h2, .about > h2 {
   .start-link a:hover, .start-link a:focus { text-decoration: underline; }
   @media (min-width: 640px) { .start-cards { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 960px) { .start-cards { grid-template-columns: repeat(3, 1fr); } }
+
+/* Footer nav (Standards link) */
+.footer-nav { margin: 0 0 0.75rem; }
+.footer-nav a { color: var(--blue); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+.footer-nav a:hover, .footer-nav a:focus { text-decoration: underline; }
