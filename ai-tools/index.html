@@ -69,18 +69,398 @@
       <img class="at-art" src="/assets/ai-tool-briefs.webp" width="2048" height="1152" alt="Illustration of Freddie Avalos in his bright green glasses, hand to his forehead, overwhelmed by a huge holographic list of AI tools stamped TRACK, SKIP and USE, presented by Huxley, a red octopus wearing silver headphones">
       <div class="at-intro">
         <p>What it is. Who's behind it. What it does. What it costs. What the catch is. And whether it earns a place in a real working stack. Every price below was checked on the maker's own site — never the launch post, never the ad — and every verdict is graded against the tools that actually run Honed Signal today: <strong>USE IT</strong>, <strong>TRACK IT</strong>, or <strong>SKIP IT</strong>.</p>
-        <p>41 tools briefed so far, newest first. The list grows as new briefs land — if a tool isn't here, it hasn't been checked yet.</p>
+        <p>60 tools briefed so far, newest first. The list grows as new briefs land — if a tool isn't here, it hasn't been checked yet.</p>
       </div>
       <p class="at-byline">Research by Muse · Edited by Freddie Avalos</p>
 
       <div class="at-filters" role="group" aria-label="Filter briefs by verdict">
-        <button type="button" class="at-filter" data-filter="all" aria-pressed="true">All · 41</button>
+        <button type="button" class="at-filter" data-filter="all" aria-pressed="true">All · 60</button>
         <button type="button" class="at-filter" data-filter="USE" aria-pressed="false">USE IT · 0</button>
-        <button type="button" class="at-filter" data-filter="TRACK" aria-pressed="false">TRACK IT · 29</button>
-        <button type="button" class="at-filter" data-filter="SKIP" aria-pressed="false">SKIP IT · 12</button>
+        <button type="button" class="at-filter" data-filter="TRACK" aria-pressed="false">TRACK IT · 43</button>
+        <button type="button" class="at-filter" data-filter="SKIP" aria-pressed="false">SKIP IT · 17</button>
       </div>
       <p class="at-empty" id="at-empty">Nothing here yet. No tool has earned a USE IT verdict — the bar is a working stack that already does the job, and a new tool has to beat it, not just demo well.</p>
 
+      <article class="at-card" id="personal-finance-in-claude" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Personal Finance in Claude</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Anthropic · Briefed Nov 6, 2026</p>
+        <p class="at-what">A Personal Finance hub inside Claude that links your bank and card accounts and answers money questions from your real balances and transactions; Anthropic announced it on November 5, 2026, rolling out in beta this week in the US.</p>
+        <p class="at-cost"><strong>Cost:</strong> No separate Personal Finance price — it rides the existing paid Claude plans, and only those: Pro, Max and Ultra in the US (Free, Team and Enterprise are excluded, per reports citing Anthropic's Help Center). The plan prices, as listed on claude.com/pricing and checked in early-November 2026 summaries of that page, are Pro $20/mo ($17/mo billed annually), Max $100/mo and Ultra $200/mo.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A Personal Finance hub inside Claude that links your bank and card accounts and answers money questions from your real balances and transactions; Anthropic announced it on November 5, 2026, rolling out in beta this week in the US.</p>
+            <p><strong>Who's behind it:</strong> Anthropic, in its own announcement, "Introducing Personal Finance in Claude," on claude.com (November 5, 2026).</p>
+            <p><strong>What it does:</strong> Verified on claude.com: you sign in to your bank yourself through Plaid and approve read-only access — Claude never asks for or sees your bank password, and it can't move, manage, or invest your money. For only the accounts you choose, Claude sees the bank name, account name, type and last four digits, balances and credit limits, and up to two years of transactions; it totals spending by category, flags duplicate charges, unexpected fees and bills that have crept up, shows payments due before payday, and builds charts and dashboards you can keep adjusting. Chats inside the Personal Finance hub are not used to train models, and the feature carries no ads or sponsored recommendations and offers no cards, loans or savings accounts of its own.</p>
+            <p><strong>What it costs:</strong> No separate Personal Finance price — it rides the existing paid Claude plans, and only those: Pro, Max and Ultra in the US (Free, Team and Enterprise are excluded, per reports citing Anthropic's Help Center). The plan prices, as listed on claude.com/pricing and checked in early-November 2026 summaries of that page, are Pro $20/mo ($17/mo billed annually), Max $100/mo and Ultra $200/mo.</p>
+            <p><strong>The catch:</strong> Read-only is not no-risk: it hands a second AI a two-year transaction history across your linked banks, on top of the Plaid access Freddie already grants Muse. Anthropic itself warns Claude can make mistakes — ask which transactions sit behind a number and check important figures with your bank — and the no-training promise covers the Personal Finance hub; anything shared outside the hub falls under your normal privacy settings. The rollout is gradual, so an eligible account may not see it yet.</p>
+            <p><strong>Fit:</strong> TRACK IT — the read-only, no-ads shape is exactly Freddie's standing finance posture, and the launch validates the Plaid read-only pattern his whole debt-first workflow already runs on through Muse. But that is the point: Muse already reads the same accounts read-only, so a $20/mo Claude plan bought for this alone would duplicate a working stack and fail the cost rule. If a Claude plan is ever bought for another reason, this feature rides along free.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="tobira-site-agent" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>Tobira Site Agent</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">Tobira · Briefed Nov 6, 2026</p>
+        <p class="at-what">A layer that turns your website into an agent that answers and sells to visitors and to the AI agents they send — it launched on Product Hunt on November 6, 2026 and took #1 Product of the Day.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on tobira.ai/agentic-site (read November 6, 2026): a free plan that runs on your own AI key; Lite $49/mo (about 300 conversations/mo with Tobira's model included, up to 5,000 replies on your own AI), Start $169/mo, Business $399/mo (payments for consultations and services arrive at this tier), Premium $799/mo — USD, excluding taxes, conversation counts stated as approximate. Assisted setup is extra on the paid tiers ($899 / $1,799 / $2,499), and the launch-week offers in the Product Hunt post (first days free, first month free with a card) are promos.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A layer that turns your website into an agent that answers and sells to visitors and to the AI agents they send — it launched on Product Hunt on November 6, 2026 and took #1 Product of the Day.</p>
+            <p><strong>Who's behind it:</strong> Tobira (tobira.ai); its founder Vlad wrote the Product Hunt launch post. The "800+ agents" network figure in that post is the founder's claim.</p>
+            <p><strong>What it does:</strong> Verified on tobira.ai/agentic-site: you paste your URL and Tobira scans your site, services, prices and blog, publishes the machine-readable files agents look for (llms.txt, agent.json and AGENTS.md, per its own FAQ) and adds a badge/widget. The agent answers people and their ChatGPT, Claude or Gemini agents from your site, PDFs and FAQ only — if the answer is not in your materials it offers a call instead of guessing — then qualifies the visitor, books a calendar slot, sends a trial link or takes a payment/order inside the chat, and sends leads to Telegram, email, WhatsApp or your CRM. It can run on your own OpenAI or OpenRouter key, and an optional extra lets visitors subscribe to an AI under your brand, of which Tobira keeps 15% of subscription revenue.</p>
+            <p><strong>What it costs:</strong> Verified on tobira.ai/agentic-site (read November 6, 2026): a free plan that runs on your own AI key; Lite $49/mo (about 300 conversations/mo with Tobira's model included, up to 5,000 replies on your own AI), Start $169/mo, Business $399/mo (payments for consultations and services arrive at this tier), Premium $799/mo — USD, excluding taxes, conversation counts stated as approximate. Assisted setup is extra on the paid tiers ($899 / $1,799 / $2,499), and the launch-week offers in the Product Hunt post (first days free, first month free with a card) are promos.</p>
+            <p><strong>The catch:</strong> The product's centre of gravity is booking sales calls and, through the Tobira network, having your agent look for partners and clients through other people's agents — outbound selling by design. The meter is approximate conversations, not a hard unit, and the features Freddie's shop would actually use (taking payments) sit at $399/mo.</p>
+            <p><strong>Fit:</strong> SKIP IT — run through the D.E.A.L. gate: Demand is unproven (visitors' AI agents are not a demonstrated buying channel for him, and his actual sales happen off-site on Etsy and Amazon, where a site agent cannot take the order), Edge is none, and $49–$799/mo fails the debt-first cost rule outright; the call-booking and client-hunting shape also sits outside his no-sales-calls, product/inbound-only rule. The one takeaway is free: the agent-readable site pattern (llms.txt / agent.json) is the same side of the street his own Creator Site Scan and site monitor already work, at $0.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="chatgpt-images-2-6" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>ChatGPT Images 2.6</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">OpenAI · Briefed Nov 6, 2026</p>
+        <p class="at-what">OpenAI's image update for ChatGPT, Codex and the API — it adds animated GIFs and saved reference images; OpenAI introduced it on November 4, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on openai.com: Images 2.6 is available globally in ChatGPT and Codex across all subscription tiers on desktop, mobile and web, so in ChatGPT it rides whatever plan you already have. API pricing, verified on OpenAI's own API pricing page (developers.openai.com, read November 6, 2026), is token-metered and identical for Flare and Sunburst: image input $8.00 and text input $5.00 per million tokens, cached input $2.00 (image) / $1.25 (text), image output $30.00 per million tokens.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> OpenAI's image update for ChatGPT, Codex and the API — it adds animated GIFs and saved reference images; OpenAI introduced it on November 4, 2026.</p>
+            <p><strong>Who's behind it:</strong> OpenAI, in its own post, "Introducing Images 2.6," on openai.com (November 4, 2026). Its "4 billion images per week" figure is OpenAI's own.</p>
+            <p><strong>What it does:</strong> Verified on openai.com: Images 2.6 generates 50% faster than before (OpenAI's figure); in the API, GPT-Image-2.6 Flare is the speed variant (an image in as little as six seconds at low quality) and GPT-Image-2.6 Sunburst is the detail variant, with greater consistency across edits at medium or high quality. You can turn a prompt or an image into an animated GIF — OpenAI's own examples animate a brand mascot and turn a simple sketch into an animated character — and edits keep characters, products and brand details consistent. The API adds image markup (pinpoint where a change goes), SVG exports for websites, apps and print, and a new complexity parameter, separate from image quality, that controls how much planning the model does.</p>
+            <p><strong>What it costs:</strong> Verified on openai.com: Images 2.6 is available globally in ChatGPT and Codex across all subscription tiers on desktop, mobile and web, so in ChatGPT it rides whatever plan you already have. API pricing, verified on OpenAI's own API pricing page (developers.openai.com, read November 6, 2026), is token-metered and identical for Flare and Sunburst: image input $8.00 and text input $5.00 per million tokens, cached input $2.00 (image) / $1.25 (text), image output $30.00 per million tokens.</p>
+            <p><strong>The catch:</strong> The API meter is tokens, not pictures, so a per-image cost cannot be read off the price list — and OpenAI's own developer community thread on the launch carries reports that low and medium quality on 2.6 bill significantly more output tokens than 2.5 did (developer-reported, not OpenAI-stated). GIF output in the API works through frame parameters whose documented limits disagree between OpenAI's guide and its API reference, per launch-week testing reports.</p>
+            <p><strong>Fit:</strong> TRACK IT — animating a mascot and holding a character consistent across edits is directly on Freddie's Rio work, and the feature costs him nothing to watch because it rides existing tiers. But his house artwork runs on the locked luminous storybook pipeline through Muse and Meta AI, all video series are held since November 2, 2026, and no ChatGPT plan purchase is justified by an image update alone. Signal only, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="gemini-omni-1-2-flash" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Gemini Omni 1.2 Flash</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Google DeepMind · Briefed Nov 6, 2026</p>
+        <p class="at-what">Google's video generation and editing model, now generally available — clips get longer (15 seconds, up from 10) and the price drops 30%; Google rolled it out on November 5, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on blog.google: $0.07 per second for 720p video, a 30% drop from Omni 1.1 — about $1.05 for a full 15-second clip at that rate. Google's API pricing page, as summarised in launch-week checks, bills it by token (video output $12.00 per million tokens, input $1.50 per million) and lists no free tier for this model on the API.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Google's video generation and editing model, now generally available — clips get longer (15 seconds, up from 10) and the price drops 30%; Google rolled it out on November 5, 2026.</p>
+            <p><strong>Who's behind it:</strong> Google DeepMind; announced in Google's own post, "Gemini Omni 1.2 Flash: 15-second video and lower pricing," on blog.google (November 5, 2026), signed by Anish Nangia, Product Manager, Google DeepMind.</p>
+            <p><strong>What it does:</strong> Verified on blog.google: native video generation and editing from 3 to 15 seconds in one-second increments, multi-turn conversational editing (fix one detail in the same clip instead of re-generating), enhanced reference following across character, product and style images, short motion clips and audio cues, more natural speech with clearer lip-sync and distinct multi-speaker voices, and a draft-low-then-upscale workflow (draft at 360p or 720p, upscale the keeper to 1080p or 4K). It is generally available across the Gemini API and Gemini for business, rolls into Flow, Google Vids (15-second clips at no additional cost with a Google account or Workspace subscription) and the Gemini app (rolling out to Google AI Ultra subscribers). Outputs carry an imperceptible SynthID watermark.</p>
+            <p><strong>What it costs:</strong> Verified on blog.google: $0.07 per second for 720p video, a 30% drop from Omni 1.1 — about $1.05 for a full 15-second clip at that rate. Google's API pricing page, as summarised in launch-week checks, bills it by token (video output $12.00 per million tokens, input $1.50 per million) and lists no free tier for this model on the API.</p>
+            <p><strong>The catch:</strong> Per-second pricing bills every attempt, not just keepers, so the real cost of a finished clip is the rate times your number of generations — and 1080p and 4K are upscales of the generated clip, not native renders. The Gemini app route is an Ultra-tier rollout, and every output is SynthID-watermarked whether you want the mark or not.</p>
+            <p><strong>Fit:</strong> TRACK IT — 15-second clips at about a dollar a pass is the cheapest credible per-clip math in this batch and the multi-turn edit-don't-regenerate shape matches how Freddie already fixes Rio scenes. But his video route runs through Meta AI by his settled judgment, all video series are held since November 2, 2026, and there is no proven bottleneck a second paid video model solves today. Revisit only if a series reopens.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="gpt-6-cyber" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>GPT-6 Cyber</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">OpenAI · Briefed Nov 6, 2026</p>
+        <p class="at-what">OpenAI's cybersecurity-specialised frontier model — built to find and validate exploitable vulnerabilities and help patch them, while staying inside the scope researchers set; OpenAI introduced it on November 5, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on OpenAI's own API pricing page (developers.openai.com, read November 6, 2026): gpt-6-cyber is listed at $20.00 per million input tokens, $100.00 per million output tokens and $2.00 per million cached input tokens — but the price is academic without access (see the catch).</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> OpenAI's cybersecurity-specialised frontier model — built to find and validate exploitable vulnerabilities and help patch them, while staying inside the scope researchers set; OpenAI introduced it on November 5, 2026.</p>
+            <p><strong>Who's behind it:</strong> OpenAI, in its own announcement, "GPT-6 Cyber: Advancing the frontier of aligned cybersecurity agents," on openai.com (November 5, 2026).</p>
+            <p><strong>What it does:</strong> Verified on openai.com: GPT-6 Cyber scores 48.5% on ExploitGym (exploiting a specified vulnerability in a remote target), up from 32.1% for GPT-5.6 Cyber, and 40.3% recall on OpenAI's new web penetration-testing evaluation against 32.0% for GPT-6 Astra. OpenAI says its researchers used it to identify 81 previously unknown high-severity vulnerabilities in Firefox (Mozilla has released fixes for many of them) and to develop working exploits for 948 Linux kernel vulnerabilities, and that security teams at Cisco, Calif and CodeRabbit are using it. On staying in bounds — the launch's headline alignment claim — it avoided exploiting out-of-scope services in 99.93% of honeypot tests without its deployment prompt and 100% with it, up from 94.49% for GPT-5.6 Cyber. All benchmark and impact figures are OpenAI's own.</p>
+            <p><strong>What it costs:</strong> Verified on OpenAI's own API pricing page (developers.openai.com, read November 6, 2026): gpt-6-cyber is listed at $20.00 per million input tokens, $100.00 per million output tokens and $2.00 per million cached input tokens — but the price is academic without access (see the catch).</p>
+            <p><strong>The catch:</strong> Almost nobody can buy it: GPT-6 Cyber is initially available through the API and Codex only to a select group of approved Daybreak Red customers, with a separate approval for this model, IP allowlisting required by default for Daybreak Red API access, and only a promise to expand to all Daybreak Red customers "soon," with no date. OpenAI classifies it Critical in cybersecurity under its own Preparedness Framework — the first Cyber model so rated, up from High — which is OpenAI's own signal for why the gate is tight.</p>
+            <p><strong>Fit:</strong> TRACK IT — a frontier capability signal in the same family as Gemini 4 Carbon (briefed October 30, 2026), and the scope-discipline result (99.93% / 100% in-bounds) is the part that matters for anyone running agents with real access. But there is no access for Freddie to buy, no security-research workload in his stack that needs an exploit model, and $20/$100 token pricing fails the cost rule on its face. Note it, no action.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="tencent-hy4" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Tencent Hy4</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Tencent · Briefed Nov 4, 2026</p>
+        <p class="at-what">The full release of Tencent's flagship Hunyuan model — the first in the line with vision and computer use — released November 4, 2026; its weights are promised, not yet out.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on Tencent's own announcement: approximately $0.90 per million input tokens, $2.70 per million output tokens and $0.045 per million cached input tokens — the same pricing as the preview (OpenRouter's listing shows $0.834 / $2.501). Two expiring promos: WorkBuddy and CodeBuddy are free from November 4 to 15, and Hy4 is 50% off on TokenHub through December 31, 2026.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> The full release of Tencent's flagship Hunyuan model — the first in the line with vision and computer use — released November 4, 2026; its weights are promised, not yet out.</p>
+            <p><strong>Who's behind it:</strong> Tencent, through its Hy team; announced in Tencent's own release, "Tencent Launches Hy4, Joining the Ranks of the World's Leading Open-Source AI Models," on tencent.com (November 4, 2026). The 770-billion-parameter figure is TechNode's reporting of the announcement, not a number in Tencent's English release.</p>
+            <p><strong>What it does:</strong> Verified on tencent.com: visual understanding (fine-grained image processing, complex chart analysis, mathematical visual reasoning), computer use across command-line and graphical interfaces with specialised training on professional software such as Blender and CAD, long-context and long-horizon agentic work, integrated into WorkBuddy, CodeBuddy, Yuanbao, WeCom's Dayuan assistant and ima, with the API also on Tencent Cloud TokenHub, OpenRouter, Hermes and OpenCode.</p>
+            <p><strong>What it costs:</strong> Verified on Tencent's own announcement: approximately $0.90 per million input tokens, $2.70 per million output tokens and $0.045 per million cached input tokens — the same pricing as the preview (OpenRouter's listing shows $0.834 / $2.501). Two expiring promos: WorkBuddy and CodeBuddy are free from November 4 to 15, and Hy4 is 50% off on TokenHub through December 31, 2026.</p>
+            <p><strong>The catch:</strong> Despite the open-source framing, the model weights and system card are only planned "in the coming days" — today Hy4 is API-only through Tencent and its partners, so nothing can be self-hosted yet. Every benchmark in the announcement is Tencent's own, and the headline access offers are expiring promos.</p>
+            <p><strong>Fit:</strong> TRACK IT — another verified step in the frontier-price / open-weight direction Freddie tracks (Mistral Large 4 was the last one), but his work runs on Muse / Muse Wonder, there is no downloadable model to evaluate yet, and no workload needs a second model API today. Signal only, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="beamfy" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Beamfy</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Beamfy · Briefed Nov 4, 2026</p>
+        <p class="at-what">An AI vision assistant app for blind and low-vision people — point your phone and hear what is in front of you, in 74 languages; it launched on Product Hunt on November 3, 2026 and was still surfacing in the November 4 launches.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on beamfy.ai's pricing section: Free $0 to download — 7 days of full access after sign-up (60 descriptions/day fair-use), then 5 descriptions or readings every day free, SOS always free. Premium is $4.99/mo or $39.99/yr for unlimited use subject to a 300/day fair-use limit.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An AI vision assistant app for blind and low-vision people — point your phone and hear what is in front of you, in 74 languages; it launched on Product Hunt on November 3, 2026 and was still surfacing in the November 4 launches.</p>
+            <p><strong>Who's behind it:</strong> Beamfy (beamfy.ai); no company, funding or team facts were verified beyond its own site. Its privacy page states the photo analysis runs on OpenAI, with Anthropic as a backup.</p>
+            <p><strong>What it does:</strong> Verified on beamfy.ai: it photographs what is in front of you and speaks a description with hazards first (saying plainly when it is unsure), reads printed text aloud, reads a walking route step by step before you set off (a preview, not live guidance), and an SOS button counts down 10 seconds, then texts your chosen emergency contact with your location. Built for VoiceOver and TalkBack on iPhone and Android; photos are not stored, and descriptions, recognised text and approximate location are deleted within 30 days.</p>
+            <p><strong>What it costs:</strong> Verified on beamfy.ai's pricing section: Free $0 to download — 7 days of full access after sign-up (60 descriptions/day fair-use), then 5 descriptions or readings every day free, SOS always free. Premium is $4.99/mo or $39.99/yr for unlimited use subject to a 300/day fair-use limit.</p>
+            <p><strong>The catch:</strong> It is cloud-only — no internet, no descriptions — and your photos travel to Beamfy's servers and then to its AI provider. The maker itself states the limits plainly: AI can make mistakes, it does not replace a cane, guide dog or your own judgement, and it is not a medical device.</p>
+            <p><strong>Fit:</strong> TRACK IT — not a tool for Freddie's own workflow, but a genuinely notable accessibility product with honest pricing and honest limits, squarely in the useful-AI territory his Honed reporting covers. The free tier is real and permanent (5/day plus SOS). Nothing to buy; note it as a reference point.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="livereacting-for-chatgpt" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>LiveReacting for ChatGPT</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">LiveReacting · Briefed Nov 4, 2026</p>
+        <p class="at-what">A ChatGPT plugin and MCP launch for LiveReacting, the pre-recorded and 24/7 live-streaming platform — "Run 24/7 and pre-recorded live streams from ChatGPT" launched on Product Hunt on November 4, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on livereacting.com/pricing (read November 4, 2026): Free $0 — 3 streams/mo, 30 minutes each, 720p, watermarked; Small $16/mo billed yearly ($19.99/mo monthly), streams up to 1 hour; Medium $33/mo billed yearly ($39.99/mo monthly), up to 3 hours at 1080p; the dedicated 24/7 plan is $39.99/mo or $33/mo billed yearly, with a new-customer promo of $23.99/mo for the first year running until November 30, 2026.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A ChatGPT plugin and MCP launch for LiveReacting, the pre-recorded and 24/7 live-streaming platform — "Run 24/7 and pre-recorded live streams from ChatGPT" launched on Product Hunt on November 4, 2026.</p>
+            <p><strong>Who's behind it:</strong> LiveReacting (livereacting.com), the established streaming platform; the new piece is the assistant control layer, not the streaming service itself.</p>
+            <p><strong>What it does:</strong> Verified on livereacting.com's pricing and help pages: the ChatGPT plugin, an AI agent (Claude Code, Codex or Cursor) over MCP, or the API can create, schedule and control streams from a conversation; the platform loops playlists of pre-recorded videos as a 24/7 stream, multistreams to YouTube, Facebook, Twitch, Instagram or any RTMP destination, and adds polls, trivia and giveaways drawn from live chat.</p>
+            <p><strong>What it costs:</strong> Verified on livereacting.com/pricing (read November 4, 2026): Free $0 — 3 streams/mo, 30 minutes each, 720p, watermarked; Small $16/mo billed yearly ($19.99/mo monthly), streams up to 1 hour; Medium $33/mo billed yearly ($39.99/mo monthly), up to 3 hours at 1080p; the dedicated 24/7 plan is $39.99/mo or $33/mo billed yearly, with a new-customer promo of $23.99/mo for the first year running until November 30, 2026.</p>
+            <p><strong>The catch:</strong> The headline 24/7 capability is a paid plan, the cheapest entry to it is promo pricing that expires November 30, and quality upgrades multiply the bill — 60 fps costs 1.5× the price, 4K 2×, 4K at 60 fps 3×, set up manually through support chat.</p>
+            <p><strong>Fit:</strong> TRACK IT — an always-on channel of finished Honed videos is a plausible inbound use and the agent-control shape is notable, but all video series are held since November 2, 2026, no 24/7 channel need is proven, and $33/mo fails the debt-first cost rule today. Revisit only if a channel idea is reopened.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="peji" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Peji</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Peji · Briefed Nov 4, 2026</p>
+        <p class="at-what">An iPhone AI chat app with a real browser inside the chat — the AI opens live web pages in your own session and does the clicking, instead of answering from memory; it launched on Product Hunt on November 1, 2026 and resurfaced in the November 4 launches.</p>
+        <p class="at-cost"><strong>Cost:</strong> Free on the App Store, per the Product Hunt listing ($0). Pro "adds usage," but no Pro price is published on the Product Hunt page or any maker page found in this check — the Pro price is unverified, visible only in-app.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An iPhone AI chat app with a real browser inside the chat — the AI opens live web pages in your own session and does the clicking, instead of answering from memory; it launched on Product Hunt on November 1, 2026 and resurfaced in the November 4 launches.</p>
+            <p><strong>Who's behind it:</strong> Peji, a solo maker per his own Product Hunt launch post ("I built Peji because the big AI chats stop short on the tasks that matter"); no company, funding or team facts were verified beyond that post.</p>
+            <p><strong>What it does:</strong> Per the maker's own Product Hunt post: Peji drives WebKit tabs on your iPhone in the session you already use, so signed-in sites work; it reads, clicks and types through tasks such as a price comparison across three shops, a filled-in form or a PDF summary, shows every step in the chat, lets you open any tab and continue by hand, and waits for your tap before it sends, buys, pays, books, deletes or publishes. Answers such as price lists return as tables with source links, and chats, files and dictation stay on the phone — the maker's statements.</p>
+            <p><strong>What it costs:</strong> Free on the App Store, per the Product Hunt listing ($0). Pro "adds usage," but no Pro price is published on the Product Hunt page or any maker page found in this check — the Pro price is unverified, visible only in-app.</p>
+            <p><strong>The catch:</strong> iPhone only — no Android or desktop version announced at launch. An agent browsing inside your signed-in session is powerful access, so its tap-before-anything-irreversible gate is the whole safeguard, and the opaque Pro pricing cannot be judged until it is published.</p>
+            <p><strong>Fit:</strong> TRACK IT — the approval-gate shape matches Freddie's own rules exactly and live price comparison is a real use, but his browser-agent job is already done by Muse on desktop, and an unpublished Pro price cannot pass the cost rule. Pattern noted; no install.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="wanaka-studio" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Wanaka Studio</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Wanaka Studio · Briefed Nov 4, 2026</p>
+        <p class="at-what">An AI-native game engine: describe a game, an AI agent builds a playable 3D game, you edit it in a visual editor and publish it; it launched on Product Hunt on November 4, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> The Product Hunt listing starts at $0. No public pricing page on the maker's own site was located in this check, so paid-tier prices are unverified, not free beyond the start.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An AI-native game engine: describe a game, an AI agent builds a playable 3D game, you edit it in a visual editor and publish it; it launched on Product Hunt on November 4, 2026.</p>
+            <p><strong>Who's behind it:</strong> Wanaka Studio; no company, funding or team facts were verified beyond its Product Hunt listing.</p>
+            <p><strong>What it does:</strong> Per the maker's Product Hunt listing: you write a prompt and the agent builds the world, characters and gameplay loop; a visual editor synced with everything the AI made lets you change things by clicking and dragging, with no code; auto-rigging, multiplayer and one-click publish are built in. Its claim of using about 80% fewer tokens than pairing a frontier model with a traditional engine is the maker's claim, not independently tested.</p>
+            <p><strong>What it costs:</strong> The Product Hunt listing starts at $0. No public pricing page on the maker's own site was located in this check, so paid-tier prices are unverified, not free beyond the start.</p>
+            <p><strong>The catch:</strong> Brand new and unproven: every capability above is a launch claim, pricing is not published where it can be checked, and "AAA-style" output from a prompt is marketing language until a shipped game demonstrates it.</p>
+            <p><strong>Fit:</strong> TRACK IT — building a game to sell is product/inbound monetisation in shape, so it passes that rule in principle, but Freddie has no games line, the D.E.A.L. gate has not been run on one, and unverified pricing fails the cost rule today. Signal only; revisit if a game idea ever gets gated in.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="floot-payments" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Floot Payments</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Floot · Briefed Nov 4, 2026</p>
+        <p class="at-what">A payments layer for Floot, the connector that builds and hosts full-stack apps from inside ChatGPT or Claude — Floot Payments lets those apps take real money; it launched on Product Hunt on November 4, 2026 ("Take payments in apps you build in ChatGPT and Claude").</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on floot.com/pricing (read November 4, 2026): Free $0 with 100 building actions/day and a one-time $3 hosting allowance — and per Floot's own pricing FAQ, the Free plan requires an upgrade to publish an app; Pro $25/mo with 1,000 actions/day, $10/mo hosting included and 5,000 AI credits/mo; Power $100/mo with 5,000 actions/day, $25/mo hosting and 15,000 credits/mo. No separate Floot Payments price appears on the pricing page (Stripe's own transaction fees are not stated there).</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A payments layer for Floot, the connector that builds and hosts full-stack apps from inside ChatGPT or Claude — Floot Payments lets those apps take real money; it launched on Product Hunt on November 4, 2026 ("Take payments in apps you build in ChatGPT and Claude").</p>
+            <p><strong>Who's behind it:</strong> Floot (floot.com); launch coverage of Floot's own pages reports it as Y Combinator-backed — treat the backing as reported, not maker-stated in the pages read for this brief.</p>
+            <p><strong>What it does:</strong> Verified across Floot's own launch post and pricing/docs pages: you ask your assistant in ChatGPT, Claude or Cursor for a plan or a checkout and Floot sets it up — subscriptions with a billing page, one-time payments, tickets and deposits, coupons and refunds, plus shipping with live rates, labels and tracking — running on Stripe with no API keys or webhooks to wire, testable free in preview and live when you publish. The building itself runs on your existing Claude/ChatGPT subscription (your assistant does the thinking); Floot meters platform work in daily building actions plus hosting and AI credits.</p>
+            <p><strong>What it costs:</strong> Verified on floot.com/pricing (read November 4, 2026): Free $0 with 100 building actions/day and a one-time $3 hosting allowance — and per Floot's own pricing FAQ, the Free plan requires an upgrade to publish an app; Pro $25/mo with 1,000 actions/day, $10/mo hosting included and 5,000 AI credits/mo; Power $100/mo with 5,000 actions/day, $25/mo hosting and 15,000 credits/mo. No separate Floot Payments price appears on the pricing page (Stripe's own transaction fees are not stated there).</p>
+            <p><strong>The catch:</strong> Platform lock-in is written into Floot's own FAQ: cancel and your projects stop working until you re-subscribe or export the code and self-host elsewhere. Plan credits do not roll over, and the real stack of costs is Floot's plan plus your AI subscription plus Stripe fees.</p>
+            <p><strong>Fit:</strong> TRACK IT — this is the one launch in the batch shaped for Freddie's product/inbound-only rule (an app that can charge, with no second AI bill for the building), but he sells through Etsy, KDP and Shopify today and has no app product that needs a checkout; $25/mo just to publish fails the cost rule until one exists. Note it; no sign-up.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="pasteguard-for-mac" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>PasteGuard for Mac</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">PasteGuard · Briefed Nov 4, 2026</p>
+        <p class="at-what">A Mac menu-bar app that masks secrets and personal data on your clipboard the moment you copy, so what you paste into an AI chat is tokens, not real values; it launched on Product Hunt on November 4, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on pasteguard.byquan.app (read November 4, 2026): the core app is Free $0 — "no trial, no time limit," covering auto-mask on every paste, all 26 types, and restore. Pro, which adds only custom rules and CSV import, is listed at $1.99/mo or $12.99/yr, or $19.99 lifetime — but is marked "coming soon" and is not on sale yet.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A Mac menu-bar app that masks secrets and personal data on your clipboard the moment you copy, so what you paste into an AI chat is tokens, not real values; it launched on Product Hunt on November 4, 2026.</p>
+            <p><strong>Who's behind it:</strong> PasteGuard (pasteguard.byquan.app, the site linked from its Product Hunt page); no company, funding or team facts were verified beyond the maker's own site. Several unrelated products share the PasteGuard name — this brief is only about the Mac clipboard app.</p>
+            <p><strong>What it does:</strong> Verified on pasteguard.byquan.app: it checks what you copy on your Mac against 26 types in 6 groups (API keys and tokens, passwords, private keys, emails, phone numbers, card numbers, bank accounts, ID/passport numbers, database URLs and more, plus your own rules), replaces each value on the clipboard with a token such as [EMAIL_1], keeps the originals in an encrypted vault on that Mac, and restores the real values into the AI's answer with a keyboard shortcut. Per its own privacy page: no account needed, no network access of its own, no analytics, and no clipboard history saved (the last three copies live in memory only).</p>
+            <p><strong>What it costs:</strong> Verified on pasteguard.byquan.app (read November 4, 2026): the core app is Free $0 — "no trial, no time limit," covering auto-mask on every paste, all 26 types, and restore. Pro, which adds only custom rules and CSV import, is listed at $1.99/mo or $12.99/yr, or $19.99 lifetime — but is marked "coming soon" and is not on sale yet.</p>
+            <p><strong>The catch:</strong> Mac only: it runs on macOS 14 or later, and its optional on-device Apple Intelligence check needs macOS 27 with Apple Intelligence. Detection is pattern-based, so a secret in an unusual shape can still slip through, and the encrypted vault of your real values sits on the Mac under a solo maker's app — the design is right, the trust is still a judgement call.</p>
+            <p><strong>Fit:</strong> TRACK IT — the least-privilege pattern done right (on-device, no account, nothing leaves the Mac) and a free core that passes the cost rule outright; it speaks directly to Freddie's daily habit of pasting sensitive material into AI chats. It only pays if that pasting happens on a Mac, and briefs install nothing — worth adopting the pattern either way.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="tellpip" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>TellPip</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">TellPip · Briefed Nov 4, 2026</p>
+        <p class="at-what">A Mac app that listens to your calls from your own computer (no bot joins), transcribes on-device, remembers what you promised each client, and whispers answers from your own documents while you are still on the call; it launched on Product Hunt on November 4, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on tellpip.eu pricing (read November 4, 2026): free trial of 5 sessions of up to 10 minutes, no card. Solo $25/month + tax — with Invisibility and Real-time answers as separate add-ons at +$19/month each. Everything is a launch price of $39/month + tax, rising to $59/month after the promo (locked in only if you subscribe during the launch). A no-subscription 5-hour pack is $39 one-off at launch ($49 after), valid 90 days.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A Mac app that listens to your calls from your own computer (no bot joins), transcribes on-device, remembers what you promised each client, and whispers answers from your own documents while you are still on the call; it launched on Product Hunt on November 4, 2026.</p>
+            <p><strong>Who's behind it:</strong> TellPip (tellpip.eu); its own launch post says it is built in Europe with GDPR in mind — their framing.</p>
+            <p><strong>What it does:</strong> Verified on tellpip.eu and its official download page: local transcription in 25 European languages, working offline; before a call it reviews what it remembers about the client, during the call one key press gets you a whispered answer drawn from your documents, price list and past calls (or it answers on its own), and after the call it produces decisions, commitments and a follow-up email; past calls stay searchable on the Mac. The Everything tier adds Invisibility — its window does not appear in screen shares or recordings.</p>
+            <p><strong>What it costs:</strong> Verified on tellpip.eu pricing (read November 4, 2026): free trial of 5 sessions of up to 10 minutes, no card. Solo $25/month + tax — with Invisibility and Real-time answers as separate add-ons at +$19/month each. Everything is a launch price of $39/month + tax, rising to $59/month after the promo (locked in only if you subscribe during the launch). A no-subscription 5-hour pack is $39 one-off at launch ($49 after), valid 90 days.</p>
+            <p><strong>The catch:</strong> The headline price is expiring promo pricing — Everything jumps from $39 to $59 — and on Solo the two features that make TellPip distinctive are $19/month add-ons each. It is Mac-only (Apple Silicon, macOS 14.2 or later), and a tool designed to be invisible to the other side of a call, recordings included, carries an obvious consent and disclosure risk.</p>
+            <p><strong>Fit:</strong> SKIP IT — Freddie has no client-call load to be whispered through, his follow-up work already runs through Muse, the ready-made modes lean toward sales calls (outreach-adjacent), and $25–$59/month fails the debt-first cost rule. NoteOwl, briefed November 4, already covers the honest half of this job (private on-device notes) at a one-time $79 with no whisper layer.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="krev-ai" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>KREV AI</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">Krev · Briefed Nov 4, 2026</p>
+        <p class="at-what">A team of named AI "employees" that runs an ecommerce brand end to end — research, creative, ads, social, store edits and email; "KREV AI: An AI team that runs your ecommerce brand" (KREV 2.0) launched on Product Hunt on November 4, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on krev.ai/pricing (read November 4, 2026): Starter $49/mo with only Scout + Luna, 100 credits/mo and 25 products; Team $198/mo with all AI employees and 250 credits/mo; Grow $398/mo with 500 credits/mo; Enterprise custom. Credits are spent only on image/video generation and reset every billing cycle; full commercial rights are included on paid plans.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A team of named AI "employees" that runs an ecommerce brand end to end — research, creative, ads, social, store edits and email; "KREV AI: An AI team that runs your ecommerce brand" (KREV 2.0) launched on Product Hunt on November 4, 2026.</p>
+            <p><strong>Who's behind it:</strong> Krev (krev.ai); no company, funding or team facts were verified beyond its own site.</p>
+            <p><strong>What it does:</strong> Verified on krev.ai and its pricing page: Scout tracks competitor ads (Krev's Ad Library is its claim of over 1 million analysed ads), Luna makes product photos and videos, Kai plans and buys Meta/TikTok media, Chloe posts social content, Toshi edits your Shopify store (drafts shown for your approval before anything goes live, per its own page), Max works on search and AI answers, and Rue sends customer email (5,000 emails/mo on Team, 25,000 on Grow). MCP access for Claude/Codex arrives only on Team and above.</p>
+            <p><strong>What it costs:</strong> Verified on krev.ai/pricing (read November 4, 2026): Starter $49/mo with only Scout + Luna, 100 credits/mo and 25 products; Team $198/mo with all AI employees and 250 credits/mo; Grow $398/mo with 500 credits/mo; Enterprise custom. Credits are spent only on image/video generation and reset every billing cycle; full commercial rights are included on paid plans.</p>
+            <p><strong>The catch:</strong> The full "team" is $198/month — Starter at $49 is a funnel holding two of the seven agents — and the operating model hands an agent your ad accounts and your customer email list, which is outbound marketing at scale run by a broker, not per-service least-privilege access.</p>
+            <p><strong>Fit:</strong> SKIP IT — run through the D.E.A.L. gate, it fails: Demand exists only at Freddie's current scale of five Etsy packs with no Shopify brand operation for a seven-agent team to run; Edge is none over his existing pipeline; and $49–$398/month against the debt-first cost rule is disqualifying on its own. An agent that sends customer email and buys ads also sits outside his product/inbound-only posture. Nothing to revisit unless a real store operation appears.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="kling-4-0" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Kling 4.0</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Kuaishou / Kling AI · Briefed Nov 4, 2026</p>
+        <p class="at-what">The fourth generation of Kling's text- and image-to-video model — longer, more controllable AI video in one pass; it became available to everyone on October 15, 2026 and was launching on Product Hunt on November 4, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Kling's own membership page did not render its prices in this check, so treat these as secondary summaries of that official page, consistently reported in October 2026 checks: Basic $0 with no monthly credits and no commercial use; Standard $8.80/mo ($6.99 first month) with 660 credits/mo; Pro $32.56/mo ($25.99 first month) with 3,000 credits/mo; higher Premier/Ultra tiers above that. Subscription credits expire after 31 days, per those summaries.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> The fourth generation of Kling's text- and image-to-video model — longer, more controllable AI video in one pass; it became available to everyone on October 15, 2026 and was launching on Product Hunt on November 4, 2026.</p>
+            <p><strong>Who's behind it:</strong> Kuaishou, the Chinese short-video company behind Kwai, through its Kling AI platform (kling.ai).</p>
+            <p><strong>What it does:</strong> Verified on kling.ai's own release notes and Kling 4.0 user guide: native 3–30-second generation (up from 15 seconds in 3.0), 720p / 1080p / 4K, Omni Reference combining up to 15 reference assets (images, videos, elements, including a specified voice), up to 10 keyframe inputs, stereo audio, more stable complex motion and targeted edits to existing footage, inside the Canvas workspace alongside Image 3.0.</p>
+            <p><strong>What it costs:</strong> Kling's own membership page did not render its prices in this check, so treat these as secondary summaries of that official page, consistently reported in October 2026 checks: Basic $0 with no monthly credits and no commercial use; Standard $8.80/mo ($6.99 first month) with 660 credits/mo; Pro $32.56/mo ($25.99 first month) with 3,000 credits/mo; higher Premier/Ultra tiers above that. Subscription credits expire after 31 days, per those summaries.</p>
+            <p><strong>The catch:</strong> Credits are the real meter and Kling does not publish a Kling 4.0 per-second credit rate on its public pricing pages (third-party checks of the generator report 10 credits/sec at 720p and 15/sec at 1080p — their claim); the free tier carries no commercial rights, 4K / 10-bit HDR items are marked "coming soon" in Kling's own guide, and its API still lists 4.0 as coming soon.</p>
+            <p><strong>Fit:</strong> TRACK IT — 30-second controllable clips with reference pinning is directly relevant to Freddie's video work, and the Standard entry is cheap, but his video route runs through Meta AI by his settled judgment, all video series are held since November 2, 2026, and there is no proven bottleneck a second paid video model solves today. Signal only, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="videco" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Videco</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Videco · Briefed Nov 4, 2026</p>
+        <p class="at-what">An AI content studio plus video hosting workspace that turns one long recording into branded short-form clips and a campaign; it launched on Product Hunt on November 3, 2026 (#5 Product of the Day).</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on videco.io/pricing (read November 4, 2026 — this supersedes older third-party listings quoting €19/€79 plans): 7-day free trial, no card required, 500 MB storage / 10-min duration; Pro $9.99/mo (2 TB storage, 5-hr duration, API access, captions and AI transcription); Business $49/mo (4 TB, custom domain, 100 AI credits/mo included).</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An AI content studio plus video hosting workspace that turns one long recording into branded short-form clips and a campaign; it launched on Product Hunt on November 3, 2026 (#5 Product of the Day).</p>
+            <p><strong>Who's behind it:</strong> Videco (videco.io), founded 2023 in the Netherlands per directory listings of the company.</p>
+            <p><strong>What it does:</strong> Verified on videco.io: AI finds standout moments in demos, webinars and recordings, turns them into captioned, branded short-form clips, and you host, embed and measure everything in the same workspace, with personalised landing pages and lead capture, client review links on a magic link, and copy repurposing alongside the clips.</p>
+            <p><strong>What it costs:</strong> Verified on videco.io/pricing (read November 4, 2026 — this supersedes older third-party listings quoting €19/€79 plans): 7-day free trial, no card required, 500 MB storage / 10-min duration; Pro $9.99/mo (2 TB storage, 5-hr duration, API access, captions and AI transcription); Business $49/mo (4 TB, custom domain, 100 AI credits/mo included).</p>
+            <p><strong>The catch:</strong> AI credits are split from hosting: Pro includes no AI credits at all — Content Studio actions (generating a project, preparing a short, rewriting copy) need packs at 100 credits for $9 bought in-app — and only Business includes credits (100/mo, resetting each period). Hitting the monthly bandwidth cap puts a playback wall up until the next month or an upgrade.</p>
+            <p><strong>Fit:</strong> TRACK IT — the repurpose-one-recording shape matches Freddie's clip workflow and Pro at $9.99/mo is a low entry, but his clips already run through his existing pipeline, all video series are held, and the AI work he would actually use sits behind credit packs on top of the subscription. Note it; no purchase.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="noteowl" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>NoteOwl</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">NoteOwl · Briefed Nov 4, 2026</p>
+        <p class="at-what">A private AI meeting note-taker and dictation app for Mac that runs entirely on your own computer — no bot joins the call and nothing is uploaded; it launched on Product Hunt on November 3, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on noteowl.ai: dictation is free, unlimited, forever, with no account. NoteOwl Pro — meeting notes, transcription imports, chat and memory, action items, voice rewriting and custom vocabulary — is $79 lifetime for one Mac, no subscription, with a 7-day free trial in the app and no card.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A private AI meeting note-taker and dictation app for Mac that runs entirely on your own computer — no bot joins the call and nothing is uploaded; it launched on Product Hunt on November 3, 2026.</p>
+            <p><strong>Who's behind it:</strong> NoteOwl (noteowl.ai); no company, funding or team facts were verified beyond the maker's own site.</p>
+            <p><strong>What it does:</strong> Verified on noteowl.ai: it records your microphone and your Mac's audio from Zoom, Google Meet, Teams and other apps, then writes a speaker-labelled transcript, summary, decisions and action items on-device, builds a searchable memory of every meeting you can chat with, and tracks commitments with owners and due dates. Dictation is separate and free: tap fn and your words type live at the cursor in any app, with a per-app tone, Polish / Shorten / Clarify, and your raw words kept beside the polished version.</p>
+            <p><strong>What it costs:</strong> Verified on noteowl.ai: dictation is free, unlimited, forever, with no account. NoteOwl Pro — meeting notes, transcription imports, chat and memory, action items, voice rewriting and custom vocabulary — is $79 lifetime for one Mac, no subscription, with a 7-day free trial in the app and no card.</p>
+            <p><strong>The catch:</strong> Mac only, and a demanding one: macOS 26 or later, Apple Silicon (M1 or newer), 16 GB memory minimum (24 GB recommended), and about an 8 GB one-time model download. There is no Windows, iPhone or iPad version at launch.</p>
+            <p><strong>Fit:</strong> TRACK IT — the on-device, no-bot, no-upload design is the least-privilege pattern in its purest form and a one-time $79 licence beats a subscription under the cost rule, but it only pays on a Mac meeting workflow and Freddie has no proven meeting-notes bottleneck today — his follow-up work already runs through Muse. Note the pattern; no purchase.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="cedric-ai" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>Cedric AI</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">Cedric · Briefed Nov 4, 2026</p>
+        <p class="at-what">An AI teammate that lives in Slack, Telegram or Discord, joins Zoom / Meet / Teams calls, presents your slides for you, and does follow-up work across connected tools; "Cedric AI for Meetings" launched on Product Hunt on November 2, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on meet-cedric.com: sign-up is free with 100,000 credits ($50 of work), no card needed, with a launch offer of an extra $50 using code PRODUCTHUNT2026. No paid plan prices are published on Cedric's own site as of this check, so what sustained use costs is unverified, not free.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An AI teammate that lives in Slack, Telegram or Discord, joins Zoom / Meet / Teams calls, presents your slides for you, and does follow-up work across connected tools; "Cedric AI for Meetings" launched on Product Hunt on November 2, 2026.</p>
+            <p><strong>Who's behind it:</strong> Cedric (meet-cedric.com), built in Zurich, Switzerland, per its own site, which also states GDPR compliance and that data is never sold or used to train models — their claim.</p>
+            <p><strong>What it does:</strong> Verified on meet-cedric.com: brief him beforehand and he joins the call, shares and presents the deck, answers questions from your connected context and a Company Brain you teach him, then posts notes, decisions and proposed follow-ups for your review; beyond meetings he runs automations, scheduling, reports and deliverables across Gmail, Calendar, Stripe, GitHub, Notion, Drive and "3,000 more" tools, asks before anything risky or outward, and logs every action.</p>
+            <p><strong>What it costs:</strong> Verified on meet-cedric.com: sign-up is free with 100,000 credits ($50 of work), no card needed, with a launch offer of an extra $50 using code PRODUCTHUNT2026. No paid plan prices are published on Cedric's own site as of this check, so what sustained use costs is unverified, not free.</p>
+            <p><strong>The catch:</strong> No published paid pricing means it cannot pass the cost rule today; every action burns credits, so the free $50 is a funnel, not a price; and the shape is one broker agent holding connections to thousands of tools — the opposite of per-service, revocable, least-privilege access — with its own homepage example built around booking calls with new leads, which is outreach.</p>
+            <p><strong>Fit:</strong> SKIP IT — Freddie is a solo operator with no deck-presenting meeting load, his agent-teammate job is already done by Muse/Huxley with approval gates, and a credit-metered agent pitching lead booking fails both the no-outreach rule and the cost rule. Nothing to revisit unless paid pricing is published and a real meeting bottleneck appears.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="beacon" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>Beacon</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">Asymptote Labs · Briefed Nov 4, 2026</p>
+        <p class="at-what">A free, open-source memory layer for AI coding agents — it captures session history across coding tools and turns corrections and debugging patterns into reusable knowledge; it hit #1 on Product Hunt (launch post November 3, 2026, for the previous day's launch).</p>
+        <p class="at-cost"><strong>Cost:</strong> $0 — Beacon itself is free and open source under MIT. Asymptote's revenue is a separate enterprise platform built on top of it (hosted visibility, policy controls and investigations, offered on request, no public price), per its launch coverage.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A free, open-source memory layer for AI coding agents — it captures session history across coding tools and turns corrections and debugging patterns into reusable knowledge; it hit #1 on Product Hunt (launch post November 3, 2026, for the previous day's launch).</p>
+            <p><strong>Who's behind it:</strong> Asymptote Labs, a New York startup co-founded by former Doppel engineers Justin D'Souza and Shukan Shah, per its own announcement of a $5.5 million seed round (October 20, 2026) led by Tower Research Ventures, with Lytical Ventures, 1984 Ventures and South Park Commons participating.</p>
+            <p><strong>What it does:</strong> Verified on Asymptote's own GitHub repo (github.com/Asymptote-Labs/agent-beacon, MIT licence): it captures prompts, responses, tool calls, commands, file activity, approvals, MCP interactions and token usage from Claude Code, Cursor, Codex, OpenCode, Cline and 20+ other harnesses, normalises them into one OpenTelemetry-based trace in local JSONL, reviews and extracts useful patterns, and makes approved knowledge retrievable by future agents through MCP or Agent Skills, with a local read-only dashboard.</p>
+            <p><strong>What it costs:</strong> $0 — Beacon itself is free and open source under MIT. Asymptote's revenue is a separate enterprise platform built on top of it (hosted visibility, policy controls and investigations, offered on request, no public price), per its launch coverage.</p>
+            <p><strong>The catch:</strong> The interactive installer is the trap to read carefully: setup signs you in through beacon.sh and preselects Beacon Cloud — signing in forwards nothing, but confirming that preselected option starts forwarding your session history to Asymptote Labs; Local is the explicit opt-out (all stated plainly in its own README). Coverage also varies by harness, with gaps in its own support table.</p>
+            <p><strong>Fit:</strong> SKIP IT the install — the local-first, reviewed-memory pattern is sound and mirrors Freddie's own memory system, but it serves coding harnesses he does not run (settled October 21, 2026: Muse is his coding layer, no Claude Code / Cursor / Codex stack to remember across), so there is nothing for it to capture today. Pattern noted; no install.</p>
+          </div>
+        </details>
+      </article>
       <article class="at-card" id="riverside-agents" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Riverside Agents</h2>
