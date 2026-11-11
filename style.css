@@ -292,3 +292,7 @@ section > h2, .about > h2 {
 .footer-nav { margin: 0 0 0.75rem; }
 .footer-nav a { color: var(--blue); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
 .footer-nav a:hover, .footer-nav a:focus { text-decoration: underline; }
+
+/* Cast intro strip (homepage, under the hero) */
+.cast-strip { max-width: 1024px; margin: 0 auto; padding-top: 0; }
+.cast-strip img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
