@@ -69,18 +69,218 @@
       <img class="at-art" src="/assets/ai-tool-briefs.webp" width="2048" height="1152" alt="Illustration of Freddie Avalos in his bright green glasses, hand to his forehead, overwhelmed by a huge holographic list of AI tools stamped TRACK, SKIP and USE, presented by Huxley, a red octopus wearing silver headphones">
       <div class="at-intro">
         <p>What it is. Who's behind it. What it does. What it costs. What the catch is. And whether it earns a place in a real working stack. Every price below was checked on the maker's own site — never the launch post, never the ad — and every verdict is graded against the tools that actually run Honed Signal today: <strong>USE IT</strong>, <strong>TRACK IT</strong>, or <strong>SKIP IT</strong>.</p>
-        <p>60 tools briefed so far, newest first. The list grows as new briefs land — if a tool isn't here, it hasn't been checked yet.</p>
+        <p>70 tools briefed so far, newest first. The list grows as new briefs land — if a tool isn't here, it hasn't been checked yet.</p>
       </div>
       <p class="at-byline">Research by Muse · Edited by Freddie Avalos</p>
 
       <div class="at-filters" role="group" aria-label="Filter briefs by verdict">
-        <button type="button" class="at-filter" data-filter="all" aria-pressed="true">All · 60</button>
+        <button type="button" class="at-filter" data-filter="all" aria-pressed="true">All · 70</button>
         <button type="button" class="at-filter" data-filter="USE" aria-pressed="false">USE IT · 0</button>
-        <button type="button" class="at-filter" data-filter="TRACK" aria-pressed="false">TRACK IT · 43</button>
-        <button type="button" class="at-filter" data-filter="SKIP" aria-pressed="false">SKIP IT · 17</button>
+        <button type="button" class="at-filter" data-filter="TRACK" aria-pressed="false">TRACK IT · 52</button>
+        <button type="button" class="at-filter" data-filter="SKIP" aria-pressed="false">SKIP IT · 18</button>
       </div>
       <p class="at-empty" id="at-empty">Nothing here yet. No tool has earned a USE IT verdict — the bar is a working stack that already does the job, and a new tool has to beat it, not just demo well.</p>
 
+      <article class="at-card" id="nod-by-n8n" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Nod by n8n</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">n8n Labs · Briefed Nov 11, 2026</p>
+        <p class="at-what">An open-source personal agent with its own computer — a local sandbox and browser that finishes jobs in your apps and on websites instead of handing you a to-do list; n8n Labs released it as a research preview on November 10, 2026, and it took #1 Product of the Day on Product Hunt on November 11, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on blog.n8n.io (read November 11, 2026): Nod is open source under Apache 2.0 and free. You pay your model provider for the AI you use (API key or your ChatGPT plan), or connect an open-source model running on your own computer at no model cost. Cost guardrails are built in: a receipt per finished task, a settable monthly spending limit, a check-in once a task passes $5 (adjustable), and an estimated monthly cost per schedule.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An open-source personal agent with its own computer — a local sandbox and browser that finishes jobs in your apps and on websites instead of handing you a to-do list; n8n Labs released it as a research preview on November 10, 2026, and it took #1 Product of the Day on Product Hunt on November 11, 2026.</p>
+            <p><strong>Who's behind it:</strong> n8n Labs, a new team within n8n experimenting outside the core product; announced in n8n's own post, "Meet Nod: a standalone personal agent from n8n Labs that runs on your computer," on blog.n8n.io (November 10, 2026). Nod is standalone — separate from n8n, and no n8n account is needed.</p>
+            <p><strong>What it does:</strong> Verified on blog.n8n.io: it works in connected apps (Gmail, Calendar, Drive and Slack) and on websites with no integration, runs several jobs in parallel and on schedules, and is reachable in the app or over Telegram or WhatsApp. It remembers months of conversation (93.2% on LongMemEval is n8n's figure), writes down how it did a task and reuses those notes, and logs every sign-in, card use and action with what each task cost. Before it sends, pays, posts or deletes anything you didn't ask for, a separate check confirms you asked for it, and a web page or email cannot give it orders; saved logins and cards are encrypted on your machine and entered through forms the model can't read.</p>
+            <p><strong>What it costs:</strong> Verified on blog.n8n.io (read November 11, 2026): Nod is open source under Apache 2.0 and free. You pay your model provider for the AI you use (API key or your ChatGPT plan), or connect an open-source model running on your own computer at no model cost. Cost guardrails are built in: a receipt per finished task, a settable monthly spending limit, a check-in once a task passes $5 (adjustable), and an estimated monthly cost per schedule.</p>
+            <p><strong>The catch:</strong> It is a research preview, and n8n says so plainly: the permission check is itself a model and can make mistakes, and some early testers found tasks cost more than they expected. It stops when the laptop it runs on sleeps (a hosted version is roadmap, not shipped), each installation has one owner, and it cannot make phone calls.</p>
+            <p><strong>Fit:</strong> TRACK IT — the shape matches Freddie's rules unusually well (open source, bring-your-own model, approval before anything irreversible, cost receipts and caps), but Muse already is his personal agent with his accounts, memory and schedules, so Nod today is a duplicate stack, not a gap filled. Worth knowing exists if a local, self-hosted agent is ever wanted; no install, no switch.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="scribe-v3-and-scribe-v3-live" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Scribe v3 and Scribe v3 Live</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">ElevenLabs · Briefed Nov 11, 2026</p>
+        <p class="at-what">ElevenLabs' new speech-to-text models — Scribe v3 for recorded audio and Scribe v3 Live for realtime streams; ElevenLabs launched both on November 10, 2026, and Scribe v3 was in Product Hunt's November 11, 2026 launches.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on elevenlabs.io/pricing/api (read November 11, 2026): Scribe v3 is $0.20 per audio hour and Scribe v3 Live is $0.22 per audio hour, the same rate on every plan; keyterm prompting adds $0.05 per hour (batch) or $0.08 (realtime), the v3 Live keyterm library adds $0.08 per hour, and transcript editing adds $0.07 / $0.12. Included hours run from 4.5 batch / 2.5 realtime hours on Free / Pay as you go up through the paid plans (Starter $6/mo, Creator $22/mo, Pro $99/mo, Scale $299/mo, Business $990/mo). Prices exclude taxes.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> ElevenLabs' new speech-to-text models — Scribe v3 for recorded audio and Scribe v3 Live for realtime streams; ElevenLabs launched both on November 10, 2026, and Scribe v3 was in Product Hunt's November 11, 2026 launches.</p>
+            <p><strong>Who's behind it:</strong> ElevenLabs; the model figures below are ElevenLabs' own, from its API pricing page (read November 11, 2026) and its launch documentation as reported in launch coverage.</p>
+            <p><strong>What it does:</strong> Verified on elevenlabs.io/pricing/api: Scribe v3 is billed as its most accurate speech recognition model, with 27% fewer errors than Scribe v2 (ElevenLabs' figure), its lowest tested diarization error, and number formatting and language hints; Scribe v3 Live is its most accurate realtime model, with 43% fewer errors than v2 Realtime (ElevenLabs' figure), improved turn detection, a keyterm library and multilingual mode, and availability in ElevenAgents. Per launch coverage of ElevenLabs' documentation, v3 is the default transcriber in the ElevenLabs app, both models are in ElevenAPI (switch by model ID, `scribe_v3` / `scribe_v3_live`), with a 5 GB file cap, a 15-hour duration limit and diarization for up to 32 speakers, running in the US by default with isolated EU, India and Singapore environments.</p>
+            <p><strong>What it costs:</strong> Verified on elevenlabs.io/pricing/api (read November 11, 2026): Scribe v3 is $0.20 per audio hour and Scribe v3 Live is $0.22 per audio hour, the same rate on every plan; keyterm prompting adds $0.05 per hour (batch) or $0.08 (realtime), the v3 Live keyterm library adds $0.08 per hour, and transcript editing adds $0.07 / $0.12. Included hours run from 4.5 batch / 2.5 realtime hours on Free / Pay as you go up through the paid plans (Starter $6/mo, Creator $22/mo, Pro $99/mo, Scale $299/mo, Business $990/mo). Prices exclude taxes.</p>
+            <p><strong>The catch:</strong> The accuracy figures are ElevenLabs' own internal evaluations (its FLEURS run), not independent tests, and it is cloud-only transcription — your audio leaves your machine, with region and retention terms to check per use. Launch-week teething is already visible: incident trackers recorded a Scribe v3 Live outage of about two hours on November 11, 2026.</p>
+            <p><strong>Fit:</strong> TRACK IT — twenty cents an hour, pay-as-you-go with no subscription required, from a provider Freddie already has connected for voice work, is exactly his cost shape, and realtime speaker labels are a real step for call and meeting audio. But he has no standing transcription bottleneck today — his audio workflow generates speech rather than transcribing it — so there is nothing to change. Note the rate; it is the new price to beat for transcription.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="minimax-h3-image" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>MiniMax H3-Image</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">MiniMax · Briefed Nov 11, 2026</p>
+        <p class="at-what">MiniMax's image generation and editing model built on its H3 video model — its headline is a 16-megapixel (4K) image in a claimed 10 to 20 seconds, with open weights; MiniMax announced it on November 10, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Per MiniMax's own price list as reported in that coverage (read November 10, 2026): token billing — standard model $2.30 per million input text tokens, $1.50 per million input image tokens and $3.80 per million output image tokens (Highspeed doubles the image rates); MiniMax's example costs are $0.02179 for a 1K image and $0.06879 for a 4K image, with 4K at half price until November 17, 2026 — an expiring launch discount. The examples are expressly not fixed per-image prices, and a request that times out is still charged, per the guide.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> MiniMax's image generation and editing model built on its H3 video model — its headline is a 16-megapixel (4K) image in a claimed 10 to 20 seconds, with open weights; MiniMax announced it on November 10, 2026.</p>
+            <p><strong>Who's behind it:</strong> MiniMax; announced in its own post on X (November 10, 2026), with its API guide and price list on platform.minimax.io — the details below are from launch coverage that read those MiniMax pages and the Hugging Face model card on November 10, 2026.</p>
+            <p><strong>What it does:</strong> Per MiniMax's API guide as reported in that coverage: text-to-image and image editing from 1 to 16 reference images, output at any size up to 20 million pixels (1K, 2K and 4K presets, 4K the default), in JPEG, PNG or WebP, through MiniMax's API, MiniMax Code and Hailuo AI. The guide lists three things as not supported: preview images, masked edits and transparent backgrounds — and image edits always go through prompt rewriting, which cannot be turned off.</p>
+            <p><strong>What it costs:</strong> Per MiniMax's own price list as reported in that coverage (read November 10, 2026): token billing — standard model $2.30 per million input text tokens, $1.50 per million input image tokens and $3.80 per million output image tokens (Highspeed doubles the image rates); MiniMax's example costs are $0.02179 for a 1K image and $0.06879 for a 4K image, with 4K at half price until November 17, 2026 — an expiring launch discount. The examples are expressly not fixed per-image prices, and a request that times out is still charged, per the guide.</p>
+            <p><strong>The catch:</strong> The weights are public (33.1 billion parameters, about 68.65 GB on Hugging Face) but under MiniMax's own community license, which excludes the United States, the European Union, the United Kingdom and South Korea outright — people there are told to seek a separate license — and requires written authorization above $1 million in annual revenue or for any hosted service. There is also no benchmark and no hardware named behind the 10-to-20-second claim; every performance figure is MiniMax's own.</p>
+            <p><strong>Fit:</strong> SKIP IT — the license excludes the country Freddie works in, and the two capabilities his artwork pipeline depends on most are the two it does not have: no transparent backgrounds (his badge standard is a transparent cutout) and no masked edits (his fixes are deterministic masked composites, not whole-frame re-rolls, and edits here force prompt rewriting). A two-cent 1K image does not cure either. Nothing to revisit unless the US license and the transparency/masking gaps both change.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="claude-sheets-claude-whiteboards-and-claude-data" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Claude Sheets, Claude Whiteboards and Claude Data</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Anthropic · Briefed Nov 11, 2026</p>
+        <p class="at-what">Three new workspaces inside Claude — a spreadsheet and a shared whiteboard Claude builds with you, plus dashboards renamed Claude Data; Anthropic introduced them on November 10, 2026, with Sheets and Whiteboards in beta and Claude Data generally available.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on claude.com/pricing (read November 11, 2026): no separate price — the Pro card lists "Claude Data, plus Sheets and Whiteboards (beta)" as included. Pro is $20/mo billed monthly or $17/mo with the annual discount ($200 billed up front); Max $100/mo and Ultra $200/mo sit above it. The Free plan does not include them.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Three new workspaces inside Claude — a spreadsheet and a shared whiteboard Claude builds with you, plus dashboards renamed Claude Data; Anthropic introduced them on November 10, 2026, with Sheets and Whiteboards in beta and Claude Data generally available.</p>
+            <p><strong>Who's behind it:</strong> Anthropic, in its own post, "More ways to work with Claude: Sheets, Whiteboards, and Interactive Connectors," on claude.com (November 10, 2026).</p>
+            <p><strong>What it does:</strong> Verified on claude.com: in Claude Sheets, you and Claude build spreadsheets together across multiple tabs, organizing data and creating and editing formulas; Claude Whiteboards is a shared board for laying out ideas in a meeting, which Claude can then summarize; Claude Data (formerly Dashboards) connects to tools such as Snowflake and Salesforce and uses definitions your data team certifies (that part still beta) to create dashboards, visual data stories or narrated short videos. The same context carries from a whiteboard to a spreadsheet to a dashboard without re-explaining, and the same launch upgrades interactive connectors so partner apps such as Adobe and Atlassian open inside Claude. Claude Meetings — Claude joining a call to take notes — was announced the same day as coming soon; it has not launched.</p>
+            <p><strong>What it costs:</strong> Verified on claude.com/pricing (read November 11, 2026): no separate price — the Pro card lists "Claude Data, plus Sheets and Whiteboards (beta)" as included. Pro is $20/mo billed monthly or $17/mo with the annual discount ($200 billed up front); Max $100/mo and Ultra $200/mo sit above it. The Free plan does not include them.</p>
+            <p><strong>The catch:</strong> Both headline tools are beta and rolling out gradually — independent launch-day checks found paid accounts where Sheets had not arrived yet — and Sheets is deliberately simple for now (Anthropic's documentation, as reported in launch coverage, caps a sheet at 100,000 cells with 144 functions; no macros or Power Query class features). Anything built in them lives inside Claude's app and plans.</p>
+            <p><strong>Fit:</strong> TRACK IT — a spreadsheet Claude builds from a prompt is adjacent to Freddie's money work, and if he ever holds a Claude plan for another reason these ride along at no extra cost — the same logic as Personal Finance in Claude (briefed November 6, 2026). Today he holds no Claude consumer plan, his agent work runs through Muse, and $20/mo for a beta spreadsheet fails the debt-first cost rule. Signal only, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="rigspark" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>RigSpark</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">RigSpark · Briefed Nov 11, 2026</p>
+        <p class="at-what">A free app that solves the first problem of local AI — it reads your memory, graphics card and disk, tells you which open models will actually run on your machine, and then runs them for you, offline; it launched on Product Hunt on November 10, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on docs.rs and its Product Hunt listing: free — "RigSpark Community is free, MIT-licensed and built in the open" — with no account, no cloud and nothing metered. The real costs are the hardware you already own and the model downloads themselves.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A free app that solves the first problem of local AI — it reads your memory, graphics card and disk, tells you which open models will actually run on your machine, and then runs them for you, offline; it launched on Product Hunt on November 10, 2026.</p>
+            <p><strong>Who's behind it:</strong> The RigSpark community project (github.com/rigspark/rigspark); its Product Hunt launch post and its documentation page on docs.rs are the sources below. Its "38 releases since August 2026" figure is the maker's own, from the launch post.</p>
+            <p><strong>What it does:</strong> Verified on docs.rs (the rigspark-cli documentation, read November 11, 2026): every model gets a yes / slow / no verdict for your RAM and GPU with the reason, plus its download size and memory need before you download; you can paste any Hugging Face repository and it sizes each version and picks the largest that fits. It then runs chat with open models such as Llama, Qwen, Gemma and DeepSeek fully offline, plus images, short video and voice in the same window, through Ollama, llama.cpp, MLX, LM Studio or BitNet, and can point Claude Code, Codex or OpenCode at your local model. Its own trust notes: its servers listen only on 127.0.0.1, it sends no usage data, model files must match a pinned SHA-256 digest before they run, and the signed model catalog changes only when you choose to update it.</p>
+            <p><strong>What it costs:</strong> Verified on docs.rs and its Product Hunt listing: free — "RigSpark Community is free, MIT-licensed and built in the open" — with no account, no cloud and nothing metered. The real costs are the hardware you already own and the model downloads themselves.</p>
+            <p><strong>The catch:</strong> There is no Linux desktop app yet (Linux uses the command line and a browser window), the Windows installer is not code-signed yet so SmartScreen warns (the Mac app is signed and notarized), image and video setup on Windows needs your own ComfyUI, and its speed figures are estimates, not benchmarks — a limit RigSpark itself states.</p>
+            <p><strong>Fit:</strong> TRACK IT — the least-privilege shape done completely: local-only, no account, no telemetry, verified downloads, and a $0 price that passes the cost rule outright; the fit-check alone would save the classic wasted 30 GB download. But Freddie's production work runs on Muse as his agent, no local-model workload is proven in his stack today, and briefs install nothing. Note it as the standing answer if a local or offline model need ever becomes real.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="claude-fable-5-2-and-claude-mythos-5-2" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Claude Fable 5.2 and Claude Mythos 5.2</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Anthropic · Briefed Nov 9, 2026</p>
+        <p class="at-what">Anthropic's most capable model pair for ambitious technical work — one underlying model sold two ways: Fable 5.2, generally available with cybersecurity and biology safeguards on, and Mythos 5.2, the same model with those safeguards adjusted, limited to vetted organizations; Anthropic introduced both on November 9, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on anthropic.com/claude/fable (read November 9, 2026): $8.00 per million input tokens and $40.00 per million output tokens, down from $10 / $50 for Fable 5.1; cache reads $0.20 per million; optional fast mode (up to 2.5× faster generation, Anthropic's figure) is $16 / $80. Mythos 5.2 is priced the same, per Anthropic's Mythos page.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Anthropic's most capable model pair for ambitious technical work — one underlying model sold two ways: Fable 5.2, generally available with cybersecurity and biology safeguards on, and Mythos 5.2, the same model with those safeguards adjusted, limited to vetted organizations; Anthropic introduced both on November 9, 2026.</p>
+            <p><strong>Who's behind it:</strong> Anthropic, in its own announcement, "Introducing Claude Fable 5.2 and Claude Mythos 5.2," on anthropic.com (November 9, 2026). All benchmark figures below are Anthropic's own.</p>
+            <p><strong>What it does:</strong> Verified on anthropic.com: improvements in coding, reasoning and vision over 5.1, output up to 30% faster than Fable 5.1 / Mythos 5.1 (Anthropic's figure), and it can act as Advisor (smaller models consult it) or Orchestrator (it delegates to smaller models). Anthropic's own table puts Fable 5.2 ahead of Opus 5.5 on almost every capability it evaluated — FrontierCode 2.0 49.1% vs 45.5%, FrontierSWE v2 69.9% vs 62.3% — and its launch stories (a Python-to-Rust production migration, three working electronic devices designed from scratch, a 1,000-agent formalization of Fermat's Last Theorem in 30 hours) are Anthropic's prerelease-testing accounts. Fable 5.2 is available to Pro, Max, Ultra, Team and Enterprise users and on the Claude Platform, AWS, Google Cloud and Microsoft Foundry as `claude-fable-5-2`; using Fable models requires 30-day data retention for safety monitoring by default, per Anthropic's own Fable page. Mythos 5.2 is not in the consumer plans: access is through the Cyber Verification Program or the Life Sciences Verification Program, or to Enterprise customers through Claude Security.</p>
+            <p><strong>What it costs:</strong> Verified on anthropic.com/claude/fable (read November 9, 2026): $8.00 per million input tokens and $40.00 per million output tokens, down from $10 / $50 for Fable 5.1; cache reads $0.20 per million; optional fast mode (up to 2.5× faster generation, Anthropic's figure) is $16 / $80. Mythos 5.2 is priced the same, per Anthropic's Mythos page.</p>
+            <p><strong>The catch:</strong> Anthropic itself tells most users not to start here: for most coding and knowledge work it recommends Opus 5.5, its daily driver, at half this price ($4 / $20 in its own comparison material) — Fable is the step up for the hardest, most open-ended work only. In the consumer route, flagged cybersecurity and biology queries are automatically routed away to less capable Opus models, and the 30-day retention default is a real data-terms change from ordinary use.</p>
+            <p><strong>Fit:</strong> TRACK IT — a genuine frontier step and a 20% price cut at the top tier, and the Advisor/Orchestrator pattern (a big model consulted or delegating, rather than doing every token itself) is the cost shape Freddie's stack already runs. But Freddie's agent work runs on Muse / Muse Wonder, he holds no Claude API spend for production work, and $8/$40 token pricing fails the debt-first cost rule for anything routine. Signal only, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="muse-ember" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Muse Ember</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Meta · Briefed Nov 9, 2026</p>
+        <p class="at-what">Meta's smallest and most efficient Muse model, built for the repetitive work agents do all day — tool calls, coding subtasks, routing, extraction and long-document parsing; Meta released it on November 9, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on research.meta.ai (read November 9, 2026): $0.10 per million input tokens, $0.004 per million cached input tokens and $0.50 per million output tokens. Note the headline token rates are not a price cut — they match Haiku 5.5's and GPT-6 Luna's standard short-context rates; Meta's claim is lower cost per finished task, not per token.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Meta's smallest and most efficient Muse model, built for the repetitive work agents do all day — tool calls, coding subtasks, routing, extraction and long-document parsing; Meta released it on November 9, 2026.</p>
+            <p><strong>Who's behind it:</strong> Meta (Meta Superintelligence Labs), in its own post, "Introducing Our Smallest, Most Efficient Model: Muse Ember," on research.meta.ai (November 9, 2026). Meta says Ember is the first model trained using Muse Wonder Full.</p>
+            <p><strong>What it does:</strong> Verified on research.meta.ai: natively multimodal (text, images, audio and video in), a 1M-token context window and up to 512K output tokens, available on the Meta Model API and in Muse Code as `muse-ember-1.0`, with Responses API support. On the Artificial Analysis Intelligence Index (November 9, 2026, cited by Meta) Ember scores 36 at max reasoning — the same as Claude Haiku 5.5's best — at about $0.14 per task against Haiku's $0.41, because it uses roughly a third as many tokens per job; the per-task figures are Meta's, computed at list pricing.</p>
+            <p><strong>What it costs:</strong> Verified on research.meta.ai (read November 9, 2026): $0.10 per million input tokens, $0.004 per million cached input tokens and $0.50 per million output tokens. Note the headline token rates are not a price cut — they match Haiku 5.5's and GPT-6 Luna's standard short-context rates; Meta's claim is lower cost per finished task, not per token.</p>
+            <p><strong>The catch:</strong> The weights are closed — unlike Muse Glimmer, Ember cannot be downloaded or self-hosted; it runs only through Meta's API and resellers, so the cheap rate is a meter you rent, not an asset you own. The efficiency claim also rests on token frugality measured on one benchmark suite; a workload where Ember burns as many tokens as its rivals costs the same as its rivals.</p>
+            <p><strong>Fit:</strong> TRACK IT — this is the cost curve Freddie's whole stack bets on: Haiku-class intelligence at about a third of the per-task cost is exactly the tier that runs high-volume agent grunt work, and it lands inside his own Muse family. But he does not buy Meta Model API capacity separately today — Muse is his agent — so there is nothing to purchase. Note the price point; it is the new floor for small-model agent work.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="seedream-5-5" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Seedream 5.5</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">ByteDance Seed · Briefed Nov 9, 2026</p>
+        <p class="at-what">ByteDance's next-generation image generation and editing model — its headline claims are edits that do not wear the picture down and images that come out with transparent backgrounds built in; ByteDance Seed released it on November 9, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> No public USD pricing page on ByteDance's own sites was located in this check, so there is no verified price. Chinese launch coverage puts a 2K edit at about 0.28 RMB (below some Seedream 5.0 Pro tiers) — that figure is reported coverage of ByteDance's pricing, labeled their claim, not a maker-published rate Freddie can be billed at today.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> ByteDance's next-generation image generation and editing model — its headline claims are edits that do not wear the picture down and images that come out with transparent backgrounds built in; ByteDance Seed released it on November 9, 2026.</p>
+            <p><strong>Who's behind it:</strong> ByteDance, through its Seed research team (seed.bytedance.com lists Seedream 5.5 as its current image model). Every performance figure below is ByteDance's own, from its launch material as reported in launch coverage — none is independently verified.</p>
+            <p><strong>What it does:</strong> Per ByteDance's own launch material: pixel-level preservation of unedited regions across multi-turn editing — demonstrated with 100 consecutive edits to one portrait, changing clothing, glasses, rings and tabletop items, with no color shift or detail loss in the untouched areas (a single vendor demo, not a test set); native RGBA output, so generated assets carry a real alpha channel (full or partial transparency) with no separate background-removal step; and sharper text, with a severe text-corruption rate of 0.4% and a minor rate of 1.7% in ByteDance's own MagicArena evaluation, where it also reports a +55.62% preference score for image-to-image realism over Seedream 5.0 Pro. Rollout is staged inside ByteDance's own properties — Jimeng, Doubao, Doubao Work and Volcengine Ark, with Dreamina, CapCut and BytePlus named in launch coverage — and a Pro version is promised, not out.</p>
+            <p><strong>What it costs:</strong> No public USD pricing page on ByteDance's own sites was located in this check, so there is no verified price. Chinese launch coverage puts a 2K edit at about 0.28 RMB (below some Seedream 5.0 Pro tiers) — that figure is reported coverage of ByteDance's pricing, labeled their claim, not a maker-published rate Freddie can be billed at today.</p>
+            <p><strong>The catch:</strong> The two headline capabilities rest on vendor evidence only: the 100-round claim is one demo portrait, and the comparison set ByteDance chose predates the newest rival image models (its named text-structure rival is GPT Image 2.5 Sunburst, superseded by 2.6 on November 4). Access today is through ByteDance's own apps and cloud, largely China-facing at launch, so a US creator cannot simply slot it into an existing pipeline yet.</p>
+            <p><strong>Fit:</strong> TRACK IT — no launch this run speaks more directly to Freddie's daily artwork pain: pixel-level preservation of unedited regions is the exact failure his Rio workflow works around with deterministic compositing, and native transparent output is his badge standard (transparent cutout, ruled November 9, 2026) generated instead of cut out by hand. But his house pipeline is locked (luminous storybook, Muse / Meta AI), the model is not reachable through a verified US price or his existing tools, and vendor demos are not a reason to move production. Watch for a Dreamina / CapCut or API arrival with published pricing.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="memorias" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Memorias</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Memorias · Briefed Nov 9, 2026</p>
+        <p class="at-what">An AI biographer that turns spoken life stories into a finished memoir book — you talk, it asks follow-ups, transcribes and assembles chapters in your own words; it launched on Product Hunt on November 9, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on memorias.io's pricing section (read November 9, 2026): no subscription — pay-per-use credits, 1 credit = $0.10, sold in packs of 100 ($10) with a minimum top-up of 200 ($20), taxes excluded. Standard: an hour of storytelling runs about 70–96 credits and assembly of a 150–200-page book from 204 credits, so a whole ~7-hour book starts from about 600 credits (~$60). Premium (deeper editing, same recordings): about 195–255 credits per hour and 410–590 for assembly, putting a whole ~7-hour book at about 1,700–2,500 credits (~$170–$250). Exact totals are estimated and confirmed before assembly, which never starts without your consent, per the site.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An AI biographer that turns spoken life stories into a finished memoir book — you talk, it asks follow-ups, transcribes and assembles chapters in your own words; it launched on Product Hunt on November 9, 2026.</p>
+            <p><strong>Who's behind it:</strong> Memorias (memorias.io); no company, funding or team facts were verified beyond its own site. Its Product Hunt listing states the book is built only from what you said — "nothing invented: every chapter is checked against what you actually said" — that no-invention check is the maker's claim.</p>
+            <p><strong>What it does:</strong> Verified on memorias.io: you record memories in any order, session by session; Memorias transcribes everything, maps the people, places and years into a life timeline, and assembles a structured, edited book of typically 50–100 pages (about 25,000–50,000 words), in the language you speak (interface in nine languages, books in 50+). Photos can be added, text input is supported on every paid plan, and you export to EPUB, PDF or DOCX and keep the book for good. Per its own FAQ, recordings and the book are private and ad-free and your words are never used to train AI models. A first story can be recorded free for a sample chapter, no card required.</p>
+            <p><strong>What it costs:</strong> Verified on memorias.io's pricing section (read November 9, 2026): no subscription — pay-per-use credits, 1 credit = $0.10, sold in packs of 100 ($10) with a minimum top-up of 200 ($20), taxes excluded. Standard: an hour of storytelling runs about 70–96 credits and assembly of a 150–200-page book from 204 credits, so a whole ~7-hour book starts from about 600 credits (~$60). Premium (deeper editing, same recordings): about 195–255 credits per hour and 410–590 for assembly, putting a whole ~7-hour book at about 1,700–2,500 credits (~$170–$250). Exact totals are estimated and confirmed before assembly, which never starts without your consent, per the site.</p>
+            <p><strong>The catch:</strong> The honest-billing shape hides a wide range: the same 7 hours costs ~$60 on Standard or up to ~$250 on Premium, and the final number depends on how talkative the narrator is and how much fact-checking the material triggers — you commit to a meter, not a price, even though the estimate is confirmed before assembly. And a life story is among the most personal data there is to hand a brand-new service; its no-training and privacy promises are its own statements.</p>
+            <p><strong>Fit:</strong> TRACK IT — the model is right (no subscription, pay only for work actually done, a free no-card sample, export-and-keep in open formats) and it sits adjacent to Freddie's own book work at Honed Flint, where turning spoken material into a finished book is a real production shape. But he has no memoir project in the line today, his books are children's titles built in-house at $0 tooling cost, and a ~$60–$250 metered book fails the cost rule without a named project or gift behind it. Note it; revisit if a family memoir ever becomes a real project.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="product-hunt-mcp" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Product Hunt MCP</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Product Hunt · Briefed Nov 9, 2026</p>
+        <p class="at-what">Product Hunt's official MCP server — it plugs Product Hunt into the AI assistants you already use, so launches can be researched and your own launch drafted from inside the chat; it launched on Product Hunt on November 9, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> No separate charge for the MCP server is listed on Product Hunt's own install page, and independent launch guides describe the official server as free to connect and use with a free Product Hunt account (guide claim, not a Product Hunt price list). The AI client you connect it from may itself be a paid plan — that cost is the client's, not the server's.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Product Hunt's official MCP server — it plugs Product Hunt into the AI assistants you already use, so launches can be researched and your own launch drafted from inside the chat; it launched on Product Hunt on November 9, 2026.</p>
+            <p><strong>Who's behind it:</strong> Product Hunt itself; the server and its install guide are on producthunt.com (producthunt.com/mcp/install), running remotely at mcp.producthunt.com.</p>
+            <p><strong>What it does:</strong> Verified on producthunt.com/mcp/install (read November 9, 2026): connect Claude, ChatGPT, Codex, Cursor, VS Code, Gemini CLI and other MCP clients over Streamable HTTP — sign in with Product Hunt, no API key or token to copy, nothing to install locally. In chat you can search launches, browse categories, pull leaderboards for any day, week, month or year, and read product profiles with makers, pricing type, ratings and review highlights, plus alternatives. Signed in, it also surfaces investable startups ranked by Product Hunt's Series A forecast (their ranking). On the maker side it can start a launch draft, add images, check for missing details, preview, and — only after you confirm the preview — submit, edit or reschedule; per Product Hunt's own FAQ, submitting, editing and rescheduling each start with a preview of the exact change and the server instructs the assistant to wait for your confirmation. Account access is scoped to your profile and the drafts and launches you can manage; disconnecting is removing the server from your AI tool's settings.</p>
+            <p><strong>What it costs:</strong> No separate charge for the MCP server is listed on Product Hunt's own install page, and independent launch guides describe the official server as free to connect and use with a free Product Hunt account (guide claim, not a Product Hunt price list). The AI client you connect it from may itself be a paid plan — that cost is the client's, not the server's.</p>
+            <p><strong>The catch:</strong> It is a broker connection by design: one sign-in lets an assistant read your Product Hunt profile and act on your drafts and launches. The preview-and-confirm gate is the safeguard and it is a server instruction to the assistant, not a hard technical block — the same always-allow caution Freddie applies to any connected tool applies here. It also only works in clients that support remote MCP with OAuth sign-in, so whether it fits a given assistant has to be checked client by client.</p>
+            <p><strong>Fit:</strong> TRACK IT — this is the discovery source behind this very scan, productized: live Product Hunt research inside the assistant, at no listed cost, with an approval-preview shape that matches Freddie's rules and a revocable OAuth sign-in instead of a copied token. It changes nothing today — this scan already reads Product Hunt directly, Freddie has no launch in flight, and briefs adopt nothing — but the next time he launches a product (a pack, a book, a scan tool), drafting and checking that launch from inside the chat is a real time save. Revisit at the next launch.</p>
+          </div>
+        </details>
+      </article>
       <article class="at-card" id="personal-finance-in-claude" data-verdict="TRACK">
         <div class="at-card-head">
           <h2>Personal Finance in Claude</h2>
