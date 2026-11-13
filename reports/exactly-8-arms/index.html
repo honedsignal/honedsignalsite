@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Exactly 8 Arms — Can AI Promise It? | Honed Signal</title>
+    <meta name="description" content="Which art tool can an AI agent actually drive — and can any of them promise an exact limb count? Plenty of tools can be driven. None of the generators can make the promise. Only a puppet rig can promise exactly 8 arms." />
+    <link rel="canonical" href="https://honedsignal.com/reports/exactly-8-arms/" />
+    <meta property="og:title" content="Exactly 8 Arms — Can AI Promise It? | Honed Signal" />
+    <meta property="og:description" content="Which art tool can an AI agent actually drive — and can any of them promise an exact limb count? The benchmarks, the vendors' own terms, and our own test on our own mascot." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://honedsignal.com/reports/exactly-8-arms/" />
+    <meta property="og:image" content="https://honedsignal.com/reports/exactly-8-arms/images/hero.webp" />
+    <meta property="og:image:width" content="1672" />
+    <meta property="og:image:height" content="941" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://honedsignal.com/reports/exactly-8-arms/images/hero.webp" />
+    <meta name="theme-color" content="#0B0E14" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f7f5f1;
+        --surface: #ffffff;
+        --surface-2: #efede8;
+        --ink: #14161c;
+        --ink-soft: #454a55;
+        --ink-faint: #6d7280;
+        --line: #d9d5cc;
+        --navy: #0b0e14;
+        --orange: #e04a1c;
+        --orange-strong: #c93e14;
+        --teal: #0d7a6e;
+        --teal-strong: #0a665c;
+        --hero-bg: #0b0e14;
+        --hero-ink: #f4f2ec;
+        --hero-soft: #b9bec9;
+        --hero-line: #2a2f3a;
+        --chart-grid: #d9d5cc;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0e14;
+          --surface: #12161f;
+          --surface-2: #171c27;
+          --ink: #f0eee8;
+          --ink-soft: #c3c8d2;
+          --ink-faint: #8b919e;
+          --line: #262c38;
+          --orange: #ff6b35;
+          --orange-strong: #ff6b35;
+          --teal: #2ec4b6;
+          --teal-strong: #2ec4b6;
+          --hero-bg: #07090d;
+          --hero-ink: #f4f2ec;
+          --hero-soft: #a7adba;
+          --hero-line: #222834;
+          --chart-grid: #262c38;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+        font-size: 18px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .sans { font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        background: var(--hero-bg);
+        color: var(--hero-ink);
+        padding: 56px 24px 48px;
+      }
+      .hero-inner { max-width: 880px; margin: 0 auto; }
+      .masthead {
+        display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+        color: var(--hero-soft);
+        border-bottom: 1px solid var(--hero-line);
+        padding-bottom: 18px; margin-bottom: 34px;
+      }
+      .masthead .brand { color: var(--hero-ink); font-weight: 600; font-size: 15px; letter-spacing: .02em; text-transform: none; }
+      .masthead .brand .dot { color: #ff6b35; }
+      .hero h1 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700; letter-spacing: -0.02em;
+        font-size: clamp(34px, 6.4vw, 58px); line-height: 1.06;
+        margin: 0 0 18px;
+      }
+      .hero h1 .q { color: #2ec4b6; }
+      .hero .dek {
+        font-size: clamp(18px, 2.6vw, 22px); line-height: 1.5;
+        color: var(--hero-soft); margin: 0 0 30px; max-width: 44em;
+      }
+      .verdict-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
+      .verdict-badge {
+        background: #ff6b35; color: #14100c;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        border-radius: 10px; padding: 14px 20px;
+        display: flex; flex-direction: column; justify-content: center;
+      }
+      .verdict-badge .big { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.01em; }
+      .verdict-badge .small { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-top: 5px; }
+      .verdict-note {
+        border: 1px solid var(--hero-line); border-radius: 10px;
+        padding: 14px 20px; flex: 1 1 300px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 15px; line-height: 1.5; color: var(--hero-soft);
+        display: flex; align-items: center;
+      }
+      .verdict-note strong { color: var(--hero-ink); }
+      .byline-row {
+        display: flex; flex-wrap: wrap; gap: 6px 22px;
+        margin-top: 26px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 14px; color: var(--hero-soft);
+      }
+      .byline-row strong { color: var(--hero-ink); font-weight: 600; }
+
+      /* ---------- Layout ---------- */
+      .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+      article { padding: 44px 0 8px; }
+      section { margin-bottom: 52px; }
+      h2 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 600; letter-spacing: -0.015em;
+        font-size: clamp(24px, 3.6vw, 32px); line-height: 1.2;
+        margin: 0 0 16px;
+      }
+      h3 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 600; letter-spacing: -0.01em;
+        font-size: clamp(19px, 2.6vw, 23px); line-height: 1.25;
+        margin: 34px 0 12px;
+      }
+      section > h3:first-of-type { margin-top: 26px; }
+      p { margin: 0 0 16px; }
+      p.lede { font-size: 20px; line-height: 1.6; }
+      strong { font-weight: 600; }
+      .accent-o { color: var(--orange-strong); }
+      .accent-t { color: var(--teal-strong); }
+
+      .hs-hero { margin: 0 0 44px; }
+      .hs-hero img {
+        display: block; width: 100%; height: auto;
+        aspect-ratio: 16 / 9;
+        border: 1px solid var(--line); border-radius: 12px;
+      }
+
+      .bottom-line {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-top: 4px solid var(--orange);
+        border-radius: 6px;
+        padding: 26px 28px;
+        margin-bottom: 52px;
+      }
+      .bottom-line .label {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 12.5px; font-weight: 700; letter-spacing: .14em;
+        text-transform: uppercase; color: var(--orange-strong);
+        margin-bottom: 10px;
+      }
+      .bottom-line p { margin: 0; font-size: 19px; line-height: 1.6; }
+      .bottom-line p + p { margin-top: 14px; }
+
+      ul.points { margin: 0 0 16px; padding-left: 22px; }
+      ul.points li { margin-bottom: 10px; }
+      ul.points li::marker { color: var(--teal-strong); }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 20px; padding: 30px 0 56px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+      }
+      footer .src-label { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+      footer .sources { font-size: 13.5px; line-height: 1.7; color: var(--ink-soft); }
+      footer .signoff { margin-top: 26px; font-size: 14px; color: var(--ink-soft); } .std-note { margin-top: 10px; font-size: 13.5px; line-height: 1.6; color: var(--ink-faint); } .std-note a { color: var(--ink-soft); }
+      footer .signoff .dot { color: var(--orange-strong); }
+
+      @media (max-width: 680px) {
+        body { font-size: 17px; }
+        .hero { padding: 40px 20px 36px; }
+        .wrap { padding: 0 20px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      /* ---------- Report components (ported) ---------- */
+      article {
+        --warn: #c93e14; --warn-bg: #fbe9e2; --good: #0a665c; --good-bg: #e0f0ec;
+        --amber: #a86a00; --amber-bg: #faf0d7; --acc: #0d7a6e; --acc-ink: #ffffff;
+        --chart-bar: #0d7a6e; --chart-fix: #c47a1e; --chart-loop: #5b7f3a;
+        --shadow: 0 1px 3px rgba(20,22,28,.08), 0 8px 24px rgba(20,22,28,.05);
+      }
+      @media (prefers-color-scheme: dark) {
+        article {
+          --warn: #ff9a7a; --warn-bg: #3a211a; --good: #2ec4b6; --good-bg: #12302b;
+          --amber: #e8b34b; --amber-bg: #332a15; --acc: #2ec4b6; --acc-ink: #0b1518;
+          --chart-bar: #2ec4b6; --chart-fix: #e09a3e; --chart-loop: #9cc46a;
+          --shadow: 0 1px 3px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+        }
+      }
+      .hs-hero figcaption { margin-top: 10px; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
+      .hs-hero figcaption strong { display: block; font-size: 15.5px; color: var(--ink); margin-bottom: 4px; }
+      .tag { display: inline-block; font-size: 11.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .tag-pass { background: var(--good-bg); color: var(--good); }
+      .tag-fail { background: var(--warn-bg); color: var(--warn); }
+      .tag-flag { background: var(--amber-bg); color: var(--amber); }
+      .tag-claim { background: var(--acc); color: var(--acc-ink); }
+      .src-note { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 34px; }
+      .bottom-line strong.no { color: var(--warn); }
+      .bottom-line strong.yes { color: var(--good); }
+      .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 44px; }
+      .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px; }
+      .stat .num { font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 36px); line-height: 1.05; letter-spacing: -0.02em; }
+      .stat .num.o { color: var(--orange-strong); }
+      .stat .num.t { color: var(--teal-strong); }
+      .stat .cap { font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); margin-top: 8px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      nav.toc { background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 16px 20px; margin: 0 0 44px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      nav.toc p { margin: 0 0 8px; font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+      nav.toc ol { margin: 0; padding-left: 22px; }
+      nav.toc li { margin: 4px 0; font-size: 15.5px; }
+      nav.toc a { color: var(--ink); }
+      h2.sec { border-top: 2px solid var(--ink); padding-top: 20px; }
+      .secsub { color: var(--ink-soft); margin: 0 0 18px; font-size: 16.5px; line-height: 1.55; }
+      .src { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); font-family: "Space Grotesk", system-ui, sans-serif; }
+      sup a { text-decoration: none; font-weight: 700; color: var(--teal-strong); }
+      article blockquote { margin: 16px 0; padding: 14px 18px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--teal); font-size: 16.5px; }
+      article blockquote p { margin: 0 0 8px; }
+      article blockquote p:last-child { margin: 0; }
+      .flag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; vertical-align: middle; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .flag-low { background: var(--amber-bg); color: var(--amber); }
+      .flag-open { background: var(--warn-bg); color: var(--warn); }
+      .chartcard { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 24px 24px 14px; margin: 26px 0; box-shadow: var(--shadow); }
+      .chartcard h3 { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 15px; font-weight: 600; margin: 0 0 14px; }
+      .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13.5px; color: var(--ink-soft); margin: 10px 0 4px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .legend span { display: inline-flex; align-items: center; gap: 6px; }
+      .sw { width: 14px; height: 14px; display: inline-block; border-radius: 3px; }
+      svg.chart { width: 100%; height: auto; display: block; }
+      svg.chart text { font-family: "Space Grotesk", system-ui, sans-serif; }
+      svg.chart .cb-base { fill: var(--chart-bar); }
+      svg.chart .cb-fix { fill: var(--chart-fix); }
+      svg.chart .cb-loop { fill: var(--chart-loop); }
+      svg.chart .goal-line { stroke: var(--warn); stroke-width: 2; stroke-dasharray: 6 4; }
+      .fp-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 0 20px; }
+      @media (max-width: 760px) { .fp-stats { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 420px) { .fp-stats { grid-template-columns: 1fr; } }
+      .fp-stat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; box-shadow: var(--shadow); }
+      .fp-stat .n { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 29px; line-height: 1; font-weight: 700; }
+      .fp-stat .l { font-size: 13px; color: var(--ink-soft); margin-top: 6px; line-height: 1.45; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .methods { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--acc); border-radius: 6px; padding: 18px 20px; box-shadow: var(--shadow); margin: 0 0 20px; }
+      .methods h3 { margin: 0 0 8px; font-size: 17px; }
+      .methods p:last-child { margin-bottom: 0; }
+      .outcome { background: var(--good-bg); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; margin: 20px 0 0; }
+      .outcome h3 { margin: 0 0 8px; font-size: 17px; }
+      .outcome p:last-child { margin-bottom: 0; }
+      .fp-table-wrap { margin: 0 0 20px; overflow-x: auto; }
+      table.fp { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); font-size: 15px; }
+      table.fp caption { text-align: left; font-weight: 700; font-size: 16px; padding: 0 0 8px; caption-side: top; font-family: "Space Grotesk", system-ui, sans-serif; }
+      table.fp th, table.fp td { padding: 9px 12px; text-align: left; vertical-align: top; border-top: 1px solid var(--line); }
+      table.fp thead th { border-top: 0; background: var(--surface-2); font-size: 12.5px; letter-spacing: .05em; text-transform: uppercase; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .res-pass { font-weight: 800; color: var(--good); white-space: nowrap; }
+      .res-fail { font-weight: 800; color: var(--warn); white-space: nowrap; }
+      .res-flag { font-weight: 800; color: var(--amber); white-space: nowrap; }
+      table.tools-table { font-size: 14px; }
+      table.tools-table td.ai { font-weight: 600; font-size: 15px; }
+      table.tools-table td.alt { color: var(--ink-soft); line-height: 1.45; }
+      table.tools-table td.api { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; word-break: break-word; }
+      .pill { display: inline-block; font-size: 11.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .pill-drive { background: var(--good-bg); color: var(--good); }
+      .pill-nodrive { background: var(--warn-bg); color: var(--warn); }
+      .pill-yes { background: var(--good); color: #ffffff; }
+      .pill-no { background: var(--surface-2); color: var(--ink-soft); }
+      .pill-cond { background: var(--amber-bg); color: var(--amber); }
+      @media (prefers-color-scheme: dark) { .pill-yes { color: #0b1518; } }
+      .count-note { font-size: 14px; color: var(--ink-soft); font-family: "Space Grotesk", system-ui, sans-serif; }
+      @media (max-width: 640px) {
+        table.fp, table.fp tbody, table.fp tr, table.fp td { display: block; width: 100%; }
+        table.fp thead { display: none; }
+        table.fp tr { border-top: 2px solid var(--line); padding: 8px 0; }
+        table.fp tr:first-child { border-top: 0; }
+        table.fp td { border-top: 0; padding: 5px 12px; }
+        table.fp td::before { content: attr(data-th); display: block; font-size: 11.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 2px; font-family: "Space Grotesk", system-ui, sans-serif; }
+        table.fp td:first-child { font-weight: 700; font-size: 16px; }
+        table.fp td:first-child::before { display: none; }
+        table.tools-table td::before { content: none; }
+        table.tools-table td { padding: 6px 12px; }
+      }
+      .exhibits { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 8px; }
+      @media (max-width: 640px) { .exhibits { grid-template-columns: 1fr; } .stat-grid { grid-template-columns: 1fr; } }
+      figure.exhibit { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; box-shadow: var(--shadow); overflow: hidden; }
+      figure.exhibit img { width: 100%; height: auto; display: block; aspect-ratio: 1/1; object-fit: cover; background: var(--surface-2); }
+      figure.exhibit figcaption { padding: 14px 16px; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
+      figure.exhibit figcaption strong { display: block; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
+      figure.exhibit.wide { margin: 0 0 8px; }
+      figure.exhibit.wide img { aspect-ratio: 3/2; object-fit: contain; }
+      .claim-audit { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--warn); border-radius: 6px; padding: 18px 20px; box-shadow: var(--shadow); margin: 16px 0 8px; }
+      .claim-audit h4 { margin: 0 0 8px; font-size: 16.5px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .claim-audit p:last-child { margin-bottom: 0; }
+      .demo { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; box-shadow: var(--shadow); padding: 20px; margin: 0 0 16px; }
+      .demo .stage { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+      .demo svg { flex: 0 1 300px; width: 300px; max-width: 100%; height: auto; }
+      .demo .panel { flex: 1 1 260px; min-width: 240px; }
+      .armcount { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; background: var(--surface-2); border: 1px solid var(--line); padding: 12px 14px; white-space: pre-wrap; word-break: break-word; margin: 0 0 12px; }
+      .btn { background: var(--acc); color: var(--acc-ink); border: 0; border-radius: 8px; padding: 12px 18px; font-size: 16px; font-weight: 700; cursor: pointer; min-height: 48px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .btn:active { transform: translateY(1px); }
+      .pass { color: var(--good); font-weight: 700; }
+      .armhl { stroke: var(--amber) !important; stroke-width: 7 !important; }
+      .rung { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 0 0 10px; box-shadow: var(--shadow); }
+      .rung .badge { flex: 0 0 auto; align-self: flex-start; font-size: 12px; font-weight: 800; letter-spacing: .04em; padding: 5px 10px; border-radius: 6px; text-transform: uppercase; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .b-no { background: var(--warn-bg); color: var(--warn); }
+      .b-yes { background: var(--good-bg); color: var(--good); }
+      .b-mid { background: var(--amber-bg); color: var(--amber); }
+      .rung h3 { margin: 0 0 4px; font-size: 17px; }
+      .rung p { margin: 0; font-size: 15.5px; color: var(--ink-soft); }
+      .rung p strong { color: var(--ink); }
+      .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+      .steps li { counter-increment: step; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; box-shadow: var(--shadow); padding: 16px 18px 16px 64px; position: relative; margin: 0 0 12px; }
+      .steps li::before { content: counter(step); position: absolute; left: 16px; top: 14px; width: 34px; height: 34px; border-radius: 50%; background: var(--acc); color: var(--acc-ink); font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 17px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .steps h3 { margin: 0 0 4px; font-size: 17px; }
+      .steps p { margin: 0; font-size: 15.5px; color: var(--ink-soft); }
+      .steps p strong { color: var(--ink); }
+      article code { font-family: ui-monospace, Menlo, monospace; font-size: .92em; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+      ol.sources { font-size: 14.5px; }
+      ol.sources li { margin: 9px 0; word-break: break-word; }
+      ol.sources .how { color: var(--ink-soft); font-size: 13px; }
+</style>
+    <style>
+      .hs-util { background: #0B0E14; border-bottom: 1px solid #2a2f3a; }
+      .hs-util-inner { max-width: 1120px; margin: 0 auto; padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+      .hs-util a, .hs-util button { font-family: "Space Grotesk", system-ui, sans-serif; }
+      .hs-back { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 14px; border: 1px solid #3a4356; border-radius: 10px; background: #161c28; color: #f5f5f5; font-size: .85rem; font-weight: 700; text-decoration: none; }
+      .hs-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .hs-actions .hs-label { color: #9AA3B2; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-right: 2px; }
+      .hs-btn { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 12px; border: 1px solid #3a4356; border-radius: 10px; background: transparent; color: #f5f5f5; font-size: .82rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+      .hs-btn:hover, .hs-back:hover { border-color: #FF6B35; color: #ffffff; }
+      @media print {
+        .hs-util { display: none !important; }
+        :root { --hero-bg: #ffffff !important; --hero-ink: #14161c !important; --hero-soft: #454a55 !important; --hero-line: #d9d5cc !important; --bg: #ffffff !important; }
+        body { background: #ffffff !important; }
+      }
+    </style>
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+</head>
+  <body>
+
+    <div class="hs-util">
+      <div class="hs-util-inner">
+        <a class="hs-back" href="/reports/">← Honed Reports</a>
+        <div class="hs-actions" aria-label="Print, email, or share this report">
+          <span class="hs-label">Share</span>
+          <button class="hs-btn" type="button" onclick="window.print()">Print</button>
+          <button class="hs-btn" type="button" id="hs-email">Email</button>
+          <a class="hs-btn" href="https://twitter.com/intent/tweet?text=Exactly%208%20Arms%20%E2%80%94%20Can%20AI%20Promise%20It%3F%20No%20generative%20image%20vendor%20can%20promise%20an%20exact%20limb%20count%20%E2%80%94%20only%20a%20puppet%20rig%20can.&amp;url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fexactly-8-arms%2F" target="_blank" rel="noopener">X</a>
+          <a class="hs-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhonedsignal.com%2Freports%2Fexactly-8-arms%2F" target="_blank" rel="noopener">Facebook</a>
+          <a class="hs-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fexactly-8-arms%2F" target="_blank" rel="noopener">LinkedIn</a>
+          <button class="hs-btn" type="button" id="hs-copy">Copy link</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="masthead">
+          <span class="brand">Honed Signal<span class="dot">.</span></span>
+          <span>AI Image Generation</span>
+          <span>Checked. Traced. Honed.</span>
+          <span>November 2026</span>
+        </div>
+        <h1>Exactly 8 Arms — Can AI Promise It<span class="q">?</span></h1>
+        <p class="dek">Which art tool can an AI agent actually drive — and can any of them <em>promise</em> an exact limb count? The short answer splits in two: plenty of tools can be driven. None of the generators can make the promise.</p>
+        <div class="verdict-row">
+          <div class="verdict-badge">
+            <span class="big">No</span>
+            <span class="small">No generator can promise it</span>
+          </div>
+          <div class="verdict-note">
+            <span><strong>No generative image vendor can promise exactly 8 arms</strong> — or any exact limb or object count. None claims to in its documentation, and none contractually guarantees anatomical correctness. On controlled counting benchmarks, flagship models get the exact object count right roughly <strong>one time in three</strong>.</span>
+          </div>
+        </div>
+        <div class="byline-row">
+          <span><strong>Research by Muse</strong> · Edited by Freddie Avalos</span>
+          <span>Researched 13 November 2026</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <article>
+
+        <figure class="hs-hero">
+          <img src="/reports/exactly-8-arms/images/hero.webp" width="1672" height="941" style="aspect-ratio:1672/941" alt="Huxley, a glossy red octopus with darker red spots, gold eyes and silver headphones, sitting centered on a lit platform in a clean-room laboratory with exactly eight spiral-curled arms spread in a single symmetric row, while five scientists in white lab coats study him with clipboards and a tablet — the scientist in the foreground counting on his raised fingers" />
+          <figcaption><span class="tag tag-pass">Hero · Pass · 8 arms — trace-checked (corrected version)</span><strong>The specimen passes — after correction</strong>Huxley — the editor’s Muse assistant, in his octopus form — under study in a clean-room lab, to the editor’s brief: diverse scientists in white coats with clipboards and tablets, and — foreground, left — one scientist counting on his own fingers. Traced under this report’s rule: 8 tips, 8 emergences, every segment traceable continuously to the body, no ninth segment and no chopped arm. The original image did not pass; this corrected version does pass. Even a corrected pass does not make any generator able to promise 8 on the next frame — which is the finding below. Credit: original generation by Muse; correction by ChatGPT; supplied by Freddie Avalos, 13 November 2026.</figcaption>
+        </figure>
+
+        <p class="src-note">Research date: Friday 13 November 2026 · Confidence labels used throughout: <strong>verified live</strong> = read in the research browser on that date; <strong>index</strong> = read via web-index search/fetch on that date. Primary sources — papers, vendor docs and terms — are prioritized; vendor-blog and aggregator figures are flagged where they are the only source.</p>
+
+        <div class="bottom-line">
+          <div class="label">The Verdict</div>
+
+      <p><strong class="no">No generative image vendor can promise exactly 8 arms</strong> — or any exact limb or object count. None claims to in its documentation, and none contractually guarantees anatomical correctness. On controlled counting benchmarks, flagship models get the exact object count right roughly <strong>one time in three</strong>.</p>
+      <p><strong class="yes">The only way to promise exactly 8 is to stop asking a generative model to count.</strong> Build the character as a puppet rig — an SVG vector puppet, a Spine or Live2D 2D rig, or a Blender 3D armature — with exactly eight arm parts. The count becomes a property of the file, countable before rendering, and no render can invent a ninth arm.</p>
+      <p>We also ran the test ourselves, on our own mascot: <a href="#firstparty">twenty poses at 35% yield (~40% once the production rules were applied), then a paid LoRA training run that scored 0/10 on the same briefs</a> — with exhibits.</p>
+    
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat"><div class="num o">26–38%</div><div class="cap">Exact object-count accuracy of SDXL and DALL·E 3 at baseline (CountGen, CVPR 2025)<sup><a href="#s-countgen">[1]</a></sup></div></div>
+          <div class="stat"><div class="num t">~50%</div><div class="cap">of generated human images contain body distortions — proliferated limbs, missing fingers, fused parts (Distortion-5K, 2025)<sup><a href="#s-distort">[3]</a></sup></div></div>
+          <div class="stat"><div class="num o">0</div><div class="cap">generative vendors found that contractually promise exact counts or anatomical correctness — terms instead disclaim accuracy<sup><a href="#s-oai">[14]</a></sup><sup><a href="#s-stab">[15]</a></sup></div></div>
+        </div>
+
+        <nav class="toc" aria-label="Contents">
+    <p>In this report</p>
+    <ol>
+      <li><a href="#chart">How often models get the count right — the chart</a></li>
+      <li><a href="#why">Why the models can’t count</a></li>
+      <li><a href="#widespread">How widespread the problem is</a></li>
+      <li><a href="#firstparty">First-party evidence: we ran the test ourselves</a></li>
+      <li><a href="#puppet">The one thing that can promise it — try the count</a></li>
+      <li><a href="#tools">Every tool, judged: can an agent drive it? Can it promise 8?</a></li>
+      <li><a href="#techniques">Techniques, ranked: nudge → repair → guarantee</a></li>
+      <li><a href="#vendors">What vendors promise vs. what their terms say</a></li>
+      <li><a href="#emerging">Emerging fixes, 2024–2026</a></li>
+      <li><a href="#architecture">Recommended production architecture</a></li>
+      <li><a href="#open">Could not verify / open questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </nav>
+
+
+  <section id="chart">
+    <h2 class="sec">How often models get the count right</h2>
+    <p class="secsub">Exact-count accuracy, in percent. 100% is the only number that counts as a promise — the dashed line. Everything ever published lands below it.</p>
+    <div class="chartcard">
+      <h3>Exact object-count accuracy by model / method</h3>
+      <svg class="chart" viewBox="0 0 760 404" role="img" aria-label="Bar chart of exact object-count accuracy: SDXL 29 percent and 26 percent on two benchmarks, DALL-E 3 36 and 38 percent, CountGen 48 and 54 percent, AIBL 58 to 65 percent, noise-prior conditioning 85.3 and 86.3 percent, CountLoop up to 98 percent for objects. None reaches the 100 percent promise line.">
+          <line class="goal-line" x1="688" y1="8" x2="688" y2="382"></line>
+          <text class="axis-note" x="688" y="400" text-anchor="end">100% — the promise line</text>
+          <text class="bar-label" x="0" y="41">SDXL — T2I-CompBench</text>
+          <rect class="cb-base" x="258" y="26" width="125" height="20" rx="3"></rect>
+          <text class="bar-value" x="391" y="41">29%</text>
+          <text class="bar-label" x="0" y="77">SDXL — CoCoCount</text>
+          <rect class="cb-base" x="258" y="62" width="112" height="20" rx="3"></rect>
+          <text class="bar-value" x="378" y="77">26%</text>
+          <text class="bar-label" x="0" y="113">DALL·E 3 — T2I-CompBench</text>
+          <rect class="cb-base" x="258" y="98" width="155" height="20" rx="3"></rect>
+          <text class="bar-value" x="421" y="113">36%</text>
+          <text class="bar-label" x="0" y="149">DALL·E 3 — CoCoCount</text>
+          <rect class="cb-base" x="258" y="134" width="163" height="20" rx="3"></rect>
+          <text class="bar-value" x="429" y="149">38%</text>
+          <text class="bar-label" x="0" y="185">CountGen — T2I-CompBench</text>
+          <rect class="cb-fix" x="258" y="170" width="206" height="20" rx="3"></rect>
+          <text class="bar-value" x="472" y="185">48%</text>
+          <text class="bar-label" x="0" y="221">CountGen — CoCoCount</text>
+          <rect class="cb-fix" x="258" y="206" width="232" height="20" rx="3"></rect>
+          <text class="bar-value" x="498" y="221">54%</text>
+          <text class="bar-label" x="0" y="257">AIBL — top of 58–65% range</text>
+          <rect class="cb-fix" x="258" y="242" width="280" height="20" rx="3"></rect>
+          <text class="bar-value" x="546" y="257">65%</text>
+          <text class="bar-label" x="0" y="293">Noise-prior — GrayCount250</text>
+          <rect class="cb-fix" x="258" y="278" width="367" height="20" rx="3"></rect>
+          <text class="bar-value" x="633" y="293">85.3%</text>
+          <text class="bar-label" x="0" y="329">Noise-prior — NaturalCount6</text>
+          <rect class="cb-fix" x="258" y="314" width="371" height="20" rx="3"></rect>
+          <text class="bar-value" x="637" y="329">86.3%</text>
+          <text class="bar-label" x="0" y="365">CountLoop — objects, loop-until-pass</text>
+          <rect class="cb-loop" x="258" y="350" width="421" height="20" rx="3"></rect>
+          <text class="bar-value" x="687" y="365">98%</text>
+        </svg>
+      <div class="legend">
+        <span><span class="sw" style="background:var(--chart-bar)"></span> Flagship models, as shipped</span>
+        <span><span class="sw" style="background:var(--chart-fix)"></span> Specialized research fixes</span>
+        <span><span class="sw" style="background:var(--chart-loop)"></span> Research agent-loop (objects, not limbs)</span>
+      </div>
+      <p class="src">Sources: CountGen / <em>Make It Count</em>, CVPR 2025 (T2I-CompBench-Count and CoCoCount, human rating)<sup><a href="#s-countgen">[1]</a></sup>; AIBL layout-attention results (Ngo et al., arXiv preprint, NeurIPS 2026, 58–65% range shown to its top)<sup><a href="#s-aibl">[40]</a></sup>; noise-prior conditioning, Zhao et al. 2025<sup><a href="#s-numerosity">[2]</a></sup>; CountLoop, arXiv:2508.16644 (“as much as 98%” on high-instance <em>object</em> benchmarks — a loop-until-pass headline, not single-shot accuracy, and not limbs)<sup><a href="#s-countloop">[8]</a></sup>. None of these is a shipped vendor guarantee, and none is validated for limbs attached to a character.</p>
+    </div>
+    <p>Two more findings frame the chart. Scaling does not fix it: a 2025 Microsoft Research Asia / Peking University study found counting <strong>does not improve when scaling from 2B to 12B parameters and 1K to 500K training samples</strong>.<sup><a href="#s-numerosity">[2]</a></sup> And 8 is already a hard number: benchmark performance is documented to degrade <strong>beyond five objects</strong>, with even state-of-the-art models struggling to exceed 50% accuracy on single-digit prompts — for ordinary objects, before adding the harder problem that arms must also be attached correctly to one body.<sup><a href="#s-numerosity">[2]</a></sup></p>
+  </section>
+
+  <section id="why">
+    <h2 class="sec">Why the models can’t count</h2>
+    <p class="secsub">The failure is architectural, data-driven and encoding-driven. It is not a prompting bug, and “try a bigger model” is empirically not a fix.</p>
+
+    <h3>1. There is no counting step in the architecture</h3>
+    <p>Counting requires keeping “a sense of separate identity for every instance… and then carry[ing] out a global computation implicitly during generation. It is still unknown if such representations exist” in diffusion models. The CountGen authors add that models “struggle with controlling spatial layout just from text” and that a correct count “requires obeying a global and complex spatial relation” — while denoising is a local, iterative refinement process with no slot, register, or tally for instances.<sup><a href="#s-countgen">[1]</a></sup></p>
+    <p>The numerosity study states the mechanism plainly: models “lack effective mechanisms to bind textual numerals to spatial instance slots,” and in practice they “primarily optimize with respect to the noise prior, rather than the text instructions, making object count a weak signal easily overridden by stochastic noise patterns” — different noise seeds carry their own preferred counts.<sup><a href="#s-numerosity">[2]</a></sup></p>
+
+    <h3>2. Training data teaches “a hand is present,” not “five fingers”</h3>
+    <p>The AbHuman / HumanRefiner authors attribute limb anomalies to training that “typically focuses on aligning overall characteristics, like the human having hands and legs, while less attention is paid to detailed characteristics such as the number of fingers or hands,” leaving models with “limited control over the fine-grained generation of detailed body parts.”<sup><a href="#s-abhuman">[4]</a></sup> Hands compound this: small in frame, frequently occluded, folded or cropped in web photos, highly articulated, and self-similar — so the training distribution rarely presents a clean, labeled, countable hand. In short: the model sees pixels, never bones. There is no skeleton in the model to check the output against.</p>
+
+    <h3>3. The numeral is a soft signal, not an instruction</h3>
+    <p>Prompts are encoded into embeddings where a numeral is a token associated with <em>scenes that tended to contain about that many things</em> — not an integer executed by a counting routine. The numerosity paper explicitly links the image failure to the LLM “strawberry test” lineage of tokenization / architecture counting failures. Autoregressive / transformer image models change the sampler, not this fact: the same paper lists FLUX, Ideogram V2, GPT-4o image, Nano Banana and Qwen-Image together as struggling “to produce the correct number of objects specified in text prompts” on GeckoNum.<sup><a href="#s-numerosity">[2]</a></sup></p>
+
+    <h3>4. The human-figure evidence is worse than the object evidence</h3>
+    <ul>
+      <li><strong>Distortion-5K (2025):</strong> “Nearly 50% of generated images contain distortions” — proliferated limbs, missing fingers, deformed / fused parts — across four popular text-to-image models on a 500-prompt benchmark.<sup><a href="#s-distort">[3]</a></sup></li>
+      <li><strong>AbHuman / HumanRefiner (2024):</strong> a failure benchmark built from 56K synthesized human images with 147K annotated anomalies in 18 categories — even SOTA generators (SDXL, Midjourney, DALL·E 3 named) produce limb abnormalities routinely enough to build it.<sup><a href="#s-abhuman">[4]</a></sup></li>
+      <li><strong>HumanBench (WACV 2026):</strong> 36K images across Midjourney, Stable Diffusion, FLUX and three more models — “persistent failures, including disfigurements, species leakage, and counting errors”; two heads, missing legs, misplaced limbs; prompt–image consistency “declines monotonically” with prompt complexity.<sup><a href="#s-humanbench">[6]</a></sup></li>
+      <li><strong>Kamali et al. (CHI 2025):</strong> a human detection study of 450 diffusion images and 149 real images with 50,444 participants and 749,828 observations, establishing a 5-class artifact taxonomy (anatomical, stylistic, functional, physics-violation, sociocultural). The paper itself (arXiv:2502.11989v1, verified against the primary source on 13 Nov 2026) reports anatomical implausibilities at 51.4%, functional implausibilities at 58.7%, and stylistic implausibilities at 39.0% of annotated images.<sup><a href="#s-kamali">[5]</a></sup></li>
+      <li><strong>NumBench (2026 preprint — treat with caution, very recent):</strong> 640,000 prompts, counts 1–100, 5 commercial + 2 open systems: “performance declines sharply with requested count; all evaluated methods are weak above 50 objects.”<sup><a href="#s-numbench">[41]</a></sup></li>
+    </ul>
+  </section>
+
+  <section id="widespread">
+    <h2 class="sec">How widespread the problem is</h2>
+    <p class="secsub">Counting fingers became the public shorthand for “that’s AI” — the first check taught in spotting-AI coverage — precisely because extra and fused digits were the most legible, repeatable error. The CHI 2025 study was motivated by exactly this public circulation.<sup><a href="#s-kamali">[5]</a></sup></p>
+    <ul>
+      <li><strong>Hands and fingers (the canonical case):</strong> six or seven fingers, fused fingers, proliferated or missing hands — quantified at ~50% distortion rates in controlled human-generation benchmarks, not just anecdotes.<sup><a href="#s-distort">[3]</a></sup><sup><a href="#s-abhuman">[4]</a></sup></li>
+      <li><strong>Whole limbs and heads:</strong> HumanBench’s title is itself a catalog — <em>“Two Heads, No Legs, But Mostly Human.”</em> HumanRefiner likewise opens with SDXL’s “incorrect limb counts, twisted hands, and incorrect limb position.”<sup><a href="#s-humanbench">[6]</a></sup><sup><a href="#s-abhuman">[4]</a></sup></li>
+      <li><strong>Horses’ legs:</strong> a widely shared equestrian-community post dissects an AI horse-anatomy diagram with extra legs, three hips, backward joints and an invented anatomical label, run as a recurring “What’s Wrong Wednesday” feature; a separate photographer’s AI-transformed horse image drew community criticism for distorted, extra legs and unnatural musculature / gait.<sup><a href="#s-horse1">[21]</a></sup><sup><a href="#s-horse2">[22]</a></sup> Production help docs agree anatomical inaccuracy “can be an issue when generating people <strong>or animals</strong>.”<sup><a href="#s-pencil">[19]</a></sup></li>
+      <li><strong>Furniture, bicycles, everyday objects:</strong> artifact-repair guides catalog a chair with five legs, an oval bicycle wheel, cups at torso scale, floating / intersecting objects — the same “presence without correct quantity / geometry” failure in inanimate subjects, fixed only by masking and regenerating the whole object.<sup><a href="#s-artifacts">[20]</a></sup></li>
+      <li><strong>Children’s books (a named production blocker):</strong> a 24-page book requires the <em>same</em> character 24 times; creator guides describe page-1 perfection followed by a different face structure (p.3), different hair (p.8), different proportions (p.15) — and publish a pre-flight checklist whose first item is “Finger count: Are there exactly 5 fingers per hand? (AI loves extra fingers).”<sup><a href="#s-kids1">[17]</a></sup> A companion guide calls character consistency “the single most common frustration in this space,” attributing it to models having no memory between generations.<sup><a href="#s-kids2">[18]</a></sup></li>
+      <li><strong>Comics, brand mascots, illustrators:</strong> the same two blockers recur — identity drift panel-to-panel, and limb / finger errors that survive into print, where they cannot be patched by re-rolling a feed. That is why the workarounds in the techniques section exist as a cottage industry, and why community negative prompts are litanies of the failure: <em>“extra limbs, bad anatomy, malformed hands, extra fingers, fused fingers.”</em></li>
+    </ul>
+    <h3>Ground News framing</h3>
+    <p>No Ground News story page specifically about extra fingers / AI hands was found in this run (a <code>site:ground.news</code> search returned no results, 13 Nov 2026 — see <a href="#open">open questions</a>). What Ground News <em>is</em>, methodologically, is documented by the Columbia Journalism Review: it aggregates 40,000+ outlets and presents each story as a bias distribution (left / center / right percentages) with factuality ratings, under the tagline “See every side of every news story.”<sup><a href="#s-groundnews">[23]</a></sup> Used correctly for this topic, that framing supports one claim and no more: spotting-AI / extra-fingers coverage is not a partisan or single-outlet narrative — it runs as consumer how-to, fact-checking, tech and culture coverage across the spectrum, consistent with a <em>technical</em> failure any outlet’s audience can reproduce in minutes.</p>
+  </section>
+  <section id="firstparty">
+    <h2 class="sec">First-party evidence: we ran the test ourselves</h2>
+    <p class="secsub">Everything above rests on published benchmarks. On 13 November 2026 we also ran the experiment directly, on our own mascot — Huxley, a red octopus whose design was locked in a character sheet on 8 November 2026 (glossy bright red, darker red spots, gold-amber eyes, silver over-ear headphones, spiral-curl arm tips). Producer: Freddie Avalos (editor); counts and QA by Muse. Total cash cost of the training test below: <strong>$2.35</strong>.<sup><a href="#s-firstparty">[FP]</a></sup></p>
+
+    <div class="fp-stats">
+      <div class="fp-stat"><div class="n">7 / 20</div><div class="l">clean passes across twenty poses with best-practice prompting</div></div>
+      <div class="fp-stat"><div class="n">~40%</div><div class="l">best per-roll yield once flat-row language and the floating-hologram rule were applied</div></div>
+      <div class="fp-stat"><div class="n">0 / 10</div><div class="l">clean passes after LoRA training — down from 4 / 10 untrained on the identical briefs</div></div>
+      <div class="fp-stat"><div class="n">$2.35</div><div class="l">all-in cost of the training test: $2.00 training + ~$0.35 for ten generations</div></div>
+    </div>
+
+    <div class="methods">
+      <h3>Methods — the trace rule</h3>
+      <p>An image <strong>passes only if it shows exactly 8 arms</strong> and <strong>every visible arm segment can be traced continuously</strong> to an emergence from the body or to a tip. A segment ending against another arm, a prop, or a frame edge counts as a failure — a <strong>“chopped arm”</strong> — never as depth. Counts were performed by Muse (Huxley — the editor’s Muse assistant, and the octopus who is the test subject); the editor’s count governs any dispute.</p>
+      <p>Three production rules were adopted mid-test, on the editor’s direction. <strong>The clipboard floats:</strong> Huxley’s clipboard is a hologram panel that hovers beside him, touched by zero arms; a prop gets at most one arm, never two — arms spent holding props appear to fall out of the model’s loose arm budget and get backfilled elsewhere. <strong>Flat-row language:</strong> every later brief specified “one single flat row like a paper cutout, NO arms behind the body, NO back row, wide triangular gaps between the legs, body held HIGH” — with that language, the hidden back-row extras disappeared entirely and failures moved to the front row, where they are visible at a glance.</p>
+    </div>
+
+    <h3>Exercise 1 — ten poses, reference-image generation</h3>
+    <p>Storybook illustration style; the locked sheet’s full-body front view supplied as a reference image; one character per image; briefs specified the pose plus an explicit arm map.</p>
+    <div class="fp-table-wrap">
+      <table class="fp">
+        <caption>Exercise 1 results — clean passes: 3/10 · count-correct: 4/10</caption>
+        <thead><tr><th scope="col">Pose</th><th scope="col">Result</th><th scope="col">Detail</th></tr></thead>
+        <tbody>
+          <tr><td>01 · Wave</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">~11 arms — extra back row</td></tr>
+          <tr><td>02 · Counting (clipboard)</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">~11–12 arms</td></tr>
+          <tr><td>03 · Shrug</td><td data-th="Result"><span class="res-pass">Pass · 8</span></td><td data-th="Detail">Clean</td></tr>
+          <tr><td>04 · Presenting</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">7 arms (merge) + thumb-like tip</td></tr>
+          <tr><td>05 · Dancing</td><td data-th="Result"><span class="res-pass">Pass · 8</span></td><td data-th="Detail">Clean</td></tr>
+          <tr><td>06 · Thinking</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">9 arms + a nub</td></tr>
+          <tr><td>07 · Conducting</td><td data-th="Result"><span class="res-pass">Pass · 8</span></td><td data-th="Detail">Clean</td></tr>
+          <tr><td>08 · Celebrating</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">10 arms — six upper arms</td></tr>
+          <tr><td>09 · Meditating</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">10 arms — named gesture added on top of a full set</td></tr>
+          <tr><td>10 · Wave (retest)</td><td data-th="Result"><span class="res-flag">Count-pass · 8, flagged</span></td><td data-th="Detail">Thumb-like nubs on both raised arms</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Exercise 2 — ten fresh poses, all rules applied</h3>
+    <p>Same method, with the hologram rule, the one-arm-per-prop rule, and flat-row language in every brief.</p>
+    <div class="fp-table-wrap">
+      <table class="fp">
+        <caption>Exercise 2 results — clean passes: 4/10</caption>
+        <thead><tr><th scope="col">Pose</th><th scope="col">Result</th><th scope="col">Detail</th></tr></thead>
+        <tbody>
+          <tr><td>11 · Bowing</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">10 arms — both rows doubled symmetrically</td></tr>
+          <tr><td>12 · Sleeping</td><td data-th="Result"><span class="res-pass">Pass · 8</span></td><td data-th="Detail">Clean — see Exhibit 1a</td></tr>
+          <tr><td>13 · Reading (hologram)</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">9 arms</td></tr>
+          <tr><td>14 · Idea</td><td data-th="Result"><span class="res-pass">Pass · 8</span></td><td data-th="Detail">Clean</td></tr>
+          <tr><td>15 · Surprised</td><td data-th="Result"><span class="res-pass">Pass · 8</span></td><td data-th="Detail">Clean</td></tr>
+          <tr><td>16 · Gliding</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">10 arms</td></tr>
+          <tr><td>17 · Welcoming</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">10 arms — middle row duplicated both sides</td></tr>
+          <tr><td>18 · Curious</td><td data-th="Result"><span class="res-pass">Pass · 8</span></td><td data-th="Detail">Clean</td></tr>
+          <tr><td>19 · Proud</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">10 arms — named gesture added to a full set</td></tr>
+          <tr><td>20 · Laughing</td><td data-th="Result"><span class="res-fail">Fail</span></td><td data-th="Detail">10 arms — brief said “only four upper arms in total”; the model drew six</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Patterns across all twenty poses: the generator treats the prompt’s arm list as <strong>decoration added to its own default octopus template, not as a budget</strong>. Named gestures are added on top; symmetric wide poses duplicate a row; exuberant poses multiply the wide arms; raised “wave” arms grow thumb-like nubs. Passes cluster on calm, symmetric, single-gesture poses close to the model’s natural template. A generate-and-select workflow is viable for one-off art at ~40% — it is not a per-panel guarantee for a comic.</p>
+    <p><strong>Disclosure — why the baseline failures are tallied, not shown.</strong> On the editor’s instruction, every failed image from both exercises was permanently deleted on 13 November 2026. The tallies above were recorded in the project log <em>before</em> deletion and are the surviving record. A consequence: all surviving baseline images are passes, so baseline failures cannot be exhibited. The LoRA failures below can, because they were not struck.<sup><a href="#s-firstparty">[FP]</a></sup></p>
+
+    <h3>The LoRA test — does training the model fix it?</h3>
+    <p><strong>Hypothesis:</strong> fine-tuning a model on the character’s own locked artwork would teach it the count. <strong>Method:</strong> fal.ai <code>flux-lora-fast-training</code> (FLUX.1 [dev]), 21 training images — 14 views from the locked character sheet plus the 7 verified storybook passes (the thumb-flagged image was deliberately excluded) — trigger word <code>HUXLEYOCTO</code>, 1,000 steps (the trainer default), <strong>$2.00</strong>. Generations via <code>fal-ai/flux-lora</code> at ~$0.035 per image (<strong>$0.35</strong> for ten), using <strong>the same ten briefs as Exercise 2</strong>.</p>
+    <div class="fp-table-wrap">
+      <table class="fp">
+        <caption>Same briefs, untrained vs. trained — clean passes: baseline 4/10, LoRA 0/10</caption>
+        <thead><tr><th scope="col">Pose</th><th scope="col">Baseline (Ex. 2)</th><th scope="col">With LoRA</th><th scope="col">Note</th></tr></thead>
+        <tbody>
+          <tr><td>11 · Bowing</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 10</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 10</span></td><td data-th="Note">Same duplication</td></tr>
+          <tr><td>12 · Sleeping</td><td data-th="Baseline (Ex. 2)"><span class="res-pass">Pass · 8</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 10</span></td><td data-th="Note">Training made a passing pose fail — Exhibits 1a / 1b</td></tr>
+          <tr><td>13 · Reading</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 9</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 7 — count + rule fail</span></td><td data-th="Note">Holds a solid clipboard in a finger-like grip — Exhibit 3</td></tr>
+          <tr><td>14 · Idea</td><td data-th="Baseline (Ex. 2)"><span class="res-pass">Pass · 8</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 6</span></td><td data-th="Note">Legs merged into two giant curls</td></tr>
+          <tr><td>15 · Surprised</td><td data-th="Baseline (Ex. 2)"><span class="res-pass">Pass · 8</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 6</span></td><td data-th="Note">Merges</td></tr>
+          <tr><td>16 · Gliding</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 10</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 9</span></td><td data-th="Note">Includes a chopped, flat-ended arm segment — Exhibit 2</td></tr>
+          <tr><td>17 · Welcoming</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 10</span></td><td data-th="With LoRA"><span class="res-flag">Count-pass · 8, flagged</span></td><td data-th="Note">One arm exits the frame — Exhibit 4</td></tr>
+          <tr><td>18 · Curious</td><td data-th="Baseline (Ex. 2)"><span class="res-pass">Pass · 8</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 6–7</span></td><td data-th="Note">Merges in three-quarter view</td></tr>
+          <tr><td>19 · Proud</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 10</span></td><td data-th="With LoRA"><span class="res-flag">Count-pass · 8, flagged</span></td><td data-th="Note">Pose intent lost; arms crowd the frame edges</td></tr>
+          <tr><td>20 · Laughing</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 10</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 6</span></td><td data-th="Note">Wide arms merged away</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Count-correct with the LoRA: 2/10 — Welcoming and Proud, both flagged. None of Exercise 2’s four clean passes survived training: Sleeping, Idea, Surprised and Curious all failed with the LoRA. Both of the LoRA’s count-correct results had themselves failed untrained.</p>
+    <ul>
+      <li><strong>What training did do: identity.</strong> All ten images are unmistakably the same character — headphones, spots, eyes — with <em>no reference image supplied at generation time</em>. The LoRA is a genuine identity lock. It is not a counting mechanism.</li>
+      <li><strong>Behavior and style followed the training data and the base model, not the brief.</strong> No training image contained a clipboard, so when the brief mentioned one, the model drew the generic behavior — the character <em>holding</em> a solid clipboard (Exhibit 3) — overriding the production’s floating-hologram rule. And FLUX’s glossy 3D-render house style dominated the output despite the storybook passes in the training set.</li>
+      <li><strong>The failure direction flipped.</strong> The untrained generator over-counts (adds rows and gestures). FLUX + LoRA under-counts by merging more often than it over-counts (five under-count rows against three over-count rows) — three failures at exactly 6 arms and one at 6–7 — plus one chopped arm segment ending flat in open water (Exhibit 2).</li>
+    </ul>
+    <p><strong>Bottom line from our own bench:</strong> training is an identity tool, not a counting tool — the same conclusion the literature reaches, verified here at first hand for $2.35.</p>
+
+    <h3>Exhibits</h3>
+    <p>Exhibit 1 is the honest pair: the same “Sleeping” brief, before and after training. The baseline failures from Exercises 1–2 were struck and deleted (see the disclosure above), so they are tallied in the tables, not shown; the LoRA images below were not struck. Exhibit 5, after the grid, is a different kind of exhibit: not one of our generations, but another model’s confident claim about this exact problem — included so it can be audited against the tables above.</p>
+    <div class="exhibits">
+      <figure class="exhibit">
+        <img src="/reports/exactly-8-arms/images/exhibit-1a-baseline-sleeping-pass.webp" alt="Storybook illustration of Huxley, a red octopus wearing silver headphones, sleeping peacefully underwater with eight spiral-curled arms" width="1600" height="1600" loading="lazy" />
+        <figcaption><span class="tag tag-pass">Exhibit 1a · Pass · 8 arms</span><strong>Baseline — “Sleeping”</strong>Untrained generator, storybook style. Exactly 8 arms, every segment traced to the body or a tip. One of the seven verified passes used in the LoRA training set.</figcaption>
+      </figure>
+      <figure class="exhibit">
+        <img src="/reports/exactly-8-arms/images/exhibit-1b-lora-sleeping-10-arms.webp" alt="Glossy 3D-style render of Huxley the red octopus wearing headphones, drowsy, with ten arms — two too many" width="512" height="512" loading="lazy" />
+        <figcaption><span class="tag tag-fail">Exhibit 1b · Fail · 10 arms</span><strong>Same brief, trained LoRA — “Sleeping”</strong>The identical brief through the trained model: 10 arms. The pair is the LoRA result in miniature — a pose that passed untrained failed trained. Note also the style shift: FLUX’s glossy render replaced the storybook look.</figcaption>
+      </figure>
+      <figure class="exhibit">
+        <img src="/reports/exactly-8-arms/images/exhibit-2-lora-gliding-stump-arm.webp" alt="Huxley the red octopus gliding underwater; one arm segment in the center ends flat and chopped instead of tapering to a tip" width="512" height="512" loading="lazy" />
+        <figcaption><span class="tag tag-fail">Exhibit 2 · Fail · 9 arms</span><strong>LoRA — “Gliding”</strong>Nine arms, including a chopped arm segment ending flat in open water at the center of the frame — the defect class the trace rule exists to catch. A count alone would miss why this fails.</figcaption>
+      </figure>
+      <figure class="exhibit">
+        <img src="/reports/exactly-8-arms/images/exhibit-3-lora-reading-clipboard-grip.webp" alt="Huxley the red octopus gripping a solid clipboard with checkboxes in one arm, instead of the clipboard floating as a hologram beside him" width="512" height="512" loading="lazy" />
+        <figcaption><span class="tag tag-fail">Exhibit 3 · Fail · 7 arms</span><strong>LoRA — “Reading”</strong>The count is wrong — 7 arms, not 8 — and the character grips a solid clipboard in a finger-like hold. No training image contained a clipboard, so training data, not the brief, set the behavior and overrode the floating-hologram rule. Originally tallied as 8; corrected on the editor’s recount — 7 arms traced, and the editor’s count governs.</figcaption>
+      </figure>
+      <figure class="exhibit">
+        <img src="/reports/exactly-8-arms/images/exhibit-4-lora-welcoming-8-arms.webp" alt="Huxley the red octopus grinning with arms spread wide in welcome; exactly eight arms, with one arm extending out of the left edge of the frame" width="512" height="512" loading="lazy" />
+        <figcaption><span class="tag tag-pass">Exhibit 4 · Count-pass · 8, flagged</span><strong>LoRA — “Welcoming”</strong>The trained model at its best: exactly 8 arms, pass on count — flagged because one arm exits the frame. Identity is unmistakable throughout the LoRA set; the count is what would not hold.</figcaption>
+      </figure>
+    </div>
+
+    <h3>Exhibit 5 — the confident version, tested</h3>
+    <p>The same day, the editor asked ChatGPT the question this section tests: “Can this just come down to a matter of training the renderer on rendering eight-armed octopuses in various poses? Is that what it really is?” ChatGPT’s accompanying <em>text</em> hedged correctly — it distinguished teaching the process to respect the character’s anatomy from training an entirely new model, recommended building the reference library first and fine-tuning only if that proved unreliable, and stated plainly: “even a trained model isn’t guaranteed to count appendages correctly in every complicated pose. We’d still need visual verification.” The <em>infographic</em> it produced dropped that hedge. It is reproduced below as an <strong>exhibit of the claim — not as a finding of this report</strong>.<sup><a href="#s-exhibit5">[E5]</a></sup></p>
+    <figure class="exhibit wide">
+      <img src="/reports/exactly-8-arms/images/exhibit-5-chatgpt-infographic-training-claim.webp" alt="Infographic generated by ChatGPT, titled “Is it just a matter of training the renderer on eight-armed octopuses?” It answers “Short answer: Yes — largely, it is,” lists what the training includes and a four-step process — build a reference set, train / fine-tune, test and refine, lock and use — shows eight sample panels of Huxley the red octopus under a banner claiming all have exactly eight arms, and concludes that Huxley can be reliably generated in new scenes while keeping exactly eight arms every time." width="1536" height="1024" loading="lazy" />
+      <figcaption><span class="tag tag-claim">Exhibit 5 · Exhibit of the claim — not a finding</span><strong>ChatGPT’s answer: “Short answer: Yes — largely, it is.”</strong>Infographic generated by ChatGPT and supplied by the editor on 13 November 2026. It proposes a four-step process — build a reference set, train / fine-tune, test and refine, lock and use — and concludes: “we can reliably generate Huxley in new scenes while keeping exactly eight arms every time.” Editor’s trace check, 13 November 2026 — Freddie Avalos counted the graphic itself, and his count governs: it contains 9 images of Huxley — the large portrait plus the 8 sample panels under the banner “all exactly eight arms.” Not one verifies at exactly 8: 0 of 9. In 7 of the 9, Huxley visibly has more than 8 arms or fewer than 8 arms. In the other 2 — the laptop panel and the reading-book panel — his body is covered by the prop, so an exact count of 8 cannot be verified from what is visible. In several panels the foreground arms appear to cover roughly 2 more arms behind them, so the true counts are if anything higher than the visible counts. The graphic’s own sample set fails its own caption. Credit: ChatGPT-generated infographic, supplied by Freddie Avalos; reproduced as an exhibit of the claim, not endorsed as a finding.</figcaption>
+    </figure>
+    <div class="claim-audit">
+      <h4>Audited against our own test — same day, same character, same sequence</h4>
+      <p>The workflow the graphic recommends is the exact sequence this production ran on 13 November 2026:</p>
+      <ol>
+        <li><strong>Reference conditioning</strong> with the locked character sheet and explicit arm maps: 7 clean passes in 20 poses (35% overall; ~40% per roll once the rules were applied) — an improvement, not reliability.</li>
+        <li><strong>An approved pose library</strong>: the 7 verified passes — Shrug, Dancing, Conducting, Sleeping, Idea, Surprised, Curious.</li>
+        <li><strong>LoRA fine-tuning</strong> on 21 images (14 locked sheet views + those 7 verified passes), $2.00 training, the same ten briefs re-run for ~$0.35: <strong>0/10 clean passes, 2/10 count-correct — both flagged</strong>. All four poses that had passed untrained failed trained. Identity lock succeeded; counting did not.</li>
+      </ol>
+      <p><strong>Verdict:</strong> no disagreement on the workflow order — references first, library, train last is sensible, and matches this production’s practice. The disagreement is the promise. The graphic’s “reliably… exactly eight arms every time” is the claim the $2.35 test above disproves: training teaches what Huxley looks like — appearance is learnable. It does not install a counter, so the arm count stays a dice roll. Training is an identity tool, not a counting tool. The graphic’s own artwork disproves it too — per the editor’s trace check in the caption above, 0 of its 9 images of Huxley verify at exactly 8.</p>
+    </div>
+
+    <h3>Limits and confounds — read before citing</h3>
+    <ol>
+      <li><strong>Two variables changed at once.</strong> The exercises used one hosted generator; the LoRA test used FLUX.1 [dev] via fal.ai — the only hosted trainable route available. This is a comparison of <em>pipelines</em>, not a same-model LoRA on/off ablation, which was not run.</li>
+      <li><strong>Training size.</strong> 1,000 steps is the trainer’s default. Black Forest Labs guidance suggests 1,500–3,000 steps for character work (a $3–6 run at fal’s linear pricing). Untested here; the mechanism — a LoRA encodes appearance, not a countable constraint — gives no reason to expect a count guarantee at higher steps.</li>
+      <li><strong>One seed per brief per condition.</strong> Yields are point observations, not rates with confidence intervals. The direction of the result — no improvement; baseline passes became failures — is the finding, not the exact percentages.</li>
+      <li><strong>Counts are the production’s own QA</strong>, performed under the trace rule above, not an independent benchmark.</li>
+    </ol>
+
+    <div class="outcome">
+      <h3>What we did with the result</h3>
+      <p>Because of this test, Huxley’s comic character is being built as a <strong>deterministic vector puppet — eight arms by construction</strong>, arms as separate shapes in the file. Generated art is used for scenes and one-offs only, behind the trace-rule check. That is the architecture recommended later in this report, adopted here first: generative for concepts and backgrounds, rig for the character who has to be right every time.</p>
+    </div>
+  </section>
+
+  <section id="puppet">
+    <h2 class="sec">The one thing that can promise it</h2>
+    <p class="secsub">A puppet rig carries the count in its structure. Below is the idea in miniature: an SVG puppet whose arms are eight named groups in the file. The button does what an agent does before every render — it counts the arm groups in the source and asserts the total.</p>
+    <div class="demo">
+      <div class="stage">
+        <svg viewBox="0 0 320 300" role="img" aria-label="Diagram of an octopus puppet with eight arms labeled arm 1 to arm 8">
+          <g id="puppet-arms" fill="none" stroke="#0e6b6e" stroke-width="5" stroke-linecap="round">
+            <g id="arm-1"><path d="M130 150 C 90 170, 60 190, 48 232"/></g>
+            <g id="arm-2"><path d="M138 168 C 104 190, 84 214, 80 254"/></g>
+            <g id="arm-3"><path d="M150 180 C 128 206, 118 232, 122 268"/></g>
+            <g id="arm-4"><path d="M162 184 C 152 212, 152 238, 162 270"/></g>
+            <g id="arm-5"><path d="M176 184 C 186 212, 186 238, 176 270"/></g>
+            <g id="arm-6"><path d="M188 180 C 210 206, 220 232, 216 268"/></g>
+            <g id="arm-7"><path d="M200 168 C 234 190, 254 214, 258 254"/></g>
+            <g id="arm-8"><path d="M208 150 C 248 170, 278 190, 290 232"/></g>
+          </g>
+          <ellipse cx="169" cy="118" rx="62" ry="58" fill="#0e6b6e" opacity="0.92"/>
+          <circle cx="148" cy="112" r="8" fill="#fffdf8"/><circle cx="190" cy="112" r="8" fill="#fffdf8"/>
+          <circle cx="148" cy="114" r="3.5" fill="#17242e"/><circle cx="190" cy="114" r="3.5" fill="#17242e"/>
+          <path d="M152 140 Q 169 150 186 140" stroke="#fffdf8" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="panel">
+          <p class="armcount" id="armout">arm groups in file: — (press the button to run the pre-render check)</p>
+          <button class="btn" id="countbtn" type="button">Count the arms in the file</button>
+          <p style="margin-top:14px;font-size:15.5px">Posing moves arms; it cannot create or delete them. If the rig file contains exactly 8 arm bones / parts, <strong>every pose, frame and render contains exactly 8 arms</strong> — and the agent can prove it by enumerating the arm nodes before rendering: 8 <code>&lt;g id="arm-*"&gt;</code> groups in SVG, 8 arm objects in Blender’s <code>bpy.data</code>, 8 slots in Spine JSON.</p>
+        </div>
+      </div>
+    </div>
+    <p>The same logic covers <strong>deterministic compositing</strong>, with one caveat: approve <em>one</em> arm asset once, then place exactly eight copies as separate layers / groups in Photoshop, Illustrator or SVG and flatten. The count is by construction — but the agent must still render and visually verify all eight are distinct, not fully occluded behind the body or each other. Structure is guaranteed; <em>legibility</em> still needs the QA render.</p>
+  </section>
+
+  <section id="tools">
+    <h2 class="sec">Every tool, judged</h2>
+    <p class="secsub">Criterion for “agent-drivable”: a documented API, headless / local automation, MCP, or SDK an agent can call without driving a consumer UI with a mouse — and without violating the vendor’s terms. Vendor count / anatomy guarantees across all of them: <strong>none found</strong>.</p>
+    <p class="count-note">Showing 18 of 18 tools.</p>
+    <div class="fp-table-wrap"><table class="fp tools-table"><caption>Every tool, judged — all 18</caption><thead><tr><th>Tool</th><th>Agent-drivable?</th><th>Can promise exactly 8?</th><th>Access — API / SDK</th><th>Best control</th><th>Note</th></tr></thead><tbody><tr><td class="ai">ComfyUI (local / cloud)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No — generative</span></td><td class="alt api">Official HTTP/WS API: POST /prompt, /history, /upload/mask (verified live)</td><td class="alt">ControlNet 8-arm skeleton + character LoRA + IP-Adapter + inpaint loop + counter-verifier</td><td class="alt">No as a generator — yes only if the workflow’s final step is deterministic compositing / rig render.</td></tr><tr><td class="ai">OpenAI GPT Image (Images / Responses API)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">REST Images API + Responses image tool; gpt-image-1 in API Apr 2025 — pin current model ID</td><td class="alt">Prompt + reference-image editing + masks; generate-and-verify</td><td class="alt">Terms disclaim accuracy.</td></tr><tr><td class="ai">Google Imagen / Gemini Image API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">Gen AI SDK generate_images (Imagen) / generate_content (Gemini Flash Image) — verify live model ID</td><td class="alt">Prompt + reference / edit (Gemini line); no ControlNet / LoRA</td><td class="alt">Counting is a named Imagen 4 limitation.</td></tr><tr><td class="ai">Stability API / SD3.5</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">REST Platform API; weights also self-hostable</td><td class="alt">Via ComfyUI / A1111 stack (ControlNet / LoRA); hosted edit / control services</td><td class="alt">Terms disclaim accuracy.</td></tr><tr><td class="ai">Replicate</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">Prediction API, replicate.run; hosts FLUX / SD / ControlNet / LoRA models</td><td class="alt">Whichever hosted pipeline you select (ControlNet / LoRA models available)</td><td class="alt"></td></tr><tr><td class="ai">Fal.ai</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">@fal-ai/client, FAL_KEY, subscribe / queue, seed; hosts FLUX / SD + adapters</td><td class="alt">Hosted ControlNet / IP-Adapter / LoRA endpoints where offered</td><td class="alt"></td></tr><tr><td class="ai">Automatic1111</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">--api + --nowebui headless REST (local)</td><td class="alt">ControlNet extension + ADetailer + regional prompting + LoRA</td><td class="alt">Maintenance-era — most new workflow development has moved to ComfyUI / Forge; verify extension compatibility per checkpoint.</td></tr><tr><td class="ai">InvokeAI</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">Queue / workflow API; graph editor (local)</td><td class="alt">Workflow ControlNet / IP-Adapter / LoRA + canvas inpaint</td><td class="alt">Legitimate agent target; smaller ecosystem than ComfyUI.</td></tr><tr><td class="ai">Adobe Firefly API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">REST Firefly Services; Custom Models API</td><td class="alt">Structure Reference (outline / depth, strength) + Custom Model (character) + Fill / inpaint</td><td class="alt"></td></tr><tr><td class="ai">Ideogram API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">API keys / credits, v2 endpoints; character reference</td><td class="alt">Character reference + layout / typography controls</td><td class="alt">Strength is typography / layout, not counting.</td></tr><tr><td class="ai">Recraft API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-cond">Yes — as edited vector file</span></td><td class="alt api">REST external.api.recraft.ai/v1; native SVG vector models</td><td class="alt">Vector output → agent edits / counts SVG groups; styles / reference for consistency</td><td class="alt">No as generated — yes as an edited vector file if the agent audits / sets arm groups to exactly 8.</td></tr><tr><td class="ai">Leonardo API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">REST v2 cloud.leonardo.ai/api/rest/v2</td><td class="alt">Elements / custom-model training + reference</td><td class="alt"></td></tr><tr><td class="ai">Runway API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">Dev API + SDKs, async tasks, text_to_image</td><td class="alt">Reference images; video character features</td><td class="alt">Video-first; no pose / ControlNet discipline for stills.</td></tr><tr><td class="ai">Midjourney</td><td><span class="pill pill-nodrive">No</span></td><td><span class="pill pill-no">No — and an agent may not drive it</span></td><td class="alt api">No official public API; terms ban automated tools</td><td class="alt">(Human-only: omni / character reference, Vary Region)</td><td class="alt">The only official statement is a 16 July 2025 note that the company is “starting to investigate opening up an Enterprise API” — investigating, not launched.</td></tr><tr><td class="ai">Photoshop / Illustrator (scripted compositing)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-yes">Yes — by construction</span></td><td class="alt api">ExtendScript / UXP / Actions; Illustrator scripting; SVG as plain XML (scripting / batch; not a cloud API)</td><td class="alt">Place exactly 8 approved arm layers / groups; enumerate before flatten</td><td class="alt">Verify all 8 are visible in the final render.</td></tr><tr><td class="ai">Blender (3D rig)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-yes">YES — unconditional</span></td><td class="alt api">Headless blender -b … -P script.py, bpy API</td><td class="alt">Build an armature with exactly 8 arm chains; assert count in bpy.data pre-render</td><td class="alt"></td></tr><tr><td class="ai">Spine / Live2D (2D rigs)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-yes">YES — unconditional</span></td><td class="alt api">Cubism / Spine runtimes &amp; SDKs drive a fixed bone / parameter rig in code (editor is GUI)</td><td class="alt">Rig layered art to exactly 8 arm bones / slots; pose by parameters</td><td class="alt">Once the rig is built &amp; audited.</td></tr><tr><td class="ai">SVG puppet (hand-built / Recraft-derived)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-yes">YES — unconditional, cheapest to audit</span></td><td class="alt api">SVG is text: the agent writes / parses XML directly, renders via browser / rasterizer</td><td class="alt">Author exactly 8 &lt;g id=&quot;arm-N&quot;&gt; groups; unit-test count(arm groups)==8 before every render</td><td class="alt"></td></tr></tbody></table></div>
+    <p style="margin-top:16px">Notes on the decisive cases: <strong>ComfyUI</strong> is the best-in-class generative stack for control — its server docs were <strong>verified live</strong> on 13 Nov 2026: submitting a workflow is <code>POST /prompt</code>, which “validates the prompt and adds it to an execution queue, returning either a <code>prompt_id</code>… or <code>error</code>,” with <code>/history/{prompt_id}</code>, <code>/queue</code>, <code>/ws</code>, <code>/upload/image</code> and <code>/upload/mask</code> — a complete agent loop, and the only stack here that natively composes ControlNet + IP-Adapter + LoRA + inpainting + seed in one graph.<sup><a href="#s-comfy">[9]</a></sup> <strong>Midjourney</strong> is the opposite pole: no official public API, and its terms prohibit automated access — every third-party “Midjourney API” is an unofficial wrapper automating accounts in breach of those terms, with ban risk.<sup><a href="#s-mj1">[12]</a></sup><sup><a href="#s-mj2">[13]</a></sup> <strong>Recraft</strong> matters beyond drivability: its vector models return editable SVG, which is inspectable and editable by the agent as data — the bridge to the deterministic promise.<sup><a href="#s-recraftsvg">[11]</a></sup></p>
+    <p><span class="flag flag-open">Model IDs churn</span> Hosted model IDs retire fast — in this research run, <code>gpt-image-1</code> was already listed in OpenAI docs as shut down 23 Oct 2026, and secondary guides reported Imagen 4 Vertex / Gemini endpoints as discontinued in mid-2026 with migration to Gemini Flash Image models. The API patterns are stable; the model ID is not. Pin a <em>current</em> model ID at build time, never hard-code one.</p>
+  </section>
+
+  <section id="techniques">
+    <h2 class="sec">Techniques, ranked: nudge → repair → guarantee</h2>
+    <p class="secsub">The dividing line is absolute: anything that ends in a diffusion / transformer sampling step can fail the count; anything whose final render is a deterministic function of a counted scene description cannot.</p>
+
+    <div class="rung"><span class="badge b-no">No promise</span><div><h3>Prompting &amp; negative prompts</h3><p>“Exactly 8 arms”, “no extra limbs” — a soft embedding nudge, and the weakest lever. The benchmarks above are measured <strong>with</strong> the count in the prompt.</p></div></div>
+    <div class="rung"><span class="badge b-no">No promise</span><div><h3>Seed + generate-and-select</h3><p>Reproducibility ≠ correctness: the same seed and prompt reproduce the <em>same wrong count</em> reliably. Selection helps only if a correct sample happens to occur and a checker catches it. Expected tries at p≈0.3 is ~3–4 per keeper; at p≈0.05 (hard pose / count) ~20 — <strong>with no upper bound</strong>.</p></div></div>
+    <div class="rung"><span class="badge b-no">No promise</span><div><h3>Reference conditioning — IP-Adapter, character reference</h3><p>Materially improves <em>who</em> the character is across images (Ideogram / Midjourney character reference, Firefly Custom Models). It conditions appearance, <strong>not cardinality</strong> — the reference’s arms are not transferred as a counted skeleton.</p></div></div>
+    <div class="rung"><span class="badge b-no">No promise</span><div><h3>Character LoRA / fine-tune</h3><p>The best generative route to a recognizable, repeatable character. A LoRA trained on an 8-armed character raises the prior for 8 arms — and can still render 7 or 9 on a novel pose, because sampling remains stochastic. <strong>First-party check:</strong> our own FLUX LoRA, trained on the character’s locked sheet and verified passes for $2.00, scored <strong>0/10 clean</strong> on briefs the untrained generator passed 4/10 — identity locked, count did not (<a href="#firstparty">evidence and exhibits</a>).</p></div></div>
+    <div class="rung"><span class="badge b-no">No promise</span><div><h3>Region prompting / layout-to-image</h3><p>An LLM or user supplies one box per instance; attention is confined per box. CountGen’s review: predefined layout “helps ensure” count, but LLM-layout baselines alone scored poorly in its tests (Reason-Out-Your-Layout 15–26%). Two-stage LLM-layout systems report object recall rising 57.2% → 99.9% <em>for the layout stage</em> in a narrow table-setting domain — layout recall, not final-pixel limb accuracy. The renderer can still merge, duplicate or drop a boxed instance.</p></div></div>
+    <div class="rung"><span class="badge b-no">No promise</span><div><h3>ControlNet pose / skeleton / depth / canny — the strongest generative control</h3><p>Inject a spatial condition — e.g. an OpenPose skeleton drawn with exactly 8 arms — into every denoising step.<sup><a href="#s-controlnet">[7]</a></sup> The peer-reviewed anchor is HumanRefiner’s pose-reversible refinement: <strong>2.9× limb quality vs SDXL, 1.4× vs DALL·E 3</strong> — large relative gains from a low base.<sup><a href="#s-abhuman">[4]</a></sup> Why still no promise: ControlNet is a <em>conditioning strength</em>, not a constraint solver — the model may ignore, fuse or add a limb. And an 8-arm skeleton is far outside OpenPose’s human training distribution (2 arms), so expect the model to “correct” toward 2 arms or tangle arms unless the checkpoint / LoRA also knows the species. <strong>Custom skeleton + character LoRA + ControlNet is the best generative attempt — and it still requires verification per frame.</strong></p></div></div>
+    <div class="rung"><span class="badge b-mid">Repair</span><div><h3>Inpainting / masking</h3><p>The standard production repair: “inpaint the hand, not the picture.” Each inpaint is itself a new sampling roll for that region — no promise per operation. It becomes a guarantee only as part of a verified pipeline: inpaint → count-check → inpaint until the checker passes, then <em>stop touching the image</em>.</p></div></div>
+    <div class="rung"><span class="badge b-mid">Verified, not promised</span><div><h3>Generate-and-verify loop (agent + detector / VLM counter)</h3><p>CountLoop formalizes this for objects — LLM layout planner + critic feedback loop — reporting “counting accuracy of as much as 98%” on its high-instance benchmarks.<sup><a href="#s-countloop">[8]</a></sup> The agent may truthfully say “<em>this delivered file was machine-counted at 8</em>” — never “<em>this tool generates 8</em>.” A QA claim about checked files, not a capability claim about the model.</p></div></div>
+    <div class="rung"><span class="badge b-yes">Promise — with QA caveat</span><div><h3>Deterministic compositing (Photoshop / Illustrator / SVG layers)</h3><p>Count = number of arm layers / groups in the source file, enumerable programmatically before export. Recraft’s native SVG route helps: generated vector art arrives as editable paths / groups the agent can split, duplicate ×8, name <code>arm-1…arm-8</code>, and audit.<sup><a href="#s-recraftsvg">[11]</a></sup> Caveat: render and visually verify all 8 are distinct in the final frame.</p></div></div>
+    <div class="rung"><span class="badge b-yes">Promise — unconditional</span><div><h3>Vector / 3D puppet rigs (SVG puppet, Spine, Live2D, Blender)</h3><p>The character <em>is</em> a rig: a fixed hierarchy of parts / bones. Blender is fully agent-drivable headless — <code>blender -b file.blend -P script.py</code> via the <code>bpy</code> API — and Blender Studio rigs document the model: an armature with IK/FK limb chains the animator poses, never regenerates.<sup><a href="#s-blenderig">[24]</a></sup><sup><a href="#s-blenderbpy">[25]</a></sup> <strong>This is the answer to the title question.</strong> Generative AI may still be used upstream (concept art, textures, background plates), but the character asset that carries the promise must live in the rig.</p></div></div>
+
+    <blockquote><p><strong>Why generate-and-select is not a promise, in one line:</strong> a promise is a statement about <em>all</em> outputs; sampling gives a statement about a <em>distribution</em> — and for 8 arms the distribution’s mass at exactly-8 is unknown per pose, possibly near zero for out-of-distribution anatomy, so no finite re-roll budget converts it into a guarantee. Verification converts it into a <em>checked deliverable</em>; construction converts it into a <em>guarantee</em>.</p></blockquote>
+  </section>
+  <section id="vendors">
+    <h2 class="sec">What vendors promise vs. what their terms say</h2>
+    <p class="secsub">Vendor terms, services agreements and API docs were searched for “guarantee / warrant / accuracy / exact” language around counts and anatomy. Result: no generative vendor was found that contractually promises exact object counts, correct limb counts, or anatomical correctness. None. The contracts promise the opposite.</p>
+    <blockquote>
+      <p>“Given the <strong>probabilistic nature of machine learning</strong>, use of our Services may, in some situations, result in Output that does not accurately reflect real people, places, or facts… <strong>Output may not always be accurate… You must evaluate Output for accuracy and appropriateness for your use case, including using human review as appropriate</strong>, before using or sharing Output.”</p>
+      <p class="src">— OpenAI, Terms of Use (index — the live page presented a bot check in the research window and was not bypassed)<sup><a href="#s-oai">[14]</a></sup></p>
+    </blockquote>
+    <blockquote>
+      <p>Customer is “<strong>solely responsible for all use of the Outputs and for evaluating the accuracy and appropriateness of Output</strong>”; services are provided <strong>“AS IS”</strong> and OpenAI “<strong>MAKES NO REPRESENTATION, WARRANTY OR GUARANTEE THAT SERVICES WILL MEET CUSTOMER’S REQUIREMENTS OR EXPECTATIONS, THAT CUSTOMER CONTENT WILL BE ACCURATE, THAT DEFECTS WILL BE CORRECTED…</strong>” The only warranty is that the services conform “in all material respects with the Documentation” — and the documentation makes no count claim.</p>
+      <p class="src">— OpenAI, Services Agreement, eff. 1 Jan 2026 (index)<sup><a href="#s-oaiagree">[26]</a></sup></p>
+    </blockquote>
+    <blockquote>
+      <p>“<strong>OUR SERVICES ARE PROVIDED ‘AS IS’</strong>… WE… EXPRESSLY <strong>DISCLAIM ALL WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, TITLE, MERCHANTABILITY, ACCURACY, SATISFACTORY QUALITY… YOUR USE OF OUR SERVICES AND INPUTS / OUTPUTS IS SOLELY AT YOUR OWN RISK.</strong>”</p>
+      <p class="src">— Stability AI, Terms of Service, §11 (index)<sup><a href="#s-stab">[15]</a></sup></p>
+    </blockquote>
+    <h3>The marketing gap</h3>
+    <p>Release language is qualitative and comparative — Midjourney V7’s official summary, as quoted in reference coverage, claims bodies, hands and objects have “significantly better coherence”; FLUX built its launch reputation on hands; Ideogram 3.0 on typography + “improved hands.” None publishes a number, and a dedicated cross-vendor check (Aug 2026, secondary source) concluded: “Checked against each vendor’s own documentation… <strong>None of the five publish a hand-specific accuracy figure</strong>; treat any percentage you see quoted elsewhere as unverified marketing, not a benchmark.”<sup><a href="#s-handscheck">[16]</a></sup><sup><a href="#s-mjv7">[27]</a></sup> Adobe’s indemnification / commercial-safety positioning for Firefly, where offered on enterprise tiers, concerns IP / legal risk of outputs, not their anatomical correctness — do not conflate the two in procurement.</p>
+    <p><strong>Procurement implication:</strong> if a contract, SOW or product page says “exactly 8 arms,” that promise can only be underwritten by the <em>pipeline owner</em> — the agent / workflow builder, via construction + verification — never passed through to a model vendor. Any reseller claiming a generative model “guarantees” counts is claiming more than the model’s own maker does in its terms.</p>
+  </section>
+
+  <section id="emerging">
+    <h2 class="sec">Emerging fixes, 2024–2026: real improvement, no 100%</h2>
+    <p class="secsub">Hand and limb quality in simple, standard poses has improved from “reliably wrong” (pre-v5, ~2022–23) to “usually right” (2025–26 flagships, ~74–90% in small independent tests). Exact counts of specified, attached, out-of-distribution parts have not crossed into reliability, let alone guarantee.</p>
+    <ul>
+      <li><strong>Midjourney V5 → V6 / V6.1 → V7</strong> (Mar 2023 → Apr 2025, default Jun 2025): V5 was the first version to render five-fingered hands with reasonable consistency; V7’s official line is bodies / hands / objects with “significantly better coherence on all details.” Reviewer estimates put standard-pose hand success ~40% (V3) → ~85–90% (V7) — <em>reviewer-aggregated, not vendor-published</em>. Complex grips, interlaced fingers, multiple hands and unusual angles still fail — and there is no API.<sup><a href="#s-mjv7">[27]</a></sup></li>
+      <li><strong>FLUX.1 / 1.1 / Kontext / FLUX.2</strong> (Black Forest Labs, Aug 2024 →): launch reputation specifically on anatomy; an independent small test in this run’s sources found 86% acceptable hand anatomy (50 prompts) vs Midjourney V6.1’s 74%. Fused fingers on complex perspectives persist in the same tests; no vendor accuracy figure published.<sup><a href="#s-handscheck">[16]</a></sup></li>
+      <li><strong>GPT Image line</strong> (gpt-image-1, Mar / Apr 2025 → later GPT Image models): a step-change in instruction-following, text-in-image and multi-object binding vs DALL·E 3 — but community / press hands-on of later versions still records basic failures (e.g. a four-fingered hand in GPT Image 1.5 testing, Dec 2025 — desk reviews, this run’s sources), and the numerosity literature groups GPT-4o image with FLUX / Ideogram as still failing exact counts on GeckoNum.<sup><a href="#s-numerosity">[2]</a></sup></li>
+      <li><strong>Google Imagen 3 → 4 / Gemini Flash Image (“Nano Banana”)</strong> (2024 → 2025): Imagen 4 brought finer detail, 2K and better spelling — but counting is a <em>named limitation</em> of the flagship, in the vendor’s own words: Google DeepMind’s Imagen 4 Model Card (20 May 2025, verified against the primary source on 13 Nov 2026) lists numerical reasoning — rendering an exact number of objects — as “challenging for all models.”<sup><a href="#s-imagen4">[42]</a></sup></li>
+      <li><strong>Ideogram 2 → 3 / character features</strong> (2025): typography-first gains (~85–90%+ text accuracy in reviewer testing), Style Reference, Character Reference from a single reference image. Crowd / multi-person scenes still “deform faces and fingers” (Nov 2026 desk reviews, this run’s sources); its strength is text / layout, not cardinality.</li>
+      <li><strong>SD3.5</strong> (Stability, Oct 2024): better typography and complex-prompt understanding, and open weights that enable the full ComfyUI control stack. Stability publishes no benchmark numbers for SD3.5 in its documentation, and its terms disclaim accuracy.<sup><a href="#s-sd35">[28]</a></sup></li>
+      <li><strong>Counting-aware research:</strong> CountGen 29% → 48% / 26% → 54% (roughly coin-flip, objects not limbs); noise-prior conditioning 20.0% → 85.3% and 74.8% → 86.3% (best controlled result in this run is still ~1 failure in 7, on simplified benchmarks); AIBL (arXiv preprint, NeurIPS 2026) 58–65%<sup><a href="#s-aibl">[40]</a></sup>; CountLoop “as much as 98%” — a benchmark headline for objects in a research system, not a per-image guarantee, not limbs, not a product. Its architecture is, however, the template for the verified pipeline below.</li>
+    </ul>
+    <p><strong>Trajectory verdict:</strong> every documented curve asymptotes below 100%, and the vendors’ own limitation lists and terms say so.</p>
+  </section>
+
+  <section id="architecture">
+    <h2 class="sec">Recommended production architecture</h2>
+    <p class="secsub">For an 8-armed character series — the setup this report was researched for.</p>
+    <ol class="steps">
+      <li><h3>Concept phase — generative, no promises</h3><p>ComfyUI + ControlNet + character LoRA to explore look and poses — or any API model in the tool list above for boards. Nothing here is promised to anyone.</p></li>
+      <li><h3>Asset phase — the promise</h3><p>Build the approved character <strong>once</strong> as an SVG / Spine / Blender rig with <code>arm-1…arm-8</code>. Add a CI-style check: <code>assert arm_count == 8</code> on the rig file.</p></li>
+      <li><h3>Per-episode phase — agent-driven</h3><p>The agent poses and renders the rig headlessly. Backgrounds and props may be generative; <strong>the character may not be regenerated</strong>.</p></li>
+      <li><h3>If a raster generative look is non-negotiable</h3><p>ComfyUI 8-arm ControlNet + LoRA + IP-Adapter + inpaint + <strong>detector / VLM count verification on every delivered frame</strong> — and describe the deliverable honestly as “every delivered image was verified to show exactly 8 arms”: a QA claim about checked files, not a capability claim about the model.</p></li>
+    </ol>
+  </section>
+
+  <section id="open">
+    <h2 class="sec">Could not verify / open questions</h2>
+    <p class="secsub">Stated plainly, so nothing in this report rests on more than the evidence carries.</p>
+    <ul>
+      <li><span class="flag flag-open">Open</span> <strong>Ground News:</strong> no Ground News story page on AI hands / extra fingers was retrievable in this run (site search returned no results). This report uses CJR’s description of Ground News’s method for framing only, with no story-specific bias split claimed. A follow-up with a live Ground News story URL could add the exact left / center / right distribution.</li>
+      <li><strong>Kamali et al. percentages — resolved 13 Nov 2026:</strong> verified against the primary source (arXiv:2502.11989v1): anatomical 51.4%, functional 58.7%, stylistic 39.0%. An earlier version cited a wrong arXiv ID (2406.08651) via a secondary explainer; corrected.</li>
+      <li><strong>Imagen 4 model card — resolved 13 Nov 2026:</strong> verified against Google DeepMind’s Imagen 4 Model Card (20 May 2025), which lists exact-number rendering as “challenging for all models.” An “exactly eight rubber ducks” anecdote carried by secondary guides does not appear in the card and has been removed from this report.</li>
+      <li><strong>ControlNet improvement percentages — cut 13 Nov 2026:</strong> practitioner figures for ControlNet hand / pose success trace to no controlled study and appear nowhere in the peer-reviewed ControlNet paper; they have been removed, keeping only the direction of the claim and the peer-reviewed HumanRefiner anchor (2.9× / 1.4× relative limb-quality improvement).</li>
+      <li><strong>Children’s-book consistency figure — cut 13 Nov 2026:</strong> a percentage of KDP authors carried in an earlier draft traces only to a vendor blog; no primary survey exists. The qualitative consistency complaint is retained without the figure.</li>
+      <li><span class="flag flag-open">Open</span> <strong>Live vendor verification:</strong> ComfyUI docs were verified live; OpenAI’s site presented a Cloudflare bot check (“Just a moment…”) in the research window and was not bypassed — OpenAI terms are cited from the web index, flagged as <em>index</em>. Model IDs / pricing for hosted APIs churn monthly; re-pin model IDs at build time.</li>
+      <li><span class="flag flag-open">Open</span> <strong>MCP:</strong> several platforms (Replicate, Fal, Runway, Ideogram in enterprise coverage) now expose MCP servers in addition to REST APIs. MCP changes the <em>transport</em> an agent uses, not the counting properties of the underlying model, so it does not affect any conclusion; per-vendor MCP availability should be re-checked at integration time.</li>
+      <li><span class="flag flag-open">Open</span> <strong>First-party test limits:</strong> the LoRA comparison changed two variables at once (a different base model <em>and</em> the LoRA), ran 1,000 training steps against 1,500–3,000-step guidance, used one seed per brief, and relies on the production’s own trace-rule QA — and the baseline failure images were deleted, so only their pre-deletion tallies survive. Full limits are stated in <a href="#firstparty">the first-party section</a>; cite its direction, not its percentages as benchmark rates.</li>
+      <li>Proofed 13 Nov 2026; 20 corrections applied (spelling, figures, citations).</li>
+      <li>The “8 arms” test case was treated as an arbitrary exact limb count (the octopus case in the brief), generalizable to any exact count.</li>
+    </ul>
+  </section>
+
+  <section id="sources">
+    <h2 class="sec">Sources</h2>
+    <p class="secsub">All links as carried in the underlying research (13 Nov 2026). “Verified live” and “index” follow the research run’s own labels.</p>
+    <ol class="sources">
+      <li id="s-countgen">Binyamin et al., <em>Make It Count: Text-to-Image Generation with an Accurate Number of Objects</em> (CountGen), CVPR 2025 / arXiv:2406.10210 — <a href="https://ar5iv.labs.arxiv.org/html/2406.10210">ar5iv.labs.arxiv.org/html/2406.10210</a> <span class="how">· index, full text opened</span></li>
+      <li id="s-numerosity">Zhao et al., <em>Demystifying Numerosity in Diffusion Models — Limitations and Remedies</em>, arXiv:2510.11117 — <a href="https://arxiv.org/html/2510.11117v1/">arxiv.org/html/2510.11117v1</a> <span class="how">· index, full text opened</span></li>
+      <li id="s-distort">Ma et al., <em>Evaluating and Predicting Distorted Human Body Parts for Generated Images</em> (Distortion-5K), arXiv:2503.00811 — <a href="https://arxiv.org/abs/2503.00811v1">arxiv.org/abs/2503.00811v1</a> <span class="how">· index</span></li>
+      <li id="s-abhuman">Fang et al., <em>HumanRefiner: Benchmarking Abnormal Human Generation… (AbHuman)</em>, arXiv:2407.06937 — <a href="http://arxiv.org/html/2407.06937v1">arxiv.org/html/2407.06937v1</a> <span class="how">· index, full text opened</span></li>
+      <li id="s-kamali">Kamali et al., <em>Characterizing Photorealism and Artifacts in Diffusion Model-Generated Images</em>, CHI 2025 / arXiv:2502.11989 — <a href="https://arxiv.org/html/2502.11989v1">arxiv.org/html/2502.11989v1</a> <span class="how">· verified against the primary source, 13 Nov 2026</span></li>
+      <li id="s-humanbench">Jain et al., <em>HumanBench: Two Heads, No Legs, But Mostly Human</em>, WACV 2026 — <a href="http://openaccess.thecvf.com/content/WACV2026/papers/Jain_HumanBench_Two_Heads_No_Legs_But_Mostly_Human_the_State_WACV_2026_paper.pdf">openaccess.thecvf.com (PDF)</a> <span class="how">· index</span></li>
+      <li id="s-controlnet">Zhang, Rao &amp; Agrawala, <em>Adding Conditional Control to Text-to-Image Diffusion Models</em> (ControlNet), ICCV 2023 / arXiv:2302.05543 — <a href="https://arxiv.org/abs/2302.05543?context=cs.GR">arxiv.org/abs/2302.05543</a> <span class="how">· index</span></li>
+      <li id="s-countloop">Mondal et al., <em>CountLoop: Training-Free High-Instance Image Generation via Iterative Agent Guidance</em>, arXiv:2508.16644 — <a href="https://arxiv.org/html/2508.16644v2">arxiv.org/html/2508.16644v2</a> <span class="how">· index</span></li>
+      <li id="s-comfy">ComfyUI, <em>Server Routes (HTTP and WebSocket API)</em> — <a href="https://docs.comfy.org/development/comfyui-server/comms_routes">docs.comfy.org/development/comfyui-server/comms_routes</a> <span class="how">· <strong>verified live</strong></span></li>
+      <li id="s-gptimage">Inc. (Ben Sherry), <em>OpenAI’s New Image-Gen Tech Is Now Available for Businesses</em> (gpt-image-1 API, 23 Apr 2025) — <a href="https://www.inc.com/ben-sherry/openais-new-image-gen-tech-is-now-available-for-businesses-and-some-are-already-using-it/91180264">inc.com</a> <span class="how">· index</span>; OpenAI API, <em>Images and vision</em> — <a href="https://platform.openai.com/docs/guides/vision?ref=maginative.com">platform.openai.com/docs/guides/vision</a> <span class="how">· index</span></li>
+      <li id="s-recraftsvg">AI Tool Blog, <em>Recraft SVG Export: Both Documented Routes</em> — <a href="https://aitool-blog.com/recraft/guides/recraft-svg-vector-export/">aitool-blog.com/recraft/guides/recraft-svg-vector-export</a> <span class="how">· index</span>; PromptZone, <em>Recraft V3 guide to raster, vector, and API design workflows</em> — <a href="https://www.promptzone.com/meera_le/recraft-ai-boosts-image-generation-bk3">promptzone.com</a> <span class="how">· index</span></li>
+      <li id="s-mj1">AI Tool Blog, <em>Midjourney API: No Public Endpoint, and What You Can Do</em> — <a href="https://aitool-blog.com/midjourney/developers/midjourney-api-guide/">aitool-blog.com/midjourney/developers/midjourney-api-guide</a> <span class="how">· index</span></li>
+      <li id="s-mj2">AIFreeAPI, <em>Midjourney API: No Official Access and What to Use Instead</em> — <a href="https://www.aifreeapi.com/en/posts/midjourney-api-guide">aifreeapi.com/en/posts/midjourney-api-guide</a> <span class="how">· index</span></li>
+      <li id="s-oai">OpenAI, <em>Terms of Use</em> (eff. 1 Jan 2026) — <a href="https://openai.com/policies/terms-of-use/">openai.com/policies/terms-of-use</a> <span class="how">· index (live window blocked by bot check, not bypassed)</span></li>
+      <li id="s-stab">Stability AI, <em>Terms of Service</em> (§11 Disclaimer) — <a href="https://stability.ai/terms-of-service">stability.ai/terms-of-service</a> <span class="how">· index</span>; Stability AI, <em>Platform documentation</em> — <a href="https://docs.stability.ai">docs.stability.ai</a> <span class="how">· index</span></li>
+      <li id="s-handscheck">Prompt Architects, <em>Extra Fingers in AI Images: Why It Happens and How to Fix It</em> — <a href="https://prompt-architects.com/blog/160-why-does-my-ai-image-have-extra-limbs-or-fingers">prompt-architects.com</a> <span class="how">· index; cross-vendor doc check dated Aug 2026, secondary source</span></li>
+      <li id="s-kids1">Neolemon, <em>AI Children’s Book Illustration Mistakes to Avoid (2026)</em> — <a href="https://www.neolemon.com/blog/ai-childrens-book-illustration-mistakes-to-avoid/">neolemon.com</a> <span class="how">· index</span></li>
+      <li id="s-kids2">Neolemon, <em>Why AI Characters Keep Changing: 7 Fixes (2026)</em> — <a href="https://www.neolemon.com/blog/why-do-my-ai-characters-keep-changing/">neolemon.com</a> <span class="how">· index; vendor blog</span></li>
+      <li id="s-pencil">Pencil Help, <em>What Common Errors Should I Look Out for in Image Generation?</em> — <a href="https://help.trypencil.com/en/articles/11359154-what-common-errors-should-i-look-out-for-in-image-generation">help.trypencil.com</a> <span class="how">· index</span></li>
+      <li id="s-artifacts">P20V, <em>How to Fix AI-Generated Image Artifacts</em> — <a href="https://p20v.com/blog/how-to-fix-ai-generated-image-artifacts-guide">p20v.com</a> <span class="how">· index</span></li>
+      <li id="s-horse1">Equestricare (Facebook), AI horse-anatomy diagram dissection — <a href="https://www.facebook.com/Equestricare/posts/pfbid0ST4i8fxCoqyfXgPx3FHHptJfKAothtNE79r1djwAdg2e375tFrxcud5R6LSdsq9el">facebook.com/Equestricare (post)</a> <span class="how">· index</span></li>
+      <li id="s-horse2">Valerie Oberreiter Photography (Instagram Reel), AI horse extra / distorted legs — <a href="https://www.instagram.com/reel/DUTMzCaCN_d/">instagram.com/reel/DUTMzCaCN_d</a> <span class="how">· index</span></li>
+      <li id="s-groundnews">Columbia Journalism Review, <em>The Business of Balance</em> (Ground News method) — <a href="https://www.cjr.org/analysis/the-business-of-balance-ground-news.php">cjr.org/analysis/the-business-of-balance-ground-news</a> <span class="how">· index</span></li>
+      <li id="s-blenderig">Blender Studio, <em>Snow — Character Rig</em> — <a href="https://studio.blender.org/characters/snow/v3/">studio.blender.org/characters/snow/v3</a> <span class="how">· index</span></li>
+      <li id="s-blenderbpy">Blender Deluxe, <em>Automate Blender 5.2 with Python: bpy Scripting Guide</em> — <a href="https://blenderdeluxe.com/en/3d-design/python-scripting-in-blender-52-automate-your-3d-workflow-1140">blenderdeluxe.com</a> <span class="how">· index</span></li>
+      <li id="s-oaiagree">OpenAI, <em>Services Agreement</em> (eff. 1 Jan 2026) — <a href="https://openai.com/en-GB/policies/services-agreement/">openai.com/en-GB/policies/services-agreement</a> <span class="how">· index</span></li>
+      <li id="s-mjv7">AI Wiki, <em>Midjourney V7</em> (quoting Midjourney’s official V7 release post) — <a href="https://aiwiki.ai/wiki/midjourney_v7">aiwiki.ai/wiki/midjourney_v7</a> <span class="how">· index</span></li>
+      <li id="s-sd35">Stability AI, <em>Stable Diffusion 3.5 Large model card</em> (Hugging Face) — <a href="https://huggingface.co/stabilityai/stable-diffusion-3.5-large/resolve/main/README.md?download=true">huggingface.co/stabilityai/stable-diffusion-3.5-large</a> <span class="how">· index</span></li>
+      <li>Google Gen AI SDK documentation (Imagen <code>generate_images</code>) — <a href="https://googleapis.github.io/python-genai/">googleapis.github.io/python-genai</a> <span class="how">· index</span></li>
+      <li>Stability AI Knowledge Base, <em>Self Hosting 101: Deploying Stable Diffusion Models</em> — <a href="https://kb.stability.ai/knowledge-base/self-hosting-101-deploying-stable-diffusion-models">kb.stability.ai</a> <span class="how">· index</span></li>
+      <li>Fal.ai, <em>Playground v2.5 Image-to-Image API Docs</em> — <a href="https://fal.ai/models/fal-ai/playground-v25/image-to-image/api">fal.ai/models/fal-ai/playground-v25</a> <span class="how">· index</span></li>
+      <li>Shortcut Tools, <em>Stable Diffusion commands</em> (A1111 <code>--api</code> / <code>--nowebui</code> flags, from the WebUI wiki / source) — <a href="https://shortcut-tools.com/en/shortcuts/stable_diffusion/">shortcut-tools.com</a> <span class="how">· index</span></li>
+      <li>Ideogram, <em>API Setup — Developer Documentation</em> — <a href="https://developer.ideogram.ai/ideogram-api/api-setup">developer.ideogram.ai</a> <span class="how">· index</span></li>
+      <li>AnchorTerminal, <em>Leonardo.Ai vs Recraft for AI agents in 2026</em> (hosted endpoints for both APIs) — <a href="https://www.anchorterminal.com/compare/leonardo-ai-vs-recraft">anchorterminal.com/compare/leonardo-ai-vs-recraft</a> <span class="how">· index</span></li>
+      <li>Adobe, <em>Firefly API — Overview</em> — <a href="https://developer.adobe.com/firefly-services/docs/firefly-api/">developer.adobe.com/firefly-services</a> <span class="how">· index</span>; Adobe, <em>Structure Image Reference — Firefly APIs</em> — <a href="https://developer.adobe.com/firefly-services/docs/firefly-api/guides/concepts/structure-image-reference/">developer.adobe.com (structure reference)</a> <span class="how">· index</span></li>
+      <li>Runway, <em>API Getting Started Guide — Runway Dev</em> — <a href="https://docs.dev.runwayml.com/guides/using-the-api/">docs.dev.runwayml.com</a> <span class="how">· index</span></li>
+      <li id="s-firstparty">Avalos, F. (editor) &amp; Muse, <em>First-Party Evidence: The Huxley Pose Exercises and the LoRA Test</em>, 13 Nov 2026 — first-party experimental record produced during comic production (20 pose generations; fal.ai FLUX.1 [dev] LoRA, 21 training images, 1,000 steps, $2.35 all-in), tallies recorded contemporaneously in the project log before the struck baseline failures were deleted; exhibits reproduced in <a href="#firstparty">the first-party section above</a>. <span class="how">· first-party — not web-derived; limits and confounds stated in the section</span></li>
+      <li id="s-exhibit5">ChatGPT, infographic answering “Is it just a matter of training the renderer on eight-armed octopuses?”, generated 13 Nov 2026 in response to the editor’s question and supplied by the editor the same day. ChatGPT’s accompanying text answer was more hedged than its graphic — it recommended the reference library first and stated a trained model still needs visual verification; the graphic’s promise is audited against the first-party test in <a href="#firstparty">Exhibit 5, in the first-party section</a>. <span class="how">· reproduced as an exhibit of the claim — not endorsed as a finding; its “all exactly eight arms” sample caption was trace-checked by the editor on 13 November 2026 and fails — 0 of 9 images verify at exactly 8</span></li>
+      <li id="s-aibl">Ngo et al., <em>Learning to Generate Multiple Objects from Dense and Occluded Layouts</em> (AIBL), arXiv preprint, NeurIPS 2026 (arXiv:2607.03488) — <a href="https://arxiv.org/html/2607.03488">arxiv.org/html/2607.03488</a> <span class="how">· Table 2 (CoCoCount / T2I-CompBench counting: 58 / 60 / 65) verified 13 Nov 2026</span></li>
+      <li id="s-numbench">Wadhwa et al., <em>NumBench: Diagnosing Counting Failures in Text-to-Image Models</em>, arXiv:2608.28206 (28 Aug 2026) — <a href="https://arxiv.org/abs/2608.28206v1">arxiv.org/abs/2608.28206v1</a> <span class="how">· verified against the arXiv abstract, 13 Nov 2026 (640,000 prompts, counts 1–100)</span></li>
+      <li id="s-imagen4">Google DeepMind, <em>Imagen 4 Model Card</em> (20 May 2025) — cited by title and date; the card carries no stable per-version URL. <span class="how">· verified against the primary source, 13 Nov 2026</span></li>
+    </ol>
+  </section>
+
+  
+
+        <div class="bottom-line">
+          <div class="label">The Bottom Line</div>
+          <p><strong>Bottom line:</strong> Which art tool can an AI agent drive — and promise exactly 8 arms? A puppet rig: a Blender 3D armature, a Spine / Live2D 2D rig, or — simplest and most auditable — an SVG vector puppet, built with exactly eight arm parts. Eight arms in, eight arms out — in every pose, every frame, every episode. That is a promise you can put in a contract, with the rig file as the evidence. No AI image generator can make it.</p>
+          <p>Honed Reports · Researched 13 November 2026. Figures carry the hedges their sources carry; see “Could not verify / open questions” for what remains open.</p>
+        </div>
+
+        <footer>
+          <p class="signoff">Honed Signal<span class="dot">.</span> · Research by Muse · Edited by Freddie Avalos · Checked. Traced. Honed.</p>
+          <p class="std-note">Built to the <a href="/standards/">Standards &amp; Corrections</a> page — how this report was researched and checked, and the public log of corrections.</p>
+        </footer>
+
+      </article>
+    </div>
+    <script>
+      (function () {
+        var em = document.getElementById('hs-email');
+        if (em) {
+          em.addEventListener('click', function () {
+            var subject = 'Exactly 8 Arms — Can AI Promise It? — Honed Signal';
+            var body = 'Exactly 8 Arms — Can AI Promise It? Which art tool can an agent drive — and can any of them promise an exact limb count?\n\nhttps://honedsignal.com/reports/exactly-8-arms/';
+            window.location.href = 'mail' + 'to:' + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+          });
+        }
+        var btn = document.getElementById('hs-copy');
+        if (btn) {
+          btn.addEventListener('click', function () {
+            var url = 'https://honedsignal.com/reports/exactly-8-arms/';
+            function done() { btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = 'Copy link'; }, 2000); }
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, done); }
+            else { window.prompt('Copy this link:', url); }
+          });
+        }
+        var cbtn = document.getElementById('countbtn'), out = document.getElementById('armout');
+        if (cbtn && out) {
+          cbtn.addEventListener('click', function () {
+            var arms = document.querySelectorAll('#puppet-arms > g[id^="arm-"]');
+            arms.forEach(function (g) { g.querySelector('path').classList.remove('armhl'); });
+            var names = [];
+            arms.forEach(function (g, i) {
+              names.push(g.id);
+              setTimeout(function () { g.querySelector('path').classList.add('armhl'); }, i * 160);
+              setTimeout(function () { g.querySelector('path').classList.remove('armhl'); }, i * 160 + 700);
+            });
+            var pass = arms.length === 8;
+            out.textContent = 'counted: ' + names.join(', ') + '\nassert arm_count == 8  →  ' + arms.length + ' arm groups ' + (pass ? '✓ PASS — safe to render' : '✗ FAIL');
+            out.innerHTML = out.textContent.replace('✓ PASS — safe to render', '<span class="pass">✓ PASS — safe to render</span>');
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
