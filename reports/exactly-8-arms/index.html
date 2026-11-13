@@ -154,28 +154,27 @@
       .accent-o { color: var(--orange-strong); }
       .accent-t { color: var(--teal-strong); }
 
-      .hs-hero { margin: 0 0 44px; }
+      .hs-hero { margin: 0 0 24px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); overflow: hidden; }
       .hs-hero img {
         display: block; width: 100%; height: auto;
         aspect-ratio: 16 / 9;
-        border: 1px solid var(--line); border-radius: 12px;
       }
 
       .bottom-line {
         background: var(--surface);
         border: 1px solid var(--line);
-        border-top: 4px solid var(--orange);
-        border-radius: 6px;
-        padding: 26px 28px;
-        margin-bottom: 52px;
+        border-top: 5px solid var(--warn);
+        padding: 20px 22px;
+        margin-bottom: 26px;
+        box-shadow: var(--shadow);
       }
       .bottom-line .label {
         font-family: "Space Grotesk", system-ui, sans-serif;
-        font-size: 12.5px; font-weight: 700; letter-spacing: .14em;
-        text-transform: uppercase; color: var(--orange-strong);
-        margin-bottom: 10px;
+        font-size: 21px; font-weight: 700; letter-spacing: normal;
+        text-transform: none; color: var(--ink);
+        margin-bottom: 8px;
       }
-      .bottom-line p { margin: 0; font-size: 19px; line-height: 1.6; }
+      .bottom-line p { margin: 0; font-size: 18px; line-height: 1.6; }
       .bottom-line p + p { margin-top: 14px; }
 
       ul.points { margin: 0 0 16px; padding-left: 22px; }
@@ -217,58 +216,62 @@
           --shadow: 0 1px 3px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
         }
       }
-      .hs-hero figcaption { margin-top: 10px; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
-      .hs-hero figcaption strong { display: block; font-size: 15.5px; color: var(--ink); margin-bottom: 4px; }
+      .hs-hero figcaption { margin-top: 0; padding: 14px 16px; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
+      .hs-hero figcaption strong { display: block; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
       .tag { display: inline-block; font-size: 11.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; font-family: "Space Grotesk", system-ui, sans-serif; }
       .tag-pass { background: var(--good-bg); color: var(--good); }
       .tag-fail { background: var(--warn-bg); color: var(--warn); }
       .tag-flag { background: var(--amber-bg); color: var(--amber); }
       .tag-claim { background: var(--acc); color: var(--acc-ink); }
       .src-note { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 34px; }
+      article a { color: var(--acc); }
       .bottom-line strong.no { color: var(--warn); }
       .bottom-line strong.yes { color: var(--good); }
-      .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 44px; }
-      .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px; }
-      .stat .num { font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 36px); line-height: 1.05; letter-spacing: -0.02em; }
-      .stat .num.o { color: var(--orange-strong); }
-      .stat .num.t { color: var(--teal-strong); }
-      .stat .cap { font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); margin-top: 8px; font-family: "Space Grotesk", system-ui, sans-serif; }
-      nav.toc { background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 16px 20px; margin: 0 0 44px; font-family: "Space Grotesk", system-ui, sans-serif; }
-      nav.toc p { margin: 0 0 8px; font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+      .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 30px; }
+      .stat { background: var(--surface); border: 1px solid var(--line); padding: 16px; box-shadow: var(--shadow); }
+      .stat .num { font-family: "Source Serif 4", Georgia, serif; font-weight: 700; font-size: 34px; line-height: 1; letter-spacing: normal; }
+      .stat .num.o { color: var(--ink); }
+      .stat .num.t { color: var(--ink); }
+      .stat .cap { font-size: 13.5px; line-height: 1.45; color: var(--ink-soft); margin-top: 6px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      nav.toc { background: var(--surface-2); border: 1px solid var(--line); padding: 16px 20px; margin: 0 0 36px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      nav.toc p { margin: 0 0 8px; font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
       nav.toc ol { margin: 0; padding-left: 22px; }
       nav.toc li { margin: 4px 0; font-size: 15.5px; }
-      nav.toc a { color: var(--ink); }
-      h2.sec { border-top: 2px solid var(--ink); padding-top: 20px; }
-      .secsub { color: var(--ink-soft); margin: 0 0 18px; font-size: 16.5px; line-height: 1.55; }
-      .src { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); font-family: "Space Grotesk", system-ui, sans-serif; }
+      nav.toc a { color: var(--acc); display: inline-block; padding: 4px 0; }
+      h2.sec { font-family: "Source Serif 4", Georgia, "Times New Roman", serif; font-size: 29px; font-weight: 700; letter-spacing: normal; line-height: 1.2; margin: 0 0 6px; border-top: 2px solid var(--ink); padding-top: 18px; }
+      article h3 { font-size: 19px; font-weight: 700; margin: 26px 0 8px; }
+      .secsub { color: var(--ink-soft); margin: 0 0 18px; font-size: 16px; line-height: 1.55; }
+      .src { font-size: 13px; line-height: 1.6; color: var(--ink-soft); font-family: "Space Grotesk", system-ui, sans-serif; }
       sup a { text-decoration: none; font-weight: 700; color: var(--teal-strong); }
-      article blockquote { margin: 16px 0; padding: 14px 18px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--teal); font-size: 16.5px; }
+      article blockquote { margin: 16px 0; padding: 14px 18px; background: var(--surface); border-left: 4px solid var(--acc); font-size: 16px; }
       article blockquote p { margin: 0 0 8px; }
       article blockquote p:last-child { margin: 0; }
       .flag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; vertical-align: middle; font-family: "Space Grotesk", system-ui, sans-serif; }
       .flag-low { background: var(--amber-bg); color: var(--amber); }
       .flag-open { background: var(--warn-bg); color: var(--warn); }
-      .chartcard { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 24px 24px 14px; margin: 26px 0; box-shadow: var(--shadow); }
-      .chartcard h3 { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 15px; font-weight: 600; margin: 0 0 14px; }
+      .chartcard { background: var(--surface); border: 1px solid var(--line); padding: 20px; margin: 0 0 16px; box-shadow: var(--shadow); }
+      .chartcard h3 { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 19px; font-weight: 700; margin: 0 0 8px; }
       .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13.5px; color: var(--ink-soft); margin: 10px 0 4px; font-family: "Space Grotesk", system-ui, sans-serif; }
       .legend span { display: inline-flex; align-items: center; gap: 6px; }
       .sw { width: 14px; height: 14px; display: inline-block; border-radius: 3px; }
       svg.chart { width: 100%; height: auto; display: block; }
-      svg.chart text { font-family: "Space Grotesk", system-ui, sans-serif; }
+      svg.chart text { fill: var(--ink); font-family: -apple-system, "Segoe UI", Roboto, sans-serif; }
+      svg.chart .axis-note { fill: var(--ink-soft); }
       svg.chart .cb-base { fill: var(--chart-bar); }
       svg.chart .cb-fix { fill: var(--chart-fix); }
       svg.chart .cb-loop { fill: var(--chart-loop); }
       svg.chart .goal-line { stroke: var(--warn); stroke-width: 2; stroke-dasharray: 6 4; }
+      svg.chart .bar-value-in { fill: #0b0e14; font-weight: 700; }
       .fp-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 0 20px; }
       @media (max-width: 760px) { .fp-stats { grid-template-columns: 1fr 1fr; } }
       @media (max-width: 420px) { .fp-stats { grid-template-columns: 1fr; } }
-      .fp-stat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; box-shadow: var(--shadow); }
-      .fp-stat .n { font-family: "Space Grotesk", system-ui, sans-serif; font-size: 29px; line-height: 1; font-weight: 700; }
+      .fp-stat { background: var(--surface); border: 1px solid var(--line); padding: 14px 16px; box-shadow: var(--shadow); }
+      .fp-stat .n { font-family: "Source Serif 4", Georgia, serif; font-size: 30px; line-height: 1; font-weight: 700; }
       .fp-stat .l { font-size: 13px; color: var(--ink-soft); margin-top: 6px; line-height: 1.45; font-family: "Space Grotesk", system-ui, sans-serif; }
-      .methods { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--acc); border-radius: 6px; padding: 18px 20px; box-shadow: var(--shadow); margin: 0 0 20px; }
+      .methods { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--acc); padding: 18px 20px; box-shadow: var(--shadow); margin: 0 0 20px; }
       .methods h3 { margin: 0 0 8px; font-size: 17px; }
       .methods p:last-child { margin-bottom: 0; }
-      .outcome { background: var(--good-bg); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; margin: 20px 0 0; }
+      .outcome { background: var(--good-bg); border: 1px solid var(--line); padding: 18px 20px; margin: 20px 0 0; }
       .outcome h3 { margin: 0 0 8px; font-size: 17px; }
       .outcome p:last-child { margin-bottom: 0; }
       .fp-table-wrap { margin: 0 0 20px; overflow-x: auto; }
@@ -291,6 +294,19 @@
       .pill-cond { background: var(--amber-bg); color: var(--amber); }
       @media (prefers-color-scheme: dark) { .pill-yes { color: #0b1518; } }
       .count-note { font-size: 14px; color: var(--ink-soft); font-family: "Space Grotesk", system-ui, sans-serif; }
+      .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+      .fbtn { background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); border-radius: 999px; padding: 10px 16px; font-size: 15px; font-weight: 600; cursor: pointer; min-height: 44px; font-family: "Space Grotesk", system-ui, sans-serif; }
+      .fbtn[aria-pressed="true"] { background: var(--acc); color: var(--acc-ink); border-color: var(--acc); }
+      .toolgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 20px; }
+      @media (max-width: 700px) { .toolgrid { grid-template-columns: 1fr; } }
+      .toolgrid .tool[hidden] { display: none; }
+      .tool { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; box-shadow: var(--shadow); }
+      .tool h3 { margin: 0 0 6px; font-size: 17.5px; }
+      .toolpills { margin: 0 0 4px; }
+      .tool dl { margin: 8px 0 0; font-size: 14.5px; }
+      .tool dt { font-weight: 700; margin-top: 8px; }
+      .tool dd { margin: 2px 0 0; color: var(--ink-soft); line-height: 1.5; }
+      .tool .api { font-family: ui-monospace, Menlo, monospace; font-size: 13px; word-break: break-word; }
       @media (max-width: 640px) {
         table.fp, table.fp tbody, table.fp tr, table.fp td { display: block; width: 100%; }
         table.fp thead { display: none; }
@@ -305,16 +321,16 @@
       }
       .exhibits { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 8px; }
       @media (max-width: 640px) { .exhibits { grid-template-columns: 1fr; } .stat-grid { grid-template-columns: 1fr; } }
-      figure.exhibit { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; box-shadow: var(--shadow); overflow: hidden; }
+      figure.exhibit { margin: 0; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); overflow: hidden; }
       figure.exhibit img { width: 100%; height: auto; display: block; aspect-ratio: 1/1; object-fit: cover; background: var(--surface-2); }
-      figure.exhibit figcaption { padding: 14px 16px; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
+      figure.exhibit figcaption { padding: 14px 16px; font-size: 14.5px; line-height: 1.55; }
       figure.exhibit figcaption strong { display: block; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
       figure.exhibit.wide { margin: 0 0 8px; }
       figure.exhibit.wide img { aspect-ratio: 3/2; object-fit: contain; }
-      .claim-audit { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--warn); border-radius: 6px; padding: 18px 20px; box-shadow: var(--shadow); margin: 16px 0 8px; }
+      .claim-audit { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--warn); padding: 18px 20px; box-shadow: var(--shadow); margin: 16px 0 8px; }
       .claim-audit h4 { margin: 0 0 8px; font-size: 16.5px; font-family: "Space Grotesk", system-ui, sans-serif; }
       .claim-audit p:last-child { margin-bottom: 0; }
-      .demo { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; box-shadow: var(--shadow); padding: 20px; margin: 0 0 16px; }
+      .demo { background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); padding: 20px; margin: 0 0 16px; }
       .demo .stage { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
       .demo svg { flex: 0 1 300px; width: 300px; max-width: 100%; height: auto; }
       .demo .panel { flex: 1 1 260px; min-width: 240px; }
@@ -323,7 +339,7 @@
       .btn:active { transform: translateY(1px); }
       .pass { color: var(--good); font-weight: 700; }
       .armhl { stroke: var(--amber) !important; stroke-width: 7 !important; }
-      .rung { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; margin: 0 0 10px; box-shadow: var(--shadow); }
+      .rung { display: flex; gap: 14px; background: var(--surface); border: 1px solid var(--line); padding: 14px 16px; margin: 0 0 10px; box-shadow: var(--shadow); }
       .rung .badge { flex: 0 0 auto; align-self: flex-start; font-size: 12px; font-weight: 800; letter-spacing: .04em; padding: 5px 10px; border-radius: 6px; text-transform: uppercase; font-family: "Space Grotesk", system-ui, sans-serif; }
       .b-no { background: var(--warn-bg); color: var(--warn); }
       .b-yes { background: var(--good-bg); color: var(--good); }
@@ -332,7 +348,7 @@
       .rung p { margin: 0; font-size: 15.5px; color: var(--ink-soft); }
       .rung p strong { color: var(--ink); }
       .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
-      .steps li { counter-increment: step; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; box-shadow: var(--shadow); padding: 16px 18px 16px 64px; position: relative; margin: 0 0 12px; }
+      .steps li { counter-increment: step; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); padding: 16px 18px 16px 64px; position: relative; margin: 0 0 12px; }
       .steps li::before { content: counter(step); position: absolute; left: 16px; top: 14px; width: 34px; height: 34px; border-radius: 50%; background: var(--acc); color: var(--acc-ink); font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 17px; font-family: "Space Grotesk", system-ui, sans-serif; }
       .steps h3 { margin: 0 0 4px; font-size: 17px; }
       .steps p { margin: 0; font-size: 15.5px; color: var(--ink-soft); }
@@ -477,13 +493,13 @@
           <text class="bar-value" x="546" y="257">65%</text>
           <text class="bar-label" x="0" y="293">Noise-prior — GrayCount250</text>
           <rect class="cb-fix" x="258" y="278" width="367" height="20" rx="3"></rect>
-          <text class="bar-value" x="633" y="293">85.3%</text>
+          <text class="bar-value-in" x="617" y="293" text-anchor="end">85.3%</text>
           <text class="bar-label" x="0" y="329">Noise-prior — NaturalCount6</text>
           <rect class="cb-fix" x="258" y="314" width="371" height="20" rx="3"></rect>
-          <text class="bar-value" x="637" y="329">86.3%</text>
-          <text class="bar-label" x="0" y="365">CountLoop — objects, loop-until-pass</text>
+          <text class="bar-value-in" x="621" y="329" text-anchor="end">86.3%</text>
+          <text class="bar-label" x="0" y="365">CountLoop — objects</text>
           <rect class="cb-loop" x="258" y="350" width="421" height="20" rx="3"></rect>
-          <text class="bar-value" x="687" y="365">98%</text>
+          <text class="bar-value-in" x="671" y="365" text-anchor="end">98%</text>
         </svg>
       <div class="legend">
         <span><span class="sw" style="background:var(--chart-bar)"></span> Flagship models, as shipped</span>
@@ -712,8 +728,33 @@
   <section id="tools">
     <h2 class="sec">Every tool, judged</h2>
     <p class="secsub">Criterion for “agent-drivable”: a documented API, headless / local automation, MCP, or SDK an agent can call without driving a consumer UI with a mouse — and without violating the vendor’s terms. Vendor count / anatomy guarantees across all of them: <strong>none found</strong>.</p>
-    <p class="count-note">Showing 18 of 18 tools.</p>
-    <div class="fp-table-wrap"><table class="fp tools-table"><caption>Every tool, judged — all 18</caption><thead><tr><th>Tool</th><th>Agent-drivable?</th><th>Can promise exactly 8?</th><th>Access — API / SDK</th><th>Best control</th><th>Note</th></tr></thead><tbody><tr><td class="ai">ComfyUI (local / cloud)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No — generative</span></td><td class="alt api">Official HTTP/WS API: POST /prompt, /history, /upload/mask (verified live)</td><td class="alt">ControlNet 8-arm skeleton + character LoRA + IP-Adapter + inpaint loop + counter-verifier</td><td class="alt">No as a generator — yes only if the workflow’s final step is deterministic compositing / rig render.</td></tr><tr><td class="ai">OpenAI GPT Image (Images / Responses API)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">REST Images API + Responses image tool; gpt-image-1 in API Apr 2025 — pin current model ID</td><td class="alt">Prompt + reference-image editing + masks; generate-and-verify</td><td class="alt">Terms disclaim accuracy.</td></tr><tr><td class="ai">Google Imagen / Gemini Image API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">Gen AI SDK generate_images (Imagen) / generate_content (Gemini Flash Image) — verify live model ID</td><td class="alt">Prompt + reference / edit (Gemini line); no ControlNet / LoRA</td><td class="alt">Counting is a named Imagen 4 limitation.</td></tr><tr><td class="ai">Stability API / SD3.5</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">REST Platform API; weights also self-hostable</td><td class="alt">Via ComfyUI / A1111 stack (ControlNet / LoRA); hosted edit / control services</td><td class="alt">Terms disclaim accuracy.</td></tr><tr><td class="ai">Replicate</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">Prediction API, replicate.run; hosts FLUX / SD / ControlNet / LoRA models</td><td class="alt">Whichever hosted pipeline you select (ControlNet / LoRA models available)</td><td class="alt"></td></tr><tr><td class="ai">Fal.ai</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">@fal-ai/client, FAL_KEY, subscribe / queue, seed; hosts FLUX / SD + adapters</td><td class="alt">Hosted ControlNet / IP-Adapter / LoRA endpoints where offered</td><td class="alt"></td></tr><tr><td class="ai">Automatic1111</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">--api + --nowebui headless REST (local)</td><td class="alt">ControlNet extension + ADetailer + regional prompting + LoRA</td><td class="alt">Maintenance-era — most new workflow development has moved to ComfyUI / Forge; verify extension compatibility per checkpoint.</td></tr><tr><td class="ai">InvokeAI</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">Queue / workflow API; graph editor (local)</td><td class="alt">Workflow ControlNet / IP-Adapter / LoRA + canvas inpaint</td><td class="alt">Legitimate agent target; smaller ecosystem than ComfyUI.</td></tr><tr><td class="ai">Adobe Firefly API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">REST Firefly Services; Custom Models API</td><td class="alt">Structure Reference (outline / depth, strength) + Custom Model (character) + Fill / inpaint</td><td class="alt"></td></tr><tr><td class="ai">Ideogram API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">API keys / credits, v2 endpoints; character reference</td><td class="alt">Character reference + layout / typography controls</td><td class="alt">Strength is typography / layout, not counting.</td></tr><tr><td class="ai">Recraft API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-cond">Yes — as edited vector file</span></td><td class="alt api">REST external.api.recraft.ai/v1; native SVG vector models</td><td class="alt">Vector output → agent edits / counts SVG groups; styles / reference for consistency</td><td class="alt">No as generated — yes as an edited vector file if the agent audits / sets arm groups to exactly 8.</td></tr><tr><td class="ai">Leonardo API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">REST v2 cloud.leonardo.ai/api/rest/v2</td><td class="alt">Elements / custom-model training + reference</td><td class="alt"></td></tr><tr><td class="ai">Runway API</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-no">No</span></td><td class="alt api">Dev API + SDKs, async tasks, text_to_image</td><td class="alt">Reference images; video character features</td><td class="alt">Video-first; no pose / ControlNet discipline for stills.</td></tr><tr><td class="ai">Midjourney</td><td><span class="pill pill-nodrive">No</span></td><td><span class="pill pill-no">No — and an agent may not drive it</span></td><td class="alt api">No official public API; terms ban automated tools</td><td class="alt">(Human-only: omni / character reference, Vary Region)</td><td class="alt">The only official statement is a 16 July 2025 note that the company is “starting to investigate opening up an Enterprise API” — investigating, not launched.</td></tr><tr><td class="ai">Photoshop / Illustrator (scripted compositing)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-yes">Yes — by construction</span></td><td class="alt api">ExtendScript / UXP / Actions; Illustrator scripting; SVG as plain XML (scripting / batch; not a cloud API)</td><td class="alt">Place exactly 8 approved arm layers / groups; enumerate before flatten</td><td class="alt">Verify all 8 are visible in the final render.</td></tr><tr><td class="ai">Blender (3D rig)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-yes">YES — unconditional</span></td><td class="alt api">Headless blender -b … -P script.py, bpy API</td><td class="alt">Build an armature with exactly 8 arm chains; assert count in bpy.data pre-render</td><td class="alt"></td></tr><tr><td class="ai">Spine / Live2D (2D rigs)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-yes">YES — unconditional</span></td><td class="alt api">Cubism / Spine runtimes &amp; SDKs drive a fixed bone / parameter rig in code (editor is GUI)</td><td class="alt">Rig layered art to exactly 8 arm bones / slots; pose by parameters</td><td class="alt">Once the rig is built &amp; audited.</td></tr><tr><td class="ai">SVG puppet (hand-built / Recraft-derived)</td><td><span class="pill pill-drive">Yes</span></td><td><span class="pill pill-yes">YES — unconditional, cheapest to audit</span></td><td class="alt api">SVG is text: the agent writes / parses XML directly, renders via browser / rasterizer</td><td class="alt">Author exactly 8 &lt;g id=&quot;arm-N&quot;&gt; groups; unit-test count(arm groups)==8 before every render</td><td class="alt"></td></tr></tbody></table></div>
+    <div class="filters" role="group" aria-label="Filter tools">
+      <button class="fbtn" type="button" data-filter="all" aria-pressed="true">All tools</button>
+      <button class="fbtn" type="button" data-filter="promise" aria-pressed="false">Can promise exactly 8</button>
+      <button class="fbtn" type="button" data-filter="drivable" aria-pressed="false">Agent-drivable</button>
+      <button class="fbtn" type="button" data-filter="nodrive" aria-pressed="false">Not agent-drivable</button>
+    </div>
+    <p class="count-note" id="toolcount" aria-live="polite">Showing 18 of 18 tools.</p>
+    <div class="toolgrid" id="toolgrid">
+      <article class="tool" data-drive="true" data-promise="no"><h3>ComfyUI (local / cloud)</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">Official HTTP/WS API: POST /prompt, /history, /upload/mask (verified live)</dd><dt>Best control method for counts / anatomy</dt><dd>ControlNet 8-arm skeleton + character LoRA + IP-Adapter + inpaint loop + counter-verifier</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No — generative</strong> — No as a generator — yes only if the workflow’s final step is deterministic compositing / rig render.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>OpenAI GPT Image (Images / Responses API)</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">REST Images API + Responses image tool; gpt-image-1 in API Apr 2025 — pin current model ID</dd><dt>Best control method for counts / anatomy</dt><dd>Prompt + reference-image editing + masks; generate-and-verify</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong> — Terms disclaim accuracy.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>Google Imagen / Gemini Image API</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">Gen AI SDK generate_images (Imagen) / generate_content (Gemini Flash Image) — verify live model ID</dd><dt>Best control method for counts / anatomy</dt><dd>Prompt + reference / edit (Gemini line); no ControlNet / LoRA</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong> — Counting is a named Imagen 4 limitation.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>Stability API / SD3.5</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">REST Platform API; weights also self-hostable</dd><dt>Best control method for counts / anatomy</dt><dd>Via ComfyUI / A1111 stack (ControlNet / LoRA); hosted edit / control services</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong> — Terms disclaim accuracy.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>Replicate</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">Prediction API, replicate.run; hosts FLUX / SD / ControlNet / LoRA models</dd><dt>Best control method for counts / anatomy</dt><dd>Whichever hosted pipeline you select (ControlNet / LoRA models available)</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong></dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>Fal.ai</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">@fal-ai/client, FAL_KEY, subscribe / queue, seed; hosts FLUX / SD + adapters</dd><dt>Best control method for counts / anatomy</dt><dd>Hosted ControlNet / IP-Adapter / LoRA endpoints where offered</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong></dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>Automatic1111</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">--api + --nowebui headless REST (local)</dd><dt>Best control method for counts / anatomy</dt><dd>ControlNet extension + ADetailer + regional prompting + LoRA</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong> — Maintenance-era — most new workflow development has moved to ComfyUI / Forge; verify extension compatibility per checkpoint.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>InvokeAI</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">Queue / workflow API; graph editor (local)</dd><dt>Best control method for counts / anatomy</dt><dd>Workflow ControlNet / IP-Adapter / LoRA + canvas inpaint</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong> — Legitimate agent target; smaller ecosystem than ComfyUI.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>Adobe Firefly API</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">REST Firefly Services; Custom Models API</dd><dt>Best control method for counts / anatomy</dt><dd>Structure Reference (outline / depth, strength) + Custom Model (character) + Fill / inpaint</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong></dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>Ideogram API</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">API keys / credits, v2 endpoints; character reference</dd><dt>Best control method for counts / anatomy</dt><dd>Character reference + layout / typography controls</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong> — Strength is typography / layout, not counting.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="cond"><h3>Recraft API</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-cond">Promises 8 — conditional</span></p><dl><dt>API / automation</dt><dd class="api">REST external.api.recraft.ai/v1; native SVG vector models</dd><dt>Best control method for counts / anatomy</dt><dd>Vector output → agent edits / counts SVG groups; styles / reference for consistency</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>Yes — as edited vector file</strong> — No as generated — yes as an edited vector file if the agent audits / sets arm groups to exactly 8.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>Leonardo API</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">REST v2 cloud.leonardo.ai/api/rest/v2</dd><dt>Best control method for counts / anatomy</dt><dd>Elements / custom-model training + reference</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong></dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="no"><h3>Runway API</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">Dev API + SDKs, async tasks, text_to_image</dd><dt>Best control method for counts / anatomy</dt><dd>Reference images; video character features</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No</strong> — Video-first; no pose / ControlNet discipline for stills.</dd></dl></article>
+      <article class="tool" data-drive="false" data-promise="no"><h3>Midjourney</h3><p class="toolpills"><span class="pill pill-nodrive">Not agent-drivable</span> <span class="pill pill-no">Cannot promise 8</span></p><dl><dt>API / automation</dt><dd class="api">No official public API; terms ban automated tools</dd><dt>Best control method for counts / anatomy</dt><dd>(Human-only: omni / character reference, Vary Region)</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>No — and an agent may not drive it</strong> — The only official statement is a 16 July 2025 note that the company is “starting to investigate opening up an Enterprise API” — investigating, not launched.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="yes"><h3>Photoshop / Illustrator (scripted compositing)</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-yes">Promises 8</span></p><dl><dt>API / automation</dt><dd class="api">ExtendScript / UXP / Actions; Illustrator scripting; SVG as plain XML (scripting / batch; not a cloud API)</dd><dt>Best control method for counts / anatomy</dt><dd>Place exactly 8 approved arm layers / groups; enumerate before flatten</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>Yes — by construction</strong> — Verify all 8 are visible in the final render.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="yes"><h3>Blender (3D rig)</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-yes">Promises 8</span></p><dl><dt>API / automation</dt><dd class="api">Headless blender -b … -P script.py, bpy API</dd><dt>Best control method for counts / anatomy</dt><dd>Build an armature with exactly 8 arm chains; assert count in bpy.data pre-render</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>YES — unconditional</strong></dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="yes"><h3>Spine / Live2D (2D rigs)</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-yes">Promises 8</span></p><dl><dt>API / automation</dt><dd class="api">Cubism / Spine runtimes &amp; SDKs drive a fixed bone / parameter rig in code (editor is GUI)</dd><dt>Best control method for counts / anatomy</dt><dd>Rig layered art to exactly 8 arm bones / slots; pose by parameters</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>YES — unconditional</strong> — Once the rig is built &amp; audited.</dd></dl></article>
+      <article class="tool" data-drive="true" data-promise="yes"><h3>SVG puppet (hand-built / Recraft-derived)</h3><p class="toolpills"><span class="pill pill-drive">Agent-drivable</span> <span class="pill pill-yes">Promises 8</span></p><dl><dt>API / automation</dt><dd class="api">SVG is text: the agent writes / parses XML directly, renders via browser / rasterizer</dd><dt>Best control method for counts / anatomy</dt><dd>Author exactly 8 &lt;g id="arm-N"&gt; groups; unit-test count(arm groups)==8 before every render</dd><dt>Can it promise exactly 8 arms?</dt><dd><strong>YES — unconditional, cheapest to audit</strong></dd></dl></article>
+    </div>
     <p style="margin-top:16px">Notes on the decisive cases: <strong>ComfyUI</strong> is the best-in-class generative stack for control — its server docs were <strong>verified live</strong> on 13 Nov 2026: submitting a workflow is <code>POST /prompt</code>, which “validates the prompt and adds it to an execution queue, returning either a <code>prompt_id</code>… or <code>error</code>,” with <code>/history/{prompt_id}</code>, <code>/queue</code>, <code>/ws</code>, <code>/upload/image</code> and <code>/upload/mask</code> — a complete agent loop, and the only stack here that natively composes ControlNet + IP-Adapter + LoRA + inpainting + seed in one graph.<sup><a href="#s-comfy">[9]</a></sup> <strong>Midjourney</strong> is the opposite pole: no official public API, and its terms prohibit automated access — every third-party “Midjourney API” is an unofficial wrapper automating accounts in breach of those terms, with ban risk.<sup><a href="#s-mj1">[12]</a></sup><sup><a href="#s-mj2">[13]</a></sup> <strong>Recraft</strong> matters beyond drivability: its vector models return editable SVG, which is inspectable and editable by the agent as data — the bridge to the deterministic promise.<sup><a href="#s-recraftsvg">[11]</a></sup></p>
     <p><span class="flag flag-open">Model IDs churn</span> Hosted model IDs retire fast — in this research run, <code>gpt-image-1</code> was already listed in OpenAI docs as shut down 23 Oct 2026, and secondary guides reported Imagen 4 Vertex / Gemini endpoints as discontinued in mid-2026 with migration to Gemini Flash Image models. The API patterns are stable; the model ID is not. Pin a <em>current</em> model ID at build time, never hard-code one.</p>
   </section>
@@ -896,6 +937,34 @@
             out.innerHTML = out.textContent.replace('✓ PASS — safe to render', '<span class="pass">✓ PASS — safe to render</span>');
           });
         }
+      })();
+    </script>
+    <script>
+      (function () {
+        var grid = document.getElementById('toolgrid');
+        if (!grid) return;
+        var cards = Array.prototype.slice.call(grid.querySelectorAll('.tool'));
+        var countEl = document.getElementById('toolcount');
+        var total = cards.length;
+        function applyFilter(filter) {
+          var shown = 0;
+          cards.forEach(function (c) {
+            var show = filter === 'all'
+              || (filter === 'promise' && (c.getAttribute('data-promise') === 'yes' || c.getAttribute('data-promise') === 'cond'))
+              || (filter === 'drivable' && c.getAttribute('data-drive') === 'true')
+              || (filter === 'nodrive' && c.getAttribute('data-drive') === 'false');
+            c.hidden = !show;
+            if (show) shown++;
+          });
+          if (countEl) countEl.textContent = 'Showing ' + shown + ' of ' + total + ' tools.';
+        }
+        document.querySelectorAll('.fbtn').forEach(function (b) {
+          b.addEventListener('click', function () {
+            document.querySelectorAll('.fbtn').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+            b.setAttribute('aria-pressed', 'true');
+            applyFilter(b.getAttribute('data-filter'));
+          });
+        });
       })();
     </script>
   </body>
