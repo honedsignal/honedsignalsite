@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
     <title>Exactly 8 Arms — Can AI Promise It? | Honed Signal</title>
-    <meta name="description" content="Which art tool can an AI agent actually drive — and can any of them promise an exact limb count? Plenty of tools can be driven. None of the generators can make the promise. Only a puppet rig can promise exactly 8 arms." />
+    <meta name="description" content="Which art tool can an AI agent actually drive — and can any of them promise an exact limb count? Plenty of tools can be driven. None of the generators can make the promise. Only construction, not generation, can promise exactly 8 arms." />
     <link rel="canonical" href="https://honedsignal.com/reports/exactly-8-arms/" />
     <meta property="og:title" content="Exactly 8 Arms — Can AI Promise It? | Honed Signal" />
     <meta property="og:description" content="Which art tool can an AI agent actually drive — and can any of them promise an exact limb count? The benchmarks, the vendors' own terms, and our own test on our own mascot." />
@@ -384,7 +384,7 @@
           <span class="hs-label">Share</span>
           <button class="hs-btn" type="button" onclick="window.print()">Print</button>
           <button class="hs-btn" type="button" id="hs-email">Email</button>
-          <a class="hs-btn" href="https://twitter.com/intent/tweet?text=Exactly%208%20Arms%20%E2%80%94%20Can%20AI%20Promise%20It%3F%20No%20generative%20image%20vendor%20can%20promise%20an%20exact%20limb%20count%20%E2%80%94%20only%20a%20puppet%20rig%20can.&amp;url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fexactly-8-arms%2F" target="_blank" rel="noopener">X</a>
+          <a class="hs-btn" href="https://twitter.com/intent/tweet?text=Exactly%208%20Arms%20%E2%80%94%20Can%20AI%20Promise%20It%3F%20No%20generative%20image%20vendor%20can%20promise%20an%20exact%20limb%20count%20%E2%80%94%20only%20construction%20can.&amp;url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fexactly-8-arms%2F" target="_blank" rel="noopener">X</a>
           <a class="hs-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhonedsignal.com%2Freports%2Fexactly-8-arms%2F" target="_blank" rel="noopener">Facebook</a>
           <a class="hs-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fexactly-8-arms%2F" target="_blank" rel="noopener">LinkedIn</a>
           <button class="hs-btn" type="button" id="hs-copy">Copy link</button>
@@ -408,7 +408,7 @@
             <span class="small">No generator can promise it</span>
           </div>
           <div class="verdict-note">
-            <span><strong>No generative image vendor can promise exactly 8 arms</strong> — or any exact limb or object count. None claims to in its documentation, and none contractually guarantees anatomical correctness. On controlled counting benchmarks, flagship models get the exact object count right roughly <strong>one time in three</strong>.</span>
+            <span><strong>No generative image vendor can promise exactly 8 arms</strong> — or any exact limb or object count. None claims to in its documentation, and none contractually guarantees anatomical correctness. On controlled counting benchmarks, SDXL and DALL·E 3 get the exact object count right roughly <strong>one time in three</strong>.</span>
           </div>
         </div>
         <div class="byline-row">
@@ -431,7 +431,7 @@
         <div class="bottom-line">
           <div class="label">The Verdict</div>
 
-      <p><strong class="no">No generative image vendor can promise exactly 8 arms</strong> — or any exact limb or object count. None claims to in its documentation, and none contractually guarantees anatomical correctness. On controlled counting benchmarks, flagship models get the exact object count right roughly <strong>one time in three</strong>.</p>
+      <p><strong class="no">No generative image vendor can promise exactly 8 arms</strong> — or any exact limb or object count. None claims to in its documentation, and none contractually guarantees anatomical correctness. On controlled counting benchmarks, SDXL and DALL·E 3 get the exact object count right roughly <strong>one time in three</strong>.</p>
       <p><strong class="yes">The only way to promise exactly 8 is to stop asking a generative model to count.</strong> Build the character as a puppet rig — an SVG vector puppet, a Spine or Live2D 2D rig, or a Blender 3D armature — with exactly eight arm parts. The count becomes a property of the file, countable before rendering, and no render can invent a ninth arm.</p>
       <p>We also ran the test ourselves, on our own mascot: <a href="#firstparty">twenty poses at 35% yield (~40% once the production rules were applied), then a paid LoRA training run that scored 0/10 on the same briefs</a> — with exhibits.</p>
     
@@ -508,14 +508,14 @@
       </div>
       <p class="src">Sources: CountGen / <em>Make It Count</em>, CVPR 2025 (T2I-CompBench-Count and CoCoCount, human rating)<sup><a href="#s-countgen">[1]</a></sup>; AIBL layout-attention results (Ngo et al., arXiv preprint, NeurIPS 2026, 58–65% range shown to its top)<sup><a href="#s-aibl">[39]</a></sup>; noise-prior conditioning, Zhao et al. 2025<sup><a href="#s-numerosity">[2]</a></sup>; CountLoop, arXiv:2508.16644 (“as much as 98%” on high-instance <em>object</em> benchmarks — a loop-until-pass headline, not single-shot accuracy, and not limbs)<sup><a href="#s-countloop">[8]</a></sup>. None of these is a shipped vendor guarantee, and none is validated for limbs attached to a character.</p>
     </div>
-    <p>Two more findings frame the chart. Scaling does not fix it: a 2025 Microsoft Research Asia / Peking University study found counting <strong>does not improve when scaling from 2B to 12B parameters and 1K to 500K training samples</strong>.<sup><a href="#s-numerosity">[2]</a></sup> And 8 is already a hard number: benchmark performance is documented to degrade <strong>beyond five objects</strong>, with even state-of-the-art models struggling to exceed 50% accuracy on single-digit prompts — for ordinary objects, before adding the harder problem that arms must also be attached correctly to one body.<sup><a href="#s-numerosity">[2]</a></sup></p>
+    <p>Two more findings frame the chart. Scaling does not fix it: a 2025 Microsoft Research Asia / Peking University study found counting <strong>does not improve when scaling from 2B to 12B parameters and 1K to 500K training samples</strong>.<sup><a href="#s-numerosity">[2]</a></sup> And 8 is already a hard number: benchmark performance is documented to degrade <strong>beyond five objects</strong>, with even state-of-the-art models, as shipped, struggling to exceed 50% accuracy on single-digit prompts — for ordinary objects, before adding the harder problem that arms must also be attached correctly to one body.<sup><a href="#s-numerosity">[2]</a></sup></p>
   </section>
 
   <section id="why">
     <h2 class="sec">Why the models can’t count</h2>
     <p class="secsub">The failure is architectural, data-driven and encoding-driven. It is not a prompting bug, and “try a bigger model” is empirically not a fix.</p>
 
-    <h3>1. There is no counting step in the architecture</h3>
+    <h3>1. There is no known counting step in the architecture</h3>
     <p>Counting requires keeping “a sense of separate identity for every instance… and then carry[ing] out a global computation implicitly during generation. It is still unknown if such representations exist” in diffusion models. The CountGen authors add that models “struggle with controlling spatial layout just from text” and that a correct count “requires obeying a global and complex spatial relation” — while denoising is a local, iterative refinement process with no slot, register, or tally for instances.<sup><a href="#s-countgen">[1]</a></sup></p>
     <p>The numerosity study states the mechanism plainly: models “lack effective mechanisms to bind textual numerals to spatial instance slots,” and in practice they “primarily optimize with respect to the noise prior, rather than the text instructions, making object count a weak signal easily overridden by stochastic noise patterns” — different noise seeds carry their own preferred counts.<sup><a href="#s-numerosity">[2]</a></sup></p>
 
@@ -623,14 +623,14 @@
           <tr><td>14 · Idea</td><td data-th="Baseline (Ex. 2)"><span class="res-pass">Pass · 8</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 6</span></td><td data-th="Note">Legs merged into two giant curls</td></tr>
           <tr><td>15 · Surprised</td><td data-th="Baseline (Ex. 2)"><span class="res-pass">Pass · 8</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 6</span></td><td data-th="Note">Merges</td></tr>
           <tr><td>16 · Gliding</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 10</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 9</span></td><td data-th="Note">Includes a chopped, flat-ended arm segment — Exhibit 2</td></tr>
-          <tr><td>17 · Welcoming</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 10</span></td><td data-th="With LoRA"><span class="res-flag">Count-pass · 8, flagged</span></td><td data-th="Note">One arm exits the frame — Exhibit 4</td></tr>
+          <tr><td>17 · Welcoming</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 10</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 8</span></td><td data-th="Note">Count exact, but one arm exits the frame — fails the trace rule — Exhibit 4</td></tr>
           <tr><td>18 · Curious</td><td data-th="Baseline (Ex. 2)"><span class="res-pass">Pass · 8</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 6–7</span></td><td data-th="Note">Merges in three-quarter view</td></tr>
           <tr><td>19 · Proud</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 10</span></td><td data-th="With LoRA"><span class="res-flag">Count-pass · 8, flagged</span></td><td data-th="Note">Pose intent lost; arms crowd the frame edges</td></tr>
           <tr><td>20 · Laughing</td><td data-th="Baseline (Ex. 2)"><span class="res-fail">Fail · 10</span></td><td data-th="With LoRA"><span class="res-fail">Fail · 6</span></td><td data-th="Note">Wide arms merged away</td></tr>
         </tbody>
       </table>
     </div>
-    <p>Count-correct with the LoRA: 2/10 — Welcoming and Proud, both flagged. None of Exercise 2’s four clean passes survived training: Sleeping, Idea, Surprised and Curious all failed with the LoRA. Both of the LoRA’s count-correct results had themselves failed untrained.</p>
+    <p>Exact counts with the LoRA: 2/10 — Welcoming and Proud. Under the trace rule only Proud stands as a pass, flagged for lost pose intent; Welcoming’s eighth arm exits the frame. None of Exercise 2’s four clean passes survived training: Sleeping, Idea, Surprised and Curious all failed with the LoRA. Both of the LoRA’s exact-count results had themselves failed untrained.</p>
     <ul>
       <li><strong>What training did do: identity.</strong> All ten images are unmistakably the same character — headphones, spots, eyes — with <em>no reference image supplied at generation time</em>. The LoRA is a genuine identity lock. It is not a counting mechanism.</li>
       <li><strong>Behavior and style followed the training data and the base model, not the brief.</strong> No training image contained a clipboard, so when the brief mentioned one, the model drew the generic behavior — the character <em>holding</em> a solid clipboard (Exhibit 3) — overriding the production’s floating-hologram rule. And FLUX’s glossy 3D-render house style dominated the output despite the storybook passes in the training set.</li>
@@ -659,7 +659,7 @@
       </figure>
       <figure class="exhibit">
         <img src="/reports/exactly-8-arms/images/exhibit-4-lora-welcoming-8-arms.webp" alt="Huxley the red octopus grinning with arms spread wide in welcome; exactly eight arms, with one arm extending out of the left edge of the frame" width="512" height="512" loading="lazy" />
-        <figcaption><span class="tag tag-pass">Exhibit 4 · Count-pass · 8, flagged</span><strong>LoRA — “Welcoming”</strong>The trained model at its best: exactly 8 arms, pass on count — flagged because one arm exits the frame. Identity is unmistakable throughout the LoRA set; the count is what would not hold.</figcaption>
+        <figcaption><span class="tag tag-fail">Exhibit 4 · Fail · 8 arms, one exiting the frame</span><strong>LoRA — “Welcoming”</strong>The trained model’s closest miss: exactly 8 arms by count — but one arm exits the frame, and under the trace rule a segment ending at the frame edge is a failure, not a pass. Identity is unmistakable throughout the LoRA set; the count is what would not hold.</figcaption>
       </figure>
     </div>
 
@@ -835,6 +835,7 @@
       <li><span class="flag flag-open">Open</span> <strong>MCP:</strong> several platforms (Replicate, fal, Runway, Ideogram in enterprise coverage) now expose MCP servers in addition to REST APIs. MCP changes the <em>transport</em> an agent uses, not the counting properties of the underlying model, so it does not affect any conclusion; per-vendor MCP availability should be re-checked at integration time.</li>
       <li><span class="flag flag-open">Open</span> <strong>First-party test limits:</strong> the LoRA comparison changed two variables at once (a different base model <em>and</em> the LoRA), ran 1,000 training steps against 1,500–3,000-step guidance, used one seed per brief, and relies on the production’s own trace-rule QA — and the baseline failure images were deleted, so only their pre-deletion tallies survive. Full limits are stated in <a href="#firstparty">the first-party section</a>; cite its direction, not its percentages as benchmark rates.</li>
       <li>Proofed 13 Nov 2026; corrections applied (spelling, figures, citations).</li>
+      <li>14 Nov 2026: the headline claim was scoped to construction rather than puppet rigs alone; the counting figures were tied to the models actually measured (SDXL and DALL·E 3); and Exhibit 4 was reclassified as a failure under the trace rule — its count is exact, but one arm exits the frame.</li>
       <li>The “8 arms” test case was treated as an arbitrary exact limb count (the octopus case in the brief), generalizable to any exact count.</li>
     </ul>
   </section>
