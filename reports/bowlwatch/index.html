@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>One Idea, Six AIs, One No | Honed Signal</title>
+    <meta name="description" content="California holds AI music's companies, lawsuits and laws. The record shows no measurable hollowing-out of musicians' income; the clearest harm is impersonation." />
+    <link rel="canonical" href="https://honedsignal.com/reports/bowlwatch/" />
+    <meta property="og:title" content="One Idea, Six AIs, One No | Honed Signal" />
+    <meta property="og:description" content="Freddie Avalos nearly built BowlWatch, a site tracking pet-food label changes. Six AIs checked the competition; each found a rival the others missed. The full account, with a re-checked Purina label observation." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://honedsignal.com/reports/bowlwatch/" />
+    <meta property="og:image" content="https://honedsignal.com/reports/images/bowlwatch-hero.webp" />
+    <meta property="og:image:width" content="2048" />
+    <meta property="og:image:height" content="1152" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://honedsignal.com/reports/images/bowlwatch-hero.webp" />
+    <meta name="theme-color" content="#0B0E14" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f7f5f1;
+        --surface: #ffffff;
+        --surface-2: #efede8;
+        --ink: #14161c;
+        --ink-soft: #454a55;
+        --ink-faint: #6d7280;
+        --line: #d9d5cc;
+        --navy: #0b0e14;
+        --orange: #d96e00;
+        --orange-strong: #a34e00;
+        --teal: #0d7a6e;
+        --teal-strong: #0a665c;
+        --hero-bg: #0b0e14;
+        --hero-ink: #f4f2ec;
+        --hero-soft: #b9bec9;
+        --hero-line: #2a2f3a;
+        --chart-grid: #d9d5cc;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0e14;
+          --surface: #12161f;
+          --surface-2: #171c27;
+          --ink: #f0eee8;
+          --ink-soft: #c3c8d2;
+          --ink-faint: #8b919e;
+          --line: #262c38;
+          --orange: #ff6b35;
+          --orange-strong: #ff6b35;
+          --teal: #2ec4b6;
+          --teal-strong: #2ec4b6;
+          --hero-bg: #07090d;
+          --hero-ink: #f4f2ec;
+          --hero-soft: #a7adba;
+          --hero-line: #222834;
+          --chart-grid: #262c38;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+        font-size: 18px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .sans { font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        background: var(--hero-bg);
+        color: var(--hero-ink);
+        padding: 56px 24px 48px;
+      }
+      .hero-inner { max-width: 880px; margin: 0 auto; }
+      .masthead {
+        display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+        color: var(--hero-soft);
+        border-bottom: 1px solid var(--hero-line);
+        padding-bottom: 18px; margin-bottom: 34px;
+      }
+      .masthead .brand { color: var(--hero-ink); font-weight: 600; font-size: 15px; letter-spacing: .02em; text-transform: none; }
+      .masthead .brand .dot { color: #ff6b35; }
+      .hero h1 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700; letter-spacing: -0.02em;
+        font-size: clamp(34px, 6.4vw, 58px); line-height: 1.06;
+        margin: 0 0 18px;
+      }
+      .hero h1 .q { color: #2ec4b6; }
+      .hero .dek {
+        font-size: clamp(18px, 2.6vw, 22px); line-height: 1.5;
+        color: var(--hero-soft); margin: 0 0 30px; max-width: 44em;
+      }
+      .verdict-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
+      .verdict-badge {
+        background: #ff6b35; color: #14100c;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        border-radius: 10px; padding: 14px 20px;
+        display: flex; flex-direction: column; justify-content: center;
+      }
+      .verdict-badge .big { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.01em; }
+      .verdict-badge .small { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-top: 5px; }
+      .verdict-note {
+        border: 1px solid var(--hero-line); border-radius: 10px;
+        padding: 14px 20px; flex: 1 1 300px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 15px; line-height: 1.5; color: var(--hero-soft);
+        display: flex; align-items: center;
+      }
+      .verdict-note strong { color: var(--hero-ink); }
+      .byline-row {
+        display: flex; flex-wrap: wrap; gap: 6px 22px;
+        margin-top: 26px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 14px; color: var(--hero-soft);
+      }
+      .byline-row strong { color: var(--hero-ink); font-weight: 600; }
+
+      /* ---------- Layout ---------- */
+      .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+      article { padding: 44px 0 8px; }
+      section { margin-bottom: 52px; }
+      h2 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 600; letter-spacing: -0.015em;
+        font-size: clamp(24px, 3.6vw, 32px); line-height: 1.2;
+        margin: 0 0 16px;
+      }
+      h3 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 600; letter-spacing: -0.01em;
+        font-size: clamp(19px, 2.6vw, 23px); line-height: 1.25;
+        margin: 34px 0 12px;
+      }
+      section > h3:first-of-type { margin-top: 26px; }
+      p { margin: 0 0 16px; }
+      p.lede { font-size: 20px; line-height: 1.6; }
+      strong { font-weight: 600; }
+      .accent-o { color: var(--orange-strong); }
+      .accent-t { color: var(--teal-strong); }
+
+      .hs-hero { margin: 0 0 44px; }
+      .hs-hero img {
+        display: block; width: 100%; height: auto;
+        aspect-ratio: 16 / 9;
+        border: 1px solid var(--line); border-radius: 12px;
+      }
+
+      .bottom-line {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-top: 4px solid var(--orange);
+        border-radius: 6px;
+        padding: 26px 28px;
+        margin-bottom: 52px;
+      }
+      .bottom-line .label {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 12.5px; font-weight: 700; letter-spacing: .14em;
+        text-transform: uppercase; color: var(--orange-strong);
+        margin-bottom: 10px;
+      }
+      .bottom-line p { margin: 0; font-size: 19px; line-height: 1.6; }
+      .bottom-line p + p { margin-top: 14px; }
+
+      ul.points { margin: 0 0 16px; padding-left: 22px; }
+      ul.points li { margin-bottom: 10px; }
+      ul.points li::marker { color: var(--teal-strong); }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 20px; padding: 30px 0 56px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+      }
+      footer .src-label { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+      footer .sources { font-size: 13.5px; line-height: 1.7; color: var(--ink-soft); }
+      footer .signoff { margin-top: 26px; font-size: 14px; color: var(--ink-soft); } .std-note { margin-top: 10px; font-size: 13.5px; line-height: 1.6; color: var(--ink-faint); } .std-note a { color: var(--ink-soft); }
+      footer .signoff .dot { color: var(--orange-strong); }
+
+      @media (max-width: 680px) {
+        body { font-size: 17px; }
+        .hero { padding: 40px 20px 36px; }
+        .wrap { padding: 0 20px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    .hs-hero figcaption { margin-top: 10px; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
+      blockquote { margin: 0 0 16px; padding: 4px 0 4px 20px; border-left: 3px solid var(--teal); font-style: italic; }
+      ol.points { margin: 0 0 16px; padding-left: 22px; }
+      ol.points li { margin-bottom: 10px; }
+      ol.points li::marker { color: var(--teal-strong); font-weight: 600; }
+    </style>
+    <style>
+      .hs-util { background: #0B0E14; border-bottom: 1px solid #2a2f3a; }
+      .hs-util-inner { max-width: 1120px; margin: 0 auto; padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+      .hs-util a, .hs-util button { font-family: "Space Grotesk", system-ui, sans-serif; }
+      .hs-back { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 14px; border: 1px solid #3a4356; border-radius: 10px; background: #161c28; color: #f5f5f5; font-size: .85rem; font-weight: 700; text-decoration: none; }
+      .hs-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .hs-actions .hs-label { color: #9AA3B2; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-right: 2px; }
+      .hs-btn { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 12px; border: 1px solid #3a4356; border-radius: 10px; background: transparent; color: #f5f5f5; font-size: .82rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+      .hs-btn:hover, .hs-back:hover { border-color: #FF6B35; color: #ffffff; }
+      @media print {
+        .hs-util { display: none !important; }
+        :root { --hero-bg: #ffffff !important; --hero-ink: #14161c !important; --hero-soft: #454a55 !important; --hero-line: #d9d5cc !important; --bg: #ffffff !important; }
+        body { background: #ffffff !important; }
+      }
+    </style>
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+</head>
+  <body>
+
+    <div class="hs-util">
+      <div class="hs-util-inner">
+        <a class="hs-back" href="/reports/">← Honed Reports</a>
+        <div class="hs-actions" aria-label="Print, email, or share this report">
+          <span class="hs-label">Share</span>
+          <button class="hs-btn" type="button" onclick="window.print()">Print</button>
+          <button class="hs-btn" type="button" id="hs-email">Email</button>
+          <a class="hs-btn" href="https://twitter.com/intent/tweet?text=One%20Idea%2C%20Six%20AIs%2C%20One%20No%20%E2%80%94%20what%20BowlWatch%20taught%20me%20about%20trying%20to%20build%20a%20website%20in%202026.&amp;url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fbowlwatch%2F" target="_blank" rel="noopener">X</a>
+          <a class="hs-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhonedsignal.com%2Freports%2Fbowlwatch%2F" target="_blank" rel="noopener">Facebook</a>
+          <a class="hs-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fbowlwatch%2F" target="_blank" rel="noopener">LinkedIn</a>
+          <button class="hs-btn" type="button" id="hs-copy">Copy link</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="masthead">
+          <span class="brand">Honed Signal<span class="dot">.</span></span>
+          <span>Honed Reports</span>
+          <span>November 2026</span>
+        </div>
+        <h1>One Idea, Six AIs, One No</h1>
+        <p class="dek">What BowlWatch taught me about trying to build a website in 2026.</p>
+        <div class="verdict-row">
+          <div class="verdict-badge">
+            <span class="big">One no</span>
+            <span class="small">Six AIs consulted</span>
+          </div>
+          <div class="verdict-note">
+            <span>One person nearly built a website to track pet-food label changes. Six AIs checked the competition — and <strong>each one found a competitor the others had missed</strong>. This is the full account, in the editor&rsquo;s own words.</span>
+          </div>
+        </div>
+        <div class="byline-row">
+          <span><strong>Research by Muse</strong> · Edited by Freddie Avalos</span>
+          <span>November 15, 2026</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <article>
+
+        <figure class="hs-hero">
+          <img src="/reports/images/bowlwatch-hero.webp" width="2048" height="1152" alt="Freddie Avalos in torn, tattered clothes stands on a small foggy hill, holding a phone up in one hand and waving a white flag with the other, beneath six glowing holographic panels labeled Claude, Muse, ChatGPT, DeepSeek, Gemini and Perplexity" />
+          <figcaption><strong>Illustration:</strong> The editor surrenders BowlWatch — phone in one hand, white flag in the other — beneath the six AIs who reviewed the idea: Claude, Muse, ChatGPT, DeepSeek, Gemini and Perplexity. Concept and sketch by Freddie Avalos; illustration generated by Muse.</figcaption>
+        </figure>
+
+        <p class="lede"><em>This is my account, in my words, of one idea that lived for about two days: BowlWatch. It is built from the full working record of the session — my back-and-forth with Claude, who was my main partner on it and who compiled the record, and the reviews I asked for from five other AIs: Muse, Perplexity, Gemini, ChatGPT and DeepSeek. Where the record grades a claim, I keep the grade. Where a claim needed re-checking before it could be printed, I had it re-checked, and I say what the re-check found.</em></p>
+
+        <div class="bottom-line">
+          <div class="label">The Bottom Line, Up Top</div>
+          <p>In November 2026 I nearly started building a website to track something nobody seemed to be tracking: the ingredient lists that pet food makers publish, saved as dated before-and-after records, so that when a formula quietly changed, there would be proof of what it used to say. The idea looked open. The research said otherwise — not because one big competitor owned it, but because at least six different players each already owned a piece of it, and any one of them could combine the pieces faster than one person could build the whole. I killed the idea before I spent anything on it. This report is the story of how that happened, and it is really a story about what &ldquo;checking the competition&rdquo; means now, in 2026, when the checking itself is done by AIs — each of which found something all the others missed.</p>
+        </div>
+
+        <section>
+          <h2>1. The idea that looked wide open</h2>
+          <p>I asked Claude whether BowlWatch had been recommended to me more than once. Claude&rsquo;s answer was careful, and it is a good example of how this whole session went:</p>
+          <blockquote>&ldquo;Partly. Here&rsquo;s what I can confirm: It came from Perplexity. On November 13 you named it your leading candidate: a site and newsletter tracking the ingredient lists and nutrition panels that pet food makers publish, with dated before-and-after records. You expanded it the same day to cover kids&#x27; snacks and cereals that are removing synthetic dyes ahead of the 2026–2027 deadlines. It was the top pick going into today, and I ranked it first in my last answer, because label history is the hardest thing for an AI agent to recreate. What I can&rsquo;t confirm is that several different AIs recommended it separately; my records show one origin.&rdquo;</blockquote>
+          <p>The logic underneath the idea was simple, and I still think the logic was sound. When a pet food maker changes a formula, it does not announce the change and archive the old label. It overwrites its own product page. The old ingredient list is just gone. Which means a dated record of what the page said on a given day is something that cannot be recreated later, by anyone, at any price. You either saved it on the day, or it does not exist. For someone like me — one person, building with AI help, looking for a website with a compounding advantage — that is exactly the shape of idea you are told to look for: the asset gets more valuable the longer you collect it, and a copycat who starts a year later can never catch up on the history.</p>
+          <p>So I said what a founder says at that point:</p>
+          <blockquote>&ldquo;If we&rsquo;re talking about BowlWatch, we might as well begin working on a BowlWatch website.&rdquo;</blockquote>
+          <p>Claude asked me three questions. Had any labels been captured yet? Not yet — Claude would set up the capture sheet and make the first captures. What should the first version cover? Both halves, small: about 25 dog and cat foods, plus about 25 dyed kids&#x27; snacks and cereals. And the domain? Check availability first. Register nothing.</p>
+          <p>That last instruction matters to the ending, so remember it: at no point in this story did I buy anything.</p>
+        </section>
+
+        <section>
+          <h2>2. We started building, and it went fine — which was the problem</h2>
+          <p>The domain check came back clean: bowlwatch.com was available, and so were the .org, .net and .co versions. Nothing was registered.</p>
+          <p>Claude created a Drive folder called &ldquo;BowlWatch&rdquo; and a sheet called &ldquo;BowlWatch – Label Captures,&rdquo; with tabs for Products, Captures and Changes, and a set of rules I want to quote because they were good rules: makers&#x27; own pages only, never edit an old capture, log a blocked page instead of working around it, and treat each capture as what the page showed that day — not as what is in any given bag a customer might buy.</p>
+          <p>Then two AI helper agents went out to makers&#x27; own pages and came back with 47 products: 25 pet foods and 22 kids&#x27; snacks and cereals. Their attempt to save the rows to the sheet was blocked by a permission system, so the sheet stayed empty — the first small lesson of the day, and not the last, about the distance between &ldquo;an AI collected it&rdquo; and &ldquo;it is actually saved somewhere.&rdquo;</p>
+          <p>What the captures showed was genuinely interesting. Still listing synthetic dyes: Kibbles &#x27;n Bits, Purina Dog Chow, Alpo, Gravy Train dry food, Friskies Seafood Sensations, Cat Chow, Meow Mix Original Choice, 9Lives, Froot Loops, Apple Jacks, Fruity Pebbles, several Pop-Tarts, Hostess snacks, Cheetos Fantastix Flamin&#x27; Hot and Trolli Sour Brite Crawlers. Already on natural colors: Beneful, the school versions of Pop-Tarts, General Mills school foods and Go-GURT. General Mills said all its US cereals were free of certified colors as of August 26, 2026, which meant the original dyed versions of Trix and the retail Lucky Charms labels were already gone from its sites — overwritten, exactly as the idea predicted. History disappearing in real time, in the very first capture run.</p>
+          <p>There were quality warnings, too, and Claude flagged them honestly. The tool that fetched the pages summarized them, so some ingredient punctuation had been partly rebuilt rather than copied. Some Purina pages disagreed with Purina&rsquo;s own label PDFs. Kraft Heinz pages showed empty ingredient sections. Frito-Lay, Pedigree, Iams and Blue Buffalo pages failed or blocked the tool entirely.</p>
+          <p>None of that stopped us. It should have slowed us down more than it did, because it was the first evidence of the thing that eventually killed the idea: the raw material of this website — other companies&#x27; labels, on other companies&#x27; pages, behind other companies&#x27; bot walls — was never going to be as clean or as fully in my control as the pitch made it sound.</p>
+        </section>
+
+        <section>
+          <h2>3. Then I noticed the name didn&rsquo;t fit half the site</h2>
+          <p>I asked Claude to run a collision and trademark check on BowlWatch, and it came back clean. No company, app, newsletter or brand called BowlWatch or Bowl Watch. The nearest names were bowling apps. The only exact-sounding trademark match was BOW-WATCH, a stick-on clock for bows, abandoned in 2011. One minor crowding issue: &ldquo;bowl watch&rdquo; is used informally for college football bowl games in December and January. Not a legal problem. (And to be clear about what that check was and wasn&rsquo;t: it was a web search, not a full trademark search and not legal advice.)</p>
+          <p>Then I caught something the check couldn&rsquo;t:</p>
+          <blockquote>&ldquo;I just realized, okay, so I get that it&rsquo;s for pet foods, but if we&rsquo;re going to include human children&rsquo;s food, I&rsquo;m not so sure. Do we really want to put the word bowl? Because bowl is normally associated... even though, yeah, kids eat out of bowls, cereal bowls and whatnot. Maybe I&rsquo;m overthinking it.&rdquo;</blockquote>
+          <p>Claude told me I was not overthinking it. &ldquo;Bowl&rdquo; fits pet food and cereal. It does not fit Pop-Tarts, Twinkies, Cheetos, fruit snacks or yogurt tubes, and it also suggests football bowl games and bowling. And underneath the word was a bigger issue: two different audiences. Pet owners ask, &ldquo;Did my dog&rsquo;s food change?&rdquo; Parents ask, &ldquo;Which snacks still have Red 40, and when are they switching?&rdquo; Different questions, different buyers, different sites.</p>
+          <p>So the plan became two sites on one engine: BowlWatch for pets, and a second site for the kids&#x27; food and dye side. I asked for name options. Gemini produced two lists — one built on food slang (grub, chow, nosh, eats, munchies, nibbles, bites, and a long tail of words that turned out to be taken, foreign to US ears, or already famous brands), and one of invented brand names, nearly all of which had their .com already registered, and one of which, IngrediCheck, turned out to be an existing app — a detail that becomes important in the next section. Claude checked the candidates and added one of its own: DyeWatch. Available, no site or app by that name, no matching mark found. DyeWatch stayed the pick, with NibblesWatch as backup.</p>
+          <p>Notice what had happened by this point, because it is the pattern of the whole story: a simple idea had quietly become two websites, two audiences, two names, and a trademark question — before a single page existed. That is not a criticism of the process. That is what starting a website in 2026 actually feels like from the inside. The building is the easy part now. Everything around the building is the work.</p>
+        </section>
+
+        <section>
+          <h2>4. The first competitor sweep — the one that got it wrong by being right</h2>
+          <p>The name search had surfaced IngrediCheck, so I asked the obvious question:</p>
+          <blockquote>&ldquo;IngrediCheck app. Okay, so isn&rsquo;t BowlWatch going to compete against this?&rdquo;</blockquote>
+          <p>Claude&rsquo;s answer: not much. IngrediCheck scans a barcode or a label and tells you whether a product matches your diet or allergy notes. Its own FAQ says, &ldquo;Pet food products are not currently supported,&rdquo; and it describes no formula-change history and no alerts. That claim is graded Confirmed in the record — Claude opened the FAQ. Scanners win the question &ldquo;does the box in my hand have Red 40?&rdquo; They do not answer &ldquo;did my dog&rsquo;s food change, and when?&rdquo;</p>
+          <p>Then I named the rest of the field myself and asked Claude to examine all of them: Yuka, Open Food Facts, the EWG Healthy Living app, SmartLabel, Foodnoms and Trash Panda. Here is the table Claude came back with, as it stands in the record:</p>
+          <ul class="points"><li><strong>Yuka</strong> — scan a product for a health score; a very large user base across many countries, including the US. Pet food: not mentioned. Tracks label changes over time? No per-product history; category trends only. Threat rating: low for history.</li><li><strong>Open Food Facts</strong> — free, open, crowdsourced product database. Pet food: yes, through its sister project, Open Pet Food Facts. Tracks changes? Partly — archived package photos, and in January 2026 its own team said it lacked the infrastructure to show history properly. Threat rating: &ldquo;the one to watch.&rdquo;</li><li><strong>EWG Healthy Living</strong> — scores foods and publishes dye-pledge news. Product-level change records: none found (not fully checked) — pledge news, not product records. Threat rating: low to medium.</li><li><strong>SmartLabel</strong> — the industry&rsquo;s own portal for current product information. History: no; it shows the current label with an &ldquo;Information last updated&rdquo; date. Claude&rsquo;s verdict: it&rsquo;s a data source, not a competitor.</li><li><strong>Foodnoms</strong> — a calorie and nutrition tracker. Pet food: no. History: no. Threat rating: none.</li><li><strong>Trash Panda</strong> — flags questionable ingredients, with a limited number of free scans. History: no. Threat rating: low.</li></ul>
+          <p>Claude&rsquo;s conclusion from that sweep was: &ldquo;Nobody offered dated, maker-sourced before-and-after records with change alerts.&rdquo;</p>
+          <p>Every line of that was defensible. Every source had been opened. And the conclusion was still wrong — or rather, it was incomplete in the way that matters most. The record itself carries the correction in parentheses, added later: &ldquo;(Later reviews showed this was incomplete; see sections 6–10.)&rdquo; I am keeping that parenthesis in spirit throughout this report, because it is the most honest sentence in the whole file. A competitor sweep can be accurate about every company it examines and still fail, because of the companies it never thought to look for.</p>
+        </section>
+
+        <section>
+          <h2>5. I asked the question that should have ended it there</h2>
+          <blockquote>&ldquo;Let&rsquo;s keep in mind I am one person, using multiple AIs to build everything out. Couldn&rsquo;t all of these apps just easily pivot over, duplicate BowlWatch and surpass us in terms of capabilities and production?&rdquo;</blockquote>
+          <p>Claude answered honestly: yes, they could. The better questions were whether they would, and what they couldn&rsquo;t copy.</p>
+          <p>Easy to copy: the features, the pages, the design, the dye lists. Yuka or Open Food Facts could add change alerts in months. Can&rsquo;t copy: the past. A competitor starting in 2027 won&rsquo;t have the 2026 labels that makers overwrote. That was the only real moat, and it was strongest during the 2026–2027 dye deadlines — with Open Food Facts as the exception, because it already had years of crowdsourced photos.</p>
+          <p>Why they probably wouldn&rsquo;t bother, Claude argued: the revenue from a site like this is too small for venture-scale apps; pet food sits outside the scanners&#x27; focus; Open Food Facts is a volunteer nonprofit; EWG is an advocacy group. My advantages were speed, low costs, and the chance that bigger players might later become buyers. And Claude&rsquo;s advice for what would protect me most: start capturing now, save proof in the form of dated page copies, build an email list, and become the source others cite.</p>
+          <p>I want to be fair to that argument, because I believed it at the time and parts of it are true. The past really can&rsquo;t be copied. But notice the load-bearing assumption inside it: that the threat would come from <em>big</em> companies deciding whether a small idea was <em>worth bothering with</em>. The record carries a second, later correction in parentheses after this section too: &ldquo;(The &#x27;they won&rsquo;t bother&#x27; argument was later challenged: the real competitors turned out to be small teams, not big companies.)&rdquo;</p>
+          <p>That challenge is the heart of this report. So instead of arguing with Claude, I did the thing I would now recommend to anyone in my position. I asked Claude to write the whole idea up as a formal proposal — my concerns, its responses, all of it — so I could put it in front of other AIs and ask them what they thought.</p>
+          <blockquote>&ldquo;Please write everything up as a formal proposal pitch: my concerns, your responses. I want to ask some other AIs what they think.&rdquo;</blockquote>
+          <p>Claude wrote &ldquo;BowlWatch and DyeWatch — Proposal for Review&rdquo;: the summary, the two-site plan, the evidence, the competitor table, six concerns with responses, the risks, and eight questions for reviewers. I pasted in each AI&rsquo;s answer as it came back, and Claude checked its claims. What follows is what each of them found. The order matters less than this fact: <strong>no two of them found the same thing.</strong></p>
+        </section>
+
+        <section>
+          <h2>6. DeepSeek found the competitor the proposal had missed entirely</h2>
+          <p>DeepSeek&rsquo;s key finding was KibbleLab — a US pet food data platform that neither Claude&rsquo;s sweep nor my own list of names had turned up. Claude then checked DeepSeek&rsquo;s claims against KibbleLab&rsquo;s own pages, and graded them:</p>
+          <ul class="points"><li><strong>Confirmed:</strong> KibbleLab&rsquo;s data page lists 7,772 dog and cat foods from 251 brands. It says it re-verifies products weekly and records when an ingredient set changes, and it offers its data to other businesses through an API. Its homepage describes a free tier and a paid tier with recall and discontinued-food alerts. Its About page names two co-founders.</li><li><strong>Not confirmed:</strong> DeepSeek&rsquo;s claim that KibbleLab&rsquo;s change detection began in May 2026. No date is shown on the pages Claude opened; a sample product page showed a verification date with no public change history.</li><li><strong>Confirmed:</strong> FormulaSignal — a second service DeepSeek surfaced — keeps dated formula history and archived labels, in its case for US sports supplements. Proof that the &ldquo;dated label history&rdquo; model already existed in an adjacent category, run by somebody else.</li></ul>
+          <p>Claude&rsquo;s takeaway was blunt: BowlWatch was no longer first in pet food. DeepSeek suggested leading with DyeWatch instead, as a short-term list builder while the dye deadlines lasted.</p>
+          <p>Sit with that for a moment, because it is the moment the idea actually died, even though I didn&rsquo;t say so yet. The core of BowlWatch — a large, weekly re-verified catalogue of pet foods that records ingredient changes — was not a gap in the market. It was a product, already running, founded by two people.</p>
+        </section>
+
+        <section>
+          <h2>7. Muse — my own Muse — told me to build it, and fixed the foundation</h2>
+          <p>I gave the same proposal to Muse, my assistant on everything else I run. (In this report I call him Muse, as the other AIs did in their reviews; at home he&rsquo;s Huxley.) His verdict was the most favorable of the five: build BowlWatch as one site with a dye section rather than two sites, and fix the baseline before anything public exists. He did not know about KibbleLab. But what he did find, nobody else had:</p>
+          <ul class="points"><li><strong>Confirmed:</strong> the Wayback Machine allows partial backfill. A 2017 article had compared archived ingredient lists going back to the late 1990s. So my moat — &ldquo;the past can&rsquo;t be recreated&rdquo; — had a hole in it for the flagship products of big brands. What Wayback doesn&rsquo;t give you is systematic coverage, consistent dates, or the long tail. The moat was real, but narrower than the pitch claimed.</li><li><strong>Confirmed:</strong> Truth About Pet Food sells a paid List — evidence that curated pet-food information is already sold, from an established voice in exactly this space.</li><li><strong>Confirmed:</strong> the FDA runs a dye pledge tracker, and CSPI runs a corporate commitment tracker. Both track pledges, not dated labels.</li><li><strong>Agreed:</strong> make the baseline exact — raw page copies or label PDFs, not summaries — and keep the archive in more than one place.</li></ul>
+          <p>Combining his review with DeepSeek&rsquo;s suggested a narrower gap than the original idea: not &ldquo;track labels,&rdquo; but &ldquo;check company pledges against dated published labels.&rdquo; That narrower idea is worth remembering, because the next section is about the one concrete observation that came out of it — and about what happened when I had that observation re-checked before publishing this report.</p>
+          <h3>A note on checking, added before publication: the Purina observation</h3>
+          <p>Muse&rsquo;s review carried one observation that the record flagged, in its own words, as &ldquo;needing re-check&rdquo;: Purina says it removed artificial colors — and yet Purina label PDFs captured on November 15 for Dog Chow, Alpo, Friskies dry food and Cat Chow still listed Red 40. The record&rsquo;s caution was explicit: the PDFs might be stale, or the switch unfinished, and the observation &ldquo;must be re-checked with exact captures before it&rsquo;s stated publicly.&rdquo;</p>
+          <p>So before this report was published, I had Muse re-check it — Purina&rsquo;s own pages and Purina&rsquo;s own label PDFs only, no retailer sites, no third-party databases. Here is what the re-check found, and it is more interesting than the original claim:</p>
+          <p><strong>The ingredient half holds, four for four.</strong> Purina&rsquo;s own currently hosted label PDFs still list Red 40 for Dog Chow, for Alpo, for Friskies dry food (in more than one variety), and for Cat Chow Complete. Each PDF names Nestlé Purina PetCare Company as the manufacturer. That part of the observation is exact, and I am comfortable printing it.</p>
+          <p><strong>The &ldquo;Purina said it removed them&rdquo; half holds only in a narrower form than the original claim suggested — and the difference is the whole point.</strong> What Purina actually says on its own site is that <em>many Fancy Feast recipes</em> are now crafted without artificial preservatives or colors. That is a claim about one brand, and only many of its recipes. The broader corporate announcement — Nestlé USA announcing it had fully eliminated FD&amp;C colors — covers Nestlé USA&rsquo;s human food and beverage portfolio. Neither statement, as actually worded, covers these four pet foods. So there is no broken promise here, and this report does not claim one. What there is, is a gap between what a casual reader hears (&ldquo;the colors are gone&rdquo;) and what the labels of four major pet foods still say (&ldquo;Red 40&rdquo;) — and a dated, maker-sourced label record is precisely the tool that could police that gap honestly, without overstating it.</p>
+          <p>I am including this note at this length for a reason. The re-check changed the claim. It made it smaller, more accurate, and — I would argue — more damning to nobody and more useful to everybody. That is what checking is for, and it is the standard every claim in this report was held to: keep the grade the record gave it, or re-check it and print what the re-check found.</p>
+        </section>
+
+        <section>
+          <h2>8. ChatGPT scored it, and found the history hiding inside Open Food Facts</h2>
+          <p>ChatGPT did what ChatGPT does: it turned the idea into a scorecard. It scored BowlWatch 11 out of 25 and DyeWatch 10 out of 25, below the pass threshold it was using. Its verdict: change the concept, run a go/no-go test, and don&rsquo;t launch DyeWatch separately. Claude checked its claims:</p>
+          <ul class="points"><li><strong>Confirmed:</strong> Open Food Facts keeps numbered revisions for every product — the history is in there, reachable through a revision parameter on the product page — though it offers no bulk historical download. The crowdsourced giant wasn&rsquo;t just &ldquo;the one to watch.&rdquo; It already kept versions; it just didn&rsquo;t present them as a consumer feature.</li><li><strong>Supported, not fully confirmed:</strong> work on a proper history interface is active in Open Food Facts&#x27; public code repositories. The pull requests exist; their merge status and dates weren&rsquo;t confirmed.</li><li><strong>A fair point that no amount of label capture fixes:</strong> customers ultimately want to know whether the bag they already bought is the old formula or the new one — and a maker&rsquo;s web page can never answer that.</li></ul>
+          <p>ChatGPT&rsquo;s round also produced the Journey Foods check. (First I shared a screenshot of the wrong Journey — a calorie and workout app of a similar name; a useful reminder that even identifying a competitor can go wrong.) The real Journey Foods runs a dye tracker, and Claude confirmed it exists but uses placeholder rows — its own text says the rows are illustrative until its AI replaces them with live reformulation data — with no dates and no label history. Journey Foods is a platform for food makers. So here was a competitor that had not yet built the thing, had announced the thing, and had better insider access to the industry than I would ever have.</p>
+        </section>
+
+        <section>
+          <h2>9. Gemini defended the solo founder — against the wrong opponent</h2>
+          <p>I put my core worry to Gemini directly:</p>
+          <blockquote>&ldquo;Please understand, BowlWatch is being built by one human and a couple of AI agents, going up against companies with teams of people who are probably also going to be using AI agents.&rdquo;</blockquote>
+          <p>Gemini argued that big companies won&rsquo;t build this: the revenue is too small, the legal and public-relations risk of accusing brands of silent reformulations is high, and they have conflicts of interest. Claude&rsquo;s response is the one I now think was the sharpest paragraph in the whole session: Gemini is right about big companies, but the real competitors are small. KibbleLab is a two-founder company. Open Food Facts is a nonprofit. One of Gemini&rsquo;s supporting claims — that scanner apps depend on brand partnerships — didn&rsquo;t even fit Yuka, which is independent of brands. A solo builder wins by being first in a niche. In this niche, someone small had already gotten there first.</p>
+          <p>That reframing is the one I would hand to anyone starting a website in 2026. For years, the standard advice to a solo founder was: don&rsquo;t worry about the giants, you&rsquo;re too small for them to notice, and that&rsquo;s your protection. In 2026 that protection is worth much less, because you are no longer only competing with giants who ignore you and other solo founders working by hand. You are competing with small teams and nonprofits who have the same AI leverage you do. &ldquo;Too small for big companies&rdquo; is not a moat. It is just a description of your size, and now it describes your competitors too.</p>
+        </section>
+
+        <section>
+          <h2>10. Perplexity — the AI that suggested BowlWatch — found PawDiet</h2>
+          <p>The last review came from Perplexity, which is fitting, because Perplexity is where BowlWatch came from in the first place, on November 13. Its key finding was PawDiet. Claude confirmed it from PawDiet&rsquo;s own homepage: a free app offering price and ingredient-change alerts and recall alerts, plus licensing, APIs and custom integrations for businesses — from a company that has operated since 2015. What wasn&rsquo;t shown: a public change history or product counts. But the core promise of BowlWatch — <em>we watch the ingredients and alert you when they change</em> — was already being made, for free, by an established company.</p>
+          <p>Perplexity&rsquo;s second piece was the most businesslike of the five: a moat audit, a build-and-defensibility matrix, and a six-week pilot with predetermined stop rules, testing whether real customers would subscribe to a specific product&rsquo;s watchlist and whether any business would pay for the data. It also noted the trap inside the whole concept: the more trustworthy a service like this becomes, the less hands-off it is. Every change has to be verified against the original capture before an alert goes out, or the service starts crying wolf about formatting changes — and verification is human time, which is the one resource a one-person operation doesn&rsquo;t have to spare.</p>
+          <p>Claude&rsquo;s response to the Perplexity round is where I can hear the idea being put down, gently, before I picked up the job myself: two established players already sell or give away the core of BowlWatch. Claude suggested pausing it, with an optional short check of PawDiet&rsquo;s and KibbleLab&rsquo;s alerts first.</p>
+        </section>
+
+        <section>
+          <h2>11. My decision</h2>
+          <p>Here is what I said, and I am quoting myself exactly as the record has it, because this report exists to document a decision and the decision was mine:</p>
+          <blockquote>&ldquo;Looking through everything, I believe we and the other AIs have come up with too many other companies and apps doing bits and pieces of what BowlWatch would do. And again, I don&rsquo;t see why these competitors couldn&rsquo;t simply expand or combine, add on, you name it, and just surpass BowlWatch with me being one person and a couple of AI agents. I think BowlWatch is basically DOA.&rdquo;</blockquote>
+          <p>Claude agreed, and said it was the right call: when several competitors each cover a piece, any one of them can combine the pieces faster than one person can build the whole thing. Better to learn that now than after months of work. And then the sentence I keep coming back to: &ldquo;Nothing was bought.&rdquo;</p>
+          <p>Nothing was bought. No domain, no build, no months. The total cost of killing BowlWatch was one working session, a capture sheet that stayed empty, and a proposal read by five AIs, including the one doing this report&rsquo;s research. That is the other side of building in 2026 that nobody puts on the conference slides: the same tools that make it cheap to start make it cheap to <em>find out you shouldn&rsquo;t</em> — if you do the finding out before the building, and if you&rsquo;re willing to hear the answer.</p>
+          <p>Here is the final table, the one the session ended with. Compare it to the table in section 4, which was also accurate, and also not enough:</p>
+          <ul class="points"><li><strong>KibbleLab</strong> — already does: a catalogue of thousands of pet foods, re-verified weekly, with ingredient changes recorded and the data offered to other businesses.</li><li><strong>PawDiet</strong> — already does: free ingredient-change alerts and recall alerts, plus data licensing.</li><li><strong>Open Food Facts</strong> — already does: per-product revision history, free, with a proper history view in development.</li><li><strong>The Wayback Machine</strong> — already does: partial old copies of maker pages for the big brands.</li><li><strong>FDA and CSPI</strong> — already do: dye-pledge and corporate-commitment trackers.</li><li><strong>Journey Foods</strong> — already does: a dye tracker, announced, currently running on placeholder data.</li><li><strong>BowlWatch</strong> — would have added: exact source copies and a public dated history. No reviewer showed demand for that specific addition.</li></ul>
+        </section>
+
+        <section>
+          <h2>12. What I changed in my own rules, and what I&rsquo;d tell anyone starting a website in 2026</h2>
+          <p>I added the lessons of this session to my daily idea-research rules the same day. Here they are, as I wrote them down:</p>
+          <ol class="points"><li>1. <strong>Pieces count as competition.</strong> If three or more players each do part of an idea, treat the idea as taken. Do not comfort yourself that no single one of them does the whole thing. Combining pieces is exactly what a competent competitor does next, and in 2026 they can do it quickly.</li><li>2. <strong>&ldquo;Too small for big companies&rdquo; isn&rsquo;t protection.</strong> Small teams, solo founders and nonprofits using AI are the real competitors now. Search for them on purpose, not as an afterthought.</li><li>3. <strong>Search harder before falling for an idea.</strong> Search at least five different ways, including data-licensing businesses, app stores, and small founder-led sites. KibbleLab and PawDiet surfaced only after five different AIs went looking. One search, by one AI, by one method, is not a competitor check. It is a first draft of one.</li><li>4. <strong>Use several AIs, and make each one show its work.</strong> Asking several AIs worked — each found something the others missed: DeepSeek found KibbleLab, Muse the Wayback Machine and the dye trackers, ChatGPT the Open Food Facts revisions, and Perplexity PawDiet. But every claim still had to be checked against the source, because earlier the same day, an AI had named competitor sites that couldn&rsquo;t be found at all. A claim from an AI is a lead, not a finding. The finding is what&rsquo;s still standing after somebody opens the page.</li><li>5. <strong>Decide what would make you stop, before you start.</strong> The most valuable proposal in the whole session may have been Perplexity&rsquo;s six-week pilot with its stop rules written in advance. Enthusiasm is a terrible stopping rule. Write the exit conditions while you still find the idea merely interesting, not after it has your name and a logo.</li><li>6. <strong>Count the cost of being right.</strong> A label-history service is only trustworthy if every change is verified by a human before an alert goes out. &ldquo;AI can build it&rdquo; and &ldquo;one person can run it accurately&rdquo; are different claims. BowlWatch passed the first and was failing the second before it existed.</li></ol>
+          <p>And the meta-lesson, the one this report is really about: in 2026, the scarce skill in starting a website is not building it. Between one person and a handful of AI agents, the building is close to free. The scarce skills are the ones this session exercised — framing a question narrowly enough that a careful answer is possible, refusing to let a good first sweep stand as the whole truth, checking claims against primary sources even when five AIs agree, and being willing to kill your leading candidate on one day&rsquo;s evidence instead of defending it for a year. The AIs did the searching. Claude did the compiling and most of the arguing. The decision — the only part that couldn&rsquo;t be delegated — was mine.</p>
+          <p>BowlWatch is dead. The record of how it died is, I think, worth more than the site would have been. That&rsquo;s why you&rsquo;re reading it.</p>
+        </section>
+
+        <section>
+          <h2>How this report was built, and what to trust in it</h2>
+          <p>This report is drawn from &ldquo;BowlWatch: Full Record of the Idea Review,&rdquo; a document compiled by Claude from our November 15, 2026 session, with the five outside reviews reproduced in full as appendices and every key claim graded in a verification ledger as Confirmed (the source was opened), Not confirmed (searched, not found) or Unverified (not checked). I have kept those grades where the record gives them, removed all dollar amounts (prices date faster than any other fact in a piece like this, and none of them were load-bearing), and had the one observation the record flagged for re-checking — the Purina label observation (the note after section 7) — re-checked against Purina&rsquo;s own pages and label PDFs before publication. The re-check confirmed the ingredient listings and narrowed the removal claim to what Purina and Nestlé USA actually said; the report prints the narrowed version. The re-check log — every Purina source opened, with the exact ingredient snippets and the scoped claim wording — is <a href="recheck-log/">published alongside this report</a>, so any reader can check the re-check against Purina&rsquo;s own pages. Direct quotations are from the record, lightly cleaned for readability, as the record itself was. Muse and Huxley in this story are the same AI: Muse is the research name on every Honed Report; Huxley is what I call him at home.</p>
+          <p><strong>Sources (one line each, as opened during the session and the re-check):</strong> General Mills — press release on completing removal of certified colors from its US cereal portfolio. KibbleLab — data, about and sample product pages. PawDiet — homepage. Open Food Facts — product revision help page, community forum, and public code repositories. IngrediCheck — FAQ page. Purina — Fancy Feast &ldquo;no artificial colors&rdquo; page, and Purina-hosted label PDFs for Dog Chow, Alpo, Friskies and Cat Chow. Nestlé USA — FD&amp;C color elimination announcements. FDA — food dye tracker. CSPI — corporate dye commitment tracker. Truth About Pet Food — The List page. FormulaSignal — developer page. Journey Foods — food dye tracker. puppyfood.net — Wayback Machine label comparison article. Justia — BOW-WATCH trademark record. Porkbun — domain availability checks.</p>
+          <p><em>Honed Reports — Checked. Traced. Honed.</em></p>
+        </section>
+
+        <footer>
+          <p class="signoff">Honed Signal<span class="dot">.</span> · Research by Muse · Edited by Freddie Avalos · No hype. No noise.</p>
+          <p class="std-note">Built to the <a href="/standards/">Standards &amp; Corrections</a> page — how this report was researched and checked, and the public log of corrections. The checking method is <a href="/sift/">SIFT</a>.</p>
+        </footer>
+
+      </article>
+    </div>
+    <script>
+      (function () {
+        var em = document.getElementById('hs-email');
+        if (em) {
+          em.addEventListener('click', function () {
+            var subject = 'One Idea, Six AIs, One No — Honed Signal';
+            var body = 'What AI Is Actually Doing to California\'s Music Economy — what is documented, what is alleged, what the federal data shows, and what is still unknown.\n\nhttps://honedsignal.com/reports/bowlwatch/';
+            window.location.href = 'mail' + 'to:' + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+          });
+        }
+        var btn = document.getElementById('hs-copy');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var url = 'https://honedsignal.com/reports/bowlwatch/';
+          function done() { btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = 'Copy link'; }, 2000); }
+          if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, done); }
+          else { window.prompt('Copy this link:', url); }
+        });
+      })();
+    </script>
+  </body>
+</html>

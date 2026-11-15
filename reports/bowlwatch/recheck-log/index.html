@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Purina Re-check Log — BowlWatch | Honed Signal</title>
+    <meta name="description" content="California holds AI music's companies, lawsuits and laws. The record shows no measurable hollowing-out of musicians' income; the clearest harm is impersonation." />
+    <link rel="canonical" href="https://honedsignal.com/reports/bowlwatch/recheck-log/" />
+    <meta property="og:title" content="Purina Re-check Log — BowlWatch | Honed Signal" />
+    <meta property="og:description" content="Every Purina source opened for the BowlWatch report&rsquo;s re-check, with exact snippets and verdicts." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://honedsignal.com/reports/bowlwatch/recheck-log/" />
+    <meta property="og:image" content="https://honedsignal.com/reports/images/bowlwatch-hero.webp" />
+    <meta property="og:image:width" content="2048" />
+    <meta property="og:image:height" content="1152" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://honedsignal.com/reports/images/bowlwatch-hero.webp" />
+    <meta name="theme-color" content="#0B0E14" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f7f5f1;
+        --surface: #ffffff;
+        --surface-2: #efede8;
+        --ink: #14161c;
+        --ink-soft: #454a55;
+        --ink-faint: #6d7280;
+        --line: #d9d5cc;
+        --navy: #0b0e14;
+        --orange: #d96e00;
+        --orange-strong: #a34e00;
+        --teal: #0d7a6e;
+        --teal-strong: #0a665c;
+        --hero-bg: #0b0e14;
+        --hero-ink: #f4f2ec;
+        --hero-soft: #b9bec9;
+        --hero-line: #2a2f3a;
+        --chart-grid: #d9d5cc;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0e14;
+          --surface: #12161f;
+          --surface-2: #171c27;
+          --ink: #f0eee8;
+          --ink-soft: #c3c8d2;
+          --ink-faint: #8b919e;
+          --line: #262c38;
+          --orange: #ff6b35;
+          --orange-strong: #ff6b35;
+          --teal: #2ec4b6;
+          --teal-strong: #2ec4b6;
+          --hero-bg: #07090d;
+          --hero-ink: #f4f2ec;
+          --hero-soft: #a7adba;
+          --hero-line: #222834;
+          --chart-grid: #262c38;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+        font-size: 18px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .sans { font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        background: var(--hero-bg);
+        color: var(--hero-ink);
+        padding: 56px 24px 48px;
+      }
+      .hero-inner { max-width: 880px; margin: 0 auto; }
+      .masthead {
+        display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+        color: var(--hero-soft);
+        border-bottom: 1px solid var(--hero-line);
+        padding-bottom: 18px; margin-bottom: 34px;
+      }
+      .masthead .brand { color: var(--hero-ink); font-weight: 600; font-size: 15px; letter-spacing: .02em; text-transform: none; }
+      .masthead .brand .dot { color: #ff6b35; }
+      .hero h1 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700; letter-spacing: -0.02em;
+        font-size: clamp(34px, 6.4vw, 58px); line-height: 1.06;
+        margin: 0 0 18px;
+      }
+      .hero h1 .q { color: #2ec4b6; }
+      .hero .dek {
+        font-size: clamp(18px, 2.6vw, 22px); line-height: 1.5;
+        color: var(--hero-soft); margin: 0 0 30px; max-width: 44em;
+      }
+      .verdict-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
+      .verdict-badge {
+        background: #ff6b35; color: #14100c;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        border-radius: 10px; padding: 14px 20px;
+        display: flex; flex-direction: column; justify-content: center;
+      }
+      .verdict-badge .big { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.01em; }
+      .verdict-badge .small { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-top: 5px; }
+      .verdict-note {
+        border: 1px solid var(--hero-line); border-radius: 10px;
+        padding: 14px 20px; flex: 1 1 300px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 15px; line-height: 1.5; color: var(--hero-soft);
+        display: flex; align-items: center;
+      }
+      .verdict-note strong { color: var(--hero-ink); }
+      .byline-row {
+        display: flex; flex-wrap: wrap; gap: 6px 22px;
+        margin-top: 26px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 14px; color: var(--hero-soft);
+      }
+      .byline-row strong { color: var(--hero-ink); font-weight: 600; }
+
+      /* ---------- Layout ---------- */
+      .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+      article { padding: 44px 0 8px; }
+      section { margin-bottom: 52px; }
+      h2 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 600; letter-spacing: -0.015em;
+        font-size: clamp(24px, 3.6vw, 32px); line-height: 1.2;
+        margin: 0 0 16px;
+      }
+      h3 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 600; letter-spacing: -0.01em;
+        font-size: clamp(19px, 2.6vw, 23px); line-height: 1.25;
+        margin: 34px 0 12px;
+      }
+      section > h3:first-of-type { margin-top: 26px; }
+      p { margin: 0 0 16px; }
+      p.lede { font-size: 20px; line-height: 1.6; }
+      strong { font-weight: 600; }
+      .accent-o { color: var(--orange-strong); }
+      .accent-t { color: var(--teal-strong); }
+
+      .hs-hero { margin: 0 0 44px; }
+      .hs-hero img {
+        display: block; width: 100%; height: auto;
+        aspect-ratio: 16 / 9;
+        border: 1px solid var(--line); border-radius: 12px;
+      }
+
+      .bottom-line {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-top: 4px solid var(--orange);
+        border-radius: 6px;
+        padding: 26px 28px;
+        margin-bottom: 52px;
+      }
+      .bottom-line .label {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 12.5px; font-weight: 700; letter-spacing: .14em;
+        text-transform: uppercase; color: var(--orange-strong);
+        margin-bottom: 10px;
+      }
+      .bottom-line p { margin: 0; font-size: 19px; line-height: 1.6; }
+      .bottom-line p + p { margin-top: 14px; }
+
+      ul.points { margin: 0 0 16px; padding-left: 22px; }
+      ul.points li { margin-bottom: 10px; }
+      ul.points li::marker { color: var(--teal-strong); }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 20px; padding: 30px 0 56px;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+      }
+      footer .src-label { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+      footer .sources { font-size: 13.5px; line-height: 1.7; color: var(--ink-soft); }
+      footer .signoff { margin-top: 26px; font-size: 14px; color: var(--ink-soft); } .std-note { margin-top: 10px; font-size: 13.5px; line-height: 1.6; color: var(--ink-faint); } .std-note a { color: var(--ink-soft); }
+      footer .signoff .dot { color: var(--orange-strong); }
+
+      @media (max-width: 680px) {
+        body { font-size: 17px; }
+        .hero { padding: 40px 20px 36px; }
+        .wrap { padding: 0 20px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <style>
+      .hs-util { background: #0B0E14; border-bottom: 1px solid #2a2f3a; }
+      .hs-util-inner { max-width: 1120px; margin: 0 auto; padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+      .hs-util a, .hs-util button { font-family: "Space Grotesk", system-ui, sans-serif; }
+      .hs-back { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 14px; border: 1px solid #3a4356; border-radius: 10px; background: #161c28; color: #f5f5f5; font-size: .85rem; font-weight: 700; text-decoration: none; }
+      .hs-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .hs-actions .hs-label { color: #9AA3B2; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-right: 2px; }
+      .hs-btn { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 12px; border: 1px solid #3a4356; border-radius: 10px; background: transparent; color: #f5f5f5; font-size: .82rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+      .hs-btn:hover, .hs-back:hover { border-color: #FF6B35; color: #ffffff; }
+      @media print {
+        .hs-util { display: none !important; }
+        :root { --hero-bg: #ffffff !important; --hero-ink: #14161c !important; --hero-soft: #454a55 !important; --hero-line: #d9d5cc !important; --bg: #ffffff !important; }
+        body { background: #ffffff !important; }
+      }
+    </style>
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+</head>
+  <body>
+
+    <div class="hs-util">
+      <div class="hs-util-inner">
+        <a class="hs-back" href="/reports/bowlwatch/">← The BowlWatch report</a>
+        <div class="hs-actions" aria-label="Print, email, or share this report">
+          <span class="hs-label">Share</span>
+          <button class="hs-btn" type="button" onclick="window.print()">Print</button>
+          <button class="hs-btn" type="button" id="hs-email">Email</button>
+          <a class="hs-btn" href="https://twitter.com/intent/tweet?text=Purina%20re-check%20log%20%E2%80%94%20BowlWatch%20report%20evidence.&amp;url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fbowlwatch%2Frecheck-log%2F" target="_blank" rel="noopener">X</a>
+          <a class="hs-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhonedsignal.com%2Freports%2Fbowlwatch%2Frecheck-log%2F" target="_blank" rel="noopener">Facebook</a>
+          <a class="hs-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fhonedsignal.com%2Freports%2Fbowlwatch%2Frecheck-log%2F" target="_blank" rel="noopener">LinkedIn</a>
+          <button class="hs-btn" type="button" id="hs-copy">Copy link</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="masthead">
+          <span class="brand">Honed Signal<span class="dot">.</span></span>
+          <span>Honed Reports · Evidence</span>
+          <span>November 2026</span>
+        </div>
+        <h1>The Purina Re-check Log</h1>
+        <p class="dek">The evidence behind the BowlWatch report&rsquo;s Purina observation — every source opened, every snippet exact, checked November 15, 2026.</p>
+        <div class="byline-row">
+          <span><strong>Checked by Muse</strong> · At the direction of Freddie Avalos</span>
+          <span>November 15, 2026</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <article>
+
+        <section>
+          <h2>THE CLAIM BEING RE-CHECKED (from the BowlWatch session record):</h2>
+          <p>Purina says it removed artificial colors, yet Purina label PDFs captured Nov 15, 2026 for Dog Chow, Alpo, Friskies dry and Cat Chow still listed Red 40. The record flagged this: &quot;needs exact re-capture before publishing.&quot;</p>
+          <h2>PART 1 — WHAT PURINA / NESTLÉ ACTUALLY CLAIMED</h2>
+          <h3>A. Purina, Fancy Feast page:</h3>
+          <p><a href="https://www.purina.com/fancy-feast/no-artificial-colors">https://www.purina.com/fancy-feast/no-artificial-colors</a> Exact wording: &quot;many of our recipes are now crafted without artificial preservatives or colors&quot; — scope: Fancy Feast only, and only the listed recipes. NOT a Purina-wide pet food claim.</p>
+          <h3>B. Nestlé USA press releases:</h3>
+          <p><a href="https://www.nestleusa.com/media/pressreleases/eliminate-use-fdc-colors">https://www.nestleusa.com/media/pressreleases/eliminate-use-fdc-colors</a> Pledge: timeline to &quot;fully eliminate FD&amp;C colors in its U.S. food and beverage portfolio by mid-2026.&quot; <a href="https://www.nestleusa.com/media/pressreleases/removal-of-fdc-colors-across-us-portfolio">https://www.nestleusa.com/media/pressreleases/removal-of-fdc-colors-across-us-portfolio</a> Completion: &quot;fully eliminated Food, Drug &amp; Cosmetic (FD&amp;C) colors from its U.S. food and beverage portfolio.&quot; Scope: Nestlé USA&#x27;s HUMAN food and beverage portfolio. Purina pet foods are Nestlé Purina PetCare Company products and are not covered by the wording of either release.</p>
+          <h2>PART 2 — THE FOUR PRODUCTS (Purina label PDFs, opened Nov 15, 2026)</h2>
+          <h3>1. Dog Chow — Dog Chow Little Bites for Small Dogs (code M412023)</h3>
+          <p><a href="https://www.purina.com/sites/default/files/product-label-deck-file/2024-05/4120-m412023-dog-chow-little-bites-for-small-dogs-dry-dog-food-lb1-1.pdf">https://www.purina.com/sites/default/files/product-label-deck-file/2024-05/4120-m412023-dog-chow-little-bites-for-small-dogs-dry-dog-food-lb1-1.pdf</a> Ingredient snippet: &quot;...biotin (Vitamin B-7)], Yellow 6, Yellow 5, Red 40, Blue 2, garlic oil.&quot; Verdict: Red 40 PRESENT</p>
+          <h3>2. Alpo — ALPO Come &amp; Get It! Cookout Classics (code L502324)</h3>
+          <p><a href="https://www.purina.com/sites/default/files/product-label-deck-file/2025-03/5023_l502324_alpo_come_and_get_it_dry_dog_food_894.pdf">https://www.purina.com/sites/default/files/product-label-deck-file/2025-03/5023_l502324_alpo_come_and_get_it_dry_dog_food_894.pdf</a> Ingredient snippet: &quot;...L-Tryptophan, Red 40, Yellow 5, calcium carbonate, Blue 2, Yellow 6, garlic oil.&quot; Verdict: Red 40 PRESENT</p>
+          <h3>3. Friskies (dry) — Purina Friskies Ocean Favorites Dry Cat Food (A631919)</h3>
+          <p><a href="https://www.purina.com/sites/default/files/products/files/A631919_Friskies_Ocean_Favorites_Dry_Cat_Food.pdf">https://www.purina.com/sites/default/files/products/files/A631919_Friskies_Ocean_Favorites_Dry_Cat_Food.pdf</a> Ingredient snippet: &quot;...DL-Methionine, L-Tryptophan, Red 40, Blue 2, Yellow 5.&quot; Verdict: Red 40 PRESENT Corroborating variant — Friskies Farm Favorites Dry Cat Food (A629918): &quot;...DL-Methionine, L-Tryptophan, Red 40, Yellow 6, Yellow 5, Blue 2.&quot; Red 40 PRESENT</p>
+          <h3>4. Cat Chow — Purina Cat Chow Brand Cat Food – Complete (code N450118)</h3>
+          <p><a href="https://purina.com/sites/default/files/products/files/450118N_Purina_Cat_Chow_Brand_Cat_Food_Complete.pdf">https://purina.com/sites/default/files/products/files/450118N_Purina_Cat_Chow_Brand_Cat_Food_Complete.pdf</a> Ingredient snippet: &quot;...DL-Methionine, Red 40, Yellow 5, Blue 2.&quot; Verdict: Red 40 PRESENT</p>
+          <p>Note: the current Purina US product pages for Dog Chow Complete Adult Chicken and Cat Chow Complete were also opened on Nov 15, 2026, but their ingredient blocks did not render in text extraction, so the verdicts rest on the Purina label PDFs above, not on those pages. No product was blocked or unreadable; there are no &quot;could not verify&quot; entries.</p>
+          <h2>OVERALL VERDICT</h2>
+          <p>- Ingredient half: HOLDS, 4 of 4. Purina&#x27;s own currently hosted label   information still lists Red 40 for Dog Chow, Alpo, Friskies dry and   Cat Chow. - Removal-claim half: HOLDS ONLY AS SCOPED. Purina&#x27;s claim covers many   Fancy Feast recipes; Nestlé USA&#x27;s covers its human food and beverage   portfolio. Neither, as worded, covers these four pet foods. The draft   report prints the narrowed version and claims no broken promise.</p>
+        </section>
+
+        <footer>
+          <p class="signoff">Honed Signal<span class="dot">.</span> · Research by Muse · Edited by Freddie Avalos · No hype. No noise.</p>
+          <p class="std-note">Built to the <a href="/standards/">Standards &amp; Corrections</a> page — how this report was researched and checked, and the public log of corrections. The checking method is <a href="/sift/">SIFT</a>.</p>
+        </footer>
+
+      </article>
+    </div>
+    <script>
+      (function () {
+        var em = document.getElementById('hs-email');
+        if (em) {
+          em.addEventListener('click', function () {
+            var subject = 'Purina Re-check Log — Honed Signal';
+            var body = 'What AI Is Actually Doing to California\'s Music Economy — what is documented, what is alleged, what the federal data shows, and what is still unknown.\n\nhttps://honedsignal.com/reports/bowlwatch/recheck-log/';
+            window.location.href = 'mail' + 'to:' + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+          });
+        }
+        var btn = document.getElementById('hs-copy');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var url = 'https://honedsignal.com/reports/bowlwatch/recheck-log/';
+          function done() { btn.textContent = 'Copied ✓'; setTimeout(function () { btn.textContent = 'Copy link'; }, 2000); }
+          if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, done); }
+          else { window.prompt('Copy this link:', url); }
+        });
+      })();
+    </script>
+  </body>
+</html>
