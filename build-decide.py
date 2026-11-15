@@ -6,7 +6,7 @@ MONEY = "money"
 BASE = "https://honedsignal.com"
 
 CSS = """<style>
-:root{--bg:#0b0e14;--panel:#121722;--ink:#f5f5f5;--muted:#9aa3b5;--orange:#f7931a;--teal:#2fbfae;--line:#232c3d}
+:root{--bg:#0b0e14;--panel:#121722;--ink:#f5f5f5;--muted:#9aa3b5;--orange:#ff6b35;--teal:#2ec4b6;--line:#232c3d}
 body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;margin:0;line-height:1.6}
 .wrap{max-width:860px;margin:0 auto;padding:20px clamp(16px,4vw,32px) 60px}
 .back-link{display:inline-block;color:var(--muted);text-decoration:none;font-size:.9rem;margin:6px 0 0}
@@ -27,7 +27,7 @@ body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"
 .step p{color:var(--muted);margin:10px 0}
 .step .go{display:inline-block;margin-top:8px;background:var(--orange);color:#1a1206;font-weight:600;text-decoration:none;padding:10px 20px;border-radius:10px}
 .step .go:hover{filter:brightness(1.08)}
-.together{background:#14202c;border:1px solid #2a3f52;border-radius:14px;padding:22px;margin:28px 0}
+.together{background:#14202c;border:1px solid #1d3330;border-radius:14px;padding:22px;margin:28px 0}
 .together h2{margin-top:0;font-size:1.2rem}
 .together p{color:var(--muted)}
 footer{color:#7d8698;font-size:.8rem;text-align:center;margin-top:44px}

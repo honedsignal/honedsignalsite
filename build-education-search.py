@@ -66,7 +66,7 @@ def main():
 <meta name="description" content="Search all education tools by keyword or topic: paying for college, grades and study, teachers, parents, school operations.">
 <link rel="canonical" href="{BASE}/education/search/">
 <style>
-:root{{--bg:#0b0e14;--panel:#121722;--ink:#f5f5f5;--muted:#9aa3b5;--orange:#f7931a;--line:#232c3d}}
+:root{{--bg:#0b0e14;--panel:#121722;--ink:#f5f5f5;--muted:#9aa3b5;--orange:#ff6b35;--line:#232c3d}}
 body{{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;margin:0;line-height:1.6}}
 .wrap{{max-width:860px;margin:0 auto;padding:20px clamp(16px,4vw,32px) 60px}}
 .back-link{{display:inline-block;color:var(--muted);text-decoration:none;font-size:.9rem;margin:6px 0 0}}

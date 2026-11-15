@@ -67,7 +67,7 @@ NEXT = {
     "self-employment-tax-estimator": [("Freelance rate", "/money/freelance-rate-calculator/"), ("Quarterly tax check", "/money/quarterly-estimated-tax-calculator/")],
 }
 
-BOX_CSS = """<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#f7931a}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#f7931a}.hs-next a span.arr{color:#f7931a;margin-right:6px}</style>"""
+BOX_CSS = """<style>.hs-next{max-width:680px;margin:28px auto 0;padding:18px 20px;border:1px solid #2a3448;border-radius:12px;background:#121826}.hs-next h3{margin:0 0 10px;font-size:1rem;color:#ff6b35}.hs-next ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}.hs-next a{color:#e8eaf0;text-decoration:none}.hs-next a:hover{color:#ff6b35}.hs-next a span.arr{color:#ff6b35;margin-right:6px}</style>"""
 
 def box_html(links):
     items = "".join(f'<li><a href="{url}"><span class="arr">→</span>{title}</a></li>' for title, url in links)

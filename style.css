@@ -1,14 +1,14 @@
 /* Honed Signal v1 — mobile-first, dark mode throughout.
-   Palette: Ink #0B0E14 (bg), Paper #F5F5F5 (text), Blue #6490C4 (owning),
-   Orange #F7931A (accent/CTA/wordmark period). */
+   Palette: Ink #0B0E14 (bg), Paper #F5F5F5 (text), Teal #2EC4B6 (owning),
+   Orange #FF6B35 (accent/CTA/wordmark period). */
 
 *, *::before, *::after { box-sizing: border-box; }
 
 :root {
   --ink: #0B0E14;
   --paper: #F5F5F5;
-  --blue: #6490C4;
-  --orange: #F7931A;
+  --blue: #2EC4B6;
+  --orange: #FF6B35;
   --muted: #9AA3B2;
   --card: #121722;
   --radius: 10px;

@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#79a8d9;--orange:#f7931a;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2fbfae;--red:#ff7a7a;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    :root{--bg:#0b0e14;--surface:#121722;--surface-2:#1a2230;--ink:#f5f5f5;--muted:#9aa3b5;--line:#232c3d;--blue:#2ec4b6;--orange:#ff6b35;--orange-soft:#3b2813;--orange-ink:#171009;--green:#39ff14;--green-soft:#183a16;--teal:#2ec4b6;--red:#ff7a7a;--shadow:0 10px 30px rgba(0,0,0,.35)}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}button,a,input,textarea{-webkit-tap-highlight-color:transparent}
     .back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--muted);font-size:1rem;font-weight:600;text-decoration:none;text-underline-offset:4px}
     .back-link:hover,.back-link:focus-visible{color:var(--ink);text-decoration:underline}
@@ -185,17 +185,17 @@
 
     var VERDICTS = {
       solid: {
-        word: 'Solid', color: '#2fbfae', tagline: 'This has the hallmarks of a genuine finding.',
+        word: 'Solid', color: '#2ec4b6', tagline: 'This has the hallmarks of a genuine finding.',
         means: 'Tested in people, at a decent size, peer-reviewed, replicated, independently funded, honestly numbered, and properly trialed. This is about as strong as medical evidence gets.',
         notMeans: 'It does not mean the science is settled forever, that it applies to everyone, or that it is right for you. Even solid findings get refined — and treatment decisions still belong between you and your doctor.'
       },
       promising: {
-        word: 'Promising', color: '#79a8d9', tagline: 'Real signals — but gaps worth knowing about.',
+        word: 'Promising', color: '#2ec4b6', tagline: 'Real signals — but gaps worth knowing about.',
         means: 'Several strong evidence checks passed. There is something here worth paying attention to, and worth watching as more research comes in.',
         notMeans: 'It does not mean the case is closed. The missing checks are exactly where promising findings most often fall apart — usually on replication or independent confirmation.'
       },
       preliminary: {
-        word: 'Preliminary', color: '#f7931a', tagline: 'Interesting — but not actionable.',
+        word: 'Preliminary', color: '#ff6b35', tagline: 'Interesting — but not actionable.',
         means: 'Early days. The finding might be real, but the evidence isn\'t strong enough to act on. File it under "worth a follow-up study," not "worth changing your life over."',
         notMeans: 'It does not mean the claim is false — absence of strong evidence is not evidence of absence. But right now, believing it would be getting ahead of the science.'
       },
