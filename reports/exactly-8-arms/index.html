@@ -246,6 +246,7 @@
       article blockquote { margin: 16px 0; padding: 14px 18px; background: var(--surface); border-left: 4px solid var(--acc); font-size: 16px; }
       article blockquote p { margin: 0 0 8px; }
       article blockquote p:last-child { margin: 0; }
+      article blockquote.brief { background: var(--amber-bg); border-left: 4px solid var(--acc); padding: 18px 20px; }
       .flag { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; vertical-align: middle; font-family: "Space Grotesk", system-ui, sans-serif; }
       .flag-low { background: var(--amber-bg); color: var(--amber); }
       .flag-open { background: var(--warn-bg); color: var(--warn); }
@@ -457,6 +458,7 @@
       <li><a href="#emerging">Emerging fixes, 2024–2026</a></li>
       <li><a href="#architecture">Recommended production architecture</a></li>
       <li><a href="#open">Could not verify / open questions</a></li>
+      <li><a href="#postscript">Postscript — 16 November 2026: the checker, checked</a></li>
       <li><a href="#sources">Sources</a></li>
     </ol>
   </nav>
@@ -836,8 +838,23 @@
       <li><span class="flag flag-open">Open</span> <strong>First-party test limits:</strong> the LoRA comparison changed two variables at once (a different base model <em>and</em> the LoRA), ran 1,000 training steps against 1,500–3,000-step guidance, used one seed per brief, and relies on the production’s own trace-rule QA — and the baseline failure images were deleted, so only their pre-deletion tallies survive. Full limits are stated in <a href="#firstparty">the first-party section</a>; cite its direction, not its percentages as benchmark rates.</li>
       <li>Proofed 13 Nov 2026; corrections applied (spelling, figures, citations).</li>
       <li>14 Nov 2026: the headline claim was scoped to construction rather than puppet rigs alone; the counting figures were tied to the models actually measured (SDXL and DALL·E 3); and Exhibit 4 was reclassified as a failure under the trace rule — its count is exact, but one arm exits the frame.</li>
+      <li>16 Nov 2026: a postscript was added — the Sunny character-sheet episode of that day, in which this report’s own QA failed the count in both directions and its tallies were withdrawn. See <a href="#postscript">the postscript</a>.</li>
       <li>The “8 arms” test case was treated as an arbitrary exact limb count (the octopus case in the brief), generalizable to any exact count.</li>
     </ul>
+  </section>
+
+  <section id="postscript">
+    <h2 class="sec">Postscript — 16 November 2026: the checker, checked</h2>
+    <p class="secsub">Added 16 November 2026, after the events it describes. The original report above is unchanged.</p>
+    <p>Three days after this report was published, the studio rebuilt its cast’s character sheets under the trace rule, and the rule caught its own referee.</p>
+    <p>Sunny is the cast’s yellow octopus — golden shadow spots, orange suction cups on the undersides only, amber eyes, a coral-pink bow headband. Muse generated four full-body images of her (two fronts, two backs) and built her palette sheet. All four generations failed the count: the fronts came back at 10 and 12 arms, the backs at 12 and 10.</p>
+    <p>The editor took two of the images and the palette sheet to ChatGPT to have the extra arms removed, then had ChatGPT produce a complete master character sheet. Reviewing that sheet, the editor found the failure class this report calls the chopped arm — not whole extra arms, but fragments: small pieces of arm tucked underneath visible arms, and two small arms under the body in each of the signature poses. His correction brief to ChatGPT, verbatim (quoted as sent):</p>
+    <blockquote class="brief"><p>Corrections. Signature Poses section - Thinking, Waving, and Celebrating poses, zoom in under Sunny's body, each pose has 2 small arms underneath Sunny's body. Please remove them. Turnaround - Full Body section - three-quarter left, image right side, second arm from the top, there a tiny piece of additional arm on the bottom-side, please remove the little piece of arm. Left Profile - image right side, second arm from the top, there is a tiny piece of additional arm underneath the visible arm, please remove the little piece of arm. Three-quarter Right, image left side, second arm from the top, there is a tiny piece of additional arm underneath the visible arm, please remove the little piece of arm. Right Profile, image left side, second arm from the top, there is a tiny piece of additional arm underneath the visible arm, third arm from the top, there is a tiny piece of additional arm underneath the visible arm please remove the little pieces of arm. do enhance Sunny. Do not make other changes. do you have any questions for me.</p></blockquote>
+    <p>ChatGPT applied every correction and changed nothing else. The editor brought the finished sheet back to Muse for trace-rule QA.</p>
+    <p>Muse reported 10 arms on the front key art, 10 on the rear view, 10 on the three-quarter left, and 9 on the Celebrating pose. The editor answered that he did not see them — and that he had not seen them before, which is why he had brought the sheet to be checked. Re-examined with an independent pointing count — a vision tool required to place a marker on each tip it counts — the key art, the one panel with the whole figure in frame and every tip separated, counted exactly 8. Muse’s tallies were withdrawn, and the editor’s count stood for the other panels.</p>
+    <p>The error is worth describing precisely, because it is the mirror image of the generators’. The disagreement was never more than one tip per side, in the zone where arms stack and curl back over themselves. Reading zoomed crops, Muse split single arms into two, counting a curl along an arm’s length as a second arm’s tip. The pointing tool is no oracle either: on the densest poses it undercounted, finding 4 tips where the editor counted 8. Where the fan was open, it corroborated the editor. Where the fan was closed, it settled nothing.</p>
+    <p>The same morning had already supplied the paired case. Checking the editor’s ChatGPT-built Huxley sheet, Muse read 7 arms on the three-quarter-right panel; the editor pushed back; at full resolution the panel counted 8 — two near-parallel arms had merged into one at small zoom. One checker, one day, both directions: arms merged that were two, and arms split that were one.</p>
+    <p>Nothing in this episode moves the report’s conclusion. Construction remains the only route that can promise the count, because it is the only route that does not depend on reading the count back out of pixels. What the episode adds is the symmetrical limit on the other side of the pipeline: verification by eyeball cannot promise it either — including this report’s own QA, performed by the same kind of visual system whose failures fill the sections above. What worked on 16 November was neither generation nor automated checking. It was a human who knew the design, naming defects one panel at a time — second arm from the top, image right side — and a corrector that followed the brief exactly. The methods note in the first-party section of this report has said all along that the editor’s count governs any dispute. On 16 November 2026, it governed twice.</p>
   </section>
 
   <section id="sources">
