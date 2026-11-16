@@ -170,6 +170,16 @@
       }
       .hs-hero figcaption { margin-top: 10px; font-size: 13.5px; color: var(--ink-soft); }
 
+      /* ---------- Promo video ---------- */
+      .promo-video { margin: 0 0 44px; }
+      .promo-video video {
+        display: block; width: 100%; height: auto;
+        aspect-ratio: 16 / 9;
+        border: 1px solid var(--line); border-radius: 12px;
+        background: #0b0e14;
+      }
+      .promo-video figcaption { margin-top: 10px; font-size: 13.5px; color: var(--ink-soft); }
+
       /* ---------- Stats & charts ---------- */
       .stat-grid {
         display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
@@ -347,6 +357,15 @@
         <figure class="hs-hero">
           <img src="/reports/images/meta-publishing-hero.webp" width="1671" height="941" alt="Illustration: Rio, a cobalt-blue octopus with a small teal-and-orange dot on his forehead, presents a glowing holographic report to Mark Zuckerberg, who watches with folded arms in a dark office" />
           <figcaption>Illustration: Rio presents the finished report — five AI systems, one verdict — to the man whose company it grades.</figcaption>
+        </figure>
+
+        <figure class="promo-video">
+          <video controls playsinline preload="metadata" poster="/reports/meta-publishing/promo-poster.jpg" width="1280" height="720" aria-label="Animated promo for this report: Freddie pitches the book to Matt">
+            <source src="/reports/meta-publishing/promo.mp4" type="video/mp4" />
+            <source src="/reports/meta-publishing/promo.webm" type="video/webm" />
+            Your browser can&rsquo;t play this video &mdash; <a href="/reports/meta-publishing/promo.mp4">watch it here</a> instead.
+          </video>
+          <figcaption>The report in 32 seconds: Freddie pitches the book, Matt reads it, and the verdict lands. Animated short, made with AI.</figcaption>
         </figure>
 
         <div class="bottom-line">
