@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -13,9 +14,37 @@
 <meta name="description" content="Retirement isn't an age. It's a number.">
 <link rel="canonical" href="https://honedsignal.com/money/decide/can-i-retire/">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3j">
+/* Theme kit (tranche 3J): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --bg: #FAF8F4;
+  --panel: #FFFFFF;
+  --ink: #14161C;
+  --muted: #5C6572;
+  --orange: #D96E00;
+  --teal: #0D7A6E;
+  --line: #D9D5CC;
+}
+html[data-theme="light"] .together { background: #E7F4F1; border-color: #C4E2DB; }
+html[data-theme="light"] footer { color: #6D7280; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #FAF8F4 !important;
+  --panel: #FFFFFF !important;
+  --ink: #14161C !important;
+  --muted: #5C6572 !important;
+  --orange: #D96E00 !important;
+  --teal: #0D7A6E !important;
+  --line: #D9D5CC !important;
+  }
+}
+</style>
 </head>
 <body>
 <div class="wrap">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
 <style>
 :root{--bg:#0b0e14;--panel:#121722;--ink:#f5f5f5;--muted:#9aa3b5;--orange:#ff6b35;--teal:#2ec4b6;--line:#232c3d}
 body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;margin:0;line-height:1.6}
