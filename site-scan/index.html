@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script src="/theme.js"></script>
   <link rel="stylesheet" href="/style.css?v=2">
+  <link rel="stylesheet" href="/theme.css?v=1">
   <style>:root { --good: #2EC4B6; --warn: #ff6b35; --bad: #E4572E; }
     .hero { text-align: center; padding: 3.5rem 1.25rem 2.5rem; max-width: 720px; margin: 0 auto; }
     .hero h1 { font-size: 2.4rem; line-height: 1.15; margin: 0 0 0.75rem; }
@@ -73,6 +75,38 @@
     .soon { color: var(--muted); font-size: 0.92rem; margin-top: 0.9rem; }
   </style>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+  <style data-hs-theme="tranche-5q">
+/* Theme kit (tranche 5Q): light theme + print forcing. Dark is the original design. */
+/* The results auto-scroll (scrollIntoView) must land below the sticky header,
+   which now carries the theme bar; without this the score row hides under it. */
+.results { scroll-margin-top: 152px; }
+html[data-theme="light"] .scan-form input { border-color: #C9C2AE; }
+html[data-theme="light"] .sample-btn { border-color: #C9C2AE; }
+html[data-theme="light"] .notice { border-color: #C9C2AE; }
+html[data-theme="light"] .notice.error { border-color: var(--bad); }
+html[data-theme="light"] .count { border-color: #DDD5C4; }
+html[data-theme="light"] .issue-card { border-color: #DDD5C4; border-left-color: var(--warn); }
+html[data-theme="light"] .clean-note { border-color: #DDD5C4; border-left-color: var(--good); }
+html[data-theme="light"] .how th { border-bottom-color: #DDD5C4; }
+html[data-theme="light"] .how td { border-bottom-color: #DDD5C4; }
+html[data-theme="light"] .report-cta { border-color: #DDD5C4; }
+html[data-theme="light"] .stale-note { background: #FBEADD; }
+html[data-theme="light"] { --good: #0D7A6E; --warn: #D96E00; --bad: #E4572E; }
+@media print {
+  html[data-theme="dark"] .scan-form input { border-color: #C9C2AE !important; }
+  html[data-theme="dark"] .sample-btn { border-color: #C9C2AE !important; }
+  html[data-theme="dark"] .notice { border-color: #C9C2AE !important; }
+  html[data-theme="dark"] .notice.error { border-color: var(--bad) !important; }
+  html[data-theme="dark"] .count { border-color: #DDD5C4 !important; }
+  html[data-theme="dark"] .issue-card { border-color: #DDD5C4 !important; border-left-color: var(--warn) !important; }
+  html[data-theme="dark"] .clean-note { border-color: #DDD5C4 !important; border-left-color: var(--good) !important; }
+  html[data-theme="dark"] .how th { border-bottom-color: #DDD5C4 !important; }
+  html[data-theme="dark"] .how td { border-bottom-color: #DDD5C4 !important; }
+  html[data-theme="dark"] .report-cta { border-color: #DDD5C4 !important; }
+  html[data-theme="dark"] .stale-note { background: #FBEADD !important; }
+  html[data-theme="dark"] { --good: #0D7A6E !important; --warn: #D96E00 !important; --bad: #E4572E !important; }
+}
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -90,6 +124,9 @@
         <li><a href="/reports/"><img class="brand-mark-sm" src="/assets/logos/honed-reports-mark.png" alt="" width="22" height="22">Honed Reports</a></li>
       </ul>
     </nav>
+    <div class="hs-theme-bar">
+      <div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div>
+    </div>
   </header>
 
   <main id="main">

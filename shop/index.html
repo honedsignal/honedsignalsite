@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script src="/theme.js"></script>
   <link rel="stylesheet" href="/style.css?v=2">
+  <link rel="stylesheet" href="/theme.css?v=1">
   <style>
     .sh-wrap { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem 3rem; }
     .sh-hero { text-align: center; padding: 2.5rem 1.25rem 1.5rem; max-width: 720px; margin: 0 auto; }
@@ -47,6 +49,52 @@
     .sh-foot { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem 2.5rem; color: #9AA3B2; font-size: .85rem; text-align: center; }
   </style>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+  <style data-hs-theme="tranche-5q">
+/* Theme kit (tranche 5Q): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem; display: flex; justify-content: flex-end; }
+html[data-theme="light"] .sh-hero h1 { color: #171A21; }
+html[data-theme="light"] .sh-hero .tagline { color: #5C6572; }
+html[data-theme="light"] .sh-pills a { background: #FFFFFF; border-color: #D9D5CC; color: #171A21; }
+html[data-theme="light"] .sh-pills a:hover { border-color: #D96E00; color: #A34E00; }
+html[data-theme="light"] .sh-section > h2 { color: #171A21; }
+html[data-theme="light"] .sh-section > p { color: #454A55; }
+html[data-theme="light"] .sh-card { background: #FFFFFF; border-color: #D9D5CC; }
+html[data-theme="light"] a.sh-card:hover { border-color: #D96E00; }
+html[data-theme="light"] .sh-kicker { color: #0D7A6E; }
+html[data-theme="light"] .sh-body h3 { color: #171A21; }
+html[data-theme="light"] .sh-dek { color: #454A55; }
+html[data-theme="light"] .sh-price { color: #171A21; }
+html[data-theme="light"] .sh-open { color: #A34E00; }
+html[data-theme="light"] .sh-soon { color: #0D7A6E; }
+html[data-theme="light"] .sh-note { background: #FFFFFF; border-color: #D9D5CC; }
+html[data-theme="light"] .sh-note h2 { color: #171A21; }
+html[data-theme="light"] .sh-note p { color: #454A55; }
+html[data-theme="light"] .sh-foot { color: #5C6572; }
+html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !important; background: #FFFFFF !important; color: #171A21 !important; }
+html[data-theme="light"] .sh-dek a { color: #0D7A6E !important; }
+@media print {
+  html[data-theme="dark"] .sh-hero h1 { color: #171A21 !important; }
+  html[data-theme="dark"] .sh-hero .tagline { color: #5C6572 !important; }
+  html[data-theme="dark"] .sh-pills a { background: #FFFFFF !important; border-color: #D9D5CC !important; color: #171A21 !important; }
+  html[data-theme="dark"] .sh-pills a:hover { border-color: #D96E00 !important; color: #A34E00 !important; }
+  html[data-theme="dark"] .sh-section > h2 { color: #171A21 !important; }
+  html[data-theme="dark"] .sh-section > p { color: #454A55 !important; }
+  html[data-theme="dark"] .sh-card { background: #FFFFFF !important; border-color: #D9D5CC !important; }
+  html[data-theme="dark"] a.sh-card:hover { border-color: #D96E00 !important; }
+  html[data-theme="dark"] .sh-kicker { color: #0D7A6E !important; }
+  html[data-theme="dark"] .sh-body h3 { color: #171A21 !important; }
+  html[data-theme="dark"] .sh-dek { color: #454A55 !important; }
+  html[data-theme="dark"] .sh-price { color: #171A21 !important; }
+  html[data-theme="dark"] .sh-open { color: #A34E00 !important; }
+  html[data-theme="dark"] .sh-soon { color: #0D7A6E !important; }
+  html[data-theme="dark"] .sh-note { background: #FFFFFF !important; border-color: #D9D5CC !important; }
+  html[data-theme="dark"] .sh-note h2 { color: #171A21 !important; }
+  html[data-theme="dark"] .sh-note p { color: #454A55 !important; }
+  html[data-theme="dark"] .sh-foot { color: #5C6572 !important; }
+  html[data-theme="dark"] nav[aria-label="Back"] a { border-color: #D9D5CC !important; background: #FFFFFF !important; color: #171A21 !important; }
+  html[data-theme="dark"] .sh-dek a { color: #0D7A6E !important; }
+}
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -54,6 +102,7 @@
     <nav aria-label="Back" style="max-width:1000px;margin:0 auto;padding:1.25rem 1.25rem 0">
       <a href="/" style="display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;border:1px solid #3a4356;border-radius:10px;background:#161c28;color:#f5f5f5;font-size:.85rem;font-weight:800;text-decoration:none">← Honed Signal</a>
     </nav>
+    <div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
 
     <header class="sh-hero">
       <h1>Shop</h1>

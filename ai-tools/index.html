@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script src="/theme.js"></script>
   <link rel="stylesheet" href="/style.css?v=2">
+  <link rel="stylesheet" href="/theme.css?v=1">
   <style>
     .at-wrap { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem 3rem; }
     .at-hero { text-align: center; padding: 2.5rem 1.25rem 1.5rem; max-width: 720px; margin: 0 auto; }
@@ -52,6 +54,54 @@
     .at-foot { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem 2.5rem; color: #9AA3B2; font-size: .85rem; text-align: center; }
   </style>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+  <style data-hs-theme="tranche-5q">
+/* Theme kit (tranche 5Q): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem; display: flex; justify-content: flex-end; }
+html[data-theme="light"] .at-hero h1 { color: #171A21; }
+html[data-theme="light"] .at-hero .tagline { color: #5C6572; }
+html[data-theme="light"] .at-art { border-color: #D9D5CC; }
+html[data-theme="light"] .at-intro { color: #454A55; }
+html[data-theme="light"] .at-byline { color: #5C6572; }
+html[data-theme="light"] .at-filter { background: #FFFFFF; border-color: #D9D5CC; color: #171A21; }
+html[data-theme="light"] .at-filter[aria-pressed="true"] { border-color: #D96E00; color: #A34E00; }
+html[data-theme="light"] .at-empty { color: #5C6572; }
+html[data-theme="light"] .at-card { background: #FFFFFF; border-color: #D9D5CC; }
+html[data-theme="light"] .at-card h2 { color: #171A21; }
+html[data-theme="light"] .at-chip-use { color: #0D7A6E; }
+html[data-theme="light"] .at-chip-track { color: #9A6B00; }
+html[data-theme="light"] .at-chip-skip { color: #BD3941; }
+html[data-theme="light"] .at-meta { color: #5C6572; }
+html[data-theme="light"] .at-what { color: #454A55; }
+html[data-theme="light"] .at-cost { color: #454A55; }
+html[data-theme="light"] .at-full p { color: #454A55; }
+html[data-theme="light"] .at-details summary { color: #A34E00; }
+html[data-theme="light"] .at-full { border-top-color: #D9D5CC; }
+html[data-theme="light"] .at-foot { color: #5C6572; }
+html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !important; background: #FFFFFF !important; color: #171A21 !important; }
+@media print {
+  html[data-theme="dark"] .at-hero h1 { color: #171A21 !important; }
+  html[data-theme="dark"] .at-hero .tagline { color: #5C6572 !important; }
+  html[data-theme="dark"] .at-art { border-color: #D9D5CC !important; }
+  html[data-theme="dark"] .at-intro { color: #454A55 !important; }
+  html[data-theme="dark"] .at-byline { color: #5C6572 !important; }
+  html[data-theme="dark"] .at-filter { background: #FFFFFF !important; border-color: #D9D5CC !important; color: #171A21 !important; }
+  html[data-theme="dark"] .at-filter[aria-pressed="true"] { border-color: #D96E00 !important; color: #A34E00 !important; }
+  html[data-theme="dark"] .at-empty { color: #5C6572 !important; }
+  html[data-theme="dark"] .at-card { background: #FFFFFF !important; border-color: #D9D5CC !important; }
+  html[data-theme="dark"] .at-card h2 { color: #171A21 !important; }
+  html[data-theme="dark"] .at-chip-use { color: #0D7A6E !important; }
+  html[data-theme="dark"] .at-chip-track { color: #9A6B00 !important; }
+  html[data-theme="dark"] .at-chip-skip { color: #BD3941 !important; }
+  html[data-theme="dark"] .at-meta { color: #5C6572 !important; }
+  html[data-theme="dark"] .at-what { color: #454A55 !important; }
+  html[data-theme="dark"] .at-cost { color: #454A55 !important; }
+  html[data-theme="dark"] .at-full p { color: #454A55 !important; }
+  html[data-theme="dark"] .at-details summary { color: #A34E00 !important; }
+  html[data-theme="dark"] .at-full { border-top-color: #D9D5CC !important; }
+  html[data-theme="dark"] .at-foot { color: #5C6572 !important; }
+  html[data-theme="dark"] nav[aria-label="Back"] a { border-color: #D9D5CC !important; background: #FFFFFF !important; color: #171A21 !important; }
+}
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -59,6 +109,7 @@
     <nav aria-label="Back" style="max-width:1000px;margin:0 auto;padding:1.25rem 1.25rem 0">
       <a href="/" style="display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;border:1px solid #3a4356;border-radius:10px;background:#161c28;color:#f5f5f5;font-size:.85rem;font-weight:800;text-decoration:none">← Honed Signal</a>
     </nav>
+    <div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
 
     <header class="at-hero">
       <h1>AI Tool Briefs</h1>
