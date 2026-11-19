@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#0b0e14" />
+    <script src="/theme.js"></script>
     <meta name="description" content="Disclaimer for Honed Flint education tools: estimates, not advice; no warranties; data stays in your browser; special-ed tools are organizational aids." />
     <link rel="canonical" href="https://honedsignal.com/education/disclaimer/" />
     <link rel="icon" type="image/png" sizes="32x32" href="/education/icons/favicon-32x32.png" />
@@ -240,9 +241,25 @@
     </style>
     <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+    <link rel="stylesheet" href="/theme.css?v=1">
+    <style data-hs-theme="tranche-4n">
+      /* Theme kit (tranche 4N): light theme. Dark is the original design; the page's own print block already forces light values. */
+      .hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+      html[data-theme="light"] {
+        --page: #FAF8F4;
+        --surface: #FFFFFF;
+        --surface-strong: #EFEDE8;
+        --text: #14161C;
+        --muted: #5C6572;
+        --line: #D9D5CC;
+        --accent: #A34E00;
+        --accent-soft: #A34E00;
+      }
+    </style>
 </head>
   <body>
     <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
       <a class="back-link" href="/education/" aria-label="Back to Education Tools">← Education Tools</a>
 
       <header>
