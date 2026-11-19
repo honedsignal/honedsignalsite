@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -306,9 +307,73 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3d">
+/* Theme kit (tranche 3D): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --paper: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --ink: #14161C;
+  --muted: #5C6572;
+  --placeholder: #6D7280;
+  --line: #D9D5CC;
+  --line-strong: #A39A83;
+  --orange: #D96E00;
+  --orange-deep: #A34E00;
+  --good: #147C36;
+  --close: #A34E00;
+  --bad: #BD343B;
+  --focus: #D96E00;
+  --shadow: 0 22px 60px rgba(11,14,20,.12);
+}
+html[data-theme="light"] .back-link { color: #5C6572; }
+html[data-theme="light"] input { background: #FFFFFF; }
+html[data-theme="light"] input[aria-invalid="true"] { background: #F9E3E4; }
+html[data-theme="light"] .hint a { color: #0D7A6E; }
+html[data-theme="light"] .field-error { color: #BD343B; }
+html[data-theme="light"] .form-status { color: #BD343B; }
+html[data-theme="light"] .badge.on-track { background: #E1F4E6; color: #147C36; border-color: rgba(20,124,54,.4); }
+html[data-theme="light"] .badge.close { background: #FBEADD; color: #A34E00; border-color: rgba(163,78,0,.4); }
+html[data-theme="light"] .badge.behind { background: #F9E3E4; color: #BD343B; border-color: rgba(189,52,59,.4); }
+html[data-theme="light"] .verdict-copy { color: #14161C; }
+html[data-theme="light"] .gap-box { color: #F5F7F8; }
+html[data-theme="light"] .gap-box .gap-monthly { color: #AEB7C0; }
+html[data-theme="light"] .extra { color: #A34E00; }
+html[data-theme="light"] .action { background: #FFFFFF; }
+html[data-theme="light"] .copy-status { color: #147C36; }
+html[data-theme="light"] .educational p, html[data-theme="light"] .educational ul { color: #5C6572; }
+html[data-theme="light"] .hs-next { background: #FFFFFF; border-color: #D9D5CC; }
+html[data-theme="light"] .hs-next h3 { color: #A34E00; }
+html[data-theme="light"] .hs-next a { color: #14161C; }
+html[data-theme="light"] .hs-next a:hover { color: #D96E00; }
+html[data-theme="light"] .hs-next a span.arr { color: #D96E00; }
+@media print {
+  html[data-theme="dark"] {
+    --paper: #FAF8F4 !important;
+    --surface: #FFFFFF !important;
+    --surface-raised: #FFFFFF !important;
+    --ink: #14161C !important;
+    --muted: #5C6572 !important;
+    --placeholder: #6D7280 !important;
+    --line: #D9D5CC !important;
+    --line-strong: #A39A83 !important;
+    --orange: #D96E00 !important;
+    --orange-deep: #A34E00 !important;
+    --good: #147C36 !important;
+    --close: #A34E00 !important;
+    --bad: #BD343B !important;
+    --focus: #D96E00 !important;
+    --shadow: 0 22px 60px rgba(11,14,20,.12) !important;
+  }
+}
+</style>
 </head>
 <body>
   <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
     <a class="back-link" href="/money/">← Honed Money</a>
 
     <section class="hero" aria-labelledby="page-title">

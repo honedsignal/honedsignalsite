@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -133,9 +134,64 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3d">
+/* Theme kit (tranche 3D): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --bg: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-2: #EFEDE8;
+  --ink: #14161C;
+  --muted: #5C6572;
+  --line: #D9D5CC;
+  --line-strong: #A39A83;
+  --orange: #D96E00;
+  --orange-ink: #171009;
+  --green: #147C36;
+  --green-ink: #FFFFFF;
+  --blue: #0D7A6E;
+  --blue-soft: #D9F2EE;
+  --red: #BD343B;
+  --red-soft: #F9E3E4;
+  --shadow: 0 22px 60px rgba(11,14,20,.12);
+  --positive-soft: #E1F4E6;
+}
+html[data-theme="light"] .hs-next { background: #FFFFFF; border-color: #D9D5CC; }
+html[data-theme="light"] .hs-next h3 { color: #A34E00; }
+html[data-theme="light"] .hs-next a { color: #14161C; }
+html[data-theme="light"] .hs-next a:hover { color: #D96E00; }
+html[data-theme="light"] .hs-next a span.arr { color: #D96E00; }
+html[data-theme="light"] .hs-reviewed { color: #5C6572 !important; }
+html[data-theme="light"] .hs-legal { color: #5C6572 !important; border-top-color: #D9D5CC !important; }
+html[data-theme="light"] .hs-legal a { color: #0D7A6E !important; }
+@media print {
+  html[data-theme="dark"] {
+    --bg: #FAF8F4 !important;
+    --surface: #FFFFFF !important;
+    --surface-2: #EFEDE8 !important;
+    --ink: #14161C !important;
+    --muted: #5C6572 !important;
+    --line: #D9D5CC !important;
+    --line-strong: #A39A83 !important;
+    --orange: #D96E00 !important;
+    --orange-ink: #171009 !important;
+    --green: #147C36 !important;
+    --green-ink: #FFFFFF !important;
+    --blue: #0D7A6E !important;
+    --blue-soft: #D9F2EE !important;
+    --red: #BD343B !important;
+    --red-soft: #F9E3E4 !important;
+    --shadow: 0 22px 60px rgba(11,14,20,.12) !important;
+    --positive-soft: #E1F4E6 !important;
+  }
+}
+</style>
 </head>
 <body>
 <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
   <nav class="home-nav" aria-label="Honed Money"><a class="home-link" href="/money/">← Honed Money</a></nav>
 
   <header class="intro">
