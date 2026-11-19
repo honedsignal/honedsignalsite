@@ -42,6 +42,13 @@ html[data-theme="light"] {
   --cta-text: #FFFDF8;
 }
 
+/* Light theme only: Rio's squircle art has a white backdrop baked in;
+   multiply melts it into the warm paper so no white box shows.
+   Dark theme renders the art pixel-identical to before. */
+html[data-theme="light"] .hero-icon {
+  mix-blend-mode: multiply;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
