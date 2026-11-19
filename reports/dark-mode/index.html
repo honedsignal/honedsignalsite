@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Is Dark Mode Oversaturated? | Honed Signal</title>
+    <meta name="description" content="Dark mode feels like the whole web now — but the data says otherwise. Five years of adoption and usability research: dark is saturated as a look in tech, finance, and gaming, yet only 12.2% of measured homepages render dark by default." />
+    <link rel="canonical" href="https://honedsignal.com/reports/dark-mode/" />
+    <meta property="og:title" content="Is Dark Mode Oversaturated? | Honed Signal" />
+    <meta property="og:description" content="Dark mode feels like the whole web now — but the data says otherwise. Five years of adoption and usability research: dark is saturated as a look in tech, finance, and gaming, yet only 12.2% of measured homepages render dark by default." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://honedsignal.com/reports/dark-mode/" />
+    <meta property="og:image" content="https://honedsignal.com/reports/dark-mode/images/hero.webp" />
+    <meta property="og:image:width" content="1774" />
+    <meta property="og:image:height" content="887" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://honedsignal.com/reports/dark-mode/images/hero.webp" />
+    <meta name="theme-color" content="#0B0E14" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script src="/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      /* ---------- Palette: two real themes, one brand ----------
+         Light = "warm paper" (#faf8f4 family, per the report's Rec. 4).
+         Dark  = Honed Signal navy #0b0e14 with elevated surfaces.
+         Orange #FF6B35 = action accent (darkened a step in light mode
+         so it still clears contrast as text). Teal #2EC4B6 = data accent. */
+      :root {
+        --bg: #faf8f4;
+        --bg-2: #f2eee5;
+        --surface: #fffdf8;
+        --surface-2: #f6f2e9;
+        --ink: #171a21;
+        --ink-soft: #3d434f;
+        --muted: #646c79;
+        --line: #e0dacb;
+        --line-strong: #c9c2ae;
+        --accent: #b23e0d;
+        --accent-bright: #ff6b35;
+        --accent-soft: #fdeee6;
+        --teal: #0b7266;
+        --teal-bright: #2ec4b6;
+        --teal-soft: #e2f4f1;
+        --navy: #0b0e14;
+        --navy-2: #171e2e;
+        --good: #14663f;
+        --bad: #b3261e;
+        --chart-grid: #ddd6c6;
+        --shadow: 0 8px 24px rgba(23, 26, 33, 0.08);
+        color-scheme: light;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #0b0e14;
+          --bg-2: #0e1219;
+          --surface: #131927;
+          --surface-2: #1a2133;
+          --ink: #ece9e1;
+          --ink-soft: #c3cad7;
+          --muted: #97a0b2;
+          --line: #263049;
+          --line-strong: #39466a;
+          --accent: #ff8a5c;
+          --accent-bright: #ff6b35;
+          --accent-soft: #2b1a12;
+          --teal: #2ec4b6;
+          --teal-bright: #2ec4b6;
+          --teal-soft: #0f2a28;
+          --good: #4cc38a;
+          --bad: #ff8a80;
+          --chart-grid: #263049;
+          --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #0b0e14;
+        --bg-2: #0e1219;
+        --surface: #131927;
+        --surface-2: #1a2133;
+        --ink: #ece9e1;
+        --ink-soft: #c3cad7;
+        --muted: #97a0b2;
+        --line: #263049;
+        --line-strong: #39466a;
+        --accent: #ff8a5c;
+        --accent-bright: #ff6b35;
+        --accent-soft: #2b1a12;
+        --teal: #2ec4b6;
+        --teal-bright: #2ec4b6;
+        --teal-soft: #0f2a28;
+        --good: #4cc38a;
+        --bad: #ff8a80;
+        --chart-grid: #263049;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+        color-scheme: dark;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { transition: none !important; animation: none !important; }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Manrope", system-ui, sans-serif;
+        font-size: 17px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.25s ease, color 0.25s ease;
+      }
+      ::selection { background: var(--accent-bright); color: #0b0e14; }
+
+      .skip-link {
+        position: absolute; left: 16px; top: -64px; z-index: 100;
+        background: var(--navy); color: #f2ead9; padding: 10px 18px; border-radius: 8px;
+        font-weight: 800; font-size: 14px; text-decoration: none;
+      }
+      .skip-link:focus { top: 12px; }
+
+      .wrap { max-width: 1144px; margin: 0 auto; padding: 0 24px; }
+      .prose { max-width: 736px; }
+      a { color: var(--accent); text-underline-offset: 3px; }
+      a:hover { text-decoration-thickness: 2px; }
+      :focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
+      :root[data-theme="dark"] :focus-visible { outline-color: var(--teal-bright); }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) :focus-visible { outline-color: var(--teal-bright); }
+      }
+
+      h1, h2, h3 { font-family: "Newsreader", Georgia, serif; font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; margin: 0; }
+      h2 { font-size: clamp(30px, 4.4vw, 44px); margin-bottom: 16px; }
+      h3 { font-size: 24px; }
+      p { margin: 0 0 16px; }
+      .lede { font-size: 20px; line-height: 1.6; color: var(--ink-soft); }
+      .small { font-size: 14px; line-height: 1.55; }
+      .muted { color: var(--muted); }
+      .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.92em; }
+      strong { font-weight: 800; }
+
+      .tag {
+        display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.08em;
+        text-transform: uppercase; padding: 4px 10px; border-radius: 999px; vertical-align: middle;
+      }
+      .tag-data { background: var(--teal-soft); color: var(--teal); border: 1px solid var(--teal-bright); }
+      .tag-opinion { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-bright); }
+
+      /* ---------- Top bar ---------- */
+      .topbar {
+        position: sticky; top: 0; z-index: 40;
+        background: var(--bg);
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      .topbar-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; }
+      .brandline { font-weight: 800; font-size: 15px; letter-spacing: 0.01em; }
+      .brandline span { color: var(--muted); font-weight: 600; }
+      .theme-switch { display: flex; align-items: center; gap: 12px; }
+      .theme-switch .lbl { font-size: 13px; font-weight: 700; color: var(--muted); }
+      .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 999px; overflow: hidden; background: var(--surface); }
+      .seg button {
+        appearance: none; border: 0; background: transparent; color: var(--ink-soft);
+        font: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+        min-height: 40px; padding: 8px 16px;
+      }
+      .seg button + button { border-left: 1px solid var(--line); }
+      .seg button[aria-pressed="true"] { background: var(--navy); color: #f2ead9; }
+      :root[data-theme="dark"] .seg button[aria-pressed="true"] { background: #f2ead9; color: #0b0e14; }
+      .os-note { font-size: 12.5px; color: var(--muted); }
+
+      /* ---------- Hero ---------- */
+      .hero { padding: 64px 0 48px; border-bottom: 1px solid var(--line); }
+      .hero-figure {
+        margin: 0 0 40px; border-radius: 16px; overflow: hidden;
+        border: 1px solid var(--line); box-shadow: var(--shadow);
+        aspect-ratio: 2 / 1; background: var(--surface-2); line-height: 0;
+      }
+      .hero-figure img {
+        display: block; width: 100%; height: 100%;
+        aspect-ratio: 2 / 1; object-fit: contain;
+      }
+      .hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; }
+      .hero h1 { font-size: clamp(42px, 6.4vw, 72px); font-weight: 600; margin: 16px 0 24px; }
+      .hero h1 em { font-style: italic; color: var(--accent); }
+      .verdict-chip {
+        display: inline-flex; align-items: center; gap: 10px;
+        border: 1.5px solid var(--ink); border-radius: 999px; padding: 8px 18px 8px 12px;
+        font-weight: 800; font-size: 15px; background: var(--surface);
+      }
+      .verdict-chip .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent-bright); box-shadow: 0 0 0 4px var(--accent-soft); }
+      .report-meta { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+      .scoreboard {
+        background: var(--navy); color: #ece9e1; border-radius: 16px; padding: 32px;
+        margin-top: 40px; box-shadow: var(--shadow);
+      }
+      .scoreboard h2 { font-size: 21px; color: #f5f1e6; margin-bottom: 24px; font-family: "Manrope", sans-serif; font-weight: 800; letter-spacing: 0.01em; }
+      .sb-row { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; padding: 16px 0; border-top: 1px solid #263049; align-items: baseline; }
+      .sb-row:first-of-type { border-top: 0; padding-top: 0; }
+      .sb-num { font-family: "Newsreader", serif; font-size: 44px; font-weight: 600; line-height: 1; color: #fff; white-space: nowrap; }
+      .sb-num .unit { font-size: 24px; color: var(--teal-bright); }
+      .sb-cap { font-size: 14px; line-height: 1.5; color: #b9c1d1; grid-column: 1 / -1; }
+      .sb-cap strong { color: #fff; }
+      .sb-src { font-size: 12px; color: #7e879c; grid-column: 1 / -1; }
+
+      /* ---------- Sections ---------- */
+      section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+      .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; }
+      .sec-no { font-family: "IBM Plex Mono", monospace; font-size: 15px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+      .sec-intro { max-width: 736px; color: var(--ink-soft); margin-bottom: 32px; }
+
+      /* Findings: ruled numbered rows, deliberately not a card grid */
+      .finding { display: grid; grid-template-columns: 64px 1fr; gap: 8px 24px; padding: 32px 0; border-top: 1px solid var(--line-strong); }
+      .finding:last-child { border-bottom: 1px solid var(--line-strong); }
+      .finding .n { font-family: "Newsreader", serif; font-size: 40px; font-weight: 600; color: var(--accent); line-height: 1; }
+      .finding h3 { margin-bottom: 8px; }
+      .finding p { max-width: 736px; color: var(--ink-soft); margin-bottom: 8px; }
+
+      /* Charts */
+      .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+      .chart-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; box-shadow: var(--shadow); }
+      .chart-card h3 { font-size: 20px; margin-bottom: 4px; }
+      .chart-card .sub { font-size: 13.5px; color: var(--muted); margin-bottom: 16px; }
+      .chart-card svg { width: 100%; height: auto; display: block; }
+      .chart-note { font-size: 13px; color: var(--muted); margin-top: 12px; line-height: 1.55; }
+      .chart-note a { color: var(--teal); }
+      svg text { font-family: "Manrope", sans-serif; }
+      .axis-lbl { font-size: 12px; fill: var(--muted); font-weight: 600; }
+      .val-lbl { font-size: 14px; fill: var(--ink); font-weight: 800; }
+      .cat-lbl { font-size: 13px; fill: var(--ink-soft); font-weight: 700; }
+      .grid-line { stroke: var(--chart-grid); stroke-width: 1; }
+      .bar-teal { fill: var(--teal-bright); }
+      .bar-orange { fill: var(--accent-bright); }
+      .bar-ink { fill: var(--ink); opacity: 0.82; }
+      .bar-faint { fill: var(--ink); opacity: 0.22; }
+
+      .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+      .stat-strip .cell { border-top: 3px solid var(--teal-bright); padding-top: 16px; }
+      .stat-strip .cell.o { border-top-color: var(--accent-bright); }
+      .stat-strip .big { font-family: "Newsreader", serif; font-size: 36px; font-weight: 600; line-height: 1.05; }
+      .stat-strip .cap { font-size: 14px; color: var(--ink-soft); margin-top: 8px; line-height: 1.5; }
+
+      /* Timeline */
+      .tl { border-top: 1px solid var(--line-strong); }
+      .tl-row { display: grid; grid-template-columns: 168px 1fr; gap: 8px 32px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+      .tl-date { font-family: "IBM Plex Mono", monospace; font-size: 14px; font-weight: 600; color: var(--accent); padding-top: 3px; }
+      .tl-row p { margin: 0; color: var(--ink-soft); max-width: 800px; }
+      .tl-row p strong { color: var(--ink); }
+
+      /* Videos */
+      .video-list { display: grid; gap: 24px; }
+      .video {
+        display: grid; grid-template-columns: 88px 1fr; gap: 8px 24px;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px;
+      }
+      .video .play {
+        width: 72px; height: 72px; border-radius: 12px; background: var(--navy); color: #fff;
+        display: flex; align-items: center; justify-content: center; text-decoration: none;
+      }
+      .video .play svg { width: 26px; height: 26px; fill: #ff6b35; margin-left: 3px; }
+      .video h3 { font-size: 21px; margin-bottom: 4px; }
+      .video .meta { font-size: 13.5px; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+      .video p { color: var(--ink-soft); margin-bottom: 8px; max-width: 800px; }
+      .video .verdict-line { font-size: 14.5px; border-left: 3px solid var(--teal-bright); padding-left: 12px; }
+      .video .verdict-line.warn { border-left-color: var(--accent-bright); }
+
+      /* Evidence two-col */
+      .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 48px; align-items: start; }
+      .evidence-item h3 { font-size: 21px; margin-bottom: 8px; }
+      .evidence-item p { color: var(--ink-soft); }
+      .callout {
+        background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-top: 24px;
+      }
+      .callout p:last-child { margin-bottom: 0; }
+
+      /* Framework table → panels */
+      .framework { display: grid; gap: 16px; }
+      .fw-row {
+        display: grid; grid-template-columns: 240px 1fr; gap: 8px 32px;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px;
+      }
+      .fw-row .fw-verdict { font-weight: 800; font-size: 17px; margin-top: 8px; }
+      .fw-row p { color: var(--ink-soft); margin: 0; }
+
+      .modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+      .mode { border: 1px solid var(--line); border-radius: 16px; padding: 24px; background: var(--surface); }
+      .mode.recommended { border: 2px solid var(--teal-bright); }
+      .mode h3 { font-size: 20px; margin-bottom: 4px; }
+      .mode .best { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 16px; }
+      .mode h4 { font-size: 13px; letter-spacing: 0.07em; text-transform: uppercase; margin: 16px 0 8px; color: var(--teal); }
+      .mode h4.cons { color: var(--accent); }
+      .mode ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
+      .mode li { margin-bottom: 6px; }
+
+      /* Recommendations */
+      .rec { display: grid; grid-template-columns: 56px 1fr; gap: 4px 24px; padding: 28px 0; border-top: 1px solid var(--line); }
+      .rec:first-of-type { border-top: 1px solid var(--line-strong); }
+      .rec .n {
+        width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #f2ead9;
+        font-family: "Newsreader", serif; font-size: 20px; font-weight: 600;
+        display: flex; align-items: center; justify-content: center;
+      }
+      :root[data-theme="dark"] .rec .n { background: #f2ead9; color: #0b0e14; }
+      .rec h3 { font-size: 21px; margin-bottom: 6px; }
+      .rec p { color: var(--ink-soft); max-width: 760px; margin-bottom: 8px; }
+
+      .palette-demo { margin: 8px 0 16px; max-width: 760px; }
+      .ratio-bar { display: flex; height: 56px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line-strong); }
+      .ratio-bar .r60 { flex: 60; background: #0b0e14; color: #ece9e1; }
+      .ratio-bar .r30 { flex: 30; background: #98a1b3; color: #0b0e14; }
+      .ratio-bar .r10 { flex: 10; background: #ff6b35; color: #0b0e14; }
+      .ratio-bar div { display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; min-width: 0; }
+      .swatches { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 8px; }
+      .swatch { border: 1px solid var(--line-strong); border-radius: 10px; overflow: hidden; width: 148px; }
+      .swatch .chip { height: 48px; }
+      .swatch .cap { font-size: 12px; font-weight: 700; padding: 8px 10px; background: var(--surface); line-height: 1.45; }
+      .swatch .cap .mono { display: block; color: var(--muted); font-weight: 500; }
+
+      /* Contrast lab */
+      .lab { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; box-shadow: var(--shadow); }
+      .lab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+      .lab h3 { font-size: 20px; margin-bottom: 16px; }
+      .pick-label { font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px; }
+      .pick-label:first-of-type { margin-top: 0; }
+      .pick-row { display: flex; flex-wrap: wrap; gap: 8px; }
+      .pick {
+        appearance: none; cursor: pointer; font: inherit; font-size: 13.5px; font-weight: 700;
+        border: 1px solid var(--line-strong); background: var(--surface-2); color: var(--ink);
+        border-radius: 999px; padding: 8px 14px; min-height: 40px; display: inline-flex; align-items: center; gap: 8px;
+      }
+      .pick .dotc { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(128,128,128,0.5); flex: none; }
+      .pick[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+      .lab-preview { border-radius: 12px; padding: 24px; min-height: 200px; border: 1px solid var(--line-strong); }
+      .lab-preview .pv-big { font-family: "Newsreader", serif; font-size: 26px; font-weight: 600; line-height: 1.25; margin-bottom: 12px; }
+      .lab-preview .pv-body { font-size: 16px; line-height: 1.6; margin-bottom: 12px; }
+      .lab-preview .pv-small { font-size: 13px; line-height: 1.5; margin: 0; }
+      .lab-result { margin-top: 16px; }
+      .ratio-big { font-family: "Newsreader", serif; font-size: 40px; font-weight: 600; line-height: 1; }
+      .pass-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+      .pass {
+        font-size: 13px; font-weight: 800; border-radius: 999px; padding: 6px 12px; border: 1px solid;
+      }
+      .pass.ok { color: var(--good); border-color: var(--good); }
+      .pass.no { color: var(--bad); border-color: var(--bad); }
+
+      /* Open questions + sources */
+      .open-q { columns: 2; column-gap: 48px; }
+      .open-q li { break-inside: avoid; margin-bottom: 16px; color: var(--ink-soft); }
+      ul.tight { margin: 0; padding-left: 20px; }
+      ul.tight li { margin-bottom: 10px; }
+      .sources { font-size: 14.5px; }
+      .sources li { margin-bottom: 12px; color: var(--ink-soft); }
+      .sources .src-kind { font-weight: 800; color: var(--ink); }
+
+      footer { padding: 48px 0 64px; }
+      footer p { color: var(--muted); font-size: 14px; max-width: 736px; }
+      footer .signoff { margin-top: 26px; font-size: 14px; color: var(--ink-soft); font-weight: 600; }
+      footer .signoff .dot { color: var(--accent); }
+
+      /* ---------- Site chrome: Honed Reports back link (fixed navy bar,
+         matching the other report pages; #f5f5f5 on #0B0E14 / #161c28
+         clears AA in both themes) ---------- */
+      .hs-util { background: #0B0E14; border-bottom: 1px solid #2a2f3a; font-family: "Manrope", system-ui, sans-serif; }
+      .hs-util-inner { max-width: 1144px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+      .hs-back { display: inline-flex; align-items: center; min-height: 40px; padding: 6px 14px; border: 1px solid #3a4356; border-radius: 10px; background: #161c28; color: #f5f5f5; font-size: .85rem; font-weight: 700; text-decoration: none; }
+      .hs-back:hover { border-color: #FF6B35; color: #ffffff; }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 900px) {
+        .hero-grid { grid-template-columns: 1fr; gap: 8px; }
+        .scoreboard { margin-top: 16px; }
+        .chart-grid, .cols-2, .lab-grid { grid-template-columns: 1fr; }
+        .modes { grid-template-columns: 1fr; }
+        .stat-strip { grid-template-columns: 1fr; gap: 16px; }
+        .open-q { columns: 1; }
+      }
+      @media (max-width: 640px) {
+        body { font-size: 16.5px; }
+        section { padding: 48px 0; }
+        .hero { padding: 40px 0 32px; }
+        .hero-figure { margin-bottom: 28px; border-radius: 12px; }
+        .tl-row { grid-template-columns: 1fr; gap: 2px; }
+        .fw-row { grid-template-columns: 1fr; }
+        .video { grid-template-columns: 1fr; }
+        .video .play { width: 56px; height: 56px; }
+        .finding { grid-template-columns: 44px 1fr; gap: 4px 16px; }
+        .finding .n { font-size: 30px; }
+        .rec { grid-template-columns: 44px 1fr; gap: 4px 16px; }
+        .theme-switch { flex-wrap: wrap; }
+        .theme-switch .lbl { flex-basis: 100%; order: 2; }
+        .verdict-chip { border-radius: 18px; align-items: flex-start; }
+        .seg button { padding: 8px 12px; }
+        .ratio-bar div { font-size: 11px; }
+      }
+
+      @media print {
+        :root, :root[data-theme="dark"], :root[data-theme="light"], :root:not([data-theme="light"]) {
+          --bg: #ffffff; --bg-2: #ffffff; --surface: #ffffff; --surface-2: #f6f2e9;
+          --ink: #171a21; --ink-soft: #3d434f; --muted: #555c68; --line: #d8d2c2; --line-strong: #b9b29c;
+          --accent: #b23e0d; --accent-bright: #ff6b35; --accent-soft: #fdeee6;
+          --teal: #0b7266; --teal-bright: #2ec4b6; --teal-soft: #e2f4f1;
+          --good: #14663f; --bad: #b3261e;
+          --chart-grid: #ddd6c6; --shadow: none;
+          color-scheme: light;
+        }
+        .hs-util { display: none !important; }
+        .topbar { position: static; }
+        .theme-switch { display: none; }
+        section, .hero { padding: 32px 0; }
+        .skip-link { display: none; }
+        .hero-figure { box-shadow: none; border-color: #d8d2c2; break-inside: avoid; page-break-inside: avoid; margin-bottom: 24px; }
+        .hero-figure img { object-fit: contain; }
+        /* Components with hard-coded dark colors get explicit light print
+           versions, so they stay readable with background graphics off. */
+        .scoreboard { background: #ffffff !important; color: #171a21 !important; border: 1.5px solid #171a21; box-shadow: none; }
+        .scoreboard h2 { color: #171a21 !important; }
+        .sb-num, .sb-cap strong { color: #171a21 !important; }
+        .sb-num .unit { color: #0b7266 !important; }
+        .sb-cap { color: #3d434f !important; }
+        .sb-src { color: #555c68 !important; }
+        .sb-row { border-top-color: #d8d2c2 !important; }
+        .rec .n, :root[data-theme="dark"] .rec .n { background: #ffffff !important; color: #171a21 !important; border: 1.5px solid #171a21; }
+        .video .play { background: #ffffff !important; border: 1.5px solid #171a21; }
+        .ratio-bar { border-color: #b9b29c !important; }
+        .ratio-bar .r60 { background: #ffffff !important; color: #171a21 !important; }
+        .ratio-bar .r30 { background: #e9e5d8 !important; color: #171a21 !important; }
+        .ratio-bar .r10 { background: #ffffff !important; color: #b23e0d !important; }
+        .seg button[aria-pressed="true"] { background: #ffffff !important; color: #171a21 !important; }
+        .swatch .chip { border-bottom: 1px solid #b9b29c; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="hs-util">
+      <div class="hs-util-inner">
+        <a class="hs-back" href="/reports/">← Honed Reports</a>
+      </div>
+    </div>
+    <div class="topbar">
+      <div class="wrap topbar-in">
+        <div class="brandline">Honed Signal <span>· Research Report · Web Design</span></div>
+        <div class="theme-switch" data-hs-theme-switch>
+          <span class="lbl" id="os-note" aria-live="polite">This page follows your system setting</span>
+          <div class="seg" role="group" aria-label="Page theme">
+            <button type="button" id="btn-system" data-theme-choice="system" aria-pressed="false">System</button>
+            <button type="button" id="btn-light" data-theme-choice="light" aria-pressed="false">Light</button>
+            <button type="button" id="btn-dark" data-theme-choice="dark" aria-pressed="true">Dark</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="wrap">
+        <figure class="hero-figure">
+          <img src="images/hero.webp" width="1774" height="887" alt="Overhead view of a man dressed in black with black glasses lying diagonally in a ball pit filled edge to edge with bright neon-colored balls, gazing up past the camera with a contemplative, unsmiling expression." fetchpriority="high" />
+        </figure>
+      </div>
+      <div class="wrap hero-grid">
+        <div>
+          <div class="report-meta">
+            <span>Researched 18 November 2026</span>
+            <span>Coverage: Nov 2021 – Nov 2026</span>
+            <span>For Honed Signal — and everyone else</span>
+            <span><strong>Research by Muse</strong> · Edited by Freddie Avalos</span>
+          </div>
+          <span class="verdict-chip"><span class="dot" aria-hidden="true"></span>Verdict: Nuanced — saturated as a look in some categories, not oversaturated on the web</span>
+          <h1>Is dark mode <em>oversaturated?</em></h1>
+          <p class="lede">Your iPhone and Mac live in dark mode, and it feels like every website followed them there. Five years of adoption data, usability research, and trend reporting say the feeling is half right: <strong>devices went dark — websites mostly didn’t.</strong> Dark is the uniform in the rooms a tech and finance brand competes in, and still a minority choice on the web as a whole.</p>
+          <p class="prose">Confidence is <strong>high</strong> for the measurements within the large website corpora examined, and <strong>medium</strong> for category-level saturation, which relies on smaller curated samples and trend commentary. Throughout, <span class="tag tag-data">Data</span> marks measurements and peer-reviewed or NN/g research; <span class="tag tag-opinion">Opinion / Trend</span> marks designer commentary — useful signals, not evidence.</p>
+        </div>
+        <aside class="scoreboard" aria-label="Headline numbers">
+          <h2>The gap that decides the question</h2>
+          <div class="sb-row">
+            <div><strong>Homepages that render dark by default</strong></div>
+            <div class="sb-num">12.2<span class="unit">%</span></div>
+            <div class="sb-cap">of <strong>158,294</strong> measured homepages. Roughly <strong>1 site in 8</strong> — five years after Google Search went dark.</div>
+            <div class="sb-src">ClickFoundry corpus, 2026</div>
+          </div>
+          <div class="sb-row">
+            <div><strong>Sites using <span class="mono">prefers-color-scheme</span> at all</strong></div>
+            <div class="sb-num">12<span class="unit">%</span></div>
+            <div class="sb-cap">Up from <strong>7% in 2021</strong> — growth, but support for system theme preferences remains limited.</div>
+            <div class="sb-src">HTTP Archive Web Almanac, 2024</div>
+          </div>
+          <div class="sb-row">
+            <div><strong>Dark-mode use in enthusiast polls</strong></div>
+            <div class="sb-num" style="font-size: 30px; white-space: normal; line-height: 1.15;">81.9%<span style="color:#7e879c"> / </span>73.3%</div>
+            <div class="sb-cap"><strong>81.9% said they “use dark mode” in 2020</strong>; <strong>73.3% said “always on” in 2026</strong> — self-selected polls, not population estimates (see Finding 1). A smaller, less enthusiast-focused survey splits users into <strong>thirds</strong>.</div>
+            <div class="sb-src">Android Authority polls, 2020 &amp; 2026 · NN/g, 2023</div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- 01 Findings -->
+      <section aria-labelledby="s1">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-no">01</span><h2 id="s1">Three findings drive the verdict</h2></div>
+          <div class="finding">
+            <div class="n" aria-hidden="true">1</div>
+            <div>
+              <h3>Users’ devices went dark; websites mostly did not</h3>
+              <p>Self-selected enthusiast polls report high dark-mode use — 81.9% said they “use dark mode” in 2020 and 73.3% said “always on” in 2026 — but their samples and question wording differ, so they are not population estimates or directly comparable measurements. NN/g’s smaller, less explicitly enthusiast-focused mobile survey splits users roughly into thirds — dark, light, and mixed. Yet only 12.2% of measured homepages render dark by default, and only 12% of sites used <span class="mono">prefers-color-scheme</span> at all in 2024. On the open web, dark-first is still a minority choice. <span class="tag tag-data">Data</span></p>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="n" aria-hidden="true">2</div>
+            <div>
+              <h3>Inside tech, finance, and media, dark is the category uniform</h3>
+              <p>Gaming homepages are 45% dark-by-default and entertainment 32% in the same 158k-site corpus; developer tools, crypto and finance dashboards, streaming, and AI-tool marketing cluster dark; a curated sample leaning toward startups and dev tools measured 37.4% dark defaults. In those rooms, dark navy no longer differentiates — it signals category membership. That suggests a positioning issue rather than, by itself, a usability problem. <span class="tag tag-data">Data + Trend</span></p>
+            </div>
+          </div>
+          <div class="finding">
+            <div class="n" aria-hidden="true">3</div>
+            <div>
+              <h3>The usability evidence punishes forcing either mode</h3>
+              <p>For normal-vision readers, light mode wins measured reading performance; dark wins subjective comfort in low light and genuinely helps some low-vision users. NN/g’s conclusion is not “pick light” or “pick dark” — it is <strong>mirror the user’s OS setting by default and let them override</strong>. In NN/g’s usability sessions, participants thought about dark mode at OS level and barely noticed when a site didn’t support it; that is a finding from those sessions, not a population estimate, and NN/g itself notes the limits of its testing environment. Users are very unlikely to abandon a site over it. <span class="tag tag-data">Data</span></p>
+            </div>
+          </div>
+          <div class="callout prose" style="max-width: 900px;">
+            <p><strong>Bottom line for a small dark-navy brand</strong> (Honed Signal’s <span class="mono">#0b0e14</span> + orange + teal): keep the dark identity where it earns its keep — tools, dashboards, media, hero artwork — stop forcing it where it costs readability — long-form reports — and ship a proper light theme driven by <span class="mono">prefers-color-scheme</span> with a persistent manual override, defaulting to light when no preference is available. Differentiation should come from accent discipline, typography, and artwork, not from abandoning a palette users in this category demonstrably like. <em>The toggle at the top of this page is that recommendation, working.</em></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Adoption data -->
+      <section aria-labelledby="s2">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-no">02</span><h2 id="s2">Adoption: devices went dark, websites didn’t</h2></div>
+          <p class="sec-intro">Handle the user numbers with care — the samples differ wildly, and there is <strong>no high-quality, representative, multi-year series</strong> for OS dark-mode share, because Apple and Google do not publish one. The defensible read: <strong>one-third in the one less-enthusiast survey, rising higher among younger and enthusiast samples</strong> — and higher still at night. The platforms reviewed here still ship <strong>light as the out-of-box default</strong> (Windows 11 explicitly so) — dark is opt-in or scheduled for most of the population. <span class="tag tag-data">Data</span></p>
+
+          <div class="chart-grid">
+            <div class="chart-card">
+              <h3>Sites that follow your OS setting</h3>
+              <p class="sub">Share of websites using <span class="mono">prefers-color-scheme</span> — HTTP Archive Web Almanac</p>
+              <svg viewBox="0 0 520 250" role="img" aria-label="Bar chart: websites using prefers-color-scheme were 7 percent in 2021, 8 percent in 2022, and 12 percent in 2024. No figure for 2023 in this series.">
+                <line class="grid-line" x1="40" y1="205" x2="500" y2="205" />
+                <line class="grid-line" x1="40" y1="145" x2="500" y2="145" />
+                <line class="grid-line" x1="40" y1="85" x2="500" y2="85" />
+                <line class="grid-line" x1="40" y1="25" x2="500" y2="25" />
+                <text class="axis-lbl" x="32" y="209" text-anchor="end">0%</text>
+                <text class="axis-lbl" x="32" y="149" text-anchor="end">5%</text>
+                <text class="axis-lbl" x="32" y="89" text-anchor="end">10%</text>
+                <text class="axis-lbl" x="32" y="29" text-anchor="end">15%</text>
+                <!-- bars: x positioned by year (2021–2024), all inside the 40–500 plot area, 12px per percent -->
+                <rect class="bar-teal" x="64" y="121" width="56" height="84" rx="4" />
+                <rect class="bar-teal" x="184" y="109" width="56" height="96" rx="4" />
+                <rect class="bar-teal" x="424" y="61" width="56" height="144" rx="4" />
+                <text class="val-lbl" x="92" y="109" text-anchor="middle">7%</text>
+                <text class="val-lbl" x="212" y="97" text-anchor="middle">8%</text>
+                <text class="val-lbl" x="452" y="49" text-anchor="middle">12%</text>
+                <text class="axis-lbl" x="92" y="229" text-anchor="middle">2021</text>
+                <text class="axis-lbl" x="212" y="229" text-anchor="middle">2022</text>
+                <text class="axis-lbl" x="332" y="229" text-anchor="middle">2023</text>
+                <text class="axis-lbl" x="452" y="229" text-anchor="middle">2024</text>
+                <text class="axis-lbl" x="332" y="196" text-anchor="middle" font-style="italic">not in series</text>
+              </svg>
+              <p class="chart-note">Web implementation lagged OS adoption by years: 7% → 8% → 12% across 2021–2024. Sources: <a href="https://almanac.httparchive.org/en/2021/accessibility">Web Almanac 2021</a>, <a href="https://almanac.httparchive.org/en/2022/accessibility">2022</a>, <a href="https://almanac.httparchive.org/en/2024/accessibility">2024</a>.</p>
+            </div>
+
+            <div class="chart-card">
+              <h3>Dark by default — by category</h3>
+              <p class="sub">Share of homepages rendering dark without any user action</p>
+              <svg viewBox="0 0 520 236" role="img" aria-label="Bar chart: 12.2 percent of all homepages are dark by default; entertainment 32 percent; gaming 45 percent. A separate curated sample of startup and developer-tool sites measured 37.4 percent dark.">
+                <line class="grid-line" x1="140" y1="8" x2="140" y2="196" />
+                <line class="grid-line" x1="212" y1="8" x2="212" y2="196" />
+                <line class="grid-line" x1="284" y1="8" x2="284" y2="196" />
+                <line class="grid-line" x1="356" y1="8" x2="356" y2="196" />
+                <line class="grid-line" x1="428" y1="8" x2="428" y2="196" />
+                <line class="grid-line" x1="500" y1="8" x2="500" y2="196" />
+                <text class="cat-lbl" x="0" y="36">All homepages</text>
+                <rect class="bar-teal" x="140" y="18" width="88" height="26" rx="4" />
+                <text class="val-lbl" x="236" y="37">12.2%</text>
+                <text class="cat-lbl" x="0" y="88">Entertainment</text>
+                <rect class="bar-teal" x="140" y="70" width="230" height="26" rx="4" />
+                <text class="val-lbl" x="378" y="89">32%</text>
+                <text class="cat-lbl" x="0" y="140">Gaming</text>
+                <rect class="bar-teal" x="140" y="122" width="324" height="26" rx="4" />
+                <text class="val-lbl" x="470" y="141">45%</text>
+                <text class="cat-lbl" x="0" y="192">Curated sample*</text>
+                <rect class="bar-orange" x="140" y="174" width="269" height="26" rx="4" />
+                <text class="val-lbl" x="417" y="193">37.4%</text>
+                <text class="axis-lbl" x="140" y="218" text-anchor="middle">0%</text>
+                <text class="axis-lbl" x="212" y="218" text-anchor="middle">10</text>
+                <text class="axis-lbl" x="284" y="218" text-anchor="middle">20</text>
+                <text class="axis-lbl" x="356" y="218" text-anchor="middle">30</text>
+                <text class="axis-lbl" x="428" y="218" text-anchor="middle">40</text>
+                <text class="axis-lbl" x="500" y="218" text-anchor="middle">50%</text>
+              </svg>
+              <p class="chart-note">Teal: <a href="https://clickfoundry.co/what-does-a-website-look-like/">ClickFoundry corpus of 158,294 homepages, 2026</a> (drawn from the Tranco top million, filtered for English-language qualifying sites — substantial, but not a census of the entire web) — which also found only 5.4% of measured pages include a dark-mode toggle, and 75.2% of dominant backgrounds are neutral. *Orange is a <em>different sample</em>: <a href="https://www.livery.site/guides/state-of-web-design">Livery, State of Web Design</a> (n=409, skews startups, dev tools, portfolios; updated 17 Nov 2026) — 62.6% light / 37.4% dark. The gap illustrates how designer-facing samples can skew dark relative to the broader web.</p>
+            </div>
+          </div>
+
+          <div class="chart-grid" style="margin-top: 32px;">
+            <div class="chart-card">
+              <h3>How users actually split</h3>
+              <p class="sub">NN/g mobile-user survey, Aug 2023 (n=115)</p>
+              <svg viewBox="0 0 520 72" role="img" aria-label="Stacked bar: NN/g survey respondents split roughly into thirds — dark mode, light mode, and a combination of both.">
+                <rect class="bar-ink" x="0" y="4" width="172" height="30" rx="4" />
+                <rect class="bar-faint" x="174" y="4" width="172" height="30" rx="4" />
+                <rect class="bar-teal" x="348" y="4" width="172" height="30" rx="4" />
+                <text class="cat-lbl" x="86" y="58" text-anchor="middle">~⅓ dark</text>
+                <text class="cat-lbl" x="260" y="58" text-anchor="middle">~⅓ light</text>
+                <text class="cat-lbl" x="434" y="58" text-anchor="middle">~⅓ both</text>
+              </svg>
+              <p class="chart-note">Small n, but less enthusiast-skewed than the self-selected Android Authority polls (81.9% in 2020; 73.3% in 2026 — not population estimates). Source: <a href="https://www.nngroup.com/articles/dark-mode-users-issues/">NN/g, Kohler &amp; Zhang, 2023</a>.</p>
+            </div>
+
+            <div class="chart-card">
+              <h3>Dark preference depends on the activity</h3>
+              <p class="sub">Share preferring dark mode — Nguyen Minh Tuan, Tran Thi Lan &amp; Pham Duc Hieu, <em>Journal Mobile Technologies (JMS)</em>, 2026</p>
+              <svg viewBox="0 0 520 300" role="img" aria-label="Bar chart of dark-mode preference by activity: evening and night 87 to 91 percent, video 82 percent, social 79 percent, overall 68.4 percent, long-form reading 45 percent, outdoors in bright light 35 percent.">
+                <line class="grid-line" x1="158" y1="8" x2="158" y2="272" />
+                <line class="grid-line" x1="236" y1="8" x2="236" y2="272" />
+                <line class="grid-line" x1="314" y1="8" x2="314" y2="272" />
+                <line class="grid-line" x1="392" y1="8" x2="392" y2="272" />
+                <line class="grid-line" x1="470" y1="8" x2="470" y2="272" />
+                <text class="cat-lbl" x="0" y="33">Evening / night</text>
+                <rect class="bar-teal" x="158" y="16" width="271" height="24" rx="4" />
+                <rect class="bar-teal" opacity="0.35" x="429" y="16" width="13" height="24" />
+                <text class="val-lbl" x="450" y="34">87–91%</text>
+                <text class="cat-lbl" x="0" y="77">Video</text>
+                <rect class="bar-teal" x="158" y="60" width="256" height="24" rx="4" />
+                <text class="val-lbl" x="422" y="78">82%</text>
+                <text class="cat-lbl" x="0" y="121">Social</text>
+                <rect class="bar-teal" x="158" y="104" width="246" height="24" rx="4" />
+                <text class="val-lbl" x="412" y="122">79%</text>
+                <text class="cat-lbl" x="0" y="165">Overall</text>
+                <rect class="bar-teal" x="158" y="148" width="213" height="24" rx="4" />
+                <text class="val-lbl" x="379" y="166">68.4%</text>
+                <text class="cat-lbl" x="0" y="209">Long-form reading</text>
+                <rect class="bar-orange" x="158" y="192" width="140" height="24" rx="4" />
+                <text class="val-lbl" x="306" y="210">45%</text>
+                <text class="cat-lbl" x="0" y="253">Outdoors, bright light</text>
+                <rect class="bar-teal" x="158" y="236" width="109" height="24" rx="4" />
+                <text class="val-lbl" x="275" y="254">35%</text>
+                <text class="axis-lbl" x="158" y="292" text-anchor="middle">0%</text>
+                <text class="axis-lbl" x="236" y="292" text-anchor="middle">25</text>
+                <text class="axis-lbl" x="314" y="292" text-anchor="middle">50</text>
+                <text class="axis-lbl" x="392" y="292" text-anchor="middle">75</text>
+                <text class="axis-lbl" x="470" y="292" text-anchor="middle">100%</text>
+              </svg>
+              <p class="chart-note">n=215, mean age 24.3, Vietnam — young, single-country sample: directional, not global. The pattern still matters: dark is strongly preferred in this sample for video and night use, and is less preferred for sustained reading. The pale extension on the first bar is the published 87–91% range.</p>
+            </div>
+          </div>
+
+          <div class="stat-strip">
+            <div class="cell"><div class="big">45%</div><p class="cap"><strong>Gaming</strong> — the highest dark-by-default category share measured anywhere in the corpus data.</p></div>
+            <div class="cell o"><div class="big">Dark-only</div><p class="cap"><strong>Streaming stays dark-only:</strong> Spotify, Netflix, Hulu, Disney+, Peacock, Max, and Prime Video offer no light mode on mobile (NN/g, 2023) — the “movie theater” logic.</p></div>
+            <div class="cell"><div class="big">No dataset</div><p class="cap"><strong>Awwwards / Dribbble saturation could not be verified.</strong> No published dark-vs-light share of winners or showcases was found; claims exist, methods don’t. Designer perception is best explained by exposure concentration — designers browse the most dark-skewed corners of the internet and generalize from them.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 Timeline -->
+      <section aria-labelledby="s3">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-no">03</span><h2 id="s3">Timeline: novelty to mainstream option — for operating systems</h2></div>
+          <p class="sec-intro">The “novelty → mainstream option” story is true for OSes, apps, and user expectation. It is not true for websites as shipped artifacts. Foundations (2018–2020) are included because the five-year window starts mid-story.</p>
+          <div class="tl">
+            <div class="tl-row"><div class="tl-date">Sep 2018–2019</div><p><strong>Foundations.</strong> macOS Mojave ships system Dark Mode; Safari 12.1 (2019) adds <span class="mono">prefers-color-scheme</span> for web content. Apple’s HIG and Google’s Material dark theme codify the rules: Material’s surface is <span class="mono">#121212</span>, <em>not</em> pure black, with white text at 87% opacity and desaturated accents.</p></div>
+            <div class="tl-row"><div class="tl-date">Sep–Oct 2019</div><p><strong>The mainstreaming event.</strong> iOS 13 (system dark, with scheduling) and Android 10 (system dark theme) launch within weeks of each other.</p></div>
+            <div class="tl-row"><div class="tl-date">Early 2020</div><p><strong><span class="mono">prefers-color-scheme</span> works everywhere by early 2020.</strong> Supported in all major browsers — a site can finally follow the OS with pure CSS.</p></div>
+            <div class="tl-row"><div class="tl-date">9 Sep 2021</div><p><strong>Google Search on desktop gets a dark theme</strong> (Light / Dark / Device default) — arguably the highest-traffic page on earth normalizes the toggle. <span class="tag tag-data">Data</span></p></div>
+            <div class="tl-row"><div class="tl-date">5 Oct 2021</div><p><strong>Windows 11 releases</strong> with matched light and dark themes — but ships with <strong>light as the default</strong>. Dark is a user choice; the platforms reviewed here follow this pattern.</p></div>
+            <div class="tl-row"><div class="tl-date">2021 → 2024</div><p><strong>The web lags.</strong> Sites using <span class="mono">prefers-color-scheme</span>: 7% (2021) → 8% (2022) → 12% (2024), per the HTTP Archive Web Almanac.</p></div>
+            <div class="tl-row"><div class="tl-date">27 Aug 2023</div><p><strong>NN/g publishes its dark-mode user research:</strong> “popular, but not always a critical feature.” Users think at OS level; the prescription is to mirror the system setting.</p></div>
+            <div class="tl-row"><div class="tl-date">2024–2025</div><p><strong>The counter-aesthetic becomes visible:</strong> warm-cream editorial exemplars (Anthropic/Claude) are widely documented and imitated; Pantone names warm brown <strong>Mocha Mousse</strong> Color of the Year 2025. <span class="tag tag-opinion">Opinion / Trend</span></p></div>
+            <div class="tl-row"><div class="tl-date">Dec 2025</div><p><strong>Android 16 QPR2 introduces an opt-in Expanded Dark Theme</strong> that can automatically darken eligible apps without native dark-theme support. It is another reason to provide a properly designed native theme rather than relying on forced inversion. <span class="tag tag-data">Data</span></p></div>
+            <div class="tl-row"><div class="tl-date">2026</div><p><strong>Pantone names Cloud Dancer (soft off-white)</strong> Color of the Year 2026 — the first white-family pick in the program’s history, per Pantone coverage. And the corpus lands: <strong>12.2% of homepages dark by default; only 5.4% of measured pages include a dark-mode toggle.</strong> Five years after Google Search went dark, within the measured corpus, the web’s center of gravity is still light.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 Videos -->
+      <section aria-labelledby="s4">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-no">04</span><h2 id="s4">The three starting-point videos — checked</h2></div>
+          <p class="sec-intro"><strong>The framing finding:</strong> none of the three videos is actually about dark mode, dark-mode saturation, or a dark-vs-light trend. All three are color-palette tutorials. Treating them as evidence about oversaturation would be a category error — their real value here is Payton Clark Smith’s color-association claims and the 60-30-10 proportion rule, which a two-accent palette is at risk of breaking. All three were verified live on YouTube on 18 Nov 2026. <span class="tag tag-data">Data</span></p>
+
+          <div class="video-list">
+            <article class="video">
+              <a class="play" href="https://www.youtube.com/watch?v=1R5oTHnfJYA" aria-label="Watch on YouTube: The Science of Website Colors by Payton Clark Smith"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>
+              <div>
+                <h3>“The Science of Website Colors | A Complete Color Guide”</h3>
+                <p class="meta">Payton Clark Smith (132K subscribers) · 28 Jul 2023 · 8:04 · 28,280 views when checked</p>
+                <p><strong>Argument</strong> <span class="tag tag-opinion">Opinion</span> — each color “represents” fixed traits and suits named industries: blue = trust, loyalty, reliability — best for software, finance/banking, healthcare, and his personal favorite; orange = warmth, friendliness — strong for calls-to-action; white = clean, peaceful, “basically the default… it looks good in every single situation” — “I absolutely love white websites”; black = power, tech, seriousness, luxury — usable almost anywhere but can read as too serious. He also warns that overusing colors destroys contrast and readability.</p>
+                <p class="verdict-line"><strong>Verification:</strong> the fixed hue→emotion dictionary is <strong>overstated</strong>. The peer-reviewed review (Elliot &amp; Maier, <em>Annual Review of Psychology</em>, 2014) finds color effects are <strong>context-dependent</strong>; Labrecque &amp; Milne (2012) support only narrower, context-bound associations. His white/black remarks, however, align with this report’s data: light remains the web’s actual default, and dark connotes “tech” precisely because tech categories converged on it.</p>
+                <p class="verdict-line warn"><strong>Could not fully verify:</strong> the transcript line at ~7:45 about black websites was truncated in YouTube’s transcript panel; the sense is “very popular/trending right now,” but the exact wording could not be confirmed — so it is not quoted verbatim anywhere in this report.</p>
+              </div>
+            </article>
+
+            <article class="video">
+              <a class="play" href="https://www.youtube.com/watch?v=UWwNIMHFdW4" aria-label="Watch on YouTube: 60-30-10 Color Rule by Jesse Showalter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>
+              <div>
+                <h3>“60-30-10 Color Rule”</h3>
+                <p class="meta">Jesse Showalter (445K subscribers) · 4 Mar 2022 · ~6 min · 2,168,349 views when checked</p>
+                <p><strong>Argument</strong> <span class="tag tag-opinion">Opinion / practice</span> — in mobile UI, color looks “mature and seamless” rather than “obnoxious and loud” when applied roughly <strong>60% dominant/neutral, 30% secondary/brand, 10% accent/CTA</strong>. He explicitly calls it “more like a guideline” and closes with breaking the rules. Nothing in the video is about dark vs light.</p>
+                <p class="verdict-line"><strong>Verification:</strong> 60-30-10 is a long-standing interior-design heuristic imported into UI; there is <strong>no peer-reviewed evidence for the exact percentages</strong> — it is practitioner convention, and Showalter frames it that way himself. Its defensible core is scarcity: an accent works because it is rare. Applied to a dark-navy brand: a navy 60% base fits the rule; <strong>two equally vivid accents (orange and teal) competing at CTA level are exactly what it warns against</strong>.</p>
+              </div>
+            </article>
+
+            <article class="video">
+              <a class="play" href="https://www.youtube.com/watch?v=CxXKHiCpKs4" aria-label="Watch on YouTube: How To Pick The Perfect Website Color Palette by Paige Brunton"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>
+              <div>
+                <h3>“How To Pick The Perfect Website Color Palette | Beginner’s Guide”</h3>
+                <p class="meta">Paige Brunton Business (23.9K subscribers) · 13 Oct 2025 · 13:46 · 16,007 views when checked</p>
+                <p><strong>Argument</strong> <span class="tag tag-opinion">Opinion / practice</span> — sites look “off/amateur” when beginners break three things: (1) color harmonies — complementary (e.g. blue/orange: high contrast, good for CTAs), analogous, split-complementary, monochromatic; (2) “color seasons” — palette temperature picked from brand words; (3) 60-30-10. Her bad example runs colors at ~33/33/33 — “all shouting for attention equally,” with unreadable text; her good example fixes contrast and proportions.</p>
+                <p class="verdict-line"><strong>Verification:</strong> same status as Video 2 on 60-30-10 (heuristic, not science), and her “seasons” framework has no empirical literature behind it. Her contrast point is the one claim here backed by hard requirements. The example combines competing accents with insufficient text contrast; these are separate design issues — WCAG AA requires 4.5:1 for normal text. Her showcased palettes skew light/warm — consistent with, but not evidence for, the 2024–2026 editorial counter-trend.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="callout prose" style="max-width: 900px;">
+            <p><strong>Net assessment:</strong> useful for <em>how to proportion and discipline a palette</em> — directly applicable to navy/orange/teal. <strong>Not usable as evidence that dark mode is oversaturated</strong> — none of them claims that, measures that, or discusses OS dark mode at all. Any argument built on them for switching to light would be misattribution.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 Usability -->
+      <section aria-labelledby="s5">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-no">05</span><h2 id="s5">Preference vs performance: what the studies say</h2></div>
+          <p class="sec-intro">Users <em>say</em> they use dark for eye strain, battery, and looks (NN/g, 2023). They <em>perform</em> slightly better in light for reading. They <em>feel</em> better in dark at night. All three can be true at once — which is precisely why the evidence converges on choice plus system-matching, not a single imposed mode. <span class="tag tag-data">Data</span></p>
+
+          <div class="cols-2">
+            <div class="evidence-item">
+              <h3>Reading: light wins on performance</h3>
+              <p>The <strong>positive-polarity advantage</strong>: Piepenbrock et al. (Düsseldorf; <em>Ergonomics</em> 2013 / <em>Human Factors</em> 2014) found dark-on-light beat light-on-dark on visual-acuity and proofreading tasks for <strong>both</strong> younger (18–33) and older (60–85) adults — and the advantage <strong>grows as font size shrinks</strong>. A brighter field constricts the pupil, reducing aberrations. Participants did not perceive the difference: performance and preference diverge. NN/g (Budiu, 2020): “in users with normal vision, light mode leads to better performance most of the time” — while still recommending designers allow switching.</p>
+              <p>Dobres et al. (MIT AgeLab) found no significant polarity difference for glanceable reading in simulated daylight — and <strong>light performed better at simulated night</strong>, especially at small sizes.</p>
+            </div>
+            <div class="evidence-item">
+              <h3>Eye strain: comfort, performance, and health are different questions</h3>
+              <p>Three things are often conflated here. <strong>Subjective comfort:</strong> the 2026 study (Nguyen et al.) found statistically significant differences in participants’ <em>self-reported</em> eye strain depending on ambient lighting and display mode — dark can genuinely feel easier in dim environments. <strong>Objective performance:</strong> that same study found <em>no</em> statistically significant difference in reading speed or comprehension, consistent with the wider literature — an immersive-VR study (Erickson et al. 2020, cited by NN/g 2023) found dark slightly better <strong>only when the whole environment was dim</strong>, and the advantage over a <em>dimmed</em> light mode was very small; brightness and ambient light matter as much as polarity. <strong>Long-term eye health:</strong> no lasting benefit or harm from either mode is established. So dark mode can improve perceived comfort in dim environments — without establishing that it universally reduces eye strain or improves reading performance.</p>
+              <h3 style="margin-top: 24px;">Who dark genuinely helps</h3>
+              <p>In Legge et al.’s small 1985 study, <strong>4 of 7 participants with cloudy ocular media</strong> (e.g. cataracts) read faster with white text on black; the other 3 showed no consistent polarity advantage. Some low-vision and photophobia users strongly prefer dark. NN/g’s accessibility bottom line: <strong>“for people with visual impairments, it’s best not to enforce either display mode”</strong> — respect the system choice.</p>
+            </div>
+            <div class="evidence-item">
+              <h3>Astigmatism and halation</h3>
+              <p>Bright text on near-black can <strong>bloom</strong> (“halation”) for people with astigmatism. An older U.S. population estimate puts <strong>clinically significant astigmatism — at least 1.0 diopter — at roughly 1 in 3 adults</strong>; that is not “any degree” of astigmatism. Halation itself is a <em>plausible optical mechanism</em> — a dark field dilates the pupil and exposes more optical imperfection — rather than an effect that prevalence research directly demonstrated in dark-mode interfaces. Mitigations are well established: avoid pure white (<span class="mono">#FFF</span>) on pure black (<span class="mono">#000</span>); use <strong>off-white text on dark gray</strong> (Material’s <span class="mono">#121212</span> pattern); avoid both extremes in dark: thin weights get swallowed, while heavy weights bloom because light-on-dark renders bolder.</p>
+            </div>
+            <div class="evidence-item">
+              <h3>Long-form reading specifically</h3>
+              <p>The performance literature (small-text proofreading) plus the 2026 preference data — only <strong>45%</strong> prefer dark for sustained reading, vs 82% for video — point the same way: <strong>dark is the weaker default for long text, the stronger default for media and low-light sessions.</strong> That single asymmetry drives the surface-by-surface verdict in §07.</p>
+            </div>
+          </div>
+
+          <div class="chart-grid" style="margin-top: 40px;">
+            <div class="chart-card">
+              <h3>OLED battery savings: real, conditional, usually small</h3>
+              <p class="sub">Power saved switching light → dark — Purdue University (Dash &amp; Hu, MobiSys 2021), six Google apps on OLED phones</p>
+              <svg viewBox="0 0 520 148" role="img" aria-label="Range chart: dark mode saves 3 to 9 percent of power at 30 to 50 percent brightness, and 39 to 47 percent at 100 percent brightness, on OLED phones.">
+                <line class="grid-line" x1="0" y1="20" x2="0" y2="112" />
+                <line class="grid-line" x1="94" y1="20" x2="94" y2="112" />
+                <line class="grid-line" x1="188" y1="20" x2="188" y2="112" />
+                <line class="grid-line" x1="282" y1="20" x2="282" y2="112" />
+                <line class="grid-line" x1="376" y1="20" x2="376" y2="112" />
+                <line class="grid-line" x1="470" y1="20" x2="470" y2="112" />
+                <text class="cat-lbl" x="0" y="14">Typical indoors — 30–50% brightness (where auto-brightness lives)</text>
+                <rect class="bar-faint" x="0" y="24" width="85" height="24" rx="4" />
+                <rect class="bar-teal" x="0" y="24" width="28" height="24" rx="4" />
+                <text class="val-lbl" x="95" y="42">3–9%</text>
+                <text class="cat-lbl" x="0" y="78">Full brightness — 100%</text>
+                <rect class="bar-faint" x="0" y="88" width="442" height="24" rx="4" />
+                <rect class="bar-teal" x="0" y="88" width="367" height="24" rx="4" />
+                <text class="val-lbl" x="452" y="106">39–47%</text>
+                <text class="axis-lbl" x="0" y="134">0%</text>
+                <text class="axis-lbl" x="94" y="134" text-anchor="middle">10</text>
+                <text class="axis-lbl" x="188" y="134" text-anchor="middle">20</text>
+                <text class="axis-lbl" x="282" y="134" text-anchor="middle">30</text>
+                <text class="axis-lbl" x="376" y="134" text-anchor="middle">40</text>
+                <text class="axis-lbl" x="470" y="134" text-anchor="middle">50%</text>
+              </svg>
+              <p class="chart-note">Solid = low end of the range, pale = up to the high end. <strong>OLED/AMOLED only</strong> (about half of smartphones produced were OLED as of 2023, per NN/g); on LCD laptops and desktops the saving is ~zero, and media-heavy pages save least because photos and video are identical in both modes. NN/g cites Purdue figures of 67% at 100% / 14% at 30%. The cited sources report different savings figures. Until their measurement bases are reconciled, this report does not treat those figures as directly comparable. At everyday brightness the figures point to <strong>single-digit-to-low-teens</strong> savings, not the headline number. Battery is a minor argument for <em>offering</em> dark on mobile — never for dark-only design.</p>
+            </div>
+
+            <div class="lab" id="contrast-lab">
+              <h3>Try it: contrast on Honed Signal navy</h3>
+              <p class="small muted" style="margin-bottom: 4px;">WCAG ratios are the same in both modes — there is no dark-mode discount. Pick a background and a text color; the ratio and AA/AAA verdicts are computed live from the hex values. Note the trap: pure white on pure black scores a perfect 21:1 and still maximizes halation.</p>
+              <div class="pick-label" id="bg-label">Background</div>
+              <div class="pick-row" role="group" aria-labelledby="bg-label" id="bg-picks"></div>
+              <div class="pick-label" id="fg-label">Text color</div>
+              <div class="pick-row" role="group" aria-labelledby="fg-label" id="fg-picks"></div>
+              <div class="lab-preview" id="lab-preview" style="margin-top: 20px;">
+                <p class="pv-big" id="pv-big">Dark navy carries the brand; contrast carries the reading.</p>
+                <p class="pv-body" id="pv-body">Body text at 16–17px is where the positive-polarity advantage — and halation — actually bite. This is the size your reports are read at.</p>
+                <p class="pv-small" id="pv-small">Small text, 13px: captions, chart labels, footnotes. The reading-performance gap between modes grows as type shrinks.</p>
+              </div>
+              <div class="lab-result" aria-live="polite">
+                <span class="ratio-big" id="ratio-out">—</span> <span class="muted" id="ratio-pair"></span>
+                <div class="pass-row" id="pass-row"></div>
+                <p class="small muted" id="lab-hint" style="margin-top: 12px;"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 Counter-trend -->
+      <section aria-labelledby="s6">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-no">06</span><h2 id="s6">The counter-trend — and where dark remains particularly prevalent</h2></div>
+          <p class="sec-intro">Since 2023 a swing toward light, warm, editorial design is genuinely visible — but read the labels: most of this section is <span class="tag tag-opinion">Opinion / Trend</span>, and <strong>what is not happening</strong> matters just as much. None of the platform examples reviewed here has deprecated dark mode, and support expectations keep rising (Android 16 QPR2’s Expanded Dark Theme is opt-in, and darkens eligible apps that never built a native theme). The counter-trend is about <em>defaults and brand surfaces</em>, not dark disappearing.</p>
+
+          <div class="cols-2">
+            <div class="evidence-item">
+              <h3>Editorial as explicit differentiation</h3>
+              <p>2026 trend analyses describe a bifurcation: “techno-futurist” (dark + neon + shaders + bento grids) vs an editorial counter-aesthetic (cream + serif + warm + restrained) adopted <em>because</em> the category converged. Anthropic’s warm-cream, serif-led site is the canonical example — “when a category converges on a single visual grammar, the most strategic move becomes refusing the convergence” — alongside Notion’s warmth and PostHog’s hand-drawn personality (Toimi, Web Design Trends 2026). Design extractions document Claude/Anthropic’s canvas as warm cream (<span class="mono">#faf9f5 / #f8f8f6</span>) with a single clay-orange accent (<span class="mono">#d97757 / #cd6f47</span>): a research brand, in the AI category, deliberately <em>not</em> dark.</p>
+              <h3 style="margin-top: 24px;">“Light” now means warmed near-white</h3>
+              <p>Norrly’s 2026 trends report — based on its own extraction from “hundreds of award-level/top sites,” vendor-run with method undisclosed in detail, so treat as directional — states the majority of top sites ship light by default, and that light now means <strong>warmed near-white (<span class="mono">#faf8f4–#fdfdfb</span>), rarely pure <span class="mono">#ffffff</span></strong>, with dark retained as “a strong genre choice for developer tools, crypto, and studios” and best practice = offering both. This page’s light theme is built on exactly that <span class="mono">#faf8f4</span> family.</p>
+            </div>
+            <div class="evidence-item">
+              <h3>Color-of-the-year signals</h3>
+              <p>Pantone: <strong>Mocha Mousse</strong> (warm brown) for 2025, then <strong>Cloud Dancer</strong> (soft off-white) for 2026 — the institutional color world is signaling warm/light, not neon-on-black. WGSN/Coloro’s 2026 pick, <strong>Transformative Teal</strong>, is a saturated mid-tone — notably, teal survives as an <em>accent</em>, not a base. Trend reports that simultaneously list “dark mode as system default” as a 2026 must-ship (light-only “looks dated”) and “warm light editorial” as the fresh look are not contradicting themselves: the emerging norm is <strong>dual-mode with a light-leaning brand face</strong> in content and consumer categories.</p>
+              <h3 style="margin-top: 24px;">Where dark remains particularly prevalent</h3>
+              <p><strong>Media/streaming</strong> — dark-only by design (the theater logic). <strong>Gaming</strong> — 45% dark-by-default homepages, the highest category share measured. <strong>Developer tools / IDEs / terminals</strong> — dark is the entrenched professional default; surveys consistently report large dark-theme majorities, though the exact 70–91% figures circulating come from secondary/blog citations and could not be verified to a primary survey table — direction solid, numbers soft. <strong>Finance dashboards / trading / crypto</strong> — dark terminals (Bloomberg heritage), data-dense screens, long monitored sessions. <strong>Night-first products</strong> — sleep, astronomy, automotive, home-theater control.</p>
+            </div>
+          </div>
+
+          <div class="callout" style="max-width: 900px;">
+            <p><strong>The differentiation trap, both ways.</strong> Dark <em>alone</em> no longer distinguishes in tech/finance — dark navy + glowing accent is now the category’s entry uniform, and the “Inter-on-black” AI-startup look is a recognized cliché. But switching to light <em>solely</em> to be different trades one uniform for another increasingly familiar aesthetic: cream + serif is already becoming the 2025–26 counter-uniform, Anthropic imitators included. Distinctiveness was never carried by background luminance — it is carried by typography, accent discipline, illustration, layout rhythm, and voice. Switching light-only also carries real risks: expectation mismatch for dark-OS users (NN/g describes users being “subjected to the blast of white screens”), night glare, a harder trust signal in finance/dev categories where dark connotes “serious terminal-grade tool,” and the print/PDF reality that long-form research gets printed, screenshotted, and re-rendered by email clients in both polarities regardless.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 Verdict framework -->
+      <section aria-labelledby="s7">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-no">07</span><h2 id="s7">The verdict, surface by surface</h2></div>
+          <p class="sec-intro">One brand, three different answers — because the evidence differs by what the page is <em>for</em>. Dual-mode is not free (it is a second design system: surfaces, dividers, shadows, graphics, and charts all need re-checking), so scope it to the surfaces users live in longest. Forced single-mode is defensible only where the mode <em>is</em> the product logic.</p>
+
+          <div class="framework">
+            <div class="fw-row">
+              <div><h3>Long-form research reports</h3><p class="fw-verdict" style="color: var(--teal);">System-adaptive, light fallback.<br />Dark available, never forced.</p></div>
+              <p>The positive-polarity advantage is largest for small text and proofreading (Piepenbrock); only 45% prefer dark for sustained reading (2026 survey); light prints, annotates, and embeds cleanly. Research reports should follow the reader’s system preference, offer a persistent manual override, and default to light when no preference is available. Print and PDF versions should use the light theme. Offer the dark theme for night readers (long sessions are one of NN/g’s key cases for supporting dark mode). Body text ≥16–17px with generous line-height; off-black ink on warm off-white rather than pure <span class="mono">#000</span> on <span class="mono">#FFF</span>.</p>
+            </div>
+            <div class="fw-row">
+              <div><h3>Calculators, tools &amp; dashboards</h3><p class="fw-verdict" style="color: var(--teal);">System-adaptive dual-mode,<br />dark fully designed — not inverted.</p></div>
+              <p>This is the strongest case for keeping dark prominent: long, frequent, often evening sessions in a dark-norm category (finance tools), where users expect OS mirroring (NN/g). Charts and data-viz must be re-authored per mode — gridlines, series colors, saturated-on-dark vibration. If only one mode can ship first, ship the one matching the category and the audience — for Honed Signal, dark — with light fast-following.</p>
+            </div>
+            <div class="fw-row">
+              <div><h3>Media / video-led pages</h3><p class="fw-verdict" style="color: var(--teal);">Dark-first — dark-only is justified.</p></div>
+              <p>Theater logic (the Spotify/Netflix precedent, NN/g): the dark UI recedes and thumbnails and artwork carry the color; 82% prefer dark for video (2026 survey). The battery saving is smallest here, so the argument is purely presentational — and it holds. Keep surrounding text blocks short, and link out to system-adaptive reading pages (light fallback) for long text.</p>
+            </div>
+          </div>
+
+          <h3 style="margin: 48px 0 8px;">Dark-first vs light-first vs dual-mode</h3>
+          <p class="sec-intro" style="margin-bottom: 24px;">The honest trade-off table — including the cost column most trend pieces skip.</p>
+          <div class="modes">
+            <div class="mode">
+              <h3>Dark-first <span class="muted" style="font-size: 15px;">(single mode)</span></h3>
+              <p class="best">Best for: streaming, gaming, night tools, art-led heroes</p>
+              <h4>Pros</h4>
+              <ul>
+                <li>Category fit for tech / finance / media</li>
+                <li>Artwork and data-viz glow; best night comfort</li>
+                <li>Small OLED battery bonus</li>
+                <li>Still distinctive vs the <em>general</em> web (only 12% dark-default)</li>
+              </ul>
+              <h4 class="cons">Cons</h4>
+              <ul>
+                <li>Weakest for long-form reading; halation risk for astigmatic users</li>
+                <li>Now the <em>category uniform</em> in tech/finance — low distinctiveness there</li>
+                <li>Graphics and email breakage risk</li>
+              </ul>
+            </div>
+            <div class="mode">
+              <h3>Light-first <span class="muted" style="font-size: 15px;">(single mode)</span></h3>
+              <p class="best">Best for: reports, docs, editorial, print-adjacent brands</p>
+              <h4>Pros</h4>
+              <ul>
+                <li>Best measured reading performance</li>
+                <li>Prints and PDFs natively</li>
+                <li>Warm-editorial freshness, 2024–26</li>
+                <li>Safest for long-form trust with general audiences</li>
+              </ul>
+              <h4 class="cons">Cons</h4>
+              <ul>
+                <li>Category-signal mismatch in finance / dev / crypto</li>
+                <li>Night glare for dark-OS users</li>
+                <li>Cream-editorial is itself becoming a uniform</li>
+                <li>Forfeits the media / theater effect</li>
+              </ul>
+            </div>
+            <div class="mode recommended">
+              <h3>Dual-mode <span style="font-size: 15px; color: var(--teal);">— recommended</span></h3>
+              <p class="best">Best for: any brand with both reading matter and tools — including this one</p>
+              <h4>Pros</h4>
+              <ul>
+                <li>Matches OS expectation (NN/g best practice)</li>
+                <li>Serves both reading and night use; does not force users into a mode that conflicts with their needs (accessibility)</li>
+                <li>Future-proof vs platform darkening (Android’s opt-in Expanded Dark Theme)</li>
+              </ul>
+              <h4 class="cons">Cons</h4>
+              <ul>
+                <li>Additional design and QA work across both themes; two palettes to keep on-brand</li>
+                <li>Chart and asset duplication</li>
+                <li>A neglected, broken-feeling second mode is worse than none</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout" style="max-width: 900px;">
+            <p><strong>Accessibility requirements for dark themes (WCAG 2.2).</strong> Same ratios in both modes: AA requires <strong>≥4.5:1 for normal text, ≥3:1 for large text</strong> (18pt, or 14pt bold) and <strong>≥3:1 for UI components and meaningful graphics</strong>; AAA — the right target for a research brand’s body text — is 7:1 / 4.5:1. Passing the ratio is necessary, not sufficient: pure white on pure black scores 21:1 yet maximizes halation. White on Honed Signal’s <span class="mono">#0b0e14</span> computes to roughly <strong>19:1</strong> — comfortably AAA — but keep body text slightly off-white to soften bloom. Test accents <em>as text</em>: saturated orange and especially teal/cyan on near-black can vibrate and blur (NN/g’s Coinbase example passed at 4.59:1 and still blurred), so any accent used for links, labels, or chart text must individually clear 4.5:1 on the base <em>and</em> on every elevated surface — or be restricted to large/bold and non-text roles, lightened a step for dark mode. Build elevation with progressively lighter surfaces (shadows don’t read in dark), avoid thin body weights, and re-test focus indicators, placeholders, disabled states, transparent graphics, and QR codes in both modes — never invert a scannable code.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 Recommendations -->
+      <section aria-labelledby="s8">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-no">08</span><h2 id="s8">Recommendations for Honed Signal</h2></div>
+          <p class="sec-intro">For a small brand deciding whether to keep a dark navy palette — <span class="mono">#0b0e14</span> + orange + teal. Short version: the color was never the problem.</p>
+
+          <div class="rec">
+            <div class="n" aria-hidden="true">1</div>
+            <div>
+              <h3>Keep the navy. Change the contract, not the color.</h3>
+              <p>Move from “dark-only” to “dark identity, system-adaptive delivery”: <span class="mono">prefers-color-scheme</span> default plus a persistent manual override. This follows NN/g’s single clearest prescription and addresses a central concern about forcing a single display mode.</p>
+            </div>
+          </div>
+          <div class="rec">
+            <div class="n" aria-hidden="true">2</div>
+            <div>
+              <h3>Split the site by surface</h3>
+              <p>Reports system-adaptive, with light as the fallback; calculators and dashboards dual-mode; media-led pages dark-first — per §07. Research reports follow the reader’s system preference, offer a persistent manual override, and default to light when no preference is available; print and PDF versions use the light theme. Do not let the homepage’s art direction dictate the reading experience of a 6,000-word report.</p>
+            </div>
+          </div>
+          <div class="rec">
+            <div class="n" aria-hidden="true">3</div>
+            <div>
+              <h3>Fix the accent economy — the real lesson of the three videos</h3>
+              <p>Apply 60-30-10 honestly: ~60% navy and neutrals, ~30% secondary surfaces and text tones, <strong>~10% accent total — pick one hero accent</strong>. Orange = the action/CTA accent (warm, complementary to navy-blue, per the scarcity logic in Videos 2 and 3); teal = data/semantic accent only (charts, positive data series, code) — never both at full saturation competing for the same click. This, not a background flip, is what will make the brand look less generic.</p>
+              <div class="palette-demo" aria-hidden="true">
+                <div class="ratio-bar"><div class="r60">60 · navy base</div><div class="r30">30 · secondary tones</div><div class="r10">10</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="rec">
+            <div class="n" aria-hidden="true">4</div>
+            <div>
+              <h3>Build the light theme as “warm paper,” not inverted dark</h3>
+              <p>Off-white in the <span class="mono">#faf8f4</span> family, ink-navy text (reuse <span class="mono">#0b0e14</span> as the text color — instant brand continuity), the same orange accent darkened a step for contrast. This borrows the 2024–26 editorial freshness <em>without</em> abandoning brand equity, and makes print/PDF reports native. This page’s light theme is built exactly this way.</p>
+              <div class="swatches">
+                <div class="swatch"><div class="chip" style="background:#0b0e14" aria-hidden="true"></div><div class="cap">Navy base / ink<span class="mono">#0b0e14</span></div></div>
+                <div class="swatch"><div class="chip" style="background:#ff6b35" aria-hidden="true"></div><div class="cap">Orange — action<span class="mono">#FF6B35</span></div></div>
+                <div class="swatch"><div class="chip" style="background:#2ec4b6" aria-hidden="true"></div><div class="cap">Teal — data<span class="mono">#2EC4B6</span></div></div>
+                <div class="swatch"><div class="chip" style="background:#faf8f4" aria-hidden="true"></div><div class="cap">Warm paper (light)<span class="mono">#FAF8F4</span></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="rec">
+            <div class="n" aria-hidden="true">5</div>
+            <div>
+              <h3>Run a dark-theme accessibility pass before any rebrand debate</h3>
+              <p>Verify every text/accent pair on <span class="mono">#0b0e14</span> and on each elevated surface against WCAG AA 4.5:1 (AAA 7:1 for report body text); switch body text to off-white; check teal-on-navy and orange-on-navy specifically for the vibration NN/g documents; test with an astigmatic reader if possible. <a href="#contrast-lab">The contrast checker in §05</a> runs the brand pairs live. Begin with a scoped accessibility audit before committing to a redesign.</p>
+            </div>
+          </div>
+          <div class="rec">
+            <div class="n" aria-hidden="true">6</div>
+            <div>
+              <h3>Differentiate on the assets dark can’t commoditize</h3>
+              <p>A recognizable illustration and artwork system, a distinctive serif or grotesque for headlines, and consistent data-viz styling. Corpus data says backgrounds are mostly neutral everywhere — nobody owns a background color; people remember type, art, and voice.</p>
+            </div>
+          </div>
+          <div class="rec">
+            <div class="n" aria-hidden="true">7</div>
+            <div>
+              <h3>Measure your own audience before revisiting this in a year</h3>
+              <p>Log the share of visitors arriving with <span class="mono">prefers-color-scheme: dark</span> (a one-line analytics dimension), toggle usage, and report-page completion by mode. Replace the enthusiast-poll guesses in this report with your own denominator — if, say, 70%+ of <em>your</em> readers arrive dark, weight the dark report theme accordingly; the framework in §07 already accommodates either answer.</p>
+            </div>
+          </div>
+          <p class="small muted" style="max-width: 760px; margin-top: 24px;"><strong>Note on brand values:</strong> The brand hexes used throughout (<span class="mono">#FF6B35</span>, <span class="mono">#2EC4B6</span>) are the locked Honed Signal brand values; individual accent ratios were computed in the <a href="#contrast-lab">§05 checker</a> rather than in a separate audit. Rec. 5 still requires checking them on every elevated surface, not just the base.</p>
+        </div>
+      </section>
+
+      <!-- 09 Open questions + sources -->
+      <section aria-labelledby="s9">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-no">09</span><h2 id="s9">What could not be verified</h2></div>
+          <p class="sec-intro">Stated plainly, because a verdict is only as good as its gaps.</p>
+          <ul class="tight open-q">
+            <li><strong>No representative population statistic</strong> for OS dark-mode share exists in public sources — Apple and Google do not publish it. All high percentages come from self-selected enthusiast polls with differing samples and question wording (for example, 81.9% “use dark mode” in 2020 and 73.3% “always on” in 2026); they are not population estimates or directly comparable measurements. The smaller, less enthusiast-focused source (NN/g, n=115) suggests ~⅓. Any report quoting a single global “% of users in dark mode” should be distrusted.</li>
+            <li><strong>No quantitative Awwwards/Dribbble dark-share dataset</strong> was found; showcase-saturation claims are qualitative. The Livery (n=409) and ClickFoundry (n=158,294) corpora are the best available proxies, and they disagree in level (37.4% vs 12.2% dark-default) because their samples differ.</li>
+            <li><strong>Video 1, ~7:45:</strong> the exact wording of the claim that black websites are currently popular/trending could not be confirmed from the truncated transcript line; substance reported, verbatim quote withheld.</li>
+            <li><strong>Developer dark-theme percentages</strong> (70–91% figures for IDEs/Stack Overflow) circulate via secondary blogs; no primary survey table was located. Direction accepted, numbers flagged soft.</li>
+            <li><strong>Purdue battery figures</strong> are reported two ways (39–47% at full brightness and 3–9% at 30–50% in Purdue’s own release, vs 67% at 100% and 14% at 30% as cited by NN/g). The cited sources report different savings figures; until their measurement bases are reconciled, those figures are not directly comparable. The qualitative conclusion — small at normal brightness, OLED-only — is consistent across both.</li>
+          </ul>
+
+          <h3 style="margin: 48px 0 16px;">Sources</h3>
+          <p class="small muted" style="margin-bottom: 16px;">All read 18 November 2026.</p>
+          <ul class="tight sources">
+            <li><span class="src-kind">NN/g</span> — Kohler &amp; Zhang, “Dark Mode: How Users Think About It and Issues to Avoid,” 27 Aug 2023 — <a href="https://www.nngroup.com/articles/dark-mode-users-issues/">nngroup.com/articles/dark-mode-users-issues</a></li>
+            <li><span class="src-kind">NN/g</span> — Budiu, “Dark Mode vs. Light Mode: Which Is Better?,” 2 Feb 2020 (via NN/g and secondary summaries)</li>
+            <li><span class="src-kind">HTTP Archive Web Almanac</span>, Accessibility chapters — <a href="https://almanac.httparchive.org/en/2021/accessibility">2021</a> · <a href="https://almanac.httparchive.org/en/2022/accessibility">2022</a> · <a href="https://almanac.httparchive.org/en/2024/accessibility">2024</a></li>
+            <li><span class="src-kind">ClickFoundry</span> — “What Does a Website Actually Look Like?” (corpus of 158,294 homepages), 2026 — <a href="https://clickfoundry.co/what-does-a-website-look-like/">clickfoundry.co</a></li>
+            <li><span class="src-kind">Livery</span> — “State of Web Design: The Fonts, Colours and Themes Real Sites Use,” updated 17 Nov 2026 — <a href="https://www.livery.site/guides/state-of-web-design">livery.site</a></li>
+            <li><span class="src-kind">Google</span> — “Dark theme now available on Google Search Desktop,” 9 Sep 2021 — <a href="https://support.google.com/websearch/thread/125141564/dark-theme-now-available-on-google-search-desktop">support.google.com</a></li>
+            <li><span class="src-kind">Google</span> — Android Accessibility Help: dark theme &amp; expanded option (Android 16+) — <a href="https://support.google.com/accessibility/android/answer/6151800">support.google.com</a></li>
+            <li><span class="src-kind">Apple</span> — WWDC19 Session 511, “Supporting Dark Mode in Web Content” (Safari 12.1 / iOS 13), via Apple Developer documentation</li>
+            <li><span class="src-kind">Google Material Design</span> — dark-theme guidance (#121212 surface, desaturated accents, contrast), via Material documentation</li>
+            <li><span class="src-kind">Purdue University</span> — Dash &amp; Hu, MobiSys 2021; Purdue release, 28 Jul 2021 — <a href="https://www.purdue.edu/research/features/stories/dark-mode-may-not-save-your-phones-battery-life-as-much-as-you-think-but-there-are-a-few-silver-linings">purdue.edu</a></li>
+            <li><span class="src-kind">Android Authority polls</span> — <a href="https://androidauthority.com/dark-mode-poll-results-1090716/">7 Mar 2020 (n=2,514)</a> · <a href="https://www.androidauthority.com/dark-mode-survey-results-3682352/">2026 (n=3,110)</a></li>
+            <li><span class="src-kind">Nguyen Minh Tuan, Tran Thi Lan &amp; Pham Duc Hieu</span> — “Dark Mode vs Light Mode: Impact on User Experience and Visual Comfort in Mobile Applications,” <em>Journal Mobile Technologies (JMS)</em> 4(1), 34–51, 10 Feb 2026 — <a href="https://doi.org/10.59431/jms.v4i1.711">doi.org/10.59431/jms.v4i1.711</a> · <a href="https://journal.msti-indonesia.com/index.php/jms/article/view/711">journal article page</a></li>
+            <li><span class="src-kind">Legge et al.</span> — reading-polarity research with participants with cloudy ocular media (small 1985 study discussed in §05; citation as text — no direct link on file)</li>
+            <li><span class="src-kind">Piepenbrock et al.</span> (Düsseldorf) — positive-polarity advantage studies, <em>Ergonomics</em> 2013 / <em>Human Factors</em> 2014 (citation as text — no direct link on file)</li>
+            <li><span class="src-kind">Dobres et al.</span> (MIT AgeLab) — glanceable-reading polarity studies in simulated daylight and night (citation as text — no direct link on file)</li>
+            <li><span class="src-kind">Pantone / WGSN + Coloro</span> — Color of the Year picks cited in §06: Pantone Mocha Mousse (2025) and Cloud Dancer (2026); WGSN/Coloro Transformative Teal (2026) (citations as text — no direct links on file) <span class="tag tag-opinion">Opinion / Trend</span></li>
+            <li><span class="src-kind">Elliot &amp; Maier</span> — “Color Psychology,” <em>Annual Review of Psychology</em>, 2014; Labrecque &amp; Milne, 2012 — via <a href="https://digital.hec.ca/en/blog/colour-psychology-in-digital-marketing-research-vs-myths/">HEC Montréal research summary</a></li>
+            <li><span class="src-kind">Toimi</span> — “Web Design Trends 2026” (editorial counter-aesthetic) — <a href="https://toimi.pro/blog/web-design-trends-what-works/">toimi.pro</a> <span class="tag tag-opinion">Opinion / Trend</span></li>
+            <li><span class="src-kind">Norrly</span> — “Web Design Trends 2026: What the Data Actually Shows” — <a href="https://norrly.io/guides/web-design-trends-2026">norrly.io</a> <span class="tag tag-opinion">Opinion / Trend</span></li>
+            <li><span class="src-kind">Videos</span> — <a href="https://www.youtube.com/watch?v=1R5oTHnfJYA">Payton Clark Smith (2023)</a> · <a href="https://www.youtube.com/watch?v=UWwNIMHFdW4">Jesse Showalter (2022)</a> · <a href="https://www.youtube.com/watch?v=CxXKHiCpKs4">Paige Brunton (2025)</a> — all verified live on YouTube, 18 Nov 2026</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <p><strong>Honed Signal — Website Design Report.</strong> Researched 18 November 2026, covering November 2021 – November 2026 (2018–2020 included as labeled foundations). Figures carry their sources and dates inline; claims that could not be verified are listed in §09 rather than smoothed over. This page ships the report’s own recommendation: it follows your system theme by default, with a manual override at the top, and falls back to light when no preference is signaled; print uses the light theme.</p>
+        <p class="signoff">Honed Signal<span class="dot">.</span> · Research by Muse · Edited by Freddie Avalos · Checked. Traced. Honed.</p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        /* ---------- Contrast lab ---------- */
+        var bgs = [
+          { name: "Navy base", hex: "#0B0E14" },
+          { name: "Elevated navy", hex: "#171E2E" },
+          { name: "Material dark", hex: "#121212" },
+          { name: "Warm paper", hex: "#FAF8F4" },
+          { name: "Pure white", hex: "#FFFFFF" },
+          { name: "Pure black", hex: "#000000" }
+        ];
+        var fgs = [
+          { name: "Off-white", hex: "#ECE9E1" },
+          { name: "Pure white", hex: "#FFFFFF" },
+          { name: "Orange", hex: "#FF6B35" },
+          { name: "Teal", hex: "#2EC4B6" },
+          { name: "Muted gray", hex: "#98A1B3" },
+          { name: "Navy ink", hex: "#0B0E14" }
+        ];
+        var selBg = bgs[0], selFg = fgs[0];
+
+        function lum(hex) {
+          var c = hex.replace("#", "");
+          var rgb = [0, 1, 2].map(function (i) {
+            var v = parseInt(c.substr(i * 2, 2), 16) / 255;
+            return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+          });
+          return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+        }
+        function ratio(a, b) {
+          var l1 = lum(a), l2 = lum(b);
+          var hi = Math.max(l1, l2), lo = Math.min(l1, l2);
+          return (hi + 0.05) / (lo + 0.05);
+        }
+
+        var bgPicks = document.getElementById("bg-picks");
+        var fgPicks = document.getElementById("fg-picks");
+        function buildPicks(container, list, isBg) {
+          list.forEach(function (c) {
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "pick";
+            b.setAttribute("aria-pressed", (isBg ? selBg : selFg) === c ? "true" : "false");
+            var dot = document.createElement("span");
+            dot.className = "dotc";
+            dot.style.background = c.hex;
+            b.appendChild(dot);
+            b.appendChild(document.createTextNode(c.name + " " + c.hex));
+            b.addEventListener("click", function () {
+              if (isBg) selBg = c; else selFg = c;
+              refreshPicks(); renderLab();
+            });
+            container.appendChild(b);
+          });
+        }
+        function refreshPicks() {
+          [[bgPicks, bgs, true], [fgPicks, fgs, false]].forEach(function (cfg) {
+            var nodes = cfg[0].children;
+            for (var i = 0; i < nodes.length; i++) {
+              nodes[i].setAttribute("aria-pressed", (cfg[2] ? selBg : selFg) === cfg[1][i] ? "true" : "false");
+            }
+          });
+        }
+        buildPicks(bgPicks, bgs, true);
+        buildPicks(fgPicks, fgs, false);
+
+        var preview = document.getElementById("lab-preview");
+        var big = document.getElementById("pv-big");
+        var body = document.getElementById("pv-body");
+        var small = document.getElementById("pv-small");
+        var ratioOut = document.getElementById("ratio-out");
+        var ratioPair = document.getElementById("ratio-pair");
+        var passRow = document.getElementById("pass-row");
+        var hint = document.getElementById("lab-hint");
+
+        function passChip(label, ok) {
+          var s = document.createElement("span");
+          s.className = "pass " + (ok ? "ok" : "no");
+          s.textContent = (ok ? "✓ " : "✗ ") + label;
+          return s;
+        }
+        function renderLab() {
+          preview.style.background = selBg.hex;
+          [big, body, small].forEach(function (el) { el.style.color = selFg.hex; });
+          var r = ratio(selFg.hex, selBg.hex);
+          ratioOut.textContent = r.toFixed(2) + " : 1";
+          ratioPair.textContent = selFg.name + " " + selFg.hex + " on " + selBg.name + " " + selBg.hex;
+          passRow.innerHTML = "";
+          passRow.appendChild(passChip("AA normal text (≥4.5)", r >= 4.5));
+          passRow.appendChild(passChip("AA large text (≥3.0)", r >= 3.0));
+          passRow.appendChild(passChip("AAA normal text (≥7.0)", r >= 7.0));
+          if (selFg.hex === "#FFFFFF" && selBg.hex === "#000000") {
+            hint.textContent = "A perfect 21:1 — and the worst halation case in the list. Ratio alone is not readability; that is why the report recommends off-white on dark gray or tinted navy.";
+          } else if (r < 3) {
+            hint.textContent = "Below even the large-text floor: fine for decoration, never for text, links, or chart labels.";
+          } else if (r < 4.5) {
+            hint.textContent = "Passes for large/bold text and UI components only — not for normal text, links, or chart labels at this size.";
+          } else if (r < 7) {
+            hint.textContent = "Solid AA. For a research brand’s body text, aim at AAA (7:1) — and check this pair on every elevated surface, not just the base. NN/g’s caution also applies in this range: saturated colors on near-black can vibrate and blur even when the ratio passes — the Coinbase example passed at 4.59:1 and still blurred.";
+          } else {
+            hint.textContent = "AAA territory. If the text color is near-pure white on a near-black ground, soften it a step anyway to reduce bloom for astigmatic readers.";
+          }
+        }
+        renderLab();
+      })();
+    </script>
+  </body>
+</html>

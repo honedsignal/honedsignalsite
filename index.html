@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script src="/theme.js"></script>
   <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="/theme.css?v=1">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
 </head>
 <body>
@@ -42,6 +44,15 @@
         <li><a href="#connect">Connect</a></li>
       </ul>
     </nav>
+    <div class="hs-theme-bar">
+      <div class="hs-theme-switch" data-hs-theme-switch>
+        <div class="hs-theme-seg" role="group" aria-label="Page theme">
+          <button type="button" data-theme-choice="system" aria-pressed="false">System</button>
+          <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+          <button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main id="main">
@@ -143,7 +154,7 @@
       <p>Honed Signal is a one-person media project by Freddie Avalos producing factual, hype-free videos and reports on markets, technology, AI, and space. Every report is researched from primary sources and written in plain language. No hype. No noise.</p>
       <p>Freddie works with Huxley, his AI research partner: Huxley digs through the primary sources and drafts; Freddie edits, verifies, and makes the calls.</p>
       <p><strong>Who&rsquo;s who.</strong> Freddie Avalos is a human &mdash; the person behind Honed Signal. He edits, verifies, and is responsible for everything published here. Huxley is not a person: Huxley is the name Freddie gave his Muse assistant &mdash; Muse is Meta&rsquo;s personal AI agent, powered by the Muse Wonder model. Huxley researches, drafts, and builds; Freddie makes the calls. (Meta AI, credited on some artwork and two videos, is a different Meta tool.)</p>
-      <p><a href="/rio/" style="color:var(--orange);font-weight:800;text-decoration:none">Meet Rio &rarr;</a></p>
+      <p><a href="/rio/" style="color:var(--orange-strong);font-weight:800;text-decoration:none">Meet Rio &rarr;</a></p>
     </section>
 
     <section class="connect" id="connect" aria-label="Connect">

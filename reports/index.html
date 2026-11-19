@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script src="/theme.js"></script>
   <link rel="stylesheet" href="/style.css?v=2">
   <style>
     .rp-wrap { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem 3rem; }
@@ -41,14 +42,50 @@
     .rp-meta { color: #9AA3B2; font-size: .85rem; margin: 0 0 1rem; }
     .rp-open { color: #FF6B35; font-weight: 800; font-size: .95rem; }
     .rp-foot { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem 2.5rem; color: #9AA3B2; font-size: .85rem; text-align: center; }
+    .rp-nav { max-width: 1000px; margin: 0 auto; padding: 1.25rem 1.25rem 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+    .rp-back { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; border: 1px solid #3a4356; border-radius: 10px; background: #161c28; color: #f5f5f5; font-size: .85rem; font-weight: 800; text-decoration: none; }
+    /* Theme kit: light theme (dark above is the original look) */
+    html[data-theme="light"] .rp-back { background: #161c28; color: #f5f5f5; border-color: #3a4356; }
+    html[data-theme="light"] .rp-hero h1 { color: #171a21; }
+    html[data-theme="light"] .rp-hero .brand-line { color: #171a21; }
+    html[data-theme="light"] .rp-hero .tagline { color: #5c6572; }
+    html[data-theme="light"] .rp-standards { background: #fffdf8; border-color: #ddd5c4; }
+    html[data-theme="light"] .rp-standards h2 { color: #171a21; }
+    html[data-theme="light"] .rp-standards li { color: #3d434f; }
+    html[data-theme="light"] .rp-standards li::before { color: #0d7a6e; }
+    html[data-theme="light"] .rp-art { border-color: #ddd5c4; }
+    html[data-theme="light"] .rp-card { background: #fffdf8; border-color: #ddd5c4; }
+    html[data-theme="light"] .rp-card:hover { border-color: #d96e00; }
+    html[data-theme="light"] .rp-kicker { color: #0d7a6e; }
+    html[data-theme="light"] .rp-card h2 { color: #171a21; }
+    html[data-theme="light"] .rp-dek { color: #5c6572; }
+    html[data-theme="light"] .rp-meta { color: #5c6572; }
+    html[data-theme="light"] .rp-open { color: #a34e00; }
+    html[data-theme="light"] .rp-foot { color: #5c6572; }
+    @media print {
+      .rp-nav .hs-theme-switch { display: none !important; }
+      html[data-theme="dark"] body { background: #ffffff !important; color: #171a21 !important; }
+      html[data-theme="dark"] .rp-hero h1, html[data-theme="dark"] .rp-hero .brand-line, html[data-theme="dark"] .rp-standards h2, html[data-theme="dark"] .rp-card h2 { color: #171a21 !important; }
+      html[data-theme="dark"] .rp-hero .tagline, html[data-theme="dark"] .rp-dek, html[data-theme="dark"] .rp-meta, html[data-theme="dark"] .rp-foot { color: #454a55 !important; }
+      html[data-theme="dark"] .rp-standards, html[data-theme="dark"] .rp-card { background: #ffffff !important; border-color: #d9d5cc !important; }
+      html[data-theme="dark"] .rp-standards li { color: #454a55 !important; }
+    }
   </style>
+  <link rel="stylesheet" href="/theme.css?v=1">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <main id="main">
-    <nav aria-label="Back" style="max-width:1000px;margin:0 auto;padding:1.25rem 1.25rem 0">
-      <a href="/" style="display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;border:1px solid #3a4356;border-radius:10px;background:#161c28;color:#f5f5f5;font-size:.85rem;font-weight:800;text-decoration:none">← Honed Signal</a>
+    <nav class="rp-nav" aria-label="Back">
+      <a class="rp-back" href="/">← Honed Signal</a>
+      <div class="hs-theme-switch" data-hs-theme-switch>
+        <div class="hs-theme-seg" role="group" aria-label="Page theme">
+          <button type="button" data-theme-choice="system" aria-pressed="false">System</button>
+          <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+          <button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button>
+        </div>
+      </div>
     </nav>
 
     <header class="rp-hero">
@@ -59,6 +96,13 @@
 
     <div class="rp-wrap">
       <img class="rp-art" src="/reports/images/hero.webp" width="2096" height="1184" alt="Rio at his research desk, consulting five holographic AI panels linked by streams of light">
+      <a class="rp-card" href="/reports/dark-mode/">
+        <p class="rp-kicker">Web Design · Dark Mode — November 2026</p>
+        <h2>Is Dark Mode Oversaturated?</h2>
+        <p class="rp-dek">Devices went dark — websites mostly didn't. Dark is saturated as a look inside tech, finance, media, and gaming, but not oversaturated web-wide: only 12.2% of measured homepages render dark by default.</p>
+        <p class="rp-meta">Research by Muse · Edited by Freddie Avalos · November 18, 2026</p>
+        <span class="rp-open">Read the report →</span>
+      </a>
       <a class="rp-card" href="/reports/bowlwatch/">
         <p class="rp-kicker">AI · Building a Website — November 2026</p>
         <h2>One Idea, Six AIs, One No</h2>

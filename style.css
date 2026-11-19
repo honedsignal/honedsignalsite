@@ -12,6 +12,34 @@
   --muted: #9AA3B2;
   --card: #121722;
   --radius: 10px;
+  /* Theme kit (THEME-KIT.md): dark values are the original look.
+     Pages without the resolver have no data-theme attribute and are
+     completely unaffected. */
+  --bg: #0B0E14;
+  --text: #F5F5F5;
+  --line: #1E2635;
+  --line-strong: #2A3448;
+  --header-bg: rgba(11, 14, 20, 0.94);
+  --cta-bg: #FF6B35;
+  --cta-text: #0B0E14;
+  --orange-strong: #FF6B35;
+}
+
+html[data-theme="light"] {
+  --ink: #FAF8F4;
+  --paper: #171A21;
+  --blue: #0D7A6E;
+  --orange: #D96E00;
+  --orange-strong: #A34E00;
+  --muted: #5C6572;
+  --card: #FFFDF8;
+  --bg: #FAF8F4;
+  --text: #171A21;
+  --line: #DDD5C4;
+  --line-strong: #C9C2AE;
+  --header-bg: rgba(250, 248, 244, 0.94);
+  --cta-bg: #A34E00;
+  --cta-text: #FFFDF8;
 }
 
 html { scroll-behavior: smooth; }
@@ -29,8 +57,8 @@ body {
   position: absolute;
   left: -9999px;
   top: 0;
-  background: var(--orange);
-  color: var(--ink);
+  background: var(--cta-bg);
+  color: var(--cta-text);
   padding: 0.5rem 1rem;
   z-index: 100;
 }
@@ -40,8 +68,8 @@ body {
 .site-header {
   position: sticky;
   top: 0;
-  background: rgba(11, 14, 20, 0.94);
-  border-bottom: 1px solid #1E2635;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--line);
   z-index: 10;
 }
 
@@ -155,8 +183,8 @@ body {
 
 .cta {
   display: inline-block;
-  background: var(--orange);
-  color: var(--ink);
+  background: var(--cta-bg);
+  color: var(--cta-text);
   font-weight: 700;
   text-decoration: none;
   padding: 0.85rem 2rem;
@@ -183,7 +211,7 @@ section > h2, .about > h2 {
 
 .card {
   background: var(--card);
-  border: 1px solid #1E2635;
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 1.5rem;
 }
@@ -197,7 +225,7 @@ section > h2, .about > h2 {
   width: 100%;
   height: auto;
   border-radius: var(--radius);
-  border: 1px solid #1E2635;
+  border: 1px solid var(--line);
   margin: 0 0 1.5rem;
 }
 .about p { color: var(--muted); margin: 0 0 1.6em; }
@@ -218,7 +246,7 @@ section > h2, .about > h2 {
   display: inline-block;
   color: var(--paper);
   text-decoration: none;
-  border: 1px solid #2A3448;
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   padding: 0.6rem 1.1rem;
   font-size: 0.95rem;
@@ -230,7 +258,7 @@ section > h2, .about > h2 {
 
 /* Footer */
 .site-footer {
-  border-top: 1px solid #1E2635;
+  border-top: 1px solid var(--line);
   text-align: center;
   padding: 2rem 1.25rem;
 }
@@ -272,7 +300,7 @@ section > h2, .about > h2 {
   }
   .start-cards { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
   .start-card {
-    background: var(--card); border: 1px solid #1E2635;
+    background: var(--card); border: 1px solid var(--line);
     border-radius: var(--radius); padding: 1.5rem;
     display: flex; flex-direction: column;
   }
@@ -283,7 +311,7 @@ section > h2, .about > h2 {
   .start-card h3 { margin: 0 0 0.5rem; font-size: 1.2rem; line-height: 1.3; }
   .start-card p { color: var(--muted); margin: 0 0 1rem; }
   .start-card .start-link { margin-top: auto; }
-  .start-link a { color: var(--orange); font-weight: 800; text-decoration: none; }
+  .start-link a { color: var(--orange-strong); font-weight: 800; text-decoration: none; }
   .start-link a:hover, .start-link a:focus { text-decoration: underline; }
   @media (min-width: 640px) { .start-cards { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 960px) { .start-cards { grid-template-columns: repeat(3, 1fr); } }
@@ -292,3 +320,27 @@ section > h2, .about > h2 {
 .footer-nav { margin: 0 0 0.75rem; }
 .footer-nav a { color: var(--blue); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
 .footer-nav a:hover, .footer-nav a:focus { text-decoration: underline; }
+
+/* Homepage theme bar (theme kit): toggle row inside the site header */
+.hs-theme-bar {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 1.25rem 0.8rem;
+  display: flex;
+  justify-content: flex-end;
+}
+@media (max-width: 639px) {
+  .hs-theme-bar { padding: 0 1rem 0.7rem; }
+}
+
+/* Print always renders light (theme kit rule) */
+@media print {
+  html[data-theme="dark"] {
+    --ink: #FAF8F4; --paper: #171A21; --blue: #0D7A6E; --orange: #D96E00;
+    --orange-strong: #A34E00; --muted: #5C6572; --card: #FFFFFF;
+    --bg: #FFFFFF; --text: #171A21; --line: #DDD5C4; --line-strong: #C9C2AE;
+    --header-bg: #FFFFFF; --cta-bg: #A34E00; --cta-text: #FFFDF8;
+  }
+  .site-header { position: static; }
+  .hs-theme-bar { display: none; }
+}

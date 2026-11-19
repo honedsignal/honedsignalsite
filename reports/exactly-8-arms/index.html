@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
+    <script src="/theme.js"></script>
     <title>Exactly 8 Arms — Can AI Promise It? | Honed Signal</title>
     <meta name="description" content="Which art tool can an AI agent actually drive — and can any of them promise an exact limb count? Plenty of tools can be driven. None of the generators can make the promise. Only construction, not generation, can promise exactly 8 arms." />
     <link rel="canonical" href="https://honedsignal.com/reports/exactly-8-arms/" />
@@ -26,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
     <style>
       :root {
-        color-scheme: light dark;
+        color-scheme: light;
         --bg: #f7f5f1;
         --surface: #ffffff;
         --surface-2: #efede8;
@@ -45,8 +46,7 @@
         --hero-line: #2a2f3a;
         --chart-grid: #d9d5cc;
       }
-      @media (prefers-color-scheme: dark) {
-        :root {
+      html[data-theme="dark"] {
           --bg: #0b0e14;
           --surface: #12161f;
           --surface-2: #171c27;
@@ -64,7 +64,6 @@
           --hero-line: #222834;
           --chart-grid: #262c38;
         }
-      }
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
       body {
@@ -208,14 +207,12 @@
         --chart-bar: #0d7a6e; --chart-fix: #c47a1e; --chart-loop: #5b7f3a;
         --shadow: 0 1px 3px rgba(20,22,28,.08), 0 8px 24px rgba(20,22,28,.05);
       }
-      @media (prefers-color-scheme: dark) {
-        article {
+      html[data-theme="dark"] article {
           --warn: #ff9a7a; --warn-bg: #3a211a; --good: #2ec4b6; --good-bg: #12302b;
           --amber: #e8b34b; --amber-bg: #332a15; --acc: #2ec4b6; --acc-ink: #0b1518;
           --chart-bar: #2ec4b6; --chart-fix: #e09a3e; --chart-loop: #9cc46a;
           --shadow: 0 1px 3px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
         }
-      }
       .hs-hero figcaption { margin-top: 0; padding: 14px 16px; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
       .hs-hero figcaption strong { display: block; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
       .tag { display: inline-block; font-size: 11.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; font-family: "Space Grotesk", system-ui, sans-serif; }
@@ -293,7 +290,7 @@
       .pill-yes { background: var(--good); color: #ffffff; }
       .pill-no { background: var(--surface-2); color: var(--ink-soft); }
       .pill-cond { background: var(--amber-bg); color: var(--amber); }
-      @media (prefers-color-scheme: dark) { .pill-yes { color: #0b1518; } }
+      html[data-theme="dark"] .pill-yes { color: #0b1518; }
       .count-note { font-size: 14px; color: var(--ink-soft); font-family: "Space Grotesk", system-ui, sans-serif; }
       .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
       .fbtn { background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); border-radius: 999px; padding: 10px 16px; font-size: 15px; font-weight: 600; cursor: pointer; min-height: 44px; font-family: "Space Grotesk", system-ui, sans-serif; }
@@ -374,14 +371,45 @@
         :root { --hero-bg: #ffffff !important; --hero-ink: #14161c !important; --hero-soft: #454a55 !important; --hero-line: #d9d5cc !important; --bg: #ffffff !important; }
         body { background: #ffffff !important; }
       }
+    
+      @media print {
+        html[data-theme="dark"] {
+          --surface: #ffffff !important;
+          --surface-2: #efede8 !important;
+          --ink: #14161c !important;
+          --ink-soft: #454a55 !important;
+          --ink-faint: #6d7280 !important;
+          --line: #d9d5cc !important;
+          --navy: #0b0e14 !important;
+          --orange: #d96e00 !important;
+          --orange-strong: #a34e00 !important;
+          --teal: #0d7a6e !important;
+          --teal-strong: #0a665c !important;
+          --chart-grid: #d9d5cc !important;
+        }
+        html[data-theme="dark"] article {
+          --warn: #a34e00; --warn-bg: #fbe9e2; --good: #0a665c; --good-bg: #e0f0ec !important;
+          --amber: #a86a00; --amber-bg: #faf0d7; --acc: #0d7a6e; --acc-ink: #ffffff !important;
+          --chart-bar: #0d7a6e; --chart-fix: #c47a1e; --chart-loop: #5b7f3a !important;
+          --shadow: 0 1px 3px rgba(20,22,28,.08), 0 8px 24px rgba(20,22,28,.05) !important;
+        }
+      }
     </style>
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
-</head>
+    <link rel="stylesheet" href="/theme.css?v=1" />
+  </head>
   <body>
 
     <div class="hs-util">
       <div class="hs-util-inner">
         <a class="hs-back" href="/reports/">← Honed Reports</a>
+        <div class="hs-theme-switch" data-hs-theme-switch>
+          <div class="hs-theme-seg" role="group" aria-label="Page theme">
+            <button type="button" data-theme-choice="system" aria-pressed="false">System</button>
+            <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+            <button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button>
+          </div>
+        </div>
         <div class="hs-actions" aria-label="Print, email, or share this report">
           <span class="hs-label">Share</span>
           <button class="hs-btn" type="button" onclick="window.print()">Print</button>
