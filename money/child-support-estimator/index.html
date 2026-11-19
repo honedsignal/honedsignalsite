@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -38,8 +39,7 @@
       --shadow: 0 22px 60px rgba(11, 14, 20, .09);
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
+    html[data-theme="dark"] {
         --bg: #0b0e14;
         --surface: #131922;
         --surface-2: #1b2430;
@@ -58,7 +58,6 @@
         --red-soft: #3a2024;
         --shadow: 0 24px 72px rgba(0, 0, 0, .38);
       }
-    }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; background: var(--bg); }
@@ -366,7 +365,7 @@
     .breakdown-list dt { color: var(--muted); }
     .breakdown-list dd { margin: 0; font-family: "DM Mono", monospace; font-weight: 500; text-align: right; }
     .context-card { background: var(--ink); color: var(--bg); border-color: transparent; }
-    @media (prefers-color-scheme: dark) { .context-card { background: #eef3f6; color: #0b0e14; } }
+    html[data-theme="dark"] .context-card { background: #eef3f6; color: #0b0e14; }
     .context-number { margin: 20px 0 8px; font: 500 clamp(2rem, 4vw, 3.35rem)/1 "DM Mono", monospace; letter-spacing: -.055em; }
     .context-card p { margin: 0; max-width: 35ch; opacity: .72; font-size: .78rem; }
 
@@ -496,9 +495,37 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3h">
+/* Theme kit (tranche 3H): toggle + print forcing. Light is the original design; the dark variable block above is keyed to html[data-theme="dark"]. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+@media print {
+  html[data-theme="dark"] {
+    --bg: #f3f5f6 !important;
+    --surface: #ffffff !important;
+    --surface-2: #e9eef1 !important;
+    --ink: #0b0e14 !important;
+    --muted: #53606c !important;
+    --line: #cbd3d9 !important;
+    --line-strong: #9fabba !important;
+    --blue: #4778ad !important;
+    --blue-soft: #deebf7 !important;
+    --orange: #e47700 !important;
+    --orange-hover: #c96600 !important;
+    --orange-ink: #151006 !important;
+    --green: #147b33 !important;
+    --green-soft: #e1f4e6 !important;
+    --red: #bd363d !important;
+    --red-soft: #fbe3e5 !important;
+    --shadow: 0 22px 60px rgba(11, 14, 20, .09) !important;
+  }
+}
+</style>
 </head>
 <body>
   <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
     <a class="money-home" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
 
     <header class="intro">

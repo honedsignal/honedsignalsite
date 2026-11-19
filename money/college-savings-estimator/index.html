@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -17,7 +18,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap');
     :root { color-scheme: dark; --bg:#111722; --surface:#1a2230; --surface-2:#242e3d; --text:#f5f5f5; --muted:#bdc7d1; --line:#394555; --orange:#ff6b35; --orange-hover:#ffab42; --orange-ink:#120d06; --green:#39ff14; --red:#ff767b; --blue:#8ab7e6; --shadow:0 18px 44px rgba(0,0,0,.26); --focus:#92c4f4; }
-    @media (prefers-color-scheme: dark) { :root { color-scheme:dark; --bg:#0b0e14; --surface:#141922; --surface-2:#1c2430; --text:#f5f5f5; --muted:#b6c0cb; --line:#313b49; --orange:#ff6b35; --orange-hover:#ffab42; --orange-ink:#120d06; --green:#39ff14; --red:#ff6b70; --blue:#78a7da; --shadow:0 20px 54px rgba(0,0,0,.32); --focus:#8dbbe9; } }
+    html[data-theme="dark"] { color-scheme:dark; --bg:#0b0e14; --surface:#141922; --surface-2:#1c2430; --text:#f5f5f5; --muted:#b6c0cb; --line:#313b49; --orange:#ff6b35; --orange-hover:#ffab42; --orange-ink:#120d06; --green:#39ff14; --red:#ff6b70; --blue:#78a7da; --shadow:0 20px 54px rgba(0,0,0,.32); --focus:#8dbbe9; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { margin:0; min-height:100vh; background:linear-gradient(90deg,transparent 0 49.8%,color-mix(in srgb,var(--line) 20%,transparent) 49.8% 50.2%,transparent 50.2%) top 118px center/min(1180px,94vw) 1px no-repeat,var(--bg); color:var(--text); font-family:"DM Sans",sans-serif; line-height:1.5; }
@@ -137,9 +138,58 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3h">
+/* Theme kit (tranche 3H): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --bg: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-2: #EFEDE8;
+  --text: #14161C;
+  --muted: #454A55;
+  --line: #D9D5CC;
+  --orange: #D96E00;
+  --orange-hover: #A34E00;
+  --green: #147C36;
+  --red: #BD343B;
+  --blue: #0D7A6E;
+  --shadow: 0 20px 50px rgba(11,14,20,.10);
+  --focus: #0D7A6E;
+}
+html[data-theme="light"] .hs-next { background: #FFFFFF; border-color: #D9D5CC; }
+html[data-theme="light"] .hs-next h3 { color: #A34E00; }
+html[data-theme="light"] .hs-next a { color: #14161C; }
+html[data-theme="light"] .hs-next a:hover { color: #D96E00; }
+html[data-theme="light"] .hs-next a span.arr { color: #D96E00; }
+html[data-theme="light"] .hs-reviewed { color: #5C6572 !important; }
+html[data-theme="light"] .hs-legal { color: #5C6572 !important; border-top-color: #D9D5CC !important; }
+html[data-theme="light"] .hs-legal a { color: #0D7A6E !important; }
+html[data-theme="light"] .hm-hint { color: #454A55; background: rgba(217,110,0,.08); border-left-color: #D96E00; }
+html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E00; color: #A34E00; }
+@media print {
+  html[data-theme="dark"] {
+    --bg: #FAF8F4 !important;
+    --surface: #FFFFFF !important;
+    --surface-2: #EFEDE8 !important;
+    --text: #14161C !important;
+    --muted: #454A55 !important;
+    --line: #D9D5CC !important;
+    --orange: #D96E00 !important;
+    --orange-hover: #A34E00 !important;
+    --green: #147C36 !important;
+    --red: #BD343B !important;
+    --blue: #0D7A6E !important;
+    --shadow: 0 20px 50px rgba(11,14,20,.10) !important;
+    --focus: #0D7A6E !important;
+  }
+}
+</style>
 </head>
 <body>
   <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
     <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
     <header class="intro">
       <div><p class="section-tag">Family planning</p><style data-hs-hero>
