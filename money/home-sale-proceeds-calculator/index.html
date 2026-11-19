@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -26,12 +27,12 @@
       --orange:#d96d00;--orange-ink:#181108;--orange-soft:#ffead3;--green:#117f31;--green-soft:#ddf2e3;
       --red:#bd3941;--red-soft:#fbe3e5;--shadow:0 22px 60px rgba(11,14,20,.10);--grid:rgba(71,119,173,.065)
     }
-    @media(prefers-color-scheme:dark){:root{
+    html[data-theme="dark"] {
       --paper:#080b10;--surface:#111720;--surface-2:#19222c;--ink:#f5f7f9;--muted:#adb8c4;
       --line:#2c3946;--line-strong:#4a5969;--blue:#2ec4b6;--blue-soft:#172e44;
       --orange:#ff6b35;--orange-ink:#181108;--orange-soft:#3a2916;--green:#39ff14;--green-soft:#17351b;
       --red:#ff6a70;--red-soft:#3a1d23;--shadow:0 24px 70px rgba(0,0,0,.38);--grid:rgba(119,168,221,.055)
-    }}
+    }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;min-width:320px;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;color:var(--ink);font-family:Manrope,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -74,7 +75,7 @@
     .hidden{display:none!important}
     .result-shell{overflow:hidden;border-radius:6px 22px 22px 22px}
     .hero-result{position:relative;overflow:hidden;padding:31px 31px 29px;background:var(--ink);color:var(--paper)}
-    @media(prefers-color-scheme:dark){.hero-result{background:#edf2f7;color:#0b0e14}}
+    html[data-theme="dark"] .hero-result {background:#edf2f7;color:#0b0e14}
     .hero-result:after{content:"";position:absolute;right:-42px;bottom:-58px;width:150px;height:150px;border:22px solid var(--orange);border-radius:50%}
     .eyebrow{margin:0 0 8px;font:500 .67rem "DM Mono",monospace;opacity:.62}
     .net-value{position:relative;z-index:1;margin:0;font:500 clamp(2.7rem,7vw,5.4rem)/.95 "DM Mono",monospace;letter-spacing:-.06em}
@@ -149,9 +150,37 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3a">
+/* Theme kit (tranche 3A): toggle + print forcing. Light is the original design; the dark variable block above is keyed to html[data-theme="dark"]. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+@media print {
+  html[data-theme="dark"] {
+    --paper: #f3f5f7 !important;
+    --surface: #ffffff !important;
+    --surface-2: #e8edf1 !important;
+    --ink: #0b0e14 !important;
+    --muted: #566270 !important;
+    --line: #cbd3dc !important;
+    --line-strong: #9daab8 !important;
+    --blue: #0d7a6e !important;
+    --blue-soft: #dbe9f5 !important;
+    --orange: #d96d00 !important;
+    --orange-ink: #181108 !important;
+    --orange-soft: #ffead3 !important;
+    --green: #117f31 !important;
+    --green-soft: #ddf2e3 !important;
+    --red: #bd3941 !important;
+    --red-soft: #fbe3e5 !important;
+    --shadow: 0 22px 60px rgba(11,14,20,.10) !important;
+    --grid: rgba(71,119,173,.065) !important;
+  }
+}
+</style>
 </head>
 <body>
 <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
   <a class="home-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
   <header class="intro">
     <style data-hs-hero>
