@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
       <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       <meta charset="utf-8" />
@@ -402,9 +403,47 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-5o">
+/* Theme kit (tranche 5O): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --paper: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-raised: #EFEDE8;
+  --text: #14161C;
+  --muted: #5C6572;
+  --line: #D9D5CC;
+  --blue: #0D7A6E;
+  --blue-soft: #D9F2EE;
+  --orange: #D96E00;
+  --orange-soft: #FBEADD;
+  --green: #167D1B;
+  --green-soft: #E3F1DB;
+  --button-text: #0B0E14;
+}
+@media print {
+  html[data-theme="dark"] {
+    --paper: #FAF8F4 !important;
+    --surface: #FFFFFF !important;
+    --surface-raised: #EFEDE8 !important;
+    --text: #14161C !important;
+    --muted: #5C6572 !important;
+    --line: #D9D5CC !important;
+    --blue: #0D7A6E !important;
+    --blue-soft: #D9F2EE !important;
+    --orange: #D96E00 !important;
+    --orange-soft: #FBEADD !important;
+    --green: #167D1B !important;
+    --green-soft: #E3F1DB !important;
+    --button-text: #0B0E14 !important;
+  }
+}
+</style>
 </head>
   <body>
     <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
       <a class="back-link" href="/health/" target="_top" aria-label="Back to Honed Proof">← <img class="brand-mark" src="/health/images/honed-proof-logo.png" alt="" width="30" height="30" /><span>Honed Proof</span></a>
 
       <header class="intro">
