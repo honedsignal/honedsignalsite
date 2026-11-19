@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -38,8 +39,7 @@
       --radius-md: 14px;
       --radius-lg: 24px;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
+    html[data-theme="dark"] {
         --surface: #0b0e14;
         --panel: #131821;
         --panel-2: #1a202a;
@@ -55,7 +55,6 @@
         --red: #ff676b;
         --shadow: 0 18px 48px rgba(0,0,0,.28);
       }
-    }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -309,12 +308,41 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3e">
+/* Theme kit (tranche 3E): toggle + print forcing. Light is the original design; the dark variable block above is keyed to html[data-theme="dark"]. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+@media print {
+  html[data-theme="dark"] {
+    --ink: #0b0e14 !important;
+    --surface: #f5f5f5 !important;
+    --panel: #ffffff !important;
+    --panel-2: #ebedf0 !important;
+    --text: #10141c !important;
+    --muted: #505a67 !important;
+    --line: #cfd4da !important;
+    --blue: #416f9f !important;
+    --blue-soft: #dbe9f6 !important;
+    --orange: #d86e00 !important;
+    --orange-soft: #ffe7ce !important;
+    --green: #167b27 !important;
+    --green-soft: #dcefdc !important;
+    --red: #b83439 !important;
+    --shadow: 0 18px 48px rgba(11,14,20,.11) !important;
+    --radius-sm: 8px !important;
+    --radius-md: 14px !important;
+    --radius-lg: 24px !important;
+  }
+}
+</style>
 </head>
 <body>
   <div class="money-home">
     <div class="money-home-inner"><a href="/money/" aria-label="Back to Honed Money">← Honed Money</a></div>
   </div>
   <main>
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
     <div class="shell">
       <div class="topline">
         <span class="stamp">Verified October 7, 2026</span>

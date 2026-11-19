@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -54,7 +55,7 @@
     .empty{min-height:506px;display:grid;place-items:center;text-align:center;border:1px dashed var(--line);border-radius:6px var(--r-lg) var(--r-lg) var(--r-lg);background:color-mix(in srgb,var(--surface) 72%,transparent);padding:40px}.ladder{display:flex;align-items:flex-end;justify-content:center;gap:5px;height:100px;margin:0 auto 21px}.ladder span{display:block;width:15px;border-radius:3px 3px 0 0;background:var(--blue)}.ladder span:nth-child(1){height:24px;opacity:.45}.ladder span:nth-child(2){height:35px;opacity:.55}.ladder span:nth-child(3){height:48px;opacity:.64}.ladder span:nth-child(4){height:60px;opacity:.73}.ladder span:nth-child(5){height:74px;opacity:.82}.ladder span:nth-child(6){height:87px;opacity:.91}.ladder span:nth-child(7){height:100px;background:var(--orange)}
     .empty h2{margin:0 0 8px;font-size:1.48rem;letter-spacing:-.04em}.empty p{margin:0 auto;max-width:39ch;color:var(--muted);font-size:.91rem}
     .error{margin:0 0 10px;padding:12px 14px;border-radius:10px;background:color-mix(in srgb,var(--red) 12%,var(--surface));color:var(--red);font-size:.82rem;font-weight:700}
-    .scoreboard{position:relative;overflow:hidden;padding:28px;border-radius:6px var(--r-lg) var(--r-lg) var(--r-lg);background:var(--ink);color:var(--bg)}@media(prefers-color-scheme:dark){.scoreboard{background:#eff3f6;color:#0b0e14}}
+    .scoreboard{position:relative;overflow:hidden;padding:28px;border-radius:6px var(--r-lg) var(--r-lg) var(--r-lg);background:var(--ink);color:var(--bg)}html[data-theme="dark"] .scoreboard {background:#eff3f6;color:#0b0e14}
     .scoreboard:after{content:"";position:absolute;right:-52px;top:-53px;width:140px;height:140px;border:22px solid var(--orange);border-radius:50%;opacity:.92}.score-label{margin:0 0 8px;font:500 .69rem "DM Mono",monospace;opacity:.62}.rates{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:24px}.rate-block+.rate-block{border-left:1px solid rgba(127,140,150,.38);padding-left:24px}.rate-block strong{display:block;font:500 clamp(2.8rem,6vw,5.15rem)/.94 "DM Mono",monospace;letter-spacing:-.075em}.rate-block small{display:block;margin-top:9px;max-width:29ch;font-size:.76rem;line-height:1.45;opacity:.7}
     .totals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.stat{padding:17px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-md)}.stat span{display:block;color:var(--muted);font-size:.66rem;font-weight:800;margin-bottom:6px}.stat strong{display:block;font:500 clamp(.95rem,2vw,1.22rem) "DM Mono",monospace;letter-spacing:-.035em}.stat em{display:block;margin-top:6px;color:var(--muted);font-size:.63rem;font-style:normal}
     .explain{margin:0 0 10px}.explain-toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--blue);border-radius:8px;background:var(--blue-soft);color:var(--ink);padding:10px 13px;cursor:pointer;font-size:.75rem;font-weight:800}.explain-toggle svg{width:14px;height:14px;transition:transform .16s ease}.explain-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}.explanation{margin:9px 0 0;padding:17px 18px;border:1px solid color-mix(in srgb,var(--blue) 48%,var(--line));border-radius:10px;background:color-mix(in srgb,var(--blue-soft) 62%,var(--surface));font-size:.82rem;line-height:1.65}.explanation p{margin:0}.explanation p+p{margin-top:9px}
@@ -100,10 +101,61 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3e">
+/* Theme kit (tranche 3E): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --bg: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-2: #EFEDE8;
+  --ink: #14161C;
+  --muted: #5C6572;
+  --line: #D9D5CC;
+  --line-strong: #A39A83;
+  --blue: #0D7A6E;
+  --blue-soft: #D9F2EE;
+  --orange: #D96E00;
+  --orange-soft: #FBEADD;
+  --green: #147C36;
+  --green-soft: #E1F4E6;
+  --red: #BD343B;
+  --shadow: 0 20px 58px rgba(11,14,20,.12);
+}
+html[data-theme="light"] .hs-next { background: #FFFFFF; border-color: #D9D5CC; }
+html[data-theme="light"] .hs-next h3 { color: #A34E00; }
+html[data-theme="light"] .hs-next a { color: #14161C; }
+html[data-theme="light"] .hs-next a:hover { color: #D96E00; }
+html[data-theme="light"] .hs-next a span.arr { color: #D96E00; }
+html[data-theme="light"] .hs-reviewed { color: #5C6572 !important; }
+html[data-theme="light"] .hs-legal { color: #5C6572 !important; border-top-color: #D9D5CC !important; }
+html[data-theme="light"] .hs-legal a { color: #0D7A6E !important; }
+@media print {
+  html[data-theme="dark"] {
+    --bg: #FAF8F4 !important;
+    --surface: #FFFFFF !important;
+    --surface-2: #EFEDE8 !important;
+    --ink: #14161C !important;
+    --muted: #5C6572 !important;
+    --line: #D9D5CC !important;
+    --line-strong: #A39A83 !important;
+    --blue: #0D7A6E !important;
+    --blue-soft: #D9F2EE !important;
+    --orange: #D96E00 !important;
+    --orange-soft: #FBEADD !important;
+    --green: #147C36 !important;
+    --green-soft: #E1F4E6 !important;
+    --red: #BD343B !important;
+    --shadow: 0 20px 58px rgba(11,14,20,.12) !important;
+  }
+}
+</style>
 </head>
 <body>
   <nav class="return" aria-label="Honed Money"><div class="return-inner"><a href="/money/">← Honed Money</a></div></nav>
   <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
     <header class="intro">
       <div><div class="year">2026 FEDERAL INCOME TAX</div><style data-hs-hero>
 .hs-hero{position:relative;border-radius:18px;overflow:hidden;margin:20px 0 30px;aspect-ratio:16/9;display:flex;align-items:flex-end;background:#121720}
