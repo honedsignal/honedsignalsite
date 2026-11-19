@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -65,9 +66,50 @@
 </style>
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-2">
+/* Theme kit (tranche 2): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] body { background: #FAF8F4; color: #14161C; }
+html[data-theme="light"] .backlink { color: #A34E00; }
+html[data-theme="light"] h1 { color: #14161C; }
+html[data-theme="light"] .lede { color: #5C6572; }
+html[data-theme="light"] .az-nav { background: #FFFFFF; border-color: #D9D5CC; }
+html[data-theme="light"] .az-nav a { color: #A34E00; }
+html[data-theme="light"] .az-nav a:hover { background: #EFEDE8; }
+html[data-theme="light"] .az-nav span.muted { color: #8B919E; }
+html[data-theme="light"] section.letter h2 { color: #A34E00; border-bottom-color: #D9D5CC; }
+html[data-theme="light"] .term { border-bottom-color: #E3DED2; }
+html[data-theme="light"] .term dt { color: #14161C; }
+html[data-theme="light"] .term dd { color: #3D434F; }
+html[data-theme="light"] .term .used-in { color: #5C6572; }
+html[data-theme="light"] .term .used-in a { color: #A34E00; }
+html[data-theme="light"] footer { border-top-color: #D9D5CC; color: #5C6572; }
+html[data-theme="light"] footer a { color: #A34E00; }
+@media print {
+  html[data-theme="dark"] body { background: #FAF8F4 !important; color: #14161C !important; }
+  html[data-theme="dark"] .backlink { color: #A34E00 !important; }
+  html[data-theme="dark"] h1 { color: #14161C !important; }
+  html[data-theme="dark"] .lede { color: #5C6572 !important; }
+  html[data-theme="dark"] .az-nav { background: #FFFFFF !important; border-color: #D9D5CC !important; }
+  html[data-theme="dark"] .az-nav a { color: #A34E00 !important; }
+  html[data-theme="dark"] .az-nav a:hover { background: #EFEDE8 !important; }
+  html[data-theme="dark"] .az-nav span.muted { color: #8B919E !important; }
+  html[data-theme="dark"] section.letter h2 { color: #A34E00 !important; border-bottom-color: #D9D5CC !important; }
+  html[data-theme="dark"] .term { border-bottom-color: #E3DED2 !important; }
+  html[data-theme="dark"] .term dt { color: #14161C !important; }
+  html[data-theme="dark"] .term dd { color: #3D434F !important; }
+  html[data-theme="dark"] .term .used-in { color: #5C6572 !important; }
+  html[data-theme="dark"] .term .used-in a { color: #A34E00 !important; }
+  html[data-theme="dark"] footer { border-top-color: #D9D5CC !important; color: #5C6572 !important; }
+  html[data-theme="dark"] footer a { color: #A34E00 !important; }
+  html[data-theme="dark"] body { background: #FFFFFF !important; }
+}
+</style>
 </head>
 <body>
 <div class="wrap">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
   <a class="backlink" href="/money/">← Honed Money</a>
 
   <h1>Financial Glossary</h1>

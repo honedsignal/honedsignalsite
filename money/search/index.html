@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
+<script src="/theme.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Search Honed Money | Honed Money</title>
 <meta name="description" content="Search all 112 Honed Money calculators and 10 decision paths by keyword or topic tag.">
@@ -38,9 +39,35 @@ footer{color:#7d8698;font-size:.8rem;text-align:center;margin-top:44px}
 </style>
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-2">
+/* Theme kit (tranche 2): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --bg: #FAF8F4;
+  --panel: #FFFFFF;
+  --ink: #14161C;
+  --muted: #5C6572;
+  --orange: #D96E00;
+  --line: #D9D5CC;
+}
+html[data-theme="light"] .ac-item:hover, html[data-theme="light"] .ac-item.active { background: #EFEDE8; }
+html[data-theme="light"] footer { color: #6D7280; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #FAF8F4 !important;
+  --panel: #FFFFFF !important;
+  --ink: #14161C !important;
+  --muted: #5C6572 !important;
+  --orange: #D96E00 !important;
+  --line: #D9D5CC !important;
+  }
+}
+</style>
 </head>
 <body>
 <div class="wrap">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
 <a class="back-link" href="/money/">&larr; Honed Money</a>
 <h1>Search Honed Money</h1>
 <p class="lede">Find any calculator or decision path by keyword, or filter by topic.</p>

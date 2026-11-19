@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -392,9 +393,45 @@
   <link rel="stylesheet" href="/money/print.css" media="print">
 
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-2">
+/* Theme kit (tranche 2): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --ink: #14161C;
+  --muted: #5C6572;
+  --canvas: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-2: #EFEDE8;
+  --line: #D9D5CC;
+  --orange: #D96E00;
+  --orange-deep: #A34E00;
+  --green: #167D1B;
+  --blue: #0D7A6E;
+}
+html[data-theme="light"] .tool-card:hover { border-color: #C9C2AE; }
+html[data-theme="light"] .card-number { color: #6D7280; }
+html[data-theme="light"] .tool-link:hover { background: #A34E00; color: #FFFDF8; }
+html[data-theme="light"] .closing i { box-shadow: 0 0 12px rgba(22, 125, 27, .35); }
+@media print {
+  html[data-theme="dark"] {
+  --ink: #14161C !important;
+  --muted: #5C6572 !important;
+  --canvas: #FAF8F4 !important;
+  --surface: #FFFFFF !important;
+  --surface-2: #EFEDE8 !important;
+  --line: #D9D5CC !important;
+  --orange: #D96E00 !important;
+  --orange-deep: #A34E00 !important;
+  --green: #167D1B !important;
+  --blue: #0D7A6E !important;
+  }
+}
+</style>
 </head>
 <body>
   <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
     <a class="home-link" href="/money/" aria-label="Back to Honed Money">
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
       Honed Money

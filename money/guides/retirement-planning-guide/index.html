@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -273,9 +274,43 @@
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-2">
+/* Theme kit (tranche 2): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --bg: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-2: #EFEDE8;
+  --text: #14161C;
+  --muted: #5C6572;
+  --line: #D9D5CC;
+  --accent: #D96E00;
+  --accent-soft: #FBEADD;
+  --teal: #0D7A6E;
+  --teal-soft: #D9F2EE;
+  --link: #A34E00;
+}
+@media print {
+  html[data-theme="dark"] {
+  --bg: #FAF8F4 !important;
+  --surface: #FFFFFF !important;
+  --surface-2: #EFEDE8 !important;
+  --text: #14161C !important;
+  --muted: #5C6572 !important;
+  --line: #D9D5CC !important;
+  --accent: #D96E00 !important;
+  --accent-soft: #FBEADD !important;
+  --teal: #0D7A6E !important;
+  --teal-soft: #D9F2EE !important;
+  --link: #A34E00 !important;
+  }
+}
+</style>
 </head>
 <body>
   <div class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
     <a class="back" href="/money/">← Honed Money</a>
 
     <header class="hero">

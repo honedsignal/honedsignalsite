@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
+<script src="/theme.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All Money Calculators | Honed Money</title>
 <meta name="description" content="Every Honed Money calculator on one page — 268 free tools across 37 topics. No account, no signup, results explained in plain English.">
@@ -28,9 +29,31 @@
   @media (max-width: 560px) { ul { columns: 1; } }
   footer { border-top: 1px solid #ddd; margin-top: 34px; padding-top: 12px; font-size: 13px; color: #666; }
 </style>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-2">
+/* Theme kit (tranche 2): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="dark"] body { background: #0B0E14; color: #F0EEE8; }
+html[data-theme="dark"] header.site a.brand { color: #F5F5F5; }
+html[data-theme="dark"] header.site nav a { color: #C3C8D2; }
+html[data-theme="dark"] p.intro { color: #A8B0BD; }
+html[data-theme="dark"] h2 { border-bottom-color: #262C38; }
+html[data-theme="dark"] h2 a { color: #F5F5F5; }
+html[data-theme="dark"] li a { color: #2EC4B6; }
+html[data-theme="dark"] footer { border-top-color: #262C38; color: #8B919E; }
+@media print {
+  html[data-theme="dark"] body { background: #FFFFFF !important; color: #14213D !important; }
+  html[data-theme="dark"] header.site a.brand, html[data-theme="dark"] h2 a { color: #0B0E14 !important; }
+  html[data-theme="dark"] header.site nav a { color: #14213D !important; }
+  html[data-theme="dark"] p.intro { color: #444444 !important; }
+  html[data-theme="dark"] li a { color: #0D7A6E !important; }
+  html[data-theme="dark"] footer { color: #666666 !important; }
+}
+</style>
 </head>
 <body>
 <div class="wrap">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
   <header class="site">
     <a class="brand" href="/money/">Honed <span>Money</span></a>
     <nav><a href="/money/">Money home</a> · <a href="/money/browse/">Browse by topic</a> · <a href="/">Honed Signal</a></nav>

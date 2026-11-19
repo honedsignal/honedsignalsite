@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -322,9 +323,39 @@
     </style>
     <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-2">
+/* Theme kit (tranche 2): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --page: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-strong: #EFEDE8;
+  --text: #14161C;
+  --muted: #5C6572;
+  --faint: #6D7280;
+  --line: #D9D5CC;
+  --accent: #D96E00;
+  --accent-soft: rgba(217, 110, 0, 0.12);
+}
+@media print {
+  html[data-theme="dark"] {
+  --page: #FFFFFF !important;
+  --surface: #FFFFFF !important;
+  --surface-strong: #EFEDE8 !important;
+  --text: #111111 !important;
+  --muted: #333333 !important;
+  --faint: #555555 !important;
+  --line: #D2D2D2 !important;
+  --accent: #9A4E00 !important;
+  --accent-soft: #FFF4E6 !important;
+  }
+}
+</style>
 </head>
   <body>
     <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
       <a class="back-link" href="/money/" aria-label="Back to Honed Money">← Honed Money</a>
 
       <header>

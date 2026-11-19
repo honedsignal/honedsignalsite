@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -576,9 +577,42 @@
 </script>
 <!-- honed-seo-end -->
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-2">
+/* Theme kit (tranche 2): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --paper: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-hover: #EFEDE8;
+  --ink: #14161C;
+  --muted: #5C6572;
+  --line: #D9D5CC;
+  --line-strong: #C9C2AE;
+  --orange: #D96E00;
+  --focus: rgba(217, 110, 0, .5);
+  --check-bg: rgba(217, 110, 0, .12);
+}
+html[data-theme="light"] .hm-ac-item:hover, html[data-theme="light"] .hm-ac-item.active { background: #EFEDE8; }
+@media print {
+  html[data-theme="dark"] {
+  --paper: #FAF8F4 !important;
+  --surface: #FFFFFF !important;
+  --surface-hover: #EFEDE8 !important;
+  --ink: #14161C !important;
+  --muted: #5C6572 !important;
+  --line: #D9D5CC !important;
+  --line-strong: #C9C2AE !important;
+  --orange: #D96E00 !important;
+  --focus: rgba(217, 110, 0, .5) !important;
+  --check-bg: rgba(217, 110, 0, .12) !important;
+  }
+}
+</style>
 </head>
 <body>
   <main class="page">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
     <a class="back-link" href="/" aria-label="Back to Honed Signal home">← <span>Honed Signal</span></a>
     <section class="hero" aria-labelledby="page-title">
       <div class="title-block">
