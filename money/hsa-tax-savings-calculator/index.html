@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -36,8 +37,7 @@
       --focus: #2275d7;
       --shadow: 0 18px 45px rgba(13, 17, 23, .10);
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
+    html[data-theme="dark"] {
         --bg: #080b0f;
         --surface: #11161d;
         --surface-2: #171d25;
@@ -54,7 +54,6 @@
         --focus: #75b2ff;
         --shadow: 0 24px 70px rgba(0, 0, 0, .38);
       }
-    }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -344,6 +343,31 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3f">
+/* Theme kit (tranche 3F): toggle + print forcing. Light is the original design; the dark variable block above is keyed to html[data-theme="dark"]. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+@media print {
+  html[data-theme="dark"] {
+    --bg: #eef0f2 !important;
+    --surface: #ffffff !important;
+    --surface-2: #f5f6f7 !important;
+    --ink: #11151b !important;
+    --muted: #565f6b !important;
+    --line: #d7dbe0 !important;
+    --line-strong: #aeb5bd !important;
+    --orange: #ff6b35 !important;
+    --orange-ink: #15100a !important;
+    --neon: #1f9d35 !important;
+    --neon-soft: #e6f5e9 !important;
+    --danger: #c63a42 !important;
+    --danger-soft: #fae9ea !important;
+    --focus: #2275d7 !important;
+    --shadow: 0 18px 45px rgba(13, 17, 23, .10) !important;
+  }
+}
+</style>
 </head>
 <body>
   <nav class="backbar" aria-label="Back to Honed Money">
@@ -351,6 +375,7 @@
   </nav>
 
   <main class="wrap">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
     <header>
       <div class="yearline">2026 tax year</div>
       <style data-hs-hero>

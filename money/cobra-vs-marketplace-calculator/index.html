@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -332,6 +333,61 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3f">
+/* Theme kit (tranche 3F): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --page: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-2: #EFEDE8;
+  --text: #14161C;
+  --muted: #5C6572;
+  --line: #D9D5CC;
+  --orange: #D96E00;
+  --orange-dark: #A34E00;
+  --teal: #0D7A6E;
+  --success: #147C36;
+  --error: #BD343B;
+  --focus: #0A665C;
+  --shadow: rgba(11, 14, 20, .12);
+  --field: #FFFFFF;
+}
+html[data-theme="light"] .hs-next { background: #FFFFFF; border-color: #D9D5CC; }
+html[data-theme="light"] .hs-next h3 { color: #A34E00; }
+html[data-theme="light"] .hs-next a { color: #14161C; }
+html[data-theme="light"] .hs-next a:hover { color: #D96E00; }
+html[data-theme="light"] .hs-next a span.arr { color: #D96E00; }
+html[data-theme="light"] .hs-reviewed { color: #5C6572 !important; }
+html[data-theme="light"] .hs-legal { color: #5C6572 !important; border-top-color: #D9D5CC !important; }
+html[data-theme="light"] .hs-legal a { color: #0D7A6E !important; }
+html[data-theme="light"] .top-link { color: #A34E00; }
+html[data-theme="light"] footer .reviewed { color: #5C6572; }
+html[data-theme="light"] .action:not(.primary) { background: #EFEDE8; border-color: #A39A83; }
+html[data-theme="light"] .action:not(.primary):hover { background: #E7E2D6; }
+html[data-theme="light"] .guide { color: #F5F5F5; }
+html[data-theme="light"] .guide .steps span:last-child { color: #B5BDC9; }
+html[data-theme="light"] .network-note { color: #F5F5F5; }
+@media print {
+  html[data-theme="dark"] {
+    --page: #FAF8F4 !important;
+    --surface: #FFFFFF !important;
+    --surface-2: #EFEDE8 !important;
+    --text: #14161C !important;
+    --muted: #5C6572 !important;
+    --line: #D9D5CC !important;
+    --orange: #D96E00 !important;
+    --orange-dark: #A34E00 !important;
+    --teal: #0D7A6E !important;
+    --success: #147C36 !important;
+    --error: #BD343B !important;
+    --focus: #0A665C !important;
+    --shadow: rgba(11, 14, 20, .12) !important;
+    --field: #FFFFFF !important;
+  }
+}
+</style>
 </head>
 <body>
   <a class="top-link" href="/money/">← Honed Money</a>
@@ -355,6 +411,7 @@
   </header>
 
   <main>
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
     <div class="workspace">
       <section class="panel form-panel" aria-labelledby="calculator-heading">
         <h2 class="section-heading" id="calculator-heading">Enter your monthly costs</h2>
