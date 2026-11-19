@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="manifest" href="/money/manifest.json" />
   <link rel="apple-touch-icon" href="/money/icons/apple-touch-icon.png" />
   <meta name="theme-color" content="#0b0e14" />
+  <script src="/theme.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Honed Money" />
@@ -90,6 +91,42 @@
 <!-- honed-seo-end -->
   <link rel="stylesheet" href="/money/print.css" media="print">
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="0W9Eknsa3AZFndtAhsyUSA" async></script>
+<link rel="stylesheet" href="/theme.css?v=1">
+<style data-hs-theme="tranche-3c">
+/* Theme kit (tranche 3C): light theme + print forcing. Dark is the original design. */
+.hs-theme-row { display: flex; justify-content: flex-end; align-items: center; margin: 0 0 10px; }
+html[data-theme="light"] {
+  --ink: #FAF8F4;
+  --orange: #D96E00;
+  --paper: #14161C;
+  --surface: #FFFFFF;
+  --border: #D9D5CC;
+  --muted: #5C6572;
+  --gray-btn: #EFEDE8;
+}
+html[data-theme="light"] .field input { background: #FFFFFF; }
+html[data-theme="light"] .field input::placeholder { color: #6D7280; }
+html[data-theme="light"] .toggle { background: #EFEDE8; }
+html[data-theme="light"] .errors { background: #FBE4E5; border-color: #BD3941; color: #8A2A30; }
+html[data-theme="light"] .explain { background: #EFEDE8; }
+html[data-theme="light"] .save-line { background: rgba(217,110,0,.12); }
+html[data-theme="light"] .hs-next { background: #FFFFFF; border-color: #D9D5CC; }
+html[data-theme="light"] .hs-next h3 { color: #A34E00; }
+html[data-theme="light"] .hs-next a { color: #14161C; }
+html[data-theme="light"] .hs-next a:hover { color: #D96E00; }
+html[data-theme="light"] .hs-next a span.arr { color: #D96E00; }
+@media print {
+  html[data-theme="dark"] {
+    --ink: #FAF8F4 !important;
+    --orange: #D96E00 !important;
+    --paper: #14161C !important;
+    --surface: #FFFFFF !important;
+    --border: #D9D5CC !important;
+    --muted: #5C6572 !important;
+    --gray-btn: #EFEDE8 !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -102,6 +139,7 @@
 </header>
 
 <main class="wrap">
+<div class="hs-theme-row"><div class="hs-theme-switch" data-hs-theme-switch><div class="hs-theme-seg" role="group" aria-label="Page theme"><button type="button" data-theme-choice="system" aria-pressed="false">System</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button></div></div></div>
 
   <p class="lede">See what your daily drive to work really costs you each year &mdash; in fuel, per mile, and per month.</p>
 
