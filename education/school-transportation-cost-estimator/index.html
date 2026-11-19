@@ -121,7 +121,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="gas">Gas price ($/gal)</label><div class="money-input"><span>$</span><input id="gas" type="number" min="0" step="0.1" inputmode="decimal" placeholder="3.00" aria-label="Gas price"></div></div>
         <div class="expense"><label for="days">School days / year</label><div class="money-input"><span>days</span><input id="days" type="number" min="0" max="365" step="1" inputmode="numeric" placeholder="180" aria-label="School days per year"></div></div>
       </div>
-      <p class="hint">Driving cost uses the IRS-style full cost per mile when you include wear \u2014 gas alone understates it.</p>
+      <p class="hint">Driving cost uses the IRS-style full cost per mile when you include wear — gas alone understates it.</p>
       <button class="calculate" type="submit">Bus or drive?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this transportation comparison" aria-disabled="true">Email my results</a>
@@ -133,18 +133,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The bus fee vs. the gas pump.</h2><p>Enter both options \u2014 see the yearly winner.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The bus fee vs. the gas pump.</h2><p>Enter both options — see the yearly winner.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">CHEAPER OPTION</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">CHEAPER OPTION</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>BUS / YR</span><strong id="mBus">\u2014</strong><em id="mBusNote">\u2014</em></article>
-          <article class="metric"><span>DRIVE / YR</span><strong id="mDrive">\u2014</strong><em id="mDriveNote">\u2014</em></article>
-          <article class="metric"><span>YEARLY SAVINGS</span><strong id="mSave">\u2014</strong><em id="mSaveNote">\u2014</em></article>
+          <article class="metric"><span>BUS / YR</span><strong id="mBus">—</strong><em id="mBusNote">—</em></article>
+          <article class="metric"><span>DRIVE / YR</span><strong id="mDrive">—</strong><em id="mDriveNote">—</em></article>
+          <article class="metric"><span>YEARLY SAVINGS</span><strong id="mSave">—</strong><em id="mSaveNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Time has a price too</h3><p>Driving 30 minutes a day is 90 hours a school year \u2014 the bus buys that time back.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Time has a price too</h3><p>Driving 30 minutes a day is 90 hours a school year — the bus buys that time back.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

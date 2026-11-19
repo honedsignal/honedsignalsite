@@ -117,7 +117,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="start">Start time</label><div class="money-input"><span>🕐</span><input id="start" type="time" value="16:00" aria-label="Start time" style="text-align:left"></div></div>
         <div class="expense"><label for="breaks">Break minutes (total)</label><div class="money-input"><span>min</span><input id="breaks" type="number" min="0" step="5" inputmode="numeric" placeholder="0" aria-label="Break minutes"></div></div>
       </div>
-      <p class="hint">Number the families 1\u2013N and assign slots in order \u2014 the chart is the schedule.</p>
+      <p class="hint">Number the families 1–N and assign slots in order — the chart is the schedule.</p>
       <button class="calculate" type="submit">Build the schedule</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this conference schedule" aria-disabled="true">Email my results</a>
@@ -129,18 +129,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Twenty families, one evening.</h2><p>Enter the count and slot length \u2014 get every time slot and the end time.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Twenty families, one evening.</h2><p>Enter the count and slot length — get every time slot and the end time.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">EVENING ENDS AT</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">EVENING ENDS AT</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>FAMILIES</span><strong id="mFam">\u2014</strong><em id="mFamNote">\u2014</em></article>
-          <article class="metric"><span>TOTAL MINUTES</span><strong id="mMin">\u2014</strong><em id="mMinNote">\u2014</em></article>
-          <article class="metric"><span>BUFFER ADVICE</span><strong id="mBuf">\u2014</strong><em id="mBufNote">\u2014</em></article>
+          <article class="metric"><span>FAMILIES</span><strong id="mFam">—</strong><em id="mFamNote">—</em></article>
+          <article class="metric"><span>TOTAL MINUTES</span><strong id="mMin">—</strong><em id="mMinNote">—</em></article>
+          <article class="metric"><span>BUFFER ADVICE</span><strong id="mBuf">—</strong><em id="mBufNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The slots</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Pad the tough ones</h3><p>You know which three families need 20 minutes \u2014 schedule them last so overruns don\u2019t cascade.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Pad the tough ones</h3><p>You know which three families need 20 minutes — schedule them last so overruns don’t cascade.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

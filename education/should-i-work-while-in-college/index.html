@@ -121,7 +121,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="study">Study hours needed / week</label><div class="money-input"><span>hrs</span><input id="study" type="number" min="0" step="1" inputmode="numeric" placeholder="20" aria-label="Study hours needed"></div></div>
         <div class="expense"><label for="free">Free hours / week</label><div class="money-input"><span>hrs</span><input id="free" type="number" min="0" step="1" inputmode="numeric" placeholder="40" aria-label="Free hours per week"></div></div>
       </div>
-      <p class="hint">Research sweet spot: 10\u201315 hrs/week. Past 20, grades usually slip.</p>
+      <p class="hint">Research sweet spot: 10–15 hrs/week. Past 20, grades usually slip.</p>
       <button class="calculate" type="submit">Should I take the job?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this work decision" aria-disabled="true">Email my results</a>
@@ -133,18 +133,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Money now vs. grades later.</h2><p>Enter the job and your study needs \u2014 get a verdict.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Money now vs. grades later.</h2><p>Enter the job and your study needs — get a verdict.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">VERDICT</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">VERDICT</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>YEARLY EARNINGS</span><strong id="mEarn">\u2014</strong><em id="mEarnNote">\u2014</em></article>
-          <article class="metric"><span>HOURS LEFT FOR STUDY</span><strong id="mLeft">\u2014</strong><em id="mLeftNote">\u2014</em></article>
-          <article class="metric"><span>WORKLOAD ZONE</span><strong id="mZone">\u2014</strong><em id="mZoneNote">\u2014</em></article>
+          <article class="metric"><span>YEARLY EARNINGS</span><strong id="mEarn">—</strong><em id="mEarnNote">—</em></article>
+          <article class="metric"><span>HOURS LEFT FOR STUDY</span><strong id="mLeft">—</strong><em id="mLeftNote">—</em></article>
+          <article class="metric"><span>WORKLOAD ZONE</span><strong id="mZone">—</strong><em id="mZoneNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>On-campus beats off-campus</h3><p>Work-study and campus jobs flex around exams; off-campus bosses usually don\u2019t. Same hours, half the grade risk.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>On-campus beats off-campus</h3><p>Work-study and campus jobs flex around exams; off-campus bosses usually don’t. Same hours, half the grade risk.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

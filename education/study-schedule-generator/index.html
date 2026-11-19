@@ -110,14 +110,14 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
   </header>
     <section class="workbench" aria-label="Study schedule generator">
     <form class="panel inputs" id="calcForm" novalidate>
-      <div class="section-head"><h2>What\u2019s coming</h2><span class="step">01 / EXAMS</span></div>
+      <div class="section-head"><h2>What’s coming</h2><span class="step">01 / EXAMS</span></div>
       <div class="expense-list">
         <div class="expense"><label for="s1d">Subject 1: days until test</label><div class="money-input"><span>days</span><input id="s1d" type="number" min="0" step="1" inputmode="numeric" placeholder="3" aria-label="Subject 1 days until test"></div></div>
-        <div class="expense"><label for="s1g">Subject 1: difficulty (1\u201310)</label><div class="money-input"><span>★</span><input id="s1g" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="7" aria-label="Subject 1 difficulty"></div></div>
+        <div class="expense"><label for="s1g">Subject 1: difficulty (1–10)</label><div class="money-input"><span>★</span><input id="s1g" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="7" aria-label="Subject 1 difficulty"></div></div>
         <div class="expense"><label for="s2d">Subject 2: days until test</label><div class="money-input"><span>days</span><input id="s2d" type="number" min="0" step="1" inputmode="numeric" placeholder="7" aria-label="Subject 2 days until test"></div></div>
-        <div class="expense"><label for="s2g">Subject 2: difficulty (1\u201310)</label><div class="money-input"><span>★</span><input id="s2g" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="5" aria-label="Subject 2 difficulty"></div></div>
+        <div class="expense"><label for="s2g">Subject 2: difficulty (1–10)</label><div class="money-input"><span>★</span><input id="s2g" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="5" aria-label="Subject 2 difficulty"></div></div>
         <div class="expense"><label for="s3d">Subject 3: days until test</label><div class="money-input"><span>days</span><input id="s3d" type="number" min="0" step="1" inputmode="numeric" placeholder="14" aria-label="Subject 3 days until test"></div></div>
-        <div class="expense"><label for="s3g">Subject 3: difficulty (1\u201310)</label><div class="money-input"><span>★</span><input id="s3g" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="4" aria-label="Subject 3 difficulty"></div></div>
+        <div class="expense"><label for="s3g">Subject 3: difficulty (1–10)</label><div class="money-input"><span>★</span><input id="s3g" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="4" aria-label="Subject 3 difficulty"></div></div>
         <div class="expense"><label for="hours">Study hours available total</label><div class="money-input"><span>hrs</span><input id="hours" type="number" min="0" step="1" inputmode="numeric" placeholder="12" aria-label="Total study hours available"></div></div>
       </div>
       <p class="hint">Difficulty = how hard the material feels, 1 easy to 10 brutal. Be honest.</p>
@@ -132,18 +132,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Study the urgent-hard stuff first.</h2><p>Enter test dates and difficulty \u2014 get a priority-ranked plan.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Study the urgent-hard stuff first.</h2><p>Enter test dates and difficulty — get a priority-ranked plan.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">STUDY FIRST</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">STUDY FIRST</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>HOURS: SUBJECT 1</span><strong id="mH1">\u2014</strong><em id="mH1Note">\u2014</em></article>
-          <article class="metric"><span>HOURS: SUBJECT 2</span><strong id="mH2">\u2014</strong><em id="mH2Note">\u2014</em></article>
-          <article class="metric"><span>HOURS: SUBJECT 3</span><strong id="mH3">\u2014</strong><em id="mH3Note">\u2014</em></article>
+          <article class="metric"><span>HOURS: SUBJECT 1</span><strong id="mH1">—</strong><em id="mH1Note">—</em></article>
+          <article class="metric"><span>HOURS: SUBJECT 2</span><strong id="mH2">—</strong><em id="mH2Note">—</em></article>
+          <article class="metric"><span>HOURS: SUBJECT 3</span><strong id="mH3">—</strong><em id="mH3Note">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The priority order</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Urgency \u00d7 difficulty</h3><p>The subject that\u2019s both soon and hard gets the hours \u2014 easy-far subjects survive on review alone.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Urgency × difficulty</h3><p>The subject that’s both soon and hard gets the hours — easy-far subjects survive on review alone.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

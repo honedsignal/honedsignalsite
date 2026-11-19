@@ -116,7 +116,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="required">Credits required</label><div class="money-input"><span>cr</span><input id="required" type="number" min="0" step="1" inputmode="numeric" placeholder="120" aria-label="Credits required to graduate"></div></div>
         <div class="expense"><label for="persem">Credits per semester</label><div class="money-input"><span>cr</span><input id="persem" type="number" min="0" step="1" inputmode="numeric" placeholder="15" aria-label="Credits per semester"></div></div>
       </div>
-      <p class="hint">Use your degree audit or transcript for earned credits \u2014 requirements vary by program.</p>
+      <p class="hint">Use your degree audit or transcript for earned credits — requirements vary by program.</p>
       <button class="calculate" type="submit">Am I on track?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this credit plan" aria-disabled="true">Email my results</a>
@@ -128,18 +128,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>How far to the finish line?</h2><p>Enter your credits \u2014 see what\u2019s left and how many semesters it takes.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>How far to the finish line?</h2><p>Enter your credits — see what’s left and how many semesters it takes.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">CREDITS REMAINING</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">CREDITS REMAINING</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>SEMESTERS LEFT</span><strong id="mSem">\u2014</strong><em id="mSemNote">\u2014</em></article>
-          <article class="metric"><span>PROGRESS</span><strong id="mProg">\u2014</strong><em id="mProgNote">\u2014</em></article>
-          <article class="metric"><span>PACE CHECK</span><strong id="mPace">\u2014</strong><em id="mPaceNote">\u2014</em></article>
+          <article class="metric"><span>SEMESTERS LEFT</span><strong id="mSem">—</strong><em id="mSemNote">—</em></article>
+          <article class="metric"><span>PROGRESS</span><strong id="mProg">—</strong><em id="mProgNote">—</em></article>
+          <article class="metric"><span>PACE CHECK</span><strong id="mPace">—</strong><em id="mPaceNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Full-time = 12+ credits</h3><p>Dropping below full-time can affect financial aid, housing, and graduation timing. Check your school\u2019s rules before lightening a semester.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Full-time = 12+ credits</h3><p>Dropping below full-time can affect financial aid, housing, and graduation timing. Check your school’s rules before lightening a semester.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

@@ -116,7 +116,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="days">Sub days per year</label><div class="money-input"><span>days</span><input id="days" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Substitute days per year"></div></div>
         <div class="expense"><label for="teachers">Teachers covered</label><div class="money-input"><span>#</span><input id="teachers" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Teachers covered"></div></div>
       </div>
-      <p class="hint">Count total sub-days across all teachers, or days \u00d7 teachers \u2014 not both.</p>
+      <p class="hint">Count total sub-days across all teachers, or days × teachers — not both.</p>
       <button class="calculate" type="submit">What do subs cost us?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this sub cost estimate" aria-disabled="true">Email my results</a>
@@ -128,18 +128,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Absences have a line item.</h2><p>Enter the daily rate and sub-days \u2014 see the yearly cost.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Absences have a line item.</h2><p>Enter the daily rate and sub-days — see the yearly cost.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">YEARLY SUB COST</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">YEARLY SUB COST</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>SUB-DAYS</span><strong id="mDays">\u2014</strong><em id="mDaysNote">\u2014</em></article>
-          <article class="metric"><span>PER TEACHER</span><strong id="mEach">\u2014</strong><em id="mEachNote">\u2014</em></article>
-          <article class="metric"><span>PER MONTH</span><strong id="mMo">\u2014</strong><em id="mMoNote">\u2014</em></article>
+          <article class="metric"><span>SUB-DAYS</span><strong id="mDays">—</strong><em id="mDaysNote">—</em></article>
+          <article class="metric"><span>PER TEACHER</span><strong id="mEach">—</strong><em id="mEachNote">—</em></article>
+          <article class="metric"><span>PER MONTH</span><strong id="mMo">—</strong><em id="mMoNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Wellness is cheaper than subs</h3><p>Every absence prevented is a daily rate saved \u2014 teacher wellness programs pay for themselves in sub budgets.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Wellness is cheaper than subs</h3><p>Every absence prevented is a daily rate saved — teacher wellness programs pay for themselves in sub budgets.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

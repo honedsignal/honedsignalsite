@@ -116,8 +116,8 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="teachers">Classroom teachers</label><div class="money-input"><span>#</span><input id="teachers" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Number of teachers"></div></div>
         <div class="expense"><label for="target">Target ratio (students : 1)</label><div class="money-input"><span>:1</span><input id="target" type="number" min="0" step="1" inputmode="numeric" placeholder="20" aria-label="Target ratio"></div></div>
       </div>
-      <p class="hint">Count classroom teachers only \u2014 specialists and aides change the number\u2019s meaning.</p>
-      <button class="calculate" type="submit">What\u2019s our ratio?</button>
+      <p class="hint">Count classroom teachers only — specialists and aides change the number’s meaning.</p>
+      <button class="calculate" type="submit">What’s our ratio?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this staffing analysis" aria-disabled="true">Email my results</a>
         <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
@@ -128,18 +128,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The number behind every class size debate.</h2><p>Enter students and teachers \u2014 see the ratio and the hires needed.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The number behind every class size debate.</h2><p>Enter students and teachers — see the ratio and the hires needed.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">STUDENT : TEACHER RATIO</p><p class="target" id="targetOut">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">STUDENT : TEACHER RATIO</p><p class="target" id="targetOut">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>TARGET</span><strong id="mTarget">\u2014</strong><em id="mTargetNote">\u2014</em></article>
-          <article class="metric"><span>TEACHERS NEEDED</span><strong id="mNeed">\u2014</strong><em id="mNeedNote">\u2014</em></article>
-          <article class="metric"><span>HIRING GAP</span><strong id="mGap">\u2014</strong><em id="mGapNote">\u2014</em></article>
+          <article class="metric"><span>TARGET</span><strong id="mTarget">—</strong><em id="mTargetNote">—</em></article>
+          <article class="metric"><span>TEACHERS NEEDED</span><strong id="mNeed">—</strong><em id="mNeedNote">—</em></article>
+          <article class="metric"><span>HIRING GAP</span><strong id="mGap">—</strong><em id="mGapNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Ratios drive everything</h3><p>Class size affects outcomes, teacher workload, and sub costs \u2014 this one number ripples through the whole budget.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Ratios drive everything</h3><p>Class size affects outcomes, teacher workload, and sub costs — this one number ripples through the whole budget.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

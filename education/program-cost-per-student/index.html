@@ -116,7 +116,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="cost">Total program cost ($/yr)</label><div class="money-input"><span>$</span><input id="cost" type="number" min="0" step="250" inputmode="decimal" placeholder="0" aria-label="Total program cost per year"></div></div>
         <div class="expense"><label for="students">Students served</label><div class="money-input"><span>#</span><input id="students" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Students served"></div></div>
       </div>
-      <p class="hint">Include staff time, materials, and overhead \u2014 the full cost, not just supplies.</p>
+      <p class="hint">Include staff time, materials, and overhead — the full cost, not just supplies.</p>
       <button class="calculate" type="submit">What does it cost per student?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this program analysis" aria-disabled="true">Email my results</a>
@@ -128,18 +128,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Every program has a per-student price.</h2><p>Enter the full cost and students served \u2014 see the unit economics.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Every program has a per-student price.</h2><p>Enter the full cost and students served — see the unit economics.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">COST PER STUDENT</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">COST PER STUDENT</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>TOTAL COST</span><strong id="mTotal">\u2014</strong><em id="mTotalNote">\u2014</em></article>
-          <article class="metric"><span>STUDENTS SERVED</span><strong id="mN">\u2014</strong><em id="mNNote">\u2014</em></article>
-          <article class="metric"><span>PER MONTH</span><strong id="mMo">\u2014</strong><em id="mMoNote">\u2014</em></article>
+          <article class="metric"><span>TOTAL COST</span><strong id="mTotal">—</strong><em id="mTotalNote">—</em></article>
+          <article class="metric"><span>STUDENTS SERVED</span><strong id="mN">—</strong><em id="mNNote">—</em></article>
+          <article class="metric"><span>PER MONTH</span><strong id="mMo">—</strong><em id="mMoNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Scale changes everything</h3><p>Doubling enrollment halves the per-student cost \u2014 growth is the cheapest way to improve program economics.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Scale changes everything</h3><p>Doubling enrollment halves the per-student cost — growth is the cheapest way to improve program economics.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

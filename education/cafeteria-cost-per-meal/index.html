@@ -117,7 +117,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="overhead">Overhead ($/day)</label><div class="money-input"><span>$</span><input id="overhead" type="number" min="0" step="10" inputmode="decimal" placeholder="0" aria-label="Overhead per day"></div></div>
         <div class="expense"><label for="meals">Meals served / day</label><div class="money-input"><span>#</span><input id="meals" type="number" min="0" step="10" inputmode="numeric" placeholder="0" aria-label="Meals served per day"></div></div>
       </div>
-      <p class="hint">Overhead = utilities, equipment, waste \u2014 the costs that exist whether you serve 100 or 1,000.</p>
+      <p class="hint">Overhead = utilities, equipment, waste — the costs that exist whether you serve 100 or 1,000.</p>
       <button class="calculate" type="submit">What does each meal really cost?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this meal cost analysis" aria-disabled="true">Email my results</a>
@@ -129,18 +129,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The tray costs more than the food.</h2><p>Enter daily costs and meals served \u2014 see the true per-meal number.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The tray costs more than the food.</h2><p>Enter daily costs and meals served — see the true per-meal number.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">TRUE COST PER MEAL</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">TRUE COST PER MEAL</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>FOOD SHARE</span><strong id="mFood">\u2014</strong><em id="mFoodNote">\u2014</em></article>
-          <article class="metric"><span>LABOR SHARE</span><strong id="mLabor">\u2014</strong><em id="mLaborNote">\u2014</em></article>
-          <article class="metric"><span>YEARLY PROGRAM COST</span><strong id="mYr">\u2014</strong><em id="mYrNote">\u2014</em></article>
+          <article class="metric"><span>FOOD SHARE</span><strong id="mFood">—</strong><em id="mFoodNote">—</em></article>
+          <article class="metric"><span>LABOR SHARE</span><strong id="mLabor">—</strong><em id="mLaborNote">—</em></article>
+          <article class="metric"><span>YEARLY PROGRAM COST</span><strong id="mYr">—</strong><em id="mYrNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Volume is the lever</h3><p>Fixed labor and overhead spread thinner as meals rise \u2014 participation drives the per-meal cost down.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Volume is the lever</h3><p>Fixed labor and overhead spread thinner as meals rise — participation drives the per-meal cost down.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

@@ -117,7 +117,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
     </div>
       <div class="section-head"><h2>Track renewals</h2><span class="step">01 / CERTIFICATIONS</span></div>
       <div class="expense-list">
-        <div class="expense"><label for="cname">Staff name / certificate</label><div class="money-input"><span>✎</span><input id="cname" type="text" placeholder="e.g. J. Smith \u2014 Teaching cert" aria-label="Name and certificate" style="text-align:left"></div></div>
+        <div class="expense"><label for="cname">Staff name / certificate</label><div class="money-input"><span>✎</span><input id="cname" type="text" placeholder="e.g. J. Smith — Teaching cert" aria-label="Name and certificate" style="text-align:left"></div></div>
         <div class="expense"><label for="cdate">Renewal deadline</label><div class="money-input"><span>📅</span><input id="cdate" type="date" aria-label="Renewal deadline" style="text-align:left"></div></div>
       </div>
       <button class="calculate" type="button" id="addBtn">Add renewal</button>
@@ -133,18 +133,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Expired certs, expired jobs.</h2><p>Add each staff certification with its deadline \u2014 see what\u2019s urgent.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Expired certs, expired jobs.</h2><p>Add each staff certification with its deadline — see what’s urgent.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">RENEWALS TRACKED</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">RENEWALS TRACKED</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>DUE IN 90 DAYS</span><strong id="mSoon">\u2014</strong><em id="mSoonNote">\u2014</em></article>
-          <article class="metric"><span>OVERDUE</span><strong id="mOver">\u2014</strong><em id="mOverNote">\u2014</em></article>
-          <article class="metric"><span>NEXT DEADLINE</span><strong id="mNext">\u2014</strong><em id="mNextNote">\u2014</em></article>
+          <article class="metric"><span>DUE IN 90 DAYS</span><strong id="mSoon">—</strong><em id="mSoonNote">—</em></article>
+          <article class="metric"><span>OVERDUE</span><strong id="mOver">—</strong><em id="mOverNote">—</em></article>
+          <article class="metric"><span>NEXT DEADLINE</span><strong id="mNext">—</strong><em id="mNextNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>Your list</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>90 days is the window</h3><p>Most renewals need paperwork, hours, or fees \u2014 start the process 90 days out, not 9.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>90 days is the window</h3><p>Most renewals need paperwork, hours, or fees — start the process 90 days out, not 9.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <div class="actions"><button class="action" id="downloadCsv" type="button">Download CSV</button><button class="action" id="clearAll" type="button">Clear all</button></div>
       </div>

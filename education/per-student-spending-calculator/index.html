@@ -116,7 +116,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="students">Enrollment</label><div class="money-input"><span>#</span><input id="students" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Enrollment"></div></div>
         <div class="expense"><label for="compare">Comparison figure ($/student)</label><div class="money-input"><span>$</span><input id="compare" type="number" min="0" step="100" inputmode="decimal" placeholder="0" aria-label="Comparison per student"></div></div>
       </div>
-      <p class="hint">Compare against the state average or a neighboring district \u2014 context makes the number useful.</p>
+      <p class="hint">Compare against the state average or a neighboring district — context makes the number useful.</p>
       <button class="calculate" type="submit">What do we spend per student?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this spending analysis" aria-disabled="true">Email my results</a>
@@ -128,18 +128,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>One number, endless debates.</h2><p>Enter the budget and enrollment \u2014 see per-student spending with context.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>One number, endless debates.</h2><p>Enter the budget and enrollment — see per-student spending with context.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">PER-STUDENT SPENDING</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">PER-STUDENT SPENDING</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>PER DAY</span><strong id="mDay">\u2014</strong><em id="mDayNote">\u2014</em></article>
-          <article class="metric"><span>VS COMPARISON</span><strong id="mVs">\u2014</strong><em id="mVsNote">\u2014</em></article>
-          <article class="metric"><span>ENROLLMENT</span><strong id="mEnr">\u2014</strong><em id="mEnrNote">\u2014</em></article>
+          <article class="metric"><span>PER DAY</span><strong id="mDay">—</strong><em id="mDayNote">—</em></article>
+          <article class="metric"><span>VS COMPARISON</span><strong id="mVs">—</strong><em id="mVsNote">—</em></article>
+          <article class="metric"><span>ENROLLMENT</span><strong id="mEnr">—</strong><em id="mEnrNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Spending isn\u2019t outcomes</h3><p>Per-student dollars measure inputs, not results \u2014 pair this number with achievement data before drawing conclusions.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Spending isn’t outcomes</h3><p>Per-student dollars measure inputs, not results — pair this number with achievement data before drawing conclusions.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

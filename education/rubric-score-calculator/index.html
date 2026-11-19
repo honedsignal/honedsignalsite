@@ -112,17 +112,17 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
     <form class="panel inputs" id="calcForm" novalidate>
       <div class="section-head"><h2>Rubric criteria</h2><span class="step">01 / SCORES</span></div>
       <div class="expense-list">
-        <div class="expense"><label for="e1">Criterion 1 \u2014 earned / max</label><div class="money-input"><span>pts</span><input id="e1" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Criterion 1 earned points"></div></div>
-        <div class="expense"><label for="m1x">Criterion 1 \u2014 max</label><div class="money-input"><span>pts</span><input id="m1x" type="number" min="0" step="0.5" inputmode="decimal" placeholder="25" aria-label="Criterion 1 max points"></div></div>
-        <div class="expense"><label for="e2">Criterion 2 \u2014 earned / max</label><div class="money-input"><span>pts</span><input id="e2" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Criterion 2 earned points"></div></div>
-        <div class="expense"><label for="m2x">Criterion 2 \u2014 max</label><div class="money-input"><span>pts</span><input id="m2x" type="number" min="0" step="0.5" inputmode="decimal" placeholder="25" aria-label="Criterion 2 max points"></div></div>
-        <div class="expense"><label for="e3">Criterion 3 \u2014 earned / max</label><div class="money-input"><span>pts</span><input id="e3" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Criterion 3 earned points"></div></div>
-        <div class="expense"><label for="m3x">Criterion 3 \u2014 max</label><div class="money-input"><span>pts</span><input id="m3x" type="number" min="0" step="0.5" inputmode="decimal" placeholder="25" aria-label="Criterion 3 max points"></div></div>
-        <div class="expense"><label for="e4">Criterion 4 \u2014 earned / max</label><div class="money-input"><span>pts</span><input id="e4" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Criterion 4 earned points"></div></div>
-        <div class="expense"><label for="m4x">Criterion 4 \u2014 max</label><div class="money-input"><span>pts</span><input id="m4x" type="number" min="0" step="0.5" inputmode="decimal" placeholder="25" aria-label="Criterion 4 max points"></div></div>
+        <div class="expense"><label for="e1">Criterion 1 — earned / max</label><div class="money-input"><span>pts</span><input id="e1" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Criterion 1 earned points"></div></div>
+        <div class="expense"><label for="m1x">Criterion 1 — max</label><div class="money-input"><span>pts</span><input id="m1x" type="number" min="0" step="0.5" inputmode="decimal" placeholder="25" aria-label="Criterion 1 max points"></div></div>
+        <div class="expense"><label for="e2">Criterion 2 — earned / max</label><div class="money-input"><span>pts</span><input id="e2" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Criterion 2 earned points"></div></div>
+        <div class="expense"><label for="m2x">Criterion 2 — max</label><div class="money-input"><span>pts</span><input id="m2x" type="number" min="0" step="0.5" inputmode="decimal" placeholder="25" aria-label="Criterion 2 max points"></div></div>
+        <div class="expense"><label for="e3">Criterion 3 — earned / max</label><div class="money-input"><span>pts</span><input id="e3" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Criterion 3 earned points"></div></div>
+        <div class="expense"><label for="m3x">Criterion 3 — max</label><div class="money-input"><span>pts</span><input id="m3x" type="number" min="0" step="0.5" inputmode="decimal" placeholder="25" aria-label="Criterion 3 max points"></div></div>
+        <div class="expense"><label for="e4">Criterion 4 — earned / max</label><div class="money-input"><span>pts</span><input id="e4" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Criterion 4 earned points"></div></div>
+        <div class="expense"><label for="m4x">Criterion 4 — max</label><div class="money-input"><span>pts</span><input id="m4x" type="number" min="0" step="0.5" inputmode="decimal" placeholder="25" aria-label="Criterion 4 max points"></div></div>
       </div>
-      <p class="hint">Leave unused criteria at zero \u2014 only criteria with max points above zero count.</p>
-      <button class="calculate" type="submit">What\u2019s the rubric score?</button>
+      <p class="hint">Leave unused criteria at zero — only criteria with max points above zero count.</p>
+      <button class="calculate" type="submit">What’s the rubric score?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this rubric score" aria-disabled="true">Email my results</a>
         <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
@@ -133,18 +133,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Four criteria, one grade.</h2><p>Enter earned and max points per criterion \u2014 get the percentage and letter.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Four criteria, one grade.</h2><p>Enter earned and max points per criterion — get the percentage and letter.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">RUBRIC SCORE</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">RUBRIC SCORE</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>POINTS EARNED</span><strong id="mEarn">\u2014</strong><em id="mEarnNote">\u2014</em></article>
-          <article class="metric"><span>POINTS POSSIBLE</span><strong id="mMax">\u2014</strong><em id="mMaxNote">\u2014</em></article>
-          <article class="metric"><span>LETTER GRADE</span><strong id="mLetter">\u2014</strong><em id="mLetterNote">\u2014</em></article>
+          <article class="metric"><span>POINTS EARNED</span><strong id="mEarn">—</strong><em id="mEarnNote">—</em></article>
+          <article class="metric"><span>POINTS POSSIBLE</span><strong id="mMax">—</strong><em id="mMaxNote">—</em></article>
+          <article class="metric"><span>LETTER GRADE</span><strong id="mLetter">—</strong><em id="mLetterNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>By criterion</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Weight by max points</h3><p>A criterion worth 40 points counts twice as much as one worth 20 \u2014 set max points to match the emphasis you want.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Weight by max points</h3><p>A criterion worth 40 points counts twice as much as one worth 20 — set max points to match the emphasis you want.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

@@ -115,26 +115,26 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="students">Number of students</label><div class="money-input"><span>#</span><input id="students" type="number" min="2" max="60" step="1" inputmode="numeric" placeholder="24" aria-label="Number of students"></div></div>
         <div class="expense"><label for="cols">Seats per row</label><div class="money-input"><span>#</span><input id="cols" type="number" min="2" max="12" step="1" inputmode="numeric" placeholder="6" aria-label="Seats per row"></div></div>
       </div>
-      <p class="hint">Students are numbered, not named \u2014 no roster data is stored or sent anywhere.</p>
+      <p class="hint">Students are numbered, not named — no roster data is stored or sent anywhere.</p>
       <button class="calculate" type="submit">Generate seating chart</button>
       <div class="result-actions">
         <a class="action result-action" id="shuffleBtn" aria-label="Shuffle seats again">Shuffle again</a>
         <button class="action result-action" id="copyResults" type="button" disabled>Copy chart</button>
       </div>
       <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
-      <p class="hint">Generate to activate copy. Nothing is saved \u2014 reshuffling is free.</p>
+      <p class="hint">Generate to activate copy. Nothing is saved — reshuffling is free.</p>
     </form>
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>New month, new neighbors.</h2><p>Enter the class size and row width \u2014 get a randomized seating chart.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>New month, new neighbors.</h2><p>Enter the class size and row width — get a randomized seating chart.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">SEATING CHART</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">SEATING CHART</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>STUDENTS</span><strong id="mN">\u2014</strong><em id="mNNote">\u2014</em></article>
-          <article class="metric"><span>ROWS</span><strong id="mRows">\u2014</strong><em id="mRowsNote">\u2014</em></article>
-          <article class="metric"><span>SEATS / ROW</span><strong id="mCols">\u2014</strong><em id="mColsNote">\u2014</em></article>
+          <article class="metric"><span>STUDENTS</span><strong id="mN">—</strong><em id="mNNote">—</em></article>
+          <article class="metric"><span>ROWS</span><strong id="mRows">—</strong><em id="mRowsNote">—</em></article>
+          <article class="metric"><span>SEATS / ROW</span><strong id="mCols">—</strong><em id="mColsNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The chart <span style="font-weight:normal;font-size:.75rem">(front of room \u2192 back)</span></h3><dl id="breakdown"></dl></section>

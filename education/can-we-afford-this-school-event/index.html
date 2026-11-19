@@ -120,7 +120,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="tickets">Expected ticket revenue ($)</label><div class="money-input"><span>$</span><input id="tickets" type="number" min="0" step="50" inputmode="decimal" placeholder="0" aria-label="Expected ticket revenue"></div></div>
         <div class="expense"><label for="sponsor">Sponsorships ($)</label><div class="money-input"><span>$</span><input id="sponsor" type="number" min="0" step="50" inputmode="decimal" placeholder="0" aria-label="Sponsorships"></div></div>
       </div>
-      <p class="hint">Discount ticket revenue by 30% \u2014 then decide.</p>
+      <p class="hint">Discount ticket revenue by 30% — then decide.</p>
       <button class="calculate" type="submit">Can we afford it?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this event decision" aria-disabled="true">Email my results</a>
@@ -132,18 +132,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Yes, no, or not like this.</h2><p>Enter the cost and the real funding \u2014 get a verdict.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Yes, no, or not like this.</h2><p>Enter the cost and the real funding — get a verdict.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">VERDICT</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">VERDICT</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>EVENT COST</span><strong id="mCost">\u2014</strong><em id="mCostNote">\u2014</em></article>
-          <article class="metric"><span>TOTAL FUNDING</span><strong id="mFund">\u2014</strong><em id="mFundNote">\u2014</em></article>
-          <article class="metric"><span>GAP</span><strong id="mGap">\u2014</strong><em id="mGapNote">\u2014</em></article>
+          <article class="metric"><span>EVENT COST</span><strong id="mCost">—</strong><em id="mCostNote">—</em></article>
+          <article class="metric"><span>TOTAL FUNDING</span><strong id="mFund">—</strong><em id="mFundNote">—</em></article>
+          <article class="metric"><span>GAP</span><strong id="mGap">—</strong><em id="mGapNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Three answers, not two</h3><p>Yes, no, or \u201cyes with changes\u201d \u2014 smaller venue, fewer extras, more sponsors. Most events die in the third option\u2019s favor.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Three answers, not two</h3><p>Yes, no, or “yes with changes” — smaller venue, fewer extras, more sponsors. Most events die in the third option’s favor.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

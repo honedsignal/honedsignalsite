@@ -126,7 +126,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="bloan">Loans offered ($/yr)</label><div class="money-input"><span>$</span><input id="bloan" type="number" min="0" step="500" inputmode="decimal" placeholder="0" aria-label="School B loans"></div></div>
         <div class="expense"><label for="bws">Work-study ($/yr)</label><div class="money-input"><span>$</span><input id="bws" type="number" min="0" step="250" inputmode="decimal" placeholder="0" aria-label="School B work study"></div></div>
       </div>
-      <p class="hint">Loans are not aid \u2014 they\u2019re a bill with a delay. Compare on grants first.</p>
+      <p class="hint">Loans are not aid — they’re a bill with a delay. Compare on grants first.</p>
       <button class="calculate" type="submit">Which award is really better?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this aid comparison" aria-disabled="true">Email my results</a>
@@ -138,18 +138,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The bigger award isn\u2019t always better.</h2><p>Enter both offers \u2014 compare net cost and free money side by side.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The bigger award isn’t always better.</h2><p>Enter both offers — compare net cost and free money side by side.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">BETTER NET COST</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">BETTER NET COST</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>SCHOOL A NET</span><strong id="mA">\u2014</strong><em id="mANote">\u2014</em></article>
-          <article class="metric"><span>SCHOOL B NET</span><strong id="mB">\u2014</strong><em id="mBNote">\u2014</em></article>
-          <article class="metric"><span>FREE MONEY GAP</span><strong id="mFree">\u2014</strong><em id="mFreeNote">\u2014</em></article>
+          <article class="metric"><span>SCHOOL A NET</span><strong id="mA">—</strong><em id="mANote">—</em></article>
+          <article class="metric"><span>SCHOOL B NET</span><strong id="mB">—</strong><em id="mBNote">—</em></article>
+          <article class="metric"><span>FREE MONEY GAP</span><strong id="mFree">—</strong><em id="mFreeNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>Side by side</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Rank by net cost, not sticker price</h3><p>A $60,000 school with $40,000 in grants beats a $30,000 school with $5,000. The award letter\u2019s first page hides this on purpose.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Rank by net cost, not sticker price</h3><p>A $60,000 school with $40,000 in grants beats a $30,000 school with $5,000. The award letter’s first page hides this on purpose.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

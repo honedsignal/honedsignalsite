@@ -123,7 +123,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="sold">Tickets expected to sell</label><div class="money-input"><span>#</span><input id="sold" type="number" min="0" step="10" inputmode="numeric" placeholder="0" aria-label="Tickets expected"></div></div>
         <div class="expense"><label for="sponsor">Sponsorships ($)</label><div class="money-input"><span>$</span><input id="sponsor" type="number" min="0" step="50" inputmode="decimal" placeholder="0" aria-label="Sponsorships"></div></div>
       </div>
-      <p class="hint">Budget for 70% of hoped-for ticket sales \u2014 optimism is not revenue.</p>
+      <p class="hint">Budget for 70% of hoped-for ticket sales — optimism is not revenue.</p>
       <button class="calculate" type="submit">Will the event break even?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this event budget" aria-disabled="true">Email my results</a>
@@ -135,18 +135,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Hope is not a revenue line.</h2><p>Enter costs and realistic ticket sales \u2014 see profit or loss.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Hope is not a revenue line.</h2><p>Enter costs and realistic ticket sales — see profit or loss.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">EVENT PROFIT / LOSS</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">EVENT PROFIT / LOSS</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>TOTAL COST</span><strong id="mCost">\u2014</strong><em id="mCostNote">\u2014</em></article>
-          <article class="metric"><span>TOTAL REVENUE</span><strong id="mRev">\u2014</strong><em id="mRevNote">\u2014</em></article>
-          <article class="metric"><span>BREAK-EVEN TICKETS</span><strong id="mBe">\u2014</strong><em id="mBeNote">\u2014</em></article>
+          <article class="metric"><span>TOTAL COST</span><strong id="mCost">—</strong><em id="mCostNote">—</em></article>
+          <article class="metric"><span>TOTAL REVENUE</span><strong id="mRev">—</strong><em id="mRevNote">—</em></article>
+          <article class="metric"><span>BREAK-EVEN TICKETS</span><strong id="mBe">—</strong><em id="mBeNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Sponsors de-risk everything</h3><p>Every sponsor dollar is profit before a single ticket sells \u2014 sell sponsorships before you print tickets.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Sponsors de-risk everything</h3><p>Every sponsor dollar is profit before a single ticket sells — sell sponsorships before you print tickets.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

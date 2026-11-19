@@ -117,7 +117,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="price">Price per book ($)</label><div class="money-input"><span>$</span><input id="price" type="number" min="0" step="5" inputmode="decimal" placeholder="0" aria-label="Price per book"></div></div>
         <div class="expense"><label for="years">Adoption cycle (years)</label><div class="money-input"><span>yrs</span><input id="years" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="6" aria-label="Adoption cycle years"></div></div>
       </div>
-      <p class="hint">Include digital licenses \u2014 they\u2019re often priced per student per year.</p>
+      <p class="hint">Include digital licenses — they’re often priced per student per year.</p>
       <button class="calculate" type="submit">What will adoption cost?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this adoption estimate" aria-disabled="true">Email my results</a>
@@ -129,18 +129,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>$80 a book \u00d7 500 kids.</h2><p>Enter students, subjects, and price \u2014 see the adoption math.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>$80 a book × 500 kids.</h2><p>Enter students, subjects, and price — see the adoption math.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">TOTAL ADOPTION COST</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">TOTAL ADOPTION COST</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>PER STUDENT</span><strong id="mPer">\u2014</strong><em id="mPerNote">\u2014</em></article>
-          <article class="metric"><span>PER YEAR OF CYCLE</span><strong id="mYr">\u2014</strong><em id="mYrNote">\u2014</em></article>
-          <article class="metric"><span>BOOKS NEEDED</span><strong id="mBooks">\u2014</strong><em id="mBooksNote">\u2014</em></article>
+          <article class="metric"><span>PER STUDENT</span><strong id="mPer">—</strong><em id="mPerNote">—</em></article>
+          <article class="metric"><span>PER YEAR OF CYCLE</span><strong id="mYr">—</strong><em id="mYrNote">—</em></article>
+          <article class="metric"><span>BOOKS NEEDED</span><strong id="mBooks">—</strong><em id="mBooksNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Negotiate the bundle</h3><p>Multi-subject, multi-year adoptions are where publishers discount \u2014 never accept the first quote.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Negotiate the bundle</h3><p>Multi-subject, multi-year adoptions are where publishers discount — never accept the first quote.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

@@ -115,30 +115,30 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="students">Number of students</label><div class="money-input"><span>#</span><input id="students" type="number" min="2" max="200" step="1" inputmode="numeric" placeholder="24" aria-label="Number of students"></div></div>
         <div class="expense"><label for="groups">Number of groups</label><div class="money-input"><span>#</span><input id="groups" type="number" min="2" max="50" step="1" inputmode="numeric" placeholder="6" aria-label="Number of groups"></div></div>
       </div>
-      <p class="hint">Students are numbered, not named \u2014 no roster data is stored or sent anywhere.</p>
+      <p class="hint">Students are numbered, not named — no roster data is stored or sent anywhere.</p>
       <button class="calculate" type="submit">Generate groups</button>
       <div class="result-actions">
         <a class="action result-action" id="shuffleBtn" aria-label="Shuffle groups again">Shuffle again</a>
         <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
       </div>
       <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
-      <p class="hint">Generate to activate copy. Nothing is saved \u2014 reshuffling is free.</p>
+      <p class="hint">Generate to activate copy. Nothing is saved — reshuffling is free.</p>
     </form>
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Fair groups, zero politics.</h2><p>Enter the class size and group count \u2014 get randomized, even groups.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Fair groups, zero politics.</h2><p>Enter the class size and group count — get randomized, even groups.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">GROUPS GENERATED</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">GROUPS GENERATED</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>STUDENTS</span><strong id="mN">\u2014</strong><em id="mNNote">\u2014</em></article>
-          <article class="metric"><span>GROUP SIZE</span><strong id="mSize">\u2014</strong><em id="mSizeNote">\u2014</em></article>
-          <article class="metric"><span>LEFTOVER</span><strong id="mLeft">\u2014</strong><em id="mLeftNote">\u2014</em></article>
+          <article class="metric"><span>STUDENTS</span><strong id="mN">—</strong><em id="mNNote">—</em></article>
+          <article class="metric"><span>GROUP SIZE</span><strong id="mSize">—</strong><em id="mSizeNote">—</em></article>
+          <article class="metric"><span>LEFTOVER</span><strong id="mLeft">—</strong><em id="mLeftNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The groups</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Mix, don\u2019t stack</h3><p>Random groups beat self-selected ones for new ideas \u2014 reshuffle every few weeks so no clique hardens.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Mix, don’t stack</h3><p>Random groups beat self-selected ones for new ideas — reshuffle every few weeks so no clique hardens.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

@@ -115,16 +115,16 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="aname">School A name</label><div class="money-input"><span>✎</span><input id="aname" type="text" placeholder="e.g. Lincoln Elementary" aria-label="School A name" style="text-align:left"></div></div>
         <div class="expense"><label for="acost">School A yearly cost ($)</label><div class="money-input"><span>$</span><input id="acost" type="number" min="0" step="250" inputmode="decimal" placeholder="0" aria-label="School A yearly cost"></div></div>
         <div class="expense"><label for="acommute">School A commute (min/day)</label><div class="money-input"><span>min</span><input id="acommute" type="number" min="0" step="5" inputmode="numeric" placeholder="0" aria-label="School A commute minutes"></div></div>
-        <div class="expense"><label for="afit">School A fit (1\u201310)</label><div class="money-input"><span>★</span><input id="afit" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="7" aria-label="School A fit score"></div></div>
+        <div class="expense"><label for="afit">School A fit (1–10)</label><div class="money-input"><span>★</span><input id="afit" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="7" aria-label="School A fit score"></div></div>
       </div>
       <div class="section-head" style="margin-top:22px"><h2>School B</h2><span class="step">02 / COMPARE</span></div>
       <div class="expense-list">
         <div class="expense"><label for="bname">School B name</label><div class="money-input"><span>✎</span><input id="bname" type="text" placeholder="e.g. Charter Academy" aria-label="School B name" style="text-align:left"></div></div>
         <div class="expense"><label for="bcost">School B yearly cost ($)</label><div class="money-input"><span>$</span><input id="bcost" type="number" min="0" step="250" inputmode="decimal" placeholder="0" aria-label="School B yearly cost"></div></div>
         <div class="expense"><label for="bcommute">School B commute (min/day)</label><div class="money-input"><span>min</span><input id="bcommute" type="number" min="0" step="5" inputmode="numeric" placeholder="0" aria-label="School B commute minutes"></div></div>
-        <div class="expense"><label for="bfit">School B fit (1\u201310)</label><div class="money-input"><span>★</span><input id="bfit" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="7" aria-label="School B fit score"></div></div>
+        <div class="expense"><label for="bfit">School B fit (1–10)</label><div class="money-input"><span>★</span><input id="bfit" type="number" min="1" max="10" step="1" inputmode="numeric" placeholder="7" aria-label="School B fit score"></div></div>
       </div>
-      <p class="hint">Fit = programs, culture, your kid\u2019s needs \u2014 score it honestly, 1 to 10.</p>
+      <p class="hint">Fit = programs, culture, your kid’s needs — score it honestly, 1 to 10.</p>
       <button class="calculate" type="submit">Which school fits us?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this school comparison" aria-disabled="true">Email my results</a>
@@ -136,18 +136,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Cost, commute, and fit \u2014 scored.</h2><p>Enter both schools \u2014 get a weighted recommendation.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Cost, commute, and fit — scored.</h2><p>Enter both schools — get a weighted recommendation.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">RECOMMENDED</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">RECOMMENDED</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span id="mALabel">SCHOOL A SCORE</span><strong id="mA">\u2014</strong><em id="mANote">\u2014</em></article>
-          <article class="metric"><span id="mBLabel">SCHOOL B SCORE</span><strong id="mB">\u2014</strong><em id="mBNote">\u2014</em></article>
-          <article class="metric"><span>COST GAP / YR</span><strong id="mGap">\u2014</strong><em id="mGapNote">\u2014</em></article>
+          <article class="metric"><span id="mALabel">SCHOOL A SCORE</span><strong id="mA">—</strong><em id="mANote">—</em></article>
+          <article class="metric"><span id="mBLabel">SCHOOL B SCORE</span><strong id="mB">—</strong><em id="mBNote">—</em></article>
+          <article class="metric"><span>COST GAP / YR</span><strong id="mGap">—</strong><em id="mGapNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Visit before you decide</h3><p>No score replaces walking the halls \u2014 tour both, talk to parents, watch a pickup line.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Visit before you decide</h3><p>No score replaces walking the halls — tour both, talk to parents, watch a pickup line.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

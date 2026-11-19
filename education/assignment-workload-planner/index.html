@@ -119,7 +119,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
       <div class="expense-list">
         <div class="expense"><label for="avail">Study hours available</label><div class="money-input"><span>hrs</span><input id="avail" type="number" min="0" step="0.5" inputmode="decimal" placeholder="0" aria-label="Study hours available"></div></div>
       </div>
-      <p class="hint">Be honest about available hours \u2014 hope is not a schedule.</p>
+      <p class="hint">Be honest about available hours — hope is not a schedule.</p>
       <button class="calculate" type="submit">Can I get it all done?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this workload plan" aria-disabled="true">Email my results</a>
@@ -131,18 +131,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Hope is not a schedule.</h2><p>Enter the week\u2019s load and your real hours \u2014 get a verdict.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Hope is not a schedule.</h2><p>Enter the week’s load and your real hours — get a verdict.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">VERDICT</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">VERDICT</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>HOURS NEEDED</span><strong id="mNeed">\u2014</strong><em id="mNeedNote">\u2014</em></article>
-          <article class="metric"><span>HOURS AVAILABLE</span><strong id="mAvail">\u2014</strong><em id="mAvailNote">\u2014</em></article>
-          <article class="metric"><span>GAP</span><strong id="mGap">\u2014</strong><em id="mGapNote">\u2014</em></article>
+          <article class="metric"><span>HOURS NEEDED</span><strong id="mNeed">—</strong><em id="mNeedNote">—</em></article>
+          <article class="metric"><span>HOURS AVAILABLE</span><strong id="mAvail">—</strong><em id="mAvailNote">—</em></article>
+          <article class="metric"><span>GAP</span><strong id="mGap">—</strong><em id="mGapNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Triage, don\u2019t panic</h3><p>When the math doesn\u2019t fit, rank by grade weight and deadline \u2014 do the heavy hitters first, email professors about the rest.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Triage, don’t panic</h3><p>When the math doesn’t fit, rank by grade weight and deadline — do the heavy hitters first, email professors about the rest.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

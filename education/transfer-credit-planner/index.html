@@ -116,7 +116,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="accept">Transfer acceptance rate (%)</label><div class="money-input"><span>%</span><input id="accept" type="number" min="0" max="100" step="5" inputmode="decimal" placeholder="80" aria-label="Acceptance rate percent"></div></div>
         <div class="expense"><label for="required">Degree credits required</label><div class="money-input"><span>cr</span><input id="required" type="number" min="0" step="1" inputmode="numeric" placeholder="120" aria-label="Degree credits required"></div></div>
       </div>
-      <p class="hint">Not every credit transfers \u2014 the acceptance rate is the honest number. Confirm with the registrar.</p>
+      <p class="hint">Not every credit transfers — the acceptance rate is the honest number. Confirm with the registrar.</p>
       <button class="calculate" type="submit">How much transfers?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this transfer plan" aria-disabled="true">Email my results</a>
@@ -128,18 +128,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Not every credit survives the move.</h2><p>Enter what you earned and the acceptance rate \u2014 see what\u2019s left.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>Not every credit survives the move.</h2><p>Enter what you earned and the acceptance rate — see what’s left.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">CREDITS THAT TRANSFER</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">CREDITS THAT TRANSFER</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>LOST IN TRANSFER</span><strong id="mLost">\u2014</strong><em id="mLostNote">\u2014</em></article>
-          <article class="metric"><span>CREDITS REMAINING</span><strong id="mLeft">\u2014</strong><em id="mLeftNote">\u2014</em></article>
-          <article class="metric"><span>SEMESTERS SAVED</span><strong id="mSem">\u2014</strong><em id="mSemNote">\u2014</em></article>
+          <article class="metric"><span>LOST IN TRANSFER</span><strong id="mLost">—</strong><em id="mLostNote">—</em></article>
+          <article class="metric"><span>CREDITS REMAINING</span><strong id="mLeft">—</strong><em id="mLeftNote">—</em></article>
+          <article class="metric"><span>SEMESTERS SAVED</span><strong id="mSem">—</strong><em id="mSemNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Get it in writing</h3><p>A transfer evaluation from the registrar beats every estimate \u2014 request it before you enroll, not after.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Get it in writing</h3><p>A transfer evaluation from the registrar beats every estimate — request it before you enroll, not after.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

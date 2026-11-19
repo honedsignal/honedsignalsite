@@ -111,8 +111,8 @@
         <div class="expense"><label for="salary">Weekly salary ($)</label><div class="money-input"><span>$</span><input id="salary" type="number" min="0" step="10" inputmode="decimal" placeholder="0" aria-label="Weekly salary"></div></div>
         <div class="expense"><label for="salhrs">Total hours worked</label><div class="money-input"><span>hrs</span><input id="salhrs" type="number" min="0" step="0.25" inputmode="decimal" placeholder="0" aria-label="Total hours worked that week"></div></div>
       </div>
-      <p class="hint">Salaried doesn\u2019t mean exempt. If you\u2019re salaried but non-exempt, overtime is the half-rate premium on your regular rate \u2014 computed below.</p>
-      <button class="calculate" type="submit">What\u2019s my overtime worth?</button>
+      <p class="hint">Salaried doesn’t mean exempt. If you’re salaried but non-exempt, overtime is the half-rate premium on your regular rate — computed below.</p>
+      <button class="calculate" type="submit">What’s my overtime worth?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this overtime estimate" aria-disabled="true">Email my results</a>
         <button class="action result-action" id="copyResults" type="button" disabled>Copy results</button>
@@ -123,18 +123,18 @@
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><h2>Every extra hour, priced.</h2><p>Hourly or salaried non-exempt \u2014 enter the week and see the overtime owed.</p></div>
+        <div><h2>Every extra hour, priced.</h2><p>Hourly or salaried non-exempt — enter the week and see the overtime owed.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">OVERTIME PAY OWED</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">OVERTIME PAY OWED</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>TOTAL GROSS</span><strong id="mTotal">\u2014</strong><em id="mTotalNote">\u2014</em></article>
-          <article class="metric"><span>REGULAR RATE</span><strong id="mRate">\u2014</strong><em id="mRateNote">\u2014</em></article>
-          <article class="metric"><span>MODE</span><strong id="mMode">\u2014</strong><em id="mModeNote">\u2014</em></article>
+          <article class="metric"><span>TOTAL GROSS</span><strong id="mTotal">—</strong><em id="mTotalNote">—</em></article>
+          <article class="metric"><span>REGULAR RATE</span><strong id="mRate">—</strong><em id="mRateNote">—</em></article>
+          <article class="metric"><span>MODE</span><strong id="mMode">—</strong><em id="mModeNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3 id="nudgeTitle">Salaried \u2260 exempt</h3><p id="nudgeText">A salary alone doesn\u2019t remove overtime rights. Run the screener if you\u2019re not sure where you stand.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3 id="nudgeTitle">Salaried \u2260 exempt</h3><p id="nudgeText">A salary alone doesn’t remove overtime rights. Run the screener if you’re not sure where you stand.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>

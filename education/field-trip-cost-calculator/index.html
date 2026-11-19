@@ -122,7 +122,7 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
         <div class="expense"><label for="students">Paying students</label><div class="money-input"><span>#</span><input id="students" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="Number of paying students"></div></div>
         <div class="expense"><label for="price">Price charged per student ($)</label><div class="money-input"><span>$</span><input id="price" type="number" min="0" step="1" inputmode="decimal" placeholder="0" aria-label="Price charged per student"></div></div>
       </div>
-      <p class="hint">Chaperones usually ride free \u2014 their seats come out of the fixed costs.</p>
+      <p class="hint">Chaperones usually ride free — their seats come out of the fixed costs.</p>
       <button class="calculate" type="submit">What should we charge?</button>
       <div class="result-actions">
         <a class="action result-action" id="emailResults" aria-label="Email this field trip budget" aria-disabled="true">Email my results</a>
@@ -134,18 +134,18 @@ html[data-theme="light"] .hm-hint-btn { background: #FFFFFF; border-color: #D96E
 
     <div class="results">
       <div class="empty" id="emptyState">
-        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The bus costs the same full or empty.</h2><p>Enter fixed and per-student costs \u2014 get the break-even price.</p></div>
+        <div><div class="empty-art" aria-hidden="true"><div class="doc"></div></div><h2>The bus costs the same full or empty.</h2><p>Enter fixed and per-student costs — get the break-even price.</p></div>
       </div>
       <div id="resultState" class="hidden" aria-live="polite">
-        <section class="result-top"><p class="eyebrow">BREAK-EVEN PRICE PER STUDENT</p><p class="target" id="target">\u2014</p><p class="target-note" id="targetNote"></p></section>
+        <section class="result-top"><p class="eyebrow">BREAK-EVEN PRICE PER STUDENT</p><p class="target" id="target">—</p><p class="target-note" id="targetNote"></p></section>
         <div class="metric-grid">
-          <article class="metric"><span>TOTAL TRIP COST</span><strong id="mTotal">\u2014</strong><em id="mTotalNote">\u2014</em></article>
-          <article class="metric"><span>AT YOUR PRICE</span><strong id="mRev">\u2014</strong><em id="mRevNote">\u2014</em></article>
-          <article class="metric"><span>SURPLUS / SHORTFALL</span><strong id="mSur">\u2014</strong><em id="mSurNote">\u2014</em></article>
+          <article class="metric"><span>TOTAL TRIP COST</span><strong id="mTotal">—</strong><em id="mTotalNote">—</em></article>
+          <article class="metric"><span>AT YOUR PRICE</span><strong id="mRev">—</strong><em id="mRevNote">—</em></article>
+          <article class="metric"><span>SURPLUS / SHORTFALL</span><strong id="mSur">—</strong><em id="mSurNote">—</em></article>
         </div>
         <div class="plan">
           <section class="plan-block"><h3>The math</h3><dl id="breakdown"></dl></section>
-          <section class="plan-block nudge"><h3>Round up, not down</h3><p>Price to the next whole dollar above break-even \u2014 no-shows and last-minute dropouts are guaranteed.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
+          <section class="plan-block nudge"><h3>Round up, not down</h3><p>Price to the next whole dollar above break-even — no-shows and last-minute dropouts are guaranteed.</p><strong id="nudgeStrong"></strong><p id="nudgeFoot"></p></section>
         </div>
         <section class="explanation" aria-label="Results explanation">
           <button class="explain-toggle" id="explainToggle" type="button" aria-expanded="false" aria-controls="explainCopy">Explain these results</button>
