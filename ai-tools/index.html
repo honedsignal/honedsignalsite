@@ -120,18 +120,578 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
       <img class="at-art" src="/assets/ai-tool-briefs-v2.webp" width="1672" height="941" alt="Illustration of Freddie Avalos in his bright green glasses at his desk with a laptop, grinning beside Huxley, a red octopus wearing silver headphones, before a holographic board headed USE IT, TRACK IT, SKIP IT — top AI tools for work, creativity and productivity">
       <div class="at-intro">
         <p>What it is. Who's behind it. What it does. What it costs. What the catch is. And whether it earns a place in a real working stack. Every price below was checked on the maker's own site — never the launch post, never the ad — and every verdict is graded against the tools that actually run Honed Signal today: <strong>USE IT</strong>, <strong>TRACK IT</strong>, or <strong>SKIP IT</strong>.</p>
-        <p>71 tools briefed so far, newest first. The list grows as new briefs land — if a tool isn't here, it hasn't been checked yet.</p>
+        <p>99 tools briefed so far, newest first. The list grows as new briefs land — if a tool isn't here, it hasn't been checked yet.</p>
       </div>
       <p class="at-byline">Research by Muse · Edited by Freddie Avalos</p>
 
       <div class="at-filters" role="group" aria-label="Filter briefs by verdict">
-        <button type="button" class="at-filter" data-filter="all" aria-pressed="true">All · 71</button>
+        <button type="button" class="at-filter" data-filter="all" aria-pressed="true">All · 99</button>
         <button type="button" class="at-filter" data-filter="USE" aria-pressed="false">USE IT · 1</button>
-        <button type="button" class="at-filter" data-filter="TRACK" aria-pressed="false">TRACK IT · 52</button>
-        <button type="button" class="at-filter" data-filter="SKIP" aria-pressed="false">SKIP IT · 18</button>
+        <button type="button" class="at-filter" data-filter="TRACK" aria-pressed="false">TRACK IT · 75</button>
+        <button type="button" class="at-filter" data-filter="SKIP" aria-pressed="false">SKIP IT · 23</button>
       </div>
       <p class="at-empty" id="at-empty">Nothing here yet for this verdict.</p>
 
+      <article class="at-card" id="muse-thinktank" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>muse-thinktank</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">stoneskin · Briefed Nov 19, 2026</p>
+        <p class="at-what">An open-source multi-model deliberation CLI: one question goes to a panel of models in parallel, two judge models cross-validate the answers, and a synth model merges a verdict — with disagreement escalated to a human instead of averaged away.</p>
+        <p class="at-cost"><strong>Cost:</strong> $0 for the software; runs cost whatever the chosen OpenRouter models cost — free-tier models make a run $0, paid models draw on OpenRouter credit, always behind the --estimate preview and budget caps.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An open-source multi-model deliberation CLI: one question goes to a panel of models in parallel, two judge models cross-validate the answers, and a synth model merges a verdict — with disagreement escalated to a human instead of averaged away.</p>
+            <p><strong>Who's behind it:</strong> stoneskin on GitHub (github.com/stoneskin/muse-thinktank), Apache-2.0, v0.19.0, 2 stars / 0 forks — a small, young project developed in a private repo and synced publicly; cloned and audited by Muse on Nov 19, 2026 at commit be15448a — full audit: `~/workspace/github-audits/muse-thinktank-AUDIT-2026-11-19.md`. Despite the name, the panel models are not Meta Muse models — "built for Muse users" means the operator's assistant is Muse; the deliberation runs on OpenRouter models.</p>
+            <p><strong>What it does:</strong> Verified in the audited code: pure Python standard library, genuinely zero dependencies, with a real test suite; one entry point (thinktank.py) runs panel → dual judges → synth over OpenRouter, with an --estimate mode that prints call count, token cap, cost cap and ETA before spending anything, budget caps, red-team mode (critic models attack a draft, an adjudicator grades findings by severity), LMArena benchmark priors fetched keylessly from HuggingFace, dynamic member selection by track record, live-data injection via --context-data, and stock-analysis / code-review skills; outbound traffic is only OpenRouter, HuggingFace (priors) and api.github.com (PR diffs), and the API key normally comes from the OPENROUTER_API_KEY environment variable.</p>
+            <p><strong>What it costs:</strong> $0 for the software; runs cost whatever the chosen OpenRouter models cost — free-tier models make a run $0, paid models draw on OpenRouter credit, always behind the --estimate preview and budget caps.</p>
+            <p><strong>The catch:</strong> Two audit findings. (1) An undisclosed Muse-credential hook sits in the public code (tt/transport.py, verified byte-identical upstream): before reading the env var, the key loader tries to import from a hard-coded Muse runtime path (/opt/hatch/…) and pull a "custom.openrouter" credential from the Muse connector vault — inert off-Muse and harmless on Freddie's setup (no such connector exists, so it falls through to the env var), but never mentioned in the "pure stdlib" framing. (2) The repo ships AI_SETUP.md, an instruction file addressed to AI assistants ("follow these steps exactly") that name-checks Muse's secure credential flow — the steps are benign and the key-handling advice is good, but it is the same agent-scripting pattern flagged with Glasser; Muse read it as data and did not follow it during the audit. Also: the "zero hallucinations" tagline oversells — dual judges catch divergence, not shared misconception — and the eval tooling contains a code-execution validator its own comments admit is "not a real sandbox," kept out of the main ask path.</p>
+            <p><strong>Fit:</strong> TRACK IT — it automates the exact pattern Freddie already runs by hand for Honed Reports (multiple outside AIs pass over a draft, disagreements surface to him), at $0 on free OpenRouter models and with cost estimation up front. Limits: free-tier panel and judge models are materially weaker than the frontier models in his current manual passes, and it adds an OpenRouter account/key to the stack. Any future trial should run from the audited clone with the key supplied by env var, after a re-check of the transport code. No install, no key connected.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="awesome-freellm-apis" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>awesome-freellm-apis</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">open-free-llm-api · Briefed Nov 19, 2026</p>
+        <p class="at-what">A curated, machine-readable directory — not software: a GitHub "awesome list" of free LLM API tiers with rate limits, context windows, credit-card/verification flags, base URLs, get-key links, and copy-paste config snippets for Claude Code, Cursor, Codex, Aider and others; companion site freellm.net. NOT the FreeLLMAPI router (tashfeenahmed, briefed separately Nov 19, TRACK IT) — this is a list, that is an app.</p>
+        <p class="at-cost"><strong>Cost:</strong> $0 — the list is free to read and MIT; the listed tiers are the providers' own free tiers (most no card; NVIDIA NIM wants phone verification; OpenRouter's free tier improves to 1K requests/day only after a $10 top-up, and its Claude Code path needs that top-up).</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A curated, machine-readable directory — not software: a GitHub "awesome list" of free LLM API tiers with rate limits, context windows, credit-card/verification flags, base URLs, get-key links, and copy-paste config snippets for Claude Code, Cursor, Codex, Aider and others; companion site freellm.net. NOT the FreeLLMAPI router (tashfeenahmed, briefed separately Nov 19, TRACK IT) — this is a list, that is an app.</p>
+            <p><strong>Who's behind it:</strong> The open-free-llm-api GitHub org; MIT, repo created 2026-05-10, 5,811 stars, 913 forks, 249 commits at briefing; data is refreshed daily from freellm.net (their claim, last-updated stamp 2026-11-19 on the README).</p>
+            <p><strong>What it does:</strong> Lists 22 providers in its directory table — permanent free tiers (NVIDIA NIM 82 free models, Cloudflare Workers AI 41, ModelScope 33, Google Gemini 12, Groq 9, Mistral 10, Cohere 10, and smaller/obscurer names like LLM7.io, Agnes AI, Gonka Broker) plus OpenRouter under "renewable credits" — each with free-model count, card/verification requirement, max context, and a direct key link; all expose OpenAI-compatible endpoints.</p>
+            <p><strong>What it costs:</strong> $0 — the list is free to read and MIT; the listed tiers are the providers' own free tiers (most no card; NVIDIA NIM wants phone verification; OpenRouter's free tier improves to 1K requests/day only after a $10 top-up, and its Claude Code path needs that top-up).</p>
+            <p><strong>The catch:</strong> Its own numbers don't agree: repo subtitle says "134+ free LLM APIs from 40+ providers," the README headline says "312+ from 22 providers" (312 is the sum of the table's free-model counts). Free tiers are perishable and provider-reported — the daily-refresh claim is the maintainer's, not verified per provider — and several listed providers are obscure brokers whose data terms for your prompts are unknown. Treat every entry as a lead to verify on the provider's own site, never as a fact.</p>
+            <p><strong>Fit:</strong> TRACK IT — as a reference shelf only: a handy single place to check "who still has a free tier" when a disposable-experiment need arises (the same niche FreeLLMAPI was tracked for), at zero cost and zero install. It grants no tokens itself, holds no frontier access for Freddie's production work, and no provider signup follows from this brief.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="airo-ai-builder" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>Airo AI Builder</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">GoDaddy · Briefed Nov 19, 2026</p>
+        <p class="at-what">GoDaddy's prompt-driven AI website builder — describe a business in plain language and it generates a multi-page site you refine through a sequence of chat prompts, all inside GoDaddy's platform. Surfaced via Mikey Website's "How to Build an AI Website That Actually Looks Good" video (Nov 9, 2026) Freddie shared and Muse assessed on Nov 19, 2026 (full transcript read).</p>
+        <p class="at-cost"><strong>Cost:</strong> Per GoDaddy's US pages as rechecked by multiple reviewers in November 2026: Free $0 with 50 AI credits/mo — preview only, publishing requires a paid plan; Starter $9.99/mo billed annually ($19.99 monthly), 150 credits, 1 published site; Professional $24.99/mo annual ($49.99 monthly), 300 credits, up to 10 sites; Ultimate $99.99/mo annual ($199.99 monthly), 750 credits, up to 50 sites. Credits expire each billing cycle and do not roll over; extra packs are $24.99 for 250 credits. The annual prices are first-term prices — GoDaddy's pages did not show the renewal amount when checked Nov 12, 2026.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> GoDaddy's prompt-driven AI website builder — describe a business in plain language and it generates a multi-page site you refine through a sequence of chat prompts, all inside GoDaddy's platform. Surfaced via Mikey Website's "How to Build an AI Website That Actually Looks Good" video (Nov 9, 2026) Freddie shared and Muse assessed on Nov 19, 2026 (full transcript read).</p>
+            <p><strong>Who's behind it:</strong> GoDaddy, the registrar/hosting company; the builder is sold as its current website-builder product and is labeled Beta on GoDaddy's own pages (per Nov 12, 2026 rechecks of godaddy.com).</p>
+            <p><strong>What it does:</strong> Generates a complete site from a detailed first prompt (the video's demo: a 5-page Sydney interior-design studio in under 30 seconds), then refines by prompt — visual polish, added content sections, an interactive quiz, per-page SEO metadata, a mobile pass — with hosting, analytics, SSL, automatic backups, email marketing and domain all in the same GoDaddy dashboard; paid plans can download the site as a ZIP of code, but live services (forms, booking, email) do not move with it.</p>
+            <p><strong>What it costs:</strong> Per GoDaddy's US pages as rechecked by multiple reviewers in November 2026: Free $0 with 50 AI credits/mo — preview only, publishing requires a paid plan; Starter $9.99/mo billed annually ($19.99 monthly), 150 credits, 1 published site; Professional $24.99/mo annual ($49.99 monthly), 300 credits, up to 10 sites; Ultimate $99.99/mo annual ($199.99 monthly), 750 credits, up to 50 sites. Credits expire each billing cycle and do not roll over; extra packs are $24.99 for 250 credits. The annual prices are first-term prices — GoDaddy's pages did not show the renewal amount when checked Nov 12, 2026.</p>
+            <p><strong>The catch:</strong> Single-vendor lock-in is the product: the site, its hosting, analytics and live services live inside GoDaddy, the builder is still Beta (the video itself warns about mid-build errors), and every AI refinement is metered in expiring credits — vague prompts literally cost the same as precise ones. There are no persistent guardrails: each fix is a one-off chat prompt, nothing carries to the next site, and there are no mechanical checks behind its "mobile pass."</p>
+            <p><strong>Fit:</strong> SKIP IT — it is the beginner on-ramp version of a workflow Freddie already runs at a higher level on infrastructure he owns (his repos, Porkbun domains, Cloudflare Pages, the Anti-Slop Design skill as standing guardrails, the site monitor's mechanical checks, and QA-against-audit adopted Nov 19, 2026). Its demo use case — lead-gen sites that funnel to booked consultations for client businesses — is his cut lane (no sales calls / client outreach; product and inbound only), and his interactive tools (268 Money calculators, Debt/Leak Scans) already do the quiz's job while routing to products. Nothing signed up for or trialed.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="freellmapi" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>FreeLLMAPI</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">tashfeenahmed · Briefed Nov 19, 2026</p>
+        <p class="at-what">A self-hosted, open-source router that stacks the free tiers of dozens of LLM providers behind one OpenAI-compatible endpoint on your own machine — Repo 1 of the BuildArc "~9 billion free AI tokens" Short Freddie shared on Nov 19, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> $0 for the router itself (MIT); the live model catalog is freemium — free installs get a monthly snapshot delayed 30 days, premium is $19/yr for same-day updates. The tokens are not granted by the tool: the headline total (7.4B in the Short; the README now says 10.1B) is the sum of every provider's free-tier cap, reachable only by signing up for dozens of providers yourself; a realistic handful of providers yields a few hundred million.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A self-hosted, open-source router that stacks the free tiers of dozens of LLM providers behind one OpenAI-compatible endpoint on your own machine — Repo 1 of the BuildArc "~9 billion free AI tokens" Short Freddie shared on Nov 19, 2026.</p>
+            <p><strong>Who's behind it:</strong> tashfeenahmed on GitHub (github.com/tashfeenahmed/freellmapi), MIT, created April 2026, ~55,000 stars; targeted-audited by Muse on Nov 19, 2026 at commit dd0fb713 (app v0.16.36) — full audit: `~/workspace/github-audits/freellmapi-AUDIT-2026-11-19.md`.</p>
+            <p><strong>What it does:</strong> Verified in the audited code and README: you add your own free provider keys (Google, Groq, Cerebras, Mistral, OpenRouter, Cloudflare, NVIDIA and dozens more — the README now claims 87 providers / 1,313 endpoints), and it routes requests across them with smart routing and automatic failover, exposes OpenAI, Anthropic Messages, Gemini and Ollama surfaces (so Claude Code and other coding agents can run on the pool), tracks per-key rate limits, and serves a login-gated dashboard; provider keys are AES-256-GCM encrypted in SQLite (verified: fresh IVs, auth tag pinned, production refuses to boot without the encryption key), the unified key is enforced on /v1 and /mcp, and the twice-daily model catalog sync from freellmapi.co is genuinely Ed25519 signature-verified against a pinned key, with no telemetry or usage reporting found anywhere in the code.</p>
+            <p><strong>What it costs:</strong> $0 for the router itself (MIT); the live model catalog is freemium — free installs get a monthly snapshot delayed 30 days, premium is $19/yr for same-day updates. The tokens are not granted by the tool: the headline total (7.4B in the Short; the README now says 10.1B) is the sum of every provider's free-tier cap, reachable only by signing up for dozens of providers yourself; a realistic handful of providers yields a few hundred million.</p>
+            <p><strong>The catch:</strong> The repo's install.sh is a 5-line shim that downloads and executes a script from freellmapi.co — outside the repo and changeable without a commit (the Docker path, loopback-bound by default, is the safer install); non-Docker runs bind all interfaces by default. Lose the encryption key and every stored provider key is permanently undecryptable, and in default installs the key file sits beside the database. The pool holds no frontier models, quality degrades as daily caps bite, providers retire free tiers without notice (GitHub Models retired Jul 30, 2026), and the README itself scopes it "personal experimentation only" — every prompt you route is also sent to whichever free provider serves it, under that provider's data terms.</p>
+            <p><strong>Fit:</strong> TRACK IT — the strongest security engineering in the Nov 19 audit series and a legitimate $0 experimentation pool for throwaway coding-agent work, but it does not extend Freddie's Muse setup, holds none of the models his production work runs on, and fans prompts out to dozens of third-party free tiers. Not for production or private data; revisit only if a disposable-experiments need appears. No install.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="omniroute" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>OmniRoute</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">cheaper-inference · Briefed Nov 19, 2026</p>
+        <p class="at-what">A free, open-source AI gateway — one endpoint fronting 375 providers / 1,400+ models with quota-aware fallback and token compression — Repo 2 of the BuildArc "~9 billion free AI tokens" Short Freddie shared on Nov 19, 2026 (the old diegosouzapw/OmniRoute address now redirects to cheaper-inference/OmniRoute).</p>
+        <p class="at-cost"><strong>Cost:</strong> $0, MIT open source — no telemetry or analytics found among its 113 runtime dependencies, and update checks go only to npm.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A free, open-source AI gateway — one endpoint fronting 375 providers / 1,400+ models with quota-aware fallback and token compression — Repo 2 of the BuildArc "~9 billion free AI tokens" Short Freddie shared on Nov 19, 2026 (the old diegosouzapw/OmniRoute address now redirects to cheaper-inference/OmniRoute).</p>
+            <p><strong>Who's behind it:</strong> The cheaper-inference GitHub org; MIT, created Feb 2026, ~88,800 stars, "900+ contributors" claimed; targeted-audited by Muse on Nov 19, 2026 at v3.8.55, commit ac6c3822 (sparse clone; the repo is ~3.6 GB) — full audit: `~/workspace/github-audits/omniroute-AUDIT-2026-11-19.md`.</p>
+            <p><strong>What it does:</strong> Verified in the audited code and docs: serves an OpenAI-compatible gateway on port 20128 for Claude Code, Codex, Cursor, OpenCode, Cline and Copilot, with auto-fallback across free and paid providers, an MCP/A2A surface, a dashboard, and RTK + Caveman compression — purely local string filtering (RTK's filters strip tool-output noise; Caveman deletes hedging/pleasantries from prose, rewriting the user's words), whose "15–95% savings" is stacked best-case math on terminal logs. The "+1.6B free tokens" is, like FreeLLMAPI's figure, a sum of third-party free-tier caps behind keys you supply yourself.</p>
+            <p><strong>What it costs:</strong> $0, MIT open source — no telemetry or analytics found among its 113 runtime dependencies, and update checks go only to npm.</p>
+            <p><strong>The catch:</strong> CVE-2026-88062 was real — a CVSS 9.5 unauthenticated remote-code-execution hole (GHSA-hf57-cqmx-p4gr), verified fixed in the audited v3.8.55 code — but the defaults remain unsafe: a bare npm/source install binds 0.0.0.0:20128 with REQUIRE_API_KEY=false, so any LAN device can spend your quota (the code prints its own warning citing another advisory), and .env.example ships an INITIAL_PASSWORD the file itself calls "publicly known," copied into place on install. All provider keys and imported subscription OAuth tokens concentrate in one SQLite database — AES-256-GCM encrypted, but the master key is auto-generated into a plaintext env file, and with no key set the code falls back to storing credentials in plaintext.</p>
+            <p><strong>Fit:</strong> SKIP IT — serious engineering (real SECURITY.md, advisories cited in its own code comments, the CVE genuinely patched), but for Freddie it is exposure without benefit: a local coding-agent token pool with a large spawn/exec/tunnel surface, unsafe bare-install network defaults, and a design that concentrates every credential in one process — and it does not extend his Muse setup. His provider keys and subscription logins should not go near it. If it were ever trialed: Docker route only, ≥3.8.55, password replaced before boot, REQUIRE_API_KEY=true, throwaway keys only. No install.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="pulsar" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>pulsar</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">yocontra / Eric Schoffstall · Briefed Nov 19, 2026</p>
+        <p class="at-what">An open-source MCP server that puts every AI coding agent on one machine on a shared message bus, so agents in different harnesses can find and message each other.</p>
+        <p class="at-cost"><strong>Cost:</strong> $0 — MIT open source, installed with `npx pulsar setup` (setup shows every file it will change, asks once, backs up everything, and offers --dry-run and --uninstall); no telemetry, and the only network call in the code is `pulsar doctor` checking npm for a newer version.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An open-source MCP server that puts every AI coding agent on one machine on a shared message bus, so agents in different harnesses can find and message each other.</p>
+            <p><strong>Who's behind it:</strong> Eric Schoffstall (yocontra), per the repo's package.json; github.com/yocontra/pulsar, MIT, created Nov 17, 2026 — two days old at briefing — already at v1.4.0 with 50 stars, CI and a real test suite; cloned and audited in full by Muse on Nov 19, 2026 — full audit: `~/workspace/github-audits/pulsar-AUDIT-2026-11-19.md`.</p>
+            <p><strong>What it does:</strong> Verified in the audited code and README: one small daemon per machine (user-only Unix socket in a 0700 folder, SQLite message log) keeps a live registry of agents across Claude Code, Codex, OpenCode, pi, omp, Cursor and Gemini CLI — including sessions that never installed pulsar — auto-tagged with harness, model, project, git branch, worktree and PR (found offline from local git refs and the agents' own session logs); agents can list, send, reply, ask (block for an answer), wait, and broadcast to a name, a selector (project=x, pr=1402, role=reviewer) or `*`, with push delivery that wakes idle agents and urgent messages that can land mid-turn.</p>
+            <p><strong>What it costs:</strong> $0 — MIT open source, installed with `npx pulsar setup` (setup shows every file it will change, asks once, backs up everything, and offers --dry-run and --uninstall); no telemetry, and the only network call in the code is `pulsar doctor` checking npm for a newer version.</p>
+            <p><strong>The catch:</strong> Setup widens other agents' trust settings as a side effect — it sets Claude Code's `crossSessionInbound: "accept"` so bus messages reach permission-skipping sessions without an approval dialog, and pre-approves pulsar's tools in Codex — and the bus is a cross-agent injection channel by design: any agent, or any process running as your user, can put text in front of every other agent and interrupt it; messages are stamped with their true sender by the daemon, marked as peer-origin and unable to grant permissions, with rate/size limits (64 KB, 60 sends/min, 6 broadcasts/min), but each harness's own guardrails are the only backstop. It also reads other harnesses' session transcripts to build its registry, and its announced next step is multi-machine messaging plus remote control of agents via Tailscale.</p>
+            <p><strong>Fit:</strong> TRACK IT — the cleanest-designed agent-coordination tool in the Nov 19 audit series and directly adjacent to Freddie's multi-AI handoff patterns, but it solves a problem he does not currently have: his multi-AI work runs across services (Muse in its VM, Claude's scheduled tasks, ChatGPT), not across local coding harnesses on one Mac, and pulsar v1 is same-machine only, so it cannot bridge his actual agents. Two days old and iterating hourly is also the wrong moment to adopt infrastructure that edits other agents' security settings. Watch it — and re-audit before ever enabling the coming Tailscale remote-control release. No install.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="muse-fileapi" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>muse-fileapi</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">star-power0 · Briefed Nov 19, 2026</p>
+        <p class="at-what">A free, open-source local file bridge — a single-file Node HTTP service you run on your own computer and expose through your own Cloudflare Tunnel so a cloud Muse can read/write its files and run shell commands on it as a custom connector.</p>
+        <p class="at-cost"><strong>Cost:</strong> $0 — MIT open source, zero third-party dependencies, Node.js only; the real cost is your own domain and Cloudflare Tunnel to expose it, plus the machine it runs on staying on.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A free, open-source local file bridge — a single-file Node HTTP service you run on your own computer and expose through your own Cloudflare Tunnel so a cloud Muse can read/write its files and run shell commands on it as a custom connector.</p>
+            <p><strong>Who's behind it:</strong> star-power0, a single independent author on GitHub; repo created Sep 24, 2026, MIT, 1 star, 0 forks, 2 commits, no releases — cloned and code-audited in full by Muse on Nov 19, 2026 (server.mjs, 1,107 lines).</p>
+            <p><strong>What it does:</strong> Verified in the audited code and its README: binds 127.0.0.1:8787, serves list/read/search plus write/edit/append/copy/move/delete over whitelisted directories only, and a /run endpoint executing arbitrary shell commands (pwsh/PowerShell/cmd — Windows-first, with .cmd/schtasks launchers and a PowerShell watchdog); write/edit/delete/run are two-phase (prepare a preview, then confirm within 600 seconds), with a backup before every overwrite, deletes moved to a trash folder, and every operation written to an audit log.</p>
+            <p><strong>What it costs:</strong> $0 — MIT open source, zero third-party dependencies, Node.js only; the real cost is your own domain and Cloudflare Tunnel to expose it, plus the machine it runs on staying on.</p>
+            <p><strong>The catch:</strong> The capability is the risk — whoever holds the 256-bit bearer token gets arbitrary shell execution on the host, and once the tunnel is up the service is publicly reachable with that token as the only lock (no IP allowlist, no rate limiting in the code; append/copy/move also bypass the two-phase confirm). The code itself is unusually careful — constant-time token comparison, symlink-resolved whitelist checks, a denylist for .env/keys/.ssh/.git even inside the whitelist, and refusal to serve its own token/config/audit files — but careful code does not shrink a full-machine blast radius.</p>
+            <p><strong>Fit:</strong> SKIP IT — it solves a problem Freddie does not have: his Muse already runs in a persistent VM with direct filesystem, terminal, browser and connector access to his workspace under per-action approvals, which is exactly what this bridge gives a bare muse.ai chat, without punching a public tunnel into a personal machine. Windows-first design also misses his Mac/VM setup, and a 2-commit, single-author, unmaintained-since-September repo is the wrong thing to trust with shell access. No install; revisit only if a bare Muse chat ever needs one specific folder on one specific Windows PC. Full audit: `~/workspace/github-audits/muse-fileapi-AUDIT-2026-11-19.md`.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="gpt-6-2-astra-and-gpt-6-2-sol" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>GPT-6.2 Astra and GPT-6.2 Sol</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">OpenAI · Briefed Nov 18, 2026</p>
+        <p class="at-what">OpenAI's new model pair for ChatGPT Work and Codex — Astra, a frontier model for hard professional work, and Sol, a cheaper efficient model for everyday and agentic work; OpenAI released both on November 17, 2026, and they launched on Product Hunt on November 18, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on developers.openai.com pricing (read November 18, 2026): Astra $8.00 per million input tokens / $40.00 output (cached input $0.40) — a 20% cut from GPT-6 Astra's $10 / $50; Sol $2.00 / $10.00 (cached $0.10). Per OpenAI's rate card, Ultrafast runs at promotional 3× Standard token rates through February 28, 2027, then 6× from March 1, 2027.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> OpenAI's new model pair for ChatGPT Work and Codex — Astra, a frontier model for hard professional work, and Sol, a cheaper efficient model for everyday and agentic work; OpenAI released both on November 17, 2026, and they launched on Product Hunt on November 18, 2026.</p>
+            <p><strong>Who's behind it:</strong> OpenAI, in its own community announcement, "GPT-6.2 Astra and Sol are now available," on community.openai.com (November 17, 2026). All benchmark figures below are OpenAI's own.</p>
+            <p><strong>What it does:</strong> Verified on community.openai.com and OpenAI's API pricing page: available in ChatGPT Work and Codex for Plus, Pro, Enterprise and Edu users (not regular Chat), and in the API as `gpt-6.2-astra` and `gpt-6.2-sol`, with an Ultrafast mode for Pro 500 (and now Pro 200 for Sol). OpenAI says Astra sets new highs on professional-work and science evals at less than a third of GPT-6 Astra's cost per task, and Sol nearly matches Astra on FrontierCode 2.0 merge-ready code at about one-fifth the cost — both are OpenAI's figures. Tighter safeguards for higher-risk cybersecurity help ship with the pair.</p>
+            <p><strong>What it costs:</strong> Verified on developers.openai.com pricing (read November 18, 2026): Astra $8.00 per million input tokens / $40.00 output (cached input $0.40) — a 20% cut from GPT-6 Astra's $10 / $50; Sol $2.00 / $10.00 (cached $0.10). Per OpenAI's rate card, Ultrafast runs at promotional 3× Standard token rates through February 28, 2027, then 6× from March 1, 2027.</p>
+            <p><strong>The catch:</strong> The headline price cut is real on Standard, but Ultrafast — the mode power users reach for — triples now and sextuples in March, which launch coverage notes early users already call "essentially unusable" pricing. The models are Work/Codex-only, not in regular Chat, and every capability figure is OpenAI's own evaluation.</p>
+            <p><strong>Fit:</strong> TRACK IT — a 20% frontier price cut plus a $2/$10 workhorse resets the price anchor Freddie's stack is measured against, the same pattern as Gemini 4 Hydrogen and Muse Ember before it. But his agent work runs on Muse / Muse Wonder, he holds no OpenAI API spend for production, and there is nothing to buy. Signal only, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="tasks-in-gemini-now-free" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Tasks in Gemini — now free</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Google · Briefed Nov 18, 2026</p>
+        <p class="at-what">Google's agentic task mode inside the Gemini app — you hand over a multi-step job and Gemini works it in the background — which Google made free of charge on November 17, 2026 (it was previously a paid-tier feature; the prior $19.99/mo AI Pro figure is media reporting, not Google's post).</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on blog.google (read November 18, 2026): free of charge in the six launch countries — no subscription price is attached to Tasks itself in Google's post, and Google does not publish a per-day task, call or order limit in the post.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Google's agentic task mode inside the Gemini app — you hand over a multi-step job and Gemini works it in the background — which Google made free of charge on November 17, 2026 (it was previously a paid-tier feature; the prior $19.99/mo AI Pro figure is media reporting, not Google's post).</p>
+            <p><strong>Who's behind it:</strong> Google, in its own post, "Put Gemini to work for you," on blog.google (November 17, 2026), by the Gemini app team.</p>
+            <p><strong>What it does:</strong> Verified on blog.google: rolling out free for hundreds of millions of users in the US, Japan, Korea, Canada, Australia and India, running on Gemini 4 Hydrogen (briefed November 13, 2026). In the US it can call local businesses in parallel via Google Maps/Duplex and book against your Calendar, shop and check out with Google Pay under a user-set hard spending cap using the Agent Payments Protocol (AP2, with tokenized cards), add to Instacart orders by text or photo, and take tasks by email forwarded to gemini@google.com; it connects to 60+ apps. It runs in a per-account isolated VM, and is designed to pause for confirmation before a Buy click — with an "Always allow" option for routine actions.</p>
+            <p><strong>What it costs:</strong> Verified on blog.google (read November 18, 2026): free of charge in the six launch countries — no subscription price is attached to Tasks itself in Google's post, and Google does not publish a per-day task, call or order limit in the post.</p>
+            <p><strong>The catch:</strong> The free agent wants the whole Google stack — email, calendar, passwords (via Password Manager integration), photos, files and payment cards — in one place, and the "Always allow" setting is exactly the standing-approval shape Freddie's rules reject. Google itself says mistakes are not eliminated and some sites hand the screen back for the final click; business calling is unavailable in Indiana, Louisiana, Minnesota, Montana and Nebraska.</p>
+            <p><strong>Fit:</strong> TRACK IT — a free, frontier-backed personal agent that can call, book and pay is the strongest consumer-agent signal yet, and it costs nothing to watch. But Freddie's agent is Muse, with his memory, connectors and per-action approval; Gemini Tasks duplicates that inside Google's walls, and he holds no Google AI Pro plan (his full YouTube Premium is a hard keep and does not include it). No switch, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="microsoft-mai-model-family-mai-code-2-mai-image-2-7-mai-realtime-1" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Microsoft MAI model family — MAI Code 2, MAI Image 2.7, MAI Realtime 1</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Microsoft · Briefed Nov 18, 2026</p>
+        <p class="at-what">A family of seven in-house Microsoft AI models released at Ignite on November 17, 2026 — coding (Code 2 / Code 2 Flash), image generation and editing (Image 2.7 / Flash), live voice (Realtime 1), cyber defense (Cyber 2 Flash), transcription (Transcribe 2, inside Dragon Copilot) and routing (Decision 1.1) — all pitched on price-performance; several launched on Product Hunt on November 18, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on microsoft.ai: Image 2.7 Flash at about $10 per 1,000 images, with Image 2.7 at about $35 per 1,000 images per Microsoft's Foundry preview figures as reported in launch coverage; Realtime 1 starts at $0.01 per audio minute. In GitHub Copilot, MAI Code 2 is priced at $0.50 per million input tokens / $2.50 output and Code 2 Flash at $0.05 / $0.25 — per GitHub's pricing list as reported in launch coverage — and those are promotional rates that double on May 17, 2027 (to $1 / $5 and $0.10 / $0.50).</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A family of seven in-house Microsoft AI models released at Ignite on November 17, 2026 — coding (Code 2 / Code 2 Flash), image generation and editing (Image 2.7 / Flash), live voice (Realtime 1), cyber defense (Cyber 2 Flash), transcription (Transcribe 2, inside Dragon Copilot) and routing (Decision 1.1) — all pitched on price-performance; several launched on Product Hunt on November 18, 2026.</p>
+            <p><strong>Who's behind it:</strong> Microsoft AI (MAI), in its own post, "Seven new world-class models at scalable price-performance," on microsoft.ai (November 17, 2026). All performance comparisons below are Microsoft's own except the Artificial Analysis image-editing ranking, which is independent.</p>
+            <p><strong>What it does:</strong> Verified on microsoft.ai: MAI Code 2 is live in GitHub Copilot (Microsoft's figures: 98% of GPT-6.1 Sol's coding quality at about 40% of the price, 96% of Claude Opus 5.5 at 5%); Code 2 Flash is in Copilot and a limited Foundry preview. MAI Image 2.7 is #1 on the independent Artificial Analysis image-editing leaderboard (1,215 Elo vs GPT Image 2.6 Sunburst max's 1,211, per launch coverage) and #4 at text-to-image, in public preview on Foundry and via partners including fal and OpenRouter; Image 2.7 Flash is built for high-volume generation. MAI Realtime 1 is a speech-to-speech model tryable in MAI Labs. Microsoft also offers MAI Licensed Weights — frontier models customized and run in your own Azure environment.</p>
+            <p><strong>What it costs:</strong> Verified on microsoft.ai: Image 2.7 Flash at about $10 per 1,000 images, with Image 2.7 at about $35 per 1,000 images per Microsoft's Foundry preview figures as reported in launch coverage; Realtime 1 starts at $0.01 per audio minute. In GitHub Copilot, MAI Code 2 is priced at $0.50 per million input tokens / $2.50 output and Code 2 Flash at $0.05 / $0.25 — per GitHub's pricing list as reported in launch coverage — and those are promotional rates that double on May 17, 2027 (to $1 / $5 and $0.10 / $0.50).</p>
+            <p><strong>The catch:</strong> The headline coding comparisons are calculated at the 50% promotional price — the discount expiring May 17, 2027 is doing half the work in the "40% of the price" claim — and Microsoft itself says Code 2 is not yet tuned for fundamental science research or very long-horizon agentic work. Most of the family is preview-stage and Azure/Copilot-gated.</p>
+            <p><strong>Fit:</strong> TRACK IT — two legs matter to Freddie: Image 2.7 topping independent image-editing rankings at one-fifth the rival's price is directly relevant to his artwork pipeline (at about 3.5 cents an image it sits between Muse Image's $0.01 and the incumbents), and Code 2 reprices everyday coding the way Muse Ember repriced small-model work. But his pipeline is locked (luminous storybook, deterministic compositing for counts — no generator guarantees exactly 8 arms), he holds no Copilot or Azure spend, and the promo-doubling is a flag, not a bargain. Watch Image 2.7's fal/OpenRouter availability; buy nothing.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="assemblyai-stt-3-7" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>AssemblyAI-STT-3.7</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">AssemblyAI · Briefed Nov 18, 2026</p>
+        <p class="at-what">AssemblyAI's new flagship speech-to-text family — STT-3.7 for recorded audio, STT-3.7-Realtime for live transcription, and STT-3.7-Realtime-Agent for voice agents; it launched on Product Hunt on November 18, 2026 (#1 in Product Hunt's own launch order that day).</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on assemblyai.com (read November 18, 2026): pay-as-you-go, pro-rated to the second, no minimums — STT-3.7 $0.21 per audio hour, Realtime $0.30/hr, Realtime-Agent $0.45/hr, with $50 in free credits and no card required per AssemblyAI's pricing guide. Add-ons are extra (keyterms and prompting $0.05/hr each, diarization $0.02/hr, Medical Mode $0.15/hr, per its pricing comparison).</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> AssemblyAI's new flagship speech-to-text family — STT-3.7 for recorded audio, STT-3.7-Realtime for live transcription, and STT-3.7-Realtime-Agent for voice agents; it launched on Product Hunt on November 18, 2026 (#1 in Product Hunt's own launch order that day).</p>
+            <p><strong>Who's behind it:</strong> AssemblyAI (assemblyai.com); verified below on AssemblyAI's own models and pricing pages (read November 18, 2026).</p>
+            <p><strong>What it does:</strong> Verified on assemblyai.com: the flagship pre-recorded model targets entities, rare words and domain terminology, with native code-switching across 32 languages, automatic language detection and a new diarization model; the Realtime variants add built-in keyterm prompting, context carryover and realtime speaker labels, with Voice Focus on the Agent variant. STT-3.7 replaces Universal-3.5 Pro (deprecated November 17, 2026) as the default pre-recorded model, and existing accounts that don't set `speech_models` move to it automatically from December 8, 2026, per AssemblyAI's pricing guide.</p>
+            <p><strong>What it costs:</strong> Verified on assemblyai.com (read November 18, 2026): pay-as-you-go, pro-rated to the second, no minimums — STT-3.7 $0.21 per audio hour, Realtime $0.30/hr, Realtime-Agent $0.45/hr, with $50 in free credits and no card required per AssemblyAI's pricing guide. Add-ons are extra (keyterms and prompting $0.05/hr each, diarization $0.02/hr, Medical Mode $0.15/hr, per its pricing comparison).</p>
+            <p><strong>The catch:</strong> Streaming is billed on session duration — the whole time the connection stays open, not the audio sent — so idle connections burn money, and the accuracy figures are AssemblyAI's own November 2026 benchmarks. It is cloud-only transcription: your audio leaves your machine.</p>
+            <p><strong>Fit:</strong> TRACK IT — at $0.21/hr it lands one cent above ElevenLabs Scribe v3's $0.20/hr (briefed November 11, 2026), which makes the pair the standing price-to-beat for transcription, and the $50 no-card credit is Freddie's cost shape. But he has no standing transcription bottleneck — his audio workflow generates speech rather than transcribing it — so there is nothing to change. Note the rate and the December 8 auto-migration if AssemblyAI is ever in the stack.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="qwen4-max" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Qwen4-Max</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Alibaba / Qwen · Briefed Nov 18, 2026</p>
+        <p class="at-what">Alibaba's new flagship model — the first full Qwen4 release, a closed-weight multimodal model for coding, agentic work and visual reasoning; Alibaba released it on November 16, 2026 after a Token Plan-only preview from November 11, and it launched on Product Hunt on November 18, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on Alibaba Cloud's own Model Studio pricing pages (read November 18, 2026): pay-as-you-go $1.50 per million input tokens / $4.50 output internationally (Singapore), $1.413 / $4.24 in the Global/Beijing scopes, cached input $0.075, with a 1 million-token free quota in Singapore valid 90 days. That is 25% below Qwen3.8-Max's $2 / $6. The Token Plan subscription alternative runs $6–$43/mo in opaque credits, with $3 / $5 new-user promo tiers through November 30, 2026.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Alibaba's new flagship model — the first full Qwen4 release, a closed-weight multimodal model for coding, agentic work and visual reasoning; Alibaba released it on November 16, 2026 after a Token Plan-only preview from November 11, and it launched on Product Hunt on November 18, 2026.</p>
+            <p><strong>Who's behind it:</strong> Alibaba Cloud / the Qwen team, in Alibaba's own release, "Alibaba Unveils Qwen4-Max," on alibabacloud.com (November 16, 2026). Benchmark figures below are Alibaba's own.</p>
+            <p><strong>What it does:</strong> Verified on alibabacloud.com: a mixture-of-experts model with 2.4 trillion total parameters activating 71 billion per token (25% fewer than Qwen3.8-Max at the same scale, per Alibaba), native vision (text, image and video input), and a 1 million-token context window, served as `qwen4-max` on QwenCloud / Model Studio via the API or the Token Plan, and also listed on OpenRouter at the same list price per launch coverage.</p>
+            <p><strong>What it costs:</strong> Verified on Alibaba Cloud's own Model Studio pricing pages (read November 18, 2026): pay-as-you-go $1.50 per million input tokens / $4.50 output internationally (Singapore), $1.413 / $4.24 in the Global/Beijing scopes, cached input $0.075, with a 1 million-token free quota in Singapore valid 90 days. That is 25% below Qwen3.8-Max's $2 / $6. The Token Plan subscription alternative runs $6–$43/mo in opaque credits, with $3 / $5 new-user promo tiers through November 30, 2026.</p>
+            <p><strong>The catch:</strong> Max itself is closed — no weights; Alibaba says smaller Qwen4 models will be open-sourced later, which is a promise, not a release — and the Token Plan's credit burn per call is not published ("dynamically determined," per Alibaba), so the subscription route is a meter you cannot price in advance. All launch benchmarks are Alibaba's own, and independent early testing in launch coverage was mixed.</p>
+            <p><strong>Fit:</strong> TRACK IT — $1.50 / $4.50 for a frontier-class 1M-context model is a real price anchor (Sol-tier work at a third of GPT-6.2 Sol's output price), and the 1M free tokens cost nothing to know about. But Freddie's agent work runs on Muse / Muse Wonder, he holds no Alibaba Cloud spend, and a closed Chinese-cloud flagship adds a data-terms question his current stack doesn't have. Signal only, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="muse-image" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Muse Image</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Meta · Briefed Nov 18, 2026</p>
+        <p class="at-what">Meta's image generation and editing model — one model that generates from text, edits a supplied image, and refines across turns.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on dev.meta.ai pricing (read Nov 18, 2026): flat $0.01 per successfully returned image, no minimums, same regardless of prompt length, reasoning strength or search use; failed/safety-filtered images not billed; 150 requests/min per team. Free for everyday use inside Meta AI / meta.ai, heavier consumer use behind Meta One.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Meta's image generation and editing model — one model that generates from text, edits a supplied image, and refines across turns.</p>
+            <p><strong>Who's behind it:</strong> Meta Superintelligence Labs (Meta); launched July 7, 2026 as its first in-house image model, opened to developers on the Meta Model API Aug 28, 2026.</p>
+            <p><strong>What it does:</strong> Verified on dev.meta.ai: model `muse-image-1.0` at `https://api.meta.ai/v1` via the conversational Responses API or OpenAI-compatible `/v1/images/generations` and `/v1/images/edits`; agentic — built-in web/image search and code execution for layouts before rendering, included in the price; output base64 or signed URL, ~1600px / ~2.5MP cap per independent checks. Independent Artificial Analysis debut Sep 4, 2026: #5 Text-to-Image and #4 Image Editing.</p>
+            <p><strong>What it costs:</strong> Verified on dev.meta.ai pricing (read Nov 18, 2026): flat $0.01 per successfully returned image, no minimums, same regardless of prompt length, reasoning strength or search use; failed/safety-filtered images not billed; 150 requests/min per team. Free for everyday use inside Meta AI / meta.ai, heavier consumer use behind Meta One.</p>
+            <p><strong>The catch:</strong> Closed and hosted-only — no weights, no guarantee of exact counts; independent checks note non-deterministic output (same prompt, different image/text run to run) and the ~1600px cap is below Freddie's 2560×1440 banner and character-sheet needs. Whether API images carry the consumer app's Content Seal watermark is not stated on Meta's pages per independent review.</p>
+            <p><strong>Fit:</strong> TRACK IT — the $0.01 flat rate makes a bounded arm-count test trivially cheap (the Nov 13 20-pose exercise would be $0.20; 100 tries = $1.00), and its planning/self-correction is exactly aimed at composition/count errors. But no generator has yet guaranteed exactly 8 arms (Freddie's Nov 13 research: no top model above 50% on requested object counts; his fal LoRA went 0/10 clean), so Muse Image does not replace the vector puppet / deterministic compositing for locked work, and the API needs a separate signup/key decision from Freddie. Worth a $1 test on his go; no adoption yet. **TEST RUN Nov 18, 2026 (Freddie's go, via fal at the same $0.01 — direct Meta route blocked, auth.meta.ai unreachable in Muse's browser + card required first): 20-pose Huxley rerun scored clean 2/20, count-correct 3/20 vs the Nov 13 baseline's 7/20 clean / 8/20 count-correct — Muse Image UNDERPERFORMS the incumbent generator on counting while beating it on identity/style consistency (20/20 recognizably Huxley, headphones on all). Verdict unchanged: TRACK IT, not adopted for locked character work. Full results: `~/workspace/muse-image-test-2026-11-18/RESULTS.md`.**</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="zoom-slides" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Zoom Slides</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Zoom · Briefed Nov 16, 2026</p>
+        <p class="at-what">Zoom's AI presentation maker — it turns a Zoom meeting, documents or a prompt into a polished, editable slide deck; Zoom launched it on Product Hunt on November 16, 2026 (#1 Product of the Day).</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on zoom.com (read November 16, 2026): Zoom's own product data prices Zoom Slides at $8.33 to $10.00 USD per user per month, billed annually, as the AI Productivity Suite add-on to Workplace Basic — that tier includes 1,000 AI credits per user per month, recurring monthly. Limited Slides features ride Workplace Basic at no extra cost.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Zoom's AI presentation maker — it turns a Zoom meeting, documents or a prompt into a polished, editable slide deck; Zoom launched it on Product Hunt on November 16, 2026 (#1 Product of the Day).</p>
+            <p><strong>Who's behind it:</strong> Zoom Communications (zoom.com); verified on Zoom's own Zoom Slides product page (read November 16, 2026).</p>
+            <p><strong>What it does:</strong> Verified on zoom.com: Slides integrates with Zoom Meetings so AI turns meeting transcripts and takeaways into decks, with built-in AI editing (rewrite, expand, condense, retone), branded templates, presenter tools, and .pptx import/export that preserves formatting for PowerPoint collaborators. The full AI generation features sit in the paid AI Productivity Suite tier (Slides, Sheets, Paper, Canvas); the Basic tier included with Workplace Basic gives unlimited manual creation and edits but only limited AI capabilities and no AI credits.</p>
+            <p><strong>What it costs:</strong> Verified on zoom.com (read November 16, 2026): Zoom's own product data prices Zoom Slides at $8.33 to $10.00 USD per user per month, billed annually, as the AI Productivity Suite add-on to Workplace Basic — that tier includes 1,000 AI credits per user per month, recurring monthly. Limited Slides features ride Workplace Basic at no extra cost.</p>
+            <p><strong>The catch:</strong> The AI work runs on a credit meter — 1,000 credits a month on the paid tier, none included on Basic — so the subscription price is not the usage price, and Zoom's own note says features are subject to usage limits, availability and credit balances. Decks you build live inside Zoom's suite.</p>
+            <p><strong>Fit:</strong> TRACK IT — meeting-to-deck is directly adjacent to Freddie's Zoom meeting work, and the limited tier costs nothing to watch. But he holds no Zoom AI Productivity Suite subscription, his deck work already runs through Muse / Google Slides, and $8.33–$10/mo per user for a credit-metered deck maker fails the debt-first cost rule today. Signal only, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="chatgpt-wallet" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>ChatGPT Wallet</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">OpenAI · Briefed Nov 16, 2026</p>
+        <p class="at-what">A payment wallet that lets OpenAI's always-on agents (dots) complete purchases for you without the agent or the merchant ever seeing your real card number; OpenAI launched it on November 13, 2026, and it launched on Product Hunt on November 16, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on openai.com: no separate Wallet fee is listed — but access is gated to ChatGPT Pro subscribers aged 18+ in the US with eligible US-issued cards, and OpenAI's own pricing lists Pro in three tiers at $100, $200 and $500 per month (per OpenAI's pricing and Pro-tiers pages, as checked in November 2026 coverage of those pages). The wallet itself is the free rider; the Pro subscription is the price of entry.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A payment wallet that lets OpenAI's always-on agents (dots) complete purchases for you without the agent or the merchant ever seeing your real card number; OpenAI launched it on November 13, 2026, and it launched on Product Hunt on November 16, 2026.</p>
+            <p><strong>Who's behind it:</strong> OpenAI, in its own post, "Introducing ChatGPT Wallet," on openai.com (November 13, 2026), built in partnership with American Express, Chase, Mastercard and Visa.</p>
+            <p><strong>What it does:</strong> Verified on openai.com: you add a card once, then before each purchase you review the items, total and selected card and approve with Face ID or a fingerprint scan; the payment network then issues a payment token — a substitute card number, security code and expiry — that is charged instead of your real details. Card rewards and dispute protections are preserved, and you transact directly with the merchant, which keeps pricing, fulfillment, returns and service. OpenAI says fully delegated buying under user-set spending limits, categories or time periods is expected over time — it is not the launch behavior. Alongside it, OpenAI published a Commerce Partner Playbook for businesses that want agent purchases to work on their sites.</p>
+            <p><strong>What it costs:</strong> Verified on openai.com: no separate Wallet fee is listed — but access is gated to ChatGPT Pro subscribers aged 18+ in the US with eligible US-issued cards, and OpenAI's own pricing lists Pro in three tiers at $100, $200 and $500 per month (per OpenAI's pricing and Pro-tiers pages, as checked in November 2026 coverage of those pages). The wallet itself is the free rider; the Pro subscription is the price of entry.</p>
+            <p><strong>The catch:</strong> The gate is the story — $100/mo minimum for a payment feature — and OpenAI itself warns some sites may unintentionally block Wallet purchases and risk systems may decline legitimate agent transactions. Delegated, no-approval buying is the stated direction of travel, which is exactly the always-allow shape Freddie's rules reject.</p>
+            <p><strong>Fit:</strong> TRACK IT — as a buyer Freddie gains nothing today: he holds no ChatGPT Pro plan and Muse already shops for him with per-purchase approval. The real signal is on the seller side — agent-led checkout is now a live channel his Etsy / Gumroad / Shopify storefronts will meet, which pairs with AgentWatch below. Watch both sides; buy nothing.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="agentwatch" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>AgentWatch</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">AgentWatch · Briefed Nov 16, 2026</p>
+        <p class="at-what">A read-only Shopify app that shows how much revenue AI shopping agents bring your store and whether the surfaces those agents rely on are healthy; it launched on Product Hunt in the November 16, 2026 launches.</p>
+        <p class="at-cost"><strong>Cost:</strong> Per the maker's launch post: the Free plan is free forever, and paid plans start at $9/month with a 14-day trial. No fuller price list was published on a maker page located in this check, so treat the $9 figure as their claim until a pricing page confirms it.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A read-only Shopify app that shows how much revenue AI shopping agents bring your store and whether the surfaces those agents rely on are healthy; it launched on Product Hunt in the November 16, 2026 launches.</p>
+            <p><strong>Who's behind it:</strong> A small agency team led by Ha Anh, per the maker's own Product Hunt launch post (read November 16, 2026), which says the team has worked with more than 6,000 Shopify merchants over 9 years — that merchant figure is the maker's claim. No separate maker pricing page was located in this check; the pricing below is the maker's own launch-post statement.</p>
+            <p><strong>What it does:</strong> Per the maker's launch post: it tracks AI-referred sessions, orders and sales by channel using Shopify's own AI-channel attribution (not referrer-string guesses), shows which products get the most search demand in Shopify's Global Catalog, and checks the analytics, catalog, cart and policy surfaces AI agents rely on — daily on the Free plan, hourly on paid plans. It opens an incident with evidence when AI traffic drops well below baseline (email alerts on paid plans) and sends a weekly digest. It never edits products or theme and never stores customer-level data, per the maker.</p>
+            <p><strong>What it costs:</strong> Per the maker's launch post: the Free plan is free forever, and paid plans start at $9/month with a 14-day trial. No fuller price list was published on a maker page located in this check, so treat the $9 figure as their claim until a pricing page confirms it.</p>
+            <p><strong>The catch:</strong> It only sees what Shopify attributes — AI-agent sales on Etsy, Gumroad or Amazon are invisible to it — and the incident detection, while rule-based rather than AI-guessed per the maker, still depends on Shopify's own channel attribution being right. A brand-new app from a small team, with pricing stated only in a launch post.</p>
+            <p><strong>Fit:</strong> TRACK IT — the shape is exactly Freddie's: read-only, no customer-level data, free forever tier, alerts when a channel breaks — the same posture as his own site monitor, pointed at agentic commerce just as ChatGPT Wallet (above) makes that channel real. But his proven sales run through Etsy and Gumroad, not a Shopify storefront with AI-agent traffic to measure, so there is nothing to install today. Revisit if a Shopify storefront ever carries real volume.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="tesseract" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Tesseract</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Eightcell Labs · Briefed Nov 16, 2026</p>
+        <p class="at-what">A free desktop AI agent that turns one sentence into finished work — a website, deck, video, logo or research spreadsheet — on your own computer; it launched on Product Hunt on November 14, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on tesseract.dev: there is no subscription. Bring your own AI (an existing Claude or ChatGPT plan) costs $0 on top and is never metered by Tesseract; with no plan, a free allowance refills on its own (larger when signed in), and prepaid top-ups for premium models start at $10, pay as you go.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A free desktop AI agent that turns one sentence into finished work — a website, deck, video, logo or research spreadsheet — on your own computer; it launched on Product Hunt on November 14, 2026.</p>
+            <p><strong>Who's behind it:</strong> Tesseract (tesseract.dev); the company is identified as Eightcell Labs, Inc. in pricing coverage of tesseract.dev. Verified below on Tesseract's own launch post and its own subscription explainer (read November 16, 2026).</p>
+            <p><strong>What it does:</strong> Verified on tesseract.dev: 33 guided "makers" cover websites (220+ templates), presentations (exportable to editable PowerPoint and PDF), video with voice/music/captions, logos and brand kits, fonts, deep-research reports and more. Bigger jobs plan first — nothing runs until you approve the plan — then work through files, browser, screen and keyboard, with every touched file landing in a reviewable, undoable diff, and any step that could remove or send something waits for your yes. It runs the coding agent you already have — Claude Code, Codex, Gemini CLI, OpenCode, Cursor Agent and others — one per conversation, signed in with your own account, and includes remote desktop across your machines and a Chrome companion extension.</p>
+            <p><strong>What it costs:</strong> Verified on tesseract.dev: there is no subscription. Bring your own AI (an existing Claude or ChatGPT plan) costs $0 on top and is never metered by Tesseract; with no plan, a free allowance refills on its own (larger when signed in), and prepaid top-ups for premium models start at $10, pay as you go.</p>
+            <p><strong>The catch:</strong> Your underlying plan's own limits still apply — "free" means Tesseract adds no meter, not that the AI is free — and the free allowance's size is not published as a hard number. The Chrome companion works in the browser where you are already signed in and fills passwords from its vault, which is broad access to hand a new desktop app, and files stay local but conversations are processed in the cloud, per Tesseract's own materials as reported in pricing coverage.</p>
+            <p><strong>Fit:</strong> TRACK IT — the cost shape is Freddie's rulebook verbatim: no subscription, bring-your-own plan, approval before anything runs, diffs you can undo. But Muse already is his agent across the same Claude Code / Codex seats, with his memory, schedules and connectors — Tesseract today is a second shell around the same engines, not a gap filled. Note it as the standing free fallback if a one-sentence finished-work app is ever wanted for a machine without Muse.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="puffin" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>Puffin</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">Puffin · Briefed Nov 16, 2026</p>
+        <p class="at-what">An identity layer for AI agents — each agent gets its own email address, calendar, and a seat in Slack, Discord and Telegram, so it can reach people directly instead of handing you drafts; it launched on Product Hunt on November 15, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Per the makers' launch post: plans start at $25 a month (their claim — no pricing page located to confirm tiers or what the entry plan includes). A launch offer of 25% off for the first 100 builders was posted with the launch.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An identity layer for AI agents — each agent gets its own email address, calendar, and a seat in Slack, Discord and Telegram, so it can reach people directly instead of handing you drafts; it launched on Product Hunt on November 15, 2026.</p>
+            <p><strong>Who's behind it:</strong> Puffin, built by Divyanshu and Akarsh Kushwaha, per the makers' own Product Hunt launch post (read November 16, 2026); the makers state they are part of NVIDIA Inception, AWS Activate and Claude for Startups. No separate maker pricing page was located in this check; pricing below is the makers' launch-post statement.</p>
+            <p><strong>What it does:</strong> Per the makers' launch post: the agent gets a real email address and can work with Gmail and Google Calendar, sits in Slack, Discord or Telegram and answers people there using Puffin's built-in AI or your own agent, and — in its most-used flow — takes coding instructions from your phone in chat, running Claude Code or Codex on your own machine with an allow/reject prompt before every edit or command. Guardrails include approval before anything real goes out (dashboard or one click from email), a hold on messages that look like prompt injection, attachment virus scanning, sender rules and daily limits. Plugins for Claude Code, Codex, Hermes and OpenClaw are open source; there is also a hosted MCP server with 44 tools plus Python and JavaScript SDKs.</p>
+            <p><strong>What it costs:</strong> Per the makers' launch post: plans start at $25 a month (their claim — no pricing page located to confirm tiers or what the entry plan includes). A launch offer of 25% off for the first 100 builders was posted with the launch.</p>
+            <p><strong>The catch:</strong> The product is a broker for your agent's identity and inbox — one new company holding the address people will trust as your agent, with Gmail and Calendar access behind it — and the same launch post that promises approve-every-message also offers full autopilot as the alternative setting. That is the credential-and-identity concentration Freddie's least-privilege rule rejects, at $25/mo.</p>
+            <p><strong>Fit:</strong> SKIP IT — Freddie's agent already has a dedicated mailbox (Muse Mail), messaging routes, and per-action approval inside Muse, so Puffin duplicates a working stack while adding a paid identity broker between him and his own agent's correspondents. $25/mo fails the debt-first cost rule and the least-privilege rule at once. Nothing to revisit unless the Muse Mail route itself ever breaks.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="gemini-4-hydrogen" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Gemini 4 Hydrogen</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Google DeepMind · Briefed Nov 13, 2026</p>
+        <p class="at-what">Google's fast Gemini 4 model for everyday coding and agentic work — the execution tier under the frontier Carbon and Argon models; Google introduced it on November 12, 2026, and it launched on Product Hunt on November 13, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on blog.google (read November 13, 2026): priced flat across the entire 1 million-token context at $1.50 per million input tokens and $7.50 per million output tokens on the paid API. Consumer access rides the Gemini app, Search and AI Studio tiers you already have; Antigravity access requires a paid Google AI Pro or Ultra plan.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Google's fast Gemini 4 model for everyday coding and agentic work — the execution tier under the frontier Carbon and Argon models; Google introduced it on November 12, 2026, and it launched on Product Hunt on November 13, 2026.</p>
+            <p><strong>Who's behind it:</strong> Google DeepMind; announced in Google's own post, "Introducing Gemini 4 Hydrogen for Agentic Workflows," on blog.google (November 12, 2026, updated November 13), signed by Koray Kavukcuoglu, SVP, Google DeepMind. All benchmark figures below are Google's own.</p>
+            <p><strong>What it does:</strong> Verified on blog.google: 1 million-token input with up to 1 million output tokens, four thinking levels (low, medium, high as default, and a new xhigh), and a claimed 2.5x speed gain over Gemini 3.8 Flash at the high setting with Terminal-Bench 4.1 scores of 57% vs 18.2% (Google's figures). It scores 51 on the Artificial Analysis Intelligence Index at high (54 at xhigh) vs Argon's 50, per Google. The new Orchestrator in Google Antigravity switches between Carbon and Hydrogen inside one session — near-Carbon success on Terminal-Bench 4.0 with 24% less quota and 19% faster completion, per Google. Rolling out globally in Google AI Studio (all tiers), the Gemini API, Gemini for business, the Gemini app, Google Search, and Antigravity for paid Google AI Pro and Ultra subscribers.</p>
+            <p><strong>What it costs:</strong> Verified on blog.google (read November 13, 2026): priced flat across the entire 1 million-token context at $1.50 per million input tokens and $7.50 per million output tokens on the paid API. Consumer access rides the Gemini app, Search and AI Studio tiers you already have; Antigravity access requires a paid Google AI Pro or Ultra plan.</p>
+            <p><strong>The catch:</strong> Every performance figure is Google's own, and the four thinking levels mean per-task cost scales with the reasoning depth you select — the flat token rate is not a flat job price. It is also a rented meter: closed weights, Google surfaces only.</p>
+            <p><strong>Fit:</strong> TRACK IT — the pattern Freddie's stack already bets on (a fast execution model paired under a frontier coordinator, at a published flat rate) and a useful price anchor for agentic coding work. But his agent work runs on Muse / Muse Wonder, he holds no Gemini API spend and no Google AI Pro plan (his YouTube Premium is a hard keep and does not include it), so there is nothing to buy. Signal only, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="youart-desktop-app" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>YouArt Desktop App</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">YouArt · Briefed Nov 13, 2026</p>
+        <p class="at-what">A desktop AI creative teammate for video production — an agent that works with your local files and operates professional creative apps directly; YouArt launched it on Product Hunt on November 12, 2026 (#2 Product of the Day) with a company launch release on November 13, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on youart.ai/pricing (read November 13, 2026): free to start with trial credits and a Free Mode on selected image models. Basic is $11/mo billed monthly or $7.99/mo billed annually, with 1,000 credits/mo (about 200 images or about 332 seconds of video), no watermark; Pro $36/mo or $23.99/mo annually with 3,300 credits; Max $198/mo or $119.99/mo annually with 18,000 credits; Team $435/mo or $263.99/mo annually with 36,300 credits. Extra credits are $5 for 500, for subscribers.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A desktop AI creative teammate for video production — an agent that works with your local files and operates professional creative apps directly; YouArt launched it on Product Hunt on November 12, 2026 (#2 Product of the Day) with a company launch release on November 13, 2026.</p>
+            <p><strong>Who's behind it:</strong> YouArt (youart.ai), backed by Y Combinator, per YouArt's own November 13, 2026 launch release.</p>
+            <p><strong>What it does:</strong> Per YouArt's Product Hunt listing and launch release: the Mac and PC app pulls local files and context from Slack, Gmail and GitHub onto one canvas, and with computer use operates After Effects, CapCut and Blender directly, turning team feedback into edited video. You can bring your own API keys for third-party providers including Higgsfield, fal and BytePlus, and its smart routing compares provider prices and selects the lowest-priced option for the chosen model (YouArt's description). Its cited Seedance 2.5 rate — $0.208 per second at 720p pay-as-you-go — is YouArt's own pricing comparison, not independently verified.</p>
+            <p><strong>What it costs:</strong> Verified on youart.ai/pricing (read November 13, 2026): free to start with trial credits and a Free Mode on selected image models. Basic is $11/mo billed monthly or $7.99/mo billed annually, with 1,000 credits/mo (about 200 images or about 332 seconds of video), no watermark; Pro $36/mo or $23.99/mo annually with 3,300 credits; Max $198/mo or $119.99/mo annually with 18,000 credits; Team $435/mo or $263.99/mo annually with 36,300 credits. Extra credits are $5 for 500, for subscribers.</p>
+            <p><strong>The catch:</strong> Video work burns a credit meter whose per-model burn rate varies, so the subscription price is not the job price — and a desktop agent with local-file access plus Slack, Gmail and GitHub context is broad access to grant a brand-new app. The lowest-price routing claim is the maker's own.</p>
+            <p><strong>Fit:</strong> TRACK IT — agent-first video editing is directly adjacent to Freddie's Honed video work, and bring-your-own-key plus price routing is the right cost shape. But all video series are held since November 2, 2026, his artwork/video pipeline is locked, and $11/mo and up fails the debt-first cost rule with no active series to serve. Revisit only if a series reopens.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="spacefast" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Spacefast</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Automattic · Briefed Nov 13, 2026</p>
+        <p class="at-what">A publishing host for things your AI builds — it is explicitly not an AI builder; your existing agent gets the infrastructure to put a site, app, deck or game live. Automattic launched it publicly on November 9, 2026, and it launched on Product Hunt on November 12, 2026 (#5 Product of the Day).</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on spacefast.com (read November 13, 2026): Personal $0, no card required — $1 of usage included monthly, 20 Spaces and 20 custom domains, commercial use allowed. Go $5/mo ($5 usage included, 100 Spaces/domains, hourly database backups); Pro $15/mo ($15 usage included, 500 Spaces/domains, free up to 5 members then $15/mo each); Enterprise custom. No overage rate beyond the included usage is stated in the pricing section.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> A publishing host for things your AI builds — it is explicitly not an AI builder; your existing agent gets the infrastructure to put a site, app, deck or game live. Automattic launched it publicly on November 9, 2026, and it launched on Product Hunt on November 12, 2026 (#5 Product of the Day).</p>
+            <p><strong>Who's behind it:</strong> Automattic, the company behind WordPress.com, WooCommerce, Pocket Casts, Tumblr, Day One and Gravatar — verified on spacefast.com.</p>
+            <p><strong>What it does:</strong> Verified on spacefast.com: tell Claude, ChatGPT, Codex, Cursor or another AI to publish via its MCP/API, or publish yourself by drag-and-drop, Git or CLI, and you get a live link in the chat. Each Space is private by default with share links and passwords, saves a version of every change with rollback, and comes with a built-in database, file uploads, stats and custom domains. Supported publishing includes static HTML and Next.js, Astro, TanStack Start and PHP projects, with runtime limits that depend on the path.</p>
+            <p><strong>What it costs:</strong> Verified on spacefast.com (read November 13, 2026): Personal $0, no card required — $1 of usage included monthly, 20 Spaces and 20 custom domains, commercial use allowed. Go $5/mo ($5 usage included, 100 Spaces/domains, hourly database backups); Pro $15/mo ($15 usage included, 500 Spaces/domains, free up to 5 members then $15/mo each); Enterprise custom. No overage rate beyond the included usage is stated in the pricing section.</p>
+            <p><strong>The catch:</strong> Unclaimed Spaces expire about 33 hours and 20 minutes after creation or the last file-changing publish, capped at 30 days — claim one or lose the link. Leaving is clean for static sites (download the files), but apps built on Spacefast runtimes need code changes to move, and app data exports separately, per its own FAQ.</p>
+            <p><strong>Fit:</strong> TRACK IT — a genuinely Freddie-shaped free tier ($0, no card, private by default, commercial use, bring your own agent and pay only for hosting), and a plausible fallback host for one-off AI-built tools. But he already publishes at $0 through Muse artifacts and his own Cloudflare Pages / Workers Paid ($5/mo) stack, so Spacefast fills no gap today. Note it; no signup.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="claude-meetings" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Claude Meetings</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Anthropic · Briefed Nov 13, 2026</p>
+        <p class="at-what">Claude joining a video call as a visible participant that takes notes and builds documents during the call; Anthropic moved it from announced to rolling out in beta on November 12, 2026, and it launched on Product Hunt on November 13, 2026 (#3 Product of the Day).</p>
+        <p class="at-cost"><strong>Cost:</strong> Verified on claude.com (article and pricing page, read November 13, 2026): Team and Enterprise plans only — Pro, Max and Free do not get it. During the beta, notes, transcripts and in-call answers are free on those plans (an answer using a connected tool counts toward plan usage), and docs, whiteboards and other artifacts made in a call are free through February 10, 2027; no post-beta or post-February price is published. Enterprise is $20 per seat per month plus usage billed at API rates, per Anthropic's pricing FAQ.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Claude joining a video call as a visible participant that takes notes and builds documents during the call; Anthropic moved it from announced to rolling out in beta on November 12, 2026, and it launched on Product Hunt on November 13, 2026 (#3 Product of the Day).</p>
+            <p><strong>Who's behind it:</strong> Anthropic, in its own post, "Introducing Claude Meetings, now in beta," on claude.com (November 12, 2026).</p>
+            <p><strong>What it does:</strong> Verified on claude.com: Claude joins Google Meet (other platforms coming soon), answers questions out loud or in chat (written by default), uses a person's connected tools only with that person's permission, and builds docs and whiteboards live with the team while they talk. It writes the notes and action items, and after the call everything sits on that meeting's page in claude.ai. It saves a transcript, summary and screen descriptions — not audio — and by default stays out of calls with outside guests and leaves if one joins. Transcript export to tools such as Gong, Granola, Fireflies.ai, Otter and Plaud is described as coming soon through partners.</p>
+            <p><strong>What it costs:</strong> Verified on claude.com (article and pricing page, read November 13, 2026): Team and Enterprise plans only — Pro, Max and Free do not get it. During the beta, notes, transcripts and in-call answers are free on those plans (an answer using a connected tool counts toward plan usage), and docs, whiteboards and other artifacts made in a call are free through February 10, 2027; no post-beta or post-February price is published. Enterprise is $20 per seat per month plus usage billed at API rates, per Anthropic's pricing FAQ.</p>
+            <p><strong>The catch:</strong> The gate is the story: a solo operator on no Claude consumer plan cannot use it at any price short of a Team plan, and the artifact pricing cliff on February 10, 2027 is unpriced. A first permission for a connected tool applies going forward, per Anthropic, and the beta excludes organizations on zero data retention, HIPAA-ready configuration or customer-managed encryption keys.</p>
+            <p><strong>Fit:</strong> TRACK IT — this closes the loop on the November 11 brief (announced → beta), and live note-taking plus in-call document building is a real capability. But Freddie is a solo operator, holds no Claude Team plan, and his meetings run through Zoom, not Google Meet — a team seat bought for this fails the cost rule. Signal only, no spend.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="adobe-ai-assistant-adobe-creative-agent-expansion" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Adobe AI Assistant / Adobe Creative Agent expansion</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">Adobe · Briefed Nov 13, 2026</p>
+        <p class="at-what">Conversational AI assistants inside Creative Cloud apps, powered by Adobe's Creative Agent, that carry out multi-step creative tasks in your own words; Adobe announced the expansion at Adobe MAX on November 10, 2026, and Adobe AI Assistant launched on Product Hunt on November 12, 2026.</p>
+        <p class="at-cost"><strong>Cost:</strong> No separate AI Assistant price is listed in Adobe's release — it rides a Creative Cloud subscription. Adobe's commerce page lists Creative Cloud Pro starting at US$69.99/mo (20+ apps, 100 GB storage, 4,000 monthly generative credits for premium AI video and audio features), checked November 13, 2026.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> Conversational AI assistants inside Creative Cloud apps, powered by Adobe's Creative Agent, that carry out multi-step creative tasks in your own words; Adobe announced the expansion at Adobe MAX on November 10, 2026, and Adobe AI Assistant launched on Product Hunt on November 12, 2026.</p>
+            <p><strong>Who's behind it:</strong> Adobe (Nasdaq: ADBE); announced in Adobe's own release, "Adobe Powers a New Era of Creativity," on news.adobe.com (November 10, 2026).</p>
+            <p><strong>What it does:</strong> Verified on news.adobe.com: Creative Agent powers expanded AI Assistants (beta) in Illustrator, Premiere, InDesign, After Effects and Frame.io, and the Firefly AI Assistant (beta) gains customization, Plan Mode and Model Selector. Adobe is also previewing local MCP integrations that would let a creative professional direct a third-party agent they already use to edit native project files in Photoshop, Illustrator, Premiere and After Effects with layers, sequences and compositions staying editable — that MCP route is a preview, not a shipped feature (launch coverage puts its private beta in early 2027).</p>
+            <p><strong>What it costs:</strong> No separate AI Assistant price is listed in Adobe's release — it rides a Creative Cloud subscription. Adobe's commerce page lists Creative Cloud Pro starting at US$69.99/mo (20+ apps, 100 GB storage, 4,000 monthly generative credits for premium AI video and audio features), checked November 13, 2026.</p>
+            <p><strong>The catch:</strong> The headline assistants are beta, and the part most relevant to Freddie's agent workflow — outside agents editing native Adobe files over MCP — does not exist yet beyond a preview. The entry price is a full Creative Cloud subscription, not an assistant add-on.</p>
+            <p><strong>Fit:</strong> TRACK IT — the MCP preview matters as a signal: the major creative suite is opening native files to third-party agents, which is the direction Freddie's whole stack runs. But he holds no Creative Cloud subscription, his artwork pipeline is the locked luminous storybook route through Muse / Meta AI and Canva, and $69.99/mo fails the debt-first cost rule outright. Watch the MCP beta; buy nothing.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="daily-stock-analysis" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>daily_stock_analysis</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">ZhuLinsen · Briefed Nov 14, 2026</p>
+        <p class="at-what">An open-source, LLM-powered daily stock analysis system that produces a buy/watch/sell "decision dashboard" per watchlist stock and pushes it on a schedule.</p>
+        <p class="at-cost"><strong>Cost:</strong> Code is free (MIT). Running it is not quite $0: it needs at least one LLM API key (Gemini/Claude/OpenAI-compatible/DeepSeek/Ollama, etc.), and the README's recommended path pushes sponsored aggregators Modelflare and AIHubMix, plus paid-leaning SerpApi news and TickPlus/Tushare/Longbridge data. Free defaults (AkShare, Baostock, YFinance) are stated in the README to be rate-limited/unstable.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An open-source, LLM-powered daily stock analysis system that produces a buy/watch/sell "decision dashboard" per watchlist stock and pushes it on a schedule.</p>
+            <p><strong>Who's behind it:</strong> ZhuLinsen on GitHub (514 of 1,087 commits; MIT, created 2026-01-10, v3.34.0 on 2026-11-09); 72,283 stars / 57,490 forks — the fork count is inflated by design, since forking is the recommended install route.</p>
+            <p><strong>What it does:</strong> Aggregates multi-market data (A/HK/US/JP/KR/TW + ETF), news search, technicals and fundamentals, then an LLM writes score, trend, entry/exit points, risk alerts, catalysts and a checklist; runs free via GitHub Actions (weekdays 18:00 Beijing), or locally/Docker, with a Web/desktop workbench, backtesting, holdings, and a 15-strategy agent Q&amp;A; pushes to email/Telegram/Discord/Slack/WeChat/Feishu.</p>
+            <p><strong>What it costs:</strong> Code is free (MIT). Running it is not quite $0: it needs at least one LLM API key (Gemini/Claude/OpenAI-compatible/DeepSeek/Ollama, etc.), and the README's recommended path pushes sponsored aggregators Modelflare and AIHubMix, plus paid-leaning SerpApi news and TickPlus/Tushare/Longbridge data. Free defaults (AkShare, Baostock, YFinance) are stated in the README to be rate-limited/unstable.</p>
+            <p><strong>The catch:</strong> Credential concentration in a fork — LLM, news, data and email/webhook secrets all sit as GitHub Secrets in a fast-moving, A-share-first project (Chinese docs/data sources first; US sentiment is an optional add-on, and YFinance is one of its US fallbacks). Its scored buy/sell calls are unproven and conflict with Freddie's graded-sourcing rule.</p>
+            <p><strong>Fit:</strong> TRACK IT — zero-cost scheduling and MIT code pass the cost rule, and it even supports Finnhub as an optional US source, but it recreates the weekday watchlist-close report Freddie cancelled on 2026-10-05 to tailor later, US markets are not its home turf, and no adoption without a bounded side-by-side test on TSM/NVDA/AVGO against his StockAnalysis + Finnhub stack, using his own Gemini/Claude key only — never the sponsored aggregators.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="openseo" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>OpenSEO</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">every-app/open-seo · Briefed Nov 14, 2026</p>
+        <p class="at-what">An open-source, self-hostable alternative to Semrush/Ahrefs for keyword research, rank tracking, backlinks, competitor insights, site audits and AI-visibility tracking.</p>
+        <p class="at-cost"><strong>Cost:</strong> Software is free (MIT) when self-hosted, but a DataForSEO API key is mandatory for SEO data — DataForSEO is pay-as-you-go with a $50 minimum top-up (balance never expires; $1 trial credit for new accounts). Hosted OpenSEO is $10/mo Base including $10 of usage (Pro $30, Agency $100), and the hosted service marks DataForSEO requests up 28% — per-action costs are small (~$0.05 per keyword search, up to $0.015 per rank check, ~$0.08 per domain backlink overview on the hosted estimator).</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An open-source, self-hostable alternative to Semrush/Ahrefs for keyword research, rank tracking, backlinks, competitor insights, site audits and AI-visibility tracking.</p>
+            <p><strong>Who's behind it:</strong> EveryApp (GitHub org created Oct 2025; "the open source personal software platform"); repo created 2026-02-27, MIT, 27,735 stars / 3,884 forks, 1,102 commits but heavily two-person (bensenescu 778, carterwsmith 271 contributions) and still pre-1.0 at v0.1.27 (2026-11-11).</p>
+            <p><strong>What it does:</strong> A web app plus an MCP server and pre-built agent skills so Claude/ChatGPT/Codex/Cursor can query SEO data directly; Google Search Console data is free/included. Self-hosts via Docker or a one-command Cloudflare deploy (works on the free plan); hosted version at openseo.so.</p>
+            <p><strong>What it costs:</strong> Software is free (MIT) when self-hosted, but a DataForSEO API key is mandatory for SEO data — DataForSEO is pay-as-you-go with a $50 minimum top-up (balance never expires; $1 trial credit for new accounts). Hosted OpenSEO is $10/mo Base including $10 of usage (Pro $30, Agency $100), and the hosted service marks DataForSEO requests up 28% — per-action costs are small (~$0.05 per keyword search, up to $0.015 per rank check, ~$0.08 per domain backlink overview on the hosted estimator).</p>
+            <p><strong>The catch:</strong> The $50 DataForSEO top-up is new paid SEO spend, which sits against Freddie's Ahrefs HOLD / $0-baseline rule (Keyword Planner + Search Console + Trends). Project is &lt;9 months old, v0.1.x, two-maintainer bus factor, 123 open issues. Site-audit features overlap his own Creator Site Scan / site-monitor; the genuinely new pieces are keyword, backlink and rank data.</p>
+            <p><strong>Fit:</strong> TRACK IT — unusually good structural fit (MIT, self-host on his own Cloudflare, BYO revocable DataForSEO key instead of a credential broker, MCP/agent-native, no subscription when self-hosted), but adoption means a $50 top-up he has not approved, on a pre-1.0 project, while his current SEO volume is covered by the $0 baseline. Revisit if keyword/backlink work outgrows the free tools or for a bounded trial-credit test on honedsignal.com.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="postiz" data-verdict="SKIP">
+        <div class="at-card-head">
+          <h2>Postiz</h2>
+          <span class="at-chip at-chip-skip">SKIP IT</span>
+        </div>
+        <p class="at-meta">gitroomhq/postiz-app · Briefed Nov 14, 2026</p>
+        <p class="at-what">An open-source social media scheduling platform — schedule, cross-post and analyze across X, Bluesky, Instagram, Threads, Facebook, TikTok, YouTube, LinkedIn, Reddit, Pinterest, Mastodon and more, with a public API, MCP server and CLI built for AI agents.</p>
+        <p class="at-cost"><strong>Cost:</strong> Cloud: Standard $29/mo (5 channels, unlimited posts; $23/mo annual), Team $39, Pro $49, Ultimate $99, 7-day free trial. Self-hosted software is free forever under AGPL, but you pay for a VPS (typically ~$6/mo class) and your own maintenance.</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An open-source social media scheduling platform — schedule, cross-post and analyze across X, Bluesky, Instagram, Threads, Facebook, TikTok, YouTube, LinkedIn, Reddit, Pinterest, Mastodon and more, with a public API, MCP server and CLI built for AI agents.</p>
+            <p><strong>Who's behind it:</strong> Gitroom / Postiz (postiz.com); repo created 2023-07-08, AGPL-3.0, 41,621 stars / 7,947 forks, 3,640 commits, v2.26.0 on 2026-11-13; lead maintainer nevo-david (1,775 contributions). Previously assessed by Muse on 2026-10-12 in the Buffer-alternatives scan as the "DIY mirage" — this brief updates that assessment, it does not reverse it.</p>
+            <p><strong>What it does:</strong> Calendar scheduling, cross-posting, analytics, RSS auto-post, repeated posts and AI features; automation via Make.com integration, n8n node, public API/webhooks, and MCP/CLI agent surfaces (MCP included on every cloud plan). Two routes: Postiz Cloud (their pre-approved platform apps, connect in minutes) or self-hosted open-source (Docker; Postgres + Redis + Temporal stack).</p>
+            <p><strong>What it costs:</strong> Cloud: Standard $29/mo (5 channels, unlimited posts; $23/mo annual), Team $39, Pro $49, Ultimate $99, 7-day free trial. Self-hosted software is free forever under AGPL, but you pay for a VPS (typically ~$6/mo class) and your own maintenance.</p>
+            <p><strong>The catch:</strong> Self-hosting is not a free Buffer: the README's own comparison table says you must create your own developer app on each platform and pass their approvals (Meta/YouTube/TikTok can take weeks), and X posting then runs on your own X API access — the per-post meter Freddie's Oct 2026 audit already rejected. Cloud avoids that by holding OAuth for all your channels in one service, at $29/mo for what Buffer's free tier already covers (3 channels, 10 queued posts/channel).</p>
+            <p><strong>Fit:</strong> SKIP IT — it duplicates routes Freddie already has: direct Muse connectors for Facebook/Instagram/Threads, the free Fedica manual dashboard for X/Bluesky, and the Make→Buffer chain (stopped since 2026-10-31, awaiting Freddie's own fix — a repair, not a $348/yr replacement). Fails the cost rule on cloud and the least-of-Freddie's-time rule self-hosted. Revisit only if Buffer's free tier dies or the announcement chain needs a full agent-native rebuild, where its MCP/API would make it the strongest fallback.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="ghost" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>Ghost</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">TryGhost/Ghost · Briefed Nov 14, 2026</p>
+        <p class="at-what">An open-source publishing platform that combines a website/CMS, email newsletters, and free + paid memberships/subscriptions in one system — the independent alternative to Substack/WordPress.</p>
+        <p class="at-cost"><strong>Cost:</strong> Ghost(Pro): Starter $18/mo billed yearly (1,000 members, 1 newsletter, no paid subscriptions), Publisher $29/mo (custom themes, paid subscriptions, 3 newsletters), Business $199/mo (10,000 members) — unlimited email sends included, prices from ghost.org/pricing checked 2026-11-14. Self-hosted software is free, but needs a persistent Ubuntu server (Node + MySQL 8; ~$6–12/mo VPS class) and, for newsletter sending, a Mailgun account — Mailgun is Ghost's only supported bulk-email provider (free tier ~100 emails/day; paid from ~$15/mo, per secondary hosting guides).</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> An open-source publishing platform that combines a website/CMS, email newsletters, and free + paid memberships/subscriptions in one system — the independent alternative to Substack/WordPress.</p>
+            <p><strong>Who's behind it:</strong> The Ghost Foundation, a non-profit; Ghost(Pro) revenue funds the project itself (per its README). The most mature repo in the Nov 14 batch by far: created 2013-05-04, MIT, 55,823 stars / 12,136 forks, 56,182 commits, 1,018 releases, at v6.77.0 on 2026-11-11.</p>
+            <p><strong>What it does:</strong> Headless Node.js CMS with editor, themes and APIs; built-in member signup/tagging, paid tiers via Stripe with 0% Ghost transaction fees, built-in email newsletters, native analytics, SEO/RSS and social-web distribution. Two routes: Ghost(Pro) managed hosting, or self-host via Ghost-CLI/Docker on your own server.</p>
+            <p><strong>What it costs:</strong> Ghost(Pro): Starter $18/mo billed yearly (1,000 members, 1 newsletter, no paid subscriptions), Publisher $29/mo (custom themes, paid subscriptions, 3 newsletters), Business $199/mo (10,000 members) — unlimited email sends included, prices from ghost.org/pricing checked 2026-11-14. Self-hosted software is free, but needs a persistent Ubuntu server (Node + MySQL 8; ~$6–12/mo VPS class) and, for newsletter sending, a Mailgun account — Mailgun is Ghost's only supported bulk-email provider (free tier ~100 emails/day; paid from ~$15/mo, per secondary hosting guides).</p>
+            <p><strong>The catch:</strong> It cannot run on Freddie's current stack — Cloudflare Pages/Workers host static sites, Ghost needs a stateful server he would have to rent and maintain. Adopting it means migrating a hand-built static site into a CMS and replacing/duplicating MailerLite, to serve a general newsletter Freddie explicitly deferred on 2026-11-08 ("not producing enough content regularly") and parked with a do-not-nudge note.</p>
+            <p><strong>Fit:</strong> TRACK IT — exemplary on the standing rules (MIT, non-profit, own your audience and data, no platform cut, no credential broker), but there is no job for it today: the newsletter is deferred, MailerLite free already covers the one live funnel, and his sites are static by design. Natural revisit trigger: if the general newsletter un-parks or a paid Honed Reports publication is seriously considered, Ghost is the first candidate to evaluate against MailerLite/Sender.</p>
+          </div>
+        </details>
+      </article>
+      <article class="at-card" id="rea" data-verdict="TRACK">
+        <div class="at-card-head">
+          <h2>REA</h2>
+          <span class="at-chip at-chip-track">TRACK IT</span>
+        </div>
+        <p class="at-meta">morluto/rea · Briefed Nov 14, 2026</p>
+        <p class="at-what">REA ("Reverse Engineer Anything") — an MCP server + CLI that lets an AI agent reverse-engineer software it doesn't have source for: native binaries, Electron/JavaScript apps, .NET assemblies, Android APKs, websites, network captures, firmware and more, returning findings with evidence.</p>
+        <p class="at-cost"><strong>Cost:</strong> The software is free (MIT, npm). Real costs sit around it: your agent's model usage, and commercial analysis engines are NOT included — IDA Pro/Hopper/JEB must be legally licensed by you (Ghidra is the free engine option).</p>
+        <details class="at-details">
+          <summary>Read the full brief</summary>
+          <div class="at-full">
+            <p><strong>What it is:</strong> REA ("Reverse Engineer Anything") — an MCP server + CLI that lets an AI agent reverse-engineer software it doesn't have source for: native binaries, Electron/JavaScript apps, .NET assemblies, Android APKs, websites, network captures, firmware and more, returning findings with evidence.</p>
+            <p><strong>Who's behind it:</strong> morluto, a solo maintainer (4,389 of 7,589 commits; bio only "member of technically staff"), repo created 2026-04-14, MIT, rea-agents 6.9.0 on npm (package created 2026-07-12, 35 versions). Displayed adoption is extraordinary for a 7-month-old project — 460,198 stars and 112,776 forks on GitHub, ~1.94M npm downloads in the last month — a pace with no real precedent; treat the popularity as displayed-but-unverified, not as proof of quality or safety.</p>
+            <p><strong>What it does:</strong> `npx rea-agents setup` registers REA's MCP server and installs matching workflow instructions into your agent (Claude Code, Codex, Cursor, Gemini CLI, others), with config backups. Static JS/.NET inspection needs no extra engine; deep native analysis drives your existing Hopper, Ghidra, IDA or Kuna install (setup can install Hopper with approval). Analysis runs locally; runtime capture runs/interacts with the target using your user permissions. It can also record a web app session and export it as an RL/eval environment.</p>
+            <p><strong>What it costs:</strong> The software is free (MIT, npm). Real costs sit around it: your agent's model usage, and commercial analysis engines are NOT included — IDA Pro/Hopper/JEB must be legally licensed by you (Ghidra is the free engine option).</p>
+            <p><strong>The catch:</strong> Least-privilege problem in both directions: it writes an MCP server + instructions into your agent's configuration and executes target code under your permissions, installed via the `npx @latest` pattern from a 7-month-old, one-maintainer project whose headline metrics are implausible on their face. It is also explicitly dual-use — the project's own disclaimer limits it to software you own or are authorized to examine.</p>
+            <p><strong>Fit:</strong> TRACK IT (revised) — the first brief said SKIP IT on "no reverse-engineering workload"; Freddie corrected that the same night: he IS building his own image renderer (the Rio Puppet Library v1, built Nov 14, 2026 — deterministic SVG-first renderer, Rio as data with exactly 8 arm objects, count asserted in code). REA's headline use case is exactly a builder's one — inspect how an existing app implements a feature, with evidence, then build your own version — so a plausible bounded job exists: studying a closed app's rendering/export/rig behavior when the renderer build hits a feature question. Limits stay on record: the renderer core is original code (nothing to reverse-engineer), the reference renderers worth studying (Rive, Blender, Inkscape, Cairo) are open source where reading source beats RE pseudocode, and cloud image generators can't be inspected locally. Still no install now: high permission surface and unverified hype metrics mean any future use is an isolated install for a specific question, never a standing `npx @latest` addition to the main agent setup.</p>
+          </div>
+        </details>
+      </article>
       <article class="at-card" id="muse" data-verdict="USE">
         <div class="at-card-head">
           <h2>Muse</h2>
