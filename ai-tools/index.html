@@ -44,7 +44,10 @@
     .at-chip-use { color: #2EC4B6; }
     .at-chip-track { color: #F0B429; }
     .at-chip-skip { color: #e5484d; }
-    .at-meta { color: #9AA3B2; font-size: .85rem; margin: .55rem 0 1rem; }
+    .at-meta { color: #9AA3B2; font-size: .85rem; margin: .55rem 0 .35rem; }
+    .at-site { margin: 0 0 1rem; font-size: .9rem; }
+    .at-site a { color: #FF6B35; font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+    .at-site a:hover, .at-site a:focus-visible { text-decoration: underline; }
     .at-what { color: #c8cfdb; line-height: 1.65; margin: 0 0 1rem; }
     .at-cost { color: #c8cfdb; line-height: 1.65; margin: 0 0 1rem; }
     .at-details summary { color: #FF6B35; font-weight: 800; font-size: .95rem; cursor: pointer; min-height: 44px; display: flex; align-items: center; }
@@ -71,6 +74,7 @@ html[data-theme="light"] .at-chip-use { color: #0D7A6E; }
 html[data-theme="light"] .at-chip-track { color: #9A6B00; }
 html[data-theme="light"] .at-chip-skip { color: #BD3941; }
 html[data-theme="light"] .at-meta { color: #5C6572; }
+html[data-theme="light"] .at-site a { color: #A34E00; }
 html[data-theme="light"] .at-what { color: #454A55; }
 html[data-theme="light"] .at-cost { color: #454A55; }
 html[data-theme="light"] .at-full p { color: #454A55; }
@@ -93,6 +97,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
   html[data-theme="dark"] .at-chip-track { color: #9A6B00 !important; }
   html[data-theme="dark"] .at-chip-skip { color: #BD3941 !important; }
   html[data-theme="dark"] .at-meta { color: #5C6572 !important; }
+  html[data-theme="dark"] .at-site a { color: #A34E00 !important; }
   html[data-theme="dark"] .at-what { color: #454A55 !important; }
   html[data-theme="dark"] .at-cost { color: #454A55 !important; }
   html[data-theme="dark"] .at-full p { color: #454A55 !important; }
@@ -138,6 +143,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">stoneskin · Briefed Nov 19, 2026</p>
+        <p class="at-site"><a href="https://github.com/stoneskin/muse-thinktank" target="_blank" rel="noopener noreferrer">github.com/stoneskin/muse-thinktank ↗</a></p>
         <p class="at-what">An open-source multi-model deliberation CLI: one question goes to a panel of models in parallel, two judge models cross-validate the answers, and a synth model merges a verdict — with disagreement escalated to a human instead of averaged away.</p>
         <p class="at-cost"><strong>Cost:</strong> $0 for the software; runs cost whatever the chosen OpenRouter models cost — free-tier models make a run $0, paid models draw on OpenRouter credit, always behind the --estimate preview and budget caps.</p>
         <details class="at-details">
@@ -158,6 +164,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">open-free-llm-api · Briefed Nov 19, 2026</p>
+        <p class="at-site"><a href="https://freellm.net" target="_blank" rel="noopener noreferrer">freellm.net ↗</a></p>
         <p class="at-what">A curated, machine-readable directory — not software: a GitHub "awesome list" of free LLM API tiers with rate limits, context windows, credit-card/verification flags, base URLs, get-key links, and copy-paste config snippets for Claude Code, Cursor, Codex, Aider and others; companion site freellm.net. NOT the FreeLLMAPI router (tashfeenahmed, briefed separately Nov 19, TRACK IT) — this is a list, not an app.</p>
         <p class="at-cost"><strong>Cost:</strong> $0 — the list is free to read and MIT; the listed tiers are the providers' own free tiers (most no card; NVIDIA NIM wants phone verification; OpenRouter's free tier improves to 1K requests/day only after a $10 top-up, and its Claude Code path needs that top-up).</p>
         <details class="at-details">
@@ -178,6 +185,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">GoDaddy · Briefed Nov 19, 2026</p>
+        <p class="at-site"><a href="https://www.godaddy.com/airo" target="_blank" rel="noopener noreferrer">godaddy.com/airo ↗</a></p>
         <p class="at-what">GoDaddy's prompt-driven AI website builder — describe a business in plain language and it generates a multi-page site you refine through a sequence of chat prompts, all inside GoDaddy's platform. Surfaced via Mikey Website's "How to Build an AI Website That Actually Looks Good" video (Nov 9, 2026) Freddie shared and Muse assessed on Nov 19, 2026 (full transcript read).</p>
         <p class="at-cost"><strong>Cost:</strong> Per GoDaddy's US pages as rechecked by multiple reviewers in November 2026: Free $0 with 50 AI credits/mo — preview only, publishing requires a paid plan; Starter $9.99/mo billed annually ($19.99 monthly), 150 credits, 1 published site; Professional $24.99/mo annual ($49.99 monthly), 300 credits, up to 10 sites; Ultimate $99.99/mo annual ($199.99 monthly), 750 credits, up to 50 sites. Credits expire each billing cycle and do not roll over; extra packs are $24.99 for 250 credits. The annual prices are first-term prices — GoDaddy's pages did not show the renewal amount when checked Nov 12, 2026.</p>
         <details class="at-details">
@@ -198,6 +206,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">tashfeenahmed · Briefed Nov 19, 2026</p>
+        <p class="at-site"><a href="https://github.com/tashfeenahmed/freellmapi" target="_blank" rel="noopener noreferrer">github.com/tashfeenahmed/freellmapi ↗</a></p>
         <p class="at-what">A self-hosted, open-source router that stacks the free tiers of dozens of LLM providers behind one OpenAI-compatible endpoint on your own machine — Repo 1 of the BuildArc "~9 billion free AI tokens" Short Freddie shared on Nov 19, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> $0 for the router itself (MIT); the live model catalog is freemium — free installs get a monthly snapshot delayed 30 days, premium is $19/yr for same-day updates. The tokens are not granted by the tool: the headline total (7.4B in the Short; the README now says 10.1B) is the sum of every provider's free-tier cap, reachable only by signing up for dozens of providers yourself; a realistic handful of providers yields a few hundred million.</p>
         <details class="at-details">
@@ -218,6 +227,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">cheaper-inference · Briefed Nov 19, 2026</p>
+        <p class="at-site"><a href="https://github.com/cheaper-inference/OmniRoute" target="_blank" rel="noopener noreferrer">github.com/cheaper-inference/OmniRoute ↗</a></p>
         <p class="at-what">A free, open-source AI gateway — one endpoint fronting 375 providers / 1,400+ models with quota-aware fallback and token compression — Repo 2 of the BuildArc "~9 billion free AI tokens" Short Freddie shared on Nov 19, 2026 (the old diegosouzapw/OmniRoute address now redirects to cheaper-inference/OmniRoute).</p>
         <p class="at-cost"><strong>Cost:</strong> $0, MIT open source — no telemetry or analytics found among its 113 runtime dependencies, and update checks go only to npm.</p>
         <details class="at-details">
@@ -238,6 +248,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">yocontra / Eric Schoffstall · Briefed Nov 19, 2026</p>
+        <p class="at-site"><a href="https://github.com/yocontra/pulsar" target="_blank" rel="noopener noreferrer">github.com/yocontra/pulsar ↗</a></p>
         <p class="at-what">An open-source MCP server that puts every AI coding agent on one machine on a shared message bus, so agents in different harnesses can find and message each other.</p>
         <p class="at-cost"><strong>Cost:</strong> $0 — MIT open source, installed with `npx pulsar setup` (setup shows every file it will change, asks once, backs up everything, and offers --dry-run and --uninstall); no telemetry, and the only network call in the code is `pulsar doctor` checking npm for a newer version.</p>
         <details class="at-details">
@@ -258,6 +269,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">star-power0 · Briefed Nov 19, 2026</p>
+        <p class="at-site"><a href="https://github.com/star-power0/muse-fileapi" target="_blank" rel="noopener noreferrer">github.com/star-power0/muse-fileapi ↗</a></p>
         <p class="at-what">A free, open-source local file bridge — a single-file Node HTTP service you run on your own computer and expose through your own Cloudflare Tunnel so a cloud Muse can read/write its files and run shell commands on it as a custom connector.</p>
         <p class="at-cost"><strong>Cost:</strong> $0 — MIT open source, zero third-party dependencies, Node.js only; the real cost is your own domain and Cloudflare Tunnel to expose it, plus the machine it runs on staying on.</p>
         <details class="at-details">
@@ -278,6 +290,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">OpenAI · Briefed Nov 18, 2026</p>
+        <p class="at-site"><a href="https://openai.com" target="_blank" rel="noopener noreferrer">openai.com ↗</a></p>
         <p class="at-what">OpenAI's new model pair for ChatGPT Work and Codex — Astra, a frontier model for hard professional work, and Sol, a cheaper efficient model for everyday and agentic work; OpenAI released both on November 17, 2026, and they launched on Product Hunt on November 18, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on developers.openai.com pricing (read November 18, 2026): Astra $8.00 per million input tokens / $40.00 output (cached input $0.40) — a 20% cut from GPT-6 Astra's $10 / $50; Sol $2.00 / $10.00 (cached $0.10). Per OpenAI's rate card, Ultrafast runs at promotional 3× Standard token rates through February 28, 2027, then 6× from March 1, 2027.</p>
         <details class="at-details">
@@ -298,6 +311,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Google · Briefed Nov 18, 2026</p>
+        <p class="at-site"><a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">gemini.google.com ↗</a></p>
         <p class="at-what">Google's agentic task mode inside the Gemini app — you hand over a multi-step job and Gemini works it in the background — which Google made free of charge on November 17, 2026 (it was previously a paid-tier feature; the prior $19.99/mo AI Pro figure is media reporting, not Google's post).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on blog.google (read November 18, 2026): free of charge in the six launch countries — no subscription price is attached to Tasks itself in Google's post, and Google does not publish a per-day task, call or order limit in the post.</p>
         <details class="at-details">
@@ -318,6 +332,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Microsoft · Briefed Nov 18, 2026</p>
+        <p class="at-site"><a href="https://microsoft.ai" target="_blank" rel="noopener noreferrer">microsoft.ai ↗</a></p>
         <p class="at-what">A family of seven in-house Microsoft AI models released at Ignite on November 17, 2026 — coding (Code 2 / Code 2 Flash), image generation and editing (Image 2.7, plus its Flash variant), live voice (Realtime 1), cyber defense (Cyber 2 Flash), transcription (Transcribe 2, inside Dragon Copilot) and routing (Decision 1.1) — all pitched on price-performance; several launched on Product Hunt on November 18, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on microsoft.ai: Image 2.7 Flash at about $10 per 1,000 images, with Image 2.7 at about $35 per 1,000 images per Microsoft's Foundry preview figures as reported in launch coverage; Realtime 1 starts at $0.01 per audio minute. In GitHub Copilot, MAI Code 2 is priced at $0.50 per million input tokens / $2.50 output and Code 2 Flash at $0.05 / $0.25 — per GitHub's pricing list as reported in launch coverage — and those are promotional rates that double on May 17, 2027 (to $1 / $5 and $0.10 / $0.50).</p>
         <details class="at-details">
@@ -338,6 +353,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">AssemblyAI · Briefed Nov 18, 2026</p>
+        <p class="at-site"><a href="https://www.assemblyai.com" target="_blank" rel="noopener noreferrer">assemblyai.com ↗</a></p>
         <p class="at-what">AssemblyAI's new flagship speech-to-text family — STT-3.7 for recorded audio, STT-3.7-Realtime for live transcription, and STT-3.7-Realtime-Agent for voice agents; it launched on Product Hunt on November 18, 2026 (#1 in Product Hunt's own launch order that day).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on assemblyai.com (read November 18, 2026): pay-as-you-go, pro-rated to the second, no minimums — STT-3.7 $0.21 per audio hour, Realtime $0.30/hr, Realtime-Agent $0.45/hr, with $50 in free credits and no card required per AssemblyAI's pricing guide. Add-ons are extra (keyterms and prompting $0.05/hr each, diarization $0.02/hr, Medical Mode $0.15/hr, per its pricing comparison).</p>
         <details class="at-details">
@@ -358,6 +374,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Alibaba / Qwen · Briefed Nov 18, 2026</p>
+        <p class="at-site"><a href="https://qwen.ai" target="_blank" rel="noopener noreferrer">qwen.ai ↗</a></p>
         <p class="at-what">Alibaba's new flagship model — the first full Qwen4 release, a closed-weight multimodal model for coding, agentic work and visual reasoning; Alibaba released it on November 16, 2026 after a Token Plan-only preview from November 11, and it launched on Product Hunt on November 18, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on Alibaba Cloud's own Model Studio pricing pages (read November 18, 2026): pay-as-you-go $1.50 per million input tokens / $4.50 output internationally (Singapore), $1.413 / $4.24 in the Global/Beijing scopes, cached input $0.075, with a 1 million-token free quota in Singapore valid 90 days. That is 25% below Qwen3.8-Max's $2 / $6. The Token Plan subscription alternative runs $6–$43/mo in opaque credits, with $3 / $5 new-user promo tiers through November 30, 2026.</p>
         <details class="at-details">
@@ -378,6 +395,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Meta · Briefed Nov 18, 2026</p>
+        <p class="at-site"><a href="https://www.meta.ai" target="_blank" rel="noopener noreferrer">meta.ai ↗</a></p>
         <p class="at-what">Meta's image generation and editing model — one model that generates from text, edits a supplied image, and refines across turns.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on dev.meta.ai pricing (read Nov 18, 2026): flat $0.01 per successfully returned image, no minimums, same regardless of prompt length, reasoning strength or search use; failed/safety-filtered images not billed; 150 requests/min per team. Free for everyday use inside Meta AI / meta.ai, heavier consumer use behind Meta One.</p>
         <details class="at-details">
@@ -398,6 +416,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Zoom · Briefed Nov 16, 2026</p>
+        <p class="at-site"><a href="https://www.zoom.com" target="_blank" rel="noopener noreferrer">zoom.com ↗</a></p>
         <p class="at-what">Zoom's AI presentation maker — it turns a Zoom meeting, documents or a prompt into a polished, editable slide deck; Zoom launched it on Product Hunt on November 16, 2026 (#1 Product of the Day).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on zoom.com (read November 16, 2026): Zoom's own product data prices Zoom Slides at $8.33 to $10.00 USD per user per month, billed annually, as the AI Productivity Suite add-on to Workplace Basic — that tier includes 1,000 AI credits per user per month, recurring monthly. Limited Slides features ride Workplace Basic at no extra cost.</p>
         <details class="at-details">
@@ -418,6 +437,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">OpenAI · Briefed Nov 16, 2026</p>
+        <p class="at-site"><a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">chatgpt.com ↗</a></p>
         <p class="at-what">A payment wallet that lets OpenAI's always-on agents (dots) complete purchases for you without the agent or the merchant ever seeing your real card number; OpenAI launched it on November 13, 2026, and it launched on Product Hunt on November 16, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on openai.com: no separate Wallet fee is listed — but access is gated to ChatGPT Pro subscribers aged 18+ in the US with eligible US-issued cards, and OpenAI's own pricing lists Pro in three tiers at $100, $200 and $500 per month (per OpenAI's pricing and Pro-tiers pages, as checked in November 2026 coverage of those pages). The wallet itself is the free rider; the Pro subscription is the price of entry.</p>
         <details class="at-details">
@@ -438,6 +458,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">AgentWatch · Briefed Nov 16, 2026</p>
+        <p class="at-site"><a href="https://apps.shopify.com/agent-watch" target="_blank" rel="noopener noreferrer">apps.shopify.com/agent-watch ↗</a></p>
         <p class="at-what">A read-only Shopify app that shows how much revenue AI shopping agents bring your store and whether the surfaces those agents rely on are healthy; it launched on Product Hunt in the November 16, 2026 launches.</p>
         <p class="at-cost"><strong>Cost:</strong> Per the maker's launch post: the Free plan is free forever, and paid plans start at $9/month with a 14-day trial. No fuller price list was published on a maker page located in this check, so treat the $9 figure as their claim until a pricing page confirms it.</p>
         <details class="at-details">
@@ -458,6 +479,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Eightcell Labs · Briefed Nov 16, 2026</p>
+        <p class="at-site"><a href="https://tesseract.dev" target="_blank" rel="noopener noreferrer">tesseract.dev ↗</a></p>
         <p class="at-what">A free desktop AI agent that turns one sentence into finished work — a website, deck, video, logo or research spreadsheet — on your own computer; it launched on Product Hunt on November 14, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on tesseract.dev: there is no subscription. Bring your own AI (an existing Claude or ChatGPT plan) costs $0 on top and is never metered by Tesseract; with no plan, a free allowance refills on its own (larger when signed in), and prepaid top-ups for premium models start at $10, pay as you go.</p>
         <details class="at-details">
@@ -478,6 +500,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Puffin · Briefed Nov 16, 2026</p>
+        <p class="at-site"><a href="https://www.justpuffin.tech" target="_blank" rel="noopener noreferrer">justpuffin.tech ↗</a></p>
         <p class="at-what">An identity layer for AI agents — each agent gets its own email address, calendar, and a seat in Slack, Discord and Telegram, so it can reach people directly instead of handing you drafts; it launched on Product Hunt on November 15, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Per the makers' launch post: plans start at $25 a month (their claim — no pricing page located to confirm tiers or what the entry plan includes). A launch offer of 25% off for the first 100 builders was posted with the launch.</p>
         <details class="at-details">
@@ -498,6 +521,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Google DeepMind · Briefed Nov 13, 2026</p>
+        <p class="at-site"><a href="https://deepmind.google" target="_blank" rel="noopener noreferrer">deepmind.google ↗</a></p>
         <p class="at-what">Google's fast Gemini 4 model for everyday coding and agentic work — the execution tier under the frontier Carbon and Argon models; Google introduced it on November 12, 2026, and it launched on Product Hunt on November 13, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on blog.google (read November 13, 2026): priced flat across the entire 1 million-token context at $1.50 per million input tokens and $7.50 per million output tokens on the paid API. Consumer access rides the Gemini app, Search and AI Studio tiers you already have; Antigravity access requires a paid Google AI Pro or Ultra plan.</p>
         <details class="at-details">
@@ -518,6 +542,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">YouArt · Briefed Nov 13, 2026</p>
+        <p class="at-site"><a href="https://youart.ai" target="_blank" rel="noopener noreferrer">youart.ai ↗</a></p>
         <p class="at-what">A desktop AI creative teammate for video production — an agent that works with your local files and operates professional creative apps directly; YouArt launched it on Product Hunt on November 12, 2026 (#2 Product of the Day) with a company launch release on November 13, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on youart.ai/pricing (read November 13, 2026): free to start with trial credits and a Free Mode on selected image models. Basic is $11/mo billed monthly or $7.99/mo billed annually, with 1,000 credits/mo (about 200 images or about 332 seconds of video), no watermark; Pro $36/mo or $23.99/mo annually with 3,300 credits; Max $198/mo or $119.99/mo annually with 18,000 credits; Team $435/mo or $263.99/mo annually with 36,300 credits. Extra credits are $5 for 500, for subscribers.</p>
         <details class="at-details">
@@ -538,6 +563,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Automattic · Briefed Nov 13, 2026</p>
+        <p class="at-site"><a href="https://spacefast.com" target="_blank" rel="noopener noreferrer">spacefast.com ↗</a></p>
         <p class="at-what">A publishing host for things your AI builds — it is explicitly not an AI builder; your existing agent gets the infrastructure to put a site, app, deck or game live. Automattic launched it publicly on November 9, 2026, and it launched on Product Hunt on November 12, 2026 (#5 Product of the Day).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on spacefast.com (read November 13, 2026): Personal $0, no card required — $1 of usage included monthly, 20 Spaces and 20 custom domains, commercial use allowed. Go $5/mo ($5 usage included, 100 Spaces/domains, hourly database backups); Pro $15/mo ($15 usage included, 500 Spaces/domains, free up to 5 members then $15/mo each); Enterprise custom. No overage rate beyond the included usage is stated in the pricing section.</p>
         <details class="at-details">
@@ -558,6 +584,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Anthropic · Briefed Nov 13, 2026</p>
+        <p class="at-site"><a href="https://claude.com" target="_blank" rel="noopener noreferrer">claude.com ↗</a></p>
         <p class="at-what">Claude joining a video call as a visible participant that takes notes and builds documents during the call; Anthropic moved it from announced to rolling out in beta on November 12, 2026, and it launched on Product Hunt on November 13, 2026 (#3 Product of the Day).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on claude.com (article and pricing page, read November 13, 2026): Team and Enterprise plans only — Pro, Max and Free do not get it. During the beta, notes, transcripts and in-call answers are free on those plans (an answer using a connected tool counts toward plan usage), and docs, whiteboards and other artifacts made in a call are free through February 10, 2027; no post-beta or post-February price is published. Enterprise is $20 per seat per month plus usage billed at API rates, per Anthropic's pricing FAQ.</p>
         <details class="at-details">
@@ -578,6 +605,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Adobe · Briefed Nov 13, 2026</p>
+        <p class="at-site"><a href="https://www.adobe.com" target="_blank" rel="noopener noreferrer">adobe.com ↗</a></p>
         <p class="at-what">Conversational AI assistants inside Creative Cloud apps, powered by Adobe's Creative Agent, that carry out multi-step creative tasks in your own words; Adobe announced the expansion at Adobe MAX on November 10, 2026, and Adobe AI Assistant launched on Product Hunt on November 12, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> No separate AI Assistant price is listed in Adobe's release — it rides a Creative Cloud subscription. Adobe's commerce page lists Creative Cloud Pro starting at US$69.99/mo (20+ apps, 100 GB storage, 4,000 monthly generative credits for premium AI video and audio features), checked November 13, 2026.</p>
         <details class="at-details">
@@ -598,6 +626,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">ZhuLinsen · Briefed Nov 14, 2026</p>
+        <p class="at-site"><a href="https://github.com/ZhuLinsen/daily_stock_analysis" target="_blank" rel="noopener noreferrer">github.com/ZhuLinsen/daily_stock_analysis ↗</a></p>
         <p class="at-what">An open-source, LLM-powered daily stock analysis system that produces a buy/watch/sell "decision dashboard" per watchlist stock and pushes it on a schedule.</p>
         <p class="at-cost"><strong>Cost:</strong> Code is free (MIT). Running it is not quite $0: it needs at least one LLM API key (Gemini/Claude/OpenAI-compatible/DeepSeek/Ollama, etc.), and the README's recommended path pushes sponsored aggregators Modelflare and AIHubMix, plus paid-leaning SerpApi news and TickPlus/Tushare/Longbridge data. Free defaults (AkShare, Baostock, YFinance) are stated in the README to be rate-limited/unstable.</p>
         <details class="at-details">
@@ -618,6 +647,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">every-app/open-seo · Briefed Nov 14, 2026</p>
+        <p class="at-site"><a href="https://openseo.so" target="_blank" rel="noopener noreferrer">openseo.so ↗</a></p>
         <p class="at-what">An open-source, self-hostable alternative to Semrush/Ahrefs for keyword research, rank tracking, backlinks, competitor insights, site audits and AI-visibility tracking.</p>
         <p class="at-cost"><strong>Cost:</strong> Software is free (MIT) when self-hosted, but a DataForSEO API key is mandatory for SEO data — DataForSEO is pay-as-you-go with a $50 minimum top-up (balance never expires; $1 trial credit for new accounts). Hosted OpenSEO is $10/mo Base including $10 of usage (Pro $30, Agency $100), and the hosted service marks DataForSEO requests up 28% — per-action costs are small (~$0.05 per keyword search, up to $0.015 per rank check, ~$0.08 per domain backlink overview on the hosted estimator).</p>
         <details class="at-details">
@@ -638,6 +668,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">gitroomhq/postiz-app · Briefed Nov 14, 2026</p>
+        <p class="at-site"><a href="https://postiz.com" target="_blank" rel="noopener noreferrer">postiz.com ↗</a></p>
         <p class="at-what">An open-source social media scheduling platform — schedule, cross-post and analyze across X, Bluesky, Instagram, Threads, Facebook, TikTok, YouTube, LinkedIn, Reddit, Pinterest, Mastodon and more, with a public API, MCP server and CLI built for AI agents.</p>
         <p class="at-cost"><strong>Cost:</strong> Cloud: Standard $29/mo (5 channels, unlimited posts; $23/mo annual), Team $39, Pro $49, Ultimate $99, 7-day free trial. Self-hosted software is free forever under AGPL, but you pay for a VPS (typically ~$6/mo class) and your own maintenance.</p>
         <details class="at-details">
@@ -658,6 +689,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">TryGhost/Ghost · Briefed Nov 14, 2026</p>
+        <p class="at-site"><a href="https://ghost.org" target="_blank" rel="noopener noreferrer">ghost.org ↗</a></p>
         <p class="at-what">An open-source publishing platform that combines a website/CMS, email newsletters, and free + paid memberships/subscriptions in one system — the independent alternative to Substack/WordPress.</p>
         <p class="at-cost"><strong>Cost:</strong> Ghost(Pro): Starter $18/mo billed yearly (1,000 members, 1 newsletter, no paid subscriptions), Publisher $29/mo (custom themes, paid subscriptions, 3 newsletters), Business $199/mo (10,000 members) — unlimited email sends included, prices from ghost.org/pricing checked 2026-11-14. Self-hosted software is free, but needs a persistent Ubuntu server (Node + MySQL 8; ~$6–12/mo VPS class) and, for newsletter sending, a Mailgun account — Mailgun is Ghost's only supported bulk-email provider (free tier ~100 emails/day; paid from ~$15/mo, per secondary hosting guides).</p>
         <details class="at-details">
@@ -678,6 +710,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">morluto/rea · Briefed Nov 14, 2026</p>
+        <p class="at-site"><a href="https://github.com/morluto/rea" target="_blank" rel="noopener noreferrer">github.com/morluto/rea ↗</a></p>
         <p class="at-what">REA ("Reverse Engineer Anything") — an MCP server + CLI that lets an AI agent reverse-engineer software it doesn't have source for: native binaries, Electron/JavaScript apps, .NET assemblies, Android APKs, websites, network captures, firmware and more, returning findings with evidence.</p>
         <p class="at-cost"><strong>Cost:</strong> The software is free (MIT, npm). Real costs sit around it: your agent's model usage, and commercial analysis engines are NOT included — IDA Pro/Hopper/JEB must be legally licensed by you (Ghidra is the free engine option).</p>
         <details class="at-details">
@@ -698,6 +731,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-use">USE IT</span>
         </div>
         <p class="at-meta">Meta · Briefed Nov 20, 2026</p>
+        <p class="at-site"><a href="https://muse.ai" target="_blank" rel="noopener noreferrer">muse.ai ↗</a></p>
         <p class="at-what">Meta's personal AI agent — not just a chatbot. Each user gets a personal agent with a dedicated computer, browser, files, and memory that persist between conversations, so it can do multi-step work, not just answer questions.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on Meta's own subscription help page (read November 20, 2026): Free with a usage limit that refreshes; Power $20/mo for 500M Muse tokens per week and 10 phone calls per day; Maximum $100/mo for 3B tokens per week and 20 phone calls per day. Subscriptions renew monthly unless canceled.</p>
         <details class="at-details">
@@ -719,6 +753,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">n8n Labs · Briefed Nov 11, 2026</p>
+        <p class="at-site"><a href="https://n8n.io" target="_blank" rel="noopener noreferrer">n8n.io ↗</a></p>
         <p class="at-what">An open-source personal agent with its own computer — a local sandbox and browser that finishes jobs in your apps and on websites instead of handing you a to-do list; n8n Labs released it as a research preview on November 10, 2026, and it took #1 Product of the Day on Product Hunt on November 11, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on blog.n8n.io (read November 11, 2026): Nod is open source under Apache 2.0 and free. You pay your model provider for the AI you use (API key or your ChatGPT plan), or connect an open-source model running on your own computer at no model cost. Cost guardrails are built in: a receipt per finished task, a settable monthly spending limit, a check-in once a task passes $5 (adjustable), and an estimated monthly cost per schedule.</p>
         <details class="at-details">
@@ -739,6 +774,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">ElevenLabs · Briefed Nov 11, 2026</p>
+        <p class="at-site"><a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer">elevenlabs.io ↗</a></p>
         <p class="at-what">ElevenLabs' new speech-to-text models — Scribe v3 for recorded audio and Scribe v3 Live for realtime streams; ElevenLabs launched both on November 10, 2026, and Scribe v3 was in Product Hunt's November 11, 2026 launches.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on elevenlabs.io/pricing/api (read November 11, 2026): Scribe v3 is $0.20 per audio hour and Scribe v3 Live is $0.22 per audio hour, the same rate on every plan; keyterm prompting adds $0.05 per hour (batch) or $0.08 (realtime), the v3 Live keyterm library adds $0.08 per hour, and transcript editing adds $0.07 / $0.12. Included hours run from 4.5 batch / 2.5 realtime hours on Free / Pay as you go up through the paid plans (Starter $6/mo, Creator $22/mo, Pro $99/mo, Scale $299/mo, Business $990/mo). Prices exclude taxes.</p>
         <details class="at-details">
@@ -759,6 +795,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">MiniMax · Briefed Nov 11, 2026</p>
+        <p class="at-site"><a href="https://www.minimax.io" target="_blank" rel="noopener noreferrer">minimax.io ↗</a></p>
         <p class="at-what">MiniMax's image generation and editing model built on its H3 video model — its headline is a 16-megapixel (4K) image in a claimed 10 to 20 seconds, with open weights; MiniMax announced it on November 10, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Per MiniMax's own price list as reported in that coverage (read November 10, 2026): token billing — standard model $2.30 per million input text tokens, $1.50 per million input image tokens and $3.80 per million output image tokens (Highspeed doubles the image rates); MiniMax's example costs are $0.02179 for a 1K image and $0.06879 for a 4K image, with 4K at half price under a launch discount that ended November 17, 2026 (the November 10 price check is historical). The examples are expressly not fixed per-image prices, and a request that times out is still charged, per the guide.</p>
         <details class="at-details">
@@ -779,6 +816,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Anthropic · Briefed Nov 11, 2026</p>
+        <p class="at-site"><a href="https://claude.com" target="_blank" rel="noopener noreferrer">claude.com ↗</a></p>
         <p class="at-what">Three new workspaces inside Claude — a spreadsheet and a shared whiteboard Claude builds with you, plus dashboards renamed Claude Data; Anthropic introduced them on November 10, 2026, with Sheets and Whiteboards in beta and Claude Data generally available.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on claude.com/pricing (read November 11, 2026): no separate price — the Pro card lists "Claude Data, plus Sheets and Whiteboards (beta)" as included. Pro is $20/mo billed monthly or $17/mo with the annual discount ($200 billed up front); Max $100/mo and Ultra $200/mo sit above it. The Free plan does not include them.</p>
         <details class="at-details">
@@ -799,6 +837,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">RigSpark · Briefed Nov 11, 2026</p>
+        <p class="at-site"><a href="https://github.com/rigspark/rigspark" target="_blank" rel="noopener noreferrer">github.com/rigspark/rigspark ↗</a></p>
         <p class="at-what">A free app that solves the first problem of local AI — it reads your memory, graphics card and disk, tells you which open models will actually run on your machine, and then runs them for you, offline; it launched on Product Hunt on November 10, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on docs.rs and its Product Hunt listing: free — "RigSpark Community is free, MIT-licensed and built in the open" — with no account, no cloud and nothing metered. The real costs are the hardware you already own and the model downloads themselves.</p>
         <details class="at-details">
@@ -819,6 +858,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Anthropic · Briefed Nov 9, 2026</p>
+        <p class="at-site"><a href="https://www.anthropic.com" target="_blank" rel="noopener noreferrer">anthropic.com ↗</a></p>
         <p class="at-what">Anthropic's most capable model pair for ambitious technical work — one underlying model sold two ways: Fable 5.2, generally available with cybersecurity and biology safeguards on, and Mythos 5.2, the same model with those safeguards adjusted, limited to vetted organizations; Anthropic introduced both on November 9, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on anthropic.com/claude/fable (read November 9, 2026): $8.00 per million input tokens and $40.00 per million output tokens, down from $10 / $50 for Fable 5.1; cache reads $0.20 per million; optional fast mode (up to 2.5× faster generation, Anthropic's figure) is $16 / $80. Mythos 5.2 is priced the same, per Anthropic's Mythos page.</p>
         <details class="at-details">
@@ -839,6 +879,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Meta · Briefed Nov 9, 2026</p>
+        <p class="at-site"><a href="https://www.meta.ai" target="_blank" rel="noopener noreferrer">meta.ai ↗</a></p>
         <p class="at-what">Meta's smallest and most efficient Muse model, built for the repetitive work agents do all day — tool calls, coding subtasks, routing, extraction and long-document parsing; Meta released it on November 9, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on research.meta.ai (read November 9, 2026): $0.10 per million input tokens, $0.004 per million cached input tokens and $0.50 per million output tokens. Note the headline token rates are not a price cut — they match Haiku 5.5's and GPT-6 Luna's standard short-context rates; Meta's claim is lower cost per finished task, not per token.</p>
         <details class="at-details">
@@ -859,6 +900,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">ByteDance Seed · Briefed Nov 9, 2026</p>
+        <p class="at-site"><a href="https://seed.bytedance.com" target="_blank" rel="noopener noreferrer">seed.bytedance.com ↗</a></p>
         <p class="at-what">ByteDance's next-generation image generation and editing model — its headline claims are edits that do not wear the picture down and images that come out with transparent backgrounds built in; ByteDance Seed released it on November 9, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> No public USD pricing page on ByteDance's own sites was located in this check, so there is no verified price. Chinese launch coverage puts a 2K edit at about 0.28 RMB (below some Seedream 5.0 Pro tiers) — that figure is reported coverage of ByteDance's pricing, labeled their claim, not a maker-published rate Freddie can be billed at today.</p>
         <details class="at-details">
@@ -879,6 +921,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Memorias · Briefed Nov 9, 2026</p>
+        <p class="at-site"><a href="https://memorias.io" target="_blank" rel="noopener noreferrer">memorias.io ↗</a></p>
         <p class="at-what">An AI biographer that turns spoken life stories into a finished memoir book — you talk, it asks follow-ups, transcribes and assembles chapters in your own words; it launched on Product Hunt on November 9, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on memorias.io's pricing section (read November 9, 2026): no subscription — pay-per-use credits, 1 credit = $0.10, sold in packs of 100 ($10) with a minimum top-up of 200 ($20), taxes excluded. Standard: an hour of storytelling runs about 70–96 credits and assembly of a 150–200-page book from 204 credits, so a whole ~7-hour book starts at about 694 credits (~$69) — using the stated 70–96 credits per hour, the range runs roughly 694–876 credits (~$69–$88), before any additional usage. Premium (deeper editing, same recordings): about 195–255 credits per hour and 410–590 for assembly, putting a whole ~7-hour book at about 1,700–2,500 credits (~$170–$250). Exact totals are estimated and confirmed before assembly, which never starts without your consent, per the site.</p>
         <details class="at-details">
@@ -899,6 +942,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Product Hunt · Briefed Nov 9, 2026</p>
+        <p class="at-site"><a href="https://www.producthunt.com" target="_blank" rel="noopener noreferrer">producthunt.com ↗</a></p>
         <p class="at-what">Product Hunt's official MCP server — it plugs Product Hunt into the AI assistants you already use, so launches can be researched and your own launch drafted from inside the chat; it launched on Product Hunt on November 9, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> No separate charge for the MCP server is listed on Product Hunt's own install page, and independent launch guides describe the official server as free to connect and use with a free Product Hunt account (guide claim, not a Product Hunt price list). The AI client you connect it from may itself be a paid plan — that cost is the client's, not the server's.</p>
         <details class="at-details">
@@ -919,6 +963,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Anthropic · Briefed Nov 6, 2026</p>
+        <p class="at-site"><a href="https://claude.com" target="_blank" rel="noopener noreferrer">claude.com ↗</a></p>
         <p class="at-what">A Personal Finance hub inside Claude that links your bank and card accounts and answers money questions from your real balances and transactions; Anthropic announced it on November 5, 2026, rolling out in beta in the US that week (the week of November 6, 2026).</p>
         <p class="at-cost"><strong>Cost:</strong> No separate Personal Finance price — it rides the existing paid Claude plans, and only those: Pro, Max and Ultra in the US (Free, Team and Enterprise are excluded, per reports citing Anthropic's Help Center). The plan prices, as listed on claude.com/pricing and checked in early-November 2026 summaries of that page, are Pro $20/mo ($17/mo billed annually), Max $100/mo and Ultra $200/mo.</p>
         <details class="at-details">
@@ -939,6 +984,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Tobira · Briefed Nov 6, 2026</p>
+        <p class="at-site"><a href="https://tobira.ai" target="_blank" rel="noopener noreferrer">tobira.ai ↗</a></p>
         <p class="at-what">A layer that turns your website into an agent that answers and sells to visitors and to the AI agents they send — it launched on Product Hunt on November 6, 2026 and took #1 Product of the Day.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on tobira.ai/agentic-site (read November 6, 2026): a free plan that runs on your own AI key; Lite $49/mo (about 300 conversations/mo with Tobira's model included, up to 5,000 replies on your own AI), Start $169/mo, Business $399/mo (payments for consultations and services arrive at this tier), Premium $799/mo — USD, excluding taxes, conversation counts stated as approximate. Assisted setup is extra on the paid tiers ($899 / $1,799 / $2,499), and the launch-week offers in the Product Hunt post (first days free, first month free with a card) are promos.</p>
         <details class="at-details">
@@ -959,6 +1005,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">OpenAI · Briefed Nov 6, 2026</p>
+        <p class="at-site"><a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">chatgpt.com ↗</a></p>
         <p class="at-what">OpenAI's image update for ChatGPT, Codex and the API — it adds animated GIFs and saved reference images; OpenAI introduced it on November 4, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on openai.com: Images 2.6 is available globally in ChatGPT and Codex across all subscription tiers on desktop, mobile and web, so in ChatGPT it rides whatever plan you already have. API pricing, verified on OpenAI's own API pricing page (developers.openai.com, read November 6, 2026), is token-metered and identical for Flare and Sunburst: image input $8.00 and text input $5.00 per million tokens, cached input $2.00 (image) / $1.25 (text), image output $30.00 per million tokens.</p>
         <details class="at-details">
@@ -979,6 +1026,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Google DeepMind · Briefed Nov 6, 2026</p>
+        <p class="at-site"><a href="https://deepmind.google" target="_blank" rel="noopener noreferrer">deepmind.google ↗</a></p>
         <p class="at-what">Google's video generation and editing model, now generally available — clips get longer (15 seconds, up from 10) and the price drops 30%; Google rolled it out on November 5, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on blog.google: $0.07 per second for 720p video, a 30% drop from Omni 1.1 — about $1.05 for a full 15-second clip at that rate. Google's API pricing page, as summarised in launch-week checks, bills it by token (video output $12.00 per million tokens, input $1.50 per million) and lists no free tier for this model on the API.</p>
         <details class="at-details">
@@ -999,6 +1047,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">OpenAI · Briefed Nov 6, 2026</p>
+        <p class="at-site"><a href="https://openai.com" target="_blank" rel="noopener noreferrer">openai.com ↗</a></p>
         <p class="at-what">OpenAI's cybersecurity-specialised frontier model — built to find and validate exploitable vulnerabilities and help patch them, while staying inside the scope researchers set; OpenAI introduced it on November 5, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on OpenAI's own API pricing page (developers.openai.com, read November 6, 2026): gpt-6-cyber is listed at $20.00 per million input tokens, $100.00 per million output tokens and $2.00 per million cached input tokens — but the price is academic without access (see the catch).</p>
         <details class="at-details">
@@ -1019,6 +1068,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Tencent · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://hunyuan.tencent.com" target="_blank" rel="noopener noreferrer">hunyuan.tencent.com ↗</a></p>
         <p class="at-what">The full release of Tencent's flagship Hunyuan model — the first in the line with vision and computer use — released November 4, 2026; its weights are promised, not yet out.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on Tencent's own announcement: approximately $0.90 per million input tokens, $2.70 per million output tokens and $0.045 per million cached input tokens — the same pricing as the preview (OpenRouter's listing shows $0.834 / $2.501). Two launch promos: the WorkBuddy and CodeBuddy free offer ran November 4–15, 2026, and has ended, and Hy4 is 50% off on TokenHub through December 31, 2026.</p>
         <details class="at-details">
@@ -1039,6 +1089,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Beamfy · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://beamfy.ai" target="_blank" rel="noopener noreferrer">beamfy.ai ↗</a></p>
         <p class="at-what">An AI vision assistant app for blind and low-vision people — point your phone and hear what is in front of you, in 74 languages; it launched on Product Hunt on November 3, 2026 and was still surfacing in the November 4 launches.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on beamfy.ai's pricing section: Free $0 to download — 7 days of full access after sign-up (60 descriptions/day fair-use), then 5 descriptions or readings every day free, SOS always free. Premium is $4.99/mo or $39.99/yr for unlimited use subject to a 300/day fair-use limit.</p>
         <details class="at-details">
@@ -1059,6 +1110,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">LiveReacting · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://livereacting.com" target="_blank" rel="noopener noreferrer">livereacting.com ↗</a></p>
         <p class="at-what">A ChatGPT plugin and MCP launch for LiveReacting, the pre-recorded and 24/7 live-streaming platform — "Run 24/7 and pre-recorded live streams from ChatGPT" launched on Product Hunt on November 4, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on livereacting.com/pricing (read November 4, 2026): Free $0 — 3 streams/mo, 30 minutes each, 720p, watermarked; Small $16/mo billed yearly ($19.99/mo monthly), streams up to 1 hour; Medium $33/mo billed yearly ($39.99/mo monthly), up to 3 hours at 1080p; the dedicated 24/7 plan is $39.99/mo or $33/mo billed yearly, with a new-customer promo of $23.99/mo for the first year running until November 30, 2026.</p>
         <details class="at-details">
@@ -1079,6 +1131,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Peji · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://peji.si" target="_blank" rel="noopener noreferrer">peji.si ↗</a></p>
         <p class="at-what">An iPhone AI chat app with a real browser inside the chat — the AI opens live web pages in your own session and does the clicking, instead of answering from memory; it launched on Product Hunt on November 1, 2026 and resurfaced in the November 4 launches.</p>
         <p class="at-cost"><strong>Cost:</strong> Free on the App Store, per the Product Hunt listing ($0). Pro "adds usage," but no Pro price is published on the Product Hunt page or any maker page found in this check — the Pro price is unverified, visible only in-app.</p>
         <details class="at-details">
@@ -1099,6 +1152,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Wanaka Studio · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://wanaka.app" target="_blank" rel="noopener noreferrer">wanaka.app ↗</a></p>
         <p class="at-what">An AI-native game engine: describe a game, an AI agent builds a playable 3D game, you edit it in a visual editor and publish it; it launched on Product Hunt on November 4, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> The Product Hunt listing starts at $0. No public pricing page on the maker's own site was located in this check, so paid-tier prices are unverified, not free beyond the start.</p>
         <details class="at-details">
@@ -1119,6 +1173,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Floot · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://floot.com" target="_blank" rel="noopener noreferrer">floot.com ↗</a></p>
         <p class="at-what">A payments layer for Floot, the connector that builds and hosts full-stack apps from inside ChatGPT or Claude — Floot Payments lets those apps take real money; it launched on Product Hunt on November 4, 2026 ("Take payments in apps you build in ChatGPT and Claude").</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on floot.com/pricing (read November 4, 2026): Free $0 with 100 building actions/day and a one-time $3 hosting allowance — and per Floot's own pricing FAQ, the Free plan requires an upgrade to publish an app; Pro $25/mo with 1,000 actions/day, $10/mo hosting included and 5,000 AI credits/mo; Power $100/mo with 5,000 actions/day, $25/mo hosting and 15,000 credits/mo. No separate Floot Payments price appears on the pricing page (Stripe's own transaction fees are not stated there).</p>
         <details class="at-details">
@@ -1139,6 +1194,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">PasteGuard · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://byquan.app" target="_blank" rel="noopener noreferrer">byquan.app ↗</a></p>
         <p class="at-what">A Mac menu-bar app that masks secrets and personal data on your clipboard the moment you copy, so what you paste into an AI chat is tokens, not real values; it launched on Product Hunt on November 4, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on pasteguard.byquan.app (read November 4, 2026): the core app is Free $0 — "no trial, no time limit," covering auto-mask on every paste, all 26 types, and restore. Pro, which adds only custom rules and CSV import, is listed at $1.99/mo or $12.99/yr, or $19.99 lifetime — but is marked "coming soon" and is not on sale yet.</p>
         <details class="at-details">
@@ -1159,6 +1215,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">TellPip · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://tellpip.eu" target="_blank" rel="noopener noreferrer">tellpip.eu ↗</a></p>
         <p class="at-what">A Mac app that listens to your calls from your own computer (no bot joins), transcribes on-device, remembers what you promised each client, and whispers answers from your own documents while you are still on the call; it launched on Product Hunt on November 4, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on tellpip.eu pricing (read November 4, 2026): free trial of 5 sessions of up to 10 minutes, no card. Solo $25/month + tax — with Invisibility and Real-time answers as separate add-ons at +$19/month each. Everything was a launch price of $39/month + tax for subscribers who joined during the November 4, 2026 launch, rising to $59/month after the promo; that launch offer period has passed. A no-subscription 5-hour pack is $39 one-off at launch ($49 after), valid 90 days.</p>
         <details class="at-details">
@@ -1179,6 +1236,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Krev · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://krev.ai" target="_blank" rel="noopener noreferrer">krev.ai ↗</a></p>
         <p class="at-what">A team of named AI "employees" that runs an ecommerce brand end to end — research, creative, ads, social, store edits and email; "KREV AI: An AI team that runs your ecommerce brand" (KREV 2.0) launched on Product Hunt on November 4, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on krev.ai/pricing (read November 4, 2026): Starter $49/mo with only Scout + Luna, 100 credits/mo and 25 products; Team $198/mo with all AI employees and 250 credits/mo; Grow $398/mo with 500 credits/mo; Enterprise custom. Credits are spent only on image/video generation and reset every billing cycle; full commercial rights are included on paid plans.</p>
         <details class="at-details">
@@ -1199,6 +1257,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Kuaishou / Kling AI · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://kling.ai" target="_blank" rel="noopener noreferrer">kling.ai ↗</a></p>
         <p class="at-what">The fourth generation of Kling's text- and image-to-video model — longer, more controllable AI video in one pass; it became available to everyone on October 15, 2026 and was launching on Product Hunt on November 4, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Kling's own membership page did not render its prices in this check, so treat these as secondary summaries of that official page, consistently reported in October 2026 checks: Basic $0 with no monthly credits and no commercial use; Standard $8.80/mo ($6.99 first month) with 660 credits/mo; Pro $32.56/mo ($25.99 first month) with 3,000 credits/mo; higher Premier/Ultra tiers above that. Subscription credits expire after 31 days, per those summaries.</p>
         <details class="at-details">
@@ -1219,6 +1278,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Videco · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://videco.io" target="_blank" rel="noopener noreferrer">videco.io ↗</a></p>
         <p class="at-what">An AI content studio plus video hosting workspace that turns one long recording into branded short-form clips and a campaign; it launched on Product Hunt on November 3, 2026 (#5 Product of the Day).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on videco.io/pricing (read November 4, 2026 — this supersedes older third-party listings quoting €19/€79 plans): 7-day free trial, no card required, 500 MB storage / 10-min duration; Pro $9.99/mo (2 TB storage, 5-hr duration, API access, captions and AI transcription); Business $49/mo (4 TB, custom domain, 100 AI credits/mo included).</p>
         <details class="at-details">
@@ -1239,6 +1299,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">NoteOwl · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://noteowl.ai" target="_blank" rel="noopener noreferrer">noteowl.ai ↗</a></p>
         <p class="at-what">A private AI meeting note-taker and dictation app for Mac that runs entirely on your own computer — no bot joins the call and nothing is uploaded; it launched on Product Hunt on November 3, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on noteowl.ai: dictation is free, unlimited, forever, with no account. NoteOwl Pro — meeting notes, transcription imports, chat and memory, action items, voice rewriting and custom vocabulary — is $79 lifetime for one Mac, no subscription, with a 7-day free trial in the app and no card.</p>
         <details class="at-details">
@@ -1259,6 +1320,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Cedric · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://meet-cedric.com" target="_blank" rel="noopener noreferrer">meet-cedric.com ↗</a></p>
         <p class="at-what">An AI teammate that lives in Slack, Telegram or Discord, joins Zoom / Meet / Teams calls, presents your slides for you, and does follow-up work across connected tools; "Cedric AI for Meetings" launched on Product Hunt on November 2, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on meet-cedric.com: sign-up is free with 100,000 credits ($50 of work), no card needed, with a launch offer of an extra $50 using code PRODUCTHUNT2026. No paid plan prices are published on Cedric's own site as of this check, so what sustained use costs is unverified, not free.</p>
         <details class="at-details">
@@ -1279,6 +1341,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Asymptote Labs · Briefed Nov 4, 2026</p>
+        <p class="at-site"><a href="https://github.com/Asymptote-Labs/agent-beacon" target="_blank" rel="noopener noreferrer">github.com/Asymptote-Labs/agent-beacon ↗</a></p>
         <p class="at-what">A free, open-source memory layer for AI coding agents — it captures session history across coding tools and turns corrections and debugging patterns into reusable knowledge; it hit #1 on Product Hunt (launch post November 3, 2026, for the previous day's launch).</p>
         <p class="at-cost"><strong>Cost:</strong> $0 — Beacon itself is free and open source under MIT. Asymptote's revenue is a separate enterprise platform built on top of it (hosted visibility, policy controls and investigations, offered on request, no public price), per its launch coverage.</p>
         <details class="at-details">
@@ -1299,6 +1362,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Riverside · Briefed Nov 2, 2026</p>
+        <p class="at-site"><a href="https://riverside.com" target="_blank" rel="noopener noreferrer">riverside.com ↗</a></p>
         <p class="at-what">Four AI agents inside Riverside, the remote recording and editing platform — a production team for video and podcasts that launched October 26, 2026 and was listed on Product Hunt on November 1, 2026 (#3 Product of the Day).</p>
         <p class="at-cost"><strong>Cost:</strong> No separate Agents price — but there is no free plan anymore. Verified on Riverside's own pricing explainer (riverside.com, updated September 10, 2026): Pro $35/mo billed monthly or $29/mo billed annually, Grow $45/mo or $39/mo annually, Webinar $99/mo or $79/mo annually, Business custom. A 14-day free trial of Pro/Grow/Webinar requires a credit card and converts to a paid subscription on day 15 unless cancelled.</p>
         <details class="at-details">
@@ -1319,6 +1383,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Hera · Briefed Nov 2, 2026</p>
+        <p class="at-site"><a href="https://hera.video" target="_blank" rel="noopener noreferrer">hera.video ↗</a></p>
         <p class="at-what">A canvas where you generate images, design, and animate in one place, directing several AI agents at once and keeping every result as editable layers; the Creative Canvas topped Product Hunt on November 2, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> "Get started for free" on hera.video, and the official pages list the product at $0 to start — but Hera publishes no public pricing page on its own site as of this check, so paid-tier prices are unverified, not free. Secondary review sites consistently report Standard $20/mo monthly or $12/mo billed annually, Pro $40/$24, Mega $100/$60 — treat those as their claim until Hera publishes them.</p>
         <details class="at-details">
@@ -1339,6 +1404,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Screen Studio · Briefed Nov 2, 2026</p>
+        <p class="at-site"><a href="https://screen.studio" target="_blank" rel="noopener noreferrer">screen.studio ↗</a></p>
         <p class="at-what">The 4.0 update of the Mac screen recorder that turns raw screen recordings into polished demos and tutorials automatically; it was Product Hunt's top product on November 1, 2026, headlined by Glass Loupe, Camera Cutout, and Edit by Transcript.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on screen.studio's own pricing section: $29/mo billed monthly, or $9/mo billed annually ($108/yr), every feature included on both; free to download and use, but exporting video files requires a paid plan.</p>
         <details class="at-details">
@@ -1359,6 +1425,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Xmind · Briefed Nov 2, 2026</p>
+        <p class="at-site"><a href="https://xmind.com" target="_blank" rel="noopener noreferrer">xmind.com ↗</a></p>
         <p class="at-what">An AI agent that lives inside Xmind mind maps and builds and develops them with you through conversation; Xmind Agent launched October 28, 2026, and "Xmind 2027 — your mind map is now an AI thinking partner" was a top Product Hunt launch on November 2, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on Xmind's own site pages: Free $0; Pro $4.92/mo billed annually ($10/mo monthly); Premium $8.25/mo billed annually ($15/mo monthly) with 500 AI credits/mo. The Agent runs on credits on every plan — per Xmind's launch coverage, Free and Pro users get a one-time grant of 50 Agent credits, and only Premium subscribers get a recurring 500/mo.</p>
         <details class="at-details">
@@ -1379,6 +1446,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">CuriousLM · Briefed Nov 2, 2026</p>
+        <p class="at-site"><a href="https://curiouslm.com" target="_blank" rel="noopener noreferrer">curiouslm.com ↗</a></p>
         <p class="at-what">A private AI chat app that runs its language model entirely on your own phone or laptop — no account, no chat server; it launched on Product Hunt on November 2, 2026 ("Private AI that runs on your device. No account.").</p>
         <p class="at-cost"><strong>Cost:</strong> Listed at $0 on Product Hunt, and the launch guide describes it as a free app with no account and no subscription step. CuriousLM publishes no pricing page on its own site as of this check, so "free" is the listing's claim, not a maker-published price list.</p>
         <details class="at-details">
@@ -1399,6 +1467,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Google · Briefed Nov 2, 2026</p>
+        <p class="at-site"><a href="https://github.com/google/elephant-goldfish-model" target="_blank" rel="noopener noreferrer">github.com/google/elephant-goldfish-model ↗</a></p>
         <p class="at-what">A free, open-source plugin of skills for AI coding agents: a deep-context "elephant" agent drafts a spec, then zero-context "goldfish" reviewer subagents attack the draft before any code is written. Surfaced via Julian Goldie's Nov 1, 2026 video (436K subs), assessed in the video thread.</p>
         <p class="at-cost"><strong>Cost:</strong> $0 — Apache-2.0; the underlying coding-agent subscription is on you.</p>
         <details class="at-details">
@@ -1419,6 +1488,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Viktor · Briefed Nov 2, 2026</p>
+        <p class="at-site"><a href="https://getviktor.com" target="_blank" rel="noopener noreferrer">getviktor.com ↗</a></p>
         <p class="at-what">An "AI employee" that lives in Slack and Microsoft Teams (also web app/Discord) — not a chatbot, a packaged hire with its own cloud computer.</p>
         <p class="at-cost"><strong>Cost:</strong> Free start with up to $100 in credits, no credit card; Team $100/month per workspace (no per-seat fee) for 40,000 shared credits/month (quick tasks ~100–300 credits, full projects 2,000–5,000; unused credits roll over one month); Enterprise custom. (Verified on viktor.com/pricing 2026-11-02; older Viktor blog posts and reviews still quote a superseded $50/20,000-credit tier.)</p>
         <details class="at-details">
@@ -1439,6 +1509,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">LitPal · Briefed Nov 2, 2026</p>
+        <p class="at-site"><a href="https://litpal.ai" target="_blank" rel="noopener noreferrer">litpal.ai ↗</a></p>
         <p class="at-what">An AI book-generation platform for KDP: generate, illustrate, and edit coloring books, children's stories, non-fiction, word search/word fit/Sudoku books, and covers in one workspace, with PDF exports and a niche-research tool.</p>
         <p class="at-cost"><strong>Cost:</strong> Credit-based subscriptions, priced as annual billing: Basic $20/mo ($239.99/yr, 720 credits/yr), Standard $33.33/mo ($399.99/yr, 1,800 credits), Premium $66.67/mo ($799.99/yr, 4,800 credits), Unlimited $133.33/mo ($1,599.99/yr, fair-use). Generation is cheap in credits (30 coloring pages = 10 credits; AI cover +5; 30-page word search = 5), but edits/regenerations cost extra. (Verified on litpal.ai 2026-11-02.)</p>
         <details class="at-details">
@@ -1459,6 +1530,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Kindlepreneur · Briefed Nov 1, 2026</p>
+        <p class="at-site"><a href="https://publisherrocket.com" target="_blank" rel="noopener noreferrer">publisherrocket.com ↗</a></p>
         <p class="at-what">Desktop software for Amazon KDP keyword and category research — the tool Caroline's Self Publishing Central video links as an affiliate. Not an AI tool; briefed on Freddie's "what is Publisher Rocket?" ask, restating his existing panel verdict (assessed 2026-10-19 in the Book Bolt alternatives panel; price re-verified 2026-11-01).</p>
         <p class="at-cost"><strong>Cost:</strong> $199 one-time, lifetime access, free updates, 30-day money-back guarantee; NO free trial (price re-verified Nov 1, 2026 across Kindlepreneur and current reviews; raised from $97 in 2024; only regular discount is Black Friday, ~$30 off in 2025).</p>
         <details class="at-details">
@@ -1479,6 +1551,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Mistral AI · Briefed Oct 30, 2026</p>
+        <p class="at-site"><a href="https://mistral.ai" target="_blank" rel="noopener noreferrer">mistral.ai ↗</a></p>
         <p class="at-what">The open-weights release of Mistral's 1-trillion-parameter multimodal model "Le Chonk" — the weights dropped on October 29, 2026, three weeks after its October 6 public preview; surfaced via ai0.news (leads only — verified below on Mistral's own docs and announcement).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on Mistral's own model docs (docs.mistral.ai, read October 30): $0.70 per million input tokens, $0.07 per million cached input tokens, $2.10 per million output tokens — roughly half the preview list price of $1.36 / $4.18. Weights are free to download under the license below.</p>
         <details class="at-details">
@@ -1499,6 +1572,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Google DeepMind · Briefed Oct 30, 2026</p>
+        <p class="at-site"><a href="https://deepmind.google" target="_blank" rel="noopener noreferrer">deepmind.google ↗</a></p>
         <p class="at-what">Google DeepMind's newest frontier model, announced October 28, 2026, built for cybersecurity defense and long-horizon agentic coding; surfaced via Product Hunt's October 30 launches and ai0.news (leads only — verified below on DeepMind's own blog).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on DeepMind's post: introductory API pricing matches Gemini 4 Argon at $2 per million input tokens and $10 per million output tokens, with cached input at 95% off; secondary summaries of the same post list the post-introductory price as $4 / $20, with no end date given for the introductory period.</p>
         <details class="at-details">
@@ -1519,6 +1593,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Canva · Briefed Oct 30, 2026</p>
+        <p class="at-site"><a href="https://www.canva.com" target="_blank" rel="noopener noreferrer">canva.com ↗</a></p>
         <p class="at-what">Canva's first vision-language model for design — instead of generating a new image, it edits a design you already have; launched October 29, 2026 and listed on Product Hunt on October 30, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> No separate Brush price — it powers supported design edits in Canva AI for Canva Pro subscribers at launch, with wider availability promised and no date given. Canva Pro is $18/mo or $144/yr for one person in the US, per Canva's own pricing page as read in October 2026 pricing checks.</p>
         <details class="at-details">
@@ -1539,6 +1614,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Suno · Briefed Oct 30, 2026</p>
+        <p class="at-site"><a href="https://suno.com" target="_blank" rel="noopener noreferrer">suno.com ↗</a></p>
         <p class="at-what">Suno's official Model Context Protocol server — it lets an AI assistant you're already chatting with make Suno music for you, instead of you switching to Suno's own site; launched in beta on October 28, 2026 and was listed on Product Hunt during the week of October 26, 2026 ("The music layer for your AI stack" — Product Hunt tagline, their wording).</p>
         <p class="at-cost"><strong>Cost:</strong> No separate MCP charge — generations burn the credits on your existing Suno plan, and it works on all plans including free. Suno's own pricing page (as read in October 2026 checks): Free $0 with 50 credits/day; Pro $10/mo ($8/mo billed annually) with 2,500 credits/mo; Premier $30/mo ($24/mo billed annually) with 10,000 credits/mo. Commercial rights come only with paid plans, per Suno's terms summaries.</p>
         <details class="at-details">
@@ -1559,6 +1635,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">AssemblyAI · Briefed Oct 30, 2026</p>
+        <p class="at-site"><a href="https://www.assemblyai.com" target="_blank" rel="noopener noreferrer">assemblyai.com ↗</a></p>
         <p class="at-what">AssemblyAI's first text-to-speech model, built for live voice agents — the company was previously speech-to-text only; it launched on Product Hunt on October 29, 2026 ("text-to-speech built for voice agents").</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on AssemblyAI's own models/pricing docs (read October 30): $15 per 1 million input characters, billed per character including spaces/punctuation, with volume discounts available; launch coverage of AssemblyAI's pricing notes no annual contract, minimum or concurrency fee at that rate.</p>
         <details class="at-details">
@@ -1579,6 +1656,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">OpenAI · Briefed Oct 28, 2026</p>
+        <p class="at-site"><a href="https://openai.com" target="_blank" rel="noopener noreferrer">openai.com ↗</a></p>
         <p class="at-what">A cheaper OpenAI model built for computer use, visual reasoning and everyday office work, released October 26, 2026 and surfaced via ai0.news (leads only — verified below on OpenAI's own site).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on OpenAI's own launch post: standard API pricing $1 per million input tokens, $0.05 per million cached input tokens, $5 per million output tokens — 50% lower than GPT-5.6 Terra and GPT-6.1 Sol.</p>
         <details class="at-details">
@@ -1599,6 +1677,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Google DeepMind · Briefed Oct 28, 2026</p>
+        <p class="at-site"><a href="https://deepmind.google" target="_blank" rel="noopener noreferrer">deepmind.google ↗</a></p>
         <p class="at-what">A world model that generates a real-time, explorable simulated scene — with native audio and dialogue — that you steer with keyboard controls and plain-language prompts while it runs; announced October 27, 2026 and surfaced via ai0.news (leads only — verified below on DeepMind's own blog).</p>
         <p class="at-cost"><strong>Cost:</strong> No standalone Genie 4 price has been published. Verified on DeepMind's post: it is a research preview for trusted testers, coming first to Google AI Ultra subscribers in Project Genie and to early-access partners of the Gemini API and Google AI Studio, with a waitlist for others.</p>
         <details class="at-details">
@@ -1619,6 +1698,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Apple · Briefed Oct 28, 2026</p>
+        <p class="at-site"><a href="https://www.apple.com" target="_blank" rel="noopener noreferrer">apple.com ↗</a></p>
         <p class="at-what">A November update to Apple's Creator Studio bundle adding AI assistants and generative tools across its creative and productivity apps; announced October 27, 2026 in Apple's own newsroom release.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified in Apple's release: free update for existing subscribers in November; new subscribers pay $12.99/mo or $129/yr (US pricing per Apple's plan-renewal footnote), with a one-month free trial. One-time-purchase versions of the pro apps remain on the Mac App Store.</p>
         <details class="at-details">
@@ -1639,6 +1719,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Agent Opus · Briefed Oct 28, 2026</p>
+        <p class="at-site"><a href="https://www.opus.pro" target="_blank" rel="noopener noreferrer">opus.pro ↗</a></p>
         <p class="at-what">The 2.0 launch of Agent Opus, OpusClip's video agent — instead of clipping footage you already shot, it creates a complete short video from one prompt; it launched on Product Hunt on October 27, 2026 ("Turn your ideas into viral videos with one prompt" — Product Hunt tagline, their wording).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on opus.pro/pricing: Free $0; Starter $15/mo; Pro $29/mo; Business custom. Usage runs on credits/processing minutes (Free plan: 60 processing minutes/mo per OpusClip's help docs, with watermarked animated captions on the pricing page).</p>
         <details class="at-details">
@@ -1659,6 +1740,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">TruLata · Briefed Oct 28, 2026</p>
+        <p class="at-site"><a href="https://trulata.com/product/sites/builder" target="_blank" rel="noopener noreferrer">trulata.com/product/sites/builder ↗</a></p>
         <p class="at-what">An AI website builder for small businesses that writes a site in minutes and holds every sentence to a source the owner provided; it launched on Product Hunt on Tuesday, October 27, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on TruLata's own builder page: building and editing are free, no card required; going live on your own domain is $49/mo, or $39/mo billed yearly ($468), cancel any time. TruLata's wider marketing plans start at $400/mo, per its own site.</p>
         <details class="at-details">
@@ -1679,6 +1761,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Strawberry · Briefed Oct 26, 2026</p>
+        <p class="at-site"><a href="https://strawberrybrowser.com" target="_blank" rel="noopener noreferrer">strawberrybrowser.com ↗</a></p>
         <p class="at-what">A web browser with built-in AI "Companions" that work inside your signed-in tabs — Strawberry 1.0 is its out-of-beta release, launched on Product Hunt on October 26, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on strawberrybrowser.com/pricing: Free $0 with 500 credits/mo; Intern $20/mo with 6,000 credits; Part-Time $85/mo with 25,000 credits; Full-Time $250/mo with 75,000 credits. Browsing is free — credits burn only when a Companion acts; plan credits do not roll over, top-ups cost $0.01 per credit and do roll over.</p>
         <details class="at-details">
@@ -1699,6 +1782,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">SurgePix · Briefed Oct 26, 2026</p>
+        <p class="at-site"><a href="https://surgepix.ai" target="_blank" rel="noopener noreferrer">surgepix.ai ↗</a></p>
         <p class="at-what">An AI visual generator with a layer editor — you generate a visual, then edit it layer by layer instead of regenerating from scratch; it launched on Product Hunt on October 26, 2026.</p>
         <p class="at-cost"><strong>Cost:</strong> "Try it free" on surgepix.ai and the Product Hunt listing ($0 listed) — no pricing page or paid-plan prices were published on the maker's site as of this check (surgepix.ai/pricing returns no page). Paid cost is therefore unverified, not free.</p>
         <details class="at-details">
@@ -1719,6 +1803,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Articos · Briefed Oct 26, 2026</p>
+        <p class="at-site"><a href="https://articos.com" target="_blank" rel="noopener noreferrer">articos.com ↗</a></p>
         <p class="at-what">An AI user-research platform that tests your messaging, concepts and landing pages against synthetic audience personas and returns a report in under 30 minutes; it appeared in Product Hunt's October 26 top products.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on articos.com/pricing: 14-day free trial with 1,000 credits (about 2 studies, no card); Starter $79/mo (3,000 credits, about 7 studies); Pro $199/mo (7,000 credits, about 17 studies); about 400 credits per study, roughly $10.50–$11.40 per study at plan rates. Monthly credits reset — they do not roll over.</p>
         <details class="at-details">
@@ -1739,6 +1824,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Norton · Briefed Oct 26, 2026</p>
+        <p class="at-site"><a href="https://www.norton.com" target="_blank" rel="noopener noreferrer">norton.com ↗</a></p>
         <p class="at-what">A new set of protections inside Norton 360 that watches what AI chat and agent tools do on your device; announced October 26, 2026 in Norton's own PR Newswire release.</p>
         <p class="at-cost"><strong>Cost:</strong> No separate Safe AI price was stated in the launch release — it is included in Norton 360. Norton 360 plans on us.norton.com run on first-year promo pricing (for example Standard $39.99 first year, Deluxe $49.99 first year) against much higher renewal prices ($94.99/yr and $124.99/yr respectively on the store page checked).</p>
         <details class="at-details">
@@ -1759,6 +1845,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">MiniMax · Briefed Oct 26, 2026</p>
+        <p class="at-site"><a href="https://www.minimax.io" target="_blank" rel="noopener noreferrer">minimax.io ↗</a></p>
         <p class="at-what">A low-cost AI model built for agent work — coding, computer use and multi-step tasks — released October 19, 2026 and surfaced on Product Hunt during the week of October 26, 2026; it is part of the inference price collapse ai0.news flagged on October 26 (leads only — pricing below is verified on MiniMax's own docs).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on MiniMax's official pricing docs (platform.minimax.io): $0.15 per million input tokens, $0.60 per million output tokens, $0.015 per million cached-input tokens, flat with no long-context surcharge.</p>
         <details class="at-details">
@@ -1779,6 +1866,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Meta · Briefed Oct 25, 2026</p>
+        <p class="at-site"><a href="https://dev.meta.ai" target="_blank" rel="noopener noreferrer">dev.meta.ai ↗</a></p>
         <p class="at-what">Meta's terminal coding agent — you run <code>muse</code> in a project folder and it plans, edits files, and runs commands to complete coding tasks.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on Meta's own Muse Code page (developer.meta.com): Everyday $5/mo (10–50 prompts every 5 hours), High $15/mo (5x Everyday), Power $50/mo (20x Everyday, early access). Pay-per-token via the Meta Model API is the alternative route. Muse Wonder is included in every Muse Code plan (base Wonder); Muse Wonder Full is only in the $50 Power and $200 Maximum Muse Code plans — not to be confused with Freddie's separate Muse Power $20/mo subscription, under which this Muse already runs Muse Wonder (checked 2026-10-13).</p>
         <details class="at-details">
@@ -1799,6 +1887,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Anthropic · Briefed Oct 23, 2026</p>
+        <p class="at-site"><a href="https://claude.com" target="_blank" rel="noopener noreferrer">claude.com ↗</a></p>
         <p class="at-what">A proactive AI agent app from Anthropic — instead of waiting for you to open a chat, it watches your connected apps, sends a morning brief, and works on tasks in the background on its own cloud computer.</p>
         <p class="at-cost"><strong>Cost:</strong> No separate charge in the preview — included in Claude Pro ($20/mo, $17/mo billed annually) and Max (from $100/mo), US subscribers only, waitlist access; Team/Enterprise not included yet. Verified plan prices are Claude's standard Pro/Max prices; the Duet page itself confirms it is included in Pro and Max with no separate fee.</p>
         <details class="at-details">
@@ -1819,6 +1908,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">1Password · Briefed Oct 23, 2026</p>
+        <p class="at-site"><a href="https://1password.com" target="_blank" rel="noopener noreferrer">1password.com ↗</a></p>
         <p class="at-what">A sign-in layer that lets a personal AI agent log into your accounts without the agent — or the model behind it — ever seeing your password or one-time code.</p>
         <p class="at-cost"><strong>Cost:</strong> Included at no extra cost in 1Password Individual and Family plans on 1Password.com (per 1Password's launch FAQ/coverage); 1Password plans start at $3.99/mo billed annually, with a 14-day free trial for new users. Accounts hosted on 1Password.eu / .ca are not supported at launch.</p>
         <details class="at-details">
@@ -1839,6 +1929,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Canva · Briefed Oct 23, 2026</p>
+        <p class="at-site"><a href="https://www.canva.com" target="_blank" rel="noopener noreferrer">canva.com ↗</a></p>
         <p class="at-what">Canva's first image-generation model built in-house — it plans a design's layout and text first, then renders the picture, instead of going straight from prompt to pixels.</p>
         <p class="at-cost"><strong>Cost:</strong> Available to all Canva users globally, free and paid, through Dream Lab — Canva has not published a separate Craft price or per-plan image allowance in its announcement; its developer notes say starting a Craft job uses the user's existing AI credits, same as Canva's other models. API per-image pricing was not stated in the launch posts.</p>
         <details class="at-details">
@@ -1859,6 +1950,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">EHunt AI · Briefed Oct 23, 2026</p>
+        <p class="at-site"><a href="https://ehunt.ai" target="_blank" rel="noopener noreferrer">ehunt.ai ↗</a></p>
         <p class="at-what">Two new generators inside EHunt, the Etsy seller research/operations platform — one turns a single product photo or an Etsy listing URL into a full set of listing images, the other turns the same into a listing video.</p>
         <p class="at-cost"><strong>Cost:</strong> No separate price for the new generators was published in the launch release (which pitches "no upfront financial commitment" — their claim). EHunt's platform plans, as checked against its official pricing page by independent reviewers on Oct 15, 2026: Free $0 (limited daily searches), Basic $9.99/mo ($7.99 billed yearly), Pro $19.99/mo ($15.99 yearly) with a 3-day $1 trial that renews at $19.99/mo unless cancelled, Elite $59.99/mo ($29.99 yearly), Team $79.99/mo.</p>
         <details class="at-details">
@@ -1879,6 +1971,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Kirill (Zhurnalus) · Briefed Oct 23, 2026</p>
+        <p class="at-site"><a href="https://radaric.pro" target="_blank" rel="noopener noreferrer">radaric.pro ↗</a></p>
         <p class="at-what">An AI feed reader that learns your editorial taste — you teach it what belongs in your digest, not just which keywords match.</p>
         <p class="at-cost"><strong>Cost:</strong> Maker-stated on his Product Hunt launch post: Lite $9/mo, Pro $59/mo (adds X), with a 30-day money-back guarantee. No free tier was announced.</p>
         <details class="at-details">
@@ -1899,6 +1992,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">UseIt · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://useit.im" target="_blank" rel="noopener noreferrer">useit.im ↗</a></p>
         <p class="at-what">An AI design studio that turns a one-sentence description into a real, editable, production-ready design file for a physical thing — stickers, pins, gift boxes, pop-up cards, brand kits.</p>
         <p class="at-cost"><strong>Cost:</strong> No pricing published on useit.im as of this check — it runs on credits, and the Product Hunt launch code PHP-01-0002 offered 15,000 credits to people who joined on October 21, 2026 (their launch offer, now expired). Dollar cost is therefore unverified, not free.</p>
         <details class="at-details">
@@ -1919,6 +2013,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">OpenMausBot · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://mausbot.com" target="_blank" rel="noopener noreferrer">mausbot.com ↗</a></p>
         <p class="at-what">A free, open-source app for running a team of AI bots in a chat interface — built and positioned as the open alternative to xAI's Grokbot.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on mausbot.com: the desktop app is free and open source — you bring a provider account or API key and pay your provider's own fees. Optional Cloud hosting (bots keep working with your laptop closed) is Starter $15/mo, Pro $49/mo, Max $99/mo, each with a 3-day trial (card required, includes $5 of Claude credit).</p>
         <details class="at-details">
@@ -1939,6 +2034,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Framer · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://www.framer.com" target="_blank" rel="noopener noreferrer">framer.com ↗</a></p>
         <p class="at-what">AI agents that live inside Framer's website canvas and design, write, analyze and organize a site for you, shipped with branching and a creator Community (Product Hunt launch "Framer AI Agents," Oct 13; Framer 3.0 was in Product Hunt's top list on October 21, 2026).</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on framer.com/pricing: Free $0 with 500 credits to try Agents (Framer subdomain, no custom domain); Basic $10/mo billed yearly with 1,000 AI credits/mo; Pro $30/mo billed yearly with 3,000 credits/mo and staging/branching. Credits are shared across the workspace and meter every AI action.</p>
         <details class="at-details">
@@ -1959,6 +2055,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">TwinMind · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://twinmind.com" target="_blank" rel="noopener noreferrer">twinmind.com ↗</a></p>
         <p class="at-what">The desktop version of TwinMind's always-listening "second brain" — it captures meetings and conversations on your computer and turns them into searchable memory.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on twinmind.com: Free $0 (unlimited transcription, summaries and AI chats, daily digests); Pro $15/mo or $11.99/mo billed annually (speaker identification, premium ChatGPT/Gemini/Claude models, phone-call recording, audio uploads); Max $23.99/mo, flagged on the page as a 40%-off promo (10x Pro limits, email auto-tagging and drafts, extended-thinking models).</p>
         <details class="at-details">
@@ -1979,6 +2076,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Woven Labs · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://woven.video" target="_blank" rel="noopener noreferrer">woven.video ↗</a></p>
         <p class="at-what">A native Mac video editor where you describe the edit in chat and then fine-tune it by hand on a real multi-track timeline.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on woven.video: 3-day free trial (card required, $5 trial credits, $0 due today), then $25/mo billed yearly ($299/yr) or $39/mo; every plan includes $10/mo of AI credits; top-ups from $5, never expire. Requires macOS 15+.</p>
         <details class="at-details">
@@ -1999,6 +2097,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Tend · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://heytend.me" target="_blank" rel="noopener noreferrer">heytend.me ↗</a></p>
         <p class="at-what">A personal AI assistant you text in iMessage or SMS that works inside your own accounts instead of giving you a to-do list.</p>
         <p class="at-cost"><strong>Cost:</strong> No pricing published on heytend.me as of this check — invite-only early access, request access by phone number. Cost is therefore unverified, not free.</p>
         <details class="at-details">
@@ -2019,6 +2118,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Notion · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://www.notion.com" target="_blank" rel="noopener noreferrer">notion.com ↗</a></p>
         <p class="at-what">Notion's rebuilt in-workspace AI agents — they now run much longer tasks, route each job to a cheaper/faster model automatically, and bill under one credit system.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified on notion.com/pricing: full Notion Agent is a Business-plan feature — $20/member/mo billed annually ($24 monthly); Free/Plus get only a limited AI trial. Custom Agents are free to try, then $10 per 1,000 monthly Notion credits, on top of the plan; the new system unifies AI usage into Standard/Select credits (Product Hunt launch summary, per Notion: Business/Enterprise include 1,500 Standard + 500 Select credits/mo).</p>
         <details class="at-details">
@@ -2039,6 +2139,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">Mistral AI · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://mistral.ai" target="_blank" rel="noopener noreferrer">mistral.ai ↗</a></p>
         <p class="at-what">A family of speech models — transcription, text-to-speech, and a voice-agent SDK that listens, reasons, calls tools, and speaks in one real-time pipeline.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified in Mistral's own launch pricing table: transcription $0.0035/min (Mini batch), $0.0040/min (Small), $0.008/min (Mini Realtime); TTS $13 per 1M characters; full voice-agent API $0.04/min with Mistral Small 4 reasoning, $0.08/min with another reasoning model. No subscription — pure usage metering.</p>
         <details class="at-details">
@@ -2059,6 +2160,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-track">TRACK IT</span>
         </div>
         <p class="at-meta">DeepSeek · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://www.deepseek.com" target="_blank" rel="noopener noreferrer">deepseek.com ↗</a></p>
         <p class="at-what">Two paid web-access APIs for agents: one searches the web and returns structured results, the other fetches a page and returns it as Markdown.</p>
         <p class="at-cost"><strong>Cost:</strong> Verified in DeepSeek's official docs: $0.75 per 1,000 successful requests for each API; failed, empty, and timed-out requests are not billed, and result count does not change the price. Note: calls made through DeepSeek Harness / Claude Code / Codex were free until per-request billing began at 00:00 Beijing time on November 1, 2026.</p>
         <details class="at-details">
@@ -2079,6 +2181,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">Composio · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://composio.dev" target="_blank" rel="noopener noreferrer">composio.dev ↗</a></p>
         <p class="at-what">A connection layer that gives AI agents access to 1,000+ apps (Gmail, Slack, Notion, GitHub, ...) through a single connection.</p>
         <p class="at-cost"><strong>Cost:</strong> Free tier; paid plans scale with usage (tool calls).</p>
         <details class="at-details">
@@ -2099,6 +2202,7 @@ html[data-theme="light"] nav[aria-label="Back"] a { border-color: #D9D5CC !impor
           <span class="at-chip at-chip-skip">SKIP IT</span>
         </div>
         <p class="at-meta">xAI · Briefed Oct 21, 2026</p>
+        <p class="at-site"><a href="https://x.ai/bot" target="_blank" rel="noopener noreferrer">x.ai/bot ↗</a></p>
         <p class="at-what">xAI's packaged AI-agent product — "AI teammates" with a computer of their own, routines, and an iOS app.</p>
         <p class="at-cost"><strong>Cost:</strong> $200/month flat; no free plan, no mid tier; 7-day trial. (One video reviewed claimed flat pricing with no metering mentioned; an earlier Andrew Warner video described metered pay-per-use overage of ~$259 in days — unresolved discrepancy between tiers/eras.)</p>
         <details class="at-details">
