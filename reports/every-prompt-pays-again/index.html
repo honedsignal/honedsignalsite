@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="color-scheme" content="dark" />
+<meta name="color-scheme" content="light dark" />
 <script src="/theme.js"></script>
 <title>Every Prompt Pays Again — The Token Cost of Connectors, Plugins, Websites and Agents | Honed Signal</title>
 <meta name="description" content="Every time you send a prompt, the AI re-reads a bundle — its own instructions, your standing instructions, the conversation so far, the definitions of the tools it can use, and anything it has fetched along the way. What that re-read costs across connectors, plugins, websites and agents, with every claim graded Documented, Alleged, or Unknown." />
@@ -22,14 +22,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
 <style>
-:root{color-scheme:dark;--bg:#0b0e14;--bg2:#0e1220;--panel:#12172a;--panel2:#161c33;--line:#232a42;--ink:#e9ebf4;--inksoft:#d5d9e6;--muted:#9aa3ba;--faint:#6b7390;--orange:#FF6B35;--teal:#2EC4B6;--amber:#E8A33D}
+:root{color-scheme:light;--bg:#faf8f4;--bg2:#efede8;--panel:#ffffff;--panel2:#efede8;--line:#d9d5cc;--ink:#14161c;--inksoft:#3d434f;--muted:#5c6572;--faint:#6d7280;--orange:#D96E00;--teal:#0D7A6E;--amber:#a86a00;--chrome:rgba(250,248,244,.94);--secnum:rgba(13,122,110,.30);--pilldoc:#ffffff;--pillall:#ffffff;--retbg:#faf0d7;--retink:#7a5200;--convbg:#e2f4f1;--convink:#0a5a50;--toolbg:#efede8;--sysbg:#e6e1d3;--findingbg:#efe9dc}
+html[data-theme="dark"]{color-scheme:dark;--bg:#0b0e14;--bg2:#0e1220;--panel:#12172a;--panel2:#161c33;--line:#232a42;--ink:#e9ebf4;--inksoft:#d5d9e6;--muted:#9aa3ba;--faint:#6b7390;--orange:#FF6B35;--teal:#2EC4B6;--amber:#E8A33D;--chrome:rgba(11,14,20,.94);--secnum:rgba(46,196,182,.28);--pilldoc:#06231f;--pillall:#2b1c04;--retbg:#3d2c14;--retink:#f3d9ae;--convbg:#123f3a;--convink:#bfeee8;--toolbg:#1a2138;--sysbg:#05070c;--findingbg:#05070c}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:"Source Sans 3",system-ui,sans-serif;font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.16}
 a{color:var(--teal)}
 .mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-.topbar{position:sticky;top:0;z-index:50;background:rgba(11,14,20,.94);border-bottom:1px solid var(--line)}
+.topbar{position:sticky;top:0;z-index:50;background:var(--chrome);border-bottom:1px solid var(--line)}
 .topbar-in{max-width:1240px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:16px}
 .brand{font-family:"Space Grotesk";font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
 .brand span{color:var(--orange)}
@@ -56,12 +57,13 @@ main{padding-bottom:80px;min-width:0}
 .findings header{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:24px;flex-wrap:wrap}
 .findings h2{font-size:26px}
 .findings .mono{color:var(--muted)}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.fgrid .fitem:last-child{grid-column:1/-1}
 .fitem{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:20px 24px;display:flex;gap:16px}
 .fitem .n{font-family:ui-monospace,monospace;color:var(--teal);font-size:14px;padding-top:4px}
 .fitem p{font-size:18px}
 .fitem a{font-size:15px}
-.depths{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:16px;margin-top:24px}
+.depths{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:16px;margin-top:24px;align-items:stretch}
 .depth{display:block;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;text-decoration:none;color:var(--ink)}
 .depth .mono{color:var(--muted)}
 .depth h3{font-size:22px;margin:8px 0 4px}
@@ -70,20 +72,20 @@ main{padding-bottom:80px;min-width:0}
 .depth.full .mono,.depth.full p{color:#4a2413}
 .legend{margin-top:24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:15px}
 .pill{display:inline-block;border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700}
-.pill.doc{background:var(--teal);color:#06231f}
-.pill.all{background:var(--amber);color:#2b1c04}
+.pill.doc{background:var(--teal);color:var(--pilldoc)}
+.pill.all{background:var(--amber);color:var(--pillall)}
 .pill.unk{border:1px solid var(--muted);color:var(--muted);background:transparent}
 .chip{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:13px;color:var(--muted)}
 section{padding:64px 0 16px;border-bottom:1px solid var(--line)}
-.secnum{font-family:"Space Grotesk";font-size:72px;font-weight:700;line-height:1;color:rgba(46,196,182,.28)}
+.secnum{font-family:"Space Grotesk";font-size:72px;font-weight:700;line-height:1;color:var(--secnum)}
 section h2{font-size:clamp(28px,3.6vw,38px);margin:8px 0 16px;max-width:24em}
 .takeaway{font-size:clamp(20px,2.4vw,24px);font-weight:600;max-width:32em;margin-bottom:32px}
-section p{margin-bottom:16px;color:var(--inksoft);max-width:68ch}
-section ul,section ol{margin:0 0 16px 24px;color:var(--inksoft);max-width:66ch}
+section p{margin-bottom:16px;color:var(--inksoft);max-width:80ch}
+section ul,section ol{margin:0 0 16px 24px;color:var(--inksoft);max-width:78ch}
 section li{margin-bottom:12px}
 section h3{font-size:22px;margin:32px 0 16px}
-.callout{background:var(--panel);border-left:4px solid var(--teal);border-radius:0 12px 12px 0;padding:24px 28px;margin:24px 0;max-width:68ch;color:var(--inksoft)}
-details.scope,details.appendix{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 24px;margin:24px 0;max-width:72ch}
+.callout{background:var(--panel);border-left:4px solid var(--teal);border-radius:0 12px 12px 0;padding:24px 28px;margin:24px 0;max-width:80ch;color:var(--inksoft)}
+details.scope,details.appendix{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 24px;margin:24px 0;max-width:80ch}
 details.scope summary,details.appendix summary{cursor:pointer;color:var(--teal);font-weight:600}
 details.scope p,details.appendix p{margin-top:12px}
 details.appendix ul{margin-top:12px}
@@ -95,17 +97,17 @@ details.appendix ul{margin-top:12px}
 .layer small{opacity:.78;font-size:14px}
 .layer .tag{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.1em;white-space:nowrap}
 .l-msg{background:var(--orange);color:#171310;min-height:44px}
-.l-ret{background:#3d2c14;color:#f3d9ae}
-.l-conv{background:#123f3a;color:#bfeee8;min-height:104px}
+.l-ret{background:var(--retbg);color:var(--retink)}
+.l-conv{background:var(--convbg);color:var(--convink);min-height:104px}
 .l-ins{background:var(--panel2);border:1px solid var(--line)}
-.l-tool{background:#1a2138;border:1px solid var(--line);min-height:72px}
-.l-sys{background:#05070c;border:1px solid var(--line)}
+.l-tool{background:var(--toolbg);border:1px solid var(--line);min-height:72px}
+.l-sys{background:var(--sysbg);border:1px solid var(--line)}
 .bundle .foot{color:var(--muted);font-size:14px;margin-top:8px}
 .sidecard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;margin:24px 0;max-width:760px}
 .sidecard .mono{color:var(--muted)}
 .sidecard .sidebody p{margin:12px 0 8px}
 .sidemeta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
-.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0;align-items:stretch}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px}
 .card h3{font-size:21px;margin:0 0 8px}
 .card p{color:var(--muted);font-size:16px;margin:0}
@@ -120,7 +122,7 @@ tr:last-child td{border-bottom:none}
 .tier b{font-size:19px}
 .tier p{color:var(--muted);font-size:16px;margin:0}
 .tier .big{font-family:"Space Grotesk";font-size:26px;white-space:nowrap}
-.t1{background:#123f3a}.t2{background:var(--panel2)}.t3{background:var(--panel)}
+.t1{background:var(--convbg)}.t2{background:var(--panel2)}.t3{background:var(--panel)}
 .bars{margin:24px 0 8px;max-width:820px}
 .bars-sep{border-top:1px dashed var(--line);padding-top:16px}
 .bar-row{display:grid;grid-template-columns:180px 1fr 120px;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
@@ -133,7 +135,7 @@ tr:last-child td{border-bottom:none}
 .steps{margin:24px 0;max-width:900px}
 .steps .bar-row{grid-template-columns:36px 200px 1fr 130px}
 .steps .num{font-family:ui-monospace,monospace;color:var(--teal)}
-.findingbox{background:#05070c;border:1px solid var(--line);border-radius:16px;padding:32px;margin:32px 0 40px;max-width:760px}
+.findingbox{background:var(--findingbg);border:1px solid var(--line);border-radius:16px;padding:32px;margin:32px 0 40px;max-width:760px}
 .findingbox .mono{color:var(--teal)}
 .findingbox p{font-size:clamp(20px,2.4vw,25px);font-weight:600;margin:8px 0 0;color:var(--ink)}
 .casepanel{border:1px solid var(--teal);border-radius:16px;padding:32px;margin:32px 0;max-width:820px;background:var(--panel)}
@@ -160,9 +162,11 @@ footer .byl{color:var(--ink);font-size:16px;margin-bottom:8px}
 .sheet.open{transform:none}
 .sheet a{display:flex;gap:16px;padding:12px 8px;color:var(--ink);text-decoration:none;font-size:18px;border-radius:8px}
 .sheet a b{font-family:ui-monospace,monospace;font-weight:400;color:var(--faint);font-size:14px;padding-top:4px}
-.sheet a.on{background:#123f3a;color:#bfeee8}
+.sheet a.on{background:var(--convbg);color:var(--convink)}
 .sheet .x{float:right;background:none;border:none;color:var(--ink);font-size:26px;cursor:pointer}
 @media (max-width:900px){
+.topbar-in{flex-wrap:wrap;row-gap:8px}
+.gnblock,details.appendix{overflow-wrap:anywhere}
 .wrap{grid-template-columns:1fr;gap:0}
 .rail{display:none}
 .cursec{display:block}
@@ -177,7 +181,13 @@ footer .byl{color:var(--ink);font-size:16px;margin-bottom:8px}
 .tablewrap{overflow-x:auto}
 section{padding:48px 0 8px}
 }
+@media print{
+html[data-theme="dark"]{--bg:#faf8f4;--bg2:#efede8;--panel:#ffffff;--panel2:#efede8;--line:#d9d5cc;--ink:#14161c;--inksoft:#3d434f;--muted:#5c6572;--faint:#6d7280;--orange:#D96E00;--teal:#0D7A6E;--amber:#a86a00;--chrome:#ffffff;--secnum:rgba(13,122,110,.30);--pilldoc:#ffffff;--pillall:#ffffff;--retbg:#faf0d7;--retink:#7a5200;--convbg:#e2f4f1;--convink:#0a5a50;--toolbg:#efede8;--sysbg:#e6e1d3;--findingbg:#efe9dc}
+.topbar{position:static}
+.sheet{display:none}
+}
 </style>
+<link rel="stylesheet" href="/theme.css?v=1" />
 </head>
 <body>
 <div class="topbar">
@@ -186,6 +196,13 @@ section{padding:48px 0 8px}
     <button class="cursec" id="sheetBtn">§<span id="curLabel">Contents</span> ▾</button>
     <span class="minleft" id="minLeft">About 55 min left</span>
     <span class="tagline mono">Checked. Traced. Honed.</span>
+    <div class="hs-theme-switch" data-hs-theme-switch>
+      <div class="hs-theme-seg" role="group" aria-label="Page theme">
+        <button type="button" data-theme-choice="system" aria-pressed="false">System</button>
+        <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+        <button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button>
+      </div>
+    </div>
   </div>
   <div class="progress"><i id="prog"></i></div>
 </div>
@@ -256,6 +273,20 @@ section{padding:48px 0 8px}
     <span><span class="pill unk">Unknown</span> not disclosed</span>
   </div>
 </div>
+<section id="contributors" class="contribsec"><h2>Who contributed to this report</h2><p>This report was researched and written by Muse, then reviewed in the open. Seven other AI systems checked the draft; every verified correction was applied, and the rest were answered in the open.</p>
+<div class="tablewrap"><table class="contrib">
+<thead><tr><th>Contributor</th><th>Contribution</th></tr></thead>
+<tbody>
+<tr><td><b>Muse (Meta)</b></td><td>Research, drafting, claim audits, and the page build</td></tr>
+<tr><td><b>ChatGPT (OpenAI)</b></td><td>Review round, and the proofreading passes</td></tr>
+<tr><td><b>Claude (Anthropic)</b></td><td>Review round, and the design mockup</td></tr>
+<tr><td><b>Gemini (Google)</b></td><td>Review round, and research notes used as leads</td></tr>
+<tr><td><b>Grok Bot (xAI)</b></td><td>Two review rounds, and layout suggestions</td></tr>
+<tr><td><b>Perplexity</b></td><td>Two review rounds</td></tr>
+<tr><td><b>Meta AI</b></td><td>Review round</td></tr>
+<tr><td><b>DeepSeek</b></td><td>Final review round</td></tr>
+</tbody></table></div>
+</section>
 <section id="short" class="shortsec"><h2>The short version</h2><p>Every time you send a prompt, the AI does not just read your new message. It reads a bundle: its own instructions, your standing instructions, the conversation so far, the definitions of the tools it can use, and anything it has fetched, been handed, or remembered along the way. Then it answers — and on your next prompt, it reads the bundle again, now including its last answer. That is the typical full-history pattern; which parts of the bundle are loaded, cached, or trimmed varies by platform, and sections 1 and 11 qualify it. But it is the default shape of a chat.</p>
 <p>That one mechanism explains almost everything in this report. Connectors cost room because their definitions ride in the bundle. A pasted document costs room on every later turn, not just the turn you pasted it. A web page an AI fetches to answer you once stays in the conversation — retained until it is compacted, summarized, or removed — and is re-read after that. An agent that takes twenty steps does not pay the bundle once — it pays a growing version of it twenty times.</p>
 <p>Costs in this report are relative — small, medium, dominant — because your numbers will not match anyone else's. They depend on your tool, your plan, your connectors, and how you work. Where a hard number appears, it is a vendor-published anchor, labeled as such, with the product it applies to. It is not a prediction of your bill.</p>
