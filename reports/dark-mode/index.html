@@ -181,7 +181,7 @@
       /* ---------- Hero ---------- */
       .hero { padding: 64px 0 48px; border-bottom: 1px solid var(--line); }
       .hero-figure {
-        margin: 0 0 40px; border-radius: 16px; overflow: hidden;
+        margin: 40px 0 0; border-radius: 16px; overflow: hidden;
         border: 1px solid var(--line); box-shadow: var(--shadow);
         aspect-ratio: 2 / 1; background: var(--surface-2); line-height: 0;
       }
@@ -387,7 +387,7 @@
         body { font-size: 16.5px; }
         section { padding: 48px 0; }
         .hero { padding: 40px 0 32px; }
-        .hero-figure { margin-bottom: 28px; border-radius: 12px; }
+        .hero-figure { margin-top: 28px; margin-bottom: 0; border-radius: 12px; }
         .tl-row { grid-template-columns: 1fr; gap: 2px; }
         .fw-row { grid-template-columns: 1fr; }
         .video { grid-template-columns: 1fr; }
@@ -417,7 +417,7 @@
         .theme-switch { display: none; }
         section, .hero { padding: 32px 0; }
         .skip-link { display: none; }
-        .hero-figure { box-shadow: none; border-color: #d8d2c2; break-inside: avoid; page-break-inside: avoid; margin-bottom: 24px; }
+        .hero-figure { box-shadow: none; border-color: #d8d2c2; break-inside: avoid; page-break-inside: avoid; margin-top: 24px; margin-bottom: 0; }
         .hero-figure img { object-fit: contain; }
         /* Components with hard-coded dark colors get explicit light print
            versions, so they stay readable with background graphics off. */
@@ -461,11 +461,6 @@
     </div>
 
     <header class="hero">
-      <div class="wrap">
-        <figure class="hero-figure">
-          <img src="images/hero.webp" width="1774" height="887" alt="Overhead view of a man dressed in black with black glasses lying diagonally in a ball pit filled edge to edge with bright neon-colored balls, gazing up past the camera with a contemplative, unsmiling expression." fetchpriority="high" />
-        </figure>
-      </div>
       <div class="wrap hero-grid">
         <div>
           <div class="report-meta">
@@ -500,6 +495,11 @@
             <div class="sb-src">Android Authority polls, 2020 &amp; 2026 · NN/g, 2023</div>
           </div>
         </aside>
+      </div>
+      <div class="wrap">
+        <figure class="hero-figure">
+          <img src="images/hero.webp" width="1774" height="887" alt="Overhead view of a man dressed in black with black glasses lying diagonally in a ball pit filled edge to edge with bright neon-colored balls, gazing up past the camera with a contemplative, unsmiling expression." fetchpriority="high" />
+        </figure>
       </div>
     </header>
 
