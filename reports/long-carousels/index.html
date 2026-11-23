@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<title>Long Carousels Win on Likes and Reach. Nobody Has Measured the Rest. | Honed Reports</title>
+<meta name="description" content="Two datasets measure what happens past 10 slides on Instagram, and they point the same way: the only large study of likes on 11-to-20-slide carousels finds they outperform shorter ones, and Socialinsider’s 2025 reach chart finds the same for reach. Nobody has measured the rest — saves, shares, and completion by slide count remain unmeasured." />
+<link rel="canonical" href="https://honedsignal.com/reports/long-carousels/" />
+<meta property="og:title" content="Long Carousels Win on Likes and Reach. Nobody Has Measured the Rest. | Honed Reports" />
+<meta property="og:description" content="Two datasets measure what happens past 10 slides on Instagram, and they point the same way. Two vendors, two metrics, one direction. Everything else the industry repeats about long decks either measures something else or cannot be traced to a real dataset." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://honedsignal.com/reports/long-carousels/" />
+<meta property="og:image" content="https://honedsignal.com/reports/long-carousels/images/hero.webp" />
+<meta property="og:image:width" content="2096" />
+<meta property="og:image:height" content="1184" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://honedsignal.com/reports/long-carousels/images/hero.webp" />
+<meta name="theme-color" content="#0B0E14" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{color-scheme:dark;--bg:#0B0E14;--surface:#151A24;--surface2:#1C222E;--panel:#151A24;--panel2:#1C222E;--line:#2A313E;--ink:#EDE9E0;--inksoft:#D6D1C4;--muted:#A8ADB8;--faint:#7A8191;--accent:#FF6B35;--orange:#FF6B35;--teal:#2EC4B6;--teal-bg:#14302C;--warn-bg:#2A1D12;--warn-line:#6B4A2A;--chart-grid:#2A313E;--bar:#4A5262;--bar-hi:#FF6B35;--chrome:rgba(11,14,20,.94);--secnum:rgba(46,196,182,.28);--shadow:0 8px 32px rgba(0,0,0,.35)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Source Sans 3",system-ui,sans-serif;font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.16}
+a{color:var(--teal)}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.topbar{position:sticky;top:0;z-index:50;background:var(--chrome);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1240px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:16px}
+.brand{font-family:"Space Grotesk";font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+.brand span{color:var(--orange)}
+.tagline{margin-left:auto;color:var(--muted)}
+.cursec{display:none;background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:8px 16px;font-size:15px;cursor:pointer;font-family:inherit}
+.progress{height:4px;background:var(--line)}
+.progress i{display:block;height:100%;width:0;background:var(--orange)}
+.minleft{color:var(--muted);font-size:14px;white-space:nowrap}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:248px minmax(0,1fr);gap:48px}
+.rail{padding-top:56px}
+.rail nav{position:sticky;top:104px}
+.rail a{display:flex;gap:12px;padding:8px 12px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:16px}
+.rail a b{font-family:ui-monospace,monospace;font-weight:400;font-size:13px;color:var(--faint);padding-top:3px}
+.rail a:hover{background:var(--panel)}
+.rail a.on{background:var(--panel2);color:var(--ink)}
+.rail a.on b{color:var(--teal)}
+main{padding-bottom:80px;min-width:0}
+.hero{padding:56px 0 40px;border-bottom:1px solid var(--line)}
+.kicker{color:var(--teal)}
+.hero h1{font-size:clamp(36px,5.2vw,56px);font-weight:700;margin:16px 0 8px;max-width:20em}
+.sub{font-size:clamp(20px,2.6vw,26px);max-width:34em}
+.byline{margin-top:24px;color:var(--muted);font-size:16px;display:flex;gap:24px;flex-wrap:wrap}
+.hero-figure{margin:40px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:2096 / 1184;background:var(--surface2);line-height:0}
+.hero-figure img{display:block;width:100%;height:auto}
+.bottomline{margin-top:40px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:32px}
+.bottomline header{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.bottomline h2{font-size:26px}
+.bottomline .mono{color:var(--muted)}
+.bottomline p{font-size:19px;color:var(--inksoft);max-width:78ch}
+section{padding:64px 0 16px;border-bottom:1px solid var(--line)}
+.secnum{font-family:"Space Grotesk";font-size:72px;font-weight:700;line-height:1;color:var(--secnum)}
+section h2{font-size:clamp(28px,3.6vw,38px);margin:8px 0 16px;max-width:24em}
+section p{margin-bottom:16px;color:var(--inksoft);max-width:80ch}
+section ul,section ol{margin:0 0 16px 24px;color:var(--inksoft);max-width:78ch}
+section li{margin-bottom:12px}
+section h3{font-size:22px;margin:32px 0 16px}
+.callout{background:var(--panel);border-left:4px solid var(--teal);border-radius:0 12px 12px 0;padding:24px 28px;margin:24px 0;max-width:80ch;color:var(--inksoft)}
+.callout.warn{background:var(--warn-bg);border-left-color:var(--warn-line)}
+sup.cite{font-size:12px;line-height:0;white-space:nowrap}
+sup.cite a{color:var(--teal);text-decoration:none}
+sup.cite a:hover{text-decoration:underline}
+ol.sources{margin-left:24px}
+ol.sources li{margin-bottom:10px;font-size:16px;overflow-wrap:anywhere}
+.signoff{font-style:italic;color:var(--muted)}
+footer{padding:40px 0 56px;color:var(--muted);font-size:15px}
+footer .byl{color:var(--ink);font-size:16px;margin-bottom:8px}
+.sheet{position:fixed;left:0;right:0;bottom:0;background:var(--surface2);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:24px;z-index:60;transform:translateY(105%);transition:transform .25s;max-height:75vh;overflow:auto}
+.sheet.open{transform:none}
+.sheet a{display:flex;gap:16px;padding:12px 8px;color:var(--ink);text-decoration:none;font-size:18px;border-radius:8px}
+.sheet a b{font-family:ui-monospace,monospace;font-weight:400;color:var(--faint);font-size:14px;padding-top:4px}
+.sheet a.on{background:var(--teal-bg)}
+.sheet .x{float:right;background:none;border:none;color:var(--ink);font-size:26px;cursor:pointer}
+@media (max-width:900px){
+.topbar-in{flex-wrap:wrap;row-gap:8px}
+.wrap{grid-template-columns:1fr;gap:0}
+.rail{display:none}
+.cursec{display:block}
+.tagline{display:none}
+.minleft{display:none}
+section{padding:48px 0 8px}
+.hero-figure{margin-top:28px;border-radius:12px}
+}
+@media print{
+.topbar,.sheet{display:none}
+.wrap{grid-template-columns:1fr}
+.rail{display:none}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="/reports/">Honed <span>Reports</span></a>
+    <button class="cursec" id="sheetBtn">§<span id="curLabel">Contents</span> ▾</button>
+    <span class="minleft" id="minLeft">About 14 min left</span>
+    <span class="tagline mono">Checked. Traced. Honed.</span>
+  </div>
+  <div class="progress"><i id="prog"></i></div>
+</div>
+<div class="sheet" id="sheet" aria-label="Contents">
+  <button class="x" id="sheetX" aria-label="Close contents">×</button>
+  <h3 style="font-size:24px;margin-bottom:16px">Contents</h3>
+<a href="#s1" data-sec="s1"><b>01</b> The question</a>
+<a href="#s2" data-sec="s2"><b>02</b> Where the advice comes from</a>
+<a href="#s3" data-sec="s3"><b>03</b> What the benchmarks measure</a>
+<a href="#s4" data-sec="s4"><b>04</b> Slides 11–20, measured</a>
+<a href="#s5" data-sec="s5"><b>05</b> What Instagram itself says</a>
+<a href="#s6" data-sec="s6"><b>06</b> The numbers that aren’t</a>
+<a href="#s7" data-sec="s7"><b>07</b> The verdict</a>
+<a href="#s8" data-sec="s8"><b>08</b> What we could not verify</a>
+<a href="#sources" data-sec="sources"><b>—</b> Sources</a>
+<a href="#s9" data-sec="s9"><b>09</b> How this report was made</a>
+</div>
+<div class="wrap">
+  <aside class="rail"><nav aria-label="Contents">
+<a href="#s1" data-sec="s1"><b>01</b> The question</a>
+<a href="#s2" data-sec="s2"><b>02</b> Where the advice comes from</a>
+<a href="#s3" data-sec="s3"><b>03</b> What the benchmarks measure</a>
+<a href="#s4" data-sec="s4"><b>04</b> Slides 11–20, measured</a>
+<a href="#s5" data-sec="s5"><b>05</b> What Instagram itself says</a>
+<a href="#s6" data-sec="s6"><b>06</b> The numbers that aren’t</a>
+<a href="#s7" data-sec="s7"><b>07</b> The verdict</a>
+<a href="#s8" data-sec="s8"><b>08</b> What we could not verify</a>
+<a href="#sources" data-sec="sources"><b>—</b> Sources</a>
+<a href="#s9" data-sec="s9"><b>09</b> How this report was made</a>
+  </nav></aside>
+  <main>
+
+<div class="hero">
+  <p class="mono kicker">Honed Reports · November 17, 2026</p>
+  <h1>Long Carousels Win on Likes and Reach. Nobody Has Measured the Rest.</h1>
+  <p class="sub">What nine years of carousel data say about maxing out the deck</p>
+  <div class="byline"><span>Research by Muse · Edited by Freddie Avalos</span><span>November 17, 2026</span><span>All sources re-verified November 23, 2026</span><span>About 14 min read</span></div>
+  <figure class="hero-figure">
+    <img src="images/hero.webp" width="2096" height="1184" alt="Freddie, as a prime-time game-show contestant in a charcoal sport coat with a name tag reading Freddie, thinking — one hand at his chin — as he looks up at three floating teal holograms of graded stacks of Instagram slides, a studio audience behind him">
+  </figure>
+  <div class="bottomline">
+    <header><h2>The bottom line</h2><span class="mono">Checked. Traced. Honed.</span></header>
+    <p>“Use every slide Instagram allows” was good advice when the limit was 10. Instagram raised the limit to 20 in August 2024 <sup class="cite">[<a href="#src7">7</a>, <a href="#src8">8</a>]</sup>, and the evidence has not kept up with the advice. Two datasets measure what happens past 10 slides, and they point the same way: the only large study of likes on 11-to-20-slide carousels finds they outperform shorter ones <sup class="cite">[<a href="#src1">1</a>]</sup>, and Socialinsider’s 2025 reach chart finds the same for reach <sup class="cite">[<a href="#src4">4</a>]</sup>. Two vendors, two metrics, one direction. Everything else the industry repeats about long decks, including the precise “completion rate” tables in marketing blogs, either measures something else or cannot be traced to a real dataset. The supported rule is a floor, not a ceiling: go deep when the content is deep — 8–10 slides at minimum, 11–20 when the material earns it — and never pad a thin idea to hit a number.</p>
+  </div>
+</div>
+<section id="s1" aria-labelledby="h-s1">
+<div class="secnum" aria-hidden="true">01</div><h2 id="h-s1">The question</h2>
+<p>Instagram carousels — swipeable multi-image posts — are the format every benchmark says beats a single photo. In August 2024, Instagram doubled the maximum from 10 slides to 20. Advice columns quickly filled in the obvious-sounding conclusion: more slides, more engagement, so use all 20. This report checks that claim against the studies published since 2020, and separates what was measured from what was merely repeated.</p>
+</section>
+<section id="s2" aria-labelledby="h-s2">
+<div class="secnum" aria-hidden="true">02</div><h2 id="h-s2">Where the “use all the slides” advice comes from</h2>
+<p>Much of it traces back to one study: Socialinsider and Bannersnack’s 2020 carousel analysis of more than 22 million Instagram posts, including nearly 3 million carousels, as reported by Search Engine Journal on August 30, 2020 <sup class="cite">[<a href="#src6">6</a>]</sup>. Its findings, as published:</p>
+<ul>
+<li>Carousels averaged a 1.92% engagement rate per post, against 1.74% for images and 1.45% for videos.</li>
+<li>Engagement dipped after three slides, then “picks up again at 8 slides and above.”</li>
+<li>“The engagement rate per post goes over 2% when all 10 carousel slides are used.”</li>
+<li>Only about 7% of carousels used all 10 slides (6.77% in the study’s own figures).</li>
+</ul>
+<p>Two cautions attach to that study. First, it predates the 20-slide era it is now cited for: the data runs from January 2017 to July 2020, when 10 slides was the maximum, so it cannot say anything about slides 11 through 20 — and it covered only business accounts with at least 5,000 followers, measuring likes and comments. Second, its curve describes posts — a post with 10 slides earned more engagement than a post with 4 — not viewers. It does not show that viewers who reach slide 8 are more engaged; it shows that accounts that build 10-slide decks tend to earn more, which may say as much about the accounts as about the format. (The datasets behind this report come from two non-overlapping eras — 2017–2020 and 2025–2026.)</p>
+</section>
+<section id="s3" aria-labelledby="h-s3">
+<div class="secnum" aria-hidden="true">03</div><h2 id="h-s3">What the big benchmarks actually measure (2022–2026)</h2>
+<p>The annual benchmark studies most often quoted in carousel advice — Socialinsider, Buffer, Metricool — compare formats, not slide counts. Across their 2024 and 2025 data, Socialinsider puts carousel engagement at 0.55% in both years, ahead of Reels (0.50% and 0.52%) and images (0.45% and 0.37%), and notes carousels drive the most views at every account size, and the most saves for brands above 10,000 followers <sup class="cite">[<a href="#src3">3</a>]</sup>. The same page’s Q3 2026 update narrows the format lead: carousels 0.50%, Reels 0.48%, images 0.35% across 67.5 million posts <sup class="cite">[<a href="#src3">3</a>]</sup>. Buffer’s analysis of more than 4 million posts (January 2022 to October 2024) found Reels reached 36% more people than carousels, while carousels earned 12% more engagement than Reels and 114% more than single-image posts <sup class="cite">[<a href="#src10">10</a>]</sup>. A separate 2026 Buffer format analysis measured engagement as a percentage of reach: carousels scored 6.9%, compared with 4.4% for single images and 3.3% for Reels — roughly 109% higher than Reels <sup class="cite">[<a href="#src14">14</a>]</sup>. Metricool’s 2026 study of 24.4 million posts found carousels generated nine times more saves than single-image posts <sup class="cite">[<a href="#src11">11</a>]</sup>.</p>
+<p>None of those editions publishes a slide-count breakdown. No slide-count table appears in any Socialinsider annual benchmark for 2022, 2023, 2024, or 2025 data that this report could locate. Socialinsider’s only slide-count data we found is the 2025 reach chart in its carousel guide <sup class="cite">[<a href="#src4">4</a>]</sup>. When a blog attributes one to those editions, the numbers do not match Socialinsider’s published scale — a warning sign examined below.</p>
+</section>
+<section id="s4" aria-labelledby="h-s4">
+<div class="secnum" aria-hidden="true">04</div><h2 id="h-s4">The studies that measure slides 11–20</h2>
+<p>Eden, a carousel analytics company, analyzed 655,385 carousels from 12,159 creators published between August 2025 and August 2026 <sup class="cite">[<a href="#src1">1</a>]</sup>. Each post was scored against its own author’s median performance, measured in likes; a “breakout” is a post earning at least twice the author’s median.</p>
+<p>The pattern climbs almost steadily from 3 slides to about 14, then plateaus around 30–32%. Breakout rates rise from 23.4% at 3 slides to 28.8% at 10, then keep rising into the new territory: 31.0% at 13 slides, 32.1% at 14, 32.2% at 18, and 32.0% at 20. The median 18-to-20-slide carousel performed 13% to 15% above its author’s baseline; the median 2-to-7-slide carousel sat exactly at baseline. Only 16.7% of carousels used 11 or more slides, making the best-performing length also the least crowded. The advantage held at every account size: among creators under 10,000 followers, 11-to-20-slide carousels broke out 23.5% of the time against 18.0% for 2-to-4 slides; above 100,000 followers, 33.0% against 25.8%.</p>
+<p>Eden’s limits matter as much as its findings. It measures likes only — not reach, saves, shares, or comments. It is one vendor’s study, not independently replicated. And like every study in this report, it is correlational: creators who build 18-slide decks differ from creators who post 3 photos, and the study cannot fully separate the deck from the creator. Eden’s own tables add a cadence confound: creators posting three or more times a week broke out 30.1% of the time and produced more than half the sample (342,540 of 655,385 carousels) — long decks may partly mark professional, high-volume accounts rather than cause the lift. A disclosure belongs here as well: every dataset in this section comes from a vendor with something to sell — Eden markets carousel generation tools, PostEverywhere is a scheduler whose own 10-slide cap shaped its data, and Socialinsider sells the analytics its guide promotes. That does not make their numbers wrong; it is why this report checks them against each other.</p>
+<p>Eden’s data also tempers the format claim this report opened with. Within the same account, carousels broke out 28.1% of the time against 27.6% for single photos — half a point — and Socialinsider’s guide puts carousel and image reach rates at 3.32% and about 3.30%. The format, on its own, looks close to a wash; what separates posts inside the format is length.</p>
+<p>A second 2026 study, PostEverywhere’s analysis of more than 14,000 posts, found 7-to-10-slide carousels performed 17% better than an account’s usual post, against 13% for 4–6 slides and 5% for 2–3 (an early-data figure from fewer than 300 carousels) <sup class="cite">[<a href="#src2">2</a>]</sup>. Its authors state the limit plainly: their data stops at 10 slides because PostEverywhere itself schedules carousels of up to 10, “so we can’t tell you whether 11-20 slides does better still.” Read together, the two studies agree up to 10 slides; only Eden and Socialinsider’s 2025 reach chart have data past it.</p>
+<p>The second dataset past 10 slides is Socialinsider’s. Its current carousel guide states the claim plainly — “Instagram carousels with more than 10 slides get increased reach” <sup class="cite">[<a href="#src4">4</a>]</sup> — and its chart shows average reach rate by slide band for January to December 2025. Every band from 10 slides up (3.70% to 4.00%) beats every band below 10 (3.13% to 3.35%). It gives no sample size.</p>
+</section>
+<section id="s5" aria-labelledby="h-s5">
+<div class="secnum" aria-hidden="true">05</div><h2 id="h-s5">What Instagram itself says</h2>
+<p>Adam Mosseri, head of Instagram, explained in October 2024 <sup class="cite">[<a href="#src9">9</a>]</sup> why carousels often out-reach single photos: “multiple pieces of media are going to mean more interactions with your carousel posts, and more interactions is going to mean more reach on average,” and “if someone sees your carousel post but they don’t swipe, we’ll often give that carousel a second chance and automatically move to that second piece of media for the viewer.” Two practical consequences follow: slide 2 works as a second cover, and the comparison he made was carousels against photos — not long carousels against short ones. He did not recommend using 20 slides, and gave no numbers.</p>
+<p>Meta’s own Feed ranking documentation <sup class="cite">[<a href="#src12">12</a>]</sup> lists, among its predictions, “How likely you are to swipe through the whole carousel.” The signal list includes “How many cards are in the carousel.” Meta publishes no weights and no direction. One plausible risk is ours to label as inference, not Meta’s finding: completion is harder to achieve the longer the deck gets, which could cut against very long carousels — though the card count is itself an input to the prediction, so the model may already adjust for deck length. No third-party study has been able to measure it either way.</p>
+</section>
+<section id="s6" aria-labelledby="h-s6">
+<div class="secnum" aria-hidden="true">06</div><h2 id="h-s6">The numbers that aren’t</h2>
+<p>Search for carousel completion rates and you will find precise tables: 64% of viewers finish an 8-slide carousel, 24% finish a 20-slide one, accounts “lose 3–5% of the audience per slide past 10.” This report could not trace any of those figures to a primary source. The most detailed version (Caroubolt, February 2026) attributes its table to a “2024 Socialinsider study” whose percentages are inconsistent with Socialinsider’s published benchmarks. Instagram publishes no completion benchmark, and none of Socialinsider, Buffer, Metricool, Later, Hootsuite, or Sprout Social publishes a per-slide drop-off curve from a named sample. The honest statement is narrower: every added slide is another exit point, completion necessarily falls as decks lengthen, and nobody reputable has published by how much.</p>
+<p>The same caution applies to saves. Carousels come out ahead on saves as a format, though the margin over Reels is thin — Socialinsider’s engagement report (21.3 million posts, October 2025 to March 2026) <sup class="cite">[<a href="#src5">5</a>]</sup> puts the median carousel at 37 saves per post against 35 for Reels and 10 for images. But no verified study breaks saves or shares down by slide count, so the popular claim that a specific slide count maximizes saves is extrapolation, not measurement.</p>
+<blockquote class="callout"><strong>How these studies measure “success” — five different yardsticks.</strong> Eden: likes, scored against each author’s own median post. PostEverywhere: likes, comments and other interactions, scored against the account’s 20 nearest posts. Socialinsider’s 2025 chart: reach rate. Socialinsider’s benchmarks: engagement per follower. Buffer: engagement (2022–2024 analysis) and engagement per reach (2026 analysis). A number from one yardstick cannot be compared with a number from another — most bad carousel advice starts by mixing them.</blockquote>
+</section>
+<section id="s7" aria-labelledby="h-s7">
+<div class="secnum" aria-hidden="true">07</div><h2 id="h-s7">The verdict</h2>
+<ul>
+<li><strong>Use all 10 rather than 2–4: supported.</strong> Socialinsider 2020 and PostEverywhere 2026 point the same way <sup class="cite">[<a href="#src1">1</a>, <a href="#src2">2</a>, <a href="#src6">6</a>]</sup>.</li>
+<li><strong>Go past 10, toward 20: supported for likes and breakout odds; untested for saves, shares, and engagement rate.</strong> One large study (Eden) <sup class="cite">[<a href="#src1">1</a>]</sup> plus Socialinsider’s 2025 reach chart <sup class="cite">[<a href="#src4">4</a>]</sup>.</li>
+<li><strong>Always use exactly 20: unsupported.</strong> Breakout odds plateau from about 13 slides, though Eden’s typical (median) outcome is best at 18–20 slides. Nothing here rewards padding.</li>
+<li><strong>“7–10 slides is the ceiling”: outdated.</strong> It was the best measurable band while tools and the platform capped decks at 10. It remains a safe default. Until late 2026 it was also the practical maximum for scheduled posts: Meta’s publishing API capped carousels at 10. The API now allows 20 <sup class="cite">[<a href="#src13">13</a>]</sup>, and schedulers such as Sked Social, Postiz and Sequence added 20-slide support in late October and November 2026 <sup class="cite">[<a href="#src15">15</a>, <a href="#src16">16</a>, <a href="#src18">18</a>]</sup>. Check your tool.</li>
+<li><strong>“Long decks hurt because nobody finishes them”: unproven.</strong> Completion is a real ranking input, but no primary dataset shows long decks underperforming overall; the one large outcome study points the other way.</li>
+</ul>
+<p><strong>Our working rule:</strong> treat 8–10 slides as the floor for a story worth telling, go to 11–20 when the material is genuinely deep — tutorials, lists, evidence — and spend the effort on slides 1 and 2, because the second-chance re-serve makes slide 2 a second cover. Count is a budget to spend, not a quota to fill.</p>
+<blockquote class="callout warn"><strong>What changed this month (November 2026).</strong> Until this fall, Instagram’s publishing API capped carousels at 10, so every scheduler did too — and long decks had to be posted by hand in the app. Meta’s API now allows 20 <sup class="cite">[<a href="#src13">13</a>]</sup>. Sked Social added 20-slide scheduling on October 30 <sup class="cite">[<a href="#src15">15</a>]</sup>, Sequence on November 18 <sup class="cite">[<a href="#src16">16</a>]</sup>, and Sprout Social on November 20 <sup class="cite">[<a href="#src17">17</a>]</sup>. The workaround era is ending, and scheduled 11-to-20-slide carousels are about to become ordinary — which means the next year of data will test the long-deck question at a scale neither dataset in this report could.</blockquote>
+</section>
+<section id="s8" aria-labelledby="h-s8">
+<div class="secnum" aria-hidden="true">08</div><h2 id="h-s8">What we could not verify</h2>
+<ul>
+<li>Any slide-count breakdown in Socialinsider’s 2022–2025 annual benchmark editions.</li>
+<li>The completion-rate tables circulating on carousel-tool blogs (one detailed example is attributed to a “2024 Socialinsider study” that does not match any Socialinsider primary source we could find).</li>
+<li>Slide-count claims attributed in secondary blogs to Later, Hootsuite, and Sprout Social (“7–10 slides get the highest engagement”; “5–7 slides generate 3.4× more saves”) — no primary publication with those figures and a stated method was found.</li>
+<li>Any measured average of how many slides a viewer actually sees.</li>
+<li>Whether Eden’s study has been peer-reviewed or independently replicated — we found no record of either, as of this report.</li>
+</ul>
+</section>
+<section id="sources" aria-labelledby="h-sources">
+<div class="secnum" aria-hidden="true">§</div><h2 id="h-sources">Sources</h2>
+<p>Sources 1–12 read November 17, 2026; source 13 and re-checks read November 23, 2026.</p>
+<ol class="sources">
+<li id="src1">Eden — Dan Koe, “How many slides should an Instagram carousel have? What 655,385 carousels say,” August 21, 2026 (data August 2025–August 2026). <a href="https://eden.so/blog/instagram-carousel-study">https://eden.so/blog/instagram-carousel-study</a></li>
+<li id="src2">PostEverywhere — “Instagram Carousel Best Practices (Data From 14,000+ Posts),” Instagram Format Study 2026, published February 13, 2026, updated October 2026 (data December 2025–October 2026). <a href="https://posteverywhere.ai/blog/instagram-carousel-best-practices">https://posteverywhere.ai/blog/instagram-carousel-best-practices</a></li>
+<li id="src3">Socialinsider — 2026 Instagram Organic Engagement Benchmarks (2024/2025 data), February 20, 2026. <a href="https://www.socialinsider.io/social-media-benchmarks/instagram">https://www.socialinsider.io/social-media-benchmarks/instagram</a></li>
+<li id="src4">Socialinsider — “Instagram Carousel Post: How to Use It for Your Brand,” updated June 11, 2026. <a href="https://www.socialinsider.io/blog/instagram-carousel">https://www.socialinsider.io/blog/instagram-carousel</a></li>
+<li id="src5">Socialinsider — Instagram Engagement Report (21.3M posts, October 2025–March 2026). <a href="https://www.socialinsider.io/social-media-benchmarks/instagram-engagement-report">https://www.socialinsider.io/social-media-benchmarks/instagram-engagement-report</a></li>
+<li id="src6">Search Engine Journal — “Instagram Carousels Are the Most Engaging Post Type [STUDY],” August 30, 2020 (Socialinsider and Bannersnack study, 22M posts, January 2017–July 2020). <a href="https://www.searchenginejournal.com/instagram-carousels/379311">https://www.searchenginejournal.com/instagram-carousels/379311</a></li>
+<li id="src7">TechCrunch — “Instagram is embracing the ‘photo dump’,” August 8, 2024. <a href="https://techcrunch.com/2024/08/08/instagram-is-embracing-the-photo-dump">https://techcrunch.com/2024/08/08/instagram-is-embracing-the-photo-dump</a></li>
+<li id="src8">Social Media Today — “Instagram Expands Carousels to 20 Frames,” August 8, 2024. <a href="https://www.socialmediatoday.com/news/instagram-expands-carousels-to-20-frames/723792">https://www.socialmediatoday.com/news/instagram-expands-carousels-to-20-frames/723792</a></li>
+<li id="src9">Social Media Today — “IG Chief Recommends Posting Carousels To Improve Reach,” October 17, 2024 (Mosseri statements). <a href="https://www.socialmediatoday.com/news/ig-chief-recommends-posting-carousels-improve-reach/730232">https://www.socialmediatoday.com/news/ig-chief-recommends-posting-carousels-improve-reach/730232</a></li>
+<li id="src10">Buffer — “The State of Social Media Engagement in 2026” (including the October 2024 analysis of 4M+ posts, January 2022–October 2024). <a href="https://buffer.com/resources/state-of-social-media-engagement-2026">https://buffer.com/resources/state-of-social-media-engagement-2026</a></li>
+<li id="src11">Metricool — 2026 Instagram Study (24,364,803 posts), press release via Social Media Today, June 16, 2026. <a href="https://www.socialmediatoday.com/press-release/20260615-metricools-2026-instagram-study-reveals-reels-and-carousels-are-reshaping-1">https://www.socialmediatoday.com/press-release/20260615-metricools-2026-instagram-study-reveals-reels-and-carousels-are-reshaping-1</a></li>
+<li id="src12">Meta Transparency Center — Instagram Feed AI system card (updated June 29, 2026). <a href="https://transparency.meta.com/features/explaining-ranking/ig-feed">https://transparency.meta.com/features/explaining-ranking/ig-feed</a></li>
+<li id="src13">Meta — Instagram Platform Content Publishing guide (updated October 20, 2026). <a href="https://developers.facebook.com/documentation/instagram-platform/content-publishing">https://developers.facebook.com/documentation/instagram-platform/content-publishing</a></li>
+<li id="src14">Buffer — “Best Content Format on Social Platforms in 2026: 45M+ Posts Analyzed,” March 19, 2026. <a href="https://buffer.com/resources/data-best-content-format-social-media">https://buffer.com/resources/data-best-content-format-social-media</a></li>
+<li id="src15">Sked Social Help Center — “Posting Instagram carousel posts” (updated October 30, 2026; product announcement November 17, 2026). <a href="https://help.skedsocial.com/posting-instagram-carousel-posts-slideshows-/-multiple-image-posts-/-albums-sked-social-help-center">https://help.skedsocial.com/posting-instagram-carousel-posts-slideshows-/-multiple-image-posts-/-albums-sked-social-help-center</a></li>
+<li id="src16">Sequence — “Post up to 20 slides in an Instagram carousel,” What’s New, November 18, 2026. <a href="https://sequencesocial.com/whats-new/2026-11-18-instagram-carousels-up-to-20-slides">https://sequencesocial.com/whats-new/2026-11-18-instagram-carousels-up-to-20-slides</a></li>
+<li id="src17">Sprout Social — November 2026 release notes, “Share more with Instagram Carousel Publishing,” November 20, 2026. <a href="https://support.sproutsocial.com/hc/en-us/articles/50117332809869-November-2026">https://support.sproutsocial.com/hc/en-us/articles/50117332809869-November-2026</a></li>
+<li id="src18">Postiz — v2.26.0 release notes, November 13, 2026. <a href="https://winterflow.io/catalog/postiz/releases/v2.26.0/">https://winterflow.io/catalog/postiz/releases/v2.26.0/</a></li>
+</ol>
+<p class="signoff">Honed Reports — Checked. Traced. Honed.</p>
+</section>
+<section id="s9" aria-labelledby="h-s9">
+<div class="secnum" aria-hidden="true">09</div><h2 id="h-s9">How this report was made</h2>
+<p>Every source was read in full on the dates noted in the source list — vendor claims on the vendors’ own live pages, not on summaries of them. Socialinsider’s reach figures were read from the chart image in its guide, because the page text publishes no numbers. Meta’s ranking statements were read on Meta’s own transparency pages. One widely repeated figure — carousels beating single images by “114%” — was traced to a different Buffer article than the one usually cited for it, on a different definition of engagement, and is not used in that form here. Where a claim could not be traced to a primary source, this report says so rather than repeating it.</p>
+</section>
+  <footer>
+    <p class="byl">Research by Muse · Edited by Freddie Avalos</p>
+    <p>Honed Reports — Checked. Traced. Honed. · <a href="/reports/">All reports</a></p>
+  </footer>
+  </main>
+</div>
+<script>
+(function(){
+var prog=document.getElementById('prog'),min=document.getElementById('minLeft'),TOTAL=14;
+function onScroll(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;var f=max>0?h.scrollTop/max:0;prog.style.width=(f*100)+'%';var left=Math.max(0,Math.round(TOTAL*(1-f)));min.textContent='About '+left+' min left';}
+document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+var sheet=document.getElementById('sheet'),btn=document.getElementById('sheetBtn');
+btn.addEventListener('click',function(){sheet.classList.add('open')});
+document.getElementById('sheetX').addEventListener('click',function(){sheet.classList.remove('open')});
+sheet.addEventListener('click',function(e){if(e.target.tagName==='A')sheet.classList.remove('open')});
+var links=document.querySelectorAll('[data-sec]');
+var pillLabel=document.getElementById('curLabel');
+var obs=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var id=en.target.id;links.forEach(function(a){a.classList.toggle('on',a.getAttribute('data-sec')===id)});var a=document.querySelector('[data-sec="'+id+'"]');if(a&&pillLabel){pillLabel.textContent=a.textContent.trim().replace(/\s+/g,' ');}}})},{rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('main section[id]').forEach(function(s){obs.observe(s)});
+})();
+</script>
+</body>
+</html>
