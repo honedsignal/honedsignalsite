@@ -100,6 +100,16 @@ report page is the one partial exception in CSS: its dark block is
   System to the uniform site rule: **Dark**. Its hard-coded dark
   components (scoreboard, badges, play buttons, 60-30-10 bar) already
   had explicit light print versions and variable-driven screen colors.
+- **Header navigation rule (2026-11-24, Freddie's catch):** every report
+  header must carry BOTH back links — `← Honed Signal` (`href="/"`) and
+  `← Honed Reports` (`href="/reports/"`) — plus the System/Light/Dark
+  toggle. Before this date every live report linked only to `/reports/`
+  (no way to the site front), and `long-carousels` — built dark-only
+  before this kit — had no toggle or light theme at all; both were fixed
+  in commit 3746b08 (long-carousels got the light variable set keyed to
+  `html[data-theme="light"]`, `/theme.js`, `/theme.css`, and print
+  forcing light). New report builds: check for all three elements
+  before publishing.
 - **404.html: not themed.** It shares no header/nav chrome (standalone
   centered card, no nav), so there is no existing chrome to hold the
   toggle; revisit if it ever gets the standard header.
