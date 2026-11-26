@@ -90,10 +90,16 @@ report page is the one partial exception in CSS: its dark block is
   `exactly-8-arms`, `bowlwatch`, `bowlwatch/recheck-log`): their
   `@media (prefers-color-scheme: dark)` variable blocks were re-keyed to
   `html[data-theme="dark"]` (including exactly-8-arms' `article` component
-  variables and `.pill-yes`). Their heroes stay navy in both themes by
-  design (`--hero-bg`). Toggle sits in the `.hs-util` bar after the back
-  link. Print: the existing print block already forced hero/bg light;
-  an appended print block forces the remaining light variables.
+  variables and `.pill-yes`). Toggle sits in the `.hs-util` bar after
+  the back link. Print: the existing print block already forced hero/bg
+  light; an appended print block forces the remaining light variables.
+  **Hero theme rule (revised 2026-11-26, Freddie's call):** heroes flip
+  with the theme — in Light mode `--hero-bg`/`--hero-ink`/`--hero-soft`/
+  `--hero-line` take the light values (`#F7F5F1` / `#14161C` / `#454A55` /
+  `#D9D5CC`, the same values Print forces); Dark keeps the navy hero.
+  This supersedes the Nov 18 pilot note that heroes stay navy in both
+  themes. The `.hs-util` bar above the hero stays navy in both themes,
+  as does the toggle pill sitewide.
 - **Dark-mode report** (`reports/dark-mode/`): already attribute-keyed;
   its page-local resolver/controller were replaced by `/theme.js` and
   its buttons now carry `data-theme-choice`. Default changed from
